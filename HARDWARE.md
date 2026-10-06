@@ -79,7 +79,7 @@ HDMI高速输出对经手册p19和管脚表核对为D2=D19/D20、D1=F16/F17、D0
 - 用户确认项目采用 Classical CAN（经典 CAN）；波特率、标准/扩展帧格式、应用协议与节点ID待定。
 - J11 六针原理图定义：1=GND，2=CANL，3=CANH，4=GND，5=RS485 A，6=RS485 B。接线前核对实物针序和设备 A/B 定义。
 - 固定终端电阻影响共享总线拓扑；确认控制板是否处于总线端点、从机终端与线长。
-- UG1214 §2.4 表2-5（PDF p34）明确 CAN[0,1] 可路由到 PL IO。因此“PS CAN 控制器经 PL IO 接 F20/F19”可作为保持 PS CAN 职责的候选路径，须确认器件、IP 配置、BSP 和实际示例后采用；不擅自改为 PL CAN 控制器。
+- UG1214 §2.4 表2-5（PDF p34）明确 CAN[0,1] 可路由到 PL IO。已核对18.plio_can的PS端口、DTS与F20/F19约束，资料中的“PS CAN控制器经PL IO”路径获得示例印证；项目版本匹配与实板收发仍待验证，不擅自改为PL CAN控制器。
 - N16、N15、F19、F20、J16、K16 是 ADC 复用 IO，见核心板原理图 p4。硬件手册要求避免将这类 IO 用作高速 IO；实际通信速率及 IO 性能需按器件工具配置验证。100MHz 输入 H16 不属 ADC 复用组。
 
 来源：开发板手册 p12、p16、p21；底板原理图 p3、p14；核心板原理图 p4；PL-RS485 管脚表 A3:C5；PL-CAN 管脚表 A3:C4；UG1214 PDF p34。
@@ -117,7 +117,7 @@ U23 FEP：48 路 IO/24 对差分，DR1 BANK32，可调 VCC_ADJ；管脚表保留
 - GP 数据位宽 32bit；HP 支持 32/64bit，PL master 可通过 HP 访问 DDR/OCM；ACP 为 M90 专有、64bit。
 - PS/PL AXI 接口是异步时钟关系，CDC、复位和缓冲行为需明确。
 - 文档写支持 AXI4，但 A*Len 位宽为 4bit；不要直接套用未经确认的其他 FPGA 厂商 AXI/DMA IP。
-- 用户已确认通路方向：GP上的AXI4-Lite寄存器负责控制/状态；轨迹与遥测由FIFO缓存，经HP/DMA访问DDR。具体IP、端口、内部流接口、地址、点/遥测格式与DDR ring buffer结构仍未冻结，等待板级BSP/示例核对。
+- 用户已确认通路方向：GP上的AXI4-Lite寄存器负责控制/状态；轨迹与遥测由FIFO缓存，经HP/DMA访问DDR。已找到GP/中断、HP0双向DMA示例及Linux DMA源码（§10）；具体IP、端口、内部流接口、地址、点/遥测格式与DDR ring buffer结构仍未冻结，等待候选选型与验证。
 - 用户已确认PS→PL使用四轴绝对目标步数，PL内部以已输出STEP累计的命令位置为基准计算剩余增量执行；命令位置不等同编码器实测位置。数值位宽、坐标原点、初始化及中断恢复行为仍未冻结。
 - NPU 软核与遥测 DMA 可能共享 PL/HP/DDR 资源，需要资源与带宽预算。
 
@@ -132,10 +132,11 @@ U23 FEP：48 路 IO/24 对差分，DR1 BANK32，可调 VCC_ADJ；管脚表保留
 7. 版本说明 txt 写 PLETH RX/TXDLY 修改为上拉；以后启用 PL 以太网时应核对对应 PHY 初始化。
 8. 两份手册覆盖存储选焊配置；当前项目容量已由用户确认为1GB DDR3、8GB eMMC、32MB QSPI Flash，DDR3速率1333MT/s。仅具体颗粒丝印/控制器配置待核对，不继续把容量列为未确认。
 9. HDMI辅助信号：开发板手册p19与底板原理图p11一致为FSCL=E18、FSDA=E19、FHP=G20；PL-HDMIO管脚表Sheet1的A12:B14却列FHP=E18、FSDA=E19、FSCL=G20。实际实物/示例约束核对后再冻结，不能直接复制Excel的FHP/FSCL分配。该电路有电平转换/热插拔相关器件，不将连接器侧5V直接视为PL输入电平。
+10. DDR IO电压：已查Linux/培训示例HPF设DDRC_IO_VOL=1.5，当前用户/手册基线1.35V；不能原样复制初始化参数。详细来源、工具/时钟及软硬件地址差异见§10.3。
 
 ## 8. 本机软件与外部驱动器资料线索
 
-用户已确认 PS 采用 Linux；板级示例工程/BSP 暂未提供，后续补齐。本机查询日期2026-10-06：
+用户已确认 PS 采用 Linux；2026-10-06按用户指定路径核对到对应DR1M90G的板级示例、启动镜像、设备树及完整Linux构建包，详见§10。BSP资料已具备，不再列为等待用户提供。本机查询日期2026-10-06：
 
 | 工具 | 检查结果 | 证据 / 路径 |
 | --- | --- | --- |
@@ -146,7 +147,7 @@ U23 FEP：48 路 IO/24 对差分，DR1 BANK32，可调 VCC_ADJ；管脚表保留
 | FD 内置 Linux 交叉 GCC | 文件存在，发行说明列 Linaro GCC 7.4.1；当前直接运行 --version 失败 | D:\Anlogic\FD_2026.1_SP1\toolchain\gcc\aarch64_linux\bin\aarch64-linux-gnu-gcc.exe；Windows 返回“无效的系统 DLL 重定位”，不能标为可用 |
 
 此次只查询版本/安装内容，没有运行 TD/FD 工程、检查许可证、编译硬件工程或验证板级兼容性。
-Linux 内核/发行版/设备树/启动镜像、工作站 Linux/虚拟机环境、可用交叉编译器与 NPU 运行库继续待确认。保留 GCC 启动失败记录，不在本任务内擅自修复安装环境。
+厂商构建包的Linux/U-Boot/Buildroot版本及板级文件已核对，项目最终采用版本和部署方式尚未冻结；工作站Linux/虚拟机是否可用、交叉编译器实际运行与NPU运行库继续待验证。包内另有Linux主机用的aarch64交叉工具链，其存在不代表已经安装或运行成功。保留Windows版GCC启动失败记录，不在本任务内擅自修复安装环境。
 
 用户于2026-10-06补充的执行器与接线约束：
 - M1-M3 暂定 Makerbase MKS SERVO42C，计划采用 TTL 版本并各自加装 TTL↔RS485 模块。具体硬件/固件版本与转换模块型号待确认。
@@ -171,8 +172,55 @@ Linux 内核/发行版/设备树/启动镜像、工作站 Linux/虚拟机环境�
 
 ## 9. 待用户确认
 
-完整器件/板卡版本、具体存储颗粒与BSP时序/训练配置；Linux BSP、设备树和可用构建环境；外部接口板、2.00mm转接与实际针序；
+完整器件/板卡版本、具体存储颗粒与BSP时序/训练配置（特别是示例DDR IO电压1.5V与当前记录1.35V的差异）；已有Linux BSP/设备树的项目适配与可用构建环境；外部接口板、2.00mm转接与实际针序；
 驱动器固件/转换模块、脉冲与串口并发兼容性、协议剩余字段与时序；CAN路径与协议；
 对应STEP边沿的匹配规则及测量位置、脉冲分配算法、负载验收范围、回零/限位/报警/急停输入与停机/恢复策略；
 AXI/点/遥测/时间戳/DDR格式；寄存器/错误码/配置管理、生成文件边界；竞赛时间。
 项目功能目标与用户确认状态统一见 PHASE0_CONSTRAINTS.md。
+
+## 10. 厂商示例与Linux BSP核对
+
+核对日期2026-10-06。用户指定资料根目录 `D:\Works\Embedded_contest\docs\Analogic\03_demo` 与 `D:\Works\Embedded_contest\docs\Analogic\04_培训demo`。本次只读检查工程、源码、HPF内部配置、镜像文件和压缩包内容；未解压落盘、执行厂商脚本、编译或烧写。
+
+结论：已有资料足以支持当前Phase 0接口研究和板级启动开发，不再等待另行提供BSP。可重复构建、实板启动、DDR稳定性及本项目数据链性能仍需验证；示例参数不自动成为项目冻结参数。
+
+### 10.1 资料索引与用途
+
+以下相对路径基于 `D:\Works\Embedded_contest\docs\Analogic`：
+
+| 资料 / 示例路径 | 已检查内容 | 本项目用途与限制 |
+| --- | --- | --- |
+| `03_demo\3-4_ex_soc_linux\01_ex_linux_base_F3P_DR1M90G\Linux Base Appendix\Chapter 3` | `soc_prj/system.al`、`soc_hw/system.hpf`、FSBL源码/SDK、kernel/uboot两组DTS；`boot`内有BOOT.bin、boot.scr、system.dtb、uImage.lz4、uInitrd.lz4 | Linux启动和TD→HPF→FD/FSBL→系统打包参考；镜像存在，未证明能在当前实板启动 |
+| `03_demo\3-4_ex_soc_linux\02_ex_linux_drive_F3P_DR1M90G\Sourcecode` | 1–23章工程；包含设备树平台驱动、MISC、输入/中断、Timer/Watchdog、RTC/UART/I2C、文件读写、阻塞/非阻塞/异步IO | Linux驱动与日志/事件通知参考；章节示例互相独立，不能直接当作一套已集成系统 |
+| 上述Sourcecode下 `16.plint`、`17.axi_gpio` | PL中断platform_driver与request_irq；AXI GPIO驱动ioremap/ioread/iowrite；DTS及硬件工程 | GP寄存器和PL→PS事件通知参考；GPIO示例硬编码0x80000000/0x80100000等地址，不复制为机器人寄存器地址 |
+| 上述Sourcecode下 `18.plio_can` | PS模块can0端口经PL引脚；ADC约束RX=F19、TX=F20、LVCMOS33；kernel DTS启用ipmscan0/1 | 证实资料中存在PS CAN→PL IO→板载收发器的实现参考，符合PS负责CAN的边界；实板只接出的CAN0须按本工程启用 |
+| 上述Sourcecode下 `19.axi_uartlite` | 独立PL UART-Lite工程、DTS及Linux串口应用 | UART/IP接入参考，不替代PL RS485 Master的轮询、DE、CHECKSUM-8与时间戳逻辑 |
+| `03_demo\3-2_ex_fpsoc\3_2_01_sdk_base\17_axi_DMA` | `soc_sdk/axidma_s2mm_mm2s/main.c`中S2MM/MM2S及HP0↔DDR↔AXI-Stream；包含DMA IP和硬件工程 | 通用轨迹下发/遥测回传的优先研究候选；当前应用是裸机HAL，不直接作为Linux驱动 |
+| `03_demo\3-2_ex_fpsoc\3_2_02_sdk_adv` | 有03_pl_fdma、04_pl_fdma_video_1080P等工程目录 | FDMA与显示相关补充索引，未逐一验证所有工程 |
+| `04_培训demo\01_fdma_vdma_20251010` | 六组：fdma_test、fdma_imx415、fdma_video_tpg、fdma_vdma_adc、fdma_vdma_imx415、fdma_vdma_tpg | 数据采集、DDR写入与HDMI帧缓冲参考；日期为20251008/20251010的具体工程名按原目录保留 |
+| 上述培训包下 `fdma_test_20251008`、`fdma_vdma_tpg_20251010` | `soc_prj/*.al`、`soc_hw/soc_prj.hpf`、SDK main.c；TPG程序设置1920×1080@60、三帧地址及VDMA中断 | SDK裸机示例，FB_BASE_ADDR=0x10000000，每帧间隔0x02000000。Linux内不能假设这些物理地址空闲；须按DMA/CMA/保留内存方案适配。源码与HPF的VDMA/VTG地址还有需核对的差异，不复制零散常量 |
+| `uisrc-lab-anlogicM-V4.0.1.tar.gz`（Analogic根目录） | 只读完整遍历152407个tar条目，检查关键源码/配置/脚本；包含sources、boards、scripts、tools | 对应DR1M的完整Linux构建参考包；无须把大量厂商文件拷入本项目Git |
+
+### 10.2 构建包的可复核基线
+
+压缩包内部根目录为 `uisrc-lab-anlogic/`：
+
+- `sources/linux/Makefile`：Linux **6.1.111**；`sources/u-boot/Makefile`：U-Boot **2021.01**；`sources/buildroot/Makefile`：Buildroot **2022.02.6**。这些是该包源码版本，不推定每个旧demo的预编译镜像或当前实板正在运行相同版本。
+- `scripts/drcfg.sh`默认选择DR1M与Buildroot。包含rootfs、U-Boot、kernel、镜像生成脚本；`boards/DR1M/configs/defconfigs`含三者的板级defconfig，另有TF FAT/EXT4、HDMI、Qt启动参数文件。
+- `tools/aarch64-linux/bin/aarch64-linux-gnu-gcc`存在，文件头为64bit x86-64 ELF，是Linux主机工具，不是Windows exe。Buildroot defconfig选择外部GCC 7、glibc、C++；尚未运行版本查询或编译。
+- `boards/DR1M/configs/defconfigs/anlogic_dr1_buildroot_defconfig`配置Qt5 GUI/Widgets、libsocketcan、can-utils及CPIO/LZ4根文件系统选项。Qt配置存在不等同HDMI HMI已经实现。
+- 内核有 `drivers/net/can/ipms_canfd.c`，匹配 `ipms,can` 与 `ipms,canfd`；DR1M kernel defconfig启用CAN/IPMS CANFD驱动。控制器驱动支持FD不改变用户已确认的Classical CAN。
+- 内核有 `drivers/dma/anlogic/{anlogic_dma.c,axi-dma.c,axi-dma-test.c,axi-vdma.c,axi-vdma-test.c}`。测试代码使用dma_request_chan、dma_alloc_coherent和DMAengine；已有Linux DMA源码参考，不必从零编写整套DMA驱动。该目录Makefile使用CONFIG_ANLOGIC_DMA/AXI_DMA/AXI_DMA_TEST/AXI_VDMA等开关，检查的DR1M kernel defconfig未出现这些开关；集成时须核对Kconfig依赖、最终.config、DTS、IP版本和中断。
+- DR1M kernel defconfig已有CMA/DMA_CMA、UDMABUF、PL GPIO/UART-Lite及帧缓冲相关配置；项目DMA缓冲所有权、cache同步、映射和ring buffer仍待接口设计，不能只据功能开关认为一致性已解决。
+
+来源教程：Linux基础入门篇PDF p17–24说明HPF、FSBL、系统打包和TF启动；p17指定TD_6.2.1_Engineer_168116与FD_2025.1_SP1。Linux驱动开发篇PDF p285、p291给出PS CAN经PL端口及can-utils演示。教程Ubuntu 18.04是开发主机环境，板端系统参考为Buildroot，不将二者混写。
+
+### 10.3 适配前必须核对的差异
+
+1. **DDR电压**：Linux Chapter 3与18.plio_can的 `system.hpf`、培训fdma_test和fdma_vdma_tpg的 `soc_prj.hpf` 内 `HPFs/static/data/ddr.js` 均为DDR3、1333Mbps、32bit、x16/4096Mbit、DDR3_1333G、training=1，但 **DDRC_IO_VOL=1.5**，与当前用户/手册基线1.35V不一致。保留项目已确认配置并标注差异；核对实板颗粒、供电和当前工具对该参数的含义后，再生成匹配的PS初始化，不能原样烧写或未经核对只改显示值。
+2. **工具版本**：Linux示例system.al记录6.2.168116，AXI DMA示例6.2.170161，培训工程6.2.175876，均早于本机TD2026.1 SP2。Linux HPF还标注version=202501、生成时间20250812。教程/工程/HPF不是严格同一时刻快照；迁移时需恢复/重生成IP、重新导出HPF并匹配FSBL/bitstream/DTS，而非只打开旧工程即宣称兼容。
+3. **时钟**：核对的Linux HPF报告p2f_clk0=49.995MHz；培训TPG HPF的VDMA输入133.32MHz、VTG输入49.995MHz。项目已确认100MHz PL基础时钟不变，AXI/显示域与100MHz运动域的CDC/复位另行设计，不把demo所有时钟直接替换为100MHz。
+4. **CAN演示**：教程p291含`fd on`的演示命令，不能照搬到本项目Classical CAN；示例500k或HPF速率不冻结项目波特率。GPIO约束和PS路由已获得相互印证，协议/波特率/帧格式仍待决定。
+5. **DMA与显示**：通用AXI DMA和厂商uifdma/视频VDMA属于不同候选；后者帧切换语义不直接成为运动点消费语义。训练TPG源代码写入地址与HPF摘要有差异，后续以重新生成的一致硬件/软件定义核对。具体IP选型和Linux应用API本次未冻结。
+
+建议下一步验证顺序：匹配板级配置与工具→可重复Linux启动→GP寄存器与PL中断→通用AXI DMA双向回环→在该基线上接入运动FIFO/遥测。HDMI、CAN和NPU另按各自接口验证；当前任务仅完成资料核对。

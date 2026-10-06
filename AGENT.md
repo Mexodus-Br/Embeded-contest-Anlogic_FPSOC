@@ -420,7 +420,7 @@ CAN 不负责维持机器人底层实时脉冲。
 
 PS 与 PL 之间使用 AXI 系列接口。
 
-已确认通路方向：控制/状态采用 GP 上的 AXI4-Lite 寄存器；轨迹与遥测采用 FIFO 缓存，并经 HP/DMA 通路访问 DDR。具体 IP、GP/HP 端口、互连与软件驱动等待板级 BSP/示例核对后冻结。
+已确认通路方向：控制/状态采用 GP 上的 AXI4-Lite 寄存器；轨迹与遥测采用 FIFO 缓存，并经 HP/DMA 通路访问 DDR。已在 docs/Analogic/03_demo、04_培训demo 和 uisrc-lab-anlogicM-V4.0.1.tar.gz 找到板级Linux、GP/中断、AXI DMA及显示参考，详细核对见 HARDWARE.md §10。具体 IP、GP/HP 端口、互连与软件驱动待版本匹配和验证后冻结；示例DDR IO电压1.5V与当前记录1.35V的差异必须核对。
 
 逻辑上区分：
 
