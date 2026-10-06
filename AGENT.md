@@ -2,6 +2,7 @@
 
 > 本文档用于描述项目的系统级目标、功能分层、PS/PL 职责边界、主要接口、数据流与推荐实施顺序。  
 > 本文档不规定具体 RTL/C/C++ 实现细节；具体模块接口、寄存器映射、通信协议字段和软件 API 应在后续专项设计文档中冻结。
+> 当前确认结果和首版功能目标见 PHASE0_CONSTRAINTS.md，硬件事实及资料差异见 HARDWARE.md。
 
 ---
 
@@ -89,7 +90,7 @@ RS485 的职责是：
 
 - 主从轮询；
 - 地址寻址；
-- CRC 校验；
+- CHECKSUM-8 校验；
 - 运行状态采集；
 - 故障码采集；
 - 驱动器反馈采集；
@@ -210,8 +211,8 @@ RS485 Master 必须实现在 PL 中。
 - 地址字节处理；
 - 帧构造；
 - 收发控制；
-- CRC 生成；
-- CRC 校验；
+- CHECKSUM-8 生成；
+- CHECKSUM-8 校验；
 - 超时检测；
 - 从机状态解析；
 - 数据有效性判断；
@@ -258,6 +259,12 @@ M4 为独立辅助轴，可根据具体机械配置用于：
 
 闭环步进驱动器完成自身电机闭环控制。
 
+当前 M1/M2/M3 暂定为 Makerbase MKS SERVO42C TTL 版，各自加装 TTL 转 RS485 模块；M4 型号及机构未定，不阻塞现阶段需求整理和通用四轴接口设计。
+
+已确认安全职责：SERVO42C 负责单轴闭环驱动和堵转自保护；FPGA PL 负责 Delta 整机回零、限位、联锁和停止策略；外部电路负责最终急停失能。堵转保护需按实际固件配置并验证，不能假定默认启用。
+
+Makerbase V1.1 发布说明提示失能后外力移位再使能可能回到旧目标。重新使能前必须在专项规范中处理驱动内部目标、控制器位置与待执行轨迹的一致性；具体恢复策略、命令和顺序尚未冻结，不能假定驱动清零等同机械回零。
+
 ---
 
 ## 4. SoC FPGA 顶层职责划分
@@ -302,7 +309,7 @@ PL 是系统硬实时核心。
 - Alarm Handling；
 - Watchdog；
 - RS485 Master；
-- Address/CRC/Timeout；
+- Address/CHECKSUM-8/Timeout；
 - Timestamp Engine；
 - Telemetry FIFO；
 - AXI 接口；
@@ -457,7 +464,9 @@ RS485 为驱动器状态采集总线。
 
 实际协议字段以后续驱动器协议文档为准。
 
-PL 在有效应答通过 CRC 校验后，应对数据附加系统时间戳。
+2026-10-06 用户已确定当前 SERVO42C 协议校验为 CHECKSUM-8（参与校验的字节累加后取低 8 位），本文原有 RS485 CRC 表述据此统一修正。M1/M2/M3 的目标是 STP 运动期间持续轮询状态，实际固件并发能力、TTL 转 RS485 换向时序与报文字段仍需验证。M4 协议在选型后单独确认。
+
+PL 在有效应答通过 CHECKSUM-8 校验后，应对数据附加系统时间戳。
 
 ### 5.4 STEP / DIR / EN
 
@@ -485,7 +494,7 @@ PL 在有效应答通过 CRC 校验后，应对数据附加系统时间戳。
 
 ### 6.2 驱动器状态采集数据流
 
-`Drivers → RS485 → PL RS485 Master → CRC Check → Timestamp → Telemetry FIFO → DMA → DDR`
+`Drivers → RS485 → PL RS485 Master → CHECKSUM-8 Check → Timestamp → Telemetry FIFO → DMA → DDR`
 
 ### 6.3 NPU 诊断数据流
 
@@ -664,7 +673,7 @@ PL 在有效应答通过 CRC 校验后，应对数据附加系统时间戳。
 - DE/RE 控制；
 - Poll Scheduler；
 - Address；
-- CRC；
+- CHECKSUM-8；
 - Timeout；
 - Frame Parser；
 - Timestamp；
@@ -675,7 +684,7 @@ PL 在有效应答通过 CRC 校验后，应对数据附加系统时间戳。
 验证：
 
 - M1/M2/M3/M4 地址正确；
-- CRC 错误能够检测；
+- CHECKSUM-8 错误能够检测；
 - 超时不会阻塞运动控制；
 - 每帧有有效时间戳；
 - RS485 采集不会影响 STEP 输出。
@@ -769,7 +778,7 @@ NPU 不直接控制执行机构。
 - STEP Generator；
 - Four-Axis Synchronizer；
 - Homing；
-- RS485 CRC；
+- RS485 CHECKSUM-8；
 - RS485 Parser；
 - Timestamp；
 - Motion FIFO；
