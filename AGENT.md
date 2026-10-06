@@ -276,7 +276,7 @@ Makerbase V1.1 发布说明提示失能后外力移位再使能可能回到旧�
 
 ## 4. SoC FPGA 顶层职责划分
 
-板卡资料基线为 MLK-F3P 底板搭配 MLK-CZ02-DR1M90 核心板：指定硬件手册将双核 ARM 对应为 DR1M90GEG400，标准存储配置为 1GB DDR3、8GB eMMC 和 256Mbit（32MB）QSPI Flash。手册覆盖选焊版本，实物速度等级、板卡修订和存储配置尚未验证；详细来源与冲突见 HARDWARE.md。
+板卡资料基线为 MLK-F3P 底板搭配 MLK-CZ02-DR1M90 核心板：指定硬件手册将双核 ARM 对应为 DR1M90GEG400。用户已确认存储配置为 1GB DDR3（32bit、1.35V、1333MT/s）、8GB eMMC 和 256Mbit（32MB）QSPI Flash。DDR3的1333按数据传输率记录，不作为1333MHz时钟；具体颗粒丝印、BSP时序/训练参数、实物速度等级和板卡修订仍待核对。详细来源与冲突见 HARDWARE.md。
 
 ### 4.1 PS
 
