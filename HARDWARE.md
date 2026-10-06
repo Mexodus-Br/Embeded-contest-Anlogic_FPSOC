@@ -54,6 +54,7 @@
 
 - RS485 U21=SP3485EN-L/TR；DE 与低有效 /RE 共同接 N15。板上 R120=120Ω 跨 A/B，原理图未显示终端跳线或可切换控制，也未在 p14 显示独立外部偏置电阻。
 - CAN U22=SN65HVD232DR，板级标称最高 1Mbit/s；R121=120Ω 跨 CANH/CANL。芯片 PS 支持 CAN 功能不等于板载收发器已具备 CAN FD 的所需物理性能。
+- 用户确认项目采用 Classical CAN（经典 CAN）；波特率、标准/扩展帧格式、应用协议与节点ID待定。
 - J11 六针原理图定义：1=GND，2=CANL，3=CANH，4=GND，5=RS485 A，6=RS485 B。接线前核对实物针序和设备 A/B 定义。
 - 固定终端电阻影响共享总线拓扑；确认控制板是否处于总线端点、从机终端与线长。
 - UG1214 §2.4 表2-5（PDF p34）明确 CAN[0,1] 可路由到 PL IO。因此“PS CAN 控制器经 PL IO 接 F20/F19”可作为保持 PS CAN 职责的候选路径，须确认器件、IP 配置、BSP 和实际示例后采用；不擅自改为 PL CAN 控制器。
@@ -94,7 +95,8 @@ U23 FEP：48 路 IO/24 对差分，DR1 BANK32，可调 VCC_ADJ；管脚表保留
 - GP 数据位宽 32bit；HP 支持 32/64bit，PL master 可通过 HP 访问 DDR/OCM；ACP 为 M90 专有、64bit。
 - PS/PL AXI 接口是异步时钟关系，CDC、复位和缓冲行为需明确。
 - 文档写支持 AXI4，但 A*Len 位宽为 4bit；不要直接套用未经确认的其他 FPGA 厂商 AXI/DMA IP。
-- AXI4-Lite 控制寄存器、AXI-Stream、DMA/HP 数据通路是项目待选方案，当前没有冻结 IP、地址、点格式、遥测格式或 DDR ring buffer 结构。
+- 用户已确认通路方向：GP上的AXI4-Lite寄存器负责控制/状态；轨迹与遥测由FIFO缓存，经HP/DMA访问DDR。具体IP、端口、内部流接口、地址、点/遥测格式与DDR ring buffer结构仍未冻结，等待板级BSP/示例核对。
+- 用户已确认PS→PL使用四轴绝对目标步数，PL内部转换为增量执行；不据此假定数值位宽、坐标原点、差分基准或中断恢复行为已定。
 - NPU 软核与遥测 DMA 可能共享 PL/HP/DDR 资源，需要资源与带宽预算。
 
 ## 7. 资料冲突及版本问题
