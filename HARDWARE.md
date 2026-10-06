@@ -1,0 +1,136 @@
+# 硬件资料核对记录
+
+核对日期：2026-10-06。状态：资料核对完成；用户确认双核 ARM 平台、PS Linux；完整实物配置及项目接口尚未冻结。
+资料根目录：D:\Works\Embedded_contest\docs\Analogic\hardware_MLK_F3P_CZ02_DR1_20250526。
+本记录区分资料描述、原理图连接、实物待核实项；不能作为未经验证的接线或引脚约束文件。
+
+## 1. 与 AGENT.md 的关系
+
+保持既有职责边界：PS 承担任务、轨迹、插补、Delta IK、CAN 服务及诊断管理；PL 承担四轴 STEP/DIR/EN、运动安全响应、RS485 Master、时间戳与遥测采集。RS485 是三线控制的半双工总线。NPU 不直接控制执行器。
+不生成 RTL、约束工程或冻结寄存器/报文格式。
+
+用户已确认：使用双核 ARM 平台，按资料对应 DR1M90 系列。完整芯片丝印/封装/速度等级及实物 DDR/eMMC 尚待核实，不能仅凭资料选定完整料号。
+
+## 2. 器件与资源
+
+| 项目 | 资料描述 | 来源及待核实项 |
+| --- | --- | --- |
+| 核心板 | MLK-CZ02，底板 MLK-F3P | 支持多个选焊配置；实物型号、修订版待确认 |
+| 主芯片选项 | DR1M90GEG400 / DR1V90GEG400 | 开发板手册 PDF p6、p8；不可仅凭资料包名称选定 |
+| DR1M90 PS | 双核 ARM，手册标称最高 1GHz；ARMv8-A | 开发板手册 p6；UG1214 PDF p19；实际频率及速度等级待确认 |
+| DR1V90 PS | 单核 RISC-V，手册标称最高 800MHz | 开发板手册 p6；实际工具链与 BSP 待确认 |
+| PL | 94,464 LUT；104,960 DFF；280 个 20K ERAM（总计 5600Kbit）；1340Kbit DRAM；240 DSP；8 PLL；1 ADC | 开发板手册 p6、p8 |
+| DDR | 标准配置两片 GDP2BFLM-WB、每片 512MB、共 1GB，32bit、1.35V | 开发板手册 p8-9；可选焊单片/双片，实际颗粒与训练配置待确认 |
+| DDR 速率 | 核心板参数表写 1333Mbps；开发板另有“1333MHz”写法 | 不将其直接视为 1333MHz CK；采用厂商 DDR 配置并确认实际数据率 |
+| eMMC | IS21EF08GA-JCLI，8GB，SD1，板级连接 D0-D3 四线、CLK/CMD；手册标称 50MHz | 开发板手册 p11；选焊及启动镜像待确认 |
+| QSPI | GD25Q256DYIGR，256Mbit（32MB），3.3V，x1/x2/x4 | 开发板手册 p10；不把容量写成 256MB |
+| NPU | Hard NPU 512 MAC；最高 400MHz、400 GOPs，int8/uint8；Soft NPU 承担部分算子并访问 HP | UG1214 PDF p64-67（印刷 p47-50）；不能视为完全不占 PL/DDR 资源，模型工具链及资源预算待确认 |
+
+## 3. 时钟、电源、复位与启动
+
+- PS 参考时钟：33.333333MHz，核心板 X1，PS_CLK=E7。
+- PL 板载参考时钟：100MHz，底板 X1，H16，BANK33，手册 IOSTANDARD=LVCMOS33。仅为参考输入，不代表运动周期或 AXI 时钟已确定。
+- BANK11：核心板固定 3.3V。BANK32：VCC_ADJ1，可调。BANK33：VCC_ADJ2，在本底板原理图接 3.3V。
+- 底板原理图 p3 明确 VCC_ADJ 默认发货 1.8V；开发板手册 p5 又写 BANK32 默认 3.3V。实际跳线与电压必须核实，不能直接冻结 BANK32 为 LVCMOS33。
+- 核心板输入 5V；底板输入 12V。手册 p6 写底板 12V@3A，p24 写配套电源 12V/2A；电源规格以实物适配器与负载核对。
+- 上电复位 TPS3106；外部复位 PS_SRST_B 由底板复位按键控制。PL 内部复位、各时钟域释放与运动输出默认状态仍待设计。
+- 启动拨码按手册 SW1/SW2/SW3 顺序：JTAG=000；QSPI=001；SD=011；eMMC=111。ON=0，OFF=1。实物丝印与当前启动介质待核实。
+
+来源：开发板手册 p11-13、p24；核心板手册 p6、p11-13；核心板原理图 p5；底板原理图 p3。
+
+## 4. 通信接口
+
+| 信号 | 芯片球位 | 电平与方向 |
+| --- | --- | --- |
+| PL_CLK | H16 | 输入，100MHz，3.3V |
+| RS485_TX0 | L17 | PL 输出，3.3V |
+| RS485_RX0 | N16 | PL 输入，3.3V |
+| RS485_DE0 | N15 | PL 输出；0 接收、1 发送 |
+| CAN0_TX | F20 | 输出至收发器，3.3V |
+| CAN0_RX | F19 | 收发器输出至 PL，3.3V |
+| PL_UART_TX | J16 | PL 输出，3.3V |
+| PL_UART_RX | K16 | PL 输入，3.3V |
+| PS_UART_TX/RX | MIO48 / MIO49 | PS 调试串口；不可套用 PL 的 3.3V 约束 |
+
+- RS485 U21=SP3485EN-L/TR；DE 与低有效 /RE 共同接 N15。板上 R120=120Ω 跨 A/B，原理图未显示终端跳线或可切换控制，也未在 p14 显示独立外部偏置电阻。
+- CAN U22=SN65HVD232DR，板级标称最高 1Mbit/s；R121=120Ω 跨 CANH/CANL。芯片 PS 支持 CAN 功能不等于板载收发器已具备 CAN FD 的所需物理性能。
+- J11 六针原理图定义：1=GND，2=CANL，3=CANH，4=GND，5=RS485 A，6=RS485 B。接线前核对实物针序和设备 A/B 定义。
+- 固定终端电阻影响共享总线拓扑；确认控制板是否处于总线端点、从机终端与线长。
+- UG1214 §2.4 表2-5（PDF p34）明确 CAN[0,1] 可路由到 PL IO。因此“PS CAN 控制器经 PL IO 接 F20/F19”可作为保持 PS CAN 职责的候选路径，须确认器件、IP 配置、BSP 和实际示例后采用；不擅自改为 PL CAN 控制器。
+- N16、N15、F19、F20、J16、K16 是 ADC 复用 IO，见核心板原理图 p4。硬件手册要求避免将这类 IO 用作高速 IO；实际通信速率及 IO 性能需按器件工具配置验证。100MHz 输入 H16 不属 ADC 复用组。
+
+来源：开发板手册 p12、p16、p21；底板原理图 p3、p14；核心板原理图 p4；PL-RS485 管脚表 A3:C5；PL-CAN 管脚表 A3:C4；UG1214 PDF p34。
+
+## 5. 四轴输出及输入的候选扩展接口
+
+J12：2×13、2.54mm GPIO，24 根信号引至 DR1 BANK11，固定 3.3V；底板原理图 p16 信号通路有 33Ω 串联电阻。
+p16 显示 VCC_CEP1 默认通过 L13 接 3.3V，5V 路径 L11 标 NC；这仅描述连接器电源针，不表示 GPIO 可承受 5V 或工业电压。
+
+| J12 针号 | DR1 球位 | J12 针号 | DR1 球位 |
+| --- | --- | --- | --- |
+| 1 | VCC_CEP1 | 2 | GND |
+| 3 | Y12 | 4 | Y13 |
+| 5 | T9 | 6 | U10 |
+| 7 | T5 | 8 | U5 |
+| 9 | V6 | 10 | W6 |
+| 11 | U7 | 12 | V7 |
+| 13 | U9 | 14 | U8 |
+| 15 | V11 | 16 | V10 |
+| 17 | Y7 | 18 | Y6 |
+| 19 | Y9 | 20 | Y8 |
+| 21 | V8 | 22 | W8 |
+| 23 | W10 | 24 | W9 |
+| 25 | W11 | 26 | Y11 |
+
+J12 可作为十二根 STEP/DIR/EN 的候选接口，尚未分配轴号。其余 GPIO 能否容纳 Homing、Limit、Alarm、急停，取决于输入数量及外部接口板设计，不视为已够用。
+U23 FEP：48 路 IO/24 对差分，DR1 BANK32，可调 VCC_ADJ；管脚表保留了 Zynq BANK34 的旧网络名，实际 DR1 BANK32 对照表已确认。输出电平、子卡供电和连接器选型待确认。
+
+来源：PL-GPIO 连接器管脚表 A1:K16；PL-FEP 连接器管脚表；ZYNQ&DR1_BANK 对应表；底板原理图 p15-16；核心板原理图 p4。
+手册“BANK11 为7020独有”的文字与 DR1 核心板原理图及管脚表不一致，不能据此否定 J12 的 DR1 BANK11 连接。
+
+## 6. PS/PL 互连资源
+
+- UG1214 PDF p34-35、p72-73（印刷 p17-18、p55-56）：2 路 PS GP master、2 路 PS GP slave、2 路 HP slave；M90 有 ACP，V90 对应 FAHB。
+- GP 数据位宽 32bit；HP 支持 32/64bit，PL master 可通过 HP 访问 DDR/OCM；ACP 为 M90 专有、64bit。
+- PS/PL AXI 接口是异步时钟关系，CDC、复位和缓冲行为需明确。
+- 文档写支持 AXI4，但 A*Len 位宽为 4bit；不要直接套用未经确认的其他 FPGA 厂商 AXI/DMA IP。
+- AXI4-Lite 控制寄存器、AXI-Stream、DMA/HP 数据通路是项目待选方案，当前没有冻结 IP、地址、点格式、遥测格式或 DDR ring buffer 结构。
+- NPU 软核与遥测 DMA 可能共享 PL/HP/DDR 资源，需要资源与带宽预算。
+
+## 7. 资料冲突及版本问题
+
+1. BANK32 默认值：手册 p5 为3.3V，底板原理图 p3 为1.8V；等待跳线与实测。
+2. BANK11：手册出现“7020独有”，DR1 原理图与型号对照表明确有 BANK11；按完整器件与工程核对。
+3. KEY1/KEY2：手册 p21 为 K14/J14；Excel 表为 K19/J19。底板原理图 p3 显示 J20、R528/R529 可把 K19/J19 按键网络联到 K14/J14，而 K14/J14 同时承担 PL Ethernet MDIO/MDC。不能只择一管脚，须确认 J20 与功能复用。
+4. PL LED1/LED2：表中 T19/R19 电压为 ADJ（BANK32），手册统一写 LVCMOS33；随 VCC_ADJ 核实。
+5. 部分手册/网络名仍用 ZYNQ、BANK13/34/35、BANK501；依据 DR1 对照表和原理图转换，不复制旧约束。
+6. 文件名不是精确的页内版本：底板 p3 日期为2025-11-05，核心板 p4 为2025-04-16，目录名仍含20250526；与实物修订匹配后再冻结。
+7. 版本说明 txt 写 PLETH RX/TXDLY 修改为上拉；以后启用 PL 以太网时应核对对应 PHY 初始化。
+8. DDR 容量/颗粒、eMMC/FLASH 为选焊项；资料标称不等同实物配置。
+
+## 8. 本机软件与外部驱动器资料线索
+
+用户已确认 PS 采用 Linux；板级示例工程/BSP 暂未提供，后续补齐。本机查询日期2026-10-06：
+
+| 工具 | 检查结果 | 证据 / 路径 |
+| --- | --- | --- |
+| TangDynasty | 2026.1 SP2，发行说明构建号 6.2.2 200067 | PATH 解析到 D:\Anlogic\TD_Release_2026.1_SP2.200.067\bin\td.exe；该目录 doc/release_note.pdf p5 |
+| FutureDynasty | 2026.1 SP1 | PATH 解析到 D:\Anlogic\FD_2026.1_SP1\fd.exe；该目录 doc/FD_Release_Notes.pdf p3 |
+| Icarus Verilog | 12.0 (devel)，s20150603-1539-g2693dd32b | D:\iverilog\bin\iverilog.exe -V 实际运行成功；vvp 同在该目录 |
+| FD 内置 Master SDK | 发行说明列 BM_2026.1.sp1.release，commit 69adfad1；SDK 目录存在 | D:\Anlogic\FD_2026.1_SP1\data\embeddedsw\master_sdk；尚不替代用户板级 BSP |
+| FD 内置 Linux 交叉 GCC | 文件存在，发行说明列 Linaro GCC 7.4.1；当前直接运行 --version 失败 | D:\Anlogic\FD_2026.1_SP1\toolchain\gcc\aarch64_linux\bin\aarch64-linux-gnu-gcc.exe；Windows 返回“无效的系统 DLL 重定位”，不能标为可用 |
+
+此次只查询版本/安装内容，没有运行 TD/FD 工程、检查许可证、编译硬件工程或验证板级兼容性。
+Linux 内核/发行版/设备树/启动镜像、工作站 Linux/虚拟机环境、可用交叉编译器与 NPU 运行库继续待确认。保留 GCC 启动失败记录，不在本任务内擅自修复安装环境。
+
+相邻 docs/MKS-SERVO42C 有 V1.1.2 用户手册，但用户尚未确认实际驱动器：
+- p1-3 区分 TTL、OC、485 版本，接口不完全相同。
+- p11 将校验字段称为 CRC Code，实质是 CHECKSUM-8，示例 (0xE0+0x30)&0xFF。
+- 若实际使用该协议，需与 AGENT.md 的“CRC”要求一起澄清，不能直接生成多项式 CRC 或假定 Modbus RTU。
+- 必须确认四台型号/固件、STEP 与状态查询同时工作的模式、是否另需 TTL↔RS485 转换，以及电平和脉冲时序。
+
+## 9. 待用户确认
+
+完整器件/板卡版本与存储配置；TD/FD/仿真器实际版本；PS 运行环境和 BSP；GPIO 电平及扩展板；
+驱动器协议、CAN 路径与协议、运动性能、安全输入和策略；AXI/点/遥测/时间戳/DDR 格式；
+目录与 Git、寄存器/错误码/配置管理、生成文件边界；竞赛时间与验收目标。
