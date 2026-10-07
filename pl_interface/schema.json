@@ -1,0 +1,2875 @@
+{
+  "status": "PARTIALLY_FROZEN_LAYOUT_DRAFT",
+  "version": 1,
+  "registers": [
+    {
+      "name": "VERSION",
+      "offset": 0,
+      "width": 32,
+      "access": "RO",
+      "reset": 1,
+      "unit": "version",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CAPS",
+      "offset": 4,
+      "width": 32,
+      "access": "RO",
+      "reset": 15,
+      "unit": "axis capability bits",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "STATE",
+      "offset": 8,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "state enum",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "ENUM",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CONFIG_GENERATION",
+      "offset": 12,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "generation",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CMD_STATUS",
+      "offset": 16,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "flags",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "BUSY",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "ACK_VALID",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "ACCEPTED",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "COMPLETED",
+          "lsb": 3,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "ACK_ID",
+      "offset": 20,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "transaction",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "ACK_ERROR",
+      "offset": 24,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "error",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SESSION_LO",
+      "offset": 28,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "id",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SESSION_HI",
+      "offset": 32,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "id",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "ACCEPTED_SEQ",
+      "offset": 36,
+      "width": 32,
+      "access": "RO",
+      "reset": 4294967295,
+      "unit": "sequence",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "DONE_SEQ",
+      "offset": 40,
+      "width": 32,
+      "access": "RO",
+      "reset": 4294967295,
+      "unit": "sequence",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "MOTION_LEVEL",
+      "offset": 44,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "records",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TELEMETRY_LEVEL",
+      "offset": 48,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "records",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "FAULT_BITS",
+      "offset": 52,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "bitmap",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "RECORD",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "MOTION",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "SAFETY",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "COMM",
+          "lsb": 3,
+          "width": 1
+        },
+        {
+          "name": "DMA",
+          "lsb": 4,
+          "width": 1
+        },
+        {
+          "name": "CONTROL",
+          "lsb": 5,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "FAULT_FIRST_CODE",
+      "offset": 56,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "error",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "FAULT_TIME_LO",
+      "offset": 60,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "FAULT_TIME_HI",
+      "offset": 64,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "POSITION_VALID",
+      "offset": 68,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "axis bitmap",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "IRQ_PENDING",
+      "offset": 72,
+      "width": 32,
+      "access": "W1C",
+      "reset": 0,
+      "unit": "bitmap",
+      "effect": "set-wins W1C",
+      "fields": [
+        {
+          "name": "ACK",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "FAULT",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "MOTION_LOW",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "TELEMETRY",
+          "lsb": 3,
+          "width": 1
+        },
+        {
+          "name": "DROP",
+          "lsb": 4,
+          "width": 1
+        },
+        {
+          "name": "END",
+          "lsb": 5,
+          "width": 1
+        },
+        {
+          "name": "LINK",
+          "lsb": 6,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "IRQ_MASK",
+      "offset": 76,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "bitmap",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "ACK",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "FAULT",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "MOTION_LOW",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "TELEMETRY",
+          "lsb": 3,
+          "width": 1
+        },
+        {
+          "name": "DROP",
+          "lsb": 4,
+          "width": 1
+        },
+        {
+          "name": "END",
+          "lsb": 5,
+          "width": 1
+        },
+        {
+          "name": "LINK",
+          "lsb": 6,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "SNAP_ID",
+      "offset": 80,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "transaction",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_VALID",
+      "offset": 84,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "bool",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALID",
+          "lsb": 0,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "SNAP_TIME_LO",
+      "offset": 88,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_TIME_HI",
+      "offset": 92,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "MOTION_CAPACITY",
+      "offset": 96,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "records implemented",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TELEMETRY_CAPACITY",
+      "offset": 100,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "records implemented",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TICK_HZ",
+      "offset": 104,
+      "width": 32,
+      "access": "RO",
+      "reset": 1000000,
+      "unit": "Hz confirmed",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A0_POSITION_LO",
+      "offset": 128,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A0_POSITION_HI",
+      "offset": 132,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A0_PULSE_LO",
+      "offset": 136,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A0_PULSE_HI",
+      "offset": 140,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A1_POSITION_LO",
+      "offset": 144,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A1_POSITION_HI",
+      "offset": 148,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A1_PULSE_LO",
+      "offset": 152,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A1_PULSE_HI",
+      "offset": 156,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A2_POSITION_LO",
+      "offset": 160,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A2_POSITION_HI",
+      "offset": 164,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A2_PULSE_LO",
+      "offset": 168,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A2_PULSE_HI",
+      "offset": 172,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A3_POSITION_LO",
+      "offset": 176,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A3_POSITION_HI",
+      "offset": 180,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A3_PULSE_LO",
+      "offset": 184,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A3_PULSE_HI",
+      "offset": 188,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_STATE",
+      "offset": 192,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "state",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "ENUM",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "SNAP_SESSION_LO",
+      "offset": 196,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "id",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_SESSION_HI",
+      "offset": 200,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "id",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_ACCEPTED_SEQ",
+      "offset": 204,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "sequence",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_DONE_SEQ",
+      "offset": 208,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "sequence",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_POSITION_VALID",
+      "offset": 212,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "bitmap",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "CMD_OPCODE",
+      "offset": 256,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "ENUM",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CMD_ARG",
+      "offset": 260,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TXN_ID",
+      "offset": 264,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CMD_SESSION_LO",
+      "offset": 268,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CMD_SESSION_HI",
+      "offset": 272,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CMD_SUBMIT",
+      "offset": 276,
+      "width": 32,
+      "access": "WO",
+      "reset": 0,
+      "unit": "none",
+      "effect": "full strobe capture transaction",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "WD_TOKEN",
+      "offset": 280,
+      "width": 32,
+      "access": "WO",
+      "reset": 0,
+      "unit": "none",
+      "effect": "new token kick",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A0_LO",
+      "offset": 288,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A0_HI",
+      "offset": 292,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A1_LO",
+      "offset": 296,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A1_HI",
+      "offset": 300,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A2_LO",
+      "offset": 304,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A2_HI",
+      "offset": 308,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A3_LO",
+      "offset": 312,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A3_HI",
+      "offset": 316,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_AXIS_ENABLE",
+      "offset": 512,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "mask",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "CFG_NODE_ENABLE",
+      "offset": 516,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "mask",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "CFG_WD_ENABLE",
+      "offset": 520,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "bool",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "ENABLE",
+          "lsb": 0,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_WD_TIMEOUT_LO",
+      "offset": 524,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_WD_TIMEOUT_HI",
+      "offset": 528,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_PREBUFFER",
+      "offset": 532,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "records",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_DURATION_MIN_LO",
+      "offset": 536,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_DURATION_MIN_HI",
+      "offset": 540,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_DURATION_MAX_LO",
+      "offset": 544,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_DURATION_MAX_HI",
+      "offset": 548,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_HIGH",
+      "offset": 576,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_LOW",
+      "offset": 580,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_DIR_SETUP",
+      "offset": 584,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_DIR_HOLD",
+      "offset": 588,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_EN_SETUP",
+      "offset": 592,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_MAX_RATE",
+      "offset": 596,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "Hz",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_TARGET_MIN_LO",
+      "offset": 600,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_TARGET_MIN_HI",
+      "offset": 604,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_TARGET_MAX_LO",
+      "offset": 608,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_TARGET_MAX_HI",
+      "offset": 612,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_NODE_ID",
+      "offset": 616,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "address",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "NODE",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_POLARITY",
+      "offset": 620,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "STEP/DIR/EN bits",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "STEP_ACTIVE",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "DIR_POSITIVE",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "EN_ACTIVE",
+          "lsb": 2,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_COMM_POLICY",
+      "offset": 624,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "TBD",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "POLICY",
+          "lsb": 0,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_FAIL_THRESHOLD",
+      "offset": 628,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "poll",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_FRESH_LIMIT",
+      "offset": 632,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_HIGH",
+      "offset": 640,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_LOW",
+      "offset": 644,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_DIR_SETUP",
+      "offset": 648,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_DIR_HOLD",
+      "offset": 652,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_EN_SETUP",
+      "offset": 656,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_MAX_RATE",
+      "offset": 660,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "Hz",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_TARGET_MIN_LO",
+      "offset": 664,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_TARGET_MIN_HI",
+      "offset": 668,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_TARGET_MAX_LO",
+      "offset": 672,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_TARGET_MAX_HI",
+      "offset": 676,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_NODE_ID",
+      "offset": 680,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "address",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "NODE",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_POLARITY",
+      "offset": 684,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "STEP/DIR/EN bits",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "STEP_ACTIVE",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "DIR_POSITIVE",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "EN_ACTIVE",
+          "lsb": 2,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_COMM_POLICY",
+      "offset": 688,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "TBD",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "POLICY",
+          "lsb": 0,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_FAIL_THRESHOLD",
+      "offset": 692,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "poll",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_FRESH_LIMIT",
+      "offset": 696,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_HIGH",
+      "offset": 704,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_LOW",
+      "offset": 708,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_DIR_SETUP",
+      "offset": 712,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_DIR_HOLD",
+      "offset": 716,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_EN_SETUP",
+      "offset": 720,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_MAX_RATE",
+      "offset": 724,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "Hz",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_TARGET_MIN_LO",
+      "offset": 728,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_TARGET_MIN_HI",
+      "offset": 732,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_TARGET_MAX_LO",
+      "offset": 736,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_TARGET_MAX_HI",
+      "offset": 740,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_NODE_ID",
+      "offset": 744,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "address",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "NODE",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_POLARITY",
+      "offset": 748,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "STEP/DIR/EN bits",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "STEP_ACTIVE",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "DIR_POSITIVE",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "EN_ACTIVE",
+          "lsb": 2,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_COMM_POLICY",
+      "offset": 752,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "TBD",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "POLICY",
+          "lsb": 0,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_FAIL_THRESHOLD",
+      "offset": 756,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "poll",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_FRESH_LIMIT",
+      "offset": 760,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_HIGH",
+      "offset": 768,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_LOW",
+      "offset": 772,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_DIR_SETUP",
+      "offset": 776,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_DIR_HOLD",
+      "offset": 780,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_EN_SETUP",
+      "offset": 784,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_MAX_RATE",
+      "offset": 788,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "Hz",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_TARGET_MIN_LO",
+      "offset": 792,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_TARGET_MIN_HI",
+      "offset": 796,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_TARGET_MAX_LO",
+      "offset": 800,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_TARGET_MAX_HI",
+      "offset": 804,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_NODE_ID",
+      "offset": 808,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "address",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "NODE",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_POLARITY",
+      "offset": 812,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "STEP/DIR/EN bits",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "STEP_ACTIVE",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "DIR_POSITIVE",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "EN_ACTIVE",
+          "lsb": 2,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_COMM_POLICY",
+      "offset": 816,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "TBD",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "POLICY",
+          "lsb": 0,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_FAIL_THRESHOLD",
+      "offset": 820,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "poll",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_FRESH_LIMIT",
+      "offset": 824,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_REJECTED",
+      "offset": 896,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_STALE",
+      "offset": 900,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_UNDERRUN",
+      "offset": 904,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_TELEMETRY_DROP",
+      "offset": 908,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_DMA_ERROR",
+      "offset": 912,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_COMM_FAIL",
+      "offset": 916,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "OK",
+      "value": 0,
+      "severity": "INFO",
+      "impact": "none",
+      "report": "ACK"
+    },
+    {
+      "name": "BAD_RECORD",
+      "value": 257,
+      "severity": "ERROR",
+      "impact": "invalidate session / STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "STALE_SESSION",
+      "value": 258,
+      "severity": "WARN",
+      "impact": "discard old",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "SEQUENCE",
+      "value": 259,
+      "severity": "ERROR",
+      "impact": "invalidate session / STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "TARGET_RANGE",
+      "value": 260,
+      "severity": "ERROR",
+      "impact": "invalidate session / STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "UNEXECUTABLE",
+      "value": 513,
+      "severity": "ERROR",
+      "impact": "STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "UNDERRUN",
+      "value": 514,
+      "severity": "ERROR",
+      "impact": "STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "ARITHMETIC",
+      "value": 515,
+      "severity": "ERROR",
+      "impact": "STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "POSITION_INVALID",
+      "value": 516,
+      "severity": "ERROR",
+      "impact": "reject START",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "LIMIT",
+      "value": 769,
+      "severity": "ERROR",
+      "impact": "STOP / latch",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "INTERLOCK",
+      "value": 770,
+      "severity": "ERROR",
+      "impact": "STOP / latch",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "ESTOP",
+      "value": 771,
+      "severity": "ERROR",
+      "impact": "STOP / position invalid",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "WATCHDOG",
+      "value": 772,
+      "severity": "ERROR",
+      "impact": "STOP / latch",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "CHECKSUM",
+      "value": 1025,
+      "severity": "POLICY",
+      "impact": "TBD per node",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "POLL_TIMEOUT",
+      "value": 1026,
+      "severity": "POLICY",
+      "impact": "TBD per node",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "DRIVER_ALARM",
+      "value": 1027,
+      "severity": "POLICY",
+      "impact": "TBD whole-machine policy",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "STALE_FEEDBACK",
+      "value": 1028,
+      "severity": "POLICY",
+      "impact": "TBD age policy",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "DMA",
+      "value": 1281,
+      "severity": "ERROR",
+      "impact": "STOP / invalidate session",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "LINK_RESET",
+      "value": 1282,
+      "severity": "ERROR",
+      "impact": "invalidate session",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "TELEMETRY_DROP",
+      "value": 1283,
+      "severity": "WARN",
+      "impact": "count / IRQ; critical policy TBD",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "BAD_COMMAND",
+      "value": 1537,
+      "severity": "ERROR",
+      "impact": "reject transaction",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "BUSY",
+      "value": 1538,
+      "severity": "ERROR",
+      "impact": "reject transaction",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "DUP_COMMAND",
+      "value": 1539,
+      "severity": "ERROR",
+      "impact": "reject transaction",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "BAD_CONFIG",
+      "value": 1540,
+      "severity": "ERROR",
+      "impact": "retain active config",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "FAULT_ACTIVE",
+      "value": 1541,
+      "severity": "ERROR",
+      "impact": "reject clear",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    }
+  ],
+  "commands": {
+    "CONFIG_COMMIT": 1,
+    "OPEN_SESSION": 2,
+    "ENABLE": 3,
+    "START": 4,
+    "STOP": 5,
+    "PAUSE": 6,
+    "RESUME": 7,
+    "DISABLE": 8,
+    "CLEAR_FAULT": 9,
+    "FLUSH": 10,
+    "REBASE": 11,
+    "HOME": 12,
+    "SNAPSHOT": 13,
+    "CLEAR_STATS": 14,
+    "LINK_RECOVER": 15
+  },
+  "frames": {
+    "motion": {
+      "length": 80,
+      "endian": "little",
+      "alignment": 8,
+      "fields": [
+        {
+          "name": "magic",
+          "offset": 0,
+          "type": "u32",
+          "constant": 827608909
+        },
+        {
+          "name": "version",
+          "offset": 4,
+          "type": "u16",
+          "constant": 1
+        },
+        {
+          "name": "length",
+          "offset": 6,
+          "type": "u16",
+          "constant": 80
+        },
+        {
+          "name": "session_id",
+          "offset": 8,
+          "type": "u64"
+        },
+        {
+          "name": "sequence",
+          "offset": 16,
+          "type": "u32"
+        },
+        {
+          "name": "batch_id",
+          "offset": 20,
+          "type": "u32"
+        },
+        {
+          "name": "flags",
+          "offset": 24,
+          "type": "u32",
+          "allowed_mask": 1,
+          "bits": {
+            "END": 0
+          }
+        },
+        {
+          "name": "axis_mask",
+          "offset": 28,
+          "type": "u32",
+          "allowed_mask": 15,
+          "bits": {
+            "A0": 0,
+            "A1": 1,
+            "A2": 2,
+            "A3": 3
+          }
+        },
+        {
+          "name": "duration_tick",
+          "offset": 32,
+          "type": "u64",
+          "min": 1
+        },
+        {
+          "name": "target0",
+          "offset": 40,
+          "type": "i64"
+        },
+        {
+          "name": "target1",
+          "offset": 48,
+          "type": "i64"
+        },
+        {
+          "name": "target2",
+          "offset": 56,
+          "type": "i64"
+        },
+        {
+          "name": "target3",
+          "offset": 64,
+          "type": "i64"
+        },
+        {
+          "name": "reserved",
+          "offset": 72,
+          "type": "u32",
+          "constant": 0
+        },
+        {
+          "name": "crc",
+          "offset": 76,
+          "type": "u32"
+        }
+      ]
+    },
+    "telemetry": {
+      "length": 128,
+      "endian": "little",
+      "alignment": 8,
+      "fields": [
+        {
+          "name": "magic",
+          "offset": 0,
+          "type": "u32",
+          "constant": 827149396
+        },
+        {
+          "name": "version",
+          "offset": 4,
+          "type": "u16",
+          "constant": 1
+        },
+        {
+          "name": "length",
+          "offset": 6,
+          "type": "u16",
+          "constant": 128
+        },
+        {
+          "name": "session_id",
+          "offset": 8,
+          "type": "u64"
+        },
+        {
+          "name": "telemetry_seq",
+          "offset": 16,
+          "type": "u32"
+        },
+        {
+          "name": "type",
+          "offset": 20,
+          "type": "u16",
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": {
+            "MOTION": 1,
+            "FEEDBACK": 2,
+            "SAFETY": 3,
+            "COMM": 4
+          }
+        },
+        {
+          "name": "axis",
+          "offset": 22,
+          "type": "u8",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            255
+          ]
+        },
+        {
+          "name": "node",
+          "offset": 23,
+          "type": "u8"
+        },
+        {
+          "name": "event_tick",
+          "offset": 24,
+          "type": "u64"
+        },
+        {
+          "name": "sample_tick",
+          "offset": 32,
+          "type": "u64"
+        },
+        {
+          "name": "age_tick",
+          "offset": 40,
+          "type": "u64"
+        },
+        {
+          "name": "motion_seq",
+          "offset": 48,
+          "type": "u32"
+        },
+        {
+          "name": "status",
+          "offset": 52,
+          "type": "u32",
+          "allowed_mask": 65535
+        },
+        {
+          "name": "validity",
+          "offset": 56,
+          "type": "u32",
+          "allowed_mask": 31,
+          "bits": {
+            "CMD_VALID": 0,
+            "FEEDBACK_VALID": 1,
+            "COMM_VALID": 2,
+            "FRESH": 3,
+            "RAW_VALID": 4
+          }
+        },
+        {
+          "name": "error_code",
+          "offset": 60,
+          "type": "u32"
+        },
+        {
+          "name": "command_position",
+          "offset": 64,
+          "type": "i64"
+        },
+        {
+          "name": "pulse_total",
+          "offset": 72,
+          "type": "u64"
+        },
+        {
+          "name": "feedback_raw",
+          "offset": 80,
+          "type": "i64"
+        },
+        {
+          "name": "feedback_unit",
+          "offset": 88,
+          "type": "u32",
+          "enum": [
+            0,
+            1
+          ],
+          "labels": {
+            "UNKNOWN": 0,
+            "ENCODER_COUNT": 1
+          }
+        },
+        {
+          "name": "driver_status",
+          "offset": 92,
+          "type": "u32"
+        },
+        {
+          "name": "poll_seq",
+          "offset": 96,
+          "type": "u32"
+        },
+        {
+          "name": "raw_length",
+          "offset": 100,
+          "type": "u32",
+          "max": 16
+        },
+        {
+          "name": "raw",
+          "offset": 104,
+          "type": "bytes16"
+        },
+        {
+          "name": "reserved",
+          "offset": 120,
+          "type": "u32",
+          "constant": 0
+        },
+        {
+          "name": "crc",
+          "offset": 124,
+          "type": "u32"
+        }
+      ]
+    }
+  },
+  "confirmed_decisions": {
+    "date": "2026-10-07",
+    "format": "JSON; generated artifacts committed",
+    "time": "relative duration_tick per point",
+    "target_position": "signed64",
+    "delta": "signed65",
+    "timestamp": "unsigned64 1MHz; STOP/clear fault/DMA reset preserve; PL reconfiguration new epoch",
+    "stop": "finish current pulse timing, cancel session",
+    "position": "invalid on power-up; HOME or explicit maintenance REBASE; no automatic EN recovery",
+    "dma_first": "Anlogic AXI DMA HP0 64-bit stream simple mode; one record per packet; Linux DMAengine validation"
+  },
+  "states": {
+    "INIT": 0,
+    "NOT_READY": 1,
+    "READY": 2,
+    "RUNNING": 3,
+    "PAUSING": 4,
+    "PAUSED": 5,
+    "STOPPING": 6,
+    "FAULT": 7,
+    "HOMING": 8
+  }
+}

@@ -92,3 +92,15 @@ RTL 使用 Verilog；新增 PL 模块配 self-checking testbench；运动学改�
 3. 对应STEP边沿同步试验需使用可重复的多轴不同频率/步数向量，测量定义明确后检验＜50μs。
 4. Protect启用与堵转试验、整机限位/过载/联锁传播、外部急停失能及日志关联；不假定轮询延迟等于保护响应上限。
 5. 失能后外力移位、故障清除和重新使能试验；驱动内部清零不等同机械回零，恢复策略仍待设计。实体试验条件与步骤须在对应规范中确定。
+
+## 8. 2026-10-07 PS/PL接口首批决策（覆盖前文对应待定项）
+
+用户在pl_interface整体草案形成后明确确认：
+
+- I02：每点显式相对`duration_tick`；目标/命令位置signed64，差分signed65。实际消费周期范围、完整报文布局、计数有效边沿和具体STEP/DIR/EN时序仍待审查/实测，不继承Golden Model的16位参考域。
+- I04：时间戳1MHz、64位unsigned；STOP、清错、DMA复位保持时间戳，PL重配置建立新epoch；既有“每次PL上电初始化完成后从0累加”不变。初始化完成条件及epoch识别机制仍待冻结。
+- E09/I02：欠流或STOP完成当前脉冲时序后停止，取消旧会话；上电位置无效，经HOME或显式维护REBASE建立；不自动恢复EN。完整回零流程、REBASE安全门、外部急停脉冲截短与重新使能恢复流程仍待验证，不承诺自动恢复动作。
+- I06/I08：JSON作为唯一机器规范；由pl_interface/schema.json生成Verilog/C定义及表格，生成产物入库。具体地址/位域/错误码数值、布局和尚未确认的策略仍Draft。
+- I01：首批数据链选择Anlogic AXI DMA、HP0、64位stream、simple模式、每记录一个packet，以Linux DMAengine验证。此项是接口选择，不是IP配置/驱动配套、板上DMA/cache/中断或CDC已验证结论。
+
+原话及选择范围见pl_interface/DECISIONS.md。本轮只更新已确认约束，其他外围细节继续TBD；具体STEP脉宽/最高步频未填未经确认的数值。
