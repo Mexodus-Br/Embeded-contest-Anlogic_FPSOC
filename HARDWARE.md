@@ -1,6 +1,6 @@
 # 硬件资料核对记录
 
-核对日期：2026-10-06。状态：资料核对完成；用户确认双核 ARM 平台、PS Linux；完整实物配置及项目接口尚未冻结。
+核对日期：2026-10-06起；2026-10-08补充COM4实板运行快照（§11）。状态：资料与运行基线已核对；用户确认双核 ARM 平台、PS Linux；完整实物配置及项目接口尚未冻结。
 资料根目录：D:\Works\Embedded_contest\docs\Analogic\hardware_MLK_F3P_CZ02_DR1_20250526。
 本记录区分资料描述、原理图连接、实物待核实项；不能作为未经验证的接线或引脚约束文件。
 
@@ -238,3 +238,76 @@ AXI/点/遥测/DDR格式；时间戳计数频率/单位、初始化完成条件�
 - 可以沿厂商基线制作包含本项目PL的SD系统。首次建议完整重建并验证一致的一组HPF/FSBL/bitstream/U-Boot/DTB/kernel/rootfs；此后仅改PL逻辑且PS配置及软件接口不变时，可复用匹配的FSBL/U-Boot/kernel/rootfs并重打BOOT.bin。新增设备节点、驱动或应用时，分别更新DTS、kernel/模块或rootfs，不必每次PL修改都重编全部系统。
 
 本次仅确认可行路径并记录证据，没有制作项目镜像、运行打包/分区脚本或操作SD卡。项目选择哪种启动/rootfs配置与构建环境尚未因此冻结；教程中的sdb只是例子，实际部署目标必须按设备识别。
+
+## 11. 实板串口运行基线
+
+采集日期：2026-10-08（主机Asia/Taipei日期）。按用户授权通过COM4、115200、8N1连接；当前已有root shell，`id`确认uid=0。使用本机System.IO.Ports.SerialPort完成只读查询，DTR/RTS均保持false，无流控。未重启、烧写、挂载新分区、配置网络/CAN、操作MMIO或加载PL/模块；完成后关闭COM4。AGENT.md已有未提交修改未纳入本次记录变更。
+
+### 11.1 系统、存储和启动
+
+| 项目 | 实际观测 | 含义 / 限制 |
+| --- | --- | --- |
+| OS | `/etc/os-release`为Buildroot2022.02.6 | 与构建包版本一致，不证明源码/配置完全匹配 |
+| Kernel | `6.1.111-rt42`，`#8 SMP PREEMPT Wed Jul 30 14:40:27 CST 2025`，aarch64 | dmesg编译器为Linaro GCC7.5-2019.12/7.5.0；`/proc/config.gz`及`/sys/kernel/realtime`不存在，不仅凭-rt42后缀宣称PREEMPT_RT已启用或满足运动实时指标 |
+| CPU | cpuinfo有processor0/1，ARMv8，part0xd04；DT model为Anlogic, DR1M90 FPSoc | 双核平台获得实板印证，未测CPU实际工作频率 |
+| RAM | dmesg为1048576K物理内存；MemTotal1012420kB | 1GiB基线获得印证，DDR速率/IO电压/训练参数未由这些数据证实 |
+| CMA | dmesg在0x17c00000建立128MiB池；CmaTotal131072kB、采集时CmaFree130128kB | 存在连续DMA分配资源，地址与余量不冻结为运动ring buffer地址 |
+| eMMC | mmcblk1，device/type=MMC，name=IS008G，manfid=0x9d、oemid=0x0101、date=11/2023；7653888KiB≈7.30GiB | 与标称8GB容量一致；Linux设备名称不能代替完整颗粒丝印 |
+| 启动分区 | mmcblk1p1=101376KiB；已挂载/mnt/mmcblk1p1，vfat；df约97.5MiB | 内有BOOT.bin、boot.scr、system.dtb、uImage.lz4及无线/蜂窝辅助模块；无uInitrd.lz4 |
+| 根分区 | mmcblk1p2=7550976KiB；`/dev/root on / type ext4`，另挂载/mnt/mmcblk1p2；df约7.0GiB，已用361.6MiB | 当前实际根文件系统在eMMC的EXT4分区，区别于教程parameter-tf-fat默认RAM根文件系统 |
+| QSPI | `/proc/mtd`为mtd0、02000000字节、擦除块00010000、名alspinor；dmesg识别gd25q256/32768Kbytes | 实板Flash容量32MiB得到印证，未读取/修改其内容 |
+| 时间 | 板端date显示1970-01-01；无/dev/rtc*，运行DT的i2c0 disabled | 当前日历时间无效；没有校时，日志应保留PL启动内相对时间与墙钟有效性区别 |
+
+当前`/proc/cmdline`：
+
+```text
+console=ttyS0,115200n8 earlycon=uart,mmio32,0xf8401000 loglevel=8 root=/dev/mmcblk1p2 rootwait rootfstype=ext4 rw
+```
+
+读取eMMC启动分区boot.scr的脚本载荷，核心流程为加载uImage.lz4到0x10000000、system.dtb到0x14000000，设上述bootargs，执行`bootm 0x10000000 - 0x14000000`，不加载initrd。
+制作完整SD系统时必须为实际SD根分区匹配bootargs；原样沿用`root=/dev/mmcblk1p2`可能仍挂载eMMC根目录。root来源及文件存在不能独立证明BootROM/FSBL第一阶段从何处启动，实际拨码/上电日志未采集，未为采集而重启。
+
+### 11.2 当前PL、DMA与外设绑定
+
+| 运行DT / 资源 | 观测 | 对后续接口设计的影响 |
+| --- | --- | --- |
+| FPGA Manager | /sys/class/fpga_manager/fpga0，name=Anlogic dr1m90 FPGA Manager，state=operating；绑定dr1m90_fpga_manager；region0存在 | 当前PL处于已配置状态，不证明具体bitstream身份或本项目模块存在；未加载固件 |
+| PL AXI DMA | axidma@80000000，compatible=anlogic,axi-dma，status=okay；reg=0x80000000/0x1000；GIC SPI82/83（level high） | `/proc/iomem`显示80000000–80000fff被80100000.ethernet驱动占用，不能直接分配给运动寄存器或遥测DMA |
+| DMA配置声明 | DT含include-sg/include-dre；addrwidth=32、sg-length-width=16；MM2S/S2MM两个通道datawidth=32 | 是当前DT声明，不作为新运动DMA选型/实际硬件参数冻结依据 |
+| PL Ethernet | ethernet@80100000，compatible=anlogic,axi-ethernet-1.00.a，status=okay；reg=0x80100000/0x40000；SPI84 | `/proc/iomem`占80100000–8013ffff；绑定anlogic_axienet，对应eth0。新增PL地址需保留或明确迁移整套硬件/DT/驱动 |
+| Ethernet与DMA连接 | DT有axistream-connected/control-connected；axidma平台设备未单独显示driver绑定，而Ethernet同时占用DMA资源 | 当前DMA为网络路径服务，不视为已可由运动程序独占使用的通用DMAengine通道 |
+| DMA class | 当前只列DesignWare AHB DMA与PL330各8通道 | 没有观察到独立PL AXI DMA/VDMA通道注册；modules.builtin/dep未匹配Anlogic axi-dma/axi-vdma/anlogic_dma条目，编译配置仍需对应源码确认 |
+| UDMABUF / UIO | /dev/udmabuf（misc，10:126）存在；modules.builtin列udmabuf、uio/uio_pdrv_genirq/uio_dmem_genirq/uio_al_generic | 只证实支持入口/内置驱动存在；未见/dev/uio*或固定udmabuf0，不等于运动缓冲/设备映射已配置 |
+| CAN0 | f8408000.can，DT compatible=ipms,canfd、okay，SPI72；can0当前DOWN/STOPPED、MTU16、时钟报告80MHz | 驱动已绑定；没有设置波特率或发送帧，Classical CAN项目决策保持不变 |
+| CAN1 | DT f8409000，disabled，SPI73 | 不假定第二路接出或已可用 |
+| NPU | hard_npu@63F00000节点存在；未见driver绑定或/dev/npu* | 节点存在不等于NPU运行库/驱动已就绪 |
+
+DT中Ethernet clock-frequency为100MHz；dmesg网络驱动另报告assumed host clock 800000000。两者属于配置/驱动报告，未测实际PL时钟，不据此改变项目已确认的100MHz运动基础时钟。
+表中SPI号来自DT大端cells；例如DMA SPI82/83对应GIC中断114/115。`/proc/interrupts`中的Linux虚拟IRQ号不能直接写入硬件规范。
+
+### 11.3 启动文件身份与构建配套
+
+实板`/mnt/mmcblk1p1`采集结果：
+
+| 文件 | 字节数 | SHA-256 |
+| --- | --- | --- |
+| BOOT.bin | 4153472 | 858cf78c03ae75c870587be77d70668e0ba4841448581273e5c996bf8f980706 |
+| boot.scr | 393 | 685f9f8cd4a1e43d79da0c78ab9591d3af1f744122e21a60b252b685ffad59d1 |
+| system.dtb | 15207 | aba027eadce165ed492ac67c9259ce8d9eacac19c5c6e9f42ca09ec47b0d646f |
+| uImage.lz4 | 8724717 | 12cd2ccb851376eb2870f1d3294f0d29f771e74d01a25d1b605378ea733bd7be |
+
+四者的大小和SHA-256均不同于§10.4本地secondary demo/boot同名文件（本地依次为5186560/466/14129/8414947字节）。实板系统不能当作该demo预编译镜像的逐字节副本。这里只记录哈希，没有备份镜像内容；启动分区文件身份也不单独证明它们就是本次上电加载的每个组件。
+
+板上`/lib/modules/6.1.111-rt42`存在，build/source符号链接指向`/home/uisrc/uisrc-lab-anlogic/sources/linux`，目标目录不存在；无法据此在板上编译内核模块。PATH未找到gcc/g++、python3、dtc、modinfo、lsblk；有zcat、sha256sum、devmem、candump、cansend、blkid。devmem仅查到工具存在，没有执行。
+后续交叉编译驱动需匹配运行内核的源码/补丁、.config、生成头文件和符号信息；现有6.1.111源码包与-rt42实板镜像是否完整对应仍需核对。不能只凭主版本相同复制任意.ko。
+
+### 11.4 联调环境与未解决事项
+
+- eth0为PL Ethernet，eth1为PS Ethernet；二者查询时均NO-CARRIER，只有lo有IPv4，route为空。尚不能通过已配置网络替代串口登录；未修改网络或探测外部主机。
+- can0存在但未启用；ttyS0/ttyS1存在，未观察到PL UART-Lite的ttySL实例。未执行CAN、RS485、电机或DMA数据传输测试。
+- init目录有S50sshd和PTP相关脚本，但进程查询未见sshd/ptp4l，仅见phc2sys与dhcpcd。脚本存在不视为SSH或时间同步已工作。
+- dmesg有5次mmc0的“Got command interrupt ... no command operation”及SDHCI寄存器dump；当前未出现mmcblk0存储设备。未插拔/测试SD，不推定SD启动已验证或控制器已损坏。
+- 无线AIC模块日志报告缺少/vendor/etc/firmware/fw_patch_table_8800d80_u02.bin、加载失败；另有regulatory.db缺失。未修改固件或重载模块。
+- DDR电压/速率/训练与板卡修订仍未实测；本次根文件系统/PL管理状态不证明DDR所有参数正确，也不验证断电持久性或完整启动链。
+
+可复核采集命令包括id、uname、os-release/cmdline/meminfo/cpuinfo、mount/df/partitions/mtd、mmc sysfs属性、boot分区wc/sha256sum、boot.scr载荷读取、运行DT属性、iomem/interrupts、FPGA/DMA sysfs、模块元数据、ip查询及dmesg。全部查询结果作为当前运行快照，项目接口冻结另见PHASE0_CONSTRAINTS.md。
