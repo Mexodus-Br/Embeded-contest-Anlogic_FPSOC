@@ -224,3 +224,17 @@ AXI/点/遥测/DDR格式；时间戳计数频率/单位、初始化完成条件�
 5. **DMA与显示**：通用AXI DMA和厂商uifdma/视频VDMA属于不同候选；后者帧切换语义不直接成为运动点消费语义。训练TPG源代码写入地址与HPF摘要有差异，后续以重新生成的一致硬件/软件定义核对。具体IP选型和Linux应用API本次未冻结。
 
 建议下一步验证顺序：匹配板级配置与工具→可重复Linux启动→GP寄存器与PL中断→通用AXI DMA双向回环→在该基线上接入运动FIFO/遥测。HDMI、CAN和NPU另按各自接口验证；当前任务仅完成资料核对。
+
+### 10.4 厂商二次开发系统与SD启动路径
+
+2026-10-08按用户指定位置只读核对：`D:\Works\Embedded_contest\docs\Analogic\01_start\02_start_Linux\04_secondary_developmemt`。目录实际拼写为developmemt，保留原路径。包含8页二次开发Buildroot教程、demo.zip及已展开demo。
+
+- 教程p1–5给出TD导出包含bitstream的HPF、FD由HPF建立平台并编译soc_fsbl；p6要求将soc_fsbl.elf、system.bit和kernel-dts/uboot-dts放入Linux构建环境boards/files；p7给出move_files、rootfs/U-Boot/kernel构建及create_image流程；p8为SD启动拨码ON-OFF-OFF。示例system.al为DR1M90GEG400/-2、TD6.2.168116。
+- `demo/boot`实际包含BOOT.bin、boot.scr、system.dtb、uImage.lz4、uInitrd.lz4；不是仅有一个根文件系统。kernel DTS声明1GB内存、128MB CMA，并include构建包中的anlogic-dr1m90.dts；新增PL外设仍需匹配设备树、驱动、地址、中断与时钟/复位。
+- 读取的demo HPF报告DDR3/1333Mbps/32bit、training=1、DDRC_IO_VOL=1.5，p2f_clk0=49.995MHz；与§10.3中的电压及项目100MHz运动域差异仍存在，不能原样移植PS初始化参数。
+- 已只读检查根目录uisrc-lab-anlogicM-V4.0.1.tar.gz内脚本：move_files.sh将boards/files里的soc_fsbl.elf复制为output/fsbl.elf，并复制system.bit和两组DTS。create_image.sh调用create_dr1m_image.sh；后者生成boot.bif，明确将fsbl.elf、destination_device=pl的system.bit和u-boot.bin打包，调用Anlogic的albg产生BOOT.bin。仅向SD根目录增加或替换一个system.bit不属于这条加载流程。
+- demo FSBL的alfsbl_partition_load.c包含加载PL分区和PCAP配置逻辑；脚本与源码共同支持“启动时由FSBL加载自定义PL配置”。PS-only reset分支会跳过PL重载，不推定每次PS重启都会重新初始化PL时间戳。
+- parameter-tf-fat.txt及demo boot.scr从启动分区加载uImage.lz4、uInitrd.lz4和system.dtb，再bootm；此配置使用RAM中的根文件系统。构建包另有EXT4启动参数可供后续评估。机器人程序/自启动服务可通过rootfs构建集成；持久日志和参数需另有明确的SD/eMMC存储路径，不能假设RAM根文件系统写入会掉电保留。
+- 可以沿厂商基线制作包含本项目PL的SD系统。首次建议完整重建并验证一致的一组HPF/FSBL/bitstream/U-Boot/DTB/kernel/rootfs；此后仅改PL逻辑且PS配置及软件接口不变时，可复用匹配的FSBL/U-Boot/kernel/rootfs并重打BOOT.bin。新增设备节点、驱动或应用时，分别更新DTS、kernel/模块或rootfs，不必每次PL修改都重编全部系统。
+
+本次仅确认可行路径并记录证据，没有制作项目镜像、运行打包/分区脚本或操作SD卡。项目选择哪种启动/rootfs配置与构建环境尚未因此冻结；教程中的sdb只是例子，实际部署目标必须按设备识别。
