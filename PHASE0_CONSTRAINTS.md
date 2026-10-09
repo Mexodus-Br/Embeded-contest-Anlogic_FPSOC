@@ -106,3 +106,11 @@ RTL 使用 Verilog；新增 PL 模块配 self-checking testbench；运动学改�
 - I01：首批数据链选择Anlogic AXI DMA、HP0、64位stream、simple模式、每记录一个packet，以Linux DMAengine验证。此项是接口选择，不是IP配置/驱动配套、板上DMA/cache/中断或CDC已验证结论。
 
 原话及选择范围见pl_interface/DECISIONS.md。本轮只更新已确认约束，其他外围细节继续TBD；具体STEP脉宽/最高步频未填未经确认的数值。
+
+## 9. 2026-10-09 首批单轴实现契约
+
+用户本轮集中答复“接受以上契约”：STEP 上升沿计数、闲置低，DIR=1 表示正向；EN 极性为显式参数。STOP/欠流/故障与新 STEP 同拍时优先禁止边沿，已输出计数保留。维护 REBASE 仅在 EN 禁用、空闲且无旧会话/待执行命令时载入 signed64 并置 position_valid；HOME 以后接相同位置提交接口；DISABLE 撤销 valid。
+
+STOP/欠流/普通故障取消旧会话，完成当前高/低脉宽及 DIR 保持后报告停止完成，EN 保持原状态；DISABLE 在安全停止后按显式延迟释放 EN。复位立即 STEP 闲置、EN 禁用、位置无效，可截短脉冲，不当作正常 STOP。清故障不恢复会话/EN；新执行需显式建立新会话。
+
+用户授权 dev/pl_motion 创建 RTL/测试/说明及更新约束、仿真验收后 Git 提交。H/L、方向建立/保持、EN 延迟、最高步频仍未批准板级数值。完成参数化单轴目标执行/计数/停止模块，实际测试见 pl_motion/VALIDATION.md；不等同 duration 调度或四轴同步已实现。Golden Model 基线保持。

@@ -30,3 +30,14 @@ PS/PL职责；四轴绝对目标且实际STEP命令位置差分；GP Lite控制+
 2026-10-07，D05答复“接受 JSON，生成产物入库”。D01/D02/D03答复“每点显式相对 duration_tick；目标/命令位置 signed64、差分 signed65；时间戳 1MHz，64位unsigned，STOP/清错/DMA复位保持，PL重配置建立新 epoch”。D04/D06答复“接受”，对应提问中完整推荐：欠流/STOP完成当前脉冲时序后停止且取消旧会话；上电位置无效、HOME或显式维护REBASE建立、不自动恢复EN；Anlogic AXI DMA/HP0/64bit stream/simple/每记录一packet/Linux DMAengine验证。
 
 以上选择已冻结并更新PHASE0 §8与schema.confirmed_decisions。仍未确认：80/128B具体布局、CRC、register/error数值表、DDA算法、暂停/正常END行为、初始化完成条件、有效STEP边沿、配置合法性细节、具体脉宽/频率/消费周期范围、维护REBASE安全门、EN恢复、通信策略、容量/地址/DTS。D06只冻结首批接口选择与验证方向，未证明IP与Linux驱动配套或板上可用。
+
+## 2026-10-09 单轴最小缺项确认（覆盖上文相应待定项）
+
+用户集中答复“接受以上契约”，确认范围：
+
+- STEP 上升沿有效且计数，闲置低；DIR=1 正向；EN 有效极性仍显式参数。
+- STOP/欠流/普通故障同拍优先于新 STEP；既有边沿计数保留。
+- REBASE 必须 EN 禁用、空闲、无旧会话/待执行命令，提交 signed64/valid；HOME 后续通过相同提交口接入。DISABLE 撤销位置有效性。人工维护授权和队列空由上游保证。
+- STOP/欠流/普通故障取消会话并完成高/低及 DIR hold 后报告停止，保留 EN；DISABLE 在 pulse-safe 后按参数释放 EN。复位立即 STEP 闲置/EN 禁用/位置无效，可截短；清错不恢复会话/EN，新执行须显式新会话。
+
+首批仅参数化单轴执行通道，Verilog 自检通过后提出四轴方案，详见 pl_motion/README.md 和 VALIDATION.md。脉宽、setup/hold、EN 延迟、最高频及全部驱动实测数值继续 TBD；80/128B 布局、DDA、正常 END/暂停、初始化完成条件等草案未冻结。

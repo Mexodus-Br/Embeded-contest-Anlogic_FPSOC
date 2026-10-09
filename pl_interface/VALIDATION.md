@@ -1,5 +1,7 @@
 # 实际验证记录 — 2026-10-07
 
+2026-10-09 后续记录：原 Icarus 崩溃复现，PATH/TMP 隔离和工具升级均不能证明沙箱内稳定；普通进程环境中原 12.0/独立 13.0 各完成 50 次编译/运行和完整单轴仿真。最终默认原 12.0 的独立 HDL 入口实际核对 772 常量通过。check_verilog.py 改用 pl_motion/sim_tools.py 的统一 fail-fast 调用；历史失败保留，下文“不含运动 RTL/HDL异常未解决”描述属于 2026-10-07 快照。最新单轴结果与尚未验证范围见 pl_motion/VALIDATION.md；无板级验收。
+
 Windows PowerShell / Python3.10.11 / MinGW GCC15.1工具链。本次未实现运动RTL、Linux驱动或BSP，未连接电机。测试命令从工作区根运行。
 
 | 实际检查 | 结果与限制 |

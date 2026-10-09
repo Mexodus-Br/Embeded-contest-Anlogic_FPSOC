@@ -2859,7 +2859,13 @@
     "timestamp": "unsigned64 1MHz; STOP/clear fault/DMA reset preserve; PL reconfiguration new epoch",
     "stop": "finish current pulse timing, cancel session",
     "position": "invalid on power-up; HOME or explicit maintenance REBASE; no automatic EN recovery",
-    "dma_first": "Anlogic AXI DMA HP0 64-bit stream simple mode; one record per packet; Linux DMAengine validation"
+    "dma_first": "Anlogic AXI DMA HP0 64-bit stream simple mode; one record per packet; Linux DMAengine validation",
+    "single_axis_contract_date": "2026-10-09",
+    "step_dir": "STEP rising edge counted, idle low; DIR=1 positive; EN polarity explicit parameter",
+    "safety_edge_priority": "STOP/underflow/fault inhibit new same-cycle edge; retain already emitted count",
+    "maintenance_rebase": "EN disabled, idle, no session or pending command; load signed64 and set valid; HOME uses same commit; DISABLE invalidates",
+    "single_axis_stop_enable": "finish high/low and DIR hold; cancel session; retain EN for STOP/underflow/ordinary fault; DISABLE releases after safe stop and explicit delay",
+    "single_axis_reset_clear": "reset immediately idles STEP/disables EN/invalidates position and may truncate pulse; clear fault never restores session or EN; explicit new session required"
   },
   "states": {
     "INIT": 0,

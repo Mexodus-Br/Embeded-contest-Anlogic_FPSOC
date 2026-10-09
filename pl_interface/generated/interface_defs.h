@@ -1,4 +1,4 @@
-/* Generated from schema.json SHA256 4aa2cb107a19205deccb64a18d2cebe2f66d0755b6af72cd3a7430bb296b3d95; DRAFT semantics. */
+/* Generated from schema.json SHA256 0c58f850cadc666dbde32417350d4ca104b799c219692385355cc82f5459adc8; DRAFT semantics. */
 #ifndef PL_INTERFACE_DEFS_H
 #define PL_INTERFACE_DEFS_H
 #include <stdint.h>
