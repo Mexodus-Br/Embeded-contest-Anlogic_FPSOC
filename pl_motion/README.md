@@ -1,6 +1,6 @@
 # PL 基础运动内核
 
-2026-10-09 后续：四轴单点共同槽调度已实现于 `rtl/four_axis_motion.v`，契约、运行入口与验收边界见 FOUR_AXIS.md。下文单轴模块及其既有行为保持不变。四轴新增精确 duration 与统一停止；连续 FIFO/END/暂停尚未实现。
+2026-10-09 后续：四轴单点共同槽调度已实现于 `rtl/four_axis_motion.v`，见 FOUR_AXIS.md；连续 FIFO、并行预规划、同拍边界切换和 END/暂停会话管理新增于 `rtl/continuous_motion.v`，见 [CONTINUOUS.md](CONTINUOUS.md)。下文是保留的单轴阶段说明，其 RTL 和既有接口不变。当前功能仿真通过，TD 100MHz 门级估算未收敛，见 VALIDATION.md；驱动时序、报文布局与产品容量继续待定。
 
 2026-10-09，仿真验收阶段。`rtl/axis_motion.v` 是纯 Verilog-2005、单时钟、单目标执行通道。它从实际输出 STEP 上升沿累计 signed64 命令位置，接受 signed64 绝对目标，以符号扩展后的 signed65 差分决定方向；每次位置更新还检查 signed64 溢出。位置不是编码器反馈。
 

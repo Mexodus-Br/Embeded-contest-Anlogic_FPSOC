@@ -2870,7 +2870,14 @@
     "four_axis_scheduler": "common Nmax=max(abs(delta_i)) slots; integer remainder emits exactly Ni; all nonzero axes emit in first slot",
     "four_axis_correspondence": "actual rising edges in the same slot are corresponding; same-clock PL logical outputs in this phase; driver inputs require later measurement",
     "four_axis_feasibility": "checked duration_tick*100; common conservative DIR/EN/low guard; whole group validated before output; final high/low/hold within duration; any infeasible axis rejects and cancels whole session",
-    "four_axis_phase_scope": "atomic single point with exact duration and common stop; normal point completion retains session; explicit upstream underflow; continuous FIFO/normal END/pause deferred"
+    "four_axis_phase_scope": "atomic single point with exact duration and common stop; normal point completion retains session; explicit upstream underflow; continuous FIFO/normal END/pause deferred",
+    "continuous_contract_date": "2026-10-09",
+    "continuous_end": "END final point completes full duration/pulse safety; close session, retain EN/actual position; no underflow; reject further same-session points after END accepted",
+    "continuous_pause": "PAUSE at current point boundary including same-cycle request; retain FIFO/prefetch/session/EN; explicit RESUME from next relative interval; exclude paused wall time; STOP/fault > END completion > PAUSE",
+    "continuous_sequence": "logical u32 from 0 strictly contiguous without wrap; duplicate/gap/order/post-END cancels current session; old session handshake discarded with stale, isolated from current session; OPEN idle/flushed with new nonzero globally unique upstream ID",
+    "continuous_start": "first point prechecked plus explicit START_MIN_POINTS and config/position/EN safety; complete cached END allows short trajectory below threshold",
+    "continuous_underflow": "boundary without prechecked next point cancels and flushes FIFO/all prefetch/prediction; same-cycle late point cannot rescue; STOP/fault/reset likewise flush; retain emitted count except reset zero/invalid; never restore old session",
+    "continuous_scope": "additive logical record interface; wire layout/CRC/product capacity/driver timing remain draft or explicit parameters; no AXI/DMA/BSP/hardware integration"
   },
   "states": {
     "INIT": 0,

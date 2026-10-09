@@ -59,3 +59,41 @@ Golden 原始 RampsStepper.cpp 的 statement-has-no-effect 编译 warning 保留
 最终复核原单轴三夹具和 tb_contract 全通过（236,273 检查、944 安全/71 复位）；接口 7 项、重生成 4 文件一致、772 常量实际 HDL 编译/vvp、Golden Model 10 项/1,272 基线向量全部通过。原始基线 warning 保留，Golden/单轴源与期望均未修改。
 
 本批新增验收只覆盖四轴单点逻辑。仍未验收连续 FIFO/预取及无缝点边界、完整 session/sequence、正常 END/暂停、HOME、时间戳、软限位、CDC、GP/DMA/驱动、电气与板级时序/资源。计划下一步先确定 FIFO 生命周期、END/暂停/取消/预缓存规则，再实现连续调度；参数实物值仍 TBD。细节见 FOUR_AXIS.md。
+## 连续执行追加验收 — 2026-10-09
+
+新增独立 motion_fifo、motion_planner、motion_executor、continuous_motion；既有 axis_motion/four_axis_motion 源码与 Golden Model 保持。先隔离验证三子模块，再执行集成与既有回归。Icarus 12.0 devel，普通 Windows 进程；100MHz 是仿真时钟，不代表硬件时序通过。
+
+| 实际执行 | 结果 |
+| --- | --- |
+| FIFO 隔离深度 2/3/8 | 7,610 / 7,739 / 7,972 检查 PASS；非 2 次幂、满/空、满时同时出入、背压和 flush/reset |
+| planner 隔离 | 159 检查 PASS，70 个 cancel 偏移；signed65 正负/极端差分、duration 溢出、零位移、输出保持、取消不残留 |
+| executor 隔离 | 1,665 检查 PASS，100+200=300 cycle 两段同拍切换；实际 base 不匹配拒绝、STOP 优先 |
+| run_continuous.py，10 模式×2 timing scale | 全部 20 组 PASS；5,390,016 检查，3,400 point_start、1,596 point_done、338 END、2 欠流、2,526 stale、2,520 STOP/fault/reset 扫描偏移 |
+| 原单轴环境检查和回归 | 50 次编译/vvp 与 772 常量 PASS；三组 236,273 检查、944 安全/71 reset 时刻及 tb_contract PASS |
+| 原四轴单点 12 组回归 | 9,710,041 检查 PASS；3,360 安全/840 reset 时刻，30,266 真实 STEP |
+| 接口/生成源/Golden | 7 接口方法 PASS；4 生成物逐字节匹配、772 常量 HDL 校验 PASS；Golden 10 方法、1,272 向量 PASS，基线未改 |
+
+集成模式 0..9 分别覆盖多点正反向/掩码/驻留/短 END；边界暂停/恢复/END 优先；缺准备下一点且同拍迟到不能补救；满队列背压连续生产；重复/缺号/END 后错误与旧会话隔离；STOP 逐拍扫描；持续 fault 扫描；reset 扫描；不可执行预取点取消及以实际部分计数建立新会话；空下一点边界暂停及未 ready RESUME 拒绝。SCALE=1/2 的 H/L/S/Q/E/OFF 分别 3/2/4/7/5/3 和两倍，rate=10/5MHz，FIFO=3、prepared=2、START_MIN_POINTS=2，仅是夹具。
+
+引脚监视器独立闭式计算每槽时间/边沿集合，并按真实 STEP 更新 signed64 参考位置。每拍核对实际位置未被预规划提前改写、H 精确和 L/setup/hold/EN/rate 安全；每点精确 duration、连续下一 point_start 与前 point_done 同拍、累计 duration（排除暂停）均通过。不是把 planner 内部输出用作 golden reference。
+
+开发失败按失败处理：executor 初版解包漏 plan_mask 导致仿真超时，修正后重跑隔离测试；planner bench 在 cancel 撤销同 delta 采样 ready，补采样延迟；满队列 bench 源仍呈现已握手 sequence 时 ready 判断错误，调整为等待稳定的下一记录。集成持续 fault 暴露 busy 把“禁止接收”当成“正在规划”，已改用 planner 状态。早期 TD 指出 flush/out_valid/ready 组合环，拆为注册 occupancy 判欠流和直接元数据错误判取消后，重新综合无组合环错误。最终 runner 检查所有组，失败不重试或跳过。
+
+### TD 100MHz 综合摸底（未收敛）
+
+当前 PATH TD Release_2026.1_SP2，6.2.2.200067；参考 DR1M90GEG400、speed=2（实物速度等级未核实）。真实读入 `create_clock -period 10` SDC，在门级报告核实 motion_clk=100.000MHz。没有 false/multicycle timing exception。串行输入/观察包装保留核心全部输入/输出逻辑，不指定真实板脚；该包装开销在表中独立列出。完整 gate.area/gate.timing/run.log 在 build/td_continuous_motion，摘要入库 TD_RESULTS.json。尚未布局布线、加入真实 IO/CDC/复位约束或生成下载 bitstream。
+
+| 范围 | logic LUT | 1-bit ripple adder | 寄存器 | DSP | DRAM | ERAM |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| continuous_motion 核心 | 3,462 | 5,056 | 4,481 | 24 | 82 | 0 |
+| 含观察包装 | 3,727 | 5,056 | 5,810 | 24 | 82 | 0 |
+
+TD 的 unit LUT（含 ripple）=8,783/52,480，16.74%；寄存器 5.54%，DSP 10%。DRAM 是工具资源单位，不等同 82 个 ERAM 块。门级 area 仍可能随布局变化。
+
+100MHz SWNS **−9.414ns**，STNS −15432.420ns，报告最小周期 19.414ns / Fmax **51.509MHz**，STA coverage 94.17%。最差路径 `raw_fifo/rd_reg[1] -> planner/dividend_reg[63]`：FIFO DRAM 读、signed65 差分/幅值/最大值及预算选择、除法输入捕获，20 逻辑级，数据延迟 19.344ns（cell 6.504 + net 12.840）。因此综合成功但 100MHz 时序未通过，不允许据此宣称硬件连续执行验收完成。
+
+早期原四轴单点参考摸底为 WNS −11.343ns、最小周期 21.343ns/Fmax 46.854MHz；这说明原宽算术也存在时序缺口，不证明新连续层已解决硬件闭合。后续优先 FIFO 输入捕获及预检分级，并复核执行层宽算术/控制路径；增加规划延迟后必须回归连续段边界和提前量/欠流规则。布局布线与实际 100MHz 收敛仍为剩余工作。
+
+### 本批验收边界
+
+功能仿真和可重复 TD 门级综合通过；100MHz 时序摸底结论为不通过。线报文/CRC/容量/板级驱动时序未冻结；HOME、软限位、时间戳、异步安全同步、BSP/AXI/DMA、电机/驱动输入实测未开展。sequence 全 2^32 记录未穷举，33 位 next_sequence 的显式越界比较禁止回绕。保留精确 relative duration 与安全停止，不用增加段间等待掩盖预检或时序问题。

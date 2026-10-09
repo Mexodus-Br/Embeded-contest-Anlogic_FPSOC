@@ -6,6 +6,8 @@
 
 同日四轴扩展已确认：共同 Nmax 槽和整数余数分配、PL 逻辑输出同槽边沿同拍，单点整组预检/精确 duration/统一停止。实现契约见 pl_motion/FOUR_AXIS.md；正常点 done 保留会话、欠流显式输入，未实现下文系统记录生命周期的连续 FIFO/END/暂停部分。
 
+同日连续层随后已确认并实现 END、边界 PAUSE/显式 RESUME、连续 sequence、stale 隔离、START 阈值与欠预检取消，见 DECISIONS 最新节和 pl_motion/CONTINUOUS.md。新增独立逻辑记录口，不改变原单点接口；线报文/CRC/容量仍 Draft。预规划不改实际位置，边界提交核对实际 STEP 位置、安全与会话。功能仿真通过，TD 100MHz 门级摸底未收敛，硬件接入未验收。
+
 ## 1. 边界与不变量
 
 PS Linux 负责任务、规划、时间参数化、插补、Delta IK、CAN；PL 负责四轴 STEP/DIR/EN、同步执行、命令计数、整机回零/限位/联锁/停止、RS485 Master、时间戳。驱动器负责单轴闭环；外部电路负责最终急停失能。NPU 不直接执行运动。

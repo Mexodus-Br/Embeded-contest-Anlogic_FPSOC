@@ -1,0 +1,71 @@
+{
+  "top": "continuous_motion",
+  "tool": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\bin\\td_commands_prompt.EXE",
+  "device": "DR1M90GEG400",
+  "speed": "2",
+  "stage": "gate estimate; not placed/routed",
+  "fixture": {
+    "STEP_HIGH_CYCLES": 3,
+    "STEP_LOW_CYCLES": 2,
+    "DIR_SETUP_CYCLES": 4,
+    "DIR_HOLD_CYCLES": 7,
+    "EN_SETUP_CYCLES": 5,
+    "EN_DISABLE_CYCLES": 3,
+    "MAX_STEP_HZ": 10000000
+  },
+  "area": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_continuous_motion\\gate.area",
+  "timing": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_continuous_motion\\gate.timing",
+  "date": "2026-10-09",
+  "td_release": "2026.1 SP2 / 6.2.2.200067",
+  "clock_mhz": 100,
+  "wns_ns": -9.414,
+  "tns_ns": -15432.42,
+  "fmax_mhz": 51.509,
+  "min_period_ns": 19.414,
+  "sta_coverage_percent": 94.17,
+  "timing_pass": false,
+  "core": {
+    "logic_lut": 3462,
+    "ripple_adder": 5056,
+    "registers": 4481,
+    "dsp": 24,
+    "dram": 82,
+    "eram": 0
+  },
+  "with_probe": {
+    "logic_lut": 3727,
+    "ripple_adder": 5056,
+    "registers": 5810,
+    "dsp": 24,
+    "dram": 82,
+    "eram": 0
+  },
+  "critical_path": {
+    "start": "dut/raw_fifo/rd_reg[1]",
+    "end": "dut/planner/dividend_reg[63]",
+    "levels": 20,
+    "data_delay_ns": 19.344,
+    "cell_delay_ns": 6.504,
+    "net_delay_ns": 12.84
+  },
+  "sources_sha256": {
+    "axis_motion.v": "5b35bb2932256d5671cc67b0a0ca81ef6f1439bc34cf182458046c205323e813",
+    "continuous_motion.v": "a9a404c49d5d94e5241d405aeacf59deec4ad8fa2467d1bf1c764a024a77f17b",
+    "four_axis_motion.v": "bcebf3a1f2c67707bb98e901df0e90216b0d1587c31aac4be21818c7519c457b",
+    "motion_executor.v": "26507275d65d970eae4842d8b8e58054e9b9c371c45e097125af151ec4579745",
+    "motion_fifo.v": "5dd9a75d20a66dcbde23be4754f688e1020d814f2a55318f2d5136557815e501",
+    "motion_planner.v": "4e55323b29f2157f45969912500697dae7eff70010181e50734d891fd8c62140"
+  },
+  "reports_sha256": {
+    "gate.area": "2997b7b6514ac9544e645a1b67367d7042d99cac2f18ee611fe4f52b1b0de2a1",
+    "gate.timing": "c8cdd31289ff513a85f72e08e53e5caab86ec5011acaf7b40f80290d22da95f2",
+    "run.log": "badbca57ce847e0ec0937dac05ac93ad1b6aeb425c3d309c8ee46857844f6de4"
+  },
+  "limitations": [
+    "gate estimate only, not placed/routed",
+    "device speed=2 is reference, physical speed unverified",
+    "fixture timing, no board IO/CDC constraints or hardware deployment",
+    "100MHz timing not closed"
+  ],
+  "build_script_sha256": "617870978779c5f7d800501638559a7f030b2e6d4e315c930a8cf8817e935acf"
+}

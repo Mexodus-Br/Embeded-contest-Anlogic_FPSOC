@@ -62,3 +62,7 @@ python golden_model/tests/test_regression.py
 四轴 runner 将两组参数各拆为定向/随机、STOP、欠流、fault、DISABLE、reset 共 12 个独立 self-checking 进程，并行度 4，逐组检查；仿真 wall timeout 180 秒，HDL 内还有限定仿真时间 watchdog。无重试/跳过，结果和完整编译诊断写在忽略的 `build/four_axis_results.json`。原单轴入口的 45 秒默认上限保持。Icarus 的全数组 @* 敏感列表提示按数量汇报，其他诊断逐条输出。
 
 本批完成四轴单点，不自动推断下一点欠流；underflow 由上游显式输入。下一步是连续点 FIFO/预检预取与原子边界切换，需先确定正常 END、暂停、预缓存深度/消费及取消/序号策略。本实现每点预检有 65 拍前置延迟，不能直接宣称连续无缝消费；未来连续调度需预取规划和完成屏障配合。GP/AXI/DMA、完整 HOME、时间戳和软限位集成仍未实现。宽算术/128 位比较的资源与 100MHz 时序必须在后续综合中验证；本次只仿真，不承诺硬件吞吐量。
+
+## 后续状态
+
+连续执行已新增独立 continuous_motion 模块，见 [CONTINUOUS.md](CONTINUOUS.md)。本文单点接口和 RTL 保持原行为；上文“连续 FIFO/END/暂停未实现”等描述属于四轴单点模块的范围，不代表新增连续层状态。

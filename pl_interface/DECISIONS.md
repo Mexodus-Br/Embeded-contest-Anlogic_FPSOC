@@ -51,3 +51,10 @@ PS/PL职责；四轴绝对目标且实际STEP命令位置差分；GP Lite控制+
 - 四轴单点原子启动、精确 duration 与统一停止；正常点完成保留会话、欠流由上游显式输入；连续 FIFO/正常 END/暂停本批不实现。
 
 共同主槽算法选择覆盖此前 DDA/对应边沿测量位置的对应待定项，仅限本批逻辑输出仿真 profile。具体 D 预算和逐拍时刻见 pl_motion/FOUR_AXIS.md；已有单轴 RTL 不改。H/L/S/Q/EN/max_rate 实物值、记录布局、板级驱动输入延迟、连续消费/预取和 GP/DMA 集成仍未冻结或验收。
+## 2026-10-09 连续层规则确认
+
+用户答复“接受以上最小契约”。END 完整结束最后点后正常关闭、保留 EN/位置；PAUSE 在点边界生效并保留缓存/会话/EN，RESUME 显式从下一点继续，暂停墙钟不计执行 duration。优先级 STOP/故障 > END > PAUSE。
+
+逻辑 u32 sequence 从 0 连续不回绕，当前重复/缺号/乱序/END 后入点取消；旧 session 握手丢弃报 stale，不影响新会话。OPEN 需空闲清空、新非零 ID，上游保证全历史唯一。START 首点已预检且达到显式阈值，完整 END 的短轨迹例外；区间边界缺已预检下一点即欠流，同拍迟到点不能补救。取消清 FIFO/预取/预测链，保留实际已输出计数；复位仍置 0/invalid。
+
+影响与迁移：新增独立 continuous_motion 逻辑记录/控制口，既有单轴和四轴单点 RTL/接口不变；DMA/GP 适配另行冻结。仅更新 confirmed_decisions 元数据和生成文件源摘要，布局/寄存器/错误码数值不变，仍 Draft。内部 FIFO 元组不是线报文。板级容量、CRC、时序及 AXI/DMA/BSP 未冻结或验收，详见 pl_motion/CONTINUOUS.md。

@@ -60,3 +60,4 @@ START需已OPEN_SESSION、配置和position_valid、预缓存最低完整点数�
 保守预算将每点末尾保留L，可能降低极限容量；冻结算法前可以证明更紧边界，但不能默默超越已验收时序。DIR保持以最后有效边沿为参考，若驱动手册以其他边沿定义，参数映射需修改并复核。DIR反向只能在inactive时，先满足hold再等setup；持续同向可不改DIR。计数发生于实际有效边沿，point_done还需区间结束及STEP inactive。
 
 累加器、duration*K、N*F、R*M、序号和position越界均显式失败，不截断/饱和后执行。时间戳回绕不是允许超长duration的理由；跨回绕运动候选禁止。目标位宽64不等于允许2^64个脉冲在任意区间内执行。
+> 2026-10-09 连续层补充：用户已确认 END/边界 PAUSE、显式 RESUME、逻辑 u32 sequence 与 stale 隔离、START 预缓存和边界欠预检取消规则，详见 DECISIONS.md 与 ../pl_motion/CONTINUOUS.md。以下候选线报文布局/CRC/容量仍 Draft。实现以预测端点预规划，但仅在提交时核对实际已输出 STEP 位置才执行；预规划不修改实际位置。边界需下一点**已预检完成**，只有完整点入 FIFO 不足以避免欠流。
