@@ -318,3 +318,46 @@ DT中Ethernet clock-frequency为100MHz；dmesg网络驱动另报告assumed host 
 - DDR电压/速率/训练与板卡修订仍未实测；本次根文件系统/PL管理状态不证明DDR所有参数正确，也不验证断电持久性或完整启动链。
 
 可复核采集命令包括id、uname、os-release/cmdline/meminfo/cpuinfo、mount/df/partitions/mtd、mmc sysfs属性、boot分区wc/sha256sum、boot.scr载荷读取、运行DT属性、iomem/interrupts、FPGA/DMA sysfs、模块元数据、ip查询及dmesg。全部查询结果作为当前运行快照，项目接口冻结另见PHASE0_CONSTRAINTS.md。
+
+## 12. Ubuntu桌面系统实板对比
+
+采集日期：2026-10-09（Asia/Taipei）。用户切换至厂商Ubuntu桌面系统后，按授权通过COM4、115200、8N1、root登录，只读查询系统、软件包、运行DT、sysfs和日志。DTR/RTS保持false，无流控；未重启、安装软件、修改网络、挂载启动分区、操作MMIO或加载PL/模块。采集完成已关闭串口。此记录不替代DDR电压测量、运动DMA回环或Qt应用实际运行验证。
+
+### 12.1 当前Ubuntu实际观测
+
+| 项目 | 观测 | 含义 / 限制 |
+| --- | --- | --- |
+| OS | Ubuntu20.04.1 LTS / Focal，aarch64；hostname为bionic-arm64 | hostname不代表Ubuntu18.04；以os-release为准 |
+| Kernel | 6.1.111-rt42，#17 SMP PREEMPT，2025-10-17构建，Linaro GCC7.5.0 | 与§11 Buildroot的#8构建不同；同版本字符串不证明配置/符号/驱动ABI匹配；未发现/proc/config.gz或/sys/kernel/realtime |
+| 根文件系统 | cmdline为root=/dev/mmcblk0p2、EXT4；mmcblk0约29.5GiB，sysfs type=SD；根分区约29GiB、使用2.9GiB | 当前root在SD，不在eMMC；BootROM/FSBL首阶段来源仍未独立采集 |
+| eMMC | mmcblk1约7.3GiB，type=MMC、name=IS008G；两分区在lsblk中无挂载点 | eMMC仍被识别；本次未读取其启动文件或重新验证原系统内容 |
+| RAM / CMA | MemTotal1013496kB；一次free快照used276MiB、available688MiB；CMA128MiB | 仅当前桌面登录界面负载快照，不是启动峰值或HMI/AI并发预算 |
+| 桌面 | Xorg与GDM3/GNOME登录界面运行；LXDE包也已安装，lightdm服务inactive | 当前实际运行的不是LXDE会话；未操作桌面或启动测试窗口 |
+| 显示 | /dev/fb0，name=anlogic，1920×1080、32bpp、stride7680；绑定anlogic-vdma-fb | 已存在可用显示驱动入口；Xorg记录当前模式为1080p60，未测刷新精度/帧率 |
+| 渲染 | Xorg使用FBDEV/shadow framebuffer，GLX DRISWRAST/swrast；未见/dev/dri/card0 | 当前图形链使用软件渲染；安装Mesa不证明GPU硬件加速可用 |
+| 开发工具 | gcc/g++9.3.0、make、Python3.8.2、build-essential存在；qmake、cmake未找到 | 具备原生C/C++开发入口；本次未编译应用 |
+| Qt | dpkg与/usr/lib、/opt、/usr/local查询未发现已安装Qt；qtbase5-dev和qt5-qmake均Installed:none | apt缓存候选为5.12.8，cmake候选3.16.3；缓存候选不证明当前网络可下载；版本选择尚未冻结 |
+| 软件源 / 网络 | 配置华为云ubuntu-ports的focal、updates、backports；SSH服务active；PS eth0配置192.168.137.100/24但DOWN | 未改变网络、更新apt或测试外网/SSH连接；不能视为已联网开发环境 |
+| 模块构建 | /lib/modules/6.1.111-rt42及/usr/src内容未具备配套构建资料，/boot为空；lsmod无条目 | 缺少匹配内核构建树、配置与符号信息；不能仅安装通用Ubuntu headers就匹配厂商内核；驱动绑定说明有内置驱动，空lsmod不代表无驱动 |
+| 外设 | can0/can1均存在且DOWN；NPU DT节点存在，无/dev/npu；FPGA Manager state=operating | 无CAN/NPU/运动功能验收；PL具体bitstream身份未独立核实 |
+
+### 12.2 当前Ubuntu显示PL资源与本地资料差异
+
+运行DT、iomem与driver绑定相互印证：
+
+- `0x80100000–0x80100fff`：Anlogic AXI VDMA；GIC SPI82/83；注册dma0chan0，绑定anlogic-dma，供显示framebuffer使用。不是项目已选的通用运动AXI DMA回环。
+- `0x80200000–0x80200fff`：vdmafb / 视频时序资源；`0x80201000–0x80201fff`：动态显示时钟资源。显示驱动日志报告fb_phy=0x17d00000；不能把它或CMA池固定分配给运动缓存。
+- 本镜像仅观察到PS Ethernet，不采用§11的PL Ethernet地址占用布局。资源分配须按所选镜像与实际PL/DT匹配，不能混用两套地址图。
+- 日志首次vdmafb probe因VDMA通道未就绪失败，随后VDMA注册、vdmafb再次probe且fb0已绑定；不能只凭首次日志判定显示最终失败。
+
+本地`01_start/02_start_Linux/05_application_demo/05-1_QT环境搭建及demo演示/demo.zip`已只读检查，含`driver/anlogic-vdmafb.c`、`driver/anlogic-dynclk.c`、`driver/anlogic-vtc.h`、PL工程`soc_prj/soc_prj.al`、HPF、两组DTS及Qt运行包。配套PDF第24页（印刷21）要求补入framebuffer/dynclk驱动和Kconfig/Makefile，说明基础BSP不能仅因有Qt选项就假定显示驱动齐全。
+
+该ZIP内`anlogic-dr1m90-softip.dts`却将VDMA放在0x80200000、vdmafb在0x80100000、dynclk在0x80101000，与当前Ubuntu运行DT不同；num-fstores为4而当前运行DT为3。其HPF也为DDRC_IO_VOL=1.5。它可作源码/实现参考，不能认定与当前Ubuntu预编译镜像完全配套或直接覆盖运行DT。后续项目仍遵循§10.3用户确认的1.35V开发基线。
+
+### 12.3 二次开发评估（建议，未代替用户选择）
+
+- 当前阶段优先考虑Ubuntu作为Qt HMI、PS应用和联调基线：已有1080p显示链、原生编译器、Python、包管理与SSH入口，应用开发成本较低。Qt尚需部署，先验证二维Widgets/软件绘图原型与实际资源消耗；桌面存在不证明复杂3D或高帧率渲染性能。
+- 项目PL应在保留显示VDMA、时序、动态时钟、HDMI输出及所需复位/互连的基础上新增独立运动GP寄存器与AXI DMA/HP0链路。重新生成匹配的HPF、FSBL、bitstream、DT及必要内核驱动；显示VDMA不改作运动DMA。
+- Buildroot的优势是可裁剪、镜像较小且已有构建脚本/源码；目前实测基线未验证图形链和可用Qt运行环境。厂商Qt示例已提供补入显示驱动的路径，因此Buildroot也能继续做HMI，不需要先拥有桌面；需付出Qt交叉工具链、运行库和显示集成工作。
+- 两者都仍需配套厂商内核源码/配置/补丁、当前工具工程迁移和通用运动DMA验证。Ubuntu用户空间不解除BSP依赖；Buildroot的-rt42标签也不单独证明更适合或已满足运动实时性。STEP时序仍由PL保证，Linux侧需要实测轨迹预缓存/供给与桌面并发负载。
+- 若后续资源或部署目标需要精简，可评估Ubuntu停用完整桌面后运行全屏HMI，或转向Buildroot；本次不冻结最终发行版、Qt版本或部署方式。Ubuntu20.04标准支持已于2025-05-31结束，长期维护时应结合厂商BSP兼容性另行规划更新/支持路径（官方来源：https://ubuntu.com/20-04）。

@@ -107,6 +107,12 @@ RTL 使用 Verilog；新增 PL 模块配 self-checking testbench；运动学改�
 
 原话及选择范围见pl_interface/DECISIONS.md。本轮只更新已确认约束，其他外围细节继续TBD；具体STEP脉宽/最高步频未填未经确认的数值。
 
+## 9. 2026-10-09 Ubuntu候选开发基线实板核对
+
+用户切换厂商Ubuntu桌面系统并授权COM4只读比较，实际观测为Ubuntu20.04.1、Linux6.1.111-rt42 #17、SD mmcblk0p2 EXT4根分区；eMMC仍被识别但未挂载。已有anlogic fb0/1080p显示、VDMA、原生gcc/g++/Python和SSH服务；尚未安装Qt、未具备匹配厂商内核模块构建树，网络查询为DOWN。详见HARDWARE.md §12。
+
+Ubuntu作为当前HMI/PS应用开发基线为本次评估建议，尚未替用户冻结最终发行版。显示资源占用为VDMA 0x80100000、vdmafb 0x80200000、dynclk 0x80201000，与§11 Buildroot镜像及本地Qt示例DTS不同；新增运动PL必须保留或有计划迁移所选基线的显示链，并独立配置运动AXI DMA。当前显示VDMA存在不表示D06运动DMA已验收。DDR1.35V、既有PS/PL职责和已确认接口决策保持不变。
+
 ## 9. 2026-10-09 首批单轴实现契约
 
 用户本轮集中答复“接受以上契约”：STEP 上升沿计数、闲置低，DIR=1 表示正向；EN 极性为显式参数。STOP/欠流/故障与新 STEP 同拍时优先禁止边沿，已输出计数保留。维护 REBASE 仅在 EN 禁用、空闲且无旧会话/待执行命令时载入 signed64 并置 position_valid；HOME 以后接相同位置提交接口；DISABLE 撤销 valid。
