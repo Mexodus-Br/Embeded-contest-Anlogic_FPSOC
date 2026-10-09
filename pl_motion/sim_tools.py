@@ -26,9 +26,9 @@ class Simulator:
                 str(Path(self.runtime).parent), str(system / 'System32'), str(system)])
             self.env['TMP'] = self.env['TEMP'] = str(self.build)
 
-    def run(self, args, cwd=None):
+    def run(self, args, cwd=None, timeout=45):
         p = subprocess.run(args, cwd=cwd, env=self.env, capture_output=True,
-                           text=True, timeout=45)
+                           text=True, timeout=timeout)
         if p.returncode:
             hint = ''
             if os.name == 'nt' and p.returncode == 3221225477:
@@ -44,5 +44,5 @@ class Simulator:
             args += ['-I', str(inc)]
         return self.run(args + list(extra) + [str(s) for s in sources])
 
-    def simulate(self, output):
-        return self.run([self.runtime, str(output)])
+    def simulate(self, output, timeout=45):
+        return self.run([self.runtime, str(output)], timeout=timeout)

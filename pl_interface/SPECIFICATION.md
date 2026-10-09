@@ -4,6 +4,8 @@
 
 2026-10-09 单轴补充确认覆盖下文对应候选：STEP 上升沿/闲置低、DIR=1 正向，故障/STOP/欠流同拍优先；REBASE/失能/复位/停止与 EN 的具体最小契约见 DECISIONS 最新节及 pl_motion/README.md。下文系统状态表和记录布局其余内容仍 Draft。单轴模块无 FIFO，队列清空、维护授权和全历史 session 唯一性属于上游责任。
 
+同日四轴扩展已确认：共同 Nmax 槽和整数余数分配、PL 逻辑输出同槽边沿同拍，单点整组预检/精确 duration/统一停止。实现契约见 pl_motion/FOUR_AXIS.md；正常点 done 保留会话、欠流显式输入，未实现下文系统记录生命周期的连续 FIFO/END/暂停部分。
+
 ## 1. 边界与不变量
 
 PS Linux 负责任务、规划、时间参数化、插补、Delta IK、CAN；PL 负责四轴 STEP/DIR/EN、同步执行、命令计数、整机回零/限位/联锁/停止、RS485 Master、时间戳。驱动器负责单轴闭环；外部电路负责最终急停失能。NPU 不直接执行运动。

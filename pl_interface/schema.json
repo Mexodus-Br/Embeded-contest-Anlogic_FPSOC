@@ -2865,7 +2865,12 @@
     "safety_edge_priority": "STOP/underflow/fault inhibit new same-cycle edge; retain already emitted count",
     "maintenance_rebase": "EN disabled, idle, no session or pending command; load signed64 and set valid; HOME uses same commit; DISABLE invalidates",
     "single_axis_stop_enable": "finish high/low and DIR hold; cancel session; retain EN for STOP/underflow/ordinary fault; DISABLE releases after safe stop and explicit delay",
-    "single_axis_reset_clear": "reset immediately idles STEP/disables EN/invalidates position and may truncate pulse; clear fault never restores session or EN; explicit new session required"
+    "single_axis_reset_clear": "reset immediately idles STEP/disables EN/invalidates position and may truncate pulse; clear fault never restores session or EN; explicit new session required",
+    "four_axis_contract_date": "2026-10-09",
+    "four_axis_scheduler": "common Nmax=max(abs(delta_i)) slots; integer remainder emits exactly Ni; all nonzero axes emit in first slot",
+    "four_axis_correspondence": "actual rising edges in the same slot are corresponding; same-clock PL logical outputs in this phase; driver inputs require later measurement",
+    "four_axis_feasibility": "checked duration_tick*100; common conservative DIR/EN/low guard; whole group validated before output; final high/low/hold within duration; any infeasible axis rejects and cancels whole session",
+    "four_axis_phase_scope": "atomic single point with exact duration and common stop; normal point completion retains session; explicit upstream underflow; continuous FIFO/normal END/pause deferred"
   },
   "states": {
     "INIT": 0,

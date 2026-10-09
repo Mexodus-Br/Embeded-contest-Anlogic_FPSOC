@@ -1,4 +1,4 @@
-<!-- Generated from schema.json SHA256 0c58f850cadc666dbde32417350d4ca104b799c219692385355cc82f5459adc8; DRAFT semantics. -->
+<!-- Generated from schema.json SHA256 ca03b985fdb71ead9f236ed5c6f79d48549793d1b1f67125ec1fadd00446a9c8; DRAFT semantics. -->
 # Register candidate table
 
 | Offset | Name | Width | Reset | Access | Fields | Unit | Side effect |

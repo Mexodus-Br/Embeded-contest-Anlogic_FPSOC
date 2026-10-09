@@ -1,4 +1,6 @@
-# PL 单轴基础运动通道
+# PL 基础运动内核
+
+2026-10-09 后续：四轴单点共同槽调度已实现于 `rtl/four_axis_motion.v`，契约、运行入口与验收边界见 FOUR_AXIS.md。下文单轴模块及其既有行为保持不变。四轴新增精确 duration 与统一停止；连续 FIFO/END/暂停尚未实现。
 
 2026-10-09，仿真验收阶段。`rtl/axis_motion.v` 是纯 Verilog-2005、单时钟、单目标执行通道。它从实际输出 STEP 上升沿累计 signed64 命令位置，接受 signed64 绝对目标，以符号扩展后的 signed65 差分决定方向；每次位置更新还检查 signed64 溢出。位置不是编码器反馈。
 
@@ -46,10 +48,12 @@ python golden_model/tests/test_regression.py
 
 默认用 PATH 中的 iverilog/vvp；可设置 `PL_MOTION_IVERILOG_BIN` 指向同一发行版的 bin。工具为进程局部 PATH/TMP，未更改全局安装。本机 Windows Codex 沙箱会导致 Icarus 访问冲突，需在经授权的普通进程环境运行这些本地仿真；失败即退出，无自动重试、替换或跳过。环境调查与结果见 VALIDATION.md。
 
-## 单轴通过后的四轴扩展提案（尚未冻结/实现）
+## 单轴通过后的四轴扩展提案（四轴单点部分本轮已确认并实现）
 
 1. 保留每轴实际边沿计数、脉冲整形和停止排空，新增由调度器提供的边沿请求/ready 接口；不直接并排复制本批自由节流通道来宣称同步 duration 已实现。
 2. 四轴 signed65 差分一起计算/预检；duration_tick checked-multiply 100 转 cycle。采用共同 DIR/EN/低电平预算 D，全部参与轴可行才原子启动。
 3. 比较并审查共同槽 DDA/余数分配方案，逐轴在同一 duration 内输出准确 N，末脉冲高低/hold 不超预算；零步轴参加区间完成屏障。对应 STEP 边沿的标记规则及 PL 引脚/驱动输入测量位置需要确认。
 4. 建立共同 session 取消线：任一轴或队列欠流停止全部轴，逐轴完成当前脉冲；全部 pulse-safe 后汇总 cancelled/stopped 与实际位置。FIFO/正常 END/暂停/重播语义另行审查。
 5. 四轴 self-checking 台覆盖不同脉冲数、反向/零步、可行性边界、不同脉冲相位故障和对应边沿偏差；通过后再接 FIFO/GP/DMA。四轴 <50μs 指标尚未验收。
+
+以上为初始提案记录。最新四轴单点实现采用独立共同调度 RTL，保留单轴模块；同槽对应边沿在 PL 逻辑输出的仿真偏差为 0 拍。驱动输入与实板 <50μs 验收仍未完成，FIFO/GP/DMA 未接入。完整测试结果见 VALIDATION.md 的四轴追加节。
