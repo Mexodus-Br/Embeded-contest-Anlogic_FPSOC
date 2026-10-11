@@ -4,13 +4,14 @@ set -eu
 uname -a
 cat /etc/os-release /proc/cmdline
 findmnt -n -o SOURCE,MAJ:MIN,FSTYPE /
-rootdev=$(findmnt -n -o MAJ:MIN /)
+rootdev=$(findmnt -n -o MAJ:MIN / | tr -d '[:space:]')
 rootpath=$(readlink -f "/sys/dev/block/$rootdev")
 rootname=${rootpath##*/}
 parent=${rootpath%/*}
 echo "Root block device: $rootname"
 cat "$parent/device/type"
 test "$(cat "$parent/device/type")" = SD || { echo 'ERROR: root is not SD'; exit 1; }
+test "$(blkid -s PARTUUID -o value "/dev/$rootname")" = d0e414b9-02
 lsblk -o NAME,TYPE,SIZE,FSTYPE,PARTUUID,MOUNTPOINT
 grep -E 'MemTotal|MemAvailable|CmaTotal|CmaFree' /proc/meminfo
 dmesg | grep -Ei 'DDR|Memory:|cma|mmc|sdhci|error|failed' || true

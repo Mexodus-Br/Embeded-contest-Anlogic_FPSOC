@@ -1,5 +1,7 @@
 # 硬件资料核对记录
 
+2026-10-11后续实板补充：用户确认SD启动与COM4可进入，只读核对确认Linux6.1.111-rt42-bsp-sd1、根为SD mmcblk0p2/PARTUUID=d0e414b9-02、1GiB物理映射及128MiB CMA预留；运行.config哈希与交付匹配。完整冷启动FSBL/U-Boot、实物DDR供电/颗粒及压力/DMA/运动验收仍未完成，详见[bsp/BOARD_VALIDATION.md](bsp/BOARD_VALIDATION.md)。
+
 2026-10-11 BSP构建补充：已在用户提供的Ubuntu18.04.4/x86_64虚拟机独立构建目录完成Buildroot最小SD文件镜像，详见[bsp/README.md](bsp/README.md)与[bsp/evidence/manifest.json](bsp/evidence/manifest.json)。后续经用户授权完成实体SD烧写，前512MiB直接读回哈希与镜像一致，FAT32/EXT4检查通过，详见[bsp/DEPLOYMENT.md](bsp/DEPLOYMENT.md)。未实板启动；本批未操作串口。厂商原始资料未改动。
 
 - 当前TD2026.1 SP2重新生成PS-only bitstream与HPF，DDR配置1GiB/32bit/1333MT/s/1.35V，当前FD2026.1 SP1 Master SDK及BM GCC12.3.1实际重建FSBL。HPF默认DDR_INIT_V2，FSBL符号及反汇编确认包含生成的SoC_M90_DdrInit；HPF工具日志训练DONE不是板上训练证据。

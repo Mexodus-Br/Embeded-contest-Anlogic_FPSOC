@@ -1,0 +1,16 @@
+echo BSP_BOARD_CHECK_BEGIN; /usr/bin/bsp-readonly-check; echo BSP_BOARD_CHECK_
+EXIT=$?; echo BSP_BOARD_CHECK_END
+BSP_BOARD_CHECK_BEGIN
+Linux delta-bsp 6.1.111-rt42-bsp-sd1 #1 SMP PREEMPT Sun Oct 11 00:00:00 UTC 2026 aarch64 GNU/Linux
+NAME=Buildroot
+VERSION=2022.02.6
+ID=buildroot
+VERSION_ID=2022.02.6
+PRETTY_NAME="Buildroot 2022.02.6"
+console=ttyS0,115200n8 earlycon=uart,mmio32,0xf8401000 loglevel=7 root=PARTUUID=d0e414b9-02 rootwait rootfstype=ext4 rw
+/dev/mmcblk0p2 179:26  ext4
+Root block device: 179:26 
+cat: can't open '/sys/dev/block/device/type': No such file or directory
+BSP_BOARD_CHECK_EXIT=1
+BSP_BOARD_CHECK_END
+# 

@@ -1,6 +1,6 @@
 # Buildroot 最小 SD 启动基线
 
-2026-10-11（Asia/Taipei）。状态：**已构建，实体SD烧写及512MiB直接读回校验成功；未实板启动**。后续部署实录见[DEPLOYMENT.md](DEPLOYMENT.md)。
+2026-10-11（Asia/Taipei）。状态：**已构建，实体SD烧写及512MiB直接读回校验成功；已完成SD根启动及DDR/CMA只读核对，冷启动全链路待采集**。实板证据见[BOARD_VALIDATION.md](BOARD_VALIDATION.md)。后续部署实录见[DEPLOYMENT.md](DEPLOYMENT.md)。
 范围是串口、DDR/CMA、SD/eMMC和驱动构建基础。HMI、运动内核、GP/中断和独立AXI DMA硬件联调均未集成。
 
 ## 交付物
@@ -84,7 +84,7 @@ bash "$TASK/bsp/scripts/collect_release.sh"
 2. 只读列盘：Windows `Get-Disk` / `Get-Partition`；Linux `lsblk -d -o PATH,MODEL,SERIAL,SIZE,TRAN,RM`，并核对所有挂载分区。目标至少512MiB，建议1GiB以上。等用户确认后再形成该设备的具体写入命令，卸载其分区、写入全盘、flush。
 3. 首次启动前，对目标卡前536870912字节做完整读回SHA256，须与sdcard.img相同；此后Linux首次挂载会修改文件系统，不能要求启动后整卡哈希仍一致。剩余空间本批不自动扩容。
 4. 板卡断电状态下核对拨码；资料SW1/SW2/SW3为SD=011、ON/OFF/OFF（ON=0）。插入已确认卡，核对供电和实物修订后由用户上电；保存FSBL→U-Boot→Linux完整串口日志。
-5. PS UART115200/8N1、无流控；仅板卡状态明确且COM4实际可用时连接，DTR/RTS保持false。当前仅发现COM9/COM10，没有打开任何串口。启动后运行 `/usr/bin/bsp-readonly-check`，核对cmdline的PARTUUID、实际root MAJ:MIN对应sysfs type=SD、1GiB/128MiB CMA、mmc错误和模块身份。
+5. PS UART115200/8N1、无流控；仅板卡状态明确且COM4实际可用时连接，DTR/RTS保持false。2026-10-11用户确认板卡状态后已连接COM4，见BOARD_VALIDATION.md。启动后运行 `/usr/bin/bsp-readonly-check`，核对cmdline的PARTUUID、实际root MAJ:MIN对应sysfs type=SD、1GiB/128MiB CMA、mmc错误和模块身份。
 6. 验收冷启动、反复启动、DDR/CMA压力与分配、SD读写/断电持久性、驱动加载后独立DMA等另行实施。第一步只读核对不运行devmem、DMA、memtester或存储写测试，不自动运行运动。eMMC保留原系统。
 
 任一镜像加载/根UUID校验失败，脚本打印BSP_ERROR并返回U-Boot；不改回mmcblk1p2。成功root在SD也不单独证明BootROM第一阶段来源，须结合拨码与FSBL/U-Boot启动日志验收。
@@ -92,4 +92,4 @@ bash "$TASK/bsp/scripts/collect_release.sh"
 ## 实际结果
 
 主机端哈希、MBR分区、FAT32只读fsck、EXT4只读fsck、uImage/boot.scr头、DTB的1GiB和128MiB CMA、SD/eMMC aliases、模块vermagic、U-Boot无持久环境及FSBL DDR初始化符号已检查。厂商DTS仍有unit-address/simple-bus格式警告，见evidence/verify.log；本批未据此宣称设备板上工作。
-实体SD写入、512MiB直接读回及文件系统检查已通过。实板启动、DDR供电/颗粒/训练、长期存储可靠性、CMA/DMA运行、IRQ/GP/HP0/CDC和运动时序均未验证。下一步是将已写卡装入断电板卡，明确板卡和串口状态后取得完整串口启动证据。
+实体SD写入、512MiB直接读回及文件系统检查已通过。COM4实板核对确认Linux/Buildroot、SD根PARTUUID、1GiB映射、128MiB CMA及完整内核配置哈希匹配。DDR供电/颗粒/训练、长期存储可靠性、CMA/DMA压力与传输、IRQ/GP/HP0/CDC和运动时序均未验证；仍需完整冷启动串口证据。

@@ -34,3 +34,5 @@
 USB读卡器在缓存落盘期间反复复位，导致写入偏慢；完整证据见 `evidence/sd-transport.log`。没有据此认定板上SD控制器或DDR故障，也不能据最终哈希一致保证长期存储可靠性。写入/读回/分区/文件系统结果见 `evidence/sd-write.log`。
 
 可以取出卡，在板卡断电时核对SD拨码011（ON/OFF/OFF）并插卡。待用户明确板卡供电/状态与串口可用后，再采集FSBL→U-Boot→Linux完整启动和只读root/DDR/CMA核对。本次没有打开COM4、上电/重启板卡或执行DMA/运动测试；1.35V供电/颗粒/训练、板上存储与运动时序验证项仍保留。
+
+后续：用户确认已从SD上电后完成COM4只读核对，SD根/内存/CMA/内核配置证据见[BOARD_VALIDATION.md](BOARD_VALIDATION.md)。上述未实板启动状态为烧写完成时的历史记录。
