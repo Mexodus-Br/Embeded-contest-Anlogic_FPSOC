@@ -1,0 +1,38 @@
+{
+  "vendor_linux_archive": {
+    "path": "D:/Works/Embedded_contest/docs/Analogic/uisrc-lab-anlogicM-V4.0.1.tar.gz",
+    "sha256": "7214035eea18e0df67a1aaa401ad9d024c4a5560cb5843af50e5f75e9c81d292"
+  },
+  "fd_master_sdk_transfer_archive": {
+    "source": "D:/Anlogic/FD_2026.1_SP1/data/embeddedsw/master_sdk",
+    "transport": "SCP; explicitly authorized by user",
+    "sha256": "938b22dac5eb688df4d5d8404aef5dda06deef43a9d30e12a79f185e8c113ac4"
+  },
+  "tool_versions": {
+    "TD": "2026.1 SP2 6.2.2.200067",
+    "PS_configurator": "2025.10 Build177648",
+    "HPF_tool": "2026.05; format202601",
+    "FD": "2026.1 SP1",
+    "linux_gcc": "Linaro7.5.0 2019.12",
+    "fsbl_gcc": "Arm GNU12.3.1 20230626"
+  },
+  "target_versions": {
+    "kernel": "6.1.111-rt42-bsp-sd1",
+    "PREEMPT_RT": false,
+    "uboot": "2021.01",
+    "buildroot": "2022.02.6"
+  },
+  "artifact_archive": {
+    "path": "artifacts/bsp-release.tar.gz",
+    "bytes": 224563736,
+    "sha256": "43c4891b803110844350f64feef96cf6027bd5197975cc1fc901354693b17eac"
+  },
+  "sd_image": {
+    "path": "artifacts/bsp-release/release/sdcard.img",
+    "bytes": 536870912,
+    "sha256": "289f90f22cf5bbaa387004a837b192d8b94ba366875f9bb8fe475a1043636049",
+    "root_partuuid": "d0e414b9-02",
+    "board_boot_tested": false
+  },
+  "additional_inputs": "Final .configs in evidence; generated PS values in hardware/ps-config.generated.xml; patches in patches; downloaded dependency hashes and matched generated headers/symbols in release support/debug. Original archives remain read-only."
+}

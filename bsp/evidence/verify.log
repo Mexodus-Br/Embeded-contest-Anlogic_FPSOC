@@ -1,0 +1,118 @@
+BOOT.bin: OK
+Design.xml: OK
+boot/BOOT.bin: OK
+boot/boot.scr: OK
+boot/system.dtb: OK
+boot/uImage.lz4: OK
+boot.bif: OK
+boot.cmd: OK
+boot.scr: OK
+boot.vfat: OK
+bootgen.log: OK
+fsbl.elf: OK
+hpf.info: OK
+manifest.json: OK
+rootfs.ext4: OK
+sdcard.img: OK
+soc_plat.c: OK
+soc_plat.h: OK
+soc_plat_dts.h: OK
+system.bit: OK
+system.dtb: OK
+system.hpf: OK
+u-boot.bin: OK
+uImage.lz4: OK
+label: dos
+label-id: 0xd0e414b9
+device: sdcard.img
+unit: sectors
+
+sdcard.img1 : start=        2048, size=      131072, type=c, bootable
+sdcard.img2 : start=      133120, size=      524288, type=83
+fsck.fat 4.1 (2017-01-24)
+boot.vfat: 5 files, 25975/129022 clusters
+e2fsck 1.44.1 (24-Mar-2018)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+bsp-root: 755/65536 files (1.7% non-contiguous), 135783/262144 blocks
+Image Name:   BSP SD only
+Created:      Sun Oct 11 08:00:00 2026
+Image Type:   AArch64 Linux Script (uncompressed)
+Data Size:    715 Bytes = 0.70 KiB = 0.00 MiB
+Load Address: 00000000
+Entry Point:  00000000
+Contents:
+   Image 0: 707 Bytes = 0.69 KiB = 0.00 MiB
+Image Name:   Linux
+Created:      Sun Oct 11 08:00:00 2026
+Image Type:   AArch64 Linux Kernel Image (lz4 compressed)
+Data Size:    8122583 Bytes = 7932.21 KiB = 7.75 MiB
+Load Address: 00400000
+Entry Point:  00400000
+<stdout>: Warning (unit_address_vs_reg): Node /memory has a reg or ranges property, but no unit name
+<stdout>: Warning (simple_bus_reg): Node /soc/serial@F8400000 simple-bus unit address format error, expected "f8400000"
+<stdout>: Warning (simple_bus_reg): Node /soc/serial@F8401000 simple-bus unit address format error, expected "f8401000"
+<stdout>: Warning (simple_bus_reg): Node /soc/fpga-mgr@F8082000 simple-bus unit address format error, expected "f8801000"
+<stdout>: Warning (simple_bus_reg): Node /soc/base_fpga_region missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/can@0xF8408000 simple-bus unit address format error, expected "f8408000"
+<stdout>: Warning (simple_bus_reg): Node /soc/can@0xF8409000 simple-bus unit address format error, expected "f8409000"
+<stdout>: Warning (simple_bus_reg): Node /soc/ahb_dma@F804D000 simple-bus unit address format error, expected "f804d000"
+<stdout>: Warning (simple_bus_reg): Node /soc/ethernet0@F8100000 simple-bus unit address format error, expected "f8100000"
+<stdout>: Warning (simple_bus_reg): Node /soc/ethernet1@F8110000 simple-bus unit address format error, expected "f8110000"
+<stdout>: Warning (simple_bus_reg): Node /soc/usb@F8180000 simple-bus unit address format error, expected "f8180000"
+<stdout>: Warning (simple_bus_reg): Node /soc/hard_npu@63F00000 simple-bus unit address format error, expected "63f00000"
+<stdout>: Warning (simple_bus_reg): Node /soc/APB_PCLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/IIC_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/GPIO_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/ttc_clk missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/ahb_dma_clk missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/ADC_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/WDT_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/GBE_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/PHY_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/PTP_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/CAN_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/DWMMC_CIU_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/DWMMC_BIU_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/qspi_m_clk missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/SMC_CLK missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/leds missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/keys missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): Node /soc/reset-controller missing or empty reg/ranges property
+0 0 0 40000000
+0 8000000
+/soc/mmc@f8049000
+/soc/mmc@f804a000
+anlogic_dma_engine
+6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64
+
+axi_dma_test
+6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64
+
+CONFIG_PREEMPT=y
+# CONFIG_PREEMPT_RT is not set
+CONFIG_IKCONFIG=y
+CONFIG_IKCONFIG_PROC=y
+CONFIG_MODVERSIONS=y
+# CONFIG_AXI_DMAC is not set
+CONFIG_ANLOGIC_DMA=m
+CONFIG_AXI_DMA=y
+CONFIG_AXI_DMA_TEST=m
+CONFIG_DMA_CMA=y
+CONFIG_ENV_IS_NOWHERE=y
+# CONFIG_ENV_IS_IN_EEPROM is not set
+# CONFIG_ENV_IS_IN_FAT is not set
+# CONFIG_ENV_IS_IN_EXT4 is not set
+# CONFIG_ENV_IS_IN_FLASH is not set
+# CONFIG_ENV_IS_IN_MMC is not set
+# CONFIG_ENV_IS_IN_NAND is not set
+# CONFIG_ENV_IS_IN_NVRAM is not set
+# CONFIG_ENV_IS_IN_ONENAND is not set
+# CONFIG_ENV_IS_IN_REMOTE is not set
+# CONFIG_ENV_IS_IN_SPI_FLASH is not set
+# CONFIG_ENV_IS_IN_UBI is not set
+0000000061008a40 T SoC_M90_DdrInit
+000000006100a9f0 T __Soc_PlatInit

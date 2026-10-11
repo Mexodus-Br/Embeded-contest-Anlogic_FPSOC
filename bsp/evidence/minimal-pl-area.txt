@@ -1,0 +1,66 @@
+standard
+***Report Model: system_wrapper Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         0   out of    126    0.00%
+  #input                    0
+  #output                   0
+  #inout                    0
+#lut6                       0   out of  52480    0.00%
+#reg                        0
+  #slice reg                0   out of 104960    0.00%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                      0   out of  52480    0.00%
+  #used ram                 0
+    #dram lut               0
+    #shifter lut            0
+  #used logic               0
+    #with luts              0
+    #with adder             0
+    #reg only               0
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of    240    0.00%
+#soc                        1   out of      1  100.00%
+#pad                        0   out of    126    0.00%
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+Detailed IO Report
+
+  Name    Direction    Location    IOStandard    IOType    DriveStrength    PullType    PackReg    DiffResistor  
+
+Report Clock Domain Luts:
+
+------------------------------------------------------------------------------------------------------------
+  Index   |  Name   |  Frequency   |  LUT As Logic   |  LUT As Shifter   |  LUT As Dram   |  BRAM   |  DSP
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+Clock Resource Statistics
+
+Report Hierarchy Area:
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance                                     |Module                            |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |adc    |soc     |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|top                                          |system_wrapper                    |0         |0       |0       |0       |0       |0        |0           |0       |0       |0       |0      |1       |
+|  system                                     |system                            |0         |0       |0       |0       |0       |0        |0           |0       |0       |0       |0      |1       |
+|    ps                                       |system_ARM_Processor_System_0     |0         |0       |0       |0       |0       |0        |0           |0       |0       |0       |0      |1       |
+|      ARM_Processor_System_f6ddd1d59490_Inst |ARM_Processor_System_f6ddd1d59490 |0         |0       |0       |0       |0       |0        |0           |0       |0       |0       |0      |1       |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+DataNet Average Fanout:
+
+   Index      Fanout      Nets  
+  Average    -nan(ind)          

@@ -1,5 +1,14 @@
 # 硬件资料核对记录
 
+2026-10-11 BSP构建补充：已在用户提供的Ubuntu18.04.4/x86_64虚拟机独立构建目录完成Buildroot最小SD文件镜像，详见[bsp/README.md](bsp/README.md)与[bsp/evidence/manifest.json](bsp/evidence/manifest.json)。未烧写、未实板启动；COM4不存在，未操作串口。厂商原始资料未改动。
+
+- 当前TD2026.1 SP2重新生成PS-only bitstream与HPF，DDR配置1GiB/32bit/1333MT/s/1.35V，当前FD2026.1 SP1 Master SDK及BM GCC12.3.1实际重建FSBL。HPF默认DDR_INIT_V2，FSBL符号及反汇编确认包含生成的SoC_M90_DdrInit；HPF工具日志训练DONE不是板上训练证据。
+- 同版本工具对照显示1.35V与1.5V的生成soc_plat.c完全相同，仅头文件电压参数不同；不能据电压字段宣称模拟配置或供电已验证，继续保留厂商语义核对、实测供电/颗粒/修订/训练项。不猜改PHY常量。
+- 完整SD镜像512MiB，FAT32启动分区64MiB、EXT4根分区256MiB；root=PARTUUID=d0e414b9-02，启动脚本只接受SD控制器mmc0，不沿用eMMC root=/dev/mmcblk1p2。U-Boot禁用持久环境读取。BootROM首阶段来源仍待拨码与完整上电日志共同核对。
+- 内核实际6.1.111-rt42-bsp-sd1、CONFIG_PREEMPT=y而PREEMPT_RT未启用，不能据-rt42后缀报告RT验收。CMA设备树128MiB、内存1GiB均已主机端检查，板端DDR/CMA/存储/驱动未验收。保存匹配.config、生成头、补丁、Module.symvers、System.map、vmlinux与FSBL符号资料。
+- Anlogic DMA实际模块构建经补丁将框架与AXI实现合并，通过modpost；模块vermagic包含本次kernelrelease和modversions/aarch64。没有运动DMA节点和硬件，不将厂商以太网/显示DMA复用为运动DMA。
+- 两次相同构建输入的SD打包哈希一致；未进行第二次独立全量源码重建比较。主机端文件系统/分区/哈希通过不等同实板启动通过。连续运动100MHz时序待验收，HMI暂缓，本批最小PL不集成运动。
+
 核对日期：2026-10-06起；2026-10-08补充COM4实板运行快照（§11）；2026-10-09确认项目BSP按1.35V DDR电压基线开发（§10.3）。状态：资料与运行基线已核对；用户确认双核 ARM 平台、PS Linux；完整实物配置及项目接口尚未冻结。
 资料根目录：D:\Works\Embedded_contest\docs\Analogic\hardware_MLK_F3P_CZ02_DR1_20250526。
 本记录区分资料描述、原理图连接、实物待核实项；不能作为未经验证的接线或引脚约束文件。

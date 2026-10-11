@@ -1,0 +1,3 @@
+set_param_value -param_id DDRC_IO_VOL -value 1.35
+ps_gui_select_dialog Processor_System
+ps_gui_click_push_button Processor_System PsIpCfg.OK

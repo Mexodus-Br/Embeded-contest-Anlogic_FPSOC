@@ -1,0 +1,33 @@
+--- a/drivers/dma/anlogic/Makefile
++++ b/drivers/dma/anlogic/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-obj-$(CONFIG_ANLOGIC_DMA) += anlogic_dma.o
+-obj-$(CONFIG_AXI_DMA) += axi-dma.o
++obj-$(CONFIG_ANLOGIC_DMA) += anlogic-dma-engine.o
++anlogic-dma-engine-y := anlogic_dma.o
++anlogic-dma-engine-$(CONFIG_AXI_DMA) += axi-dma.o
++anlogic-dma-engine-$(CONFIG_AXI_VDMA) += axi-vdma.o
+ obj-$(CONFIG_AXI_DMA_TEST) += axi-dma-test.o
+-obj-$(CONFIG_AXI_VDMA) += axi-vdma.o
+ obj-$(CONFIG_AXI_VDMA_TEST) += axi-vdma-test.o
+--- a/drivers/dma/Kconfig
++++ b/drivers/dma/Kconfig
+@@ -762,7 +762,7 @@
+ 	  Enable support for Anlogic AXI DMA Soft IP.
+ 
+ config AXI_DMA
+-	tristate "AXI DMA support"
++	bool "AXI DMA support"
+ 	depends on ANLOGIC_DMA
+ 	help
+ 	  Enable support for AXI DMA.
+@@ -774,7 +774,7 @@
+ 	  Enable support for the AXI DMA test driver.
+ 
+ config AXI_VDMA
+-	tristate "AXI VDMA support"
++	bool "AXI VDMA support"
+ 	depends on ANLOGIC_DMA
+ 	help
+ 	  Enable support for AXI VDMA.

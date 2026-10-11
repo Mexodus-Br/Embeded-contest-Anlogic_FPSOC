@@ -1,0 +1,12 @@
+{
+  "comparison": "same TD2026.1SP2 generator; all parameters fixed except DDRC_IO_VOL",
+  "configured_voltages_v": [
+    1.35,
+    1.5
+  ],
+  "generated_v2_c_identical": true,
+  "soc_plat_c_sha256": "0652f008f51839264d4be571d07345f29821e36ac539b3225775ee1580f76638",
+  "default_init": "DDR_INIT_V2 / SoC_M90_DdrInit",
+  "physical_voltage_measured": false,
+  "conclusion": "HPF and FSBL use regenerated V2 initialization; voltage field changes do not change its register program. Effective analog voltage suitability needs vendor clarification and board validation."
+}
