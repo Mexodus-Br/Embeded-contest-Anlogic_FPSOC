@@ -1,6 +1,6 @@
 # Phase 0 基础约束确认清单
 
-2026-10-11本批执行范围：用户授权dev/bsp建立Buildroot核心系统的可重复构建与最小SD启动基线，DDR保持1GiB/32bit/1333MT/s/1.35V。已完成独立虚拟机构建及主机端镜像验证，结果/补丁/版本哈希/部署步骤见[bsp/README.md](bsp/README.md)。使用PS-only最小PL，HMI暂缓，连续运动100MHz时序验收前不集成；GP/IRQ和独立Anlogic AXI DMA/HP0仅准备驱动构建产物，地址、中断、CDC与具体IP仍共同确认。本批root绑定镜像SD根分区PARTUUID，不沿用eMMC根设备名。实物DDR供电/颗粒、完整串口启动和DMA/存储运行未验证；尚未烧写，需先确认目标SD。此范围不代替未来HMI发行版或运动硬件接口冻结。
+2026-10-11本批执行范围：用户授权dev/bsp建立Buildroot核心系统的可重复构建与最小SD启动基线，DDR保持1GiB/32bit/1333MT/s/1.35V。已完成独立虚拟机构建及主机端镜像验证，结果/补丁/版本哈希/部署步骤见[bsp/README.md](bsp/README.md)。使用PS-only最小PL，HMI暂缓，连续运动100MHz时序验收前不集成；GP/IRQ和独立Anlogic AXI DMA/HP0仅准备驱动构建产物，地址、中断、CDC与具体IP仍共同确认。本批root绑定镜像SD根分区PARTUUID，不沿用eMMC根设备名。实物DDR供电/颗粒、完整串口启动和DMA/存储运行未验证；后续用户授权已插入SD格式化/烧写，实体卡写入及前512MiB直接读回哈希、FAT32/EXT4检查均通过，部署记录见[bsp/DEPLOYMENT.md](bsp/DEPLOYMENT.md)，实板启动仍待验证。此范围不代替未来HMI发行版或运动硬件接口冻结。
 
 日期：2026-10-06。状态：双核 ARM、Linux、存储容量/DDR3速率、100MHz PL基础时钟、64位无符号时间戳及每次PL上电初始化完成后从0累加、CHECKSUM-8、3.3V接口、安全职责、STEP同步指标、经典CAN、GP/HP/DMA通路、绝对目标及命令位置差分基准、机器可读唯一规范源原则已确认；M1-M3型号暂定、M4待定，时间戳其余语义与具体接口格式/IP及恢复流程未冻结。
 硬件事实与资料冲突见 HARDWARE.md。不能把候选方案当作用户决策。

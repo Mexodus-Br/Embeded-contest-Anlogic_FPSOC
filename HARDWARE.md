@@ -1,6 +1,6 @@
 # 硬件资料核对记录
 
-2026-10-11 BSP构建补充：已在用户提供的Ubuntu18.04.4/x86_64虚拟机独立构建目录完成Buildroot最小SD文件镜像，详见[bsp/README.md](bsp/README.md)与[bsp/evidence/manifest.json](bsp/evidence/manifest.json)。未烧写、未实板启动；COM4不存在，未操作串口。厂商原始资料未改动。
+2026-10-11 BSP构建补充：已在用户提供的Ubuntu18.04.4/x86_64虚拟机独立构建目录完成Buildroot最小SD文件镜像，详见[bsp/README.md](bsp/README.md)与[bsp/evidence/manifest.json](bsp/evidence/manifest.json)。后续经用户授权完成实体SD烧写，前512MiB直接读回哈希与镜像一致，FAT32/EXT4检查通过，详见[bsp/DEPLOYMENT.md](bsp/DEPLOYMENT.md)。未实板启动；本批未操作串口。厂商原始资料未改动。
 
 - 当前TD2026.1 SP2重新生成PS-only bitstream与HPF，DDR配置1GiB/32bit/1333MT/s/1.35V，当前FD2026.1 SP1 Master SDK及BM GCC12.3.1实际重建FSBL。HPF默认DDR_INIT_V2，FSBL符号及反汇编确认包含生成的SoC_M90_DdrInit；HPF工具日志训练DONE不是板上训练证据。
 - 同版本工具对照显示1.35V与1.5V的生成soc_plat.c完全相同，仅头文件电压参数不同；不能据电压字段宣称模拟配置或供电已验证，继续保留厂商语义核对、实测供电/颗粒/修订/训练项。不猜改PHY常量。

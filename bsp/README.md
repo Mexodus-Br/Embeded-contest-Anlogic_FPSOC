@@ -1,6 +1,6 @@
 # Buildroot 最小 SD 启动基线
 
-2026-10-11（Asia/Taipei）。状态：**已构建、已完成主机端镜像检查；未烧写、未实板启动**。
+2026-10-11（Asia/Taipei）。状态：**已构建，实体SD烧写及512MiB直接读回校验成功；未实板启动**。后续部署实录见[DEPLOYMENT.md](DEPLOYMENT.md)。
 范围是串口、DDR/CMA、SD/eMMC和驱动构建基础。HMI、运动内核、GP/中断和独立AXI DMA硬件联调均未集成。
 
 ## 交付物
@@ -78,7 +78,7 @@ bash "$TASK/bsp/scripts/collect_release.sh"
 
 ## 部署：必须先确认目标SD
 
-本批没有操作实体SD，也没有操作eMMC/QSPI。请先审查镜像与清单，之后确认目标卡的**设备路径/Windows磁盘号、型号、序列号、容量以及可覆盖内容**。仅凭盘符、/dev/sdb、历史设备名或大小不确定目标。
+首次构建没有操作实体SD；用户后续插卡并明确授权格式化/烧写，已完成唯一USB SD目标的写入与直接读回验证，见DEPLOYMENT.md。eMMC/QSPI未操作。以后部署其他卡仍须确认**设备路径/Windows磁盘号、型号、序列号、容量以及可覆盖内容**。仅凭盘符、/dev/sdb、历史设备名或大小不确定目标。
 
 1. 解包并核对交付包SHA256，进入release执行 `sha256sum -c SHA256SUMS`；Windows可用Get-FileHash。需整盘写入sdcard.img，不能只复制boot四文件到任意已有分区：boot.scr绑定本镜像MBR根分区PARTUUID `d0e414b9-02`。
 2. 只读列盘：Windows `Get-Disk` / `Get-Partition`；Linux `lsblk -d -o PATH,MODEL,SERIAL,SIZE,TRAN,RM`，并核对所有挂载分区。目标至少512MiB，建议1GiB以上。等用户确认后再形成该设备的具体写入命令，卸载其分区、写入全盘、flush。
@@ -92,4 +92,4 @@ bash "$TASK/bsp/scripts/collect_release.sh"
 ## 实际结果
 
 主机端哈希、MBR分区、FAT32只读fsck、EXT4只读fsck、uImage/boot.scr头、DTB的1GiB和128MiB CMA、SD/eMMC aliases、模块vermagic、U-Boot无持久环境及FSBL DDR初始化符号已检查。厂商DTS仍有unit-address/simple-bus格式警告，见evidence/verify.log；本批未据此宣称设备板上工作。
-实板启动、DDR供电/颗粒/训练、存储可靠性、CMA/DMA运行、IRQ/GP/HP0/CDC和运动时序均未验证。下一步是用户确认目标SD后写入并取得串口启动证据。
+实体SD写入、512MiB直接读回及文件系统检查已通过。实板启动、DDR供电/颗粒/训练、长期存储可靠性、CMA/DMA运行、IRQ/GP/HP0/CDC和运动时序均未验证。下一步是将已写卡装入断电板卡，明确板卡和串口状态后取得完整串口启动证据。
