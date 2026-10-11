@@ -1,6 +1,7 @@
 `timescale 1ns/1ps
 module tb_continuous_motion;
  parameter MODE=0,SCALE=1;
+ localparam PLAN_LATENCY=71;
  reg clk=0;always #5 clk=~clk;
  reg rst_n=0,rebase_req=0,enable_req=0,disable_req=0,open_req=0;
  reg start_req=0,pause_req=0,resume_req=0,stop_req=0,clear_fault=0;
@@ -202,7 +203,7 @@ module tb_continuous_motion;
   end
   if(MODE>=5 && MODE<=7)begin
    kind=MODE-5;
-   for(i=0;i<280*SCALE;i=i+1)begin
+   for(i=0;i<300*SCALE;i=i+1)begin
     setup(1000+i);enqueue(0,64'd3,1,0);enqueue(1,-64'sd2,1,1);abort_cases=abort_cases+1;
     fork
      begin
@@ -222,15 +223,21 @@ module tb_continuous_motion;
    end
   end
   if(MODE==8)begin
-   setup(80);enqueue(0,64'd3,1,0);enqueue(1,64'h8000000000000000,1,1);start_motion;
-   k=0;while(session_valid && k<500)begin tick;k=k+1;end
-   check(k<500 && cancelled && !session_done,"unexecutable prefetch cancels current session");
-   wait_idle;check(position[63:0]<3 && buffered==0 && raw_level==0 && plan_level==0,"no speculative position commit");
-   snapshot=position;
-   @(negedge clk);open_req=1;open_session_id=81;tick;
-   check(session_valid && position==snapshot,"new session snapshots actual partial count");
-   @(negedge clk);open_req=0;point_session=81;enqueue(0,64'd1,1,1);start_motion;wait_idle;
-   check(position[63:0]==1 && !session_valid,"new plan recovers from actual count, not old endpoint");
+   // Retain the original three-edge case and also force partial execution.
+   for(i=0;i<2;i=i+1)begin
+    setup(80+2*i);enqueue(0,i==0 ? 64'd3 : 64'd6,1,0);
+    enqueue(1,64'h8000000000000000,1,1);start_motion;
+    k=0;while(session_valid && k<500)begin tick;k=k+1;end
+    check(k<500 && cancelled && !session_done,"unexecutable prefetch cancels current session");
+    wait_idle;check(buffered==0 && raw_level==0 && plan_level==0,"invalid prefetch cache clear");
+    if(i==0 && SCALE==1)check(position[63:0]==3,"cancel after all edges but before duration completion");
+    else check(position[63:0]<(i==0 ? 3 : 6),"cancel retains partial emitted count");
+    snapshot=position;
+    @(negedge clk);open_req=1;open_session_id=81+2*i;tick;
+    check(session_valid && position==snapshot,"new session snapshots actual partial count");
+    @(negedge clk);open_req=0;point_session=81+2*i;enqueue(0,64'd1,1,1);start_motion;wait_idle;
+    check(position[63:0]==1 && !session_valid,"new plan recovers from actual count, not old endpoint");
+   end
   end
   if(MODE==9)begin
    setup(90);enqueue(0,64'd2,1,0);enqueue(1,-64'sd1,1,0);start_motion;
@@ -241,6 +248,23 @@ module tb_continuous_motion;
    @(negedge clk);resume_req=0;enqueue(2,64'd3,1,1);
    while(!resume_ready)tick;@(negedge clk);resume_req=1;tick;check(start,"explicit RESUME after late precheck");
    @(negedge clk);resume_req=0;wait_idle;check(total_duration==300*SCALE,"paused empty queue resumes exact durations");
+  end
+  if(MODE==10)begin
+   // Exact preparation deadline: raw capture + planning + prepared FIFO.
+   for(i=0;i<3;i=i+1)begin
+    setup(200+i);enqueue(0,64'd2,1,0);enqueue(1,-64'sd1,1,0);
+    while(plan_level!=2)tick;
+    start_motion;while(active_seq!=1)tick;
+    k=PLAN_LATENCY+2+i;
+    while(cycle-point_at<100*SCALE-k-1)tick;
+    enqueue(2,64'd3,1,1);
+    check(cycle-point_at==100*SCALE-k,"controlled ingress lead time");
+    before_starts=starts;wait_idle;
+    if(i==0)check(underflows==1 && starts==before_starts && !session_valid &&
+      buffered==0 && raw_level==0 && plan_level==0,"one cycle short precheck cancels, no stretch");
+    else check(starts==before_starts+1 && total_duration==300*SCALE && !session_valid,
+      "on-time prepared commit at shortest duration boundary");
+   end
   end
   $display("PASS continuous mode=%0d scale=%0d checks=%0d starts=%0d dones=%0d END=%0d underflows=%0d stale=%0d abort_offsets=%0d",
    MODE,SCALE,checks,starts,dones,ends,underflows,stales,abort_cases);$finish;

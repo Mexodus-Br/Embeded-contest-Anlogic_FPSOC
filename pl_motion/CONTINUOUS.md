@@ -26,7 +26,11 @@
 
 数据路径：`motion_fifo(原始点) -> motion_planner -> motion_fifo(准备完成点) -> motion_executor`。三个子模块分别通过隔离自检后集成。
 
-非零点预检仍使用 64 拍恢复除法和 CHECK（请求捕获后 65 拍）；运算与当前点执行并行，不在边界重新算差分/除法。驻留点无除法。planner 的 base 是预测端点，只有准备元组入队才推进，未参与轴沿用上一预测位置；它从不更新 STEP 命令计数。STOP/故障/复位/END 关闭清预测链，新 OPEN 重新取实际位置，绝不从取消目标恢复。
+2026-10-11 时序优化后，输入先捕获，再依次寄存 signed65 差分、绝对值、两级最大值和预算预检，随后执行 64 拍恢复除法和 CHECK。非零点从请求握手到 plan_valid 为 71 拍，零位移为 6 拍；无背压时请求间隔分别为 73/8 拍，100MHz 下非零规划吞吐约 1.370M 点/s。planner 一次拥有一条记录，并非每拍接收的全流水线；所有元数据从输入捕获到输出保持不变。取消立即作废规划状态/有效性，旧数据不能提交；复位清寄存器。运算与当前点执行并行，边界不重新算差分/除法。
+
+规划 base 是预测端点，只有准备元组入队才推进，未参与轴沿用上一预测位置；它从不更新 STEP 命令计数。STOP/故障/复位/END 关闭清预测链，新 OPEN 重新取实际位置，绝不从取消目标恢复。
+
+外部逻辑口和已冻结行为不变。上游迁移仅需按新延迟预算提前量，不得依赖旧 65 拍：在 planner 空闲、准备队列有空间且不受背压的测试条件下，非零记录入口握手到边界提交至少提前 74 拍，提前 73 拍会欠流；此前仍有排队/背压时须再留余量。START 仍只要求首点准备好及缓存阈值，不增加隐藏自动等待或扩大 duration。最短合法 duration_tick=1（100 拍）连续多点和截止边界通过自检。
 
 executor 在当前 duration 的结束上升沿同时提交下一准备元组，point_done 和下一 point_start 可同拍。提交检查完整四轴 base 等于实际已输出 STEP 位置、脉冲安全、参与轴有效配置/位置/EN、会话匹配；不符则拒绝并排空取消。实际位置仅由 REBASE 或真实 STEP 上升沿更新，仍是 signed64；预规划差分 signed65、幅值 u64，duration×100 和频率乘法检查 u128 溢出。
 
@@ -47,8 +51,9 @@ python pl_motion/tests/run_sim.py
 python pl_motion/tests/run_four_axis.py
 python pl_motion/build_td.py
 python pl_motion/build_td.py --top four_axis_motion
+python pl_motion/build_td.py --tag timing_100mhz --place-route
 ```
 
 Windows Icarus 采用已验证的普通进程环境，具体见 VALIDATION.md。runner 不重试或跳过失败组；完整结果和工具输出保存于忽略的 build。build_td.py 使用 PATH 当前 TD，DR1M90GEG400 speed=2 是摸底参考配置，可显式覆写 speed；串行输入/观察包装保留实际逻辑而避免虚构板级引脚映射。实际读入 10 ns SDC 后检查报告中的 100 MHz。门级估算不生成/下载 bitstream，也不是布局布线签核。
 
-当前功能仿真通过，100 MHz 门级估算未收敛，不能按 100 MHz 上板验收。下一步优先将 FIFO 输出捕获与 signed65 差分/abs/max/预算预检分级，并缩短执行层宽算术/控制路径；增加的规划延迟须重新核定提前量和连续/欠流测试。随后进行真实器件/封装确认、布局布线、CDC/复位约束与板级时序验收，再接 BSP/AXI/DMA。
+当前 100MHz 门级 SWNS=+0.497ns，通过参考夹具检查；布局布线结果和完整限制见 TIMING.md、VALIDATION.md。参考 speed=2 未替实物冻结，自动放置的包装 IO 不代表板级引脚，仍需真实 IO/CDC/复位与配置时序约束，才能开展板卡接入。BSP/AXI/DMA、电机联调留待后续。

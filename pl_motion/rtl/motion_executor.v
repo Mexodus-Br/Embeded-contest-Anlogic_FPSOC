@@ -27,6 +27,7 @@ module motion_executor #(
     reg [63:0] count[0:3], accumulator[0:3];
     reg [63:0] high_left[0:3], edge_age[0:3], low_age[0:3];
     reg [63:0] dir_age[0:3], en_age[0:3], off_left[0:3];
+    wire [63:0] min_period[0:3];
     wire [63:0] h[0:3], l[0:3], s[0:3], q[0:3], e[0:3], off[0:3], rate[0:3];
     genvar g;
     generate for(g=0;g<4;g=g+1)begin: lanes
@@ -37,6 +38,9 @@ module motion_executor #(
         assign e[g]=EN_SETUP_CYCLES[g*64+:64];
         assign off[g]=EN_DISABLE_CYCLES[g*64+:64];
         assign rate[g]=MAX_STEP_HZ[g*64+:64];
+        localparam [63:0] R=MAX_STEP_HZ[g*64+:64];
+        // Exact elaboration-time integer threshold; retain same-cycle checks.
+        assign min_period[g]=R==0 ? 64'hffffffffffffffff : (128'd100000000+R-1)/R;
         assign position[g*64+:64]=pos[g];
         assign en[g]=enabled[g] ? EN_ACTIVE_LEVEL[g] : !EN_ACTIVE_LEVEL[g];
         assign enable_ready_state[g]=enabled[g] && reached(en_age[g],e[g]);
@@ -47,7 +51,7 @@ module motion_executor #(
     end endgenerate
     wire safety=stop_req || (|fault) || disable_req;
     assign busy=state!=IDLE || (|disabling);
-    assign boundary=state==RUN && elapsed+64'd1==cycles;
+    assign boundary=state==RUN && elapsed==cycles;
     assign pulse_safe=all_safe;
     assign enabled_state=enabled;
     assign plan_ready=(state==IDLE || boundary) && !(|disabling) && !(|fault_latched) && !safety;
@@ -78,27 +82,25 @@ wire commit_ok=plan_base==position && all_safe &&
  (plan_mask & ~enabled)==0 && (plan_mask & ~position_valid)==0 &&
  (plan_mask & ~config_valid)==0 && plan_cycles!=0;
 reg [63:0] cycles,master,quotient,remainder;
+    // elapsed names the cycle being executed, starting at 1 after commit.
     reg [63:0] elapsed, next_slot, slot_index, time_remainder;
     wire slot_due=state==RUN && master!=0 && slot_index<master &&
-                  elapsed+64'd1==next_slot;
+                  elapsed==next_slot;
     reg [3:0] emit;
     reg emission_ok;
     reg [64:0] sum_lane;
-    reg signed [64:0] next_pos;
-    reg [127:0] spacing_rate;
+
     integer d;
     always @* begin
-        emit=0;emission_ok=1;sum_lane=0;next_pos=0;spacing_rate=0;
+        emit=0;emission_ok=1;sum_lane=0;
         for(d=0;d<4;d=d+1)begin
             sum_lane={1'b0,accumulator[d]}+{1'b0,count[d]};
             if(moving[d] && sum_lane>={1'b0,master})begin
                 emit[d]=1;
-                next_pos=$signed({pos[d][63],pos[d]})+(positive[d] ? 65'sd1 : -65'sd1);
-                spacing_rate=({64'b0,edge_age[d]}+128'd1)*{64'b0,rate[d]};
                 if(step[d] || !enabled[d] || !position_valid[d] || dir[d]!=positive[d] ||
                    !reached(low_age[d],l[d]) || !reached(dir_age[d],s[d]) ||
-                   !reached(en_age[d],e[d]) || spacing_rate<128'd100000000 ||
-                   next_pos[64]!=next_pos[63])emission_ok=0;
+                   !reached(en_age[d],e[d]) || !reached(edge_age[d],min_period[d]) ||
+                   (positive[d] ? pos[d]==64'sh7fffffffffffffff : pos[d]==64'sh8000000000000000))emission_ok=0;
             end
         end
     end
@@ -164,7 +166,7 @@ always @(posedge clk or negedge rst_n)begin
     if(!commit_ok)begin state<=DRAIN;plan_rejected<=1;end
     else begin
      state<=RUN;cycles<=plan_cycles;master<=plan_master;quotient<=plan_quotient;remainder<=plan_remainder;
-     moving<=plan_moving;positive<=plan_positive;elapsed<=0;next_slot<=plan_guard;slot_index<=0;time_remainder<=0;point_start<=1;
+     moving<=plan_moving;positive<=plan_positive;elapsed<=1;next_slot<=plan_guard;slot_index<=0;time_remainder<=0;point_start<=1;
      for(i=0;i<4;i=i+1)begin
       count[i]<=plan_counts[i*64+:64];accumulator[i]<=plan_master-plan_counts[i*64+:64];
       if(plan_moving[i] && dir[i]!=plan_positive[i])begin dir[i]<=plan_positive[i];dir_age[i]<=0;end

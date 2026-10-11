@@ -1,0 +1,145 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Sun Oct 11 19:28:51 2026
+
+Top Model           : td_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 91.94%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_motion/build/td_continuous_motion_r3_elapsed_compare/motion.sdc;
+Confidence          : Synthesized
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 3 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min
+------------------------------------
+Slow     | yes      yes
+Fast     | yes      yes
+
+
+Timing Status
+--------------------
+	SWNS: 0.497ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 8.317ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000         7349   motion_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0           local            0.000      5.000                10.000         100.000                 9.503         105.230            0.497      0.000            0.000      0.000            0.000             7349                9             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     motion_clk -> motion_clk
+Type           :     Self
+From Clock     :     motion_clk
+To Clock       :     motion_clk
+Min Period     :     9.503ns
+Fmax           :     105.230MHz
+
+Statistics:
+Max            : SWNS      0.497ns, STNS      0.000ns,         0 Viol Endpoints,     13330 Total Endpoints,  62875686 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.497ns
+Begin Point         : dut/plan_fifo/rd_reg[0].clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/executor/next_slot_reg[47].d (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { motion_clk rising@10.000ns - motion_clk rising@0.000ns }
+Data Path Delay     : 9.433ns (cell 2.466ns (26%), net 6.967ns (74%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT4=3  LUT6=2  LUT5=1  LUT3=1  LUT2=1  DRAM=1 )
+Max Fanout          : 577
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=6691)                           0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_continuous_motion_r3_elapsed_compare/probe.v(1)
+                                                                      pin: dut/plan_fifo/rd_reg[0].clk
+launch edge                             0.000    r     0.000
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: dut/plan_fifo/rd_reg[0].q
+net (fo=441)                            1.236          1.387          net: dut/plan_fifo/rd[0],  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_fifo.v(16)
+                                                                      pin: dut/plan_fifo/ramread0_syn_173.ia
+DRAM                                    0.323    f     1.710       1  pin: dut/plan_fifo/ramread0_syn_173.ofa
+net (fo=2)                              0.478          2.188          net: dut/prepared_session[46],  D:/Works/Embedded_contest/dev/pl_motion/rtl/continuous_motion.v(77)
+                                                                      pin: dut/plan_fifo/count_reg[0]_syn_650.b
+LUT4                                    0.240    r     2.428       2  pin: dut/plan_fifo/count_reg[0]_syn_650.o
+net (fo=1)                              0.448          2.876          net: dut/plan_fifo/count_reg[0]_syn_651,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_fifo.v(25)
+                                                                      pin: dut/plan_fifo/count_reg[0]_syn_652.a
+LUT5                                    0.240    r     3.116       3  pin: dut/plan_fifo/count_reg[0]_syn_652.o
+net (fo=1)                              0.448          3.564          net: dut/plan_fifo/count_reg[0]_syn_653,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_fifo.v(25)
+                                                                      pin: dut/plan_fifo/count_reg[0]_syn_654.d
+LUT4                                    0.240    r     3.804       4  pin: dut/plan_fifo/count_reg[0]_syn_654.o
+net (fo=1)                              0.448          4.252          net: dut/plan_fifo/count_reg[0]_syn_655,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_fifo.v(25)
+                                                                      pin: dut/plan_fifo/count_reg[0]_syn_670.a
+LUT6                                    0.238    r     4.490       5  pin: dut/plan_fifo/count_reg[0]_syn_670.o
+net (fo=2)                              0.478          4.968          net: dut/plan_fifo/count_reg[0]_syn_671,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_fifo.v(25)
+                                                                      pin: dut/plan_fifo/count_reg[0]_syn_678.c
+LUT4                                    0.240    r     5.208       6  pin: dut/plan_fifo/count_reg[0]_syn_678.o
+net (fo=1)                              0.448          5.656          net: dut/plan_fifo/count_reg[0]_syn_679,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_fifo.v(25)
+                                                                      pin: dut/plan_fifo/count_reg[0]_syn_718.b
+LUT3                                    0.240    r     5.896       7  pin: dut/plan_fifo/count_reg[0]_syn_718.o
+net (fo=577)                            1.272          7.168          net: dut/plan_fifo/count_reg[0]_syn_719,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_fifo.v(25)
+                                                                      pin: dut/executor/state_reg[2]_syn_9.b
+LUT6                                    0.238    r     7.406       8  pin: dut/executor/state_reg[2]_syn_9.o
+net (fo=538)                            1.263          8.669          net: dut/executor/point_start_n1,  NOFILE(0)
+                                                                      pin: dut/executor/next_slot_b1[47]_syn_1.b
+LUT2                                    0.240    r     8.909       9  pin: dut/executor/next_slot_b1[47]_syn_1.o
+net (fo=1)                              0.448          9.357          net: dut/executor/next_slot_b1[47],  NOFILE(0)
+                                                                      pin: dut/executor/next_slot_reg[47].d
+SEQ (reg)                               0.076    f     9.433
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.433
+
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=6691)                           0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_continuous_motion_r3_elapsed_compare/probe.v(1)
+                                                                      pin: dut/executor/next_slot_reg[47].clk
+capture edge                           10.000    r    10.000
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930
+clock uncertainty                       0.000          9.930
+clock pessimism                         0.000          9.930
+--------------------------------------------------------------------  ---------------
+Required                                               9.930
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.497

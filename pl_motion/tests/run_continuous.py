@@ -9,6 +9,8 @@ from sim_tools import Simulator
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--components-only',action='store_true')
+    ap.add_argument('--mode',type=int,action='append',choices=range(11))
+    ap.add_argument('--scale',type=int,choices=[1,2])
     args=ap.parse_args()
     sim=Simulator(ROOT/'build')
     components=[('motion_fifo', ['motion_fifo.v'],d) for d in [2,3,8]]+[
@@ -31,14 +33,17 @@ def main():
         return dict(metrics=metrics,diagnostic=diagnostic,output=result)
     results=[];errors=[]
     with ThreadPoolExecutor(max_workers=4) as pool:
-        futures=[pool.submit(check_case,m,s) for s in [1,2] for m in range(10)]
+        futures=[pool.submit(check_case,m,s) for s in ([args.scale] if args.scale else [1,2])
+                 for m in (args.mode if args.mode else range(11))]
         for f in as_completed(futures):
             try:
                 r=f.result();results.append(r);print(r['output'],end='',flush=True)
             except Exception as e:errors.append(str(e));print('FAIL '+str(e),flush=True)
     if errors:raise RuntimeError('\n'.join(errors))
     totals={k:sum(r['metrics'][k] for r in results) for k in ['checks','starts','dones','END','underflows','stale','abort_offsets']}
-    (ROOT/'build/continuous_results.json').write_text(json.dumps(dict(results=results,totals=totals),indent=2)+'\n')
-    print('PASS continuous all groups '+json.dumps(totals),flush=True)
+    selected=args.mode is not None or args.scale is not None
+    name='continuous_selected_results.json' if selected else 'continuous_results.json'
+    (ROOT/'build'/name).write_text(json.dumps(dict(results=results,totals=totals),indent=2)+'\n')
+    print(('PASS continuous selected groups ' if selected else 'PASS continuous all groups ')+json.dumps(totals),flush=True)
 
 if __name__=='__main__':main()

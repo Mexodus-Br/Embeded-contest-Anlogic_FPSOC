@@ -1,0 +1,316 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Sun Oct 11 19:33:00 2026
+
+Top Model           : td_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 94.26%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_motion/build/td_continuous_motion_r3_elapsed_compare/motion.sdc;
+Confidence          : Placed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 3 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min
+------------------------------------
+Slow     | yes      yes
+Fast     | yes      yes
+
+
+Timing Status
+--------------------
+	SWNS: 3.098ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 8.317ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000         4668   motion_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0   Inferred GCLK            0.000      5.000                10.000         100.000                 6.902         144.886            3.098      0.000            0.000      0.000            0.000             4668                9             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     motion_clk -> motion_clk
+Type           :     Self
+From Clock     :     motion_clk
+To Clock       :     motion_clk
+Min Period     :     6.902ns
+Fmax           :     144.886MHz
+
+Statistics:
+Max            : SWNS      3.098ns, STNS      0.000ns,         0 Viol Endpoints,     13379 Total Endpoints,  62972296 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 3.098ns
+Begin Point         : dut/plan_fifo/ramread0_syn_594.clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/executor/time_remainder_reg[18]_syn_2.cea (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { motion_clk rising@10.000ns - motion_clk rising@0.000ns }
+Data Path Delay     : 6.774ns (cell 1.880ns (27%), net 4.894ns (73%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( ADDER=4  LUT5=2  LUT6=1 )
+Max Fanout          : 66
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_continuous_motion_r3_elapsed_compare/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=4010)                           0.000          0.000          net: clk_syn_13,  D:/Works/Embedded_contest/dev/pl_motion/build/td_continuous_motion_r3_elapsed_compare/probe.v(1)
+                                                                      pin: dut/plan_fifo/ramread0_syn_594.clk
+launch edge                             0.000    r     0.000
+--------------------------------------------------------------------  ---------------
+DRAM (clk2q)        x098y056z4          0.181    f     0.181          pin: dut/plan_fifo/ramread0_syn_594.oqb
+net (fo=1)                              0.608          0.789          net: dut/executor/count[1][0],  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(27)
+                                                                      pin: dut/executor/add20_syn_327.ic
+ADDER               x093y043z0          0.199    f     0.988       1  pin: dut/executor/add20_syn_327.fco
+net (fo=1)                              0.000          0.988          net: dut/executor/add20_syn_262,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_328.fci
+ADDER               x093y043z1          0.045    f     1.033          pin: dut/executor/add20_syn_328.fco
+net (fo=1)                              0.000          1.033          net: dut/executor/add20_syn_263,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_329.fci
+ADDER               x093y043z2          0.045    f     1.078          pin: dut/executor/add20_syn_329.fco
+net (fo=1)                              0.000          1.078          net: dut/executor/add20_syn_264,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_330.fci
+ADDER               x093y043z3          0.045    f     1.123          pin: dut/executor/add20_syn_330.fco
+net (fo=1)                              0.000          1.123          net: dut/executor/add20_syn_265,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_331.fci
+ADDER               x093y043z4          0.000    f     1.123          pin: dut/executor/add20_syn_331.fco_f
+net (fo=1)                              0.000          1.123          net: dut/executor/add20_syn_395,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_332.fci_f
+ADDER               x093y043z5          0.000    f     1.123          pin: dut/executor/add20_syn_332.fco_f
+net (fo=1)                              0.000          1.123          net: dut/executor/add20_syn_396,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_333.fci_f
+ADDER               x093y043z6          0.000    f     1.123          pin: dut/executor/add20_syn_333.fco_f
+net (fo=1)                              0.000          1.123          net: dut/executor/add20_syn_397,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_334.fci_f
+ADDER               x093y043z7          0.000    f     1.123          pin: dut/executor/add20_syn_334.fco_f
+net (fo=1)                              0.082          1.205          net: dut/executor/add20_syn_398,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_335.fci_f
+ADDER               x093y044z0          0.000    f     1.205          pin: dut/executor/add20_syn_335.fco_f
+net (fo=1)                              0.000          1.205          net: dut/executor/add20_syn_399,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_336.fci_f
+ADDER               x093y044z1          0.000    f     1.205          pin: dut/executor/add20_syn_336.fco_f
+net (fo=1)                              0.000          1.205          net: dut/executor/add20_syn_400,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_337.fci_f
+ADDER               x093y044z2          0.000    f     1.205          pin: dut/executor/add20_syn_337.fco_f
+net (fo=1)                              0.000          1.205          net: dut/executor/add20_syn_401,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_338.fci_f
+ADDER               x093y044z3          0.000    f     1.205          pin: dut/executor/add20_syn_338.fco_f
+net (fo=1)                              0.082          1.287          net: dut/executor/add20_syn_402,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_339.fci_f
+ADDER               x093y044z4          0.000    f     1.287          pin: dut/executor/add20_syn_339.fco_f
+net (fo=1)                              0.000          1.287          net: dut/executor/add20_syn_403,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_340.fci_f
+ADDER               x093y044z5          0.000    f     1.287          pin: dut/executor/add20_syn_340.fco_f
+net (fo=1)                              0.000          1.287          net: dut/executor/add20_syn_404,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_341.fci_f
+ADDER               x093y044z6          0.000    f     1.287          pin: dut/executor/add20_syn_341.fco_f
+net (fo=1)                              0.000          1.287          net: dut/executor/add20_syn_405,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_342.fci_f
+ADDER               x093y044z7          0.000    f     1.287          pin: dut/executor/add20_syn_342.fco_f
+net (fo=1)                              0.082          1.369          net: dut/executor/add20_syn_406,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_343.fci_f
+ADDER               x093y045z0          0.000    f     1.369          pin: dut/executor/add20_syn_343.fco_f
+net (fo=1)                              0.000          1.369          net: dut/executor/add20_syn_407,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_344.fci_f
+ADDER               x093y045z1          0.000    f     1.369          pin: dut/executor/add20_syn_344.fco_f
+net (fo=1)                              0.000          1.369          net: dut/executor/add20_syn_408,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_345.fci_f
+ADDER               x093y045z2          0.000    f     1.369          pin: dut/executor/add20_syn_345.fco_f
+net (fo=1)                              0.000          1.369          net: dut/executor/add20_syn_409,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_346.fci_f
+ADDER               x093y045z3          0.000    f     1.369          pin: dut/executor/add20_syn_346.fco_f
+net (fo=1)                              0.082          1.451          net: dut/executor/add20_syn_410,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_347.fci_f
+ADDER               x093y045z4          0.000    f     1.451          pin: dut/executor/add20_syn_347.fco_f
+net (fo=1)                              0.000          1.451          net: dut/executor/add20_syn_411,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_348.fci_f
+ADDER               x093y045z5          0.000    f     1.451          pin: dut/executor/add20_syn_348.fco_f
+net (fo=1)                              0.000          1.451          net: dut/executor/add20_syn_412,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_349.fci_f
+ADDER               x093y045z6          0.000    f     1.451          pin: dut/executor/add20_syn_349.fco_f
+net (fo=1)                              0.000          1.451          net: dut/executor/add20_syn_413,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_350.fci_f
+ADDER               x093y045z7          0.000    f     1.451          pin: dut/executor/add20_syn_350.fco_f
+net (fo=1)                              0.082          1.533          net: dut/executor/add20_syn_414,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_351.fci_f
+ADDER               x093y046z0          0.000    f     1.533          pin: dut/executor/add20_syn_351.fco_f
+net (fo=1)                              0.000          1.533          net: dut/executor/add20_syn_415,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_352.fci_f
+ADDER               x093y046z1          0.000    f     1.533          pin: dut/executor/add20_syn_352.fco_f
+net (fo=1)                              0.000          1.533          net: dut/executor/add20_syn_416,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_353.fci_f
+ADDER               x093y046z2          0.000    f     1.533          pin: dut/executor/add20_syn_353.fco_f
+net (fo=1)                              0.000          1.533          net: dut/executor/add20_syn_417,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_354.fci_f
+ADDER               x093y046z3          0.000    f     1.533          pin: dut/executor/add20_syn_354.fco_f
+net (fo=1)                              0.082          1.615          net: dut/executor/add20_syn_418,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_355.fci_f
+ADDER               x093y046z4          0.000    f     1.615          pin: dut/executor/add20_syn_355.fco_f
+net (fo=1)                              0.000          1.615          net: dut/executor/add20_syn_419,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_356.fci_f
+ADDER               x093y046z5          0.000    f     1.615          pin: dut/executor/add20_syn_356.fco_f
+net (fo=1)                              0.000          1.615          net: dut/executor/add20_syn_420,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_357.fci_f
+ADDER               x093y046z6          0.000    f     1.615          pin: dut/executor/add20_syn_357.fco_f
+net (fo=1)                              0.000          1.615          net: dut/executor/add20_syn_421,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_358.fci_f
+ADDER               x093y046z7          0.000    f     1.615          pin: dut/executor/add20_syn_358.fco_f
+net (fo=1)                              0.082          1.697          net: dut/executor/add20_syn_422,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_359.fci_f
+ADDER               x093y047z0          0.000    f     1.697          pin: dut/executor/add20_syn_359.fco_f
+net (fo=1)                              0.000          1.697          net: dut/executor/add20_syn_423,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_360.fci_f
+ADDER               x093y047z1          0.000    f     1.697          pin: dut/executor/add20_syn_360.fco_f
+net (fo=1)                              0.000          1.697          net: dut/executor/add20_syn_424,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_361.fci_f
+ADDER               x093y047z2          0.000    f     1.697          pin: dut/executor/add20_syn_361.fco_f
+net (fo=1)                              0.000          1.697          net: dut/executor/add20_syn_425,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_362.fci_f
+ADDER               x093y047z3          0.000    f     1.697          pin: dut/executor/add20_syn_362.fco_f
+net (fo=1)                              0.082          1.779          net: dut/executor/add20_syn_426,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_363.fci_f
+ADDER               x093y047z4          0.000    f     1.779          pin: dut/executor/add20_syn_363.fco_f
+net (fo=1)                              0.000          1.779          net: dut/executor/add20_syn_427,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_364.fci_f
+ADDER               x093y047z5          0.000    f     1.779          pin: dut/executor/add20_syn_364.fco_f
+net (fo=1)                              0.000          1.779          net: dut/executor/add20_syn_428,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_365.fci_f
+ADDER               x093y047z6          0.000    f     1.779          pin: dut/executor/add20_syn_365.fco_f
+net (fo=1)                              0.000          1.779          net: dut/executor/add20_syn_429,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_366.fci_f
+ADDER               x093y047z7          0.000    f     1.779          pin: dut/executor/add20_syn_366.fco_f
+net (fo=1)                              0.082          1.861          net: dut/executor/add20_syn_430,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_367.fci_f
+ADDER               x093y048z0          0.000    f     1.861          pin: dut/executor/add20_syn_367.fco_f
+net (fo=1)                              0.000          1.861          net: dut/executor/add20_syn_431,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_368.fci_f
+ADDER               x093y048z1          0.000    f     1.861          pin: dut/executor/add20_syn_368.fco_f
+net (fo=1)                              0.000          1.861          net: dut/executor/add20_syn_432,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_369.fci_f
+ADDER               x093y048z2          0.000    f     1.861          pin: dut/executor/add20_syn_369.fco_f
+net (fo=1)                              0.000          1.861          net: dut/executor/add20_syn_433,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_370.fci_f
+ADDER               x093y048z3          0.000    f     1.861          pin: dut/executor/add20_syn_370.fco_f
+net (fo=1)                              0.082          1.943          net: dut/executor/add20_syn_434,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_371.fci_f
+ADDER               x093y048z4          0.000    f     1.943          pin: dut/executor/add20_syn_371.fco_f
+net (fo=1)                              0.000          1.943          net: dut/executor/add20_syn_435,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_372.fci_f
+ADDER               x093y048z5          0.000    f     1.943          pin: dut/executor/add20_syn_372.fco_f
+net (fo=1)                              0.000          1.943          net: dut/executor/add20_syn_436,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_373.fci_f
+ADDER               x093y048z6          0.000    f     1.943          pin: dut/executor/add20_syn_373.fco_f
+net (fo=1)                              0.000          1.943          net: dut/executor/add20_syn_437,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_374.fci_f
+ADDER               x093y048z7          0.000    f     1.943          pin: dut/executor/add20_syn_374.fco_f
+net (fo=1)                              0.082          2.025          net: dut/executor/add20_syn_438,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_375.fci_f
+ADDER               x093y049z0          0.000    f     2.025          pin: dut/executor/add20_syn_375.fco_f
+net (fo=1)                              0.000          2.025          net: dut/executor/add20_syn_439,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_376.fci_f
+ADDER               x093y049z1          0.000    f     2.025          pin: dut/executor/add20_syn_376.fco_f
+net (fo=1)                              0.000          2.025          net: dut/executor/add20_syn_440,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_377.fci_f
+ADDER               x093y049z2          0.000    f     2.025          pin: dut/executor/add20_syn_377.fco_f
+net (fo=1)                              0.000          2.025          net: dut/executor/add20_syn_441,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_378.fci_f
+ADDER               x093y049z3          0.000    f     2.025          pin: dut/executor/add20_syn_378.fco_f
+net (fo=1)                              0.082          2.107          net: dut/executor/add20_syn_442,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_379.fci_f
+ADDER               x093y049z4          0.045    f     2.152          pin: dut/executor/add20_syn_379.fco
+net (fo=1)                              0.000          2.152          net: dut/executor/add20_syn_314,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_380.fci
+ADDER               x093y049z5          0.045    f     2.197          pin: dut/executor/add20_syn_380.fco
+net (fo=1)                              0.000          2.197          net: dut/executor/add20_syn_315,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_381.fci
+ADDER               x093y049z6          0.045    f     2.242          pin: dut/executor/add20_syn_381.fco
+net (fo=1)                              0.000          2.242          net: dut/executor/add20_syn_316,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(97)
+                                                                      pin: dut/executor/add20_syn_382.fci
+ADDER               x093y049z7          0.203    r     2.445       2  pin: dut/executor/add20_syn_382.ofb
+net (fo=3)                              0.329          2.774          net: dut/executor/accumulator[0]_b28[55],  NOFILE(0)
+                                                                      pin: dut/executor/lt28_syn_297.ib
+ADDER               x091y047z7          0.502    f     3.276       3  pin: dut/executor/lt28_syn_297.fco_f
+net (fo=1)                              0.082          3.358          net: dut/executor/lt28_syn_329,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(98)
+                                                                      pin: dut/executor/lt28_syn_298.fci_f
+ADDER               x091y048z0          0.045    f     3.403          pin: dut/executor/lt28_syn_298.fco
+net (fo=1)                              0.000          3.403          net: dut/executor/lt28_syn_258,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(98)
+                                                                      pin: dut/executor/lt28_syn_299.fci
+ADDER               x091y048z1          0.045    f     3.448          pin: dut/executor/lt28_syn_299.fco
+net (fo=1)                              0.000          3.448          net: dut/executor/lt28_syn_260,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(98)
+                                                                      pin: dut/executor/lt28_syn_300.fci
+ADDER               x091y048z2          0.045    f     3.493          pin: dut/executor/lt28_syn_300.fco
+net (fo=1)                              0.000          3.493          net: dut/executor/lt28_syn_262,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(98)
+                                                                      pin: dut/executor/lt28_syn_301.fci
+ADDER               x091y048z3          0.107    f     3.600       4  pin: dut/executor/lt28_syn_301.ofa
+net (fo=3)                              1.004          4.604          net: dut/executor/emit_n1,  NOFILE(0)
+                                                                      pin: dut/executor/state_reg[0]_syn_721.imf
+LUT6                x110y064z3          0.089    r     4.693       5  pin: dut/executor/state_reg[0]_syn_721.ofb
+net (fo=33)                             1.089          5.782          net: dut/executor/state_reg[0]_syn_540,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(110)
+                                                                      pin: obs_reg[0]_syn_2.ie
+LUT5                x087y051z2          0.097    f     5.879       6  pin: obs_reg[0]_syn_2.ofb
+net (fo=66)                             0.361          6.240          net: dut/executor/slot_event_n_dup_2,  NOFILE(0)
+                                                                      pin: dut/executor/mux210_syn_162.ie
+LUT5                x087y057z1          0.097    f     6.337       7  pin: dut/executor/mux210_syn_162.ofb
+net (fo=48)                             0.437          6.774          net: dut/executor/mux210_syn_dup_148,  D:/Works/Embedded_contest/dev/pl_motion/rtl/motion_executor.v(128)
+                                                                      pin: dut/executor/time_remainder_reg[18]_syn_2.cea
+reg                 x082y061z4          0.000    f     6.774
+--------------------------------------------------------------------  ---------------
+Arrival                                                6.774
+
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_continuous_motion_r3_elapsed_compare/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=4010)                           0.000          0.000          net: clk_syn_13,  D:/Works/Embedded_contest/dev/pl_motion/build/td_continuous_motion_r3_elapsed_compare/probe.v(1)
+                                                                      pin: dut/executor/time_remainder_reg[18]_syn_2.clk
+capture edge                           10.000    r    10.000
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932
+clock uncertainty                      -0.060          9.872
+clock pessimism                         0.000          9.872
+--------------------------------------------------------------------  ---------------
+Required                                               9.872
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.098

@@ -1,0 +1,55 @@
+standard
+***Report Model: td_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         5   out of    126    3.97%
+  #input                    4
+  #output                   1
+  #inout                    0
+#lut                    10844
+  #lut1                     0
+  #lut2                  1765
+  #lut3                  1417
+  #lut4                  1991
+  #lut5                   832
+  #lut6                   778
+  #1-bit adder           4061
+#reg                     6596
+  #slice reg             6596   out of 104960    6.28%
+  #pad reg                  0
+
+Utilization Statistics
+#unit lut*               8154   out of  52480   15.54%
+  #logic lut*            4093
+  #1-bit adder           4061
+#reg                     6596   out of 104960    6.28%
+  #dff                   6596
+  #latch                    0
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        4   out of    240    1.67%
+#dram                      82
+#pad                        5   out of    126    3.97%
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+Report Hierarchy Area:
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance      |Module            |logic lut |ripple  |seq     |eram    |dsp     |dram     |shifter |f7mux   |f8mux   |pll     |adc    |soc     |
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+|top           |td_probe          |4093      |4061    |6596    |0       |4       |82       |0       |0       |0       |0       |0      |0       |
+|  dut         |continuous_motion |3829      |4061    |5267    |0       |4       |82       |0       |0       |0       |0       |0      |0       |
+|    executor  |motion_executor   |2106      |3071    |2674    |0       |0       |0        |0       |0       |0       |0       |0      |0       |
+|    plan_fifo |motion_fifo       |348       |0       |4       |0       |0       |55       |0       |0       |0       |0       |0      |0       |
+|    planner   |motion_planner    |1145      |890     |2121    |0       |4       |0        |0       |0       |0       |0       |0      |0       |
+|    raw_fifo  |motion_fifo       |4         |0       |7       |0       |0       |27       |0       |0       |0       |0       |0      |0       |
++-----------------------------------------------------------------------------------------------------------------------------------------------+

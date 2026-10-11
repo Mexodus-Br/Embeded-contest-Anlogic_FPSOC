@@ -3,7 +3,7 @@
   "tool": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\bin\\td_commands_prompt.EXE",
   "device": "DR1M90GEG400",
   "speed": "2",
-  "stage": "gate estimate; not placed/routed",
+  "stage": "gate and placed/routed reference probe",
   "fixture": {
     "STEP_HIGH_CYCLES": 3,
     "STEP_LOW_CYCLES": 2,
@@ -13,59 +13,261 @@
     "EN_DISABLE_CYCLES": 3,
     "MAX_STEP_HZ": 10000000
   },
-  "area": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_continuous_motion\\gate.area",
-  "timing": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_continuous_motion\\gate.timing",
-  "date": "2026-10-09",
-  "td_release": "2026.1 SP2 / 6.2.2.200067",
-  "clock_mhz": 100,
-  "wns_ns": -9.414,
-  "tns_ns": -15432.42,
-  "fmax_mhz": 51.509,
-  "min_period_ns": 19.414,
-  "sta_coverage_percent": 94.17,
-  "timing_pass": false,
-  "core": {
-    "logic_lut": 3462,
-    "ripple_adder": 5056,
-    "registers": 4481,
-    "dsp": 24,
-    "dram": 82,
-    "eram": 0
-  },
-  "with_probe": {
-    "logic_lut": 3727,
-    "ripple_adder": 5056,
-    "registers": 5810,
-    "dsp": 24,
-    "dram": 82,
-    "eram": 0
-  },
-  "critical_path": {
-    "start": "dut/raw_fifo/rd_reg[1]",
-    "end": "dut/planner/dividend_reg[63]",
-    "levels": 20,
-    "data_delay_ns": 19.344,
-    "cell_delay_ns": 6.504,
-    "net_delay_ns": 12.84
-  },
-  "sources_sha256": {
+  "area": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_continuous_motion_r3_elapsed_compare\\gate.area",
+  "timing": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_continuous_motion_r3_elapsed_compare\\gate.timing",
+  "wns_ns": 0.497,
+  "timing_pass": true,
+  "critical_start": "dut/plan_fifo/rd_reg[0].clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+  "critical_end": "dut/executor/next_slot_reg[47].d (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+  "sources_sha256_lf": {
     "axis_motion.v": "5b35bb2932256d5671cc67b0a0ca81ef6f1439bc34cf182458046c205323e813",
     "continuous_motion.v": "a9a404c49d5d94e5241d405aeacf59deec4ad8fa2467d1bf1c764a024a77f17b",
     "four_axis_motion.v": "bcebf3a1f2c67707bb98e901df0e90216b0d1587c31aac4be21818c7519c457b",
-    "motion_executor.v": "26507275d65d970eae4842d8b8e58054e9b9c371c45e097125af151ec4579745",
+    "motion_executor.v": "91f0f14116cb09654c9fa8954fad537fad446ff3cbcf9f5455e8382d667a34c1",
     "motion_fifo.v": "5dd9a75d20a66dcbde23be4754f688e1020d814f2a55318f2d5136557815e501",
-    "motion_planner.v": "4e55323b29f2157f45969912500697dae7eff70010181e50734d891fd8c62140"
+    "motion_planner.v": "b14d6dbad9fb651089ee60736d8d51fdccae412f1a1822580151de93e57cdc80"
   },
-  "reports_sha256": {
-    "gate.area": "2997b7b6514ac9544e645a1b67367d7042d99cac2f18ee611fe4f52b1b0de2a1",
-    "gate.timing": "c8cdd31289ff513a85f72e08e53e5caab86ec5011acaf7b40f80290d22da95f2",
-    "run.log": "badbca57ce847e0ec0937dac05ac93ad1b6aeb425c3d309c8ee46857844f6de4"
+  "date": "2026-10-11",
+  "td_release": "2026.1 SP2 / 6.2.2.200067",
+  "clock_mhz": 100,
+  "stages": {
+    "gate": {
+      "timing": {
+        "wns_ns": 0.497,
+        "hold_wns_ns": 0.0,
+        "timing_pass": true,
+        "critical_start": "dut/plan_fifo/rd_reg[0].clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "critical_end": "dut/executor/next_slot_reg[47].d (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "tns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "sta_coverage_percent": 91.94,
+        "min_period_ns": 9.503,
+        "fmax_mhz": 105.23,
+        "data_delay_ns": 9.433
+      },
+      "resources": {
+        "core": {
+          "logic_lut": 3829,
+          "ripple_adder": 4061,
+          "registers": 5267,
+          "eram": 0,
+          "dsp": 4,
+          "dram": 82
+        },
+        "with_probe": {
+          "logic_lut": 4093,
+          "ripple_adder": 4061,
+          "registers": 6596,
+          "eram": 0,
+          "dsp": 4,
+          "dram": 82
+        }
+      }
+    },
+    "place": {
+      "timing": {
+        "wns_ns": 3.098,
+        "hold_wns_ns": 0.0,
+        "timing_pass": true,
+        "critical_start": "dut/plan_fifo/ramread0_syn_594.clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "critical_end": "dut/executor/time_remainder_reg[18]_syn_2.cea (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "tns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "sta_coverage_percent": 94.26,
+        "min_period_ns": 6.902,
+        "fmax_mhz": 144.886,
+        "data_delay_ns": 6.774
+      },
+      "resources": {
+        "core": {
+          "logic_lut": 4349,
+          "ripple_adder": 3402,
+          "registers": 5316,
+          "eram": 0,
+          "dsp": 4,
+          "dram_lut": 656
+        },
+        "with_probe": {
+          "logic_lut": 4733,
+          "ripple_adder": 3402,
+          "registers": 6645,
+          "eram": 0,
+          "dsp": 4,
+          "dram_lut": 656
+        }
+      }
+    },
+    "route": {
+      "timing": {
+        "wns_ns": 0.688,
+        "hold_wns_ns": 0.02,
+        "timing_pass": true,
+        "critical_start": "dut/planner/base_saved_reg[97]_syn_2.clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "critical_end": "dut/executor/accumulator_reg[72]_syn_2.ia (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "tns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "sta_coverage_percent": 94.26,
+        "min_period_ns": 9.312,
+        "fmax_mhz": 107.388,
+        "data_delay_ns": 9.103
+      },
+      "resources": {
+        "core": {
+          "logic_lut": 4349,
+          "ripple_adder": 3402,
+          "registers": 5316,
+          "eram": 0,
+          "dsp": 4,
+          "dram_lut": 656
+        },
+        "with_probe": {
+          "logic_lut": 4733,
+          "ripple_adder": 3402,
+          "registers": 6645,
+          "eram": 0,
+          "dsp": 4,
+          "dram_lut": 656
+        }
+      }
+    }
   },
-  "limitations": [
-    "gate estimate only, not placed/routed",
-    "device speed=2 is reference, physical speed unverified",
-    "fixture timing, no board IO/CDC constraints or hardware deployment",
-    "100MHz timing not closed"
+  "planning": {
+    "nonzero_latency_cycles": 71,
+    "zero_latency_cycles": 6,
+    "nonzero_initiation_interval": 73,
+    "zero_initiation_interval": 8,
+    "nonzero_points_per_second_at_100mhz": 1369863.01369863,
+    "minimum_idle_planner_ingress_lead_cycles": 74
+  },
+  "rounds": [
+    {
+      "tag": "baseline_20261009",
+      "wns_ns": -9.414
+    },
+    {
+      "tag": "r1_capture_pipeline",
+      "gate_timing": {
+        "wns_ns": -1.823,
+        "hold_wns_ns": 0.0,
+        "timing_pass": false,
+        "critical_start": "dut/executor/edge_age_reg[64].clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "critical_end": "dut/executor/edge_age_reg[0].ce (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "tns_ns": -3199.442,
+        "hold_tns_ns": 0.0,
+        "sta_coverage_percent": 92.98,
+        "min_period_ns": 11.823,
+        "fmax_mhz": 84.581,
+        "data_delay_ns": 11.764
+      },
+      "resources": {
+        "core": {
+          "logic_lut": 3720,
+          "ripple_adder": 4857,
+          "registers": 5267,
+          "eram": 0,
+          "dsp": 20,
+          "dram": 82
+        },
+        "with_probe": {
+          "logic_lut": 3986,
+          "ripple_adder": 4857,
+          "registers": 6596,
+          "eram": 0,
+          "dsp": 20,
+          "dram": 82
+        }
+      }
+    },
+    {
+      "tag": "r2_executor_threshold",
+      "gate_timing": {
+        "wns_ns": -1.35,
+        "hold_wns_ns": 0.0,
+        "timing_pass": false,
+        "critical_start": "dut/executor/elapsed_reg[0].clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "critical_end": "dut/executor/state_reg[2].d (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "tns_ns": -1042.858,
+        "hold_tns_ns": 0.0,
+        "sta_coverage_percent": 91.9,
+        "min_period_ns": 11.35,
+        "fmax_mhz": 88.106,
+        "data_delay_ns": 11.28
+      },
+      "resources": {
+        "core": {
+          "logic_lut": 3703,
+          "ripple_adder": 4061,
+          "registers": 5267,
+          "eram": 0,
+          "dsp": 4,
+          "dram": 82
+        },
+        "with_probe": {
+          "logic_lut": 3968,
+          "ripple_adder": 4061,
+          "registers": 6596,
+          "eram": 0,
+          "dsp": 4,
+          "dram": 82
+        }
+      }
+    },
+    {
+      "tag": "r3_elapsed_compare",
+      "gate_timing": {
+        "wns_ns": 0.497,
+        "hold_wns_ns": 0.0,
+        "timing_pass": true,
+        "critical_start": "dut/plan_fifo/rd_reg[0].clk (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "critical_end": "dut/executor/next_slot_reg[47].d (rising edge triggered by clock motion_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "tns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "sta_coverage_percent": 91.94,
+        "min_period_ns": 9.503,
+        "fmax_mhz": 105.23,
+        "data_delay_ns": 9.433
+      },
+      "resources": {
+        "core": {
+          "logic_lut": 3829,
+          "ripple_adder": 4061,
+          "registers": 5267,
+          "eram": 0,
+          "dsp": 4,
+          "dram": 82
+        },
+        "with_probe": {
+          "logic_lut": 4093,
+          "ripple_adder": 4061,
+          "registers": 6596,
+          "eram": 0,
+          "dsp": 4,
+          "dram": 82
+        }
+      }
+    }
   ],
-  "build_script_sha256": "617870978779c5f7d800501638559a7f030b2e6d4e315c930a8cf8817e935acf"
+  "reports_sha256": {
+    "gate.area": "fc144bd8ca2f1fb18c95bfbf377bbc0ff8d7d14dfa94b818f5d76fb79bdd84e6",
+    "gate.timing": "24035197badff893ff6405fcdb08cb534765d9397f39f890da626cde4275feb9",
+    "run.log": "683021ae5c9f892b6be466e06722bd9c05d24fdce196c027dd869aba3546f144",
+    "place.area": "b531bc2dc879e2107af4e035fd59e77b814b984328dd132f74c1f3a1a8fd4e92",
+    "place.timing": "4169e94afb121fb58d45fc6d7c9d4d12371eaca8cc4dcdd22133774a3e01ff62",
+    "route.area": "c268f9053406771004f39162dc50408b71df9096eca3dcc401872d62042a0316",
+    "route.timing": "6e20ebc0568af71d299daf71a06fb53159a14c1af7168919d4070d0b5aab6895",
+    "physical.log": "45368a7e430f5784a642552fc579cba6ecbb996e6e218f9d5051fd735c7de0df",
+    "check.timing": "8115bc1b0db2cbb9a6e55920411a356ef3d0f56929b17de8e712c6a165b82c42"
+  },
+  "build_script_sha256": "d8452a6fafb277d760c2e36cb940ad171c4e2a9592952ba5f12fd60a5c858cdd",
+  "limitations": [
+    "speed=2 reference, physical device speed unverified",
+    "serial observation probe with automatically placed IO, not board pin mapping",
+    "no input delays for load/rst_n/serial_in; no output delay for serial_out; true system IO/CDC/reset release constraints pending",
+    "check_timing reports one dangling physical LSLICE output dut/executor/state_reg[0]_syn_770.ofb",
+    "route DRC checker ran without error messages; tool did not produce requested route.drc file, see archived route_check.log",
+    "routed clock uncertainty is tool default 0.060ns, no board-specific jitter budget",
+    "hold margin 0.020ns is small; no hardware deployment",
+    "old single-axis/four-axis modules retained, standalone timing closure not claimed"
+  ],
+  "constraint_sha256": "24f3c58703faf4679280b2ad2f3487c58483e0640b28a309a0a6b4b9472e7f15"
 }

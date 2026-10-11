@@ -1,0 +1,84 @@
+standard
+***Report Model: td_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         5   out of    126    3.97%
+  #input                    4
+  #output                   1
+  #inout                    0
+#lut6                    8799   out of  52480   16.77%
+#reg                     6645
+  #slice reg             6645   out of 104960    6.33%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                   9260   out of  52480   17.64%
+  #used ram               664
+    #dram lut             656
+    #shifter lut            8
+  #used logic            8596
+    #with luts           4733
+    #with adder          3402
+    #reg only             461
+#feedthrough             3294
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        4   out of    240    1.67%
+#pad                        5   out of    126    3.97%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       2   out of     72    2.78%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+Detailed IO Report
+
+     Name       Direction    Location    IOStandard    IOType    DriveStrength    PullType    PackReg    DiffResistor
+     clk          INPUT         Y9        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE
+     load         INPUT        Y18        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE
+    rst_n         INPUT        T15        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE
+  serial_in       INPUT        J20        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE
+  serial_out     OUTPUT        E19        LVCMOS33      HRIO           8            NONE       NONE          NONE
+
+Report Clock Domain Luts:
+
+-----------------------------------------------------------------------------------------------------------------
+  Index   |  Name        |  Frequency   |  LUT As Logic   |  LUT As Shifter   |  LUT As Dram   |  BRAM   |  DSP
+-----------------------------------------------------------------------------------------------------------------
+  #1      |  motion_clk  |  100MHz      |  10440          |  2                |  1297          |  0      |  4
+-----------------------------------------------------------------------------------------------------------------
+
+Clock Resource Statistics
+Index     ClockNet     Type            DriverType         Driver          ClockFanout        GclkLocation
+#1        clk_dup_1    InferredGclk    io                 clk_syn_2.di    4010               x79y59z0
+
+Report Hierarchy Area:
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance      |Module            |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |adc    |soc     |
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+|top           |td_probe          |4733      |3402    |6645    |0       |4       |656      |8           |0       |0       |0       |0      |0       |
+|  dut         |continuous_motion |4349      |3402    |5316    |0       |4       |656      |0           |0       |0       |0       |0      |0       |
+|    executor  |motion_executor   |2395      |2624    |2173    |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|    plan_fifo |motion_fifo       |282       |0       |562     |0       |0       |440      |0           |0       |0       |0       |0      |0       |
+|    planner   |motion_planner    |1340      |681     |2125    |0       |4       |0        |0           |0       |0       |0       |0      |0       |
+|    raw_fifo  |motion_fifo       |4         |0       |7       |0       |0       |216      |0           |0       |0       |0       |0      |0       |
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+DataNet Average Fanout:
+
+   Index     Fanout     Nets
+    #1          1       16483
+    #2          2       2151
+    #3          3       2043
+    #4          4        316
+    #5        5-10      1276
+    #6        11-50      261
+    #7       51-100      33
+    #8       101-500      7
+  Average     2.09

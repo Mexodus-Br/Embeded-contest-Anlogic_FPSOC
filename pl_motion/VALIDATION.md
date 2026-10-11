@@ -97,3 +97,22 @@ TD 的 unit LUT（含 ripple）=8,783/52,480，16.74%；寄存器 5.54%，DSP 10
 ### 本批验收边界
 
 功能仿真和可重复 TD 门级综合通过；100MHz 时序摸底结论为不通过。线报文/CRC/容量/板级驱动时序未冻结；HOME、软限位、时间戳、异步安全同步、BSP/AXI/DMA、电机/驱动输入实测未开展。sequence 全 2^32 记录未穷举，33 位 next_sequence 的显式越界比较禁止回绕。保留精确 relative duration 与安全停止，不用增加段间等待掩盖预检或时序问题。
+
+## 100MHz 收敛追加验收 — 2026-10-11
+
+以上为历史快照。本轮保留单轴/四轴单点模块和 Golden 基线，只改连续层 planner/executor 内部路径。先隔离组件，再集成测试；全部已确认 STEP、signed64/signed65、精确 duration、同拍边界、END/暂停、取消和 EN 行为保持。新性能和迁移说明见 TIMING.md、CONTINUOUS.md。
+
+| 最终实际执行 | 结果 |
+| --- | --- |
+| 连续组件 | FIFO 深度 2/3/8：7,610/7,739/7,972；planner：753 检查、76 cancel 偏移、120 个非整除 rate/掩码/元数据随机向量；executor：1,665；全部 PASS |
+| 连续集成 11 模式×2 scale | 全部 22 组 PASS；6,065,980 检查、3,708 start、1,900 done、488 END、4 underflow、2,706 stale；2,700 STOP/fault/reset 扫描偏移 |
+| 延迟与吞吐实测 | 非零 plan_valid=71 拍、请求间隔=73 拍；驻留=6/8 拍；100 拍最短 duration 连续边界同拍 |
+| 新预检截止模式 | 空闲 planner 下提前 73 拍入点不能补救，边界欠流并清空；74/75 拍按时准备并提交；C=100/200 夹具全部 PASS |
+| 原单轴/四轴 | 50 次工具环境检查、单轴 236,273 检查和 tb_contract；四轴 12 组 9,710,041 检查/3,360 安全/840 reset；全部 PASS |
+| 接口/Golden | 7 接口方法、4 生成物一致、772 常量 HDL 校验；Golden 10 方法/1,272 向量 PASS，原基线 warning 保留 |
+
+首轮集成有一项 FAIL，未计为通过：旧不可执行预取夹具要求停止时当前 3 步尚未全部输出，但新增 6 拍规划延迟使该 SCALE=1 场景恰已完成 3 个边沿、仍未完成 duration。最终保留原 3 步输入并精确断言实际位置为 3，同时新增 6 步输入验证部分计数恢复；两者都必须取消、不正常 END、不提交旧预测目标。未放宽脉宽、duration 或段间时刻断言。STOP/fault/reset 扫描从 280/560 增加到 300/600 拍，不缩减旧扫描范围。
+
+实际 TD 三轮门级 SWNS 为 −1.823 / −1.350 / +0.497ns；最终布局 +3.098ns、布线 +0.688ns，STNS=0，布线 hold WNS=+0.020ns、HTNS=0。10ns 时钟在各实际报告中核实，参考 speed=2，未加入 timing exception。详细资源、关键路径、默认 hold 修复过程与可复现命令见 TIMING.md；最终完整报告留在 build/td_continuous_motion_r3_elapsed_compare，资源/首关键路径/检查输出入库 reports/timing_20261011。
+
+本轮完成连续顶层参考夹具的门级及布线后 100MHz 检查，不宣称整块板卡签核。check_timing 保留 1 个物理 LSLICE 悬空输出、3 input delay/1 output delay 未设，STA coverage=94.26%；实际速度等级、板级 IO/jitter/CDC/复位释放约束和驱动实测仍未完成。route checker 运行无错误消息，但工具未生成请求的 route.drc 文件，归档真实 route_check.log，不编造 DRC 计数。未生成/下载 bitstream，未进行电机联调。

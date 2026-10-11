@@ -1,16 +1,64 @@
 """Reproducible TD gate synthesis/10ns timing probe; no bitstream/deployment."""
-import argparse,json,re,shutil,subprocess
+import argparse,hashlib,json,re,shutil,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
+
+def source_hashes():
+    return {p.name:hashlib.sha256(p.read_text().encode()).hexdigest() for p in (ROOT/'rtl').glob('*.v')}
+
+def timing_metrics(path):
+    t=path.read_text()
+    if not re.search(r'100\.000\s+\d+\s+motion_clk',t):
+        raise RuntimeError('actual TD report must contain 100MHz motion_clk: '+str(path))
+    w=float(re.search(r'SWNS:\s*([-\d.]+)ns',t).group(1))
+    h=float(re.search(r'HWNS:\s*([-\d.]+)ns',t).group(1))
+    return dict(wns_ns=w,hold_wns_ns=h,timing_pass=w>=0 and h>=0,
+        critical_start=re.search(r'Begin Point\s*:\s*(.+)',t).group(1),
+        critical_end=re.search(r'End Point\s*:\s*(.+)',t).group(1))
+
+def physical(build,td,speed):
+    metadata=json.loads((build/'summary.json').read_text())
+    constraint_hash=hashlib.sha256((build/'motion.sdc').read_bytes()).hexdigest()
+    if (metadata.get('speed')!=speed or metadata.get('sources_sha256_lf')!=source_hashes()
+        or metadata.get('constraint_sha256')!=constraint_hash):
+        raise RuntimeError('gate database device/sources/constraints differ; rerun gate synthesis')
+    gate=(build/'gate.timing').read_text()
+    if float(re.search(r'SWNS:\s*([-\d.]+)ns',gate).group(1))<0:
+        raise RuntimeError('gate timing must pass before physical flow')
+    t=f'cd {{{build.as_posix()}}}\nimport_device dr1_90.db -package DR1M90GEG400 -speed {speed}\n'
+    t+='import_db gate.db\nread_sdc motion.sdc\nlegalize_phy_inst\nplace\nupdate_timing -mode manhattan\nreport_timing_summary -file place.timing -path_num 3\nreport_area -io_info -file place.area\nexport_db place.db\nroute\nupdate_timing -mode final\nreport_timing_summary -file route.timing -path_num 3\nreport_area -io_info -file route.area\ncheck_timing -verbose -file check.timing\nreport_route_status -drc -file route.drc\nexport_db route.db\nputs TD_PHYSICAL_COMPLETE\nexit\n'
+    script=build/'physical.tcl';script.write_text(t,encoding='ascii')
+    with (build/'physical.log').open('w',encoding='utf-8') as log:
+        p=subprocess.run([td,script.as_posix()],cwd=build,stdout=log,stderr=subprocess.STDOUT,timeout=900)
+    log=(build/'physical.log').read_text()
+    if p.returncode or 'TD_PHYSICAL_COMPLETE' not in log or re.search(r'\bERROR:|CRITICAL-WARNING',log):
+        raise RuntimeError('TD physical failed; inspect '+str(build/'physical.log'))
+    # This TD release prints the route checker to stdout even with -file.
+    start=log.index('RUN-1002 : start command "report_route_status')
+    end=log.index('RUN-1002 : start command "export_db route.db"',start)
+    (build/'route_check.log').write_text(log[start:end])
+    results={}
+    for stage in ['place','route']:
+        report=(build/(stage+'.timing')).read_text()
+        results[stage]=timing_metrics(build/(stage+'.timing'))
+        print(stage+': '+next(x.strip() for x in report.splitlines() if 'SWNS:' in x))
+    (build/'physical_summary.json').write_text(json.dumps(results,indent=2)+'\n')
 
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--top',default='continuous_motion',choices=['continuous_motion','four_axis_motion'])
     ap.add_argument('--speed',default='2',choices=['2','3'])
+    ap.add_argument('--tag',default='')
+    ap.add_argument('--place-route',action='store_true')
+    ap.add_argument('--physical-only',action='store_true')
     a=ap.parse_args()
     td=shutil.which('td_commands_prompt')
     if not td:raise RuntimeError('TD td_commands_prompt required')
-    build=ROOT/'build'/('td_'+a.top);build.mkdir(parents=True,exist_ok=True)
+    if a.tag and not re.fullmatch(r'[A-Za-z0-9_-]+',a.tag):raise ValueError('invalid run tag')
+    build=ROOT/'build'/('td_'+a.top+('_'+a.tag if a.tag else ''));build.mkdir(parents=True,exist_ok=True)
+    if a.physical_only:
+        physical(build,td,a.speed)
+        return
     source=(ROOT/'rtl'/f'{a.top}.v').read_text()
     header=source.split(')(\n',1)[1].split(');',1)[0]
     ports={}
@@ -53,8 +101,12 @@ def main():
     summary=dict(top=a.top,tool=td,device='DR1M90GEG400',speed=a.speed,
                  stage='gate estimate; not placed/routed',fixture=params,
                  area=str(build/'gate.area'),timing=str(build/'gate.timing'))
+    summary.update(timing_metrics(build/'gate.timing'))
+    summary['sources_sha256_lf']=source_hashes()
+    summary['constraint_sha256']=hashlib.sha256((build/'motion.sdc').read_bytes()).hexdigest()
     (build/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print(json.dumps(summary,indent=2))
     print(next(x.strip() for x in timing.splitlines() if 'SWNS:' in x))
+    if a.place_route:physical(build,td,a.speed)
 
 if __name__=='__main__':main()
