@@ -1,0 +1,367 @@
+extra/bsp_dma_loop.ko: kernel/drivers/dma/anlogic/anlogic-dma-engine.ko
+rootdir=/home/uisrc/embedded-bsp-dma/output/rootfs-target
+table='/home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_devices_table.txt'
+mke2fs 1.46.5 (30-Dec-2021)
+64-bit filesystem support is not enabled.  The larger fields afforded by this feature enable full-strength checksumming.  Pass -O 64bit to rectify.
+Discarding device blocks:      0/262144             done                            
+Creating filesystem with 262144 1k blocks and 65536 inodes
+Filesystem UUID: 6d398841-220c-4d38-aefa-20ab09f33832
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729, 204801, 221185
+
+Allocating group tables:  0/32     done                            
+Writing inode tables:  0/32     done                            
+Creating journal (8192 blocks): done
+Copying files into the device: done
+Writing superblocks and filesystem accounting information:  0/32     done
+
+e2fsck 1.44.1 (24-Mar-2018)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+bsp-root: 762/65536 files (1.7% non-contiguous), 136691/262144 blocks
+8135eb4d84be860b82b2515be0006059428b9b54e2d7964e36e823cc50ca0d5a  /home/uisrc/embedded-bsp-dma/output/buildroot/images/rootfs.ext4
+057fff84100c4c73fad467c9e67c99a8b28c25aa005fd08cd1946b1f622015cc  /home/uisrc/embedded-bsp-dma/output/rootfs-target/usr/bin/dma-accept
+8572344d3adc55b0f8edc7209193d1e7d1c0f7a90d7af440509cedb61cd6e6cf  /home/uisrc/embedded-bsp-dma/output/rootfs-target/lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_dma_loop.ko
+faf672643a879453328f4ef56a3b481a295633c3adb2afb4503c21965c387c63  /home/uisrc/embedded-bsp-dma/output/rootfs-target/lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko
+
+
+[INFO]   : Command line parsing completed successfully
+[INFO]   : BIF file parsing completed successfully
+[INFO]   : Parsing Partition Data to Image
+[INFO]   : Building image - the_ROM_image
+[INFO]   : fsbl.elf -- len: 1506440
+[INFO]   : u-boot.bin -- len: 920348
+[INFO]   : Building the Partition Header Table
+[INFO]   : After build 
+           -- Dump of Binary Image ----
+   Offset      Length     Reserve     Name
+   00000000   00000300   00000000   BootHeader
+   00000000   00000040   00000000   PartitionHeader_fsbl.elf.0
+   00000000   00000040   00000000   PartitionHeader_system.bit.0
+   00000000   00000040   00000000   PartitionHeader_u-boot.bin.0
+   00000000   0002dab0   00000000   fsbl.elf.0
+   00000000   00000020   00000000   sha2checksum_fsbl.elf.0
+   00000000   003dd360   00000000   system.bit.0
+   00000000   00000020   00000000   sha2checksum_system.bit.0
+   00000000   000e0b1c   00000000   u-boot.bin.0
+   00000000   00000020   00000000   sha2checksum_u-boot.bin.0
+           -- End of Dump
+
+[INFO]   : After align 
+           -- Dump of Binary Image ----
+   Offset      Length     Reserve     Name
+   00000000   00000300   00000000   BootHeader
+   00000300   00000040   00000000   PartitionHeader_fsbl.elf.0
+   00000340   00000040   00000000   PartitionHeader_system.bit.0
+   00000380   00000040   00000000   PartitionHeader_u-boot.bin.0
+   000003c0   0002dab0   00000000   fsbl.elf.0
+   0002de80   00000020   00000000   sha2checksum_fsbl.elf.0
+   0002dec0   003dd360   00000000   system.bit.0
+   0040b240   00000020   00000000   sha2checksum_system.bit.0
+   0040b280   000e0b1c   00000000   u-boot.bin.0
+   004ebdc0   00000020   00000000   sha2checksum_u-boot.bin.0
+           -- End of Dump
+
+[INFO]   : Partition Information: 
+[INFO]   : Image: fsbl.elf
+[INFO]   :        Partition 0: fsbl.elf.0,  Size: 187072
+
+[INFO]   : Image: system.bit
+[INFO]   :        Partition 1: system.bit.0,  Size: 4051840
+
+[INFO]   : Image: u-boot.bin
+[INFO]   :        Partition 2: u-boot.bin.0,  Size: 920384
+
+[INFO]   : After Link 
+           -- Dump of Binary Image ----
+   Offset      Length     Reserve     Name
+   00000000   00000300   00000000   BootHeader
+   00000300   00000040   00000000   PartitionHeader_fsbl.elf.0
+   00000340   00000040   00000000   PartitionHeader_system.bit.0
+   00000380   00000040   00000000   PartitionHeader_u-boot.bin.0
+   000003c0   0002dab0   00000000   fsbl.elf.0
+   0002de80   00000020   00000000   sha2checksum_fsbl.elf.0
+   0002dec0   003dd360   00000000   system.bit.0
+   0040b240   00000020   00000000   sha2checksum_system.bit.0
+   0040b280   000e0b1c   00000000   u-boot.bin.0
+   004ebdc0   00000020   00000000   sha2checksum_u-boot.bin.0
+           -- End of Dump
+
+[INFO]   : sha2checksum_fsbl.elf.0 addresses 0002de80 is going forkwards 0002de70, fill gap with 0xff*16
+
+[INFO]   : system.bit.0 addresses 0002dec0 is going forkwards 0002dea0, fill gap with 0xff*32
+
+[INFO]   : sha2checksum_system.bit.0 addresses 0040b240 is going forkwards 0040b220, fill gap with 0xff*32
+
+[INFO]   : u-boot.bin.0 addresses 0040b280 is going forkwards 0040b260, fill gap with 0xff*32
+
+[INFO]   : sha2checksum_u-boot.bin.0 addresses 004ebdc0 is going forkwards 004ebd9c, fill gap with 0xff*36
+
+[INFO]   : sha2checksum_u-boot.bin.0 length 32 not align by 64 bytes, fill alignment with 0xff*32
+
+
+Bootimage generated successfully!
+
+Bootimage saved to BOOT.bin
+
+Image Name:   BSP SD only
+Created:      Sun Oct 11 00:00:00 2026
+Image Type:   AArch64 Linux Script (uncompressed)
+Data Size:    715 Bytes = 0.70 KiB = 0.00 MiB
+Load Address: 00000000
+Entry Point:  00000000
+Contents:
+   Image 0: 707 Bytes = 0.69 KiB = 0.00 MiB
+mkfs.fat 4.1 (2017-01-24)
+{
+  "image": "/home/uisrc/embedded-bsp-dma/output/release/sdcard.img",
+  "partuuid": "a3d29e67-02",
+  "sha256": "afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d"
+}
+BOOT.bin: OK
+Design.xml: OK
+boot/BOOT.bin: OK
+boot/boot.scr: OK
+boot/system.dtb: OK
+boot/uImage.lz4: OK
+boot.bif: OK
+boot.cmd: OK
+boot.scr: OK
+boot.vfat: OK
+bootgen.log: OK
+fsbl.elf: OK
+hpf.info: OK
+manifest.json: OK
+rootfs.ext4: OK
+sdcard.img: OK
+soc_plat.c: OK
+soc_plat.h: OK
+soc_plat_dts.h: OK
+system.bit: OK
+system.dtb: OK
+system.hpf: OK
+u-boot.bin: OK
+uImage.lz4: OK
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+fsck.fat 4.1 (2017-01-24)
+/home/uisrc/embedded-bsp-dma/output/release/boot.vfat: 5 files, 25977/129022 clusters
+e2fsck 1.44.1 (24-Mar-2018)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+bsp-root: 762/65536 files (1.7% non-contiguous), 136691/262144 blocks
+{
+  "status": "IMAGE_VERIFIED_NOT_DEPLOYED_OR_BOARD_TESTED",
+  "sd_image_sha256": "afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d",
+  "root_partuuid": "a3d29e67-02",
+  "cpu_soc_numeric_resources": [
+    {
+      "node": "serial@F8400000",
+      "base": 4164943872,
+      "size": 4096
+    },
+    {
+      "node": "serial@F8401000",
+      "base": 4164947968,
+      "size": 4096
+    },
+    {
+      "node": "fpga-mgr@F8082000",
+      "base": 4169142272,
+      "size": 4096
+    },
+    {
+      "node": "i2c0@f8414000",
+      "base": 4165025792,
+      "size": 4096
+    },
+    {
+      "node": "i2c1@f8415000",
+      "base": 4165029888,
+      "size": 4096
+    },
+    {
+      "node": "gpio@f8411000",
+      "base": 4165013504,
+      "size": 256
+    },
+    {
+      "node": "gpio@f8411100",
+      "base": 4165013760,
+      "size": 256
+    },
+    {
+      "node": "gpio@f8411200",
+      "base": 4165014016,
+      "size": 256
+    },
+    {
+      "node": "gpio@f8411300",
+      "base": 4165014272,
+      "size": 256
+    },
+    {
+      "node": "dma-controller@f8419000",
+      "base": 4165046272,
+      "size": 4096
+    },
+    {
+      "node": "watchdog@f8410000",
+      "base": 4165009408,
+      "size": 256
+    },
+    {
+      "node": "watchdog@f8410000",
+      "base": 4169138536,
+      "size": 32
+    },
+    {
+      "node": "can@0xF8408000",
+      "base": 4164976640,
+      "size": 4096
+    },
+    {
+      "node": "can@0xF8409000",
+      "base": 4164980736,
+      "size": 4096
+    },
+    {
+      "node": "mmc@f8049000",
+      "base": 4161048576,
+      "size": 4096
+    },
+    {
+      "node": "mmc@f804a000",
+      "base": 4161052672,
+      "size": 4096
+    },
+    {
+      "node": "ahb_dma@F804D000",
+      "base": 4161064960,
+      "size": 4096
+    },
+    {
+      "node": "spi@f804e000",
+      "base": 4161069056,
+      "size": 4096
+    },
+    {
+      "node": "spi@f8404000",
+      "base": 4164960256,
+      "size": 4096
+    },
+    {
+      "node": "spi@f8405000",
+      "base": 4164964352,
+      "size": 4096
+    },
+    {
+      "node": "ttc0@f840c000",
+      "base": 4164993024,
+      "size": 4096
+    },
+    {
+      "node": "PWM1@f840d000",
+      "base": 4164997120,
+      "size": 4096
+    },
+    {
+      "node": "ethernet0@F8100000",
+      "base": 4161798144,
+      "size": 65536
+    },
+    {
+      "node": "ethernet1@F8110000",
+      "base": 4161863680,
+      "size": 65536
+    },
+    {
+      "node": "usb@F8180000",
+      "base": 4162322432,
+      "size": 262144
+    },
+    {
+      "node": "adc@f840b000",
+      "base": 4164988928,
+      "size": 32
+    },
+    {
+      "node": "memory-controller@f841a000",
+      "base": 4165050368,
+      "size": 4096
+    },
+    {
+      "node": "hard_npu@63F00000",
+      "base": 1676673024,
+      "size": 1048576
+    },
+    {
+      "node": "hard_npu@63F00000",
+      "base": 4169138176,
+      "size": 512
+    },
+    {
+      "node": "hard_npu@63F00000",
+      "base": 4169142272,
+      "size": 256
+    },
+    {
+      "node": "jpu@f8460000",
+      "base": 4165337088,
+      "size": 65536
+    },
+    {
+      "node": "gp-control@80400000",
+      "base": 2151677952,
+      "size": 4096
+    },
+    {
+      "node": "dma@80500000",
+      "base": 2152726528,
+      "size": 4096
+    }
+  ],
+  "installed_file_sha256": {
+    "usr/bin/dma-accept": "057fff84100c4c73fad467c9e67c99a8b28c25aa005fd08cd1946b1f622015cc",
+    "usr/bin/gp-accept": "ce7a38c0c2e4f35fe1b73d0591fc9881476ce064fede2823a57d552840017136",
+    "usr/bin/bsp-readonly-check": "dc380b5a5f4bc86c32f605a03c4dbc4eabeb6e30344d0a9c3f757aa40965393a",
+    "lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_dma_loop.ko": "8572344d3adc55b0f8edc7209193d1e7d1c0f7a90d7af440509cedb61cd6e6cf",
+    "lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_gp.ko": "c0131bcdd4d18485e4392e16428778bf2aac5520bfa48a781ec86d1aede3040b",
+    "lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko": "faf672643a879453328f4ef56a3b481a295633c3adb2afb4503c21965c387c63",
+    "lib/modules/6.1.111-rt42-bsp-sd1/modules.dep": "6c106e161fa6056ecd5076e82867e074b28a7b7eafbac7e70d78fe05a5a9fcb6"
+  },
+  "dt_spi": [
+    82,
+    83,
+    84
+  ],
+  "dt_simple": true,
+  "dma_mask_bits": 32,
+  "btt_width": 16,
+  "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1",
+  "kernel_symvers_sha256": "ccc69b7dbd1968066b6ce46d5e5a741f55045f7cc9663db722c3959c1cb548a3",
+  "provider_symvers_sha256": "2d278498cee7237a4cb154b48f73d0cfc0dcc7ee96cdb58b19665007fa1d03f2"
+}

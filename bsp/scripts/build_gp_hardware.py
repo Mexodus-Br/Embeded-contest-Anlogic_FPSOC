@@ -1,14 +1,20 @@
 """Build the actual PS + GP control board wrapper with fixed 10ns clock."""
 from pathlib import Path
+import argparse
 import hashlib
 import json
 import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / 'work/gp_soc_prj'
+p=argparse.ArgumentParser(description=__doc__)
+p.add_argument('--work-dir',default='gp_soc_prj')
+p.add_argument('--dma',action='store_true')
+a=p.parse_args()
+WORK = (ROOT / 'work' / a.work_dir).resolve()
+assert WORK.parent == (ROOT/'work').resolve()
 TD = Path('D:/Anlogic/TD_Release_2026.1_SP2.200.067/bin/td_commands_prompt.exe')
-script = '''cd D:/Works/Embedded_contest/dev/bsp/work/gp_soc_prj
+script = '''cd @WORK@
 import_device dr1_90.db -package DR1M90GEG400 -speed 2
 open_project system.al
 elaborate -top system_wrapper
@@ -34,7 +40,7 @@ export_db gp_route.db
 bitgen -bit system.bit
 puts BSP_GP_BOARD_BITSTREAM_COMPLETE
 exit
-'''
+'''.replace('@WORK@',WORK.as_posix())
 (WORK / 'build_gp.tcl').write_text(script, encoding='utf-8')
 with (WORK / 'build_gp.log').open('w', encoding='utf-8') as log:
     result = subprocess.run([str(TD), (WORK / 'build_gp.tcl').as_posix()], cwd=WORK,
@@ -51,10 +57,12 @@ for stage in ['gate', 'place', 'route']:
         raise SystemExit('100MHz GP clock missing from timing report')
     if not re.search(r'100\.000\s+[1-9]\d*\s+ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S', text):
         raise SystemExit('100MHz PS GP0 capture clock missing or no active fanout')
+    if a.dma and not re.search(r'100\.000\s+[1-9]\d*\s+ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0\s',text):
+        raise SystemExit('100MHz PS HP0 clock missing or no active fanout')
     stages[stage] = {'setup_wns_ns':setup, 'hold_wns_ns':hold}
     if setup < 0 or hold < 0:
         raise SystemExit('10ns timing not met at ' + stage)
-summary = {'status':'FULL_PS_GP_BUILT_NOT_BOARD_TESTED', 'reference_speed':2,
+summary = {'status':'FULL_PS_GP_DMA_BUILT_NOT_BOARD_TESTED' if a.dma else 'FULL_PS_GP_BUILT_NOT_BOARD_TESTED', 'reference_speed':2,
            'stages':stages, 'bitstream_sha256':hashlib.sha256((WORK / 'system.bit').read_bytes()).hexdigest(),
            'connections':json.loads((WORK / 'connections.json').read_text(encoding='utf-8'))}
 (WORK / 'build-summary.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')

@@ -1,0 +1,245 @@
+BOOT.bin: OK
+Design.xml: OK
+boot/BOOT.bin: OK
+boot/boot.scr: OK
+boot/system.dtb: OK
+boot/uImage.lz4: OK
+boot.bif: OK
+boot.cmd: OK
+boot.scr: OK
+boot.vfat: OK
+bootgen.log: OK
+fsbl.elf: OK
+hpf.info: OK
+manifest.json: OK
+rootfs.ext4: OK
+sdcard.img: OK
+soc_plat.c: OK
+soc_plat.h: OK
+soc_plat_dts.h: OK
+system.bit: OK
+system.dtb: OK
+system.hpf: OK
+u-boot.bin: OK
+uImage.lz4: OK
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+Error at 'reg': FDT_ERR_NOTFOUND
+fsck.fat 4.1 (2017-01-24)
+/home/uisrc/embedded-bsp-dma/output/release/boot.vfat: 5 files, 25977/129022 clusters
+e2fsck 1.44.1 (24-Mar-2018)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+bsp-root: 762/65536 files (1.7% non-contiguous), 136687/262144 blocks
+{
+  "status": "IMAGE_VERIFIED_NOT_DEPLOYED_OR_BOARD_TESTED",
+  "sd_image_sha256": "6be6b27d1b67d56dc289c85704a1e9d46b7d74d43e96a0e0e258b8a755617897",
+  "root_partuuid": "a1604a87-02",
+  "cpu_soc_numeric_resources": [
+    {
+      "node": "serial@F8400000",
+      "base": 4164943872,
+      "size": 4096
+    },
+    {
+      "node": "serial@F8401000",
+      "base": 4164947968,
+      "size": 4096
+    },
+    {
+      "node": "fpga-mgr@F8082000",
+      "base": 4169142272,
+      "size": 4096
+    },
+    {
+      "node": "i2c0@f8414000",
+      "base": 4165025792,
+      "size": 4096
+    },
+    {
+      "node": "i2c1@f8415000",
+      "base": 4165029888,
+      "size": 4096
+    },
+    {
+      "node": "gpio@f8411000",
+      "base": 4165013504,
+      "size": 256
+    },
+    {
+      "node": "gpio@f8411100",
+      "base": 4165013760,
+      "size": 256
+    },
+    {
+      "node": "gpio@f8411200",
+      "base": 4165014016,
+      "size": 256
+    },
+    {
+      "node": "gpio@f8411300",
+      "base": 4165014272,
+      "size": 256
+    },
+    {
+      "node": "dma-controller@f8419000",
+      "base": 4165046272,
+      "size": 4096
+    },
+    {
+      "node": "watchdog@f8410000",
+      "base": 4165009408,
+      "size": 256
+    },
+    {
+      "node": "watchdog@f8410000",
+      "base": 4169138536,
+      "size": 32
+    },
+    {
+      "node": "can@0xF8408000",
+      "base": 4164976640,
+      "size": 4096
+    },
+    {
+      "node": "can@0xF8409000",
+      "base": 4164980736,
+      "size": 4096
+    },
+    {
+      "node": "mmc@f8049000",
+      "base": 4161048576,
+      "size": 4096
+    },
+    {
+      "node": "mmc@f804a000",
+      "base": 4161052672,
+      "size": 4096
+    },
+    {
+      "node": "ahb_dma@F804D000",
+      "base": 4161064960,
+      "size": 4096
+    },
+    {
+      "node": "spi@f804e000",
+      "base": 4161069056,
+      "size": 4096
+    },
+    {
+      "node": "spi@f8404000",
+      "base": 4164960256,
+      "size": 4096
+    },
+    {
+      "node": "spi@f8405000",
+      "base": 4164964352,
+      "size": 4096
+    },
+    {
+      "node": "ttc0@f840c000",
+      "base": 4164993024,
+      "size": 4096
+    },
+    {
+      "node": "PWM1@f840d000",
+      "base": 4164997120,
+      "size": 4096
+    },
+    {
+      "node": "ethernet0@F8100000",
+      "base": 4161798144,
+      "size": 65536
+    },
+    {
+      "node": "ethernet1@F8110000",
+      "base": 4161863680,
+      "size": 65536
+    },
+    {
+      "node": "usb@F8180000",
+      "base": 4162322432,
+      "size": 262144
+    },
+    {
+      "node": "adc@f840b000",
+      "base": 4164988928,
+      "size": 32
+    },
+    {
+      "node": "memory-controller@f841a000",
+      "base": 4165050368,
+      "size": 4096
+    },
+    {
+      "node": "hard_npu@63F00000",
+      "base": 1676673024,
+      "size": 1048576
+    },
+    {
+      "node": "hard_npu@63F00000",
+      "base": 4169138176,
+      "size": 512
+    },
+    {
+      "node": "hard_npu@63F00000",
+      "base": 4169142272,
+      "size": 256
+    },
+    {
+      "node": "jpu@f8460000",
+      "base": 4165337088,
+      "size": 65536
+    },
+    {
+      "node": "gp-control@80400000",
+      "base": 2151677952,
+      "size": 4096
+    },
+    {
+      "node": "dma@80500000",
+      "base": 2152726528,
+      "size": 4096
+    }
+  ],
+  "installed_file_sha256": {
+    "usr/bin/dma-accept": "057fff84100c4c73fad467c9e67c99a8b28c25aa005fd08cd1946b1f622015cc",
+    "usr/bin/gp-accept": "ce7a38c0c2e4f35fe1b73d0591fc9881476ce064fede2823a57d552840017136",
+    "usr/bin/bsp-readonly-check": "dc380b5a5f4bc86c32f605a03c4dbc4eabeb6e30344d0a9c3f757aa40965393a",
+    "lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_dma_loop.ko": "8572344d3adc55b0f8edc7209193d1e7d1c0f7a90d7af440509cedb61cd6e6cf",
+    "lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_gp.ko": "c0131bcdd4d18485e4392e16428778bf2aac5520bfa48a781ec86d1aede3040b",
+    "lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko": "e462e3dba4662b34212a7bc71d55afd155e7d1c6abda05143b1b1103de8764c9",
+    "lib/modules/6.1.111-rt42-bsp-sd1/modules.dep": "6c106e161fa6056ecd5076e82867e074b28a7b7eafbac7e70d78fe05a5a9fcb6"
+  },
+  "dt_spi": [
+    82,
+    83,
+    84
+  ],
+  "dt_simple": true,
+  "dma_mask_bits": 32,
+  "btt_width": 16,
+  "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1",
+  "kernel_symvers_sha256": "ccc69b7dbd1968066b6ce46d5e5a741f55045f7cc9663db722c3959c1cb548a3",
+  "provider_symvers_sha256": "2d278498cee7237a4cb154b48f73d0cfc0dcc7ee96cdb58b19665007fa1d03f2"
+}
+ab260d45bf745eea9d9f31a0d052cfedd38f75da4fa3ac9e79fe00570ee8e1c1  /home/uisrc/embedded-bsp-dma/dma-release.tar.gz

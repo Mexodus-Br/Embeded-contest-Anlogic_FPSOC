@@ -1,5 +1,17 @@
 # SD启动与GP实板核对
 
+当前暂停检查点：恢复修正版镜像afa13b14...420050d/根a3d29e67-02已经Windows完整写入/读回通过，尚未启动。用户因额度要求暂停；未打开第二次COM4采集。以下首版失败及通过项保留，不替修正版作通过结论。
+
+## 2026-10-12 独立DMA首版：正常传输通过，恢复失败
+
+Windows部署镜像6be6b27d...7617897，完整512MiB无缓存读回通过；用户装卡后COM4在115200/8N1、DTR/RTS=false采集完整FSBL→U-Boot→Linux，19009B，SHA2563721127e888ae430465f5943d69fd96c2210226fe50470ad952d795968470e41。FSBL bit生成20:51:00/HPF导出20:53:02、DDR1024MB/1333Mbps、SD来源及PL加载；Linux根PARTUUID a1604a87-02、实际mmcblk0p2/sysfs SD、1GiB/128MiB CMA及匹配内核/config/module/app/DTS门禁通过。原始证据evidence/dma-coldboot-20261012-01.log及.json。
+
+GP VERSION1/CAPSf/FEATURES7/TICK_HZ1MHz，41项检查通过。DMA simple/32bit mask/BTT16及两通道绑定；17种长度×4模式×3轮共204正常回环、1043976B逐字节比较及guard通过，双回调各1次。GIC115/116 Level两路各204次中断，Err0。提交7.890–16.170μs，提交至IRQ完成17.190–103.620μs、均值25.317μs；按总payload/累计完成时间计算202.136MB/s，仅此测试口径，不是持续总线或运动链吞吐。
+
+首个65535B S2MM无MM2S场景实际在途，预期超时后RX terminate等待HALTED超时：rx=-110、tx=0、pair post=-16，quiescent=0、errors=2/timeouts=1；程序退出1，DMA_ACCEPT_FAIL。coherent缓冲区与模块引用保留，无卸载/释放/重用。后续仅采集IRQ/dmesg/modules并运行GP41项，全部通过；证据dma-failure-diagnostics-20261012-01.log。发送无接收/显式在途terminate、异常后正常传输、buffer释放重分配及完整epoch比较未执行，不能报告恢复通过。解析结果见dma-first-board-result.json，原始验收日志SHA256292bf8ddab838a76b6a008d20bca98fc7193fe17fe0362a80e31b087663adbb0。
+
+停止流程修正候选仅在bsp,loopback-pair simple专用域采用controller reset，并在释放任何当前描述符前确认两硬件方向HALTED和RUNSTOP/RESET清；client仍须双向terminate_sync、IRQ/tasklet/队列检查及延迟buffer稳定性后才允许释放。修正版构建/镜像和再次实板验收另记录，不以候选修正覆盖首版失败事实。运动FIFO/电机未接入。
+
 2026-10-12 GP批次：最终GP镜像构建与SD完整读回通过，用户装卡上电后采集FSBL→U-Boot→Linux日志。SD根20ae01e9-02、1GiB和128MiB CMA确认，GP/IRQ/空闲四轴快照41项验收通过。实际范围见[gp/BUILD_STATUS.md](gp/BUILD_STATUS.md)。
 
 用户曾因板卡不在手边结束任务，提交eb68206时尚未板测；随后明确装卡、接串口并上电，以下新增证据替代该历史NOT_TESTED状态。原PS-only结果单独保留。

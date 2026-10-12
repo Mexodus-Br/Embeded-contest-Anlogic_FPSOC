@@ -10,9 +10,12 @@ import subprocess
 
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--export-hpf',action='store_true')
+p.add_argument('--work-dir',default='gp_soc_prj')
+p.add_argument('--hp0',action='store_true')
 a=p.parse_args()
 BSP=Path(__file__).resolve().parents[1]
-W=BSP/'work/gp_soc_prj'
+W=(BSP/'work'/a.work_dir).resolve()
+assert W.parent == (BSP/'work').resolve(), 'Work project must be directly inside bsp/work'
 TD=Path('D:/Anlogic/TD_Release_2026.1_SP2.200.067')
 IP=TD/'ip/depot/ARM_Processor_System_F9F0D0P0_1.0'
 PS=W/'system/ip/system_ARM_Processor_System_0'
@@ -29,7 +32,7 @@ if a.export_hpf:
     with zipfile.ZipFile(W/'system.hpf') as z:
         assert z.read('HPFs/system.bit')==(W/'system.bit').read_bytes()
 else:
-    run(TD/'bin/alps.exe',['-batch','-tcl',BSP/'scripts/ps_gp_regen.tcl',
+    run(TD/'bin/alps.exe',['-batch','-tcl',BSP/'scripts'/('ps_dma_regen.tcl' if a.hp0 else 'ps_gp_regen.tcl'),
         '-component','system_ARM_Processor_System_0','-in_path',IP,
         '-out_path',W/'system/ip','-device','DR1M90GEG400','-speed','-2'],'ps-gp-regenerate.log')
     text=(PS/'DesignTmp.xml').read_text(encoding='utf-8')
@@ -51,4 +54,7 @@ exit
     raw=(PS/'RTL/ARM_Processor_System_f6ddd1d59490.v').read_text()
     for port in ['master_gp0_axi_aclk','master_gp0_axi_awaddr','f2p_irq','p2f_rst0_n']:
         assert re.search(r'^\s*(input|output)\s+(?:\[[^\]]+\]\s*)?'+port+r'\s*[,)]',raw,re.M),port
+    if a.hp0:
+        for port in ['slave_hp0_axi_aclk','slave_hp0_axi_awaddr','slave_hp0_axi_rdata']:
+            assert re.search(r'^\s*(input|output)\s+(?:\[[^\]]+\]\s*)?'+port+r'\s*[,)]',raw,re.M),port
 print('PS/HPF regeneration completed; full system timing and clock-warning review remain required')

@@ -1,0 +1,43 @@
+{
+  "status": "NORMAL_TRANSFER_PASS_RECOVERY_FAILED",
+  "raw_log_sha256": "292bf8ddab838a76b6a008d20bca98fc7193fe17fe0362a80e31b087663adbb0",
+  "parsed_records": 205,
+  "normal_transfers": 204,
+  "normal_payload_bytes": 1043976,
+  "completion_ns_min": 17190,
+  "completion_ns_max": 103620,
+  "completion_ns_mean": 25317.20588235294,
+  "submit_ns_min": 7890,
+  "submit_ns_max": 16170,
+  "submit_to_irq_aggregate_MBps": 202.1364219869073,
+  "first_failure": {
+    "length": 65535,
+    "pattern": 0,
+    "scenario": 1,
+    "result": 5,
+    "mismatch": 4294967295,
+    "tx_callbacks": 0,
+    "rx_callbacks": 0,
+    "submit_ns": 5190,
+    "tx_complete_ns": 0,
+    "rx_complete_ns": 0,
+    "total_ns": 1105440521,
+    "errors": 2,
+    "timeouts": 1,
+    "recoveries": 204,
+    "generation": 204
+  },
+  "new_irq_counts": {
+    "GIC115": 204,
+    "GIC116": 204
+  },
+  "gp_before_and_after_failure_checks": 41,
+  "quarantined_buffers": "RETAINED_MODULE_PINNED_NO_REUSE",
+  "not_tested": [
+    "TX_without_RX_timeout",
+    "inflight_terminate",
+    "post_failure_recovery_transfer",
+    "buffer_release_reacquire",
+    "full_epoch_before_after_gate"
+  ]
+}

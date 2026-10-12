@@ -1,0 +1,264 @@
+{
+  "status": "BUILT_NOT_BOARD_BOOT_TESTED",
+  "ddr": {
+    "capacity_mib": 1024,
+    "dq_width": 32,
+    "rate_mts": 1333,
+    "io_voltage_v": 1.35,
+    "physical_voltage_measured": false
+  },
+  "root_partuuid": "a1604a87-02",
+  "partitions": [
+    {
+      "number": 1,
+      "start_sector": 2048,
+      "sectors": 131072,
+      "filesystem": "FAT32"
+    },
+    {
+      "number": 2,
+      "start_sector": 133120,
+      "sectors": 524288,
+      "filesystem": "EXT4"
+    }
+  ],
+  "versions": {
+    "linux": "6.1.111-rt42-bsp-sd1",
+    "uboot": "2021.01",
+    "buildroot": "2022.02.6",
+    "TD": "2026.1 SP2 6.2.2.200067",
+    "FD": "2026.1 SP1"
+  },
+  "files": {
+    "BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "c4556c261b49cb07fb45dcbb90f4d0b29077b5cdad0d3d45385e772902fefadc"
+    },
+    "Design.xml": {
+      "bytes": 72971,
+      "sha256": "3de549542223ae25a7b3ed1de6cac44260c071d1fe1ea2bcea57f935dbe3bc75"
+    },
+    "boot/BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "c4556c261b49cb07fb45dcbb90f4d0b29077b5cdad0d3d45385e772902fefadc"
+    },
+    "boot/boot.scr": {
+      "bytes": 779,
+      "sha256": "1e48c97e63dfba8418ade8a3295e4617c463ba5007e036bf7f3fe329d6e8c660"
+    },
+    "boot/system.dtb": {
+      "bytes": 15335,
+      "sha256": "8d05b55a310def01cd48290855e113ca6c7da18f730a816af9f4a2f191bfc57e"
+    },
+    "boot/uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    },
+    "boot.bif": {
+      "bytes": 365,
+      "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
+    },
+    "boot.cmd": {
+      "bytes": 707,
+      "sha256": "1287cf8679bc8367113c3364b08d181036453192c33e2a30bdfbf1535f581040"
+    },
+    "boot.scr": {
+      "bytes": 779,
+      "sha256": "1e48c97e63dfba8418ade8a3295e4617c463ba5007e036bf7f3fe329d6e8c660"
+    },
+    "boot.vfat": {
+      "bytes": 67108864,
+      "sha256": "a681198b2af879ef27c51555c2600e5dc68dc1940680a3c8ff89cadb1c065f39"
+    },
+    "bootgen.log": {
+      "bytes": 3334,
+      "sha256": "995760e8a26dd05a54558a71414d5bf7276ee63add16a59fa9c66907f27e6502"
+    },
+    "fsbl.elf": {
+      "bytes": 1506440,
+      "sha256": "4b972e7a394ac23d16bedf8d33865b021c34cd7daaa6df62accaeffb13e7262f"
+    },
+    "hpf.info": {
+      "bytes": 118,
+      "sha256": "4897dd41595348deb7e42a21b17de59921c296b6ea8991ff51f4aaeff0620980"
+    },
+    "rootfs.ext4": {
+      "bytes": 268435456,
+      "sha256": "de2808e703dba78a604b1135a2ca19ad0a93819947ca6fb64bc28d0ec6a96e2b"
+    },
+    "sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "6be6b27d1b67d56dc289c85704a1e9d46b7d74d43e96a0e0e258b8a755617897"
+    },
+    "soc_plat.c": {
+      "bytes": 129854,
+      "sha256": "6dc252d86fa0d2417890215bf506207f9a06b7688af3c28bf821883c61ca8fbd"
+    },
+    "soc_plat.h": {
+      "bytes": 14296,
+      "sha256": "7239f5ea1f87be8442cc382b162c6d13dbf54bcb4e54bba8260d39248d8893c6"
+    },
+    "soc_plat_dts.h": {
+      "bytes": 4132,
+      "sha256": "4658518f7a90d5f1fb8c92e52bd4a882559323bd04f1dd9e670aae5e31cdf1c0"
+    },
+    "system.bit": {
+      "bytes": 4052214,
+      "sha256": "98394ebb2ea58a9e309a0850939a36f7ae4522eeb90fcb1ed888969f46fab22a"
+    },
+    "system.dtb": {
+      "bytes": 15335,
+      "sha256": "8d05b55a310def01cd48290855e113ca6c7da18f730a816af9f4a2f191bfc57e"
+    },
+    "system.hpf": {
+      "bytes": 333580,
+      "sha256": "73deb1d1198e67b5ee006f7c1b23673c58e52aa4a58fd2ff3b7732656e1565f7"
+    },
+    "u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    }
+  },
+  "bundle": {
+    "path": "bsp/artifacts/dma-release.tar.gz",
+    "sha256": "ab260d45bf745eea9d9f31a0d052cfedd38f75da4fa3ac9e79fe00570ee8e1c1",
+    "local_archive_and_23_release_files_verified": true
+  },
+  "deployment": {
+    "status": "SD_DEPLOYMENT_VERIFIED_NOT_BOARD_BOOT_TESTED",
+    "expected_sha256": "6be6b27d1b67d56dc289c85704a1e9d46b7d74d43e96a0e0e258b8a755617897",
+    "root_partuuid": "a1604a87-02",
+    "image": "D:\\Works\\Embedded_contest\\dev\\bsp\\artifacts\\dma-release\\release\\sdcard.img",
+    "disk_number": 1,
+    "emmc": "NOT_MODIFIED",
+    "board_tests": "NOT_TESTED",
+    "started_local": "2026-10-12T22:20:25+0800",
+    "identity": {
+      "partitions": [
+        {
+          "PartitionNumber": 1,
+          "DriveLetter": "E",
+          "Offset": 1048576,
+          "Size": 67108864
+        },
+        {
+          "PartitionNumber": 2,
+          "DriveLetter": null,
+          "Offset": 68157440,
+          "Size": 268435456
+        }
+      ],
+      "disk": {
+        "Number": 1,
+        "FriendlyName": "Generic- SD/MMC/MS PRO",
+        "UniqueId": "USBSTOR\\DISK&VEN_RSUER&PROD_RTSUERLUN0&REV_1.00\\0000:LAPTOP-JS7E5LFJ",
+        "BusType": "USB",
+        "Size": 31299993600,
+        "LogicalSectorSize": 512,
+        "IsBoot": false,
+        "IsSystem": false,
+        "IsReadOnly": false
+      }
+    },
+    "written_bytes": 536870912,
+    "write_seconds": 24.656999999999243,
+    "readback_bytes": 536870912,
+    "readback_seconds": 18.375,
+    "actual_readback_sha256": "6be6b27d1b67d56dc289c85704a1e9d46b7d74d43e96a0e0e258b8a755617897",
+    "partition_and_filesystem_signatures": "PASS",
+    "fsck": "NOT_RUN_ON_WINDOWS; source FAT/EXT4 fsck passed before byte-identical deployment",
+    "finished_local": "2026-10-12T22:21:11+0800",
+    "exit_code": 0,
+    "write_log": "bsp/evidence/dma-sd-windows-write-retry1.log",
+    "write_log_sha256": "19110f139910a0402f7c3e561476f5b5a1d34515081e0ad115949bdeb6dcf92c"
+  },
+  "deployment_history": [
+    {
+      "status": "PAUSED_READBACK_SHA256_MISMATCH",
+      "date": "2026-10-12",
+      "timezone": "Asia/Taipei",
+      "pause_authority": "User requested pause if reliable SD deployment could not be completed.",
+      "device": "/dev/sdb",
+      "reader_serial": "20121112761000000",
+      "sectors": 61132800,
+      "write_and_readback_bytes": 536870912,
+      "write_seconds": 1315.97,
+      "readback_seconds": 72.4483,
+      "expected_sha256": "6be6b27d1b67d56dc289c85704a1e9d46b7d74d43e96a0e0e258b8a755617897",
+      "actual_direct_readback_sha256": "378bfb27c734a3d108cd383343d652426892aba1ad337378731024a92711e7d0",
+      "source_sha256_rechecked_unchanged": true,
+      "script_exit_code": 1,
+      "write_process_exited": true,
+      "partitions_unmounted": true,
+      "fsck_uuid_validation": "NOT_EXECUTED_AFTER_HASH_FAILURE",
+      "board_boot_gp_dma_irq_recovery": "NOT_TESTED",
+      "emmc": "NOT_MODIFIED",
+      "write_log": "bsp/evidence/dma-sd-write.log",
+      "write_log_sha256": "b00a823ae47d23d800370118cfb01c8dbd086d57375c6075cf72baa0f7330e16",
+      "transport_log": "bsp/evidence/dma-sd-transport.log",
+      "transport_log_sha256": "28abf88bf861f53785713522df7e1b6646fd9850f85154c9b3006a239f508449",
+      "ephemeral_vm_transport_policy": "target USB power/control on, ums_realtek ss_en0; ineffective, reset by reboot"
+    },
+    {
+      "status": "CANCELLED_PERSISTENT_USB_TIMEOUTS",
+      "transport": "VM after reboot",
+      "write_log": "bsp/evidence/dma-sd-vm-retry1.log",
+      "transport_log": "bsp/evidence/dma-sd-vm-retry1-transport.log",
+      "readback": "NOT_EXECUTED",
+      "last_logged_bytes": 65011712,
+      "termination_requested": "SIGINT then SIGTERM",
+      "writer_process_absent_on_later_check": true,
+      "wrapper_exit_file": "NOT_PRESENT",
+      "write_log_sha256": "4a56e49f2863209270e3d92cb4f711c06d6e4e32750a3f8aa2d0ae5801a9753a",
+      "transport_log_sha256": "7a3a35d70a406c46e50d4d3b1a319a8665f716678261e605e8beea9852c63463"
+    }
+  ],
+  "board_validation": {
+    "status": "NORMAL_TRANSFER_PASS_RECOVERY_FAILED",
+    "raw_log_sha256": "292bf8ddab838a76b6a008d20bca98fc7193fe17fe0362a80e31b087663adbb0",
+    "parsed_records": 205,
+    "normal_transfers": 204,
+    "normal_payload_bytes": 1043976,
+    "completion_ns_min": 17190,
+    "completion_ns_max": 103620,
+    "completion_ns_mean": 25317.20588235294,
+    "submit_ns_min": 7890,
+    "submit_ns_max": 16170,
+    "submit_to_irq_aggregate_MBps": 202.1364219869073,
+    "first_failure": {
+      "length": 65535,
+      "pattern": 0,
+      "scenario": 1,
+      "result": 5,
+      "mismatch": 4294967295,
+      "tx_callbacks": 0,
+      "rx_callbacks": 0,
+      "submit_ns": 5190,
+      "tx_complete_ns": 0,
+      "rx_complete_ns": 0,
+      "total_ns": 1105440521,
+      "errors": 2,
+      "timeouts": 1,
+      "recoveries": 204,
+      "generation": 204
+    },
+    "new_irq_counts": {
+      "GIC115": 204,
+      "GIC116": 204
+    },
+    "gp_before_and_after_failure_checks": 41,
+    "quarantined_buffers": "RETAINED_MODULE_PINNED_NO_REUSE",
+    "not_tested": [
+      "TX_without_RX_timeout",
+      "inflight_terminate",
+      "post_failure_recovery_transfer",
+      "buffer_release_reacquire",
+      "full_epoch_before_after_gate"
+    ]
+  },
+  "superseded_by_recovery_image": "afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d"
+}

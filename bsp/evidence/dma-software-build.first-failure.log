@@ -1,0 +1,40 @@
+make: Entering directory '/home/uisrc/embedded-bsp/vendor/sources/linux'
+make[1]: Entering directory '/home/uisrc/embedded-bsp/output/kernel'
+  CC [M]  /home/uisrc/embedded-bsp-dma/bsp/dma/provider/anlogic_dma.o
+/home/uisrc/embedded-bsp-dma/bsp/dma/provider/anlogic_dma.c:543:40: warning: ‘axivdma_config’ defined but not used [-Wunused-const-variable=]
+ static const struct anlogic_dma_config axivdma_config = {
+                                        ^~~~~~~~~~~~~~
+  CC [M]  /home/uisrc/embedded-bsp-dma/bsp/dma/provider/axi-dma.o
+/home/uisrc/embedded-bsp-dma/bsp/dma/provider/axi-dma.c:461: warning: expecting prototype for anlogic_dma_start_transfer(). Prototype was for anlogic_axidma_start_transfer() instead
+  LD [M]  /home/uisrc/embedded-bsp-dma/bsp/dma/provider/anlogic-dma-engine.o
+  MODPOST /home/uisrc/embedded-bsp-dma/bsp/dma/provider/Module.symvers
+  CC [M]  /home/uisrc/embedded-bsp-dma/bsp/dma/provider/anlogic-dma-engine.mod.o
+  LD [M]  /home/uisrc/embedded-bsp-dma/bsp/dma/provider/anlogic-dma-engine.ko
+make[1]: Leaving directory '/home/uisrc/embedded-bsp/output/kernel'
+make: Leaving directory '/home/uisrc/embedded-bsp/vendor/sources/linux'
+make: Entering directory '/home/uisrc/embedded-bsp/vendor/sources/linux'
+make[1]: Entering directory '/home/uisrc/embedded-bsp/output/kernel'
+  CC [M]  /home/uisrc/embedded-bsp-dma/bsp/dma/client/bsp_dma_loop.o
+In file included from /home/uisrc/embedded-bsp/vendor/sources/linux/include/linux/device.h:32:0,
+                 from /home/uisrc/embedded-bsp/vendor/sources/linux/include/linux/platform_device.h:13,
+                 from /home/uisrc/embedded-bsp-dma/bsp/dma/client/bsp_dma_loop.c:4:
+/home/uisrc/embedded-bsp-dma/bsp/dma/client/bsp_dma_loop.c:255:24: error: conflicting types for ‘driver_init’
+ module_platform_driver(driver);
+                        ^
+/home/uisrc/embedded-bsp/vendor/sources/linux/include/linux/device/driver.h:263:19: note: in definition of macro ‘module_driver’
+ static int __init __driver##_init(void) \
+                   ^~~~~~~~
+/home/uisrc/embedded-bsp-dma/bsp/dma/client/bsp_dma_loop.c:255:1: note: in expansion of macro ‘module_platform_driver’
+ module_platform_driver(driver);
+ ^~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp/vendor/sources/linux/include/linux/device/driver.h:246:6: note: previous declaration of ‘driver_init’ was here
+ void driver_init(void);
+      ^~~~~~~~~~~
+/home/uisrc/embedded-bsp/vendor/sources/linux/scripts/Makefile.build:250: recipe for target '/home/uisrc/embedded-bsp-dma/bsp/dma/client/bsp_dma_loop.o' failed
+make[2]: *** [/home/uisrc/embedded-bsp-dma/bsp/dma/client/bsp_dma_loop.o] Error 1
+/home/uisrc/embedded-bsp/vendor/sources/linux/Makefile:2009: recipe for target '/home/uisrc/embedded-bsp-dma/bsp/dma/client' failed
+make[1]: *** [/home/uisrc/embedded-bsp-dma/bsp/dma/client] Error 2
+make[1]: Leaving directory '/home/uisrc/embedded-bsp/output/kernel'
+Makefile:238: recipe for target '__sub-make' failed
+make: *** [__sub-make] Error 2
+make: Leaving directory '/home/uisrc/embedded-bsp/vendor/sources/linux'

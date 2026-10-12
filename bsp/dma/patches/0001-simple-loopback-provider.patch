@@ -1,0 +1,219 @@
+--- a/anlogic_dma.c
++++ b/anlogic_dma.c
+@@ -20,9 +20,10 @@
+ #include <linux/clk.h>
+ #include <linux/io-64-nonatomic-lo-hi.h>
+ 
+-#include "../dmaengine.h"
++#include "dmaengine.h"
+ 
+ #include <linux/dma/anlogic_dma.h>
++#include "../generated/dma_defs.h"
+ 
+ struct anlogic_axidma_tx_segment *anlogic_axidma_alloc_tx_segment(struct anlogic_dma_chan *chan)
+ {
+@@ -309,6 +310,11 @@
+ 	if (chan->cyclic) {
+ 		al_dev->desc_ops.dma_free_tx_descriptor(chan, desc);
+ 		return -EBUSY;
++	}
++
++	if (chan->err && of_property_read_bool(chan->dev->of_node, "bsp,loopback-pair")) {
++		al_dev->desc_ops.dma_free_tx_descriptor(chan, desc);
++		return -EIO;
+ 	}
+ 
+ 	if (chan->err) {
+@@ -535,11 +541,13 @@
+ 	.max_channels = ANLOGIC_DMA_MAX_CHANS_PER_DEVICE,
+ };
+ 
++#ifdef CONFIG_AXI_VDMA
+ static const struct anlogic_dma_config axivdma_config = {
+ 	.dmatype = AL_DMA_TYPE_VDMA,
+ 	.irq_handler = anlogic_dma_irq_handler,
+ 	.max_channels = ANLOGIC_DMA_MAX_CHANS_PER_DEVICE,
+ };
++#endif
+ 
+ static const struct of_device_id anlogic_dma_of_ids[] = {
+ #ifdef CONFIG_AXI_DMA
+@@ -557,7 +565,7 @@
+ 	struct device_node *node = pdev->dev.of_node;
+ 	struct anlogic_dma_device *al_dev;
+ 	struct device_node *child, *np = pdev->dev.of_node;
+-	u32 num_frames, addr_width, len_width;
++	u32 num_frames = 0, addr_width = 32, len_width;
+ 	int i, err;
+ 
+ 	/* Allocate and initialize the DMA engine structure */
+@@ -572,6 +580,17 @@
+ 		match = of_match_node(anlogic_dma_of_ids, np);
+ 		if (match && match->data)
+ 			al_dev->dma_config = match->data;
++	}
++
++	/* This additional policy applies only to the independent loop profile. */
++	if (of_property_read_bool(node, "bsp,loopback-pair")) {
++		struct resource *r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++		u32 aw, lw;
++		if (!r || r->start != PLI_DMA_DMA_LOOPBACK_V1_BASE || resource_size(r) != PLI_DMA_DMA_LOOPBACK_V1_SIZE ||
++		    of_property_read_u32(node, "anlogic,addrwidth", &aw) || aw != PLI_DMA_DMA_LOOPBACK_V1_MEMORY_ADDRESS_WIDTH ||
++		    of_property_read_u32(node, "anlogic,sg-length-width", &lw) || lw != PLI_DMA_DMA_LOOPBACK_V1_AL_SG_LENGTH_WIDTH ||
++		    of_property_read_bool(node, "anlogic,include-sg"))
++			return -EINVAL;
+ 	}
+ 
+ 	/* Request and map I/O memory */
+--- a/axi-dma.c
++++ b/axi-dma.c
+@@ -20,9 +20,10 @@
+ #include <linux/clk.h>
+ #include <linux/io-64-nonatomic-lo-hi.h>
+ 
+-#include "../dmaengine.h"
++#include "dmaengine.h"
+ 
+ #include <linux/dma/anlogic_dma.h>
++#include "../bsp_dma_pair.h"
+ 
+ static void anlogic_axidma_free_tx_descriptor(struct anlogic_dma_chan *chan,
+ 			       struct anlogic_dma_tx_descriptor *desc)
+@@ -160,17 +161,36 @@
+ 	u32 reg;
+ 	int err;
+ 
+-	if (!chan->cyclic) {
++	if (!of_property_read_bool(chan->dev->of_node, "bsp,loopback-pair") &&
++	    !chan->cyclic) {
+ 		err = chan->stop_transfer(chan);
+ 		if (err) {
+ 			dev_err(chan->dev, "Cannot stop channel %p: %x\n",
+ 				chan, dma_ctrl_read(chan,
+ 				ANLOGIC_DMA_REG_DMASR));
+ 			chan->err = true;
++			return err; /* Do not free descriptors on an unconfirmed halt. */
+ 		}
+ 	}
+ 
+-	anlogic_dma_chan_reset(chan);
++	err = anlogic_dma_chan_reset(chan);
++	if (err)
++		return err;
++	if (of_property_read_bool(chan->dev->of_node, "bsp,loopback-pair")) {
++		int i;
++		u32 sr, cr;
++		for (i = 0; i < 2; i++) {
++			struct anlogic_dma_chan *peer = chan->al_dev->chan[i];
++			if (!peer || peer->has_sg)
++				return -EINVAL;
++			err = anlogic_dma_poll_timeout(peer, ANLOGIC_DMA_REG_DMASR, sr,
++						      sr & ANLOGIC_DMA_DMASR_HALTED, 0,
++						      ANLOGIC_DMA_LOOP_COUNT);
++			cr = dma_ctrl_read(peer, ANLOGIC_DMA_REG_DMACR);
++			if (err || (cr & (ANLOGIC_DMA_DMACR_RUNSTOP | ANLOGIC_DMA_DMACR_RESET)))
++				return err ? err : -EBUSY;
++		}
++	}
+ 	/* Remove and free all of the descriptors in the lists */
+ 	chan->terminating = true;
+ 	anlogic_axidma_free_descriptors(chan);
+@@ -190,6 +210,7 @@
+ {
+ 	struct anlogic_dma_chan *chan = to_anlogic_chan(dchan);
+ 
++	synchronize_irq(chan->irq);
+ 	tasklet_kill(&chan->tasklet);
+ }
+ 
+@@ -224,6 +245,8 @@
+ 	unsigned long flags;
+ 	u32 residue = 0;
+ 
++	if (READ_ONCE(chan->err))
++		return DMA_ERROR;
+ 	ret = dma_cookie_status(dchan, cookie, txstate);
+ 	if (ret == DMA_COMPLETE || !txstate)
+ 		return ret;
+@@ -273,6 +296,10 @@
+ 	unsigned int i;
+ 
+ 	if (!is_slave_direction(direction))
++		return NULL;
++	if (!chan->has_sg && (direction != chan->direction || sg_len != 1 ||
++	    !sg_dma_len(sgl) || sg_dma_len(sgl) > chan->al_dev->max_buffer_len ||
++	    (sg_dma_address(sgl) & 7)))
+ 		return NULL;
+ 
+ 	/* Allocate a transaction descriptor. */
+@@ -443,7 +470,7 @@
+ }
+ 
+ /**
+- * anlogic_dma_start_transfer - Starts DMA transfer
++ * anlogic_axidma_start_transfer - Starts DMA transfer
+  * @chan: Driver specific channel struct pointer
+  */
+ static void anlogic_axidma_start_transfer(struct anlogic_dma_chan *chan)
+@@ -511,8 +538,13 @@
+ 			       hw->control & chan->al_dev->max_buffer_len);
+ 	}
+ 
+-	list_splice_tail_init(&chan->pending_list, &chan->active_list);
+-	chan->desc_pendingcount = 0;
++	if (chan->has_sg) {
++		list_splice_tail_init(&chan->pending_list, &chan->active_list);
++		chan->desc_pendingcount = 0;
++	} else {
++		list_move_tail(&head_desc->node, &chan->active_list);
++		chan->desc_pendingcount--;
++	}
+ 	chan->idle = false;
+ }
+ 
+@@ -607,3 +639,45 @@
+ MODULE_AUTHOR("anlogic, Inc.");
+ MODULE_DESCRIPTION("anlogic axi dma Controller Driver");
+ MODULE_LICENSE("GPL");
++
++/* Narrow loopback-only postcondition, not a general raw-register API. */
++int bsp_anlogic_loop_quiescent(struct dma_chan *tx, struct dma_chan *rx)
++{
++    struct anlogic_dma_chan *a = to_anlogic_chan(tx), *b = to_anlogic_chan(rx);
++    struct anlogic_dma_chan *channels[2] = {a, b};
++    unsigned long flags;
++    int i;
++    if (a->al_dev != b->al_dev || a->direction != DMA_MEM_TO_DEV ||
++        b->direction != DMA_DEV_TO_MEM || a->has_sg || b->has_sg ||
++        !of_property_read_bool(a->dev->of_node, "bsp,loopback-pair"))
++        return -EINVAL;
++    for (i = 0; i < 2; i++) {
++        struct anlogic_dma_chan *c = channels[i];
++        u32 cr, sr;
++        synchronize_irq(c->irq);
++        tasklet_kill(&c->tasklet);
++        cr = dma_ctrl_read(c, ANLOGIC_DMA_REG_DMACR);
++        sr = dma_ctrl_read(c, ANLOGIC_DMA_REG_DMASR);
++        if ((cr & (ANLOGIC_DMA_DMACR_RUNSTOP | ANLOGIC_DMA_DMACR_RESET)) ||
++            !(sr & ANLOGIC_DMA_DMASR_HALTED))
++            return -EBUSY;
++        spin_lock_irqsave(&c->lock, flags);
++        if (!list_empty(&c->active_list) || !list_empty(&c->pending_list) ||
++            !list_empty(&c->done_list)) {
++            spin_unlock_irqrestore(&c->lock, flags);
++            return -EBUSY;
++        }
++        spin_unlock_irqrestore(&c->lock, flags);
++    }
++    /* The last channel reset can clear BOTH interrupt enables. Restore only
++     * after both directions are halted and all old callbacks synchronized. */
++    for (i = 0; i < 2; i++) {
++        dma_ctrl_write(channels[i], ANLOGIC_DMA_REG_DMASR,
++                       ANLOGIC_DMA_DMAXR_ALL_IRQ_MASK);
++        dma_ctrl_set(channels[i], ANLOGIC_DMA_REG_DMACR,
++                     ANLOGIC_DMA_DMAXR_ALL_IRQ_MASK);
++    }
++    dev_info(a->dev, "BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers\n");
++    return 0;
++}
++EXPORT_SYMBOL_GPL(bsp_anlogic_loop_quiescent);

@@ -11,7 +11,9 @@ PLATFORM_NAME=${PLATFORM_NAME:-project_sd_baseline}
 PLAT=$SDK/solutions/boards/$PLATFORM_NAME
 FSBL_SOURCE=$SDK/solutions/demo/fsbl
 if test "${GP_RESET_BOOT:-0}" = 1; then
-  FSBL_SOURCE=$SDK/solutions/demo/fsbl_gp_control
+  FSBL_VARIANT=${FSBL_VARIANT:-fsbl_gp_control}
+  [[ "$FSBL_VARIANT" =~ ^fsbl_[a-zA-Z0-9_]+$ ]]
+  FSBL_SOURCE=$SDK/solutions/demo/$FSBL_VARIANT
   mkdir -p "$FSBL_SOURCE"
   cp "$SDK/solutions/demo/fsbl/"*.c "$SDK/solutions/demo/fsbl/"*.h \
      "$SDK/solutions/demo/fsbl/Makefile" "$FSBL_SOURCE/"

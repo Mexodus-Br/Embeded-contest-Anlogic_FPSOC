@@ -1,0 +1,34 @@
+BOOT.bin: OK
+Design.xml: OK
+boot/BOOT.bin: OK
+boot/boot.scr: OK
+boot/system.dtb: OK
+boot/uImage.lz4: OK
+boot.bif: OK
+boot.cmd: OK
+boot.scr: OK
+boot.vfat: OK
+bootgen.log: OK
+fsbl.elf: OK
+hpf.info: OK
+manifest.json: OK
+rootfs.ext4: OK
+sdcard.img: OK
+soc_plat.c: OK
+soc_plat.h: OK
+soc_plat_dts.h: OK
+system.bit: OK
+system.dtb: OK
+system.hpf: OK
+u-boot.bin: OK
+uImage.lz4: OK
+Traceback (most recent call last):
+  File "/home/uisrc/embedded-bsp-dma/bsp/scripts/verify_dma_image.py", line 9, in <module>
+    assert fdt('/soc/gp-control@80400000','reg')=='0 80400000 0 1000'
+  File "/home/uisrc/embedded-bsp-dma/bsp/scripts/verify_dma_image.py", line 5, in fdt
+    def fdt(path,prop):return subprocess.check_output(['fdtget','-t','x',str(dtb),path,prop],text=True).strip()
+  File "/usr/lib/python3.6/subprocess.py", line 356, in check_output
+    **kwargs).stdout
+  File "/usr/lib/python3.6/subprocess.py", line 423, in run
+    with Popen(*popenargs, **kwargs) as process:
+TypeError: __init__() got an unexpected keyword argument 'text'

@@ -1,5 +1,9 @@
 # Buildroot 最小 SD 启动基线
 
+最新检查点：独立DMA首版冷启动/GP41项/204正常回环通过，两路新IRQ各204次；首个超时恢复失败，缓冲区安全保留。恢复修正版已在匹配内核构建树重编并生成独立交付包，同一SD Windows完整烧录/512MiB无缓存读回通过，根a3d29e67-02。用户因额度要求暂停，修正版冷启动/恢复及buffer释放重分配尚未验收。见[dma/BUILD_STATUS.md](dma/BUILD_STATUS.md)及[BOARD_VALIDATION.md](BOARD_VALIDATION.md)。
+
+2026-10-12独立DMA/HP0回环后续批次：PL交付、最终PS+GP+DMA时序与一致镜像、匹配内核provider/client软件及主机校验通过。VM写入失败及重启后持续USB超时的证据保留；随后同一SD在Windows直接烧录512MiB并完整无缓存读回，SHA256一致、分区和文件系统签名通过，根a1604a87-02。DMA镜像启动、GP回归、DMA传输和恢复待板测。本批状态见[dma/BUILD_STATUS.md](dma/BUILD_STATUS.md)；下方GP/基线成功项为历史结果。
+
 2026-10-11（Asia/Taipei）。状态：**已构建，实体SD烧写及512MiB直接读回校验成功；已完成SD根启动及DDR/CMA只读核对，冷启动全链路待采集**。实板证据见[BOARD_VALIDATION.md](BOARD_VALIDATION.md)。后续部署实录见[DEPLOYMENT.md](DEPLOYMENT.md)。
 2026-10-12 GP控制批次已按冻结契约集成PL控制顶层、匹配HPF/FSBL/BOOT.bin/DTS和platform/misc驱动及验收程序；SD512MiB完整读回通过，根20ae01e9-02。用户装卡上电后FSBL→U-Boot→Linux启动通过；1GiB/CMA128MiB、GP版本/读写/无运动命令、IRQ及空闲四轴快照41项检查通过。动态运动、DMA/HP0和电机仍未验证；详细状态见[gp/BUILD_STATUS.md](gp/BUILD_STATUS.md)。
 范围是串口、DDR/CMA、SD/eMMC和驱动构建基础，以及最小GP控制验证。HMI、运动内核和独立AXI DMA硬件联调尚未集成。

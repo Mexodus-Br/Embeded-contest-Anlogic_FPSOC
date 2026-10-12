@@ -1,0 +1,16 @@
+{
+  "status": "REVIEWED_FOR_INDEPENDENT_LOOPBACK_BUILD",
+  "source_commit": "7de13f1c5260c8ffad255eb43a28342e7eb32e06",
+  "hpf_sha256": "73deb1d1198e67b5ee006f7c1b23673c58e52aa4a58fd2ff3b7732656e1565f7",
+  "bit_sha256": "98394ebb2ea58a9e309a0850939a36f7ae4522eeb90fcb1ed888969f46fab22a",
+  "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1",
+  "kernel_symvers_sha256": "ccc69b7dbd1968066b6ce46d5e5a741f55045f7cc9663db722c3959c1cb548a3",
+  "schema_sha256": "f6eb4cfbf113a5315026c65f8b56a5eb087aa8536bf6239791ac1c6261877309",
+  "gp_abi": "original numeric constants/profile preserved; reuse exact matched GP module/application; mandatory board regression",
+  "driver_review": "simple only; no include-sg; mask32/BTT16; DMA API coherent buffers; simple queue one descriptor; stop/reset errors propagated; IRQ/tasklet synchronize; both HALTED/reset-clear/list-empty postcondition; failed stop retains buffers",
+  "runtime_recovery_board_verified": false,
+  "diagnostics": "2 vendor internal dummy nodes retained, no_clock/IO-delay gaps0, no critical warning; report_route_status is in raw build log, no standalone DRC file generated",
+  "reference_speed": 2,
+  "clock": "H16 100MHz GP0/HP0/PL, mapped native PS generated properties",
+  "ddr": "1GiB/32bit/1333MTps/1.35V; executable DDR init unchanged; generated HP0 reset-release/width writes added; physical supply/parts unmeasured"
+}

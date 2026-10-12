@@ -1,0 +1,131 @@
+
+# stty -echo
+WED_SCRIPT_EOF'
+#!/bin/sh
+# Existing quarantined DMA buffers must stay allocated; no reset/unlo# > > > > > > > > > > > > BSP_DMA_FAILURE_DIAGNOSTICS_BEGIN
+           CPU0       CPU1       
+ 11:       1524       1650     GICv3  27 Level     arch_timer
+ 13:          0          0     GICv3  78 Level     dw:dmac-1
+ 18:       2111          0     GICv3 103 Level     ttyS0
+ 19:          0          0     GICv3  80 Level     f804e000.spi
+ 20:        789          0     GICv3  94 Level     mmc0
+ 22:        385          0     GICv3  95 Level     mmc1
+ 23:          0          0  gpio-dwapb  15 Edge      f8049000.mmc cd
+ 24:          3          0     GICv3 114 Level     bsp-gp
+ 25:        204          0     GICv3 115 Level     anlogic-dma-controller
+ 26:        204          0     GICv3 116 Level     anlogic-dma-controller
+IPI0:        74        111       Rescheduling interrupts
+IPI1:       730       1203       Function call interrupts
+IPI2:         0          0       CPU stop interrupts
+IPI3:         0          0       CPU stop (for crash dump) interrupts
+IPI4:         0          0       Timer broadcast interrupts
+IPI5:         0          0       IRQ work interrupts
+IPI6:         0          0       CPU wake-up interrupts
+Err:          0
+bsp_dma_loop 16384 1 - Live 0xffffffc000992000 (O)
+anlogic_dma_engine 24576 3 bsp_dma_loop, Live 0xffffffc000986000 (O)
+bsp_gp 20480 0 - Live 0xffffffc000980000 (O)
+[   67.651362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.711424] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.740860] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.780461] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.816466] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.852466] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.888473] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.924468] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.960475] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   67.996507] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.032512] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.068507] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.104552] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.144548] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.185879] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.225882] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.265886] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.307319] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.367182] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.396554] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.436464] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.472467] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.508467] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.544471] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.580467] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.616474] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.652511] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.688510] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.724507] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.760558] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.796552] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.833916] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.873950] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.913954] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   68.955416] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.015779] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.045097] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.084460] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.120468] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.160466] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.196471] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.232465] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.268473] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.304509] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.340510] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.376506] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.412555] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.448558] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.485913] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.525955] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.565950] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.607414] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   69.667779] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   70.802431] anlogic-dma 80500000.dma: Cannot stop channel 00000000bbb83345: 0
+[   70.802454] bsp-dma-loop dma-loopback-test: pair stop failed rx=-110 tx=0 post=-16; buffers retained, no reuse/unload
+IDENTITY version=1 caps=f features=7 tick_hz=1000000 last_txn=5
+PASS exact profile identity/features
+PASS scratch write/readback
+PASS scratch write/readback
+PASS scratch write/readback
+PASS scratch write/readback
+PASS motion opcode rejected in software without MMIO
+PASS control ACK accepted/completed (not motion)
+PASS control ACK accepted/completed (not motion)
+PASS snapshot ID/valid atomicity
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle invalid/no-point metadata
+PASS snapshot NOT_READY state
+PASS control ACK accepted/completed (not motion)
+PASS duplicate snapshot retains complete frame
+PASS control ACK accepted/completed (not motion)
+PASS snapshot ID/valid atomicity
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle invalid/no-point metadata
+PASS snapshot NOT_READY state
+TIMESTAMP delta_ticks=20175 host_seconds=0.020196
+PASS new transaction/timestamp progression
+PASS 1MHz timestamp coarse sanity (not frequency calibration)
+PASS masked persistent source still latches
+PASS W1C cannot clear active source
+PASS IRQ poll wake
+PASS TEST IRQ delivered
+PASS remove source then W1C clears
+PASS no IRQ storm after clear/rearm
+PASS IRQ poll wake
+PASS TEST IRQ retrigger/recovery
+PASS control ACK accepted/completed (not motion)
+PASS IRQ poll wake
+PASS command ACK IRQ delivered
+PASS all sources cleared
+PASS control ACK accepted/completed (not motion)
+PASS IRQ clear preserves cached ACK
+GP_ACCEPT_PASS checks=41; idle snapshot only, no DMA or motor validation
+164977463
+BSP_DMA_FAILURE_DIAGNOSTICS_COMPLETE_NO_DMA_REUSE
+# 
+BSP_SERIAL_EXIT=0
+# 

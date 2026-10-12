@@ -1,0 +1,186 @@
+{
+  "status": "BUILT_NOT_BOARD_BOOT_TESTED",
+  "ddr": {
+    "capacity_mib": 1024,
+    "dq_width": 32,
+    "rate_mts": 1333,
+    "io_voltage_v": 1.35,
+    "physical_voltage_measured": false
+  },
+  "root_partuuid": "a3d29e67-02",
+  "partitions": [
+    {
+      "number": 1,
+      "start_sector": 2048,
+      "sectors": 131072,
+      "filesystem": "FAT32"
+    },
+    {
+      "number": 2,
+      "start_sector": 133120,
+      "sectors": 524288,
+      "filesystem": "EXT4"
+    }
+  ],
+  "versions": {
+    "linux": "6.1.111-rt42-bsp-sd1",
+    "uboot": "2021.01",
+    "buildroot": "2022.02.6",
+    "TD": "2026.1 SP2 6.2.2.200067",
+    "FD": "2026.1 SP1"
+  },
+  "files": {
+    "BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "c4556c261b49cb07fb45dcbb90f4d0b29077b5cdad0d3d45385e772902fefadc"
+    },
+    "Design.xml": {
+      "bytes": 72971,
+      "sha256": "3de549542223ae25a7b3ed1de6cac44260c071d1fe1ea2bcea57f935dbe3bc75"
+    },
+    "boot/BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "c4556c261b49cb07fb45dcbb90f4d0b29077b5cdad0d3d45385e772902fefadc"
+    },
+    "boot/boot.scr": {
+      "bytes": 779,
+      "sha256": "5567110b00b41fe5c33882c30bdac10d04e77a376e9f5a86544ec64b01900c9d"
+    },
+    "boot/system.dtb": {
+      "bytes": 15335,
+      "sha256": "8d05b55a310def01cd48290855e113ca6c7da18f730a816af9f4a2f191bfc57e"
+    },
+    "boot/uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    },
+    "boot.bif": {
+      "bytes": 365,
+      "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
+    },
+    "boot.cmd": {
+      "bytes": 707,
+      "sha256": "82e9ca5f2db403978c64652cbc859ba242b97378cb81b25b6a9e85f0f982a30b"
+    },
+    "boot.scr": {
+      "bytes": 779,
+      "sha256": "5567110b00b41fe5c33882c30bdac10d04e77a376e9f5a86544ec64b01900c9d"
+    },
+    "boot.vfat": {
+      "bytes": 67108864,
+      "sha256": "13c5f1059f7ad48577a569de204c88c9f4a15a0263a38754f01ec0df8aea0ddd"
+    },
+    "bootgen.log": {
+      "bytes": 3334,
+      "sha256": "995760e8a26dd05a54558a71414d5bf7276ee63add16a59fa9c66907f27e6502"
+    },
+    "fsbl.elf": {
+      "bytes": 1506440,
+      "sha256": "4b972e7a394ac23d16bedf8d33865b021c34cd7daaa6df62accaeffb13e7262f"
+    },
+    "hpf.info": {
+      "bytes": 118,
+      "sha256": "4897dd41595348deb7e42a21b17de59921c296b6ea8991ff51f4aaeff0620980"
+    },
+    "rootfs.ext4": {
+      "bytes": 268435456,
+      "sha256": "8135eb4d84be860b82b2515be0006059428b9b54e2d7964e36e823cc50ca0d5a"
+    },
+    "sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d"
+    },
+    "soc_plat.c": {
+      "bytes": 129854,
+      "sha256": "6dc252d86fa0d2417890215bf506207f9a06b7688af3c28bf821883c61ca8fbd"
+    },
+    "soc_plat.h": {
+      "bytes": 14296,
+      "sha256": "7239f5ea1f87be8442cc382b162c6d13dbf54bcb4e54bba8260d39248d8893c6"
+    },
+    "soc_plat_dts.h": {
+      "bytes": 4132,
+      "sha256": "4658518f7a90d5f1fb8c92e52bd4a882559323bd04f1dd9e670aae5e31cdf1c0"
+    },
+    "system.bit": {
+      "bytes": 4052214,
+      "sha256": "98394ebb2ea58a9e309a0850939a36f7ae4522eeb90fcb1ed888969f46fab22a"
+    },
+    "system.dtb": {
+      "bytes": 15335,
+      "sha256": "8d05b55a310def01cd48290855e113ca6c7da18f730a816af9f4a2f191bfc57e"
+    },
+    "system.hpf": {
+      "bytes": 333580,
+      "sha256": "73deb1d1198e67b5ee006f7c1b23673c58e52aa4a58fd2ff3b7732656e1565f7"
+    },
+    "u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    }
+  },
+  "bundle": {
+    "path": "bsp/artifacts/dma-recovery-release.tar.gz",
+    "sha256": "d832216b0d97b1dc7eca66c8cb945f69bbb480d6e5caec353fda99edde6b61fd",
+    "local_archive_and_23_release_files_verified": true
+  },
+  "replaces_first_image_after_recovery_failure": "6be6b27d1b67d56dc289c85704a1e9d46b7d74d43e96a0e0e258b8a755617897",
+  "deployment": {
+    "status": "SD_DEPLOYMENT_VERIFIED_NOT_BOARD_BOOT_TESTED",
+    "expected_sha256": "afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d",
+    "root_partuuid": "a3d29e67-02",
+    "image": "D:\\Works\\Embedded_contest\\dev\\bsp\\artifacts\\dma-recovery-release\\release\\sdcard.img",
+    "disk_number": 1,
+    "emmc": "NOT_MODIFIED",
+    "board_tests": "NOT_TESTED",
+    "started_local": "2026-10-12T22:33:39+0800",
+    "identity": {
+      "partitions": [
+        {
+          "PartitionNumber": 1,
+          "DriveLetter": "E",
+          "Offset": 1048576,
+          "Size": 67108864
+        },
+        {
+          "PartitionNumber": 2,
+          "DriveLetter": null,
+          "Offset": 68157440,
+          "Size": 268435456
+        }
+      ],
+      "disk": {
+        "Number": 1,
+        "FriendlyName": "Generic- SD/MMC/MS PRO",
+        "UniqueId": "USBSTOR\\DISK&VEN_RSUER&PROD_RTSUERLUN0&REV_1.00\\0000:LAPTOP-JS7E5LFJ",
+        "BusType": "USB",
+        "Size": 31299993600,
+        "LogicalSectorSize": 512,
+        "IsBoot": false,
+        "IsSystem": false,
+        "IsReadOnly": false
+      }
+    },
+    "written_bytes": 536870912,
+    "write_seconds": 24.60900000000038,
+    "readback_bytes": 536870912,
+    "readback_seconds": 18.35900000000038,
+    "actual_readback_sha256": "afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d",
+    "partition_and_filesystem_signatures": "PASS",
+    "fsck": "NOT_RUN_ON_WINDOWS; source FAT/EXT4 fsck passed before byte-identical deployment",
+    "finished_local": "2026-10-12T22:34:25+0800",
+    "exit_code": 0,
+    "write_log": "bsp/evidence/dma-sd-windows-recovery-write.log",
+    "write_log_sha256": "b721e43cc81f28028edc5083c021b5468efb2d2a9f5bc72043f12accc9ef868c"
+  },
+  "board_validation": {
+    "status": "NOT_STARTED_USER_REQUESTED_PAUSE",
+    "pause_reason": "User: 5h quota exhausted, stop here.",
+    "first_image_results": "bsp/evidence/dma-first-board-result.json",
+    "motion_fifo_and_motors": "NOT_CONNECTED"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "status": "FINAL_PS_GP_DMA_BUILT_NOT_BOARD_TESTED",
+  "source_commit": "7de13f1c5260c8ffad255eb43a28342e7eb32e06",
+  "hpf_sha256": "73deb1d1198e67b5ee006f7c1b23673c58e52aa4a58fd2ff3b7732656e1565f7",
+  "bit_sha256": "98394ebb2ea58a9e309a0850939a36f7ae4522eeb90fcb1ed888969f46fab22a",
+  "configuration": {
+    "DDRC_DEBUG_LOG_EN": "1 // enable DDR Init Debug Log\r",
+    "DDRC_COMP_DENSITY": "4096\r",
+    "DDRC_SPEED_BIN": "_SPEED_BIN_DDR3_1333G\r",
+    "DDRC_COMP_TYPE": "DDR_COMP_WIDTH_x16\r",
+    "DDRC_ECC_EN": "ECC_NONE\r",
+    "DDRC_IO_VOL": "1.35\r",
+    "DDRC_PZQ_CONF": "0\r",
+    "DDRC_RDBI": "0\r",
+    "DDRC_DDR_SPEED": "1333\r",
+    "DDRC_TRAINING_EN": "1\r",
+    "DDRC_DDR_TYPE": "DDR3\r",
+    "DDRC_VREF": "Internal\r",
+    "DDRC_WDM_WDBI": "NONE\r",
+    "DDRC_DQ_WIDTH": "32\r"
+  },
+  "soc_plat_c_same_as_gp_baseline": false,
+  "soc_plat_c_diff": "--- \n\n+++ \n\n@@ -1500,4 +1500,14 @@\n\n     CONFIG_REG_MASK(0xF8800080, 0x00000002, 0x00000000),\n \n+    // Config CRG_SRST, Slave_AXI_HP0_Interface: reset release\n+    // register: SRST_CTRL2.nic_hp0_srst_n = 0x1\n+    // 0xF8801078[0:0] = 0x1\n+    CONFIG_REG_MASK(0xF8801078, 0x00000001, 0x00000001),\n+\n+    // Config HP_WIDTH, Slave_AXI_HP0_DATA_WIDTH: 64 bit\n+    // register: CFG_HP_WIDTH.wmode_hp0 = 0x0\n+    // 0xF8800084[0:0] = 0x0\n+    CONFIG_REG_MASK(0xF8800084, 0x00000001, 0x00000000),\n+\n     /* configuration complete */\n     CONFIG_REG_EXIT()",
+  "timing": {
+    "gate": {
+      "setup_wns_ns": 1.978,
+      "hold_wns_ns": 0.0
+    },
+    "place": {
+      "setup_wns_ns": 4.703,
+      "hold_wns_ns": 0.0
+    },
+    "route": {
+      "setup_wns_ns": 3.117,
+      "hold_wns_ns": 0.02
+    }
+  }
+}
