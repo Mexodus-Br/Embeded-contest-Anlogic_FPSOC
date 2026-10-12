@@ -77,6 +77,18 @@ def validate(s):
             if occupied&occupied_new or min(occupied_new)<0 or max(occupied_new)>=f['length']:raise ValueError('frame overlap/range')
             occupied |= occupied_new
         if occupied!=set(range(f['length'])) or f['fields'][-1]['name']!='crc' or f['fields'][-1]['offset']!=f['length']-4:raise ValueError('frame gap/crc')
+    for p in s.get('motion_integration_profiles',{}).values():
+        if p['base']%4096 or p['size']!=4096 or p['irq_intid']!=p['irq_spi']+32:raise ValueError('motion resource')
+        offsets=list(p['registers'].values())
+        if len(set(offsets))!=len(offsets) or any(x%4 or not 0<=x<4096 for x in offsets):raise ValueError('motion register overlap')
+        if p['record_bytes']!=s['frames']['motion_stream_v2']['length'] or p['max_packet_records']*p['record_bytes']>65535:raise ValueError('motion packet length')
+        if p['raw_depth']<2 or p['plan_depth']<2 or not 1<=p['start_min_points']<=p['raw_depth']+p['plan_depth']+1:raise ValueError('motion capacity')
+        for q in s.get('gp_control_profiles',{}).values():
+            a=q['address']
+            if max(p['base'],a['base'])<min(p['base']+4096,a['base']+a['size']) or p['irq_line']==q['irq']['pl_line']:raise ValueError('motion GP overlap')
+        for q in s.get('dma_loopback_profiles',{}).values():
+            a=q['address']
+            if max(p['base'],a['base'])<min(p['base']+4096,a['base']+a['size']) or p['irq_line'] in (q['irq']['mm2s_line'],q['irq']['s2mm_line']):raise ValueError('motion DMA overlap')
 
 def constants(s):
     out={'ABI_VERSION':s['version']}
@@ -112,6 +124,18 @@ def constants(s):
             out[pre+'_'+key.upper()]=p[key]
         for key,value in p['parameters'].items():out[pre+'_'+key]=value
         for key,value in p.get('control_registers',{}).items():out[pre+'_REG_'+key]=value
+    for name,p in s.get('motion_integration_profiles',{}).items():
+        pre='MOTION_'+name.upper()
+        for key,value in p.items():
+            if isinstance(value,int) and not isinstance(value,bool):out[pre+'_'+key.upper()]=value
+        for key in ['registers','snapshot_words']:
+            for n,value in p[key].items():out[pre+'_'+('REG_' if key=='registers' else 'SNAP_WORD_')+n]=value
+        for key in ['status_bits','irq_bits','ack_bits','feature_bits']:
+            for n,value in p[key].items():out[pre+'_'+key.upper()+'_'+n+'_MASK']=1<<value
+        for group,fields in p['snapshot_fields'].items():
+            for n,(shift,width) in fields.items():
+                out[pre+'_SNAP_'+group+'_'+n+'_SHIFT']=shift
+                out[pre+'_SNAP_'+group+'_'+n+'_MASK']=((1<<width)-1)<<shift
     for n,f in s['frames'].items():
         pre=n.upper(); out[pre+'_LENGTH']=f['length']
         for x in f['fields']:
@@ -159,6 +183,9 @@ def outputs(s):
                       '', 'Native vendor register behavior with the profile guard; no motion record layout is frozen.',
                       '', '| Offset | DMA register |', '| --- | --- |'])
         table.extend(f'| 0x{v:03X} | {n} |' for n,v in p['control_registers'].items())
+    for name,p in s.get('motion_integration_profiles',{}).items():
+        table+=['','## '+name,'',p['status']+'; confirmed '+p['confirmation']['date']+'.','',f"Independent window 0x{p['base']:08X}/4KiB, IRQ{p['irq_line']}/SPI{p['irq_spi']}; S2MM telemetry unsupported.",'','| Offset | Register | Access |','| --- | --- | --- |']
+        table += [f'| 0x{o:03X} | {n} | {p["register_access"][n]} |' for n,o in p['registers'].items()]
     err=['<!-- '+banner+' -->','# Error candidate table','','| Code | Name | Severity | State impact | Report |','| --- | --- | --- | --- | --- |']
     err += [f"| 0x{e['value']:04X} | {e['name']} | {e['severity']} | {e['impact']} | {e['report']} |" for e in s['errors']]
     return {'interface_defs.h':'\n'.join(c),'interface_defs.vh':'\n'.join(v),'registers.md':'\n'.join(table)+'\n','errors.md':'\n'.join(err)+'\n'}

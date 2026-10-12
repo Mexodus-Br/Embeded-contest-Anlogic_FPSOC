@@ -1,5 +1,7 @@
 # PS/PL 接口设计包
 
+2026-10-13：用户接受 DMA→连续运动六项契约，唯一 schema 新增冻结 `motion_integration_profiles.gp_motion_v1` 和 `frames.motion_stream_v2`（72B/MOT2/version2）。新增 GP 独立窗口/profile，不改变原 probe ABI；历史 80B motion/128B telemetry 仍 Draft。执行/恢复和验证边界见 [MOTION_HANDOFF.md](../pl_motion/MOTION_HANDOFF.md)，宿主新格式 codec 为 `motion_v2.py`。
+
 2026-10-07，整体状态 **Draft / 部分决策已确认**。用户本轮已确认项见DECISIONS；完整地址、报文布局、位域和具体时序尚未冻结。
 
 2026-10-12：[GP 最小控制 profile](../pl_motion/GP_CONTROL_DRAFT.md) 已确认，唯一源为 `schema.json` 中 `gp_control_profiles.gp_control_probe_v1`。只有此子集冻结，其他报文/寄存器仍 Draft。生成定义含 profile 专属窗口、IRQ、特性掩码与 reset override；不能把全局草案条目当作支持项。GP RTL/IP/HPF/DTS 和实板验证尚未完成。

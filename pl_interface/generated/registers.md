@@ -1,4 +1,4 @@
-<!-- Generated from schema.json SHA256 f6eb4cfbf113a5315026c65f8b56a5eb087aa8536bf6239791ac1c6261877309; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
+<!-- Generated from schema.json SHA256 ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
 # Register table (global Draft, confirmed GP subsets below)
 
 | Offset | Name | Width | Reset | Access | Fields | Unit | Side effect |
@@ -262,3 +262,130 @@ Native vendor register behavior with the profile guard; no motion record layout 
 | 0x048 | S2MM_ADDRESS |
 | 0x04C | S2MM_ADDRESS_MSB |
 | 0x058 | S2MM_LENGTH |
+
+## gp_motion_v1
+
+USER_CONFIRMED; confirmed 2026-10-13.
+
+Independent window 0x80600000/4KiB, IRQ3/SPI85; S2MM telemetry unsupported.
+
+| Offset | Register | Access |
+| --- | --- | --- |
+| 0x000 | VERSION | RO |
+| 0x004 | PROFILE | RO |
+| 0x008 | STATUS | RO |
+| 0x00C | ERROR | RO |
+| 0x010 | OPCODE | RW |
+| 0x014 | ARG | RW |
+| 0x018 | TXN | RW |
+| 0x01C | SUBMIT | WO |
+| 0x020 | ACK_ID | RO |
+| 0x024 | ACK_ERROR | RO |
+| 0x028 | ACK_STATUS | RO |
+| 0x02C | SESSION_LO | RW |
+| 0x030 | SESSION_HI | RW |
+| 0x034 | MAINT | RW |
+| 0x038 | STOP | WO |
+| 0x03C | PACKET_ARM | WO |
+| 0x040 | RECOVER_GEN | RW |
+| 0x044 | SNAP_REQ | WO |
+| 0x048 | SNAP_ID | RO |
+| 0x04C | SNAP_VALID | RO |
+| 0x050 | IRQ_PENDING | W1C |
+| 0x054 | IRQ_MASK | RW |
+| 0x058 | FIFO_LEVEL | RO |
+| 0x05C | PLAN_LEVEL | RO |
+| 0x060 | BUFFERED | RO |
+| 0x064 | RAW_CAPACITY | RO |
+| 0x068 | PLAN_CAPACITY | RO |
+| 0x06C | START_THRESHOLD | RO |
+| 0x070 | LINK_GEN | RO |
+| 0x074 | LINK_READY | RO |
+| 0x078 | PACKET_COUNT | RO |
+| 0x07C | ACCEPT_SEQ | RO |
+| 0x080 | DONE_SEQ | RO |
+| 0x084 | ACTIVE_SEQ | RO |
+| 0x088 | ACCEPT_VALID | RO |
+| 0x08C | DONE_VALID | RO |
+| 0x100 | REBASE_0 | RW |
+| 0x104 | REBASE_1 | RW |
+| 0x108 | REBASE_2 | RW |
+| 0x10C | REBASE_3 | RW |
+| 0x110 | REBASE_4 | RW |
+| 0x114 | REBASE_5 | RW |
+| 0x118 | REBASE_6 | RW |
+| 0x11C | REBASE_7 | RW |
+| 0x200 | SNAP_0 | RO |
+| 0x204 | SNAP_1 | RO |
+| 0x208 | SNAP_2 | RO |
+| 0x20C | SNAP_3 | RO |
+| 0x210 | SNAP_4 | RO |
+| 0x214 | SNAP_5 | RO |
+| 0x218 | SNAP_6 | RO |
+| 0x21C | SNAP_7 | RO |
+| 0x220 | SNAP_8 | RO |
+| 0x224 | SNAP_9 | RO |
+| 0x228 | SNAP_10 | RO |
+| 0x22C | SNAP_11 | RO |
+| 0x230 | SNAP_12 | RO |
+| 0x234 | SNAP_13 | RO |
+| 0x238 | SNAP_14 | RO |
+| 0x23C | SNAP_15 | RO |
+| 0x240 | SNAP_16 | RO |
+| 0x244 | SNAP_17 | RO |
+| 0x248 | SNAP_18 | RO |
+| 0x24C | SNAP_19 | RO |
+| 0x250 | SNAP_20 | RO |
+| 0x254 | SNAP_21 | RO |
+| 0x258 | SNAP_22 | RO |
+| 0x25C | SNAP_23 | RO |
+| 0x260 | SNAP_24 | RO |
+| 0x264 | SNAP_25 | RO |
+| 0x268 | SNAP_26 | RO |
+| 0x26C | SNAP_27 | RO |
+| 0x270 | SNAP_28 | RO |
+| 0x274 | SNAP_29 | RO |
+| 0x278 | SNAP_30 | RO |
+| 0x27C | SNAP_31 | RO |
+| 0x090 | ACTIVE_VALID | RO |
+| 0x094 | ACCEPT_COUNT | RO |
+| 0x098 | DONE_COUNT | RO |
+| 0x09C | STALE_COUNT | RO |
+| 0x0A0 | REJECT_COUNT | RO |
+| 0x0A4 | CANCEL_COUNT | RO |
+| 0x0A8 | STOP_COUNT | RO |
+| 0x0AC | END_COUNT | RO |
+| 0x0B0 | CAPS | RO |
+| 0x0B4 | FEATURES | RO |
+| 0x280 | SNAP_32 | RO |
+| 0x284 | SNAP_33 | RO |
+| 0x288 | SNAP_34 | RO |
+| 0x28C | SNAP_35 | RO |
+| 0x290 | SNAP_36 | RO |
+| 0x294 | SNAP_37 | RO |
+| 0x298 | SNAP_38 | RO |
+| 0x29C | SNAP_39 | RO |
+| 0x2A0 | SNAP_40 | RO |
+| 0x2A4 | SNAP_41 | RO |
+| 0x2A8 | SNAP_42 | RO |
+| 0x2AC | SNAP_43 | RO |
+| 0x2B0 | SNAP_44 | RO |
+| 0x2B4 | SNAP_45 | RO |
+| 0x2B8 | SNAP_46 | RO |
+| 0x2BC | SNAP_47 | RO |
+| 0x2C0 | SNAP_48 | RO |
+| 0x2C4 | SNAP_49 | RO |
+| 0x2C8 | SNAP_50 | RO |
+| 0x2CC | SNAP_51 | RO |
+| 0x2D0 | SNAP_52 | RO |
+| 0x2D4 | SNAP_53 | RO |
+| 0x2D8 | SNAP_54 | RO |
+| 0x2DC | SNAP_55 | RO |
+| 0x2E0 | SNAP_56 | RO |
+| 0x2E4 | SNAP_57 | RO |
+| 0x2E8 | SNAP_58 | RO |
+| 0x2EC | SNAP_59 | RO |
+| 0x2F0 | SNAP_60 | RO |
+| 0x2F4 | SNAP_61 | RO |
+| 0x2F8 | SNAP_62 | RO |
+| 0x2FC | SNAP_63 | RO |

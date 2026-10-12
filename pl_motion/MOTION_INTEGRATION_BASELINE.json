@@ -1,0 +1,23 @@
+{
+  "status": "READ_ONLY_BASELINE_NOT_MOTION_VALIDATION",
+  "base_commit": "7966c8335b1f40b0880616911120917f494b5ae5",
+  "sha256_raw_bytes": {
+    "AGENT.md": "591c60f99e3a8bccff7539cc45fc60df63687a0dfd56c1f81778d2fd927cd576",
+    "PHASE0_CONSTRAINTS.md": "55701b7ba06ba4e66215ef83f9b4a2b9d62510c1b0572601fb7beef23f736c69",
+    "pl_interface/schema.json": "f6eb4cfbf113a5315026c65f8b56a5eb087aa8536bf6239791ac1c6261877309",
+    "pl_motion/rtl/continuous_motion.v": "a9a404c49d5d94e5241d405aeacf59deec4ad8fa2467d1bf1c764a024a77f17b",
+    "pl_motion/rtl/motion_planner.v": "dd8a903339066a5b01f6435d53c3e302948c8d7426ff0621a4bfd0c7e18a18b4",
+    "pl_motion/rtl/motion_executor.v": "9f540753a4d75b050f7baf60957867fc55971a7f876455a43b94f7044193367d",
+    "pl_motion/rtl/gp_control_regs.v": "79096107a067b887b8ff98a09dee8ef2e278b129fd0b80f52987b2ba19870cf6",
+    "pl_dma/SIM_RESULTS.json": "6835c38d07fce8444105b2a28753e7af107b348d3ff6f82bc2eee6f418ecf30e",
+    "pl_dma/SOC_REFERENCE_RESULTS.json": "897291546b1da703f63a098e7121fd385e4b3c7be5bf3a62cb142de886849a6b",
+    "bsp/BOARD_VALIDATION.md": "3dd35ee289551bffe5e7cc971ae29824c552f94a2b4d91adf0bd3552f4ea1946"
+  },
+  "candidate_motion_window": {
+    "base": 2153775104,
+    "size": 4096,
+    "overlaps_in_prior_audit": []
+  },
+  "address_audit_source_sha256": "d6e19f633918c8f982c9eafa0ebe77e784f7a4d2142a4d6a4914bdb882d6c1fe",
+  "limits": "Prior numeric DTS audit only; final BSP resource audit required. AGENT.md includes pre-existing user changes and is not staged. No new RTL, simulation, implementation timing or board validation claimed."
+}

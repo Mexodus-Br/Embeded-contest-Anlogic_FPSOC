@@ -1,5 +1,7 @@
 # PL 基础运动内核
 
+2026-10-13：DMA → 四轴连续运动集成采用独立 `gp_motion_v1` 和 72B `motion_stream_v2`，不使用旧 80B/128B 草案。原 GP probe、独立回环、Golden 和运动算法保持。新入口 `pl_dma/rtl/motion_gp_ps_top.v`；接线、控制/取消恢复、验证、资源与未验证项以 [MOTION_HANDOFF.md](MOTION_HANDOFF.md) 为准。默认驱动配置无效，不导出实体电机引脚，不自动使能；未下载板卡或修改 BSP。
+
 2026-10-12：冻结 GP 最小 profile 的寄存器与真实 TD 转换器集成自检、参考100MHz OOC综合/布局布线已通过，见 [GP_INTEGRATION.md](GP_INTEGRATION.md)、[GP_VALIDATION.md](GP_VALIDATION.md) 和 GP_*_RESULTS.json。首轮空闲快照、NOP/测试IRQ，不连接运动/DMA。BSP完整PS/HPF/DTS/FSBL和板级验收仍待完成。
 
 四轴单点共同槽调度见 FOUR_AXIS.md；连续 FIFO、预规划、同拍边界切换和 END/暂停见 [CONTINUOUS.md](CONTINUOUS.md)。2026-10-11 连续顶层参考夹具的 100MHz 门级和布局布线检查通过，见 [TIMING.md](TIMING.md)、VALIDATION.md。下文保留单轴阶段说明，既有 RTL/接口不变；参考速度等级不代表实物确认，板级 IO/驱动时序、报文布局与容量继续待定。

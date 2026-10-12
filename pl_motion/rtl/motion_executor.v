@@ -51,8 +51,6 @@ module motion_executor #(
     end endgenerate
     wire safety=stop_req || (|fault) || disable_req;
     assign busy=state!=IDLE || (|disabling);
-    assign boundary=state==RUN && elapsed==cycles;
-    assign pulse_safe=all_safe;
     assign enabled_state=enabled;
     assign plan_ready=(state==IDLE || boundary) && !(|disabling) && !(|fault_latched) && !safety;
     function [63:0] age_next;
@@ -84,6 +82,8 @@ wire commit_ok=plan_base==position && all_safe &&
 reg [63:0] cycles,master,quotient,remainder;
     // elapsed names the cycle being executed, starting at 1 after commit.
     reg [63:0] elapsed, next_slot, slot_index, time_remainder;
+    assign boundary=state==RUN && elapsed==cycles;
+    assign pulse_safe=all_safe;
     wire slot_due=state==RUN && master!=0 && slot_index<master &&
                   elapsed==next_slot;
     reg [3:0] emit;
