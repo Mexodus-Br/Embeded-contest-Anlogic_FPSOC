@@ -1,0 +1,34 @@
+{
+  "source_commit": "7de13f1c5260c8ffad255eb43a28342e7eb32e06",
+  "scope": "PL DMA/GP-shared implementation, unique schema and validation; handoff-only followup does not change RTL/spec/evidence",
+  "gp_baseline_commit": "cc16fe2",
+  "bsp_reference_commit": "0eecd84",
+  "board_dma_verified": false,
+  "integration_ready": true,
+  "deployment_ready": false,
+  "source_sha256_lf": {
+    "pl_dma/rtl/axi_lite_two_way.v": "bc161e129d413b8b34499c468d163b5ec055c86d3e50044de5365d861e8c1a18",
+    "pl_dma/rtl/axis_loop_fifo.v": "2b91f01d0a6c8332885d5e79280443468a9b99d246d2c39e0a9d382bbdbfd9a7",
+    "pl_dma/rtl/dma_gp_full_top.v": "f97d371de8d2a0a135a5bc8c42cf05c2c7e3d0c786778a4a32364aacb6be5bfe",
+    "pl_dma/rtl/dma_gp_ps_top.v": "cea947f72b9eaab5e137196795424f13108ded2f9632ad9fec55ffdf1c88fa50",
+    "pl_dma/rtl/dma_lite_guard.v": "c1cfb74c21563fff7dbc13fd7492749a8d17f9172690da80e4890a9737ef0717",
+    "pl_dma/rtl/dma_loopback_top.v": "7e0705b5a55bb4fc19d5bfba074bccb868b9e6a956c78e09efb710f8675a736c",
+    "pl_dma/rtl/dma_shared_lite_top.v": "75142f0e4f2ce71f2dad0c94bbe24fb953e18b6f6234ebd50ba09f454c872b61",
+    "pl_interface/schema.json": "f6eb4cfbf113a5315026c65f8b56a5eb087aa8536bf6239791ac1c6261877309",
+    "pl_interface/generated/interface_defs.vh": "34392cd09e8aeeffa660a6a607bece326b89428b82667ad729ca9067a1bd7900",
+    "pl_interface/generated/interface_defs.h": "fd60d2275088adfa877de35818fa7d08b4df909f6afd816dc3d171cf6a3230b4",
+    "pl_motion/rtl/gp_control_regs.v": "79096107a067b887b8ff98a09dee8ef2e278b129fd0b80f52987b2ba19870cf6",
+    "pl_motion/rtl/gp_ps_write_adapter.v": "87d273c470a9a1e0405fa91ed40fa64fd778b9ae833710613d78a1a323bcb6c9"
+  },
+  "evidence_archive_sha256": "300d2ed291924cad5383d0d67ecc698989198ed5719144a3fa3f18038b33ba8d",
+  "validation": {
+    "SIM_RESULTS.json": "6835c38d07fce8444105b2a28753e7af107b348d3ff6f82bc2eee6f418ecf30e",
+    "SHARED_SIM_RESULTS.json": "d41fbef3732c90be62bc2f27433755cc45e0015ff5775059f3977b41f0629609",
+    "TD_RESULTS.json": "b5f69d5da866be01f92f37f9e3cb0f4300ab8e963063696e0727fc0e132b3042",
+    "SOC_REFERENCE_RESULTS.json": "897291546b1da703f63a098e7121fd385e4b3c7be5bf3a62cb142de886849a6b",
+    "COMPONENT_RESULTS.json": "dae9d2d2b40d45af718f5062be913e6a74826dfb63d64591187833cfd500220f",
+    "REGRESSION_RESULTS.json": "338da48c29428a25efb40f5dc486800cbc51fd936d2d39aaa19ff66d1fe4a13a",
+    "HP0_PORTS.json": "49ea9683f7d9987a87712697bf8a4f0ade5f8f3fa7300b5c6db2e53b22e03c3a",
+    "ADDRESS_MAP.json": "1a38127e3ff373de85a218fedfb9a99a5c39a0e03e94721a4275e8e0917174db"
+  }
+}
