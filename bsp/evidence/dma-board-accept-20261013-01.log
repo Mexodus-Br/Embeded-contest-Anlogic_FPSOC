@@ -1,0 +1,1693 @@
+
+Delta BSP SD baseline - serial/storage/DMA preparation
+delta-bsp login: root
+Password: 
+# stty -echo
+'BSP_REVIEWED_SCRIPT_EOF'
+#!/bin/sh
+# Only after this exact new SD cold boot; never accepts a # > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > Linux delta-bsp 6.1.111-rt42-bsp-sd1 #1 SMP PREEMPT Sun Oct 11 00:00:00 UTC 2026 aarch64 GNU/Linux
+NAME=Buildroot
+VERSION=2022.02.6
+ID=buildroot
+VERSION_ID=2022.02.6
+PRETTY_NAME="Buildroot 2022.02.6"
+console=ttyS0,115200n8 earlycon=uart,mmio32,0xf8401000 loglevel=7 root=PARTUUID=a3d29e67-02 rootwait rootfstype=ext4 rw
+/dev/mmcblk0p2 179:26  ext4
+Root block device: mmcblk0p2
+SD
+SD root PARTUUID: a3d29e67-02
+NAME         TYPE  SIZE FSTYPE PARTUUID                             MOUNTPOINT
+mtdblock0    disk   32M                                             
+mmcblk1      disk  7.3G                                             
+|-mmcblk1p1  part   99M vfat   9fee0ece-01                          
+`-mmcblk1p2  part  7.2G ext4   9fee0ece-02                          
+mmcblk1boot0 disk    4M                                             
+mmcblk1boot1 disk    4M                                             
+mmcblk0      disk 29.2G                                             
+|-mmcblk0p1  part   64M vfat   a3d29e67-01                          
+`-mmcblk0p2  part  256M ext4   a3d29e67-02                          /
+MemTotal:        1013512 kB
+MemAvailable:     986824 kB
+CmaTotal:         131072 kB
+CmaFree:          130656 kB
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000017c00000, size 128 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] Memory: 880840K/1048576K available (9664K kernel code, 1364K rwdata, 3028K rodata, 1600K init, 574K bss, 36664K reserved, 131072K cma-reserved)
+[    0.398511] tcp_listen_portaddr_hash hash table entries: 512 (order: 1, 8192 bytes, linear)
+[    0.676594] sdhci: Secure Digital Host Controller Interface driver
+[    0.676598] sdhci: Copyright(c) Pierre Ossman
+[    0.676601] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.676866] sdhci-dwcmshc f8049000.mmc: Got CD GPIO
+[    0.725030] mmc1: SDHCI controller on f804a000.mmc [f804a000.mmc] using ADMA
+[    0.729981] mmc0: SDHCI controller on f8049000.mmc [f8049000.mmc] using ADMA
+[    0.772707] mmc1: new high speed MMC card at address 0001
+[    0.773242] mmcblk1: mmc1:0001 IS008G 7.30 GiB 
+[    0.774533]  mmcblk1: p1 p2
+[    0.775119] mmcblk1boot0: mmc1:0001 IS008G 4.00 MiB 
+[    0.775696] mmcblk1boot1: mmc1:0001 IS008G 4.00 MiB 
+[    0.776127] mmcblk1rpmb: mmc1:0001 IS008G 4.00 MiB, chardev (239:0)
+[    0.875286] mmc0: new high speed SDHC card at address 0001
+[    0.882027] mmcblk0: mmc0:0001 MSSD0 29.2 GiB 
+[    0.887365]  mmcblk0: p1 p2
+[    1.011019] EXT4-fs (mmcblk0p2): recovery complete
+[    1.011784] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Quota mode: disabled.
+[    1.013438] Freeing unused kernel memory: 1600K
+[    1.209476] EXT4-fs (mmcblk0p2): re-mounted. Quota mode: disabled.
+CONFIG_MODVERSIONS=y
+CONFIG_CMA=y
+# CONFIG_CMA_DEBUG is not set
+CONFIG_CMA_DEBUGFS=y
+# CONFIG_CMA_SYSFS is not set
+CONFIG_CMA_AREAS=7
+# CONFIG_AXI_DMAC is not set
+CONFIG_ANLOGIC_DMA=m
+CONFIG_AXI_DMA=y
+CONFIG_AXI_DMA_TEST=m
+CONFIG_UIO=y
+# CONFIG_UIO_CIF is not set
+CONFIG_UIO_PDRV_GENIRQ=m
+CONFIG_UIO_DMEM_GENIRQ=y
+# CONFIG_UIO_AEC is not set
+# CONFIG_UIO_SERCOS3 is not set
+# CONFIG_UIO_PCI_GENERIC is not set
+# CONFIG_UIO_NETX is not set
+# CONFIG_UIO_PRUSS is not set
+# CONFIG_UIO_MF624 is not set
+CONFIG_UIO_AL_GENERIC=m
+CONFIG_DMA_CMA=y
+CONFIG_CMA_SIZE_MBYTES=16
+CONFIG_CMA_SIZE_SEL_MBYTES=y
+# CONFIG_CMA_SIZE_SEL_PERCENTAGE is not set
+# CONFIG_CMA_SIZE_SEL_MIN is not set
+# CONFIG_CMA_SIZE_SEL_MAX is not set
+CONFIG_CMA_ALIGNMENT=8
+           CPU0       CPU1       
+ 11:        681        379     GICv3  27 Level     arch_timer
+ 13:          0          0     GICv3  78 Level     dw:dmac-1
+ 18:       1117          0     GICv3 103 Level     ttyS0
+ 19:          0          0     GICv3  80 Level     f804e000.spi
+ 20:       1193          0     GICv3  94 Level     mmc0
+ 22:        385          0     GICv3  95 Level     mmc1
+ 23:          0          0  gpio-dwapb  15 Edge      f8049000.mmc cd
+IPI0:        46         82       Rescheduling interrupts
+IPI1:       328       1037       Function call interrupts
+IPI2:         0          0       CPU stop interrupts
+IPI3:         0          0       CPU stop (for crash dump) interrupts
+IPI4:         0          0       Timer broadcast interrupts
+IPI5:         0          0       IRQ work interrupts
+IPI6:         0          0       CPU wake-up interrupts
+Err:          0
+/sys/class/dma:
+total 0
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mdma0chan0[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan0[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mdma0chan1[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan1[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mdma0chan2[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan2[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mdma0chan3[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan3[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mdma0chan4[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan4[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mdma0chan5[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan5[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mdma0chan6[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan6[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mdma0chan7[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan7[m
+
+/sys/class/fpga_manager:
+total 0
+lrwxrwxrwx    1 root     root             0 Jan  1 00:00 [1;36mfpga0[m -> [1;34m../../devices/platform/soc/f8801000.fpga-mgr/fpga_manager/fpga0[m
+filename:       /lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko
+license:        GPL
+description:    anlogic dma driver
+author:         anlogic, Inc.
+license:        GPL
+description:    anlogic axi dma Controller Driver
+author:         anlogic, Inc.
+alias:          of:N*T*Canlogic,axi-dmaC*
+alias:          of:N*T*Canlogic,axi-dma
+depends:        
+name:           anlogic_dma_engine
+vermagic:       6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64
+filename:       /lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/axi-dma-test.ko
+license:        GPL
+description:    anlogic axi dma Test Driver
+author:         Naiyuan Que <naiyuan.que@anlogic.com>
+depends:        
+intree:         Y
+name:           axi_dma_test
+vermagic:       6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64
+This check did not load modules or perform MMIO/DMA/memory stress or storage writes.
+BSP_GP_BEFORE_DMA
+[   39.635750] bsp_gp: loading out-of-tree module taints kernel.
+IDENTITY version=1 caps=f features=7 tick_hz=1000000 last_txn=0[   39.637040] bsp-gp 80400000.gp-control: GP probe ABI verified; Linux IRQ 24; no motion/DMA
+
+PASS exact profile identity/features
+PASS scratch write/readback
+PASS scratch write/readback
+PASS scratch write/readback
+PASS scratch write/readback
+PASS motion opcode rejected in software without MMIO
+PASS control ACK accepted/completed (not motion)
+PASS control ACK accepted/completed (not motion)
+PASS snapshot ID/valid atomicity
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle invalid/no-point metadata
+PASS snapshot NOT_READY state
+PASS control ACK accepted/completed (not motion)
+PASS duplicate snapshot retains complete frame
+PASS control ACK accepted/completed (not motion)
+PASS snapshot ID/valid atomicity
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle invalid/no-point metadata
+PASS snapshot NOT_READY state
+TIMESTAMP delta_ticks=20180 host_seconds=0.020201
+PASS new transaction/timestamp progression
+PASS 1MHz timestamp coarse sanity (not frequency calibration)
+PASS masked persistent source still latches
+PASS W1C cannot clear active source
+PASS IRQ poll wake
+PASS TEST IRQ delivered
+PASS remove source then W1C clears
+PASS no IRQ storm after clear/rearm
+PASS IRQ poll wake
+PASS TEST IRQ retrigger/recovery
+PASS control ACK accepted/completed (not motion)
+PASS IRQ poll wake
+PASS command ACK IRQ delivered
+PASS all sources cleared
+PASS control ACK accepted/completed (not motion)
+PASS IRQ clear preserves cached ACK
+GP_ACCEPT_PASS checks=41; idle snapshot only, no DMA or motor validation
+GP_E[   39.795613] anlogic-dma 80500000.dma: Anlogic AXI DMA Engine Driver Probed
+POCH_BEFORE=47186631
+BSP_DMA_IRQ_BEFORE
+           CPU0       [   39.798511] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+CPU1       
+ 11:        775        459     GICv3  27 Level     [   39.798959] bsp-dma-loop dma-loopback-test: coherent loop buffers allocated via provider DMA API; mask32, simple; no user addresses
+[   39.801973] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+arch_timer
+ 13:          0          0     GICv3  78 Level     d[   39.858297] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+w:dmac-1
+ 18:       1234          0     GICv3 103 Level     ttyS0
+ 19:          0          0     GICv3  80 Level     f804e000.spi
+ 20:       1281          0     GICv3  94 Level     mmc0
+ 22:        385          0     GICv3  95 Level     mmc1
+ 23:     [   39.896418] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+     0          0  gpio-dwapb  15 Edge      f8049000.mmc cd
+ 24:          3          0     GICv3 114 Level     bsp-gp
+IPI0:        70        102       Rescheduling interrupts
+IPI1:       372       1101       Function call interrupts
+IPI2:         0          0       CPU stop interrupts
+IPI3:         0          0   [   39.932404] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+    CPU stop (for crash dump) interrupts
+IPI4:         0          0       Timer broadcast interrupts
+IPI5:         0          0       IRQ work interrupts
+IPI6:         0          0       CPU wake-up interrupts
+Err:          0
+DMA len=1 pattern=0 scena[   39.968362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+rio=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=16260 complete_ns=41100/44220 total_ns=38406631 errors=0 timeouts=0 recoveries=1 generation=1
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=0 scenario=0 result=0 mismat[   40.004420] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+ch=4294967295 callbacks=1/1 submit_ns=13440 complete_ns=25680/28080 total_ns=38092470 errors=0 timeouts=0 recoveries=2 generation=2
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=0 scenario=0 result=0 mismatch=4294967295 callbac[   40.040377] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+ks=1/1 submit_ns=10500 complete_ns=19620/21390 total_ns=35951641 errors=0 timeouts=0 recoveries=3 generation=3
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9240[   40.076414] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+ complete_ns=17610/19530 total_ns=35920350 errors=0 timeouts=0 recoveries=4 generation=4
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8670 complete_ns=16650/18330 total_ns=36019230 errors=0 timeouts=0 recoveries=5 generatio[   40.112416] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+n=5
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8610 complete_ns=16440/18390 total_ns=35915071 errors=0 timeouts=0 recoveries=6 generation=6
+PAIR before_stat[   40.152447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+us=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8460 complete_ns=16200/17850 total_ns=35966370 errors=0 timeouts=0 recoveries=7 generation=7
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=0 scenario=0 result=0 mis[   40.188448] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+match=4294967295 callbacks=1/1 submit_ns=8400 complete_ns=16320/18180 total_ns=35962050 errors=0 timeouts=0 recoveries=8 generation=8
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   40.224447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8610 complete_ns=16710/18480 total_ns=39977341 errors=0 timeouts=0 recoveries=9 generation=9
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns[   40.261787] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+=9750 complete_ns=18780/21060 total_ns=35922870 errors=0 timeouts=0 recoveries=10 generation=10
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8730 complete_ns=17340/19290 total_ns=35961510 errors=0 timeouts=0 recoveries=11 [   40.301814] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+generation=11
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8550 complete_ns=16950/19020 total_ns=35963611 errors=0 timeouts=0 recoveries=12 generation=12
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=409[   40.341808] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+5 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=10530 complete_ns=23340/25350 total_ns=39989280 errors=0 timeouts=0 recoveries=13 generation=13
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8610[   40.383255] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+ complete_ns=21660/23550 total_ns=39956881 errors=0 timeouts=0 recoveries=14 generation=14
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9090 complete_ns=22110/23940 total_ns=39963690 errors=0 timeouts=0 recoveries=15 generation=15
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8760 complete_ns=27360/29280 total_ns=39990780 errors=0 timeouts=0 recoveries=16 generation=16
+PAIR b[   40.443307] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+efore_status=0/0 quiescent=1 inflight_observed=0
+DMA len=65535 pattern=0 scenario=0 result=0 mismatch=4294967295 [   40.472766] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9030 complete_ns=101280/103140 total_ns=52316221 errors=0 timeouts=0 recoveries=17 generation=17
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   40.512358] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8340 complete_ns=16230/18000 total_ns=39551820 errors=0 timeouts=0 recoveries=18 generation=18
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   40.548361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8550 complete_ns=16380/18210 total_ns=35964121 errors=0 timeouts=0 recoveries=19 generation=19
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   40.584360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8550 complete_ns=16380/18300 total_ns=35958570 errors=0 timeouts=0 recoveries=20 generation=20
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   40.620366] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9570 complete_ns=17520/19350 total_ns=35967330 errors=0 timeouts=0 recoveries=21 generation=21
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   40.656364] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8520 complete_ns=16140/18000 total_ns=35958631 errors=0 timeouts=0 recoveries=22 generation=22
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   40.692366] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8580 complete_ns=16380/18270 total_ns=35958960 errors=0 timeouts=0 recoveries=23 generation=23
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   40.728400] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8700 complete_ns=16530/18330 total_ns=35961600 errors=0 timeouts=0 recoveries=24 generation=24
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   40.764402] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9600 complete_ns=17550/19620 total_ns=35964451 errors=0 timeouts=0 recoveries=25 generation=25
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   40.800399] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8310 complete_ns=16290/18210 total_ns=35959350 errors=0 timeouts=0 recoveries=26 generation=26
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   40.836449] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8610 complete_ns=16470/18480 total_ns=35968050 errors=0 timeouts=0 recoveries=27 generation=27
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   40.872447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8370 complete_ns=16440/18210 total_ns=35956831 errors=0 timeouts=0 recoveries=28 generation=28
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   40.909773] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9660 complete_ns=17760/19710 total_ns=35963760 errors=0 timeouts=0 recoveries=29 generation=29
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   40.949778] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8520 complete_ns=21570/23400 total_ns=39965131 errors=0 timeouts=0 recoveries=30 generation=30
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   40.989779] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8520 complete_ns=21330/23400 total_ns=39960600 errors=0 timeouts=0 recoveries=31 generation=31
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8850 complete_ns=21930/23820 total_ns=399[   41.031209] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+63180 errors=0 timeouts=0 recoveries=32 generation=32
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9330 complete_ns=27180/29070 total_ns=39976591 errors=0 timeouts=0 recoveries=33 generation=33
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   41.091086] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=0 result=0 mismatch=4294967295 [   41.120477] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8370 complete_ns=100380/102330 total_ns=52054800 errors=0 timeouts=0 recoveries=34 generation=34
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   41.156359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9180 complete_ns=17700/19590 total_ns=35844661 errors=0 timeouts=0 recoveries=35 generation=35
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   41.192361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8310 complete_ns=16050/17910 total_ns=35962110 errors=0 timeouts=0 recoveries=36 generation=36
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   41.228358] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9420 complete_ns=17580/19560 total_ns=35958930 errors=0 timeouts=0 recoveries=37 generation=37
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   41.264362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8550 complete_ns=16410/18390 total_ns=35963521 errors=0 timeouts=0 recoveries=38 generation=38
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   41.300384] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8490 complete_ns=16380/18210 total_ns=35979810 errors=0 timeouts=0 recoveries=39 generation=39
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   41.336368] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8520 complete_ns=16200/17880 total_ns=35942970 errors=0 timeouts=0 recoveries=40 generation=40
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   41.372405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9330 complete_ns=17280/19050 total_ns=35964181 errors=0 timeouts=0 recoveries=41 generation=41
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   41.408399] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8370 complete_ns=16290/18330 total_ns=35957400 errors=0 timeouts=0 recoveries=42 generation=42
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   41.444401] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8400 complete_ns=16320/18180 total_ns=35961421 errors=0 timeouts=0 recoveries=43 generation=43
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   41.480449] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8820 complete_ns=16740/18600 total_ns=35964960 errors=0 timeouts=0 recoveries=44 generation=44
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   41.516448] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9150 complete_ns=17250/19230 total_ns=35960280 errors=0 timeouts=0 recoveries=45 generation=45
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   41.553804] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16620/18570 total_ns=35959021 errors=0 timeouts=0 recoveries=46 generation=46
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   41.593848] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8580 complete_ns=21930/23760 total_ns=40007490 errors=0 timeouts=0 recoveries=47 generation=47
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   41.633851] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8580 complete_ns=22230/24000 total_ns=39961440 errors=0 timeouts=0 recoveries=48 generation=48
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9780 complete_ns=23400/25230 total_ns=399[   41.675315] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+63361 errors=0 timeouts=0 recoveries=49 generation=49
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9360 complete_ns=27210/29040 total_ns=40002240 errors=0 timeouts=0 recoveries=50 generation=50
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   41.735675] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=0 result=0 mismatch=4294967295 [   41.765066] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8610 complete_ns=99870/101850 total_ns=52583791 errors=0 timeouts=0 recoveries=51 generation=51
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   41.804360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8760 complete_ns=16650/18540 total_ns=39251760 errors=0 timeouts=0 recoveries=52 generation=52
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   41.840361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9690 complete_ns=17670/19590 total_ns=35963100 errors=0 timeouts=0 recoveries=53 generation=53
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   41.876361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8130 complete_ns=15960/18060 total_ns=35962141 errors=0 timeouts=0 recoveries=54 generation=54
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   41.912365] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8340 complete_ns=16110/18030 total_ns=35963520 errors=0 timeouts=0 recoveries=55 generation=55
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   41.948369] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8400 complete_ns=16110/17970 total_ns=35962831 errors=0 timeouts=0 recoveries=56 generation=56
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   41.984365] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9630 complete_ns=17670/19590 total_ns=35954040 errors=0 timeouts=0 recoveries=57 generation=57
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   42.020404] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8580 complete_ns=16320/18180 total_ns=35966340 errors=0 timeouts=0 recoveries=58 generation=58
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   42.056398] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=16470/18240 total_ns=35955751 errors=0 timeouts=0 recoveries=59 generation=59
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   42.092402] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=16500/18360 total_ns=35963970 errors=0 timeouts=0 recoveries=60 generation=60
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   42.128450] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9690 complete_ns=17820/19710 total_ns=35963820 errors=0 timeouts=0 recoveries=61 generation=61
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   42.164447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8610 complete_ns=17160/18990 total_ns=35960071 errors=0 timeouts=0 recoveries=62 generation=62
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   42.201805] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8400 complete_ns=16590/18450 total_ns=35960100 errors=0 timeouts=0 recoveries=63 generation=63
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   42.241853] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8520 complete_ns=22350/24210 total_ns=40009080 errors=0 timeouts=0 recoveries=64 generation=64
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   42.281851] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=10350 complete_ns=23190/25080 total_ns=39960811 errors=0 timeouts=0 recoveries=65 generation=65
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8370 complete_ns=21630/23400 total_ns=399[   42.323309] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+54780 errors=0 timeouts=0 recoveries=66 generation=66
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8730 complete_ns=26730/28710 total_ns=40015741 errors=0 timeouts=0 recoveries=67 generation=67
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   42.383680] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=3 scenario=0 result=0 mismatch=4294967295 [   42.413067] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9390 complete_ns=100770/102570 total_ns=52576290 errors=0 timeouts=0 recoveries=68 generation=68
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   42.452358] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9360 complete_ns=17970/19860 total_ns=39252541 errors=0 timeouts=0 recoveries=69 generation=69
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   42.488360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8010 complete_ns=15750/17610 total_ns=35962770 errors=0 timeouts=0 recoveries=70 generation=70
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   42.524360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8460 complete_ns=16200/18210 total_ns=35961210 errors=0 timeouts=0 recoveries=71 generation=71
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   42.560363] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9030 complete_ns=17010/18660 total_ns=35961931 errors=0 timeouts=0 recoveries=72 generation=72
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   42.596361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9330 complete_ns=17160/19110 total_ns=35960790 errors=0 timeouts=0 recoveries=73 generation=73
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   42.632364] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8490 complete_ns=16350/18120 total_ns=35959200 errors=0 timeouts=0 recoveries=74 generation=74
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   42.668405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8400 complete_ns=16290/18120 total_ns=35969761 errors=0 timeouts=0 recoveries=75 generation=75
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   42.704400] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=16530/18480 total_ns=35955270 errors=0 timeouts=0 recoveries=76 generation=76
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   42.740402] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9480 complete_ns=17370/19260 total_ns=35962950 errors=0 timeouts=0 recoveries=77 generation=77
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   42.776445] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8370 complete_ns=16530/18330 total_ns=35961001 errors=0 timeouts=0 recoveries=78 generation=78
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   42.812446] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16350/18150 total_ns=35961990 errors=0 timeouts=0 recoveries=79 generation=79
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   42.849784] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8760 complete_ns=16860/18660 total_ns=35961540 errors=0 timeouts=0 recoveries=80 generation=80
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   42.889812] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9690 complete_ns=22560/24420 total_ns=39990631 errors=0 timeouts=0 recoveries=81 generation=81
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   42.929824] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8940 complete_ns=21750/23430 total_ns=39973200 errors=0 timeouts=0 recoveries=82 generation=82
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8040 complete_ns=21270/22920 total_ns=399[   42.971259] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+50731 errors=0 timeouts=0 recoveries=83 generation=83
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9210 complete_ns=27900/29970 total_ns=39984450 errors=0 timeouts=0 recoveries=84 generation=84
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   43.031307] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=0 result=0 mismatch=4294967295 [   43.060764] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9600 complete_ns=100800/102660 total_ns=52315681 errors=0 timeouts=0 recoveries=85 generation=85
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   43.100356] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8670 complete_ns=16440/18330 total_ns=39552030 errors=0 timeouts=0 recoveries=86 generation=86
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   43.136359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8760 complete_ns=16740/18570 total_ns=35962380 errors=0 timeouts=0 recoveries=87 generation=87
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   43.172358] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8580 complete_ns=16590/18600 total_ns=35960791 errors=0 timeouts=0 recoveries=88 generation=88
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   43.208362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9360 complete_ns=17310/19050 total_ns=35964750 errors=0 timeouts=0 recoveries=89 generation=89
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   43.244359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8370 complete_ns=16080/17940 total_ns=35960160 errors=0 timeouts=0 recoveries=90 generation=90
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   43.280363] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8490 complete_ns=16080/17910 total_ns=35959981 errors=0 timeouts=0 recoveries=91 generation=91
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   43.316401] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8490 complete_ns=16230/18180 total_ns=35965110 errors=0 timeouts=0 recoveries=92 generation=92
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   43.352399] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9390 complete_ns=17580/19680 total_ns=35961180 errors=0 timeouts=0 recoveries=93 generation=93
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   43.388400] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8550 complete_ns=16440/18420 total_ns=35962891 errors=0 timeouts=0 recoveries=94 generation=94
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   43.424446] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8370 complete_ns=16260/17970 total_ns=35962710 errors=0 timeouts=0 recoveries=95 generation=95
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   43.460445] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8730 complete_ns=17280/19110 total_ns=35959591 errors=0 timeouts=0 recoveries=96 generation=96
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   43.497770] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9120 complete_ns=17550/19530 total_ns=35962380 errors=0 timeouts=0 recoveries=97 generation=97
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   43.537778] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8130 complete_ns=21000/22860 total_ns=39970170 errors=0 timeouts=0 recoveries=98 generation=98
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   43.577773] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8400 complete_ns=21360/23340 total_ns=39957601 errors=0 timeouts=0 recoveries=99 generation=99
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8700 complete_ns=21690/23490 total_ns=399[   43.619261] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+88230 errors=0 timeouts=0 recoveries=100 generation=100
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9000 complete_ns=32340/34350 total_ns=39931081 errors=0 timeouts=0 recoveries=101 generation=101
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   43.679117] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=0 result=0 mismatch=4294967295 [   43.708473] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8940 complete_ns=102150/103950 total_ns=52047720 errors=0 timeouts=0 recoveries=102 generation=102
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   43.744371] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8760 complete_ns=16500/18270 total_ns=35847300 errors=0 timeouts=0 recoveries=103 generation=103
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   43.780370] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8550 complete_ns=15990/17820 total_ns=35948791 errors=0 timeouts=0 recoveries=104 generation=104
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   43.816371] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8940 complete_ns=16500/18210 total_ns=35951100 errors=0 timeouts=0 recoveries=105 generation=105
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   43.852371] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8400 complete_ns=16050/17790 total_ns=35948280 errors=0 timeouts=0 recoveries=106 generation=106
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   43.888372] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8520 complete_ns=16200/18000 total_ns=35952541 errors=0 timeouts=0 recoveries=107 generation=107
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   43.924374] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8490 complete_ns=16230/18060 total_ns=35947560 errors=0 timeouts=0 recoveries=108 generation=108
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   43.960415] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8670 complete_ns=16080/17910 total_ns=35954911 errors=0 timeouts=0 recoveries=109 generation=109
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   43.996413] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=16080/17850 total_ns=35948100 errors=0 timeouts=0 recoveries=110 generation=110
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   44.032416] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8700 complete_ns=16500/18480 total_ns=35952750 errors=0 timeouts=0 recoveries=111 generation=111
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   44.068456] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8760 complete_ns=16680/18390 total_ns=35946541 errors=0 timeouts=0 recoveries=112 generation=112
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   44.104655] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=17100/18780 total_ns=36131070 errors=0 timeouts=0 recoveries=113 generation=113
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   44.145862] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=10800 complete_ns=21360/23820 total_ns=39779040 errors=0 timeouts=0 recoveries=114 generation=114
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   44.185864] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=10470 complete_ns=30600/32580 total_ns=39963091 errors=0 timeouts=0 recoveries=115 generation=115
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   44.225864] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8670 complete_ns=23250/25110 total_ns=39951450 errors=0 timeouts=0 recoveries=116 generation=116
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9270 complete_ns=23370/25110 total_ns=399[   44.267334] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+51031 errors=0 timeouts=0 recoveries=117 generation=117
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9240 complete_ns=28980/30990 total_ns=39995370 errors=0 timeouts=0 recoveries=118 generation=118
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   44.327727] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=0 result=0 mismatch=4294967295 [   44.357061] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8880 complete_ns=101430/103200 total_ns=52559280 errors=0 timeouts=0 recoveries=119 generation=119
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   44.396360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8640 complete_ns=16350/18060 total_ns=39246541 errors=0 timeouts=0 recoveries=120 generation=120
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   44.432368] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8730 complete_ns=16080/17940 total_ns=35958150 errors=0 timeouts=0 recoveries=121 generation=121
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   44.468371] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8790 complete_ns=16410/18270 total_ns=35954071 errors=0 timeouts=0 recoveries=122 generation=122
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   44.504372] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8580 complete_ns=16170/17970 total_ns=35948580 errors=0 timeouts=0 recoveries=123 generation=123
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   44.540371] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8460 complete_ns=16380/18180 total_ns=35949960 errors=0 timeouts=0 recoveries=124 generation=124
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   44.576374] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8640 complete_ns=16350/18120 total_ns=35949631 errors=0 timeouts=0 recoveries=125 generation=125
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   44.612411] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8250 complete_ns=15450/17160 total_ns=35953230 errors=0 timeouts=0 recoveries=126 generation=126
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   44.648415] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8220 complete_ns=15930/17760 total_ns=35953830 errors=0 timeouts=0 recoveries=127 generation=127
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   44.684414] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=16110/17910 total_ns=35947201 errors=0 timeouts=0 recoveries=128 generation=128
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   44.720455] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8730 complete_ns=16680/18540 total_ns=35948760 errors=0 timeouts=0 recoveries=129 generation=129
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   44.756459] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8610 complete_ns=16080/17940 total_ns=35954850 errors=0 timeouts=0 recoveries=130 generation=130
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   44.793826] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8820 complete_ns=17100/18900 total_ns=35948521 errors=0 timeouts=0 recoveries=131 generation=131
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   44.833869] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8700 complete_ns=22950/24900 total_ns=39991980 errors=0 timeouts=0 recoveries=132 generation=132
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   44.873864] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9000 complete_ns=23160/24960 total_ns=39944161 errors=0 timeouts=0 recoveries=133 generation=133
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8490 complete_ns=22710/24570 total_ns=399[   44.915331] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+50010 errors=0 timeouts=0 recoveries=134 generation=134
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8520 complete_ns=28230/30210 total_ns=39992610 errors=0 timeouts=0 recoveries=135 generation=135
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   44.975723] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=3 scenario=0 result=0 mismatch=4294967295 [   45.005062] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9150 complete_ns=101790/103620 total_ns=52563901 errors=0 timeouts=0 recoveries=136 generation=136
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   45.044360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8550 complete_ns=16290/18090 total_ns=39246690 errors=0 timeouts=0 recoveries=137 generation=137
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   45.080372] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8760 complete_ns=16470/18270 total_ns=35963101 errors=0 timeouts=0 recoveries=138 generation=138
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   45.116383] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8340 complete_ns=16110/17880 total_ns=35959710 errors=0 timeouts=0 recoveries=139 generation=139
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   45.152377] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8520 complete_ns=16140/17970 total_ns=35938560 errors=0 timeouts=0 recoveries=140 generation=140
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   45.188370] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9480 complete_ns=17550/19680 total_ns=35944921 errors=0 timeouts=0 recoveries=141 generation=141
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   45.224374] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8550 complete_ns=16380/18120 total_ns=35949480 errors=0 timeouts=0 recoveries=142 generation=142
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   45.260415] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8580 complete_ns=16020/17820 total_ns=35958030 errors=0 timeouts=0 recoveries=143 generation=143
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   45.296412] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8640 complete_ns=16260/18090 total_ns=35947621 errors=0 timeouts=0 recoveries=144 generation=144
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   45.332411] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8400 complete_ns=16140/18060 total_ns=35949000 errors=0 timeouts=0 recoveries=145 generation=145
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   45.368459] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8700 complete_ns=16380/18150 total_ns=35953891 errors=0 timeouts=0 recoveries=146 generation=146
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   45.404461] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8910 complete_ns=16620/18300 total_ns=35952030 errors=0 timeouts=0 recoveries=147 generation=147
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   45.441812] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=17250/18900 total_ns=35949810 errors=0 timeouts=0 recoveries=148 generation=148
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   45.481825] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8640 complete_ns=23040/24750 total_ns=39964291 errors=0 timeouts=0 recoveries=149 generation=149
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   45.521825] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8550 complete_ns=23010/24870 total_ns=39949290 errors=0 timeouts=0 recoveries=150 generation=150
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8760 complete_ns=23010/24900 total_ns=399[   45.563270] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+48810 errors=0 timeouts=0 recoveries=151 generation=151
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8610 complete_ns=28680/30570 total_ns=39980371 errors=0 timeouts=0 recoveries=152 generation=152
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   45.623359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=0 result=0 mismatch=4294967295 [   45.652774] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8760 complete_ns=101940/103770 total_ns=52306320 errors=0 timeouts=0 recoveries=153 generation=153
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   45.692362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8550 complete_ns=16500/18360 total_ns=39537631 errors=0 timeouts=0 recoveries=154 generation=154
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   45.728370] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8550 complete_ns=16140/17880 total_ns=35958180 errors=0 timeouts=0 recoveries=155 generation=155
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   45.764372] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8250 complete_ns=15870/17640 total_ns=35952270 errors=0 timeouts=0 recoveries=156 generation=156
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   45.800372] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8460 complete_ns=16170/17820 total_ns=35948101 errors=0 timeouts=0 recoveries=157 generation=157
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   45.836376] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8610 complete_ns=16110/17910 total_ns=35955780 errors=0 timeouts=0 recoveries=158 generation=158
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   45.872378] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8250 complete_ns=15780/17550 total_ns=35945971 errors=0 timeouts=0 recoveries=159 generation=159
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   45.908411] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8880 complete_ns=16320/18090 total_ns=35950410 errors=0 timeouts=0 recoveries=160 generation=160
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   45.944412] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8250 complete_ns=15750/17580 total_ns=35951580 errors=0 timeouts=0 recoveries=161 generation=161
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   45.980412] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8610 complete_ns=16170/17940 total_ns=35948191 errors=0 timeouts=0 recoveries=162 generation=162
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   46.016457] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8640 complete_ns=16260/18060 total_ns=35953380 errors=0 timeouts=0 recoveries=163 generation=163
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   46.052460] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=16920/18720 total_ns=35952510 errors=0 timeouts=0 recoveries=164 generation=164
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   46.089795] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8640 complete_ns=17160/18930 total_ns=35945881 errors=0 timeouts=0 recoveries=165 generation=165
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   46.129794] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8250 complete_ns=22530/24300 total_ns=39946470 errors=0 timeouts=0 recoveries=166 generation=166
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   46.169789] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8610 complete_ns=23460/25470 total_ns=39946380 errors=0 timeouts=0 recoveries=167 generation=167
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8700 complete_ns=22830/24660 total_ns=399[   46.211229] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+56371 errors=0 timeouts=0 recoveries=168 generation=168
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8640 complete_ns=28290/30180 total_ns=39956250 errors=0 timeouts=0 recoveries=169 generation=169
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   46.271122] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=0 result=0 mismatch=4294967295 [   46.300476] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8280 complete_ns=100860/102660 total_ns=52049671 errors=0 timeouts=0 recoveries=170 generation=170
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   46.336374] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8820 complete_ns=16680/18480 total_ns=35847000 errors=0 timeouts=0 recoveries=171 generation=171
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   46.372371] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8490 complete_ns=16110/17790 total_ns=35946450 errors=0 timeouts=0 recoveries=172 generation=172
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   46.408374] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8730 complete_ns=16350/18030 total_ns=35953351 errors=0 timeouts=0 recoveries=173 generation=173
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   46.444373] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8640 complete_ns=16200/17970 total_ns=35948850 errors=0 timeouts=0 recoveries=174 generation=174
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   46.480375] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8640 complete_ns=15930/17700 total_ns=35951401 errors=0 timeouts=0 recoveries=175 generation=175
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   46.516377] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8430 complete_ns=16350/18120 total_ns=35947080 errors=0 timeouts=0 recoveries=176 generation=176
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   46.552417] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8730 complete_ns=16410/18180 total_ns=35957640 errors=0 timeouts=0 recoveries=177 generation=177
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   46.588413] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=16200/17970 total_ns=35945101 errors=0 timeouts=0 recoveries=178 generation=178
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   46.624415] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9000 complete_ns=16680/18480 total_ns=35952930 errors=0 timeouts=0 recoveries=179 generation=179
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   46.660459] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16050/17880 total_ns=35950320 errors=0 timeouts=0 recoveries=180 generation=180
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   46.696467] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8700 complete_ns=16320/18090 total_ns=35956711 errors=0 timeouts=0 recoveries=181 generation=181
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   46.733835] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=17520/19410 total_ns=35949720 errors=0 timeouts=0 recoveries=182 generation=182
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   46.773866] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8730 complete_ns=23070/24930 total_ns=39981960 errors=0 timeouts=0 recoveries=183 generation=183
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   46.813860] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8430 complete_ns=22710/24510 total_ns=39944461 errors=0 timeouts=0 recoveries=184 generation=184
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8460 complete_ns=22620/24450 total_ns=399[   46.855332] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+49470 errors=0 timeouts=0 recoveries=185 generation=185
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9420 complete_ns=28920/30630 total_ns=39996541 errors=0 timeouts=0 recoveries=186 generation=186
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   46.915722] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=0 result=0 mismatch=4294967295 [   46.945102] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8490 complete_ns=101250/103170 total_ns=52602450 errors=0 timeouts=0 recoveries=187 generation=187
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   46.984373] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8970 complete_ns=16590/18390 total_ns=39216901 errors=0 timeouts=0 recoveries=188 generation=188
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   47.020372] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9030 complete_ns=17010/18720 total_ns=35949390 errors=0 timeouts=0 recoveries=189 generation=189
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   47.056366] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8790 complete_ns=16710/18570 total_ns=35944740 errors=0 timeouts=0 recoveries=190 generation=190
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   47.092374] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8610 complete_ns=16440/18240 total_ns=35956501 errors=0 timeouts=0 recoveries=191 generation=191
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   47.128383] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8580 complete_ns=16110/17760 total_ns=35956410 errors=0 timeouts=0 recoveries=192 generation=192
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   47.164378] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8820 complete_ns=16920/18900 total_ns=35940600 errors=0 timeouts=0 recoveries=193 generation=193
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   47.200411] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8640 complete_ns=16500/18300 total_ns=35947711 errors=0 timeouts=0 recoveries=194 generation=194
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   47.236414] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8820 complete_ns=17520/19380 total_ns=35955600 errors=0 timeouts=0 recoveries=195 generation=195
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   47.272408] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8130 complete_ns=15870/17580 total_ns=35943750 errors=0 timeouts=0 recoveries=196 generation=196
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   47.308458] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8610 complete_ns=16230/18120 total_ns=35955991 errors=0 timeouts=0 recoveries=197 generation=197
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   47.344459] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=16290/18000 total_ns=35950590 errors=0 timeouts=0 recoveries=198 generation=198
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   47.381833] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8640 complete_ns=17160/18990 total_ns=35949811 errors=0 timeouts=0 recoveries=199 generation=199
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   47.421859] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9360 complete_ns=23790/25650 total_ns=39983190 errors=0 timeouts=0 recoveries=200 generation=200
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   47.461862] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8460 complete_ns=22650/24450 total_ns=39950640 errors=0 timeouts=0 recoveries=201 generation=201
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8490 complete_ns=22830/24720 total_ns=399[   47.503335] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+52231 errors=0 timeouts=0 recoveries=202 generation=202
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8610 complete_ns=29190/31020 total_ns=39996180 errors=0 timeouts=0 recoveries=203 generation=203
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   47.563728] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8370 complete_ns=101580/103410 total_ns=52559401 errors=0 timeouts=0 recoveries=204 generation=204
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   47.698405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=1 result=0 mismatch=4294967295 [   47.737802] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5340 complete_ns=0/0 total_ns=143249461 errors=0 timeouts=1 recoveries=205 generation=205
+PAIR before_status=4294967295/1 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9570 complete_ns=23910/25740 total_ns=39969120 errors=0 timeouts=1 recoveries=206 generation=206
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   47.882405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=2 result=0 mismatch=4294967295 [   47.921800] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5310 complete_ns=0/0 total_ns=143931122 errors=0 timeouts=2 recoveries=207 generation=207
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8460 complete_ns=22860/24750 total_ns=39967200 errors=0 timeouts=2 recoveries=208 generation=208
+PAIR be[   47.970406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+fore_status=0/0 quiescent=1 inflight_observed=0
+DMA len=65535 pattern=0 scenario=3 result=0 mismatch=4294967295 [   48.009801] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5430 complete_ns=0/0 total_ns=47931841 errors=0 timeouts=2 recoveries=209 generation=209
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8940 complete_ns=23700/25860 total_ns=39975060 errors=0 timeouts=2 recoveries=210 generation=210
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   48.154406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=1 result=0 mismatch=4294967295 [   48.193793] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5340 complete_ns=0/0 total_ns=143926922 errors=0 timeouts=3 recoveries=211 generation=211
+PAIR before_status=4294967295/1 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9210 complete_ns=24180/26100 total_ns=39950370 errors=0 timeouts=3 recoveries=212 generation=212
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   48.338405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=2 result=0 mismatch=4294967295 [   48.377780] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=4980 complete_ns=0/0 total_ns=143939431 errors=0 timeouts=4 recoveries=213 generation=213
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8190 complete_ns=22680/24540 total_ns=39962341 errors=0 timeouts=4 recoveries=214 generation=214
+PAIR be[   48.426406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+fore_status=0/0 quiescent=1 inflight_observed=0
+DMA len=65535 pattern=1 scenario=3 result=0 mismatch=4294967295 [   48.465790] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5040 complete_ns=0/0 total_ns=47947020 errors=0 timeouts=4 recoveries=215 generation=215
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8340 complete_ns=23130/25320 total_ns=39953041 errors=0 timeouts=4 recoveries=216 generation=216
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   48.610405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=1 result=0 mismatch=4294967295 [   48.649821] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=4980 complete_ns=0/0 total_ns=143944681 errors=0 timeouts=5 recoveries=217 generation=217
+PAIR before_status=4294967295/1 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8370 complete_ns=22920/24870 total_ns=39992820 errors=0 timeouts=5 recoveries=218 generation=218
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   48.794421] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=2 result=0 mismatch=4294967295 [   48.833820] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=6090 complete_ns=0/0 total_ns=143904422 errors=0 timeouts=6 recoveries=219 generation=219
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8550 complete_ns=23040/25230 total_ns=39993090 errors=0 timeouts=6 recoveries=220 generation=220
+PAIR be[   48.882405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+fore_status=0/0 quiescent=1 inflight_observed=0
+DMA len=65535 pattern=2 scenario=3 result=0 mismatch=4294967295 [   48.921818] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5370 complete_ns=0/0 total_ns=47907421 errors=0 timeouts=6 recoveries=221 generation=221
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8640 complete_ns=23100/25110 total_ns=399[   48.964137] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+92010 errors=0 timeouts=6 recoveries=222 generation=222
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA_ACCEPT_PASS tests=222 payload_bytes=1080849 sum_submit_ns=1876830 sum_completion_ns=5406930 worst_completion_ns=103950 aggregate_payload_MBps=199.901 (submit-to-IRQ, not bus-only bandwidth); no motion
+BSP_DMA_RELEASE_REACQUIRE
+[   49.020054] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   49.020243] bsp-dma-loop dma-loopback-test: coherent loop buffers allocated via provider DMA API; mask32, simple; no user addresses
+[   49.023476] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=1 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   49.060757] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=16770 complete_ns=37290/40110 total_ns=36987030 errors=0 timeouts=0 recoveries=1 generation=1
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   49.100367] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=15420 complete_ns=28260/30300 total_ns=39581191 errors=0 timeouts=0 recoveries=2 generation=2
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   49.136397] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9210 complete_ns=17490/19350 total_ns=35955360 errors=0 timeouts=0 recoveries=3 generation=3
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   49.172371] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=13800 complete_ns=24210/26520 total_ns=35943420 errors=0 timeouts=0 recoveries=4 generation=4
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   49.208361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9360 complete_ns=17520/19560 total_ns=35952901 errors=0 timeouts=0 recoveries=5 generation=5
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   49.244365] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8640 complete_ns=16500/18360 total_ns=35961240 errors=0 timeouts=0 recoveries=6 generation=6
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   49.280404] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8610 complete_ns=16770/18660 total_ns=35965560 errors=0 timeouts=0 recoveries=7 generation=7
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   49.316403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9780 complete_ns=17640/19530 total_ns=35962051 errors=0 timeouts=0 recoveries=8 generation=8
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   49.352399] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=16410/18270 total_ns=35958330 errors=0 timeouts=0 recoveries=9 generation=9
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   49.388446] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8460 complete_ns=16410/18240 total_ns=35964120 errors=0 timeouts=0 recoveries=10 generation=10
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   49.424447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8250 complete_ns=16320/18180 total_ns=35959741 errors=0 timeouts=0 recoveries=11 generation=11
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   49.461789] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9660 complete_ns=18510/20370 total_ns=35967630 errors=0 timeouts=0 recoveries=12 generation=12
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   49.501815] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8490 complete_ns=21720/23700 total_ns=39986851 errors=0 timeouts=0 recoveries=13 generation=13
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   49.541807] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8370 complete_ns=21240/23040 total_ns=39954450 errors=0 timeouts=0 recoveries=14 generation=14
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9120 complete_ns=21960/23760 total_ns=399[   49.583250] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+61470 errors=0 timeouts=0 recoveries=15 generation=15
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9780 complete_ns=28410/30330 total_ns=39988981 errors=0 timeouts=0 recoveries=16 generation=16
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   49.643311] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=0 result=0 mismatch=4294967295 [   49.672765] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8220 complete_ns=100350/102120 total_ns=52318710 errors=0 timeouts=0 recoveries=17 generation=17
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   49.712357] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8580 complete_ns=16770/18540 total_ns=39551221 errors=0 timeouts=0 recoveries=18 generation=18
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   49.748359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8250 complete_ns=16080/17940 total_ns=35962890 errors=0 timeouts=0 recoveries=19 generation=19
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   49.784359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9360 complete_ns=17640/19590 total_ns=35962590 errors=0 timeouts=0 recoveries=20 generation=20
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   49.820363] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8520 complete_ns=16110/17910 total_ns=35962981 errors=0 timeouts=0 recoveries=21 generation=21
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   49.856363] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8280 complete_ns=16470/18420 total_ns=35962110 errors=0 timeouts=0 recoveries=22 generation=22
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   49.892367] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8490 complete_ns=16380/18060 total_ns=35959380 errors=0 timeouts=0 recoveries=23 generation=23
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   49.928403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9390 complete_ns=17520/19350 total_ns=35964901 errors=0 timeouts=0 recoveries=24 generation=24
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   49.964399] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8160 complete_ns=16110/18060 total_ns=35956680 errors=0 timeouts=0 recoveries=25 generation=25
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   50.000397] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8490 complete_ns=16410/18210 total_ns=35960761 errors=0 timeouts=0 recoveries=26 generation=26
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   50.036447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=16440/18210 total_ns=35966670 errors=0 timeouts=0 recoveries=27 generation=27
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   50.072445] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9510 complete_ns=17820/19710 total_ns=35961570 errors=0 timeouts=0 recoveries=28 generation=28
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   50.109771] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8430 complete_ns=16650/18330 total_ns=35960851 errors=0 timeouts=0 recoveries=29 generation=29
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   50.149777] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8250 complete_ns=21090/23130 total_ns=39963720 errors=0 timeouts=0 recoveries=30 generation=30
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   50.189783] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9090 complete_ns=22650/24510 total_ns=39966690 errors=0 timeouts=0 recoveries=31 generation=31
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9300 complete_ns=22470/24330 total_ns=399[   50.231203] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+57451 errors=0 timeouts=0 recoveries=32 generation=32
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8460 complete_ns=26700/28500 total_ns=39969780 errors=0 timeouts=0 recoveries=33 generation=33
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   50.291066] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=0 result=0 mismatch=4294967295 [   50.320469] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8550 complete_ns=100290/102150 total_ns=52059331 errors=0 timeouts=0 recoveries=34 generation=34
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   50.356364] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8820 complete_ns=17130/18900 total_ns=35854470 errors=0 timeouts=0 recoveries=35 generation=35
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   50.392354] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9690 complete_ns=17340/19350 total_ns=35952060 errors=0 timeouts=0 recoveries=36 generation=36
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   50.428360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8220 complete_ns=16020/17880 total_ns=35967121 errors=0 timeouts=0 recoveries=37 generation=37
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   50.464361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8490 complete_ns=16200/18180 total_ns=35961720 errors=0 timeouts=0 recoveries=38 generation=38
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   50.500365] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8280 complete_ns=16080/17910 total_ns=35962710 errors=0 timeouts=0 recoveries=39 generation=39
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   50.536368] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9540 complete_ns=17580/19470 total_ns=35960701 errors=0 timeouts=0 recoveries=40 generation=40
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   50.572398] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8310 complete_ns=16140/17940 total_ns=35958720 errors=0 timeouts=0 recoveries=41 generation=41
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   50.608398] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=16530/18390 total_ns=35960821 errors=0 timeouts=0 recoveries=42 generation=42
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   50.644405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8070 complete_ns=15900/17850 total_ns=35967870 errors=0 timeouts=0 recoveries=43 generation=43
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   50.680450] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9210 complete_ns=17280/19170 total_ns=35962500 errors=0 timeouts=0 recoveries=44 generation=44
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   50.716446] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8490 complete_ns=16590/18540 total_ns=35957461 errors=0 timeouts=0 recoveries=45 generation=45
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   50.753807] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=16620/18480 total_ns=35964360 errors=0 timeouts=0 recoveries=46 generation=46
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   50.793851] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8310 complete_ns=21780/23460 total_ns=40003530 errors=0 timeouts=0 recoveries=47 generation=47
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   50.833849] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9810 complete_ns=22770/24810 total_ns=39961051 errors=0 timeouts=0 recoveries=48 generation=48
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9390 complete_ns=22230/24030 total_ns=399[   50.875312] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+60810 errors=0 timeouts=0 recoveries=49 generation=49
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9180 complete_ns=27240/29220 total_ns=40032391 errors=0 timeouts=0 recoveries=50 generation=50
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   50.935701] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=0 result=0 mismatch=4294967295 [   50.965065] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9120 complete_ns=100320/102300 total_ns=52551870 errors=0 timeouts=0 recoveries=51 generation=51
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   51.004362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9630 complete_ns=18630/20550 total_ns=39258751 errors=0 timeouts=0 recoveries=52 generation=52
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   51.040360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8550 complete_ns=16200/18030 total_ns=35959140 errors=0 timeouts=0 recoveries=53 generation=53
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   51.076357] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8370 complete_ns=16140/18090 total_ns=35957880 errors=0 timeouts=0 recoveries=54 generation=54
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   51.112367] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8670 complete_ns=16560/18360 total_ns=35967571 errors=0 timeouts=0 recoveries=55 generation=55
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   51.148361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9720 complete_ns=17670/19710 total_ns=35955300 errors=0 timeouts=0 recoveries=56 generation=56
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   51.184365] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8580 complete_ns=17100/19020 total_ns=35960970 errors=0 timeouts=0 recoveries=57 generation=57
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   51.220404] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8520 complete_ns=16260/18120 total_ns=35967511 errors=0 timeouts=0 recoveries=58 generation=58
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   51.256404] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8400 complete_ns=16170/17910 total_ns=35957460 errors=0 timeouts=0 recoveries=59 generation=59
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   51.292402] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9900 complete_ns=18030/19950 total_ns=35962380 errors=0 timeouts=0 recoveries=60 generation=60
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   51.328453] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8250 complete_ns=16140/17940 total_ns=35968141 errors=0 timeouts=0 recoveries=61 generation=61
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   51.364453] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16380/18210 total_ns=35960820 errors=0 timeouts=0 recoveries=62 generation=62
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   51.401808] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9420 complete_ns=17340/19350 total_ns=35958240 errors=0 timeouts=0 recoveries=63 generation=63
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   51.441848] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9300 complete_ns=22440/24360 total_ns=40002601 errors=0 timeouts=0 recoveries=64 generation=64
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   51.481849] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8430 complete_ns=22140/23970 total_ns=39961950 errors=0 timeouts=0 recoveries=65 generation=65
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8460 complete_ns=21930/23760 total_ns=399[   51.523328] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+75661 errors=0 timeouts=0 recoveries=66 generation=66
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8370 complete_ns=27240/29100 total_ns=39992670 errors=0 timeouts=0 recoveries=67 generation=67
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   51.583679] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=3 scenario=0 result=0 mismatch=4294967295 [   51.613060] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9240 complete_ns=101310/103200 total_ns=52575451 errors=0 timeouts=0 recoveries=68 generation=68
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   51.652359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8640 complete_ns=16440/18300 total_ns=39258660 errors=0 timeouts=0 recoveries=69 generation=69
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   51.688355] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8430 complete_ns=16170/18030 total_ns=35957670 errors=0 timeouts=0 recoveries=70 generation=70
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   51.724362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8700 complete_ns=16320/18150 total_ns=35966701 errors=0 timeouts=0 recoveries=71 generation=71
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   51.760363] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9390 complete_ns=17430/19320 total_ns=35961240 errors=0 timeouts=0 recoveries=72 generation=72
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   51.796364] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8550 complete_ns=16650/18600 total_ns=35961570 errors=0 timeouts=0 recoveries=73 generation=73
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   51.832360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8580 complete_ns=16470/18390 total_ns=35952901 errors=0 timeouts=0 recoveries=74 generation=74
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   51.868406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8820 complete_ns=16680/18420 total_ns=35973450 errors=0 timeouts=0 recoveries=75 generation=75
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   51.904399] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9300 complete_ns=17190/18990 total_ns=35955150 errors=0 timeouts=0 recoveries=76 generation=76
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   51.940426] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8610 complete_ns=16560/18480 total_ns=35984131 errors=0 timeouts=0 recoveries=77 generation=77
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   51.976447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8880 complete_ns=16950/19020 total_ns=35942100 errors=0 timeouts=0 recoveries=78 generation=78
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   52.012446] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8880 complete_ns=16920/18870 total_ns=35959591 errors=0 timeouts=0 recoveries=79 generation=79
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   52.049785] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9300 complete_ns=17220/19230 total_ns=35961690 errors=0 timeouts=0 recoveries=80 generation=80
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   52.089813] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8430 complete_ns=21300/23190 total_ns=39989970 errors=0 timeouts=0 recoveries=81 generation=81
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   52.129806] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8430 complete_ns=21240/23070 total_ns=39951031 errors=0 timeouts=0 recoveries=82 generation=82
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9450 complete_ns=22500/24330 total_ns=399[   52.171253] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+63330 errors=0 timeouts=0 recoveries=83 generation=83
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9870 complete_ns=28620/30450 total_ns=39994020 errors=0 timeouts=0 recoveries=84 generation=84
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   52.231317] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=0 result=0 mismatch=4294967295 [   52.260763] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9510 complete_ns=100770/102570 total_ns=52312861 errors=0 timeouts=0 recoveries=85 generation=85
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   52.300361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8310 complete_ns=16260/18090 total_ns=39557310 errors=0 timeouts=0 recoveries=86 generation=86
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   52.336360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8400 complete_ns=16140/18000 total_ns=35958541 errors=0 timeouts=0 recoveries=87 generation=87
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   52.372361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9510 complete_ns=17370/19410 total_ns=35962680 errors=0 timeouts=0 recoveries=88 generation=88
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   52.408367] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8220 complete_ns=16020/17880 total_ns=35965800 errors=0 timeouts=0 recoveries=89 generation=89
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   52.444358] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8550 complete_ns=16350/18270 total_ns=35952451 errors=0 timeouts=0 recoveries=90 generation=90
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   52.480364] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8640 complete_ns=16530/18480 total_ns=35961930 errors=0 timeouts=0 recoveries=91 generation=91
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   52.516401] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9540 complete_ns=17400/19260 total_ns=35966521 errors=0 timeouts=0 recoveries=92 generation=92
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   52.552399] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8760 complete_ns=16440/18090 total_ns=35958060 errors=0 timeouts=0 recoveries=93 generation=93
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   52.588403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8820 complete_ns=16830/18780 total_ns=35966190 errors=0 timeouts=0 recoveries=94 generation=94
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   52.624446] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8460 complete_ns=16350/18210 total_ns=35960251 errors=0 timeouts=0 recoveries=95 generation=95
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   52.660444] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9450 complete_ns=17550/19530 total_ns=35960280 errors=0 timeouts=0 recoveries=96 generation=96
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   52.697774] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8700 complete_ns=16980/18810 total_ns=35964300 errors=0 timeouts=0 recoveries=97 generation=97
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   52.737782] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8580 complete_ns=21450/23580 total_ns=39970321 errors=0 timeouts=0 recoveries=98 generation=98
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   52.777781] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8130 complete_ns=21000/22980 total_ns=39960780 errors=0 timeouts=0 recoveries=99 generation=99
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9510 complete_ns=22440/24300 total_ns=399[   52.819208] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+57061 errors=0 timeouts=0 recoveries=100 generation=100
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8220 complete_ns=26250/28110 total_ns=39969510 errors=0 timeouts=0 recoveries=101 generation=101
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   52.879074] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=0 result=0 mismatch=4294967295 [   52.908473] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8520 complete_ns=100590/102540 total_ns=52064070 errors=0 timeouts=0 recoveries=102 generation=102
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   52.944379] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8730 complete_ns=16590/18540 total_ns=35861641 errors=0 timeouts=0 recoveries=103 generation=103
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   52.980362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9630 complete_ns=17550/19770 total_ns=35947620 errors=0 timeouts=0 recoveries=104 generation=104
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   53.016363] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8340 complete_ns=16200/17970 total_ns=35962530 errors=0 timeouts=0 recoveries=105 generation=105
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   53.052361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8400 complete_ns=16020/17850 total_ns=35957851 errors=0 timeouts=0 recoveries=106 generation=106
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   53.088367] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8190 complete_ns=16050/17850 total_ns=35965440 errors=0 timeouts=0 recoveries=107 generation=107
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   53.124368] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9360 complete_ns=17190/19200 total_ns=35954821 errors=0 timeouts=0 recoveries=108 generation=108
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   53.160407] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9240 complete_ns=17430/19260 total_ns=35967780 errors=0 timeouts=0 recoveries=109 generation=109
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   53.196406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16410/18360 total_ns=35960310 errors=0 timeouts=0 recoveries=110 generation=110
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   53.232401] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8550 complete_ns=16620/18480 total_ns=35954971 errors=0 timeouts=0 recoveries=111 generation=111
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   53.268450] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9810 complete_ns=17850/19800 total_ns=35967870 errors=0 timeouts=0 recoveries=112 generation=112
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   53.304450] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16620/18510 total_ns=35960580 errors=0 timeouts=0 recoveries=113 generation=113
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   53.341811] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8160 complete_ns=16050/17880 total_ns=35963971 errors=0 timeouts=0 recoveries=114 generation=114
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   53.381856] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9000 complete_ns=21960/23790 total_ns=40005210 errors=0 timeouts=0 recoveries=115 generation=115
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   53.421848] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9720 complete_ns=23130/25020 total_ns=39954061 errors=0 timeouts=0 recoveries=116 generation=116
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8520 complete_ns=21900/23910 total_ns=399[   53.463313] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+63930 errors=0 timeouts=0 recoveries=117 generation=117
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8790 complete_ns=26820/28770 total_ns=40008630 errors=0 timeouts=0 recoveries=118 generation=118
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   53.523684] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=0 result=0 mismatch=4294967295 [   53.553060] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9360 complete_ns=101130/102960 total_ns=52572931 errors=0 timeouts=0 recoveries=119 generation=119
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   53.592356] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9060 complete_ns=16800/18750 total_ns=39256080 errors=0 timeouts=0 recoveries=120 generation=120
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   53.628364] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8580 complete_ns=16380/18120 total_ns=35968711 errors=0 timeouts=0 recoveries=121 generation=121
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   53.664361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8580 complete_ns=16410/18270 total_ns=35957670 errors=0 timeouts=0 recoveries=122 generation=122
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   53.700362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8760 complete_ns=16500/18510 total_ns=35960190 errors=0 timeouts=0 recoveries=123 generation=123
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   53.736359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9510 complete_ns=17430/19260 total_ns=35959681 errors=0 timeouts=0 recoveries=124 generation=124
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   53.772368] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8670 complete_ns=16410/18390 total_ns=35965320 errors=0 timeouts=0 recoveries=125 generation=125
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   53.808402] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8430 complete_ns=16230/18030 total_ns=35961450 errors=0 timeouts=0 recoveries=126 generation=126
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   53.844406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8700 complete_ns=16500/18330 total_ns=35963581 errors=0 timeouts=0 recoveries=127 generation=127
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   53.880402] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9810 complete_ns=18030/20160 total_ns=35958120 errors=0 timeouts=0 recoveries=128 generation=128
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   53.916471] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8430 complete_ns=16590/18480 total_ns=35981160 errors=0 timeouts=0 recoveries=129 generation=129
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   53.952451] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8490 complete_ns=17730/19710 total_ns=35944111 errors=0 timeouts=0 recoveries=130 generation=130
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   53.989814] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16560/18540 total_ns=35965530 errors=0 timeouts=0 recoveries=131 generation=131
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   54.029851] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9390 complete_ns=23010/24900 total_ns=39999061 errors=0 timeouts=0 recoveries=132 generation=132
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   54.069850] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8640 complete_ns=22050/24030 total_ns=39961560 errors=0 timeouts=0 recoveries=133 generation=133
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8520 complete_ns=22020/23970 total_ns=399[   54.111360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+87540 errors=0 timeouts=0 recoveries=134 generation=134
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=9120 complete_ns=28650/30660 total_ns=39965821 errors=0 timeouts=0 recoveries=135 generation=135
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   54.171690] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=3 scenario=0 result=0 mismatch=4294967295 [   54.201061] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9690 complete_ns=102840/104970 total_ns=52571040 errors=0 timeouts=0 recoveries=136 generation=136
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   54.240355] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9630 complete_ns=18030/20160 total_ns=39257221 errors=0 timeouts=0 recoveries=137 generation=137
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   54.276361] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8100 complete_ns=16110/18090 total_ns=35968260 errors=0 timeouts=0 recoveries=138 generation=138
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   54.312357] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8310 complete_ns=16530/18450 total_ns=35959590 errors=0 timeouts=0 recoveries=139 generation=139
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=0 scenario=0 result=0 mismatch=4294967295 call[   54.348368] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8280 complete_ns=16500/18540 total_ns=35968861 errors=0 timeouts=0 recoveries=140 generation=140
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   54.384359] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9570 complete_ns=17730/19680 total_ns=35954730 errors=0 timeouts=0 recoveries=141 generation=141
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   54.420366] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8400 complete_ns=16110/18090 total_ns=35962650 errors=0 timeouts=0 recoveries=142 generation=142
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=0 scenario=0 result=0 mismatch=4294967295 cal[   54.456401] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8220 complete_ns=16050/17880 total_ns=35963941 errors=0 timeouts=0 recoveries=143 generation=143
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   54.492403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8430 complete_ns=16440/18240 total_ns=35962740 errors=0 timeouts=0 recoveries=144 generation=144
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   54.528402] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9450 complete_ns=17550/19530 total_ns=35960071 errors=0 timeouts=0 recoveries=145 generation=145
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   54.564447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=16590/18510 total_ns=35963970 errors=0 timeouts=0 recoveries=146 generation=146
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   54.600447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8370 complete_ns=16440/18210 total_ns=35961990 errors=0 timeouts=0 recoveries=147 generation=147
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=0 scenario=0 result=0 mismatch=4294967295 ca[   54.637783] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16650/18630 total_ns=35958091 errors=0 timeouts=0 recoveries=148 generation=148
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   54.677813] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=10200 complete_ns=22890/24780 total_ns=39991140 errors=0 timeouts=0 recoveries=149 generation=149
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=0 scenario=0 result=0 mismatch=4294967295 c[   54.717805] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8490 complete_ns=21870/23670 total_ns=39955140 errors=0 timeouts=0 recoveries=150 generation=150
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8220 complete_ns=21240/23160 total_ns=399[   54.759252] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+63691 errors=0 timeouts=0 recoveries=151 generation=151
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8430 complete_ns=27120/28860 total_ns=39992430 errors=0 timeouts=0 recoveries=152 generation=152
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   54.819323] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=0 result=0 mismatch=4294967295 [   54.848766] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=9960 complete_ns=101400/103380 total_ns=52314361 errors=0 timeouts=0 recoveries=153 generation=153
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   54.888360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8610 complete_ns=16530/18390 total_ns=39554340 errors=0 timeouts=0 recoveries=154 generation=154
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   54.924377] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8280 complete_ns=16290/18150 total_ns=35975130 errors=0 timeouts=0 recoveries=155 generation=155
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   54.960362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8280 complete_ns=16080/18090 total_ns=35947411 errors=0 timeouts=0 recoveries=156 generation=156
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=1 scenario=0 result=0 mismatch=4294967295 call[   54.996369] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9420 complete_ns=17430/19380 total_ns=35966760 errors=0 timeouts=0 recoveries=157 generation=157
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   55.032357] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8700 complete_ns=16470/18540 total_ns=35949931 errors=0 timeouts=0 recoveries=158 generation=158
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   55.068365] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8370 complete_ns=16230/18120 total_ns=35963520 errors=0 timeouts=0 recoveries=159 generation=159
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=1 scenario=0 result=0 mismatch=4294967295 cal[   55.104404] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=9060 complete_ns=16860/18780 total_ns=35966280 errors=0 timeouts=0 recoveries=160 generation=160
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   55.140403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9450 complete_ns=17550/19590 total_ns=35957401 errors=0 timeouts=0 recoveries=161 generation=161
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   55.176403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8880 complete_ns=18120/20220 total_ns=35962170 errors=0 timeouts=0 recoveries=162 generation=162
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   55.212443] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8400 complete_ns=17190/19080 total_ns=35960910 errors=0 timeouts=0 recoveries=163 generation=163
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   55.248445] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8610 complete_ns=16620/18510 total_ns=35959981 errors=0 timeouts=0 recoveries=164 generation=164
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=1 scenario=0 result=0 mismatch=4294967295 ca[   55.285770] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=9630 complete_ns=17880/19950 total_ns=35961270 errors=0 timeouts=0 recoveries=165 generation=165
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   55.325781] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8910 complete_ns=21810/23700 total_ns=39973950 errors=0 timeouts=0 recoveries=166 generation=166
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=1 scenario=0 result=0 mismatch=4294967295 c[   55.365821] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8430 complete_ns=21240/22890 total_ns=39980011 errors=0 timeouts=0 recoveries=167 generation=167
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8370 complete_ns=22920/25020 total_ns=399[   55.407233] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+30960 errors=0 timeouts=0 recoveries=168 generation=168
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8670 complete_ns=28470/30480 total_ns=39947911 errors=0 timeouts=0 recoveries=169 generation=169
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   55.467121] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=0 result=0 mismatch=4294967295 [   55.496472] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8610 complete_ns=101610/103560 total_ns=52052790 errors=0 timeouts=0 recoveries=170 generation=170
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   55.532369] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8400 complete_ns=15870/17670 total_ns=35845530 errors=0 timeouts=0 recoveries=171 generation=171
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   55.568370] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8670 complete_ns=16230/17940 total_ns=35951671 errors=0 timeouts=0 recoveries=172 generation=172
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   55.604372] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8430 complete_ns=16020/17850 total_ns=35951820 errors=0 timeouts=0 recoveries=173 generation=173
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=2 scenario=0 result=0 mismatch=4294967295 call[   55.640373] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8730 complete_ns=16350/18150 total_ns=35948971 errors=0 timeouts=0 recoveries=174 generation=174
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   55.676378] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8370 complete_ns=16020/17850 total_ns=35956590 errors=0 timeouts=0 recoveries=175 generation=175
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   55.712381] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8160 complete_ns=15630/17400 total_ns=35947620 errors=0 timeouts=0 recoveries=176 generation=176
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=2 scenario=0 result=0 mismatch=4294967295 cal[   55.748413] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8310 complete_ns=15960/17970 total_ns=35949811 errors=0 timeouts=0 recoveries=177 generation=177
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   55.784413] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=16350/18090 total_ns=35948910 errors=0 timeouts=0 recoveries=178 generation=178
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   55.820419] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8460 complete_ns=16350/18180 total_ns=35957550 errors=0 timeouts=0 recoveries=179 generation=179
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   55.856463] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8790 complete_ns=16500/18300 total_ns=35950351 errors=0 timeouts=0 recoveries=180 generation=180
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   55.892464] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8310 complete_ns=16860/18630 total_ns=35951160 errors=0 timeouts=0 recoveries=181 generation=181
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=2 scenario=0 result=0 mismatch=4294967295 ca[   55.929834] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8550 complete_ns=16470/18270 total_ns=35949930 errors=0 timeouts=0 recoveries=182 generation=182
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   55.969863] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9450 complete_ns=23880/25680 total_ns=39979501 errors=0 timeouts=0 recoveries=183 generation=183
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=2 scenario=0 result=0 mismatch=4294967295 c[   56.009866] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=9480 complete_ns=24150/26220 total_ns=39952260 errors=0 timeouts=0 recoveries=184 generation=184
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8790 complete_ns=23490/25380 total_ns=399[   56.051329] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+47551 errors=0 timeouts=0 recoveries=185 generation=185
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8490 complete_ns=29130/31050 total_ns=39999960 errors=0 timeouts=0 recoveries=186 generation=186
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   56.111734] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=0 result=0 mismatch=4294967295 [   56.141087] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=1/1 submit_ns=8340 complete_ns=101880/103740 total_ns=52570891 errors=0 timeouts=0 recoveries=187 generation=187
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=1 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   56.180363] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=11190 complete_ns=19740/21570 total_ns=39227220 errors=0 timeouts=0 recoveries=188 generation=188
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=7 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   56.216375] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=9150 complete_ns=17190/18930 total_ns=35964270 errors=0 timeouts=0 recoveries=189 generation=189
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   56.252378] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8370 complete_ns=15870/17550 total_ns=35953291 errors=0 timeouts=0 recoveries=190 generation=190
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=9 pattern=3 scenario=0 result=0 mismatch=4294967295 call[   56.288375] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+backs=1/1 submit_ns=8340 complete_ns=15930/17640 total_ns=35945850 errors=0 timeouts=0 recoveries=191 generation=191
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=15 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   56.324373] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8910 complete_ns=16470/18270 total_ns=35947800 errors=0 timeouts=0 recoveries=192 generation=192
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=16 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   56.360377] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8760 complete_ns=16200/18000 total_ns=35949871 errors=0 timeouts=0 recoveries=193 generation=193
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=31 pattern=3 scenario=0 result=0 mismatch=4294967295 cal[   56.396417] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+lbacks=1/1 submit_ns=8790 complete_ns=16170/18000 total_ns=35956860 errors=0 timeouts=0 recoveries=194 generation=194
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=127 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   56.432414] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8580 complete_ns=16140/18000 total_ns=35945730 errors=0 timeouts=0 recoveries=195 generation=195
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=128 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   56.468418] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8700 complete_ns=16560/18390 total_ns=35955601 errors=0 timeouts=0 recoveries=196 generation=196
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=129 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   56.504459] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8520 complete_ns=15960/17790 total_ns=35947080 errors=0 timeouts=0 recoveries=197 generation=197
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=255 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   56.540459] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8340 complete_ns=16290/18060 total_ns=35951730 errors=0 timeouts=0 recoveries=198 generation=198
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=256 pattern=3 scenario=0 result=0 mismatch=4294967295 ca[   56.577833] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+llbacks=1/1 submit_ns=8460 complete_ns=16320/18120 total_ns=35953171 errors=0 timeouts=0 recoveries=199 generation=199
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4095 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   56.617862] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8700 complete_ns=23070/24930 total_ns=39979080 errors=0 timeouts=0 recoveries=200 generation=200
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4096 pattern=3 scenario=0 result=0 mismatch=4294967295 c[   56.657867] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+allbacks=1/1 submit_ns=8520 complete_ns=22890/24780 total_ns=39955021 errors=0 timeouts=0 recoveries=201 generation=201
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=4097 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8970 complete_ns=23250/25380 total_ns=399[   56.699330] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+46800 errors=0 timeouts=0 recoveries=202 generation=202
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA len=8193 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8850 complete_ns=29190/31170 total_ns=39991530 errors=0 timeouts=0 recoveries=203 generation=203
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   56.759719] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=3 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8790 complete_ns=101310/103110 total_ns=52570231 errors=0 timeouts=0 recoveries=204 generation=204
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   56.894405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=1 result=0 mismatch=4294967295 [   56.933835] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=4860 complete_ns=0/0 total_ns=143275171 errors=0 timeouts=1 recoveries=205 generation=205
+PAIR before_status=4294967295/1 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8940 complete_ns=27270/29430 total_ns=39944281 errors=0 timeouts=1 recoveries=206 generation=206
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   57.078406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=0 scenario=2 result=0 mismatch=4294967295 [   57.117798] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5280 complete_ns=0/0 total_ns=143925031 errors=0 timeouts=2 recoveries=207 generation=207
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8610 complete_ns=23280/25260 total_ns=39975601 errors=0 timeouts=2 recoveries=208 generation=208
+PAIR be[   57.166406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+fore_status=0/0 quiescent=1 inflight_observed=0
+DMA len=65535 pattern=0 scenario=3 result=0 mismatch=4294967295 [   57.205803] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5850 complete_ns=0/0 total_ns=47924940 errors=0 timeouts=2 recoveries=209 generation=209
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=0 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8850 complete_ns=25050/27090 total_ns=39973770 errors=0 timeouts=2 recoveries=210 generation=210
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   57.350406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=1 result=0 mismatch=4294967295 [   57.389786] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5040 complete_ns=0/0 total_ns=143923622 errors=0 timeouts=3 recoveries=211 generation=211
+PAIR before_status=4294967295/1 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8430 complete_ns=22980/25020 total_ns=39956790 errors=0 timeouts=3 recoveries=212 generation=212
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   57.534406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=1 scenario=2 result=0 mismatch=4294967295 [   57.573789] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5070 complete_ns=0/0 total_ns=143946182 errors=0 timeouts=4 recoveries=213 generation=213
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8490 complete_ns=23040/25200 total_ns=39958170 errors=0 timeouts=4 recoveries=214 generation=214
+PAIR be[   57.622406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+fore_status=0/0 quiescent=1 inflight_observed=0
+DMA len=65535 pattern=1 scenario=3 result=0 mismatch=4294967295 [   57.661788] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5370 complete_ns=0/0 total_ns=47941501 errors=0 timeouts=4 recoveries=215 generation=215
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=1 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8400 complete_ns=23070/25290 total_ns=39955260 errors=0 timeouts=4 recoveries=216 generation=216
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   57.806405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=1 result=0 mismatch=4294967295 [   57.845822] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5160 complete_ns=0/0 total_ns=143946811 errors=0 timeouts=5 recoveries=217 generation=217
+PAIR before_status=4294967295/1 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8940 complete_ns=23550/25410 total_ns=39991441 errors=0 timeouts=5 recoveries=218 generation=218
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+[   57.990406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+DMA len=65535 pattern=2 scenario=2 result=0 mismatch=4294967295 [   58.029817] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5040 complete_ns=0/0 total_ns=143902411 errors=0 timeouts=6 recoveries=219 generation=219
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8370 complete_ns=22920/24900 total_ns=40000861 errors=0 timeouts=6 recoveries=220 generation=220
+PAIR be[   58.078406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+fore_status=0/0 quiescent=1 inflight_observed=0
+DMA len=65535 pattern=2 scenario=3 result=0 mismatch=4294967295 [   58.117823] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+callbacks=0/0 submit_ns=5310 complete_ns=0/0 total_ns=47904720 errors=0 timeouts=6 recoveries=221 generation=221
+PAIR before_status=1/4294967295 quiescent=1 inflight_observed=1
+DMA len=4097 pattern=2 scenario=0 result=0 mismatch=4294967295 callbacks=1/1 submit_ns=8700 complete_ns=23160/25200 total_ns=39990121 errors=0 timeouts=6 recoveries=222 generation=222
+PAIR before_status=0/0 quiescent=1 inflight_observed=0
+DMA_ACCEPT_PASS tests=222 payload_bytes=1080849 sum_submit_ns=1891140 sum_completion_ns=5414760 worst_completion_ns=104970 aggregate_payload_MBps=199.612 (submit-to-IRQ, not bus-only bandwidth); no motion
+BSP_DMA_BUFFERS_RELEASED_AND_REACQUIRED_PASS
+GP_EPOCH_AFTER=65559292
+GP_EPOCH_PRESERVED_ACROSS_DMA_RECOVERY
+BSP_DMA_IRQ_AFTER
+           CPU0       CPU1       
+ 11:       2221       2126     GICv3  27 Level     arch_timer
+ 13:          0          0     GICv3  78 Level     dw:dmac-1
+ 18:       3025          0     GICv3 103 Level     ttyS0
+ 19:          0          0     GICv3  80 Level     f804e000.spi
+ 20:       1299          0     GICv3  94 Level     mmc0
+ 22:        385          0     GICv3  95 Level     mmc1
+ 23:          0          0  gpio-dwapb  15 Edge      f8049000.mmc cd
+ 24:          3          0     GICv3 114 Level     bsp-gp
+ 25:        426          0     GICv3 115 Level     anlogic-dma-controller
+ 26:        426          0     GICv3 116 Level     anlogic-dma-controller
+IPI0:        81        113       Rescheduling interrupts
+IPI1:      1108       2047       Function call interrupts
+IPI2:         0          0       CPU stop interrupts
+IPI3:         0          0       CPU stop (for crash dump) interrupts
+IPI4:         0          0       Timer broadcast interrupts
+IPI5:         0          0       IRQ work interrupts
+IPI6:         0          0       CPU wake-up interrupts
+Err:          0
+BSP_GP_AFTER_DMA
+IDENTITY version=1 caps=f features=7 tick_hz=1000000 last_txn=6
+PASS exact profile identity/features
+PASS scratch write/readback
+PASS scratch write/readback
+PASS scratch write/readback
+PASS scratch write/readback
+PASS motion opcode rejected in software without MMIO
+PASS control ACK accepted/completed (not motion)
+PASS control ACK accepted/completed (not motion)
+PASS snapshot ID/valid atomicity
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle invalid/no-point metadata
+PASS snapshot NOT_READY state
+PASS control ACK accepted/completed (not motion)
+PASS duplicate snapshot retains complete frame
+PASS control ACK accepted/completed (not motion)
+PASS snapshot ID/valid atomicity
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle axis position/pulse slot
+PASS idle invalid/no-point metadata
+PASS snapshot NOT_READY state
+TIMESTAMP delta_ticks=20179 host_seconds=0.020199
+PASS new transaction/timestamp progression
+PASS 1MHz timestamp coarse sanity (not frequency calibration)
+PASS masked persistent source still latches
+PASS W1C cannot clear active source
+PASS IRQ poll wake
+PASS TEST IRQ delivered
+PASS remove source then W1C clears
+PASS no IRQ storm after clear/rearm
+PASS IRQ poll wake
+PASS TEST IRQ retrigger/recovery
+PASS control ACK accepted/completed (not motion)
+PASS IRQ poll wake
+PASS command ACK IRQ delivered
+PASS all sources cleared
+PASS control ACK accepted/completed (not motion)
+PASS IRQ clear preserves cached ACK
+GP_ACCEPT_PASS checks=41; idle snapshot only, no DMA or motor validation
+[   54.420366] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.456401] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.492403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.528402] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.564447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.600447] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.637783] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.677813] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.717805] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.759252] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.819323] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.848766] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.888360] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.924377] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.960362] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   54.996369] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.032357] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.068365] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.104404] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.140403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.176403] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.212443] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.248445] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.285770] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.325781] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.365821] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.407233] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.467121] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.496472] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.532369] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.568370] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.604372] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.640373] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.676378] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.712381] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.748413] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.784413] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.820419] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.856463] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.892464] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.929834] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   55.969863] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.009866] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.051329] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.111734] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.141087] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.180363] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.216375] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.252378] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.288375] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.324373] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.360377] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.396417] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.432414] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.468418] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.504459] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.540459] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.577833] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.617862] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.657867] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.699330] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.759719] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.894405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   56.933835] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.078406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.117798] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.166406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.205803] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.350406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.389786] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.534406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.573789] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.622406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.661788] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.806405] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.845822] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   57.990406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   58.029817] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   58.078406] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+[   58.117823] anlogic-dma 80500000.dma: BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+BSP_DMA_BOARD_ACCEPT_COMPLETE_NO_MOTION
+# 
+BSP_SERIAL_EXIT=0
+# 

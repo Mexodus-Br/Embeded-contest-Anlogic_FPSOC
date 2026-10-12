@@ -8,9 +8,12 @@
   "schema_sha256": "f6eb4cfbf113a5315026c65f8b56a5eb087aa8536bf6239791ac1c6261877309",
   "gp_abi": "original numeric constants/profile preserved; reuse exact matched GP module/application; mandatory board regression",
   "driver_review": "simple only; no include-sg; mask32/BTT16; DMA API coherent buffers; simple queue one descriptor; stop/reset errors propagated; IRQ/tasklet synchronize; both HALTED/reset-clear/list-empty postcondition; failed stop retains buffers",
-  "runtime_recovery_board_verified": false,
+  "runtime_recovery_board_verified": true,
   "diagnostics": "2 vendor internal dummy nodes retained, no_clock/IO-delay gaps0, no critical warning; report_route_status is in raw build log, no standalone DRC file generated",
   "reference_speed": 2,
   "clock": "H16 100MHz GP0/HP0/PL, mapped native PS generated properties",
-  "ddr": "1GiB/32bit/1333MTps/1.35V; executable DDR init unchanged; generated HP0 reset-release/width writes added; physical supply/parts unmeasured"
+  "ddr": "1GiB/32bit/1333MTps/1.35V; executable DDR init unchanged; generated HP0 reset-release/width writes added; physical supply/parts unmeasured",
+  "board_verified_provider_sha256": "faf672643a879453328f4ef56a3b481a295633c3adb2afb4503c21965c387c63",
+  "board_verified_image_sha256": "afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d",
+  "board_evidence": "bsp/evidence/dma-board-result-20261013.json"
 }

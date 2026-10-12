@@ -1,5 +1,16 @@
 # SD启动与GP实板核对
 
+## 2026-10-13 恢复修正版冷启动与完整验收通过
+
+- 镜像afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d此前同一SD Windows完整无缓存读回通过；用户装卡冷启动。COM4 115200/8N1、DTR/RTS=false，完整FSBL→U-Boot→Linux日志19106B，SHA256 c67fbdfbd5a0529360fc7d4665ee20a7c9d86df5f13c712d960ff68f7c81db50。FSBL bit生成20:51:00/HPF导出20:53:02、DDR1024MB/1333Mbps、SD来源/PL加载及common reset释放，Linux新根PARTUUID a3d29e67-02、mmcblk0p2/type SD；1GiB映射、MemTotal1013512KiB、CmaTotal131072KiB。EXT4 journal recovery完成，无文件系统错误报告；不作为掉电或长期存储压力验收。
+- 内核6.1.111-rt42-bsp-sd1、.config SHA81f7b75c...00dbf1，provider faf67264...387c63、client 8572344d...6e6cf、DMA app 057fff84...015cc及原GP模块/app哈希、vermagic和DTS资源门禁通过。GP0x80400000/4KiB/SPI82保持，DMA0x80500000/4KiB/SPI83/84、simple、mask32、BTT16匹配。GP VERSION1/CAPSf/FEATURES7/TICK_HZ1MHz；前后各41项通过。
+- 两轮各222场景，共444：426正常传输、2161698B，在17种长度（1..65535B、非整拍及页边界）/4模式/重复传输中逐字节和guard通过、正常双回调各1。12次预期超时（RX无TX和TX无RX各6）、6次显式在途terminate；18异常均观测inflight，444次pair quiescent均1，累计errors0，每轮timeouts6、recoveries/generation222。异常后4097B正常包均通过；延迟检查无继续写入。第一次client卸载前再次确认停止后释放buffer，重载重新分配并重复全部场景通过。
+- DMA GIC115/116 Level各426次，GP GIC114最终6次，Err0；独立只读收尾观察闲置一秒DMA计数无变化。GP epoch 47186631→65559292，DMA恢复及buffer重建未重置GP时间戳。最终三个模块加载、client无用户引用且无在途传输，coherent缓冲区由client保留。
+- 提交8.010–16.770μs，提交至IRQ完成17.160–104.970μs、均值25.403μs；两轮聚合199.901/199.612MB/s、合计199.756MB/s。口径为payload/累计提交至IRQ完成时间，不是持续总线带宽；每次复位、guard等待和串口打印的开销不包含在该分母，生产FIFO吞吐另测。
+- 原始验收日志198039B、SHA256 fcfda6c3025577dcf91c2fee2f298a27997a4295c818068fc46405c11dd003aa，脚本退出0/BSP_DMA_BOARD_ACCEPT_COMPLETE_NO_MOTION；metadata记录来源脚本、参数及收发字节。原始日志dma-board-accept-20261013-01.log、dma-idle-20261013-01.log、coldboot及.json保留；结构化dma-board-result-20261013.json由summarize_dma_board.py检查444条记录/场景/标记/IRQ/epoch。此前恢复失败原始证据保留，不改写为成功。
+
+本批独立回环、受控双向恢复与GP回归目标通过。未接运动FIFO/电机；记录格式/包边界、持续吞吐/调度裕量、真实运动顶层时序/CDC/复位、欠流/STOP与停止排空需联合验证。物理DDR电压/颗粒/速度等级、长时DDR/CMA/存储压力未测。专用client双通道独占/同步串行提交及失败时quarantine规则保持，不宣称任意并发消费者/hot-remove安全。eMMC未操作。
+
 当前暂停检查点：恢复修正版镜像afa13b14...420050d/根a3d29e67-02已经Windows完整写入/读回通过，尚未启动。用户因额度要求暂停；未打开第二次COM4采集。以下首版失败及通过项保留，不替修正版作通过结论。
 
 ## 2026-10-12 独立DMA首版：正常传输通过，恢复失败

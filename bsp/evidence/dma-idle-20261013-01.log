@@ -1,0 +1,30 @@
+
+# stty -echo
+WED_SCRIPT_EOF'
+#!/bin/sh
+# Read-only follow-up after full accepted DMA test; do not submit or # > > > > > > > > > > > > > >            CPU0       CPU1       
+ 11:       2445       2221     GICv3  27 Level     arch_timer
+ 13:          0          0     GICv3  78 Level     dw:dmac-1
+ 18:       3315          0     GICv3 103 Level     ttyS0
+ 19:          0          0     GICv3  80 Level     f804e000.spi
+ 20:       1383          0     GICv3  94 Level     mmc0
+ 22:        385          0     GICv3  95 Level     mmc1
+ 23:          0          0  gpio-dwapb  15 Edge      f8049000.mmc cd
+ 24:          6          0     GICv3 114 Level     bsp-gp
+ 25:        426          0     GICv3 115 Level     anlogic-dma-controller
+ 26:        426          0     GICv3 116 Level     anlogic-dma-controller
+IPI0:        87        120       Rescheduling interrupts
+IPI1:      1120       2154       Function call interrupts
+IPI2:         0          0       CPU stop interrupts
+IPI3:         0          0       CPU stop (for crash dump) interrupts
+IPI4:         0          0       Timer broadcast interrupts
+IPI5:         0          0       IRQ work interrupts
+IPI6:         0          0       CPU wake-up interrupts
+Err:          0
+bsp_dma_loop 16384 0 - Live 0xffffffc00098d000 (O)
+anlogic_dma_engine 24576 3 bsp_dma_loop, Live 0xffffffc000986000 (O)
+bsp_gp 20480 0 - Live 0xffffffc000980000 (O)
+BSP_DMA_IDLE_IRQ_STABLE_ONE_SECOND
+# 
+BSP_SERIAL_EXIT=0
+# 

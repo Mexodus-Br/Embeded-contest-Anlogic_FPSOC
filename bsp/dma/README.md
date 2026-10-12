@@ -1,5 +1,7 @@
 # 独立Anlogic AXI DMA/HP0回环
 
+2026-10-13实板验收完成：恢复修正版冷启动、SD根a3d29e67-02与配套哈希/资源门禁通过；GP前后各41项，DMA444场景全部通过（426正常、12预期超时、6在途terminate、errors0），buffer释放/重分配后复测通过、GP epoch保持、新IRQ各426次且闲置稳定。原始日志和199.756MB/s提交至IRQ口径见../BOARD_VALIDATION.md。下文修正版待测/暂停及首版恢复失败为历史，不覆盖失败证据。专用双通道独占client约束保持；运动FIFO/电机和生产吞吐/停止联锁未验收。
+
 最新状态：首版SD启动、GP41项和204正常DMA逐字节回环通过；GIC115/116各204次，首个RX无TX超时恢复失败，保留buffer/pin模块。恢复修正版在loopback-pair simple专用域跳过依赖packet完成的RUNSTOP等待，采用controller reset，在释放当前描述符前核对两个方向HALTED及RUNSTOP/RESET清；client仍须双向terminate_sync、队列和IRQ/tasklet同步及延迟稳定性，不依据reset自清释放buffer。修正版已构建/校验并部署，未板测；用户要求暂停，详见BUILD_STATUS.md。一般DMA域保留halt/reset错误传播，不擅自切换SG。
 
 当前修正版不可变包bsp/artifacts/dma-recovery-release.tar.gz（SHA256 d832216b0d97b1dc7eca66c8cb945f69bbb480d6e5caec353fda99edde6b61fd）；SD镜像afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d、根a3d29e67-02，provider faf672643a879453328f4ef56a3b481a295633c3adb2afb4503c21965c387c63。首版包和首版失败证据不覆盖。下文原先6be6...和ab260...身份是首版历史。修正版独立串口测试kit为dma-recovery-validation-kit.tar.gz/对应evidence JSON。

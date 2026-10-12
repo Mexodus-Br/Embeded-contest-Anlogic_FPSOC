@@ -1,0 +1,50 @@
+{
+  "status": "PASS_INDEPENDENT_DMA_LOOPBACK_AND_CONTROLLED_RECOVERY",
+  "raw_log": "bsp\\evidence\\dma-board-accept-20261013-01.log",
+  "raw_sha256": "fcfda6c3025577dcf91c2fee2f298a27997a4295c818068fc46405c11dd003aa",
+  "root_partuuid": "a3d29e67-02",
+  "tests": 444,
+  "normal_transfers": 426,
+  "payload_bytes": 2161698,
+  "expected_timeouts": 12,
+  "explicit_inflight_terminations": 6,
+  "errors": 0,
+  "all_pair_quiescent_checks": 444,
+  "abnormal_inflight_checks": 18,
+  "buffers_released_and_reacquired": true,
+  "gp_checks_before_and_after": 41,
+  "gp_epoch": {
+    "BEFORE": 47186631,
+    "AFTER": 65559292
+  },
+  "gic_counts_in_accept_log": {
+    "114": [
+      3,
+      3
+    ],
+    "115": [
+      426
+    ],
+    "116": [
+      426
+    ]
+  },
+  "submit_ns_min": 8010,
+  "submit_ns_max": 16770,
+  "completion_ns_min": 17160,
+  "completion_ns_max": 104970,
+  "completion_ns_mean": 25403.028169014084,
+  "aggregate_payload_MBps": 199.75604549751472,
+  "throughput_scope": "payload / accumulated submit-to-IRQ completion; not sustained bus bandwidth",
+  "emmc": "NOT_MODIFIED",
+  "motion_fifo_and_motors": "NOT_CONNECTED",
+  "idle_irq_stable_one_second": true,
+  "final_gic_counts": {
+    "114": 6,
+    "115": 426,
+    "116": 426,
+    "Err": 0
+  },
+  "idle_log_sha256": "77bc20f6fee82239bf5387c35bd33b79be3ffda7dd932232e99e69f07d2fa3c1",
+  "cold_boot_log_sha256": "c67fbdfbd5a0529360fc7d4665ee20a7c9d86df5f13c712d960ff68f7c81db50"
+}

@@ -1,5 +1,11 @@
 # DMA BSP实际状态
 
+2026-10-13实际验收完成：用户冷启动此前已完整部署的恢复修正版，FSBL→U-Boot→Linux完整日志保存，SD根a3d29e67-02/1GiB/128MiB CMA与配套内核、DTS、provider/client/GP/app哈希门禁通过。GP前后各41项通过；DMA两轮各222场景，共444，正常传输426次/2161698B逐字节与guard通过，12次预期超时、6次显式在途terminate，18异常场景均观测实际在途，随后正常包恢复通过。444次pair检查均quiescent=1，errors=0；client卸载前再次停止，buffer释放后重载重新分配并完整复测通过。两路GIC115/116各426次、GP GIC114最终6次、Err0；额外闲置一秒DMA IRQ计数稳定。GP时间戳47186631→65559292，DMA-only reset/重载保持epoch。最终client/provider/GP已加载、无活动传输，缓冲区由client持有。下方暂停和未验证状态属于历史检查点，已由本次实板证据替代。
+
+提交延迟8.010–16.770μs；提交至IRQ完成17.160–104.970μs，均值25.403μs。聚合199.756MB/s仅为总payload除以累计提交至IRQ完成时间；测试包括每次复位/guard等待/串口打印，不作为持续总线带宽或生产运动吞吐。原始完整冷启动dma-coldboot-20261013-01.log、验收dma-board-accept-20261013-01.log及metadata、只读收尾dma-idle-20261013-01.log均保存；结构化结果dma-board-result-20261013.json，可由summarize_dma_board.py复核。
+
+本批独立Linux→DDR→DMA→PL回环→DMA→DDR及受控恢复验收完成。接运动FIFO前仍须共同冻结记录/packet/TLAST、FIFO容量与预取提前量、欠流/STOP/代际取消、持续负载吞吐与Linux调度裕量、整合运动顶层的真实约束/CDC/复位和停止排空证明；DMA完成不等同运动完成。当前专用client独占双通道、同步串行提交的约束不可直接用于其他并发消费者或任意hot-remove。实物DDR供电/颗粒/速度等级、长时DDR/CMA/存储压力、实体IO和电机另验收，eMMC未修改。
+
 当前检查点（2026-10-12 22:34 Asia/Taipei）：用户因5h额度耗尽要求暂停。恢复修正版交付包dma-recovery-release.tar.gz SHA256 d832216b0d97b1dc7eca66c8cb945f69bbb480d6e5caec353fda99edde6b61fd，本地23发布文件校验通过；修正版SD镜像afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d、根a3d29e67-02。同一Windows USB磁盘1在管理员授权后无缓存写入512MiB24.609秒，完整无缓存读回18.359秒，哈希一致、分区/签名通过，退出0。原始证据dma-sd-windows-recovery-write.log及.json；配套镜像校验和独立串口kit已保存。修正版尚未冷启动、GP回归或DMA恢复复验；未打开第二次COM4采集。下文正常回环通过与恢复失败仅指首版6be6...镜像，不能归为修正版验收。
 
 恢复时先确认修正版卡已装入断电板卡、SD拨码及COM4状态，再使用新的stop-file和独占日志名采集完整冷启动。按根a3d29e67-02、provider faf67264...387c63及现有GP ABI门禁执行board_dma_accept.sh：222场景后只有全部成功才卸载/释放client缓冲区并重载，再跑222场景，核对两路IRQ、epoch保持及GP回归。任何pair-stop失败保留缓冲区，不继续复用/卸载。本批运动FIFO/电机未接入。

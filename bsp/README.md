@@ -1,5 +1,7 @@
 # Buildroot 最小 SD 启动基线
 
+2026-10-13最新结果：恢复修正版SD根a3d29e67-02冷启动、匹配内核/模块/资源门禁、GP前后各41项及独立DMA444场景全部通过。426正常回环、12预期超时、6在途terminate，错误0；buffer释放/重分配后复测、GP epoch保持和两路IRQ各426次/闲置稳定通过。完整原始证据和吞吐口径见[BOARD_VALIDATION.md](BOARD_VALIDATION.md)，接运动FIFO前条件见[dma/BUILD_STATUS.md](dma/BUILD_STATUS.md)。以下暂停/待板测是历史记录，已由本次结果替代；运动FIFO/电机未接入。
+
 最新检查点：独立DMA首版冷启动/GP41项/204正常回环通过，两路新IRQ各204次；首个超时恢复失败，缓冲区安全保留。恢复修正版已在匹配内核构建树重编并生成独立交付包，同一SD Windows完整烧录/512MiB无缓存读回通过，根a3d29e67-02。用户因额度要求暂停，修正版冷启动/恢复及buffer释放重分配尚未验收。见[dma/BUILD_STATUS.md](dma/BUILD_STATUS.md)及[BOARD_VALIDATION.md](BOARD_VALIDATION.md)。
 
 2026-10-12独立DMA/HP0回环后续批次：PL交付、最终PS+GP+DMA时序与一致镜像、匹配内核provider/client软件及主机校验通过。VM写入失败及重启后持续USB超时的证据保留；随后同一SD在Windows直接烧录512MiB并完整无缓存读回，SHA256一致、分区和文件系统签名通过，根a1604a87-02。DMA镜像启动、GP回归、DMA传输和恢复待板测。本批状态见[dma/BUILD_STATUS.md](dma/BUILD_STATUS.md)；下方GP/基线成功项为历史结果。
