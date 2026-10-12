@@ -1,0 +1,131 @@
+make: Entering directory '/home/uisrc/embedded-bsp/vendor/sources/buildroot'
+>>>   Finalizing host directory
+>>>   Finalizing target directory
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/host/etc/meson
+sed -e "s%@TARGET_CFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-Os', '-g0', '-D_FORTIFY_SOURCE=1'@PKG_TARGET_CFLAGS@%g" -e "s%@TARGET_LDFLAGS@%@PKG_TARGET_LDFLAGS@%g" -e "s%@TARGET_CXXFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-Os', '-g0', '-D_FORTIFY_SOURCE=1'@PKG_TARGET_CXXFLAGS@%g"         -e "s%@TARGET_CC@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-gcc%g" -e "s%@TARGET_CXX@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-g++%g" -e "s%@TARGET_AR@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-gcc-ar%g" -e "s%@TARGET_STRIP@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-strip%g" -e "s%@TARGET_ARCH@%aarch64%g" -e "s%@TARGET_CPU@%cortex-a35%g" -e "s%@TARGET_ENDIAN@%little%g" -e "s%@TARGET_CFLAGS@%%g" -e "s%@TARGET_LDFLAGS@%%g" -e "s%@TARGET_CXXFLAGS@%%g" -e "s%@BR2_CMAKE@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/cmake%g" -e "s%@PKGCONF_HOST_BINARY@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/pkgconf%g" -e "s%@HOST_DIR@%/home/uisrc/embedded-bsp/output/buildroot/host%g" -e "s%@STAGING_DIR@%/home/uisrc/embedded-bsp/output/buildroot/host/aarch64-buildroot-linux-gnu/sysroot%g" -e "s%@STATIC@%false%g" /home/uisrc/embedded-bsp/vendor/sources/buildroot/support/misc/cross-compilation.conf.in > /home/uisrc/embedded-bsp/output/buildroot/host/etc/meson/cross-compilation.conf.in
+sed         -e "s%@TARGET_CC@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-gcc%g" -e "s%@TARGET_CXX@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-g++%g" -e "s%@TARGET_AR@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-gcc-ar%g" -e "s%@TARGET_STRIP@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-strip%g" -e "s%@TARGET_ARCH@%aarch64%g" -e "s%@TARGET_CPU@%cortex-a35%g" -e "s%@TARGET_ENDIAN@%little%g" -e "s%@TARGET_CFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-Os', '-g0', '-D_FORTIFY_SOURCE=1'%g" -e "s%@TARGET_LDFLAGS@%%g" -e "s%@TARGET_CXXFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-Os', '-g0', '-D_FORTIFY_SOURCE=1'%g" -e "s%@BR2_CMAKE@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/cmake%g" -e "s%@PKGCONF_HOST_BINARY@%/home/uisrc/embedded-bsp/output/buildroot/host/bin/pkgconf%g" -e "s%@HOST_DIR@%/home/uisrc/embedded-bsp/output/buildroot/host%g" -e "s%@STAGING_DIR@%/home/uisrc/embedded-bsp/output/buildroot/host/aarch64-buildroot-linux-gnu/sysroot%g" -e "s%@STATIC@%false%g" /home/uisrc/embedded-bsp/vendor/sources/buildroot/support/misc/cross-compilation.conf.in > /home/uisrc/embedded-bsp/output/buildroot/host/etc/meson/cross-compilation.conf
+/bin/sed -i -e '/# GENERIC_SERIAL$/s~^.*#~ttyS0::respawn:/sbin/getty -L  ttyS0 115200 vt100 #~' /home/uisrc/embedded-bsp/output/buildroot/target/etc/inittab
+/bin/sed -i -e '/^#.*-o remount,rw \/$/s~^#\+~~' /home/uisrc/embedded-bsp/output/buildroot/target/etc/inittab
+if grep -q CONFIG_ASH=y /home/uisrc/embedded-bsp/output/buildroot/build/busybox-1.35.0/.config; then grep -qsE '^/bin/ash$' /home/uisrc/embedded-bsp/output/buildroot/target/etc/shells || echo "/bin/ash" >> /home/uisrc/embedded-bsp/output/buildroot/target/etc/shells; fi
+if grep -q CONFIG_HUSH=y /home/uisrc/embedded-bsp/output/buildroot/build/busybox-1.35.0/.config; then grep -qsE '^/bin/hush$' /home/uisrc/embedded-bsp/output/buildroot/target/etc/shells || echo "/bin/hush" >> /home/uisrc/embedded-bsp/output/buildroot/target/etc/shells; fi
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/target/etc
+echo "delta-bsp" > /home/uisrc/embedded-bsp/output/buildroot/target/etc/hostname
+/bin/sed -i -e '$a \127.0.1.1\tdelta-bsp' -e '/^127.0.1.1/d' /home/uisrc/embedded-bsp/output/buildroot/target/etc/hosts
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/target/etc
+echo "Delta BSP SD baseline - serial/storage/DMA preparation" > /home/uisrc/embedded-bsp/output/buildroot/target/etc/issue
+/bin/sed -i -e s,^root:[^:]*:,root:"`/home/uisrc/embedded-bsp/output/buildroot/host/bin/mkpasswd -m "sha-256" "root"`":, /home/uisrc/embedded-bsp/output/buildroot/target/etc/shadow
+grep -qsE '^/bin/sh$' /home/uisrc/embedded-bsp/output/buildroot/target/etc/shells || echo "/bin/sh" >> /home/uisrc/embedded-bsp/output/buildroot/target/etc/shells
+if [ -x /home/uisrc/embedded-bsp/output/buildroot/target/sbin/swapon -a -x /home/uisrc/embedded-bsp/output/buildroot/target/sbin/swapoff ]; then /bin/sed -i -e '/^#.*\/sbin\/swap/s/^#\+[[:blank:]]*//' /home/uisrc/embedded-bsp/output/buildroot/target/etc/inittab; else /bin/sed -i -e '/^[^#].*\/sbin\/swap/s/^/#/' /home/uisrc/embedded-bsp/output/buildroot/target/etc/inittab; fi
+printf '%s\n' C en_US locale-archive > /home/uisrc/embedded-bsp/output/buildroot/build/locales.nopurge
+for dir in /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/locale /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/X11/locale /home/uisrc/embedded-bsp/output/buildroot/target/usr/lib/locale; do if [ ! -d $dir ]; then continue; fi; for langdir in $dir/*; do if [ -e "${langdir}" ]; then grep -qx "${langdir##*/}" /home/uisrc/embedded-bsp/output/buildroot/build/locales.nopurge || rm -rf $langdir; fi done; done
+if [ -d /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/X11/locale ]; then for lang in C en_US; do if [ -f /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/X11/locale/$lang/XLC_LOCALE ]; then echo "$lang/XLC_LOCALE: $lang"; fi done > /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/X11/locale/locale.dir; fi
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/usr/include /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/aclocal \
+	/home/uisrc/embedded-bsp/output/buildroot/target/usr/lib/pkgconfig /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/pkgconfig \
+	/home/uisrc/embedded-bsp/output/buildroot/target/usr/lib/cmake /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/cmake \
+	/home/uisrc/embedded-bsp/output/buildroot/target/usr/doc
+find /home/uisrc/embedded-bsp/output/buildroot/target/usr/{lib,share}/ -name '*.cmake' -print0 | xargs -0 rm -f
+find /home/uisrc/embedded-bsp/output/buildroot/target/lib/ /home/uisrc/embedded-bsp/output/buildroot/target/usr/lib/ /home/uisrc/embedded-bsp/output/buildroot/target/usr/libexec/ \
+	\( -name '*.a' -o -name '*.la' -o -name '*.prl' \) -print0 | xargs -0 rm -f
+find: '/home/uisrc/embedded-bsp/output/buildroot/target/usr/libexec/': No such file or directory
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/gdb
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/bash-completion
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/etc/bash_completion.d
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/zsh
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/usr/man /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/man
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/usr/info /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/info
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/usr/doc /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/doc
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/usr/share/gtk-doc
+rmdir /home/uisrc/embedded-bsp/output/buildroot/target/usr/share 2>/dev/null || true
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/target/lib/debug /home/uisrc/embedded-bsp/output/buildroot/target/usr/lib/debug
+find /home/uisrc/embedded-bsp/output/buildroot/target   -type f \( -perm /111 -o -name '*.so*' \) -not \( -name 'libpthread*.so*' -o -name 'ld-*.so*' -o -name '*.ko' \) -print0 | xargs -0 /home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-strip --remove-section=.comment --remove-section=.note 2>/dev/null || true
+find /home/uisrc/embedded-bsp/output/buildroot/target   \( -name 'ld-*.so*' -o -name 'libpthread*.so*' \) -print0 | xargs -0 -r /home/uisrc/embedded-bsp/output/buildroot/host/bin/aarch64-linux-gnu-strip --remove-section=.comment --remove-section=.note --strip-debug 2>/dev/null || true
+test -f /home/uisrc/embedded-bsp/output/buildroot/target/etc/ld.so.conf && \
+	{ echo "ERROR: we shouldn't have a /etc/ld.so.conf file"; exit 1; } || true
+test -d /home/uisrc/embedded-bsp/output/buildroot/target/etc/ld.so.conf.d && \
+	{ echo "ERROR: we shouldn't have a /etc/ld.so.conf.d directory"; exit 1; } || true
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/target/etc
+( \
+	echo "NAME=Buildroot"; \
+	echo "VERSION=2022.02.6"; \
+	echo "ID=buildroot"; \
+	echo "VERSION_ID=2022.02.6"; \
+	echo "PRETTY_NAME=\"Buildroot 2022.02.6\"" \
+) >  /home/uisrc/embedded-bsp/output/buildroot/target/usr/lib/os-release
+ln -sf ../usr/lib/os-release /home/uisrc/embedded-bsp/output/buildroot/target/etc
+>>>   Sanitizing RPATH in target tree
+PER_PACKAGE_DIR=/home/uisrc/embedded-bsp/output/buildroot/per-package /home/uisrc/embedded-bsp/vendor/sources/buildroot/support/scripts/fix-rpath target
+>>>   Copying overlay /home/uisrc/embedded-bsp/output/overlay
+touch /home/uisrc/embedded-bsp/output/buildroot/target/usr
+>>>   Generating root filesystems common tables
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs
+printf '   \n' >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_users_table.txt
+printf '   	/bin/busybox                     f 4755 0  0 - - - - -\n\n' > /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_devices_table.txt
+cat system/device_table.txt >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_devices_table.txt
+>>>   Generating filesystem image rootfs.ext2
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/images
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2
+rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/uisrc/embedded-bsp/output/buildroot/target/ /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target
+echo '#!/bin/sh' > /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+echo "set -e" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+echo "chown -h -R 0:0 /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+PATH="/home/uisrc/embedded-bsp/output/buildroot/host/bin:/home/uisrc/embedded-bsp/output/buildroot/host/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games" /home/uisrc/embedded-bsp/vendor/sources/buildroot/support/scripts/mkusers /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_users_table.txt /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+echo "/home/uisrc/embedded-bsp/output/buildroot/host/bin/makedevs -d /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_devices_table.txt /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+echo "find /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+echo "find /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+printf '   	find /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target -print0 | xargs -0 -r touch -hd @1791676800\n' >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+printf '   \n' >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+printf '   	rm -f /home/uisrc/embedded-bsp/output/buildroot/images/rootfs.ext2\n	/home/uisrc/embedded-bsp/output/buildroot/host/sbin/mkfs.ext4 -d /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target -r 1 -N 0 -m 5 -L "bsp-root" -O ^64bit /home/uisrc/embedded-bsp/output/buildroot/images/rootfs.ext2 "256M" || { ret=$?; echo "*** Maybe you need to increase the filesystem size (BR2_TARGET_ROOTFS_EXT2_SIZE)" 1>&2; exit $ret; }\n' >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+chmod a+x /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+PATH="/home/uisrc/embedded-bsp/output/buildroot/host/bin:/home/uisrc/embedded-bsp/output/buildroot/host/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games" FAKEROOTDONTTRYCHOWN=1 /home/uisrc/embedded-bsp/output/buildroot/host/bin/fakeroot -- /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/fakeroot
+rootdir=/home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/ext2/target
+table='/home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_devices_table.txt'
+mke2fs 1.46.5 (30-Dec-2021)
+Creating regular file /home/uisrc/embedded-bsp/output/buildroot/images/rootfs.ext2
+64-bit filesystem support is not enabled.  The larger fields afforded by this feature enable full-strength checksumming.  Pass -O 64bit to rectify.
+Creating filesystem with 262144 1k blocks and 65536 inodes
+Filesystem UUID: 22909d9d-06ea-4c37-9732-391fa97b9e59
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729, 204801, 221185
+
+Allocating group tables:  0/32     done                            
+Writing inode tables:  0/32     done                            
+Creating journal (8192 blocks): done
+Copying files into the device: done
+Writing superblocks and filesystem accounting information:  0/32     done
+
+ln -sf rootfs.ext2 /home/uisrc/embedded-bsp/output/buildroot/images/rootfs.ext4
+>>>   Generating filesystem image rootfs.tar
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/images
+rm -rf /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar
+mkdir -p /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar
+rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/uisrc/embedded-bsp/output/buildroot/target/ /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target
+echo '#!/bin/sh' > /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+echo "set -e" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+echo "chown -h -R 0:0 /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+PATH="/home/uisrc/embedded-bsp/output/buildroot/host/bin:/home/uisrc/embedded-bsp/output/buildroot/host/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games" /home/uisrc/embedded-bsp/vendor/sources/buildroot/support/scripts/mkusers /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_users_table.txt /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+echo "/home/uisrc/embedded-bsp/output/buildroot/host/bin/makedevs -d /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_devices_table.txt /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+echo "find /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+echo "find /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+printf '   	find /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target -print0 | xargs -0 -r touch -hd @1791676800\n' >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+printf '   \n' >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+printf '   	(cd /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target; find -print0 | LC_ALL=C sort -z | tar  --pax-option=exthdr.name=%%d/PaxHeaders/%%f,atime:=0,ctime:=0 -cf /home/uisrc/embedded-bsp/output/buildroot/images/rootfs.tar --null --xattrs-include='\''*'\'' --no-recursion -T - --numeric-owner)\n' >> /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+chmod a+x /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+PATH="/home/uisrc/embedded-bsp/output/buildroot/host/bin:/home/uisrc/embedded-bsp/output/buildroot/host/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games" FAKEROOTDONTTRYCHOWN=1 /home/uisrc/embedded-bsp/output/buildroot/host/bin/fakeroot -- /home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/fakeroot
+rootdir=/home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/tar/target
+table='/home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_devices_table.txt'
+PATH="/home/uisrc/embedded-bsp/output/buildroot/host/bin:/home/uisrc/embedded-bsp/output/buildroot/host/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games" gzip -9 -c -n /home/uisrc/embedded-bsp/output/buildroot/images/rootfs.tar > /home/uisrc/embedded-bsp/output/buildroot/images/rootfs.tar.gz
+make: Leaving directory '/home/uisrc/embedded-bsp/vendor/sources/buildroot'
+64373c4b3d62cd1d69f3d9dd1a7306d4a3fe16ac464184f0964c8ef22b6be693  /home/uisrc/embedded-bsp/output/gp-rootfs/rootfs.ext4
+c7581e0f7a5bfd1d9cdc43ab23eb3b4fad8fa2b1467f0a1b06460277cdb0a584  /home/uisrc/embedded-bsp/output/gp-rootfs/buildroot.config
+021b6c209229a0a4ae87651c025db65fd4e2c393d5659e705bef6887d2c7799d  /home/uisrc/embedded-bsp/output/buildroot/target/usr/bin/bsp-readonly-check
+ce7a38c0c2e4f35fe1b73d0591fc9881476ce064fede2823a57d552840017136  /home/uisrc/embedded-bsp/output/buildroot/target/usr/bin/gp-accept
+e2fsck 1.44.1 (24-Mar-2018)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+bsp-root: 758/65536 files (1.7% non-contiguous), 136253/262144 blocks
+GP_ROOTFS_STAGED_NO_GP_BOOT_IMAGE_OR_BOARD_TEST

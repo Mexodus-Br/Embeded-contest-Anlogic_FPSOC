@@ -1,0 +1,10 @@
+/* CANDIDATE: requires generated HPF/IP/IRQ/address/STA evidence. */
+&soc {
+    bsp_gp: gp-control@80400000 {
+        compatible = "embedded-contest,gp-control-probe-v1";
+        reg = <0x0 0x80400000 0x0 0x00001000>;
+        interrupt-parent = <&gic>;
+        interrupts = <0 82 4>;
+        status = "disabled";
+    };
+};

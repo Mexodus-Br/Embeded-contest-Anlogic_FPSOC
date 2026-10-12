@@ -6,4 +6,6 @@
 *.fragment text eol=lf
 *defconfig text eol=lf
 evidence/** -whitespace
+# Preserve raw GP build/serial/transport evidence and its recorded byte hashes.
+evidence/gp-* -text
 *.patch -whitespace

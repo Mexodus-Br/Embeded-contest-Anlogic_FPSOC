@@ -1,0 +1,1768 @@
+============================================================
+   TD Release_2026.1_SP2
+   Copyright (c) 2012-2026 Anlogic Inc.
+   Executable = D:/Anlogic/TD_Release_2026.1_SP2.200.067/bin/td_commands_prompt.exe
+   Build number = 6.2.2.200067
+   Built at =   16:15:53 Apr 23 2026
+   Run by =     boru
+   Run Date =   Mon Oct 12 09:00:23 2026
+
+   Run on =     LAPTOP-JS7E5LFJ
+============================================================
+RUN-1002 : start command "import_device dr1_90.db -package DR1M90GEG400 -speed 2"
+ARC-1001 : Device Initialization.
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :           OPTION          |      IO       |   SETTING   
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |    35 IOs     |    gpio    
+ARC-1001 :            jtag           |  F9/J6/G6/F6  |  dedicate  
+ARC-1001 : --------------------------------------------------------
+RUN-1003 : finish command "import_device dr1_90.db -package DR1M90GEG400 -speed 2" in  4.318927s wall, 3.875000s user + 0.328125s system = 4.203125s CPU (97.3%)
+
+RUN-1004 : used memory is 418 MB, reserved memory is 409 MB, peak memory is 452 MB
+RUN-1002 : start command "open_project system.al"
+PRJ-5611 WARNING: gp/gp_control_top.v and gp/gp_control_regs.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/gp_ps_write_adapter.v and gp/gp_control_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/gp_ps_control_top.v and gp/gp_ps_write_adapter.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/axi_protocol_converter_merge.v and gp/gp_ps_control_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/gp.sdc and gp/gp.adc have the same CompileOrder value.
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/system_ARM_Processor_System_0.v
+HDL-1007 : analyze verilog file system/hdl/system.v
+HDL-1007 : analyze verilog file system/hdl/system_wrapper.v
+HDL-1007 : analyze verilog file gp/axi_protocol_converter_merge.v
+Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit (http://www.openssl.org/)
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+All rights reserved.
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(138)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(589)
+HDL-1007 : analyze verilog file gp/gp_ps_control_top.v
+HDL-1007 : analyze verilog file gp/gp_ps_write_adapter.v
+HDL-1007 : analyze verilog file gp/gp_control_top.v
+HDL-1007 : analyze verilog file gp/gp_control_regs.v
+PRJ-1401 : Successfully analyzed 9 source files.
+RUN-1002 : start command "elaborate -top system_wrapper"
+HDL-1007 : elaborate module system_wrapper in system/hdl/system_wrapper.v(2)
+HDL-1007 : port 'master_fahb_haddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hsel' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_htrans' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hwdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hwrite' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_tx_clk' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_tx_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_txd' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_txen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_txer' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_mcgr_dma_req_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_ptp_pps_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_ptp_timestamp_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_ptp_timestamp_toggle_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_tx_clk' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_tx_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_txd' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_txen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_txer' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_mcgr_dma_req_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_ptp_pps_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_ptp_timestamp_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_ptp_timestamp_toggle_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'f2p_cti_trig_ack' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_clk_lcl' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_clk_glb' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk1' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk2' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk2_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk3' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk3_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_rst_n_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_rst_n_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_araddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arcache' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arlen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arlock' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awaddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awcache' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awlen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awlock' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_bready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_rready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_wdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_wlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_wstrb' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_wvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_cti_trig' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'standbywfe_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'standbywfi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_de' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_dtr_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_out1_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_out2_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_re' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_rts_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_de' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_dtr_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_out1_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_out2_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_re' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_rts_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma0_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma0_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma0_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma0_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma1_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma1_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma1_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma2_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma2_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma2_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma2_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma3_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma3_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma3_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma3_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'can0_stby' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'can0_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'can1_stby' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'can1_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gpio_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gpio_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'i2c0_scl_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'i2c0_sda_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'i2c1_scl_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'i2c1_sda_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdc0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdc1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdio0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdio1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdio0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdio1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_cmd_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_cmd_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_2_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_3_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_4_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_4_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_5_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_5_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_6_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_6_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_7_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_7_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_pwr_ctrl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_cmd_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_cmd_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_2_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_3_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_pwr_ctrl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_miso_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_miso_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_mosi_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_mosi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_sclk_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_sclk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_ss_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_ss_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_ss_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_ss_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_miso_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_miso_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_mosi_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_mosi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_sclk_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_sclk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_ss_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_ss_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_ss_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_ss_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'swdt_rst_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc0_wave1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc0_wave2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc0_wave0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc1_wave1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc1_wave2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc1_wave0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_ctl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_10_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_11_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_12_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_13_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_14_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_15_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_4_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_5_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_6_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_7_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_8_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_9_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'event_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : elaborate module ARM_Processor_System_f6ddd1d59490(P2F_CLK0_DIV=8) in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(4)
+HDL-1007 : elaborate module DR1_PHY_PROCESSOR_SYSTEM(P2F_CLK1_DIV=2,P2F_CLK2_DIV=2,P2F_CLK3_DIV=2) in D:\Anlogic\TD_Release_2026.1_SP2.200.067\arch/dr1_macro.v(1637)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 64 for port 'slave_hp0_axi_wdata' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(212)
+HDL-5007 WARNING: actual bit length 4 differs from formal bit length 8 for port 'slave_hp0_axi_wstrb' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(214)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 64 for port 'slave_hp1_axi_wdata' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(240)
+HDL-5007 WARNING: actual bit length 4 differs from formal bit length 8 for port 'slave_hp1_axi_wstrb' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(242)
+HDL-1007 : elaborate module gp_ps_control_top in gp/gp_ps_control_top.v(3)
+HDL-1007 : elaborate module gp_ps_write_adapter in gp/gp_ps_write_adapter.v(4)
+HDL-1007 : elaborate module gp_control_top in gp/gp_control_top.v(831)
+HDL-1007 : elaborate module axi_protocol_converter_merge(AL_US_AXI_PROTOCOL=1,AL_AXI_ID_WIDTH=32'b01100,AL_AXI_ADDR_WIDTH=32'b0100001,AL_AXI_DATA_WIDTH=32'b0100000,AL_AXI_SUPPORTS_USER_SIGNALS=0) in gp/axi_protocol_converter_merge.v(5)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(13)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2072)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1644)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2545)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(646)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(926)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1032)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1540)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1445)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(752)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(535)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1260)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1118)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2072)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1644)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2545)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(182)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(432)
+HDL-1007 : elaborate module gp_control_regs in gp/gp_control_regs.v(830)
+HDL-1200 : Current top model is system_wrapper
+HDL-1100 : Inferred 0 RAMs.
+RUN-1002 : start command "read_adc -file gp/gp.adc"
+RUN-1002 : start command "set_pin_assignment  clk_100m   LOCATION = H16; IOSTANDARD = LVCMOS33; "
+RUN-1001 : Starting of IO setups legality check.
+RUN-1002 : start command "read_sdc gp/gp.sdc"
+RUN-1002 : start command "optimize_rtl"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+SYN-1001 : Stage 1 | Optimize RTL
+SYN-1001 : Stage 1.1 | Check Design Sanity
+SYN-1001 : End Stage 1.1 | Check Design Sanity; Time: 0.008560s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (182.5%); Memory(MB): used = 492, reserved = 478, peak = 492;
+
+SYN-1079 : finish stage Check Design Sanity. Total instances: 8053, Total nets: 24601.
+
+SYN-1001 : Stage 1.2 | Initialize Design
+SYN-1001 : End Stage 1.2 | Initialize Design; Time: 0.094586s wall, 0.093750s user + 0.000000s system = 0.093750s CPU (99.1%); Memory(MB): used = 493, reserved = 478, peak = 493;
+
+SYN-1079 : finish stage Initialize Design. Total instances: 2833, Total nets: 18860.
+
+SYN-1001 : Stage 1.3 | Flatten Module
+SYN-1011 : Flatten model system_wrapper
+SYN-1001 : End Stage 1.3 | Flatten Module; Time: 0.204281s wall, 0.203125s user + 0.000000s system = 0.203125s CPU (99.4%); Memory(MB): used = 493, reserved = 478, peak = 493;
+
+SYN-1079 : finish stage Flatten Module. Total instances: 3107, Total nets: 13496.
+
+SYN-1001 : Stage 1.4 | Uniform Instance
+SYN-1001 : End Stage 1.4 | Uniform Instance; Time: 0.035825s wall, 0.031250s user + 0.000000s system = 0.031250s CPU (87.2%); Memory(MB): used = 493, reserved = 478, peak = 493;
+
+SYN-1079 : finish stage Uniform Instance. Total instances: 1864, Total nets: 12253.
+
+SYN-1001 : Stage 1.5 | Optimize Design
+SYN-1066 : Inferred FSM for state register 'control/core/converter/conversion_to_lite$axi_axilite/RD$ar_channel/ar_cmd_fsm_0/state_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00             0001
+                    01             0010
+                    10             0100
+                    11             1000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/converter/conversion_to_lite$axi_axilite/RD$ar_channel/ar_cmd_fsm_0/state_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1066 : Inferred FSM for state register 'control/core/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_fsm_aw/state_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00             0001
+                    01             0010
+                    10             0100
+                    11             1000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_fsm_aw/state_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1066 : Inferred FSM for state register 'control/core/registers/phase_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00             0001
+                    01             0010
+                    10             0100
+                    11             1000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/registers/phase_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1057 : Inferred 3 FSM(s)
+SYN-1032 : 12217/18 useful/useless nets, 1824/5 useful/useless insts
+SYN-1021 : Optimized 3 onehot mux instances.
+SYN-1021 : Optimized 4 onehot mux instances.
+SYN-1019 : Optimized 4 mux instances.
+SYN-1021 : Optimized 1 onehot mux instances.
+SYN-1016 : Merged 388 instances.
+USR-6113 CRITICAL-WARNING: Timing analysis risk for (DR1_PHY_PROCESSOR_SYSTEM) ps/DR1_PHY_PROCESSOR_SYSTEM_Inst: clock pin(s) GEN_PL_GP0S is(are) not driven by any clock. 
+Please check sdc and define clock on up stream IO, PLL or any other valid clock sources. 
+Add 'derive_clocks' to sdc if it is driven by a PLL. 
+If it comes from inside hard macro, please check if ip configuration is right, make sure use IPGen and tool will do it all. 
+Contact technical support if everything is right.
+SYN-1016 : Merged 1066 instances.
+SYN-1001 : End Stage 1.5 | Optimize Design; Time: 5.736679s wall, 5.171875s user + 0.406250s system = 5.578125s CPU (97.2%); Memory(MB): used = 548, reserved = 546, peak = 838;
+
+SYN-1079 : finish stage Optimize Design. Total instances: 5117, Total nets: 5445.
+
+SYN-1001 : Stage 1.6 | Optimize Iteratively
+SYN-1019 : Optimized 3 mux instances.
+SYN-1021 : Optimized 180 onehot mux instances.
+SYN-1014 : Optimize round 1
+SYN-1044 : Optimized 35 inv instances.
+SYN-1017 : Remove 6 const input seq instances
+SYN-1019 : Optimized 5 mux instances.
+SYN-1020 : Optimized 50 distributor mux.
+SYN-1001 : Optimize 6 less-than instances
+SYN-1016 : Merged 2409 instances.
+SYN-1015 : Optimize round 1, 3567 better
+SYN-1014 : Optimize round 2
+SYN-1044 : Optimized 4 inv instances.
+SYN-1020 : Optimized 1 distributor mux.
+SYN-1019 : Optimized 166 mux instances.
+SYN-1015 : Optimize round 2, 241 better
+SYN-3010 : Optimized 59 DFF(s)
+SYN-1014 : Optimize round 1
+SYN-1020 : Optimized 164 distributor mux.
+SYN-1016 : Merged 896 instances.
+SYN-1015 : Optimize round 1, 1068 better
+SYN-1014 : Optimize round 2
+SYN-1044 : Optimized 3 inv instances.
+SYN-1016 : Merged 1 instances.
+SYN-1015 : Optimize round 2, 4 better
+SYN-1014 : Optimize round 3
+SYN-1015 : Optimize round 3, 0 better
+SYN-1001 : End Stage 1.6 | Optimize Iteratively; Time: 15.822508s wall, 12.328125s user + 2.578125s system = 14.906250s CPU (94.2%); Memory(MB): used = 571, reserved = 563, peak = 852;
+
+SYN-1079 : finish stage Optimize Iteratively. Total instances: 4802, Total nets: 5114.
+
+SYN-1001 : Stage 1.7 | Check Design
+SYN-1001 : End Stage 1.7 | Check Design; Time: 0.002532s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 571, reserved = 563, peak = 852;
+
+SYN-1079 : finish stage Check Design. Total instances: 4802, Total nets: 5114.
+
+SYN-1001 : End Stage 1 | Optimize RTL; Time: 21.906754s wall, 17.843750s user + 2.984375s system = 20.828125s CPU (95.1%); Memory(MB): used = 571, reserved = 563, peak = 852;
+
+SYN-1079 : finish stage Optimize RTL. Total instances: 4802, Total nets: 5114.
+
+RUN-1003 : finish command "optimize_rtl" in  21.928027s wall, 17.859375s user + 2.984375s system = 20.843750s CPU (95.1%)
+
+RUN-1004 : used memory is 571 MB, reserved memory is 563 MB, peak memory is 852 MB
+RUN-1002 : start command "optimize_gate -maparea gp_gate.area"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+SYN-1001 : Stage 2 | Optimize Gate
+SYN-1001 : Stage 2.1 | Map Reg
+SYN-1001 : End Stage 2.1 | Map Reg; Time: 0.320491s wall, 0.250000s user + 0.062500s system = 0.312500s CPU (97.5%); Memory(MB): used = 571, reserved = 563, peak = 852;
+
+SYN-1079 : finish stage Map Reg. Total instances: 4802, Total nets: 5114.
+
+SYN-1001 : Stage 2.2 | Map IO
+SYN-2001 : Map 1 IOs to PADs of model 'system_wrapper'
+SYN-1001 : End Stage 2.2 | Map IO; Time: 0.009610s wall, 0.000000s user + 0.015625s system = 0.015625s CPU (162.6%); Memory(MB): used = 571, reserved = 563, peak = 852;
+
+SYN-1001 : Stage 2.3 | Map Macro
+RUN-1002 : start command "update_pll_param -module system_wrapper"
+SYN-2501 : Processed 0 LOGIC_BUF instances.
+SYN-2571 : Optimize after map_dsp, round 1
+SYN-2571 : Optimize after map_dsp, round 1, 0 better
+SYN-1001 : Throwback 68 control mux instances
+SYN-2501 : Optimize round 1
+SYN-1016 : Merged 381 instances.
+SYN-2501 : Optimize round 1, 1057 better
+SYN-2501 : Optimize round 2
+SYN-2501 : Optimize round 2, 0 better
+SYN-2501 : Optimize round 1
+SYN-2501 : Optimize round 1, 0 better
+SYN-1031 : Map 1 macro less-than
+SYN-2501 : Map 30 macro adder(s)
+SYN-3009 : Map 282 FxMUX in MapMacro
+SYN-1019 : Optimized 56 mux instances.
+SYN-1016 : Merged 60 instances.
+SYN-1001 : End Stage 2.3 | Map Macro; Time: 7.618183s wall, 5.562500s user + 1.578125s system = 7.140625s CPU (93.7%); Memory(MB): used = 563, reserved = 557, peak = 852;
+
+SYN-1079 : finish stage Map Macro. Total instances: 6292, Total nets: 6603.
+
+SYN-1001 : Stage 2.4 | Map Gate
+SYN-3001 : Collect 1348 PI 785 PO (4 timing unconstrained) for mapping
+SYN-2581 : Mapping with K=6, #lut = 1147 (3.80), #lev = 7 (2.13), #crit_level = 0, #edge = 4361
+SYN-2551 : Post LUT mapping optimization.
+SYN-2581 : Mapping with K=6, #lut = 1126 (3.79), #lev = 7 (2.12), #crit_level = 0, #edge = 4262
+SYN-3001 : Logic optimization opt = 0.80 sec, map = 0.25 sec, post map opt = 1.53 sec.
+SYN-1001 : End Stage 2.4 | Map Gate; Time: 15.410937s wall, 14.500000s user + 0.531250s system = 15.031250s CPU (97.5%); Memory(MB): used = 561, reserved = 547, peak = 858;
+
+RUN-1002 : start command "report_area -file gp_gate.area"
+RUN-1001 : standard
+***Report Model: system_wrapper Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         1   out of    126    0.79%
+  #input                    1
+  #output                   0
+  #inout                    0
+#lut                     1679
+  #lut1                     5
+  #lut2                   224
+  #lut3                   395
+  #lut4                   128
+  #lut5                   132
+  #lut6                   618
+  #1-bit adder            177
+#reg                     2734
+  #slice reg             2734   out of 104960    2.60%
+  #pad reg                  0
+
+Utilization Statistics
+#unit lut*               1304   out of  52480    2.48%
+  #logic lut*            1127
+  #1-bit adder            177
+#reg                     2734   out of 104960    2.60%
+  #dff                   2734
+  #latch                    0
+#f7mux                    188   out of  26240    0.72%
+#f8mux                     94   out of  13120    0.72%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of    240    0.00%
+#soc                        1   out of      1  100.00%
+#pad                        1   out of    126    0.79%
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+SYN-1001 : Packing model "system_wrapper" ...
+SYN-1001 : Stage 2.5 | Pack Gate
+SYN-4010 : Pack lib has 78 rtl pack models with 50 top pack blocks
+SYN-1014 : Optimize round 1
+SYN-1015 : Optimize round 1, 0 better
+SYN-4002 : Packing 2730 DFF/LATCH to SEQ ...
+SYN-1001 : Remove 9 carry adders
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  6.754071s wall, 6.171875s user + 0.406250s system = 6.578125s CPU (97.4%)
+
+RUN-1004 : used memory is 553 MB, reserved memory is 536 MB, peak memory is 858 MB
+TMR-2502 : Net delay update with mode: Synthesized
+RUN-1002 : start command "end_timer"
+SYN-4009 : Pack 8 carry chain into lslice
+SYN-1001 : End Stage 2.5 | Pack Gate; Time: 9.344059s wall, 8.593750s user + 0.546875s system = 9.140625s CPU (97.8%); Memory(MB): used = 567, reserved = 555, peak = 858;
+
+RUN-1002 : start command "report_qor -step gate -file gate.qor"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  7.048027s wall, 6.500000s user + 0.390625s system = 6.890625s CPU (97.8%)
+
+RUN-1004 : used memory is 589 MB, reserved memory is 574 MB, peak memory is 858 MB
+TMR-2502 : Net delay update with mode: Synthesized
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |         3014                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #registers            |         2730                |
+|     #luts                 |         1126                |
+|     #lut1                 |            5                |
+|     #lut1(~A)             |            5                |
+|     #slices               |          528                |
+|     slices percentage     |        1.01%                |
+|     #RAMs                 |            0                |
+|     #DSPs                 |            0                |
+|     #f7mux                |        0.72%                |
+|     #MACROs               |          102                |
+|     #insts in MACRO       |          622                |
+-----------------------------------------------------------
+| kept_net                  |                             |
+|     #syn_keep             |            0                |
+|     #keep_hier            |            0                |
+|     #dont_touch           |            0                |
+|     #mark_debug           |            0                |
+|     #max_fanout_keep      |            0                |
+|     #async_reg            |            0                |
+-----------------------------------------------------------
+| Top 1% datanet fanout#    |        43.31                |
+| dff(single fanout)->dff   |          100                |
+| dff(single fanout)->dram  |            0                |
+-----------------------------------------------------------
+| Over-quota path num*      |                             |
+|     Total Number          |            0                |
+|     Total Level Slack     |            0                |
+|     Worst Level Slack     |            5                |
+-----------------------------------------------------------
+| Rent**                    |                             |
+-----------------------------------------------------------
+Note*: Over-quota path shows the over-path-level-threshold path number of each clock.
+       The clock will not be shown if no path is with path level over the threshold.
+       The threshold is defined as worst path_margin / 800ps.
+Note**: Rent shows the rent exponent value of the modules whose rent value exceeds the threshold.
+        Only modules under top are reported, and the threshold is defined as 0.7.
+
+Logic Level Distribution
+-----------------------------------------------------------------------------------------------------------------------------------------------
+  Clock                                                 |  Period             |  0     |  1    |  2     |  3    |  4    |  5    |  6   |  7
+-----------------------------------------------------------------------------------------------------------------------------------------------
+  gp_clk                                                |  10.000ns (100MHz)  |  4533  |  466  |  1692  |  136  |  237  |  186  |  30  |  138
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_aclk  |  10.000ns (100MHz)  |  0     |  0    |  0     |  0    |  0    |  0    |  0   |  0
+  Total                                                 |  NA                 |  4533  |  466  |  1692  |  136  |  237  |  186  |  30  |  138
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Note: The table count the worst 100000 paths, each endpoint count only one time.(7418 paths analyzed)
+
+Hierarchical Rent Exponent Report
++----------------------------------------------------------------------+
+|Inst      |Model               |Rent     |Cell     |Pin     |Term     |
++----------------------------------------------------------------------+
+|top       |system_wrapper      |-0.18    |4480     |20430   |1        |
+|  control |gp_ps_control_top_1 |0.46     |4477     |20206   |221      |
++----------------------------------------------------------------------+
+Note: Cell represents total number of cells inside module; Pin represents total number of pins
+      which have net connection inside module; Term represents total number of PIs and POs of module.
+      Rent represents the relationship between number of terms and number of cells in module.
+      A module with higher rent corresponds to highly connected logic and strong connectivity with others.
+Report gate stage QoR done.
+
+RUN-0008 : Do critical warning check and 1 issue(s) found.
+RUN-0008 : Do timing check and 0 issue(s) found.
+RUN-0008 : Do area check and 0 issue(s) found.
+QoR Evaluation
+----------------------------------------------------------------------------------------------------------------------------------------
+  ID        |  Priority  |  Description                                                     |  Suggestion
+----------------------------------------------------------------------------------------------------------------------------------------
+  USR-6113  |  MUST FIX  |  - Timing analysis risk for (DR1_PHY_PROCESSOR_SYSTEM) ps/DR1_P  |  - Create clock for reference clock pin.
+            |            |    HY_PROCESSOR_SYSTEM_Inst: clock pin(s) GEN_PL_GP0S is(are) n  |  
+            |            |    ot driven by any clock.                                       |  
+----------------------------------------------------------------------------------------------------------------------------------------
+Note* (*) means this parameter has been set already.
+      (+) means this parameter has been set, suggest to upgrade higher effort level.
+Note** plesae resolve priority MUST FIX and HIGH issues firstly
+       because these have highly possible to block the timing convergence even stop the flow.
+Note*** some suggested settings are not suitable to use together
+        take care of using them separately if suggestion mentioned.
+RUN-1003 : finish command "report_qor -step gate -file gate.qor" in  11.668744s wall, 11.046875s user + 0.421875s system = 11.468750s CPU (98.3%)
+
+RUN-1004 : used memory is 605 MB, reserved memory is 591 MB, peak memory is 858 MB
+SYN-1001 : End Stage 2 | Optimize Gate; Time: 45.218495s wall, 40.781250s user + 3.171875s system = 43.953125s CPU (97.2%); Memory(MB): used = 605, reserved = 591, peak = 858;
+
+RUN-1003 : finish command "optimize_gate -maparea gp_gate.area" in  45.236517s wall, 40.781250s user + 3.187500s system = 43.968750s CPU (97.2%)
+
+RUN-1004 : used memory is 605 MB, reserved memory is 591 MB, peak memory is 858 MB
+RUN-1002 : start command "report_timing_summary -file gp_gate.timing -path_num 5"
+RUN-1002 : start command "export_db gp_gate.db"
+RUN-1001 : Exported flow parameters
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported packer
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported ATMR Setting
+RUN-1001 : Exported timing constraints
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported ChipWatcher
+RUN-1002 : start command "legalize_phy_inst"
+SYN-1001 : Stage 3 | Legalize Phy Inst
+SYN-1011 : Flatten model system_wrapper
+SYN-1001 : End Stage 3 | Legalize Phy Inst; Time: 0.060498s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (77.5%); Memory(MB): used = 606, reserved = 593, peak = 858;
+
+RUN-1002 : start command "place"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+PHY-3001 : Placer runs in 22 thread(s).
+PHY-1001 : Stage 1 | Initialize Design
+PHY-1001 : Stage 1.1 | Build Design
+PHY-1001 : 1122 luts, 2730 seqs, 0 mslices, 528 lslices, 1 pads, 0 brams, 0 dsps
+RUN-1002 : start command "legalize_phy_inst"
+SYN-1011 : Flatten model system_wrapper
+PHY-1001 : Remove keep and sweep redundant instances ...
+PHY-1001 : 1122 luts, 2730 seqs, 0 mslices, 528 lslices, 1 pads, 0 brams, 0 dsps
+PHY-1001 : End Stage 1.1 | Build Design; Time: 0.063881s wall, 0.062500s user + 0.000000s system = 0.062500s CPU (97.8%); Memory(MB): used = 606, reserved = 593, peak = 858;
+
+PHY-1001 : Stage 1.2 | PrePlace Optimize Design
+OPT-1001 : Stage 1.2.1 | Simplify Lut
+OPT-1001 : End Stage 1.2.1 | Simplify Lut; Time: 0.017941s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (87.1%); Memory(MB): used = 606, reserved = 593, peak = 858;
+
+OPT-1001 : Stage 1.2.2 | Sweep
+OPT-1001 : End Stage 1.2.2 | Sweep; Time: 0.007479s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (208.9%); Memory(MB): used = 606, reserved = 593, peak = 858;
+
+OPT-1001 : Stage 1.2.3 | Merge Lut
+OPT-1001 : Start remap optimization ...
+RUN-1001 :   Added 0 lut1 for undup drivers
+OPT-1001 : skip lut merge since lut number 1122 is similar to or less than reg number 2730
+OPT-1001 : End Stage 1.2.3 | Merge Lut; Time: 0.213471s wall, 0.203125s user + 0.000000s system = 0.203125s CPU (95.2%); Memory(MB): used = 606, reserved = 593, peak = 858;
+
+OPT-1001 : Stage 1.2.4 | Synthesize High-fanout Net
+OPT-1001 : Start high-fanout net optimization in pre-place flow with medium effort ...
+OPT-1001 : Separate data sinks from clock nets
+RUN-1001 : HFN opt statistic
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :   DriverCell type  |  HFN count  |  Duplicated count  
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :       LSLICE       |      0      |         0          
+RUN-1001 :       MSLICE       |      0      |         0          
+RUN-1001 :        TOTAL       |      0      |         0          
+RUN-1001 : ------------------------------------------------------
+OPT-1001 : End high-fanout net optimization;  0.204455s wall, 0.203125s user + 0.000000s system = 0.203125s CPU (99.3%)
+
+OPT-1001 : Current memory(MB): used = 606, reserved = 593, peak = 858.
+OPT-1001 : End Stage 1.2.4 | Synthesize High-fanout Net; Time: 0.205640s wall, 0.203125s user + 0.000000s system = 0.203125s CPU (98.8%); Memory(MB): used = 606, reserved = 593, peak = 858;
+
+OPT-1001 : End physical optimization;  0.445103s wall, 0.437500s user + 0.000000s system = 0.437500s CPU (98.3%)
+
+PHY-1001 : End Stage 1.2 | PrePlace Optimize Design; Time: 0.445416s wall, 0.437500s user + 0.000000s system = 0.437500s CPU (98.2%); Memory(MB): used = 606, reserved = 593, peak = 858;
+
+PHY-1001 : Stage 1.3 | Initialize Clock
+PHY-1001 : Start to synthesize physical clock networks.
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  6.985164s wall, 6.671875s user + 0.203125s system = 6.875000s CPU (98.4%)
+
+RUN-1004 : used memory is 596 MB, reserved memory is 580 MB, peak memory is 867 MB
+PHY-1001 : Populate physical database on model system_wrapper.
+RUN-1001 : There are total 4480 instances
+RUN-0007 : 1122 luts, 2730 seqs, 0 mslices, 528 lslices, 1 pads, 0 brams, 0 dsps
+RUN-1001 : There are total 4994 nets
+RUN-1001 : 2644 nets have 2 pins
+RUN-1001 : 2135 nets have [3 - 5] pins
+RUN-1001 : 132 nets have [6 - 10] pins
+RUN-1001 : 20 nets have [11 - 20] pins
+RUN-1001 : 46 nets have [21 - 99] pins
+RUN-1001 : 17 nets have 100+ pins
+PHY-1001 : End Stage 1.3 | Initialize Clock; Time: 7.985028s wall, 7.609375s user + 0.250000s system = 7.859375s CPU (98.4%); Memory(MB): used = 602, reserved = 588, peak = 867;
+
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  7.042916s wall, 6.718750s user + 0.265625s system = 6.984375s CPU (99.2%)
+
+RUN-1004 : used memory is 600 MB, reserved memory is 583 MB, peak memory is 868 MB
+RUN-1001 : Huge Net Statistic
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Fanout  |  Slack  |                                            Net                                            
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1601   |  6676   |   control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/rst   
+RUN-1001 :    1094   |  4798   |  control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/wr_en  
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 1 | Initialize Design; Time: 16.401612s wall, 15.656250s user + 0.515625s system = 16.171875s CPU (98.6%); Memory(MB): used = 606, reserved = 590, peak = 868;
+
+PHY-1001 : Stage 2 | Global Placement
+RUN-1001 : Report Control nets information:
+RUN-1001 : DFF Distribution
+RUN-1001 : -------------------------------------
+RUN-1001 :   CE   |  SSR  |  ASR  |  DFF Count  
+RUN-1001 : -------------------------------------
+RUN-1001 :   No   |  No   |  No   |     76      
+RUN-1001 :   No   |  No   |  Yes  |     29      
+RUN-1001 :   No   |  Yes  |  No   |     24      
+RUN-1001 :   Yes  |  No   |  No   |     422     
+RUN-1001 :   Yes  |  No   |  Yes  |    2171     
+RUN-1001 :   Yes  |  Yes  |  No   |      8      
+RUN-1001 : -------------------------------------
+RUN-1001 : Control Group Statistic
+RUN-1001 : -----------------------------
+RUN-1001 :   #CLK  |  #CE  |  #SSR/ASR  
+RUN-1001 : -----------------------------
+RUN-1001 :    1    |  32   |     5      
+RUN-1001 : -----------------------------
+RUN-0007 : Control Set = 35
+PHY-1001 : Stage 2.1 | Place Fixed Instances
+PHY-1001 : Stage 2.1.1 | Pre-Place DRC Check
+PHY-1001 : End Stage 2.1.1 | Pre-Place DRC Check; Time: 0.002454s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 625, reserved = 609, peak = 868;
+
+PHY-1001 : End Stage 2.1 | Place Fixed Instances; Time: 0.040267s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (116.4%); Memory(MB): used = 626, reserved = 610, peak = 868;
+
+PHY-1001 : Stage 2.2 | Init-Place DRC Check
+RUN-1001 : Stage 2.2.1 | Run Bound Checker
+RUN-1001 : End Stage 2.2.1 | Run Bound Checker; Time: 0.000039s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 626, reserved = 610, peak = 868;
+
+RUN-1001 : Stage 2.2.2 | Run Force Route Checker
+RUN-1001 : End Stage 2.2.2 | Run Force Route Checker; Time: 0.002480s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 626, reserved = 610, peak = 868;
+
+RUN-1001 : Stage 2.2.3 | Run Sigmap Checker
+RUN-1001 : End Stage 2.2.3 | Run Sigmap Checker; Time: 0.037390s wall, 0.031250s user + 0.000000s system = 0.031250s CPU (83.6%); Memory(MB): used = 627, reserved = 611, peak = 868;
+
+PHY-1001 : End Stage 2.2 | Init-Place DRC Check; Time: 0.040443s wall, 0.031250s user + 0.000000s system = 0.031250s CPU (77.3%); Memory(MB): used = 627, reserved = 611, peak = 868;
+
+PHY-1001 : Clock GCLK Statistics:
+RUN-1001 : GCLK Index: 
+RUN-1001 : -----------------------------------------------------------
+RUN-1001 :   Index  |            Clock GCLK             |  Location   
+RUN-1001 : -----------------------------------------------------------
+RUN-1001 :     1    |  clk_100m_dup_1_created_gclkinst  |  x79y59z16  
+RUN-1001 : -----------------------------------------------------------
+RUN-1001 : Clock Nets Connect To GCLK Statistics: 
+RUN-1001 : --------------------------------------------------------------------------------------------------------
+RUN-1001 :   Index  |   Leading Net    |  CLK/DATA/IO/PLL Sink(s)  |   Following Net   |  CLK/DATA/IO/PLL Sink(s)  
+RUN-1001 : --------------------------------------------------------------------------------------------------------
+RUN-1001 :     1    |  clk_100m_dup_1  |          1/0/0/0          |  clk_100m_syn_59  |        2731/0/0/0         
+RUN-1001 : --------------------------------------------------------------------------------------------------------
+PHY-1001 : Stage 2.3 | GP Phase 1
+PHY-3001 : There are total 1 huge nets that have been set as skipped
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.03  |  0.00  |  0.04  |  0.00   |  0.00  |  0.00  |  0.00  |    0.00    |  0.01   |  0.00   
+RUN-1001 :   Target Density  |  0.90  |  1.00  |  0.90  |  0.90   |  1.00  |  1.00  |  1.00  |    1.00    |  0.90   |  0.90   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.10  |  0.00  |  0.10  |  0.00   |  0.00  |  0.00  |  0.00  |    0.00    |  0.10   |  0.00   
+RUN-1001 :   Target Density  |  0.40  |  1.00  |  0.40  |  0.40   |  1.00  |  1.00  |  1.00  |    1.00    |  0.40   |  0.40   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+PHY-3001 : HPWL 1.138E+04 (1*5.767E+03 + 1*5.615E+03), Overflow {1.450E-01, 0.000E+00, 1.463E-01, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 1.018E-01, 0.000E+00}, normalized-grad(wirelength/density): 1.000E+00/8.124E-01
+PHY-1001 : End Stage 2.3 | GP Phase 1; Time: 20.025049s wall, 74.312500s user + 6.343750s system = 80.656250s CPU (402.8%); Memory(MB): used = 705, reserved = 686, peak = 868;
+
+PHY-3001 : Global placement completed: Len = 182887, Over = 0 with grid_size = 480
+PHY-1001 : End Stage 2 | Global Placement; Time: 21.269234s wall, 75.687500s user + 6.359375s system = 82.046875s CPU (385.8%); Memory(MB): used = 713, reserved = 694, peak = 868;
+
+PHY-1001 : Stage 3 | PrePack Optimize Design
+OPT-1001 : Start physical optimization ...
+OPT-1001 : Total overflow 25.44 peak overflow 0.78
+OPT-1001 : Stage 3.1 | Global Optimization
+OPT-1001 : Start global optimization ...
+OPT-1001 : Update timing in Manhattan mode
+OPT-1001 : End timing update;  0.947753s wall, 0.953125s user + 0.000000s system = 0.953125s CPU (100.6%)
+
+OPT-0007 : Start: SWNS 5349 STNS 0 NUM_FEPS 0
+OPT-1001 : Overall commit ratio -1.00
+OPT-1001 : End global optimization;  0.948021s wall, 0.953125s user + 0.000000s system = 0.953125s CPU (100.5%)
+
+OPT-1001 : Current memory(MB): used = 713, reserved = 694, peak = 868.
+OPT-1001 : End Stage 3.1 | Global Optimization; Time: 0.981713s wall, 1.062500s user + 0.000000s system = 1.062500s CPU (108.2%); Memory(MB): used = 713, reserved = 694, peak = 868;
+
+OPT-0007 : End flow prepack: SWNS 5349 STNS 0 NUM_FEPS 0
+OPT-1001 : End physical optimization;  1.070212s wall, 1.437500s user + 0.062500s system = 1.500000s CPU (140.2%)
+
+PHY-1001 : End Stage 3 | PrePack Optimize Design; Time: 1.070468s wall, 1.437500s user + 0.062500s system = 1.500000s CPU (140.1%); Memory(MB): used = 713, reserved = 694, peak = 868;
+
+PHY-1001 : Stage 4 | Pack and Legalization
+PHY-1001 : Stage 4.1 | Direct Legalization
+PHY-3001 : Start Direct Legalization ...
+PHY-3001 : Get top1 grid util = 0.435807, top1_avg = 0.435807.
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-3001 : Before Legalization for Slice Macros, Len = 182334.
+RUN-1001 : Legalization top10 inst displacement:
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Index  |  Bounded  |  Height  |         Location         |  Disp. (slots)  |  Disp. (grids)  |                                                    Name                                                     
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :     1    |     N     |    4     |   x85y96z6 to x84y96z4   |       10        |        1        |       control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/mux0_syn_1441       
+RUN-1001 :     2    |     N     |    4     |   x76y78z2 to x77y78z0   |       10        |        1        |       control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/mux0_syn_1581       
+RUN-1001 :     3    |     N     |    4     |   x72y70z2 to x73y70z4   |       10        |        1        |     control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/mux0_syn_391      
+RUN-1001 :     4    |     N     |    12    |   x69y84z2 to x69y84z0   |        2        |        0        |  control/core/converter/conversion_to_lite$axi_axilite/RD$ar_channel/cmd_translator_0/incr_cmd/add0_syn_71  
+RUN-1001 :     5    |     N     |    4     |   x78y83z6 to x78y83z4   |        2        |        0        |       control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/mux0_syn_1171       
+RUN-1001 :     6    |     N     |    4     |   x84y84z6 to x84y84z4   |        2        |        0        |       control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/mux0_syn_1041       
+RUN-1001 :     7    |     N     |    4     |   x83y87z6 to x83y87z4   |        2        |        0        |       control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/mux0_syn_1061       
+RUN-1001 :     8    |     N     |    4     |   x91y97z6 to x91y97z4   |        2        |        0        |       control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/mux0_syn_1231       
+RUN-1001 :     9    |     N     |    4     |   x78y80z2 to x78y80z0   |        2        |        0        |       control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/mux0_syn_1191       
+RUN-1001 :    10    |     N     |    4     |  x74y104z6 to x74y104z4  |        2        |        0        |       control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/mux0_syn_1021       
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHY-3001 : After Legalization for Slice Macros, Len = 183275.
+PHY-3001 : Total Iter 73, legal = 3789 / 3789 (100.00%), avg_move = 26.20, max_move = 334.
+PHY-3001 : There are no illegal insts.
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-3001 : End Direct Legalization;  9.449602s wall, 45.437500s user + 0.656250s system = 46.093750s CPU (487.8%)
+
+RUN-1001 : Summary of LUT-FF Pairs
+RUN-1001 : --------------------------------------------------------------
+RUN-1001 :   Num of Fanout Seqs  |  1x   |  2x  |  3~5  |  6~10  |  >10  
+RUN-1001 : --------------------------------------------------------------
+RUN-1001 :         Total         |  708  |  0   |  32   |   0    |   0   
+RUN-1001 :          Grid         |  704  |  0   |  32   |   0    |   0   
+RUN-1001 :          Bank         |  701  |  0   |  32   |   0    |   0   
+RUN-1001 :         Paired        |  699  |  0   |  31   |   0    |   0   
+RUN-1001 : --------------------------------------------------------------
+RUN-1001 : Summary of LUT Pairs
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+RUN-1001 :            |           |           |           |           |           |  O5 + O6  |  Only O5  |  Only O6  |  Total  
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   5 Share  |  4 Share  |  3 Share  |  2 Share  |  1 Share  |  0 Share  |           |           |           |         
+RUN-1001 :      0     |    20     |    12     |    64     |    144    |    236    |    476    |    232    |    618    |  1326   
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 4.1 | Direct Legalization; Time: 9.472997s wall, 45.453125s user + 0.656250s system = 46.109375s CPU (486.7%); Memory(MB): used = 737, reserved = 717, peak = 868;
+
+PHY-3001 : After Direct Legalization, Len = 187139.
+PHY-1001 : End Stage 4 | Pack and Legalization; Time: 9.585263s wall, 45.562500s user + 0.656250s system = 46.218750s CPU (482.2%); Memory(MB): used = 740, reserved = 720, peak = 868;
+
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  9.193172s wall, 8.593750s user + 0.359375s system = 8.953125s CPU (97.4%)
+
+RUN-1004 : used memory is 735 MB, reserved memory is 719 MB, peak memory is 1000 MB
+PHY-1001 : Stage 5 | Detailed Placement
+PHY-1001 : Stage 5.1 | SLICE Detailed Placement
+PHY-1001 : Stage 5.1.1 | Spreading
+PHY-3001 : Design contains 31 ce signals.
+PHY-3001 : Spreading for sector grids.
+PHY-3001 : Iter 1, total overflow: 0
+PHY-3001 : tot_capacity: 36, usage_cnt: 3, movable_cnt: 36
+PHY-3001 : Spreading for clock grids.
+PHY-3001 : clock grid count for 62 x 6 grids
+PHY-3001 : Spreading for plb grids.
+PHY-3001 : total displace: 0, max displace: 0.
+PHY-3001 : End spreading;  0.382899s wall, 0.343750s user + 0.031250s system = 0.375000s CPU (97.9%)
+
+PHY-1001 : End Stage 5.1.1 | Spreading; Time: 0.383295s wall, 0.343750s user + 0.031250s system = 0.375000s CPU (97.8%); Memory(MB): used = 676, reserved = 661, peak = 1000;
+
+PHY-1001 : Stage 5.1.2 | Simulated Annealing Based DP
+RUN-1001 : Generating global routing grids ...
+RUN-1001 : Building simple global routing graph ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 0/2682.
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 224160, over cnt = 227(0%), over = 731, worst = 9
+PHY-1002 : len = 237232, over cnt = 167(0%), over = 167, worst = 1
+PHY-1002 : len = 242384, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  1.175125s wall, 1.250000s user + 0.000000s system = 1.250000s CPU (106.4%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 42.76 (S 23.56, N 29.45, E 39.55, W 28.91, I 39.90, O 49.27)
+PHY-1001 : top5  = 26.40 (S 13.67, N 15.58, E 21.35, W 15.69, I 19.85, O 24.49)
+PHY-1001 : top10 = 16.87 (S  7.57, N  8.53, E 11.73, W  8.35, I  9.93, O 12.28)
+PHY-1001 : top15 = 11.25 (S  5.05, N  5.69, E  7.82, W  5.57, I  6.62, O  8.19)
+PHY-0007 : Initial: WL Cost = 18380.1, TD Cost = 5036.48, SWNS = 5279, STNS = 0, Nums per T = 18020, Range Limit = 4x8
+PHY-0007 : Finally: WL Cost = 15734.6, TD Cost = 3848.98, WL Ratio = 0.856069, TD Ratio = 0.76422, SWNS = 5400, STNS = 0
+RUN-1001 : Print Detailed placement's Summary information
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :           |  Total   |  Accept  |  Reject by overFlow  |  Reject by worseCost  |  Failed by noTarget  |  Failed by gridCheck  
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Slices  |  144160  |   3277   |          0           |        138989         |          0           |         1894          
+RUN-1001 :   Macros  |   8167   |    87    |          0           |         8080          |          0           |           0           
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 5.1.2 | Simulated Annealing Based DP; Time: 11.139613s wall, 11.281250s user + 0.187500s system = 11.468750s CPU (103.0%); Memory(MB): used = 808, reserved = 798, peak = 1000;
+
+PHY-3001 : End Detailed Place; 
+PHY-3001 : Final: Len = 157911, Over = 0
+PHY-1001 : End Stage 5.1 | SLICE Detailed Placement; Time: 11.610202s wall, 11.953125s user + 0.234375s system = 12.187500s CPU (105.0%); Memory(MB): used = 808, reserved = 798, peak = 1000;
+
+PHY-3001 : End Detailed Place; 
+PHY-1001 : Stage 5.2 | PostPack Optimize Design
+OPT-1001 : Start physical optimization ...
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 : Stage 5.2.1 | Optimize Duplicated Nets
+OPT-1001 : Start high-fanout net optimization in optimize equivalent flow with medium effort ...
+OPT-1001 : Clean unloaded insts before merging registers
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-1001 : Populate physical database on model system_wrapper.
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 : End optimize duplicated nets. Total 0 instances are merged and 0 sinks are reconnected,  1.131501s wall, 1.656250s user + 0.046875s system = 1.703125s CPU (150.5%)
+
+OPT-1001 : End high-fanout net optimization;  1.132437s wall, 1.656250s user + 0.046875s system = 1.703125s CPU (150.4%)
+
+OPT-1001 : Update timing in Manhattan mode
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  7.502998s wall, 7.046875s user + 0.406250s system = 7.453125s CPU (99.3%)
+
+RUN-1004 : used memory is 870 MB, reserved memory is 861 MB, peak memory is 1087 MB
+OPT-1001 : End timing update;  8.296287s wall, 7.843750s user + 0.406250s system = 8.250000s CPU (99.4%)
+
+OPT-1001 : Current memory(MB): used = 871, reserved = 861, peak = 1087.
+OPT-1001 : End Stage 5.2.1 | Optimize Duplicated Nets; Time: 9.452056s wall, 9.515625s user + 0.453125s system = 9.968750s CPU (105.5%); Memory(MB): used = 871, reserved = 861, peak = 1087;
+
+OPT-1001 : Stage 5.2.2 | Synthesize High-fanout Net
+OPT-1001 : Start high-fanout net optimization in post-pack flow with medium effort ...
+OPT-1001 : Start: SWNS 5400 STNS 0 NUM_FEPS 0
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 :  select 18 high fanout candidates
+OPT-1001 :  crit level 1 net count 2 (fanout thres 50)
+OPT-1001 :  crit level 2 net count 0 (fanout thres 50)
+OPT-1001 :  crit level 3 net count 7 (fanout thres 40)
+OPT-1001 :  crit level 4 net count 2 (fanout thres 30)
+OPT-1001 :  crit level 5 net count 7 (fanout thres 30)
+OPT-1001 :  crit level 6 net count 0 (fanout thres 30)
+PHY-1001 : Populate physical database on model system_wrapper.
+OPT-1001 : 15 high-fanout net processed.
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+RUN-1001 : HFN opt statistic
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :   DriverCell type  |  HFN count  |  Duplicated count  
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :       LSLICE       |      0      |         0          
+RUN-1001 :       MSLICE       |      0      |         0          
+RUN-1001 :        OTHER       |     15      |         70         
+RUN-1001 :        TOTAL       |     15      |         70         
+RUN-1001 : ------------------------------------------------------
+OPT-1001 : End high-fanout net optimization;  2.582279s wall, 3.453125s user + 0.093750s system = 3.546875s CPU (137.4%)
+
+OPT-1001 : Current memory(MB): used = 872, reserved = 862, peak = 1087.
+OPT-1001 : End Stage 5.2.2 | Synthesize High-fanout Net; Time: 2.612473s wall, 3.593750s user + 0.093750s system = 3.687500s CPU (141.1%); Memory(MB): used = 872, reserved = 862, peak = 1087;
+
+OPT-1001 : Stage 5.2.3 | Setup Timing Optimization
+OPT-1001 : Start Setup Timing Optimization with mode 4 ...
+OPT-0007 : Start: SWNS 5400 STNS 0 NUM_FEPS 0
+OPT-1001 : Start congestion update ...
+RUN-1001 : Generating global routing grids ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 825/2689.
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 227488, over cnt = 228(0%), over = 469, worst = 7
+PHY-1002 : len = 234112, over cnt = 153(0%), over = 153, worst = 1
+PHY-1002 : len = 238960, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  0.942656s wall, 1.078125s user + 0.046875s system = 1.125000s CPU (119.3%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 44.63 (S 26.37, N 31.42, E 43.06, W 27.36, I 38.29, O 42.12)
+PHY-1001 : top5  = 27.31 (S 15.28, N 16.23, E 23.43, W 13.78, I 20.30, O 24.36)
+PHY-1001 : top10 = 16.85 (S  8.36, N  8.75, E 12.85, W  7.24, I 10.27, O 12.51)
+PHY-1001 : top15 = 11.23 (S  5.58, N  5.84, E  8.56, W  4.82, I  6.84, O  8.34)
+OPT-1001 : End congestion update;  1.456036s wall, 1.593750s user + 0.046875s system = 1.640625s CPU (112.7%)
+
+OPT-1001 : Unpack Path Based Optimization:
+OPT-0007 : Skip optimization due to slack greater than threshold 3000
+OPT-1001 : End Stage 5.2.3 | Setup Timing Optimization; Time: 1.487592s wall, 1.656250s user + 0.046875s system = 1.703125s CPU (114.5%); Memory(MB): used = 869, reserved = 858, peak = 1087;
+
+OPT-1001 : Stage 5.2.4 | Optimize Duplicated Nets
+OPT-1001 : Start: WNS 5400 TNS 0 NUM_FEPS 0
+OPT-1001 : Clean unloaded insts before merging registers
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-1001 : Populate physical database on model system_wrapper.
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 : End optimize duplicated nets. Total 2 instances are merged and 492 sinks are reconnected,  1.314822s wall, 1.906250s user + 0.015625s system = 1.921875s CPU (146.2%)
+
+OPT-1001 : Update timing in Manhattan mode
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  7.319640s wall, 6.953125s user + 0.250000s system = 7.203125s CPU (98.4%)
+
+RUN-1004 : used memory is 934 MB, reserved memory is 927 MB, peak memory is 1100 MB
+OPT-1001 : End timing update;  8.106904s wall, 7.718750s user + 0.250000s system = 7.968750s CPU (98.3%)
+
+OPT-1001 : Current memory(MB): used = 935, reserved = 927, peak = 1100.
+OPT-1001 : End Stage 5.2.4 | Optimize Duplicated Nets; Time: 9.448013s wall, 9.656250s user + 0.265625s system = 9.921875s CPU (105.0%); Memory(MB): used = 935, reserved = 927, peak = 1100;
+
+OPT-1001 : Stage 5.2.5 | Optimize Beeline
+OPT-1001 : Start beeline optimization...
+OPT-1001 : Start: SWNS 5400 STNS 0 NUM_FEPS 0
+OPT-0007 : Skip optimization due to slack greater than threshold 3000
+OPT-1001 : End Stage 5.2.5 | Optimize Beeline; Time: 0.168431s wall, 0.765625s user + 0.031250s system = 0.796875s CPU (473.1%); Memory(MB): used = 935, reserved = 927, peak = 1100;
+
+OPT-0007 : End flow postpack: SWNS 5400 STNS 0 NUM_FEPS 0
+OPT-1001 : End physical optimization;  23.309175s wall, 25.656250s user + 0.906250s system = 26.562500s CPU (114.0%)
+
+PHY-1001 : End Stage 5.2 | PostPack Optimize Design; Time: 23.309576s wall, 25.656250s user + 0.906250s system = 26.562500s CPU (114.0%); Memory(MB): used = 935, reserved = 927, peak = 1100;
+
+RUN-1001 : Report Control nets information:
+RUN-1001 : DFF Distribution
+RUN-1001 : -------------------------------------
+RUN-1001 :   CE   |  SSR  |  ASR  |  DFF Count  
+RUN-1001 : -------------------------------------
+RUN-1001 :   No   |  No   |  No   |      0      
+RUN-1001 :   No   |  No   |  Yes  |      0      
+RUN-1001 :   No   |  Yes  |  No   |      0      
+RUN-1001 :   Yes  |  No   |  No   |     502     
+RUN-1001 :   Yes  |  No   |  Yes  |    2200     
+RUN-1001 :   Yes  |  Yes  |  No   |     68      
+RUN-1001 : -------------------------------------
+RUN-1001 : Control Group Statistic
+RUN-1001 : -----------------------------
+RUN-1001 :   #CLK  |  #CE  |  #SSR/ASR  
+RUN-1001 : -----------------------------
+RUN-1001 :    1    |  170  |     7      
+RUN-1001 : -----------------------------
+RUN-0007 : Control Set = 176
+PHY-1001 : End Stage 5 | Detailed Placement; Time: 34.992921s wall, 37.671875s user + 1.140625s system = 38.812500s CPU (110.9%); Memory(MB): used = 935, reserved = 927, peak = 1100;
+
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-1001 : Stage 6 | PostFlow Optimize Design
+RUN-1001 : Generating global routing grids ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 2682/2683.
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 237504, over cnt = 27(0%), over = 28, worst = 2
+PHY-1002 : len = 237504, over cnt = 10(0%), over = 10, worst = 1
+PHY-1002 : len = 237904, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  0.132849s wall, 0.140625s user + 0.000000s system = 0.140625s CPU (105.9%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 44.51 (S 26.02, N 30.66, E 43.00, W 27.63, I 38.19, O 42.12)
+PHY-1001 : top5  = 27.23 (S 15.27, N 15.98, E 23.41, W 13.92, I 20.15, O 23.87)
+PHY-1001 : top10 = 16.79 (S  8.37, N  8.63, E 12.83, W  7.31, I 10.18, O 12.20)
+PHY-1001 : top15 = 11.20 (S  5.58, N  5.75, E  8.55, W  4.87, I  6.79, O  8.13)
+OPT-1001 : Update timing in Manhattan mode
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  7.042775s wall, 6.765625s user + 0.140625s system = 6.906250s CPU (98.1%)
+
+RUN-1004 : used memory is 949 MB, reserved memory is 943 MB, peak memory is 1100 MB
+OPT-1001 : End timing update;  7.810001s wall, 7.531250s user + 0.187500s system = 7.718750s CPU (98.8%)
+
+RUN-1001 : QoR Analysis:
+OPT-0007 :   SWNS 5400 STNS 0 NUM_FEPS 0
+RUN-1001 :   No local congestion issue, and most congested 1% tile average routing util is 39.567568
+RUN-1001 :   Top critical paths
+RUN-1001 :       #1 path slack 5400ps with logic level 8 
+RUN-1001 :       #2 path slack 5400ps with logic level 8 
+RUN-1001 :       #3 path slack 5406ps with logic level 8 
+RUN-1001 :       #4 path slack 5406ps with logic level 8 
+RUN-1001 :       #5 path slack 5406ps with logic level 8 
+RUN-1001 :       #6 path slack 5406ps with logic level 8 
+RUN-1001 :       #7 path slack 5406ps with logic level 8 
+RUN-1001 :       #8 path slack 5407ps with logic level 8 
+RUN-1001 :       #9 path slack 5415ps with logic level 8 
+RUN-1001 :       #10 path slack 5442ps with logic level 8 
+OPT-1001 : Stage 6.1 | Swap Pins
+OPT-1001 : Start pin optimization...
+OPT-1001 : Start: SWNS 5400 STNS 0 NUM_FEPS 0
+OPT-1001 : Successfully optimized 0 instances
+OPT-1001 : End pin optimization;  0.109136s wall, 0.218750s user + 0.000000s system = 0.218750s CPU (200.4%)
+
+OPT-1001 : Current memory(MB): used = 952, reserved = 944, peak = 1100.
+OPT-1001 : End Stage 6.1 | Swap Pins; Time: 0.129426s wall, 0.343750s user + 0.015625s system = 0.359375s CPU (277.7%); Memory(MB): used = 952, reserved = 944, peak = 1100;
+
+OPT-1001 : Stage 6.2 | Optimize Critical-path
+OPT-1001 : Start critical path based optimization ...
+OPT-0007 : Start: SWNS 5400 STNS 0 NUM_FEPS 0
+OPT-0007 : Skip optimization due to slack greater than threshold 3000
+OPT-1001 : Current memory(MB): used = 952, reserved = 944, peak = 1100.
+OPT-1001 : End Stage 6.2 | Optimize Critical-path; Time: 0.018806s wall, 0.109375s user + 0.000000s system = 0.109375s CPU (581.6%); Memory(MB): used = 952, reserved = 944, peak = 1100;
+
+PHY-1001 : End Stage 6 | PostFlow Optimize Design; Time: 8.955891s wall, 8.921875s user + 0.250000s system = 9.171875s CPU (102.4%); Memory(MB): used = 933, reserved = 926, peak = 1100;
+
+PHY-3001 : Start incremental legalization ...
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-3001 : Initial: Len = 558195, Over = 0
+PHY-1001 : Stage 7 | Spreading
+PHY-3001 : Design contains 48 ce signals.
+PHY-3001 : Spreading for sector grids.
+PHY-3001 : Iter 1, total overflow: 0
+PHY-3001 : tot_capacity: 48, usage_cnt: 4, movable_cnt: 48
+PHY-3001 : Spreading for clock grids.
+PHY-3001 : clock grid count for 62 x 6 grids
+PHY-3001 : Spreading for plb grids.
+PHY-3001 : total displace: 0, max displace: 0.
+PHY-3001 : End spreading;  0.325706s wall, 0.312500s user + 0.000000s system = 0.312500s CPU (95.9%)
+
+PHY-1001 : End Stage 7 | Spreading; Time: 0.326037s wall, 0.312500s user + 0.000000s system = 0.312500s CPU (95.8%); Memory(MB): used = 934, reserved = 924, peak = 1100;
+
+PHY-3001 : Final: Len = 558195, Over = 0
+PHY-3001 : End incremental legalization;  0.545714s wall, 0.687500s user + 0.000000s system = 0.687500s CPU (126.0%)
+
+RUN-1002 : start command "report_qor -step place -file place.qor"
+TMR-2502 : Net delay update with mode: Placed
+RUN-1001 : Generating global routing grids ...
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |         5400                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+|     FMAX                  |   217.391MHz                |
+|     SWNS path clock period|      10000ps                |
+-----------------------------------------------------------
+| Routing Resource          |                             |
+|     Wire length           |       557472                |
+|     Route Net Num         |         3615                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #slices               |         2292                |
+|     slices percentage     |        4.37%                |
+|     #RAMs                 |            0                |
+|     #DSPs                 |            0                |
+|     #DRAMHARDCON          |            0                |
+-----------------------------------------------------------
+| Congestion                |                             |
+|     Top 1% tile util      |           29                |
+|     Top 1% tile avg util  |       39.57%                |
+|     Over 100% util #tile  |            0                |
+-----------------------------------------------------------
+Report place stage QoR done.
+
+RUN-0008 : Do critical warning check and 0 issue(s) found.
+RUN-0008 : Do timing check and 0 issue(s) found.
+RUN-0008 : Do routing resoruce check and 0 issue(s) found.
+RUN-0008 : Do clock related check and 0 issue(s) found.
+RUN-1003 : finish command "report_qor -step place -file place.qor" in  2.317628s wall, 3.125000s user + 0.062500s system = 3.187500s CPU (137.5%)
+
+RUN-1004 : used memory is 935 MB, reserved memory is 925 MB, peak memory is 1100 MB
+PHY-1001 : Stage 8 | DRC Check
+RUN-1001 : Stage 8.1 | Run Slice Attr Checker
+RUN-1001 : End Stage 8.1 | Run Slice Attr Checker; Time: 0.029860s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (52.3%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+RUN-1001 : Stage 8.2 | Run Clock Bound Checker
+RUN-1001 : End Stage 8.2 | Run Clock Bound Checker; Time: 0.000593s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (n/a%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+RUN-1001 : Stage 8.3 | Run Force Route Checker
+RUN-1001 : End Stage 8.3 | Run Force Route Checker; Time: 0.002136s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+RUN-1001 : Stage 8.4 | Run Bound Checker
+RUN-1001 : End Stage 8.4 | Run Bound Checker; Time: 0.000205s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+RUN-1001 : Stage 8.5 | Run Dup Self-Driven Checker
+RUN-1001 : End Stage 8.5 | Run Dup Self-Driven Checker; Time: 0.224742s wall, 0.218750s user + 0.000000s system = 0.218750s CPU (97.3%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+RUN-1001 : Stage 8.6 | Run Parallel Loop Checker
+RUN-1001 : End Stage 8.6 | Run Parallel Loop Checker; Time: 0.021318s wall, 0.031250s user + 0.000000s system = 0.031250s CPU (146.6%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+RUN-1001 : Stage 8.7 | Run Clock Net Checker
+RUN-1001 : End Stage 8.7 | Run Clock Net Checker; Time: 0.000273s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+RUN-1001 : Stage 8.8 | Run Clock Status Checker
+RUN-1001 : End Stage 8.8 | Run Clock Status Checker; Time: 0.000101s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+RUN-1001 : Stage 8.9 | Run Sigmap Checker
+RUN-1001 : End Stage 8.9 | Run Sigmap Checker; Time: 0.140576s wall, 0.140625s user + 0.000000s system = 0.140625s CPU (100.0%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+PHY-1001 : End Stage 8 | DRC Check; Time: 0.761753s wall, 0.750000s user + 0.015625s system = 0.765625s CPU (100.5%); Memory(MB): used = 935, reserved = 925, peak = 1100;
+
+OPT-1001 : QoR tracer report on placement steps:
+    SWNS [   incr ]    STNS [   incr ]    FEPS [   incr ]    CRIT [   incr ]      CELL [     incr ]        WL [     incr ]    CONG [   incr ]    PDES [   incr ]   RT(s) [   incr ]   MEM(mb) [     incr ]
+       0 [      0 ]       0 [      0 ]       0 [      0 ]       0 [      0 ]      4479 [     4479 ]         0 [        0 ]    0.00 [   0.00 ]       0 [      0 ]       0 [      0 ]       858 [      858 ] : preplace:simplify_lut
+       0 [      0 ]       0 [      0 ]       0 [      0 ]       0 [      0 ]      4479 [        0 ]         0 [        0 ]    0.00 [   0.00 ]       0 [      0 ]       0 [      0 ]       858 [        0 ] : preplace:sweep
+       0 [      0 ]       0 [      0 ]       0 [      0 ]       0 [      0 ]      4479 [        0 ]         0 [        0 ]    0.00 [   0.00 ]       0 [      0 ]       0 [      0 ]       858 [        0 ] : preplace:lut_merge
+       0 [      0 ]       0 [      0 ]       0 [      0 ]       0 [      0 ]      4479 [        0 ]         0 [        0 ]    0.00 [   0.00 ]       0 [      0 ]       0 [      0 ]       858 [        0 ] : preplace:hfn_opt
+    5349 [   5349 ]       0 [      0 ]       0 [      0 ]    5890 [   5890 ]      4480 [        1 ]    182041 [   182041 ]    0.00 [   0.00 ]       0 [      0 ]      37 [     37 ]       868 [       10 ] : gp_phase_1
+    5349 [      0 ]       0 [      0 ]       0 [      0 ]    5890 [      0 ]      4480 [        0 ]    182041 [        0 ]    0.00 [   0.00 ]       0 [      0 ]      39 [      2 ]       868 [        0 ] : prepack:global_opt
+    5279 [    -70 ]       0 [      0 ]       0 [      0 ]    6192 [    302 ]      2328 [    -2152 ]    186429 [     4388 ]    0.00 [   0.00 ]       0 [      0 ]      58 [     19 ]      1000 [      132 ] : direct_legalization
+    5279 [      0 ]       0 [      0 ]       0 [      0 ]    6192 [      0 ]      2328 [        0 ]    186429 [        0 ]    0.00 [   0.00 ]       0 [      0 ]      59 [      1 ]      1000 [        0 ] : post_pack_spreading
+    5400 [    121 ]       0 [      0 ]       0 [      0 ]    6392 [    200 ]      2328 [        0 ]    157201 [   -29228 ]   37.32 [  37.32 ]       0 [      0 ]      70 [     11 ]      1000 [        0 ] : post_pack_dp
+    5400 [      0 ]       0 [      0 ]       0 [      0 ]    6392 [      0 ]      2328 [        0 ]    157201 [        0 ]   37.32 [   0.00 ]       0 [      0 ]      80 [     10 ]      1087 [       87 ] : postpack:optimize_equivalent_quick
+    5400 [      0 ]       0 [      0 ]       0 [      0 ]    6395 [      3 ]      2398 [       70 ]    174659 [    17458 ]   37.32 [   0.00 ]       0 [      0 ]      82 [      2 ]      1087 [        0 ] : postpack:hfn_opt
+    5400 [      0 ]       0 [      0 ]       0 [      0 ]    6395 [      0 ]      2398 [        0 ]    174659 [        0 ]   39.75 [   2.43 ]       0 [      0 ]      84 [      2 ]      1087 [        0 ] : postpack:timing_opt
+    5400 [      0 ]       0 [      0 ]       0 [      0 ]    6408 [     13 ]      2392 [       -6 ]    173153 [    -1506 ]   39.75 [   0.00 ]       0 [      0 ]      93 [      9 ]      1100 [       13 ] : postpack:optimize_equivalent
+    5400 [      0 ]       0 [      0 ]       0 [      0 ]    6408 [      0 ]      2392 [        0 ]    173153 [        0 ]   39.75 [   0.00 ]       0 [      0 ]      93 [      0 ]      1100 [        0 ] : postpack:beeline_opt
+    5400 [      0 ]       0 [      0 ]       0 [      0 ]    6141 [   -267 ]      2393 [        1 ]    557472 [   384319 ]   39.57 [  -0.18 ]       0 [      0 ]     102 [      9 ]      1100 [        0 ] : endplace:pin_opt
+    5400 [      0 ]       0 [      0 ]       0 [      0 ]    6141 [      0 ]      2393 [        0 ]    557472 [        0 ]   39.57 [   0.00 ]       0 [      0 ]     102 [      0 ]      1100 [        0 ] : endplace:crit_path_opt
+
+RUN-1003 : finish command "place" in  107.418347s wall, 200.625000s user + 9.437500s system = 210.062500s CPU (195.6%)
+
+RUN-1004 : used memory is 935 MB, reserved memory is 925 MB, peak memory is 1100 MB
+RUN-1002 : start command "update_timing -mode manhattan"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  6.953950s wall, 6.718750s user + 0.171875s system = 6.890625s CPU (99.1%)
+
+RUN-1004 : used memory is 985 MB, reserved memory is 979 MB, peak memory is 1100 MB
+RUN-1003 : finish command "update_timing -mode manhattan" in  7.680483s wall, 7.453125s user + 0.171875s system = 7.625000s CPU (99.3%)
+
+RUN-1004 : used memory is 985 MB, reserved memory is 979 MB, peak memory is 1100 MB
+RUN-1002 : start command "report_timing_summary -file gp_place.timing -path_num 5"
+RUN-1002 : start command "export_db gp_place.db"
+RUN-1001 : Exported flow parameters
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported phy database
+RUN-1001 : Exported packer
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported ATMR Setting
+RUN-1001 : Exported timing constraints
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported ChipWatcher
+RUN-1002 : start command "route"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+PHY-1001 : Reconnected 9 VDD pins with routing demanding
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-1001 : Working orders of clock nets being processed in bank assignment:
+PHY-1001 : clk_100m_syn_59;
+PHY-1001 : Internal bound Intnl_0_40_81_40 is being created by clock gp_clk through SCLK.
+PHY-1001 : Internal bound Intnl_81_40_43_40 is being created by clock gp_clk through SCLK.
+PHY-1001 : Internal bound Intnl_0_80_81_40 is being created by clock gp_clk through SCLK.
+PHY-1001 : Internal bound Intnl_81_80_43_40 is being created by clock gp_clk through SCLK.
+RUN-1001 : Clock region assignment statistics:
+RUN-1001 : Clock Region s_1_l [0,40][79,79]; Utilization: 1 out of 12
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |   Leading Clock   |       Type        |                            Buffer                             |  Regional Clock Fanouts  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  clk_100m_syn_59  |  (infered sclk)   |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1  |           238            
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_1_r [80,40][123,79]; Utilization: 1 out of 12
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |   Leading Clock   |       Type        |                            Buffer                             |  Regional Clock Fanouts  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  clk_100m_syn_59  |  (infered sclk)   |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1  |            62            
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_l [0,80][79,119]; Utilization: 1 out of 12
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |   Leading Clock   |       Type        |                            Buffer                             |  Regional Clock Fanouts  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  clk_100m_syn_59  |  (infered sclk)   |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1  |           856            
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_r [80,80][123,119]; Utilization: 1 out of 12
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |   Leading Clock   |       Type        |                            Buffer                             |  Regional Clock Fanouts  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  clk_100m_syn_59  |  (infered sclk)   |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1  |           475            
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-1001 : Route runs in 22 thread(s)
+RUN-1001 : There are total 2454 instances
+RUN-1001 : 0 mslices, 2292 lslices, 1 pads, 0 brams, 0 dsps
+RUN-1001 : There are total 4440 nets
+RUN-1001 : 2062 nets have 2 pins
+RUN-1001 : 2088 nets have [3 - 5] pins
+RUN-1001 : 115 nets have [6 - 10] pins
+RUN-1001 : 49 nets have [11 - 20] pins
+RUN-1001 : 117 nets have [21 - 99] pins
+RUN-1001 : 9 nets have 100+ pins
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  7.955622s wall, 7.796875s user + 0.109375s system = 7.906250s CPU (99.4%)
+
+RUN-1004 : used memory is 1136 MB, reserved memory is 1134 MB, peak memory is 1174 MB
+PHY-1001 : 0 mslices, 2292 lslices, 1 pads, 0 brams, 0 dsps
+
+PHY-1001 : Stage 1 | Global Routing
+PHY-1001 : Start global routing, caller is route ...
+RUN-1001 : Generating global routing grids ...
+PHY-1001 : Generate routing nets ...
+RUN-1001 : Generate nets statistics:
+RUN-1001 : ---------------------------
+RUN-1001 :        Type       |  Nets  
+RUN-1001 : ---------------------------
+RUN-1001 :   TotalRouteNets  |  3619  
+RUN-1001 :   DontRouteNets   |  936   
+RUN-1001 :     RouteNets     |  2683  
+RUN-1001 :     RouteSinks    |  5563  
+RUN-1001 : ---------------------------
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 219072, over cnt = 243(0%), over = 605, worst = 9
+PHY-1002 : len = 229568, over cnt = 136(0%), over = 136, worst = 1
+PHY-1002 : len = 233968, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  1.182196s wall, 1.234375s user + 0.000000s system = 1.234375s CPU (104.4%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 42.92 (S 26.27, N 29.99, E 40.96, W 27.01, I 38.19, O 42.12)
+PHY-1001 : top5  = 26.41 (S 15.04, N 15.54, E 22.44, W 13.70, I 20.15, O 23.87)
+PHY-1001 : top10 = 16.19 (S  8.20, N  8.38, E 12.26, W  7.15, I 10.18, O 12.20)
+PHY-1001 : top15 = 10.80 (S  5.47, N  5.59, E  8.17, W  4.76, I  6.79, O  8.13)
+PHY-1001 : End global routing;  1.737892s wall, 1.781250s user + 0.000000s system = 1.781250s CPU (102.5%)
+
+PHY-1001 : End Stage 1 | Global Routing; Time: 1.738287s wall, 1.781250s user + 0.000000s system = 1.781250s CPU (102.5%); Memory(MB): used = 1138, reserved = 1135, peak = 1174;
+
+PHY-1001 : Stage 2 | Detail Routing
+PHY-1001 : Stage 2.1 | Build Routing Design
+PHY-1001 : Routing in high effort: false
+PHY-1001 : Routing Mode: normal
+PHY-1001 : Generate detailed routing grids ...
+RUN-1001 : Constructing routing connections ...
+PHY-1001 : End build routing graph; 23.577616s wall, 94.140625s user + 0.750000s system = 94.890625s CPU (402.5%)
+
+PHY-1001 : Generate nets ...
+RUN-1001 : Generate nets statistics:
+RUN-1001 : ------------------------------
+RUN-1001 :         Type        |  Nets   
+RUN-1001 : ------------------------------
+RUN-1001 :        Route        |  3680   
+RUN-1001 :      DontRoute      |   760   
+RUN-1001 :      RouteSinks     |  15619  
+RUN-1001 :   RouteEntitySinks  |    0    
+RUN-1001 :       Lut2Dff       |    0    
+RUN-1001 :       Ram2Dff       |    0    
+RUN-1001 :      Carry2Dff      |    0    
+RUN-1001 : ------------------------------
+RUN-1001 : DR clock net summary:
+RUN-1001 : ----------------------------------------------
+RUN-1001 :   Net Idx  |     Net Name      |  Clock Type  
+RUN-1001 : ----------------------------------------------
+RUN-1001 :      1     |  clk_100m_dup_1   |    Normal    
+RUN-1001 :      2     |  clk_100m_syn_59  |    Normal    
+RUN-1001 : ----------------------------------------------
+RUN-1001 : DR clock buffer summary:
+RUN-1001 : -----------------------------------------------------------------------
+RUN-1001 :   Idx  |                             Name                              
+RUN-1001 : -----------------------------------------------------------------------
+RUN-1001 :    1   |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1  
+RUN-1001 :    2   |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1  
+RUN-1001 :    3   |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1  
+RUN-1001 :    4   |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1  
+RUN-1001 : -----------------------------------------------------------------------
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  8.761247s wall, 6.625000s user + 2.000000s system = 8.625000s CPU (98.4%)
+
+RUN-1004 : used memory is 2105 MB, reserved memory is 2110 MB, peak memory is 2159 MB
+RUN-1001 : Top Percentage Crit. Net Stat.
+RUN-1001 : -------------------------------------------------------
+RUN-1001 :   Top %  |  Net Count  |  Avg. Fanout  |  Avg. Slack   
+RUN-1001 : -------------------------------------------------------
+RUN-1001 :     1    |     44      |   5.500000    |  5526.863636  
+RUN-1001 :     2    |     88      |   9.477273    |  5629.227273  
+RUN-1001 :     3    |     133     |   8.052632    |  5702.473684  
+RUN-1001 :     4    |     177     |   7.389831    |  5757.423729  
+RUN-1001 :     5    |     222     |   7.054054    |  5817.869369  
+RUN-1001 :     6    |     266     |   6.601504    |  5884.736842  
+RUN-1001 :     7    |     310     |   6.238710    |  5954.503226  
+RUN-1001 :     8    |     355     |   6.059155    |  6018.977465  
+RUN-1001 :     9    |     399     |   5.824561    |  6076.120301  
+RUN-1001 :    10    |     444     |   5.439189    |  6129.085586  
+RUN-1001 : -------------------------------------------------------
+PHY-1001 : End Stage 2.1 | Build Routing Design; Time: 33.547840s wall, 101.859375s user + 2.812500s system = 104.671875s CPU (312.0%); Memory(MB): used = 2100, reserved = 2105, peak = 2159;
+
+PHY-1001 : Stage 2.2 | Tile Base Routing
+PHY-1001 : 56 nets need to preroute.
+PHY-1001 : len = 0, over cnt = 0(0%), over = 0, worst = 0, crit = 0
+PHY-1001 : End Stage 2.2 | Tile Base Routing; Time: 0.953886s wall, 5.109375s user + 0.031250s system = 5.140625s CPU (538.9%); Memory(MB): used = 2100, reserved = 2105, peak = 2159;
+
+PHY-1001 : Stage 2.3 | Clock Nets Routing
+PHY-1001 : Routed 0% nets.
+PHY-1001 : len = 83072, over cnt = 0(0%), over = 0, worst = 0, crit = 0
+PHY-1001 : End Stage 2.3 | Clock Nets Routing; Time: 0.261701s wall, 0.468750s user + 0.015625s system = 0.484375s CPU (185.1%); Memory(MB): used = 2100, reserved = 2105, peak = 2159;
+
+RUN-1001 : Perform detailed routing kernel under the defined configuration
+RUN-1001 : ---------------------------------
+RUN-1001 :      Parameter      |  Setting   
+RUN-1001 : ---------------------------------
+RUN-1001 :       strategy      |  balanced  
+RUN-1001 :   multi-threading   |  by level  
+RUN-1001 :   LUT pin swapping  |     on     
+RUN-1001 :   LUT feedthrough   |     on     
+RUN-1001 :     congo factor    |    1.5     
+RUN-1001 : ---------------------------------
+PHY-1001 : Stage 2.4 | Path based DR route
+PHY-1001 : Stage 2.4.1 | Design preparation
+PHY-1001 : Path generation: total path = 11844
+PHY-1001 : Generate equivalent LUT input pin mapping
+PHY-1001 : Path fanout statistic: total 11844, multi-sinks 5967(50.38%) avg. sink = 4.64, blocked multi-sink 10(0.08%)
+PHY-1001 : Marked 33919 pre-route search node.
+PHY-1001 : Exclusive sink check marked 0 extra paths; pre-route search node = 0, drc = 0
+PHY-1001 : Generate LUT feedthroughs
+PHY-1001 : Build lut bridge;  0.844742s wall, 0.812500s user + 0.000000s system = 0.812500s CPU (96.2%)
+
+PHY-1001 : End Stage 2.4.1 | Design preparation; Time: 3.978052s wall, 3.812500s user + 0.078125s system = 3.890625s CPU (97.8%); Memory(MB): used = 2101, reserved = 2105, peak = 2159;
+
+PHY-1001 : Stage 2.4.2 | Launching routing kernel
+PHY-1001 : Stage 2.4.2.1 | Detailed Routing
+PHY-1001 : Kernel to route 11844 paths with scheme = by level reroute_crit = 0.9.
+PHY-1001 :   Iter. 1: runtime[   2.0s]; rr_path[  11844]; Path[overflow =    6633, finished =    5211].
+PHY-1001 : Setup: WNS(ns) = 3.795, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = -0.048, TNS(ns) = -0.102, FEP = 9.
+PHY-1001 :   Iter. 2: runtime[  17.4s]; rr_path[   5222]; Path[overflow =    3670, finished =    8174].
+PHY-1001 :   Iter. 3: runtime[  18.2s]; rr_path[   2785]; Path[overflow =    1520, finished =   10324].
+PHY-1001 :   Iter. 4: runtime[  18.6s]; rr_path[   1084]; Path[overflow =     497, finished =   11347].
+PHY-1001 : Setup: WNS(ns) = 3.544, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = -0.048, TNS(ns) = -0.093, FEP = 6.
+PHY-1001 :   Iter. 5: runtime[  19.9s]; rr_path[    316]; Path[overflow =     111, finished =   11733].
+PHY-1001 :   Iter. 6: runtime[  20.0s]; rr_path[    101]; Path[overflow =      27, finished =   11817].
+PHY-1001 : Setup: WNS(ns) = 3.199, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = 0.031, TNS(ns) = 0.000, FEP = 0.
+PHY-1001 :   Iter. 7: runtime[  20.7s]; rr_path[     16]; Path[overflow =       0, finished =   11844].
+PHY-1001 : Commit pin-swaps (committed paths = 4171, total paths = 11844, ratio = 35.22%)
+PHY-1001 : Setup: WNS(ns) = 3.340, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = 0.031, TNS(ns) = 0.000, FEP = 0.
+PHY-1001 : Commit better result to database ...
+PHY-1001 : Kernel finished in 7 iterations
+PHY-1001 : End Stage 2.4.2.1 | Detailed Routing; Time: 23.405916s wall, 22.671875s user + 0.453125s system = 23.125000s CPU (98.8%); Memory(MB): used = 2162, reserved = 2168, peak = 2273;
+
+PHY-1001 : Setup: WNS(ns) = 3.340, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = 0.031, TNS(ns) = 0.000, FEP = 0.
+PHY-1001 : End Stage 2.4.2 | Launching routing kernel; Time: 23.406454s wall, 22.671875s user + 0.453125s system = 23.125000s CPU (98.8%); Memory(MB): used = 2162, reserved = 2168, peak = 2273;
+
+PHY-1001 : End Stage 2.4 | Path based DR route; Time: 27.384984s wall, 26.484375s user + 0.531250s system = 27.015625s CPU (98.7%); Memory(MB): used = 2162, reserved = 2168, peak = 2273;
+
+RUN-1001 : Clock region assignment statistics:
+RUN-1001 : Clock Region s_1_l [0,40][79,79]; Utilization: 1 out of 12
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |  Assigned Clock   |    Route Clock    |  Marking  |                            Buffer                             |  Regional Clock Fanouts  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  clk_100m_syn_59  |  clk_100m_syn_59  |           |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1  |           238            
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_1_r [80,40][123,79]; Utilization: 1 out of 12
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |  Assigned Clock   |    Route Clock    |  Marking  |                            Buffer                             |  Regional Clock Fanouts  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  clk_100m_syn_59  |  clk_100m_syn_59  |           |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1  |            62            
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_l [0,80][79,119]; Utilization: 1 out of 12
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |  Assigned Clock   |    Route Clock    |  Marking  |                            Buffer                             |  Regional Clock Fanouts  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  clk_100m_syn_59  |  clk_100m_syn_59  |           |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1  |           856            
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_r [80,80][123,119]; Utilization: 1 out of 12
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |  Assigned Clock   |    Route Clock    |  Marking  |                            Buffer                             |  Regional Clock Fanouts  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  clk_100m_syn_59  |  clk_100m_syn_59  |           |  clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1  |           475            
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : Current memory(MB): used = 2162, reserved = 2168, peak = 2273.
+PHY-1001 : End export database. 0.041013s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (114.3%)
+
+PHY-1001 : End detail routing;  62.523601s wall, 134.296875s user + 3.390625s system = 137.687500s CPU (220.2%)
+
+PHY-1001 : End Stage 2 | Detail Routing; Time: 62.524207s wall, 134.296875s user + 3.390625s system = 137.687500s CPU (220.2%); Memory(MB): used = 2064, reserved = 2069, peak = 2273;
+
+RUN-1002 : start command "fix_hold"
+
+PHY-1001 : Stage 3 | Hold Fix
+PHY-1001 : Stage 3.1 | Load Design Data
+PHY-1034 : Refresh detailed routing grids ...
+PHY-1001 : Generate nets ...
+PHY-1001 : eco open net = 0
+PHY-1001 : End Stage 3.1 | Load Design Data; Time: 0.634194s wall, 0.640625s user + 0.000000s system = 0.640625s CPU (101.0%); Memory(MB): used = 2095, reserved = 2101, peak = 2273;
+
+PHY-1001 : Stage 3.2 | Hold Fix Optimization
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  3.885933s wall, 3.640625s user + 0.093750s system = 3.734375s CPU (96.1%)
+
+RUN-1004 : used memory is 2198 MB, reserved memory is 2206 MB, peak memory is 2273 MB
+PHY-1001 : Timing info: SWNS 3.340ns | STNS 0.000ns | HWNS 0.031ns | HTNS 0.000ns.
+PHY-1001 : End timing refresh.  5.244657s wall, 4.953125s user + 0.093750s system = 5.046875s CPU (96.2%)
+
+PHY-1001 : End Stage 3.2 | Hold Fix Optimization; Time: 5.245299s wall, 4.953125s user + 0.093750s system = 5.046875s CPU (96.2%); Memory(MB): used = 2198, reserved = 2206, peak = 2273;
+
+PHY-1001 : End Stage 3 | Hold Fix; Time: 5.997221s wall, 5.687500s user + 0.093750s system = 5.781250s CPU (96.4%); Memory(MB): used = 2198, reserved = 2206, peak = 2273;
+
+RUN-1003 : finish command "fix_hold" in  6.128536s wall, 5.812500s user + 0.093750s system = 5.906250s CPU (96.4%)
+
+RUN-1004 : used memory is 2198 MB, reserved memory is 2206 MB, peak memory is 2273 MB
+PHY-1001 : Stage 4 | Report Route Qor
+RUN-1002 : start command "report_qor -step route -file route.qor"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  3.761038s wall, 3.546875s user + 0.046875s system = 3.593750s CPU (95.6%)
+
+RUN-1004 : used memory is 2191 MB, reserved memory is 2199 MB, peak memory is 2273 MB
+TMR-2502 : Net delay update with mode: Routed
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |         3340                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+|     Hold WNS              |           31                |
+|     Hold TNS              |            0                |
+|     Num of violated H-EP  |            0                |
+-----------------------------------------------------------
+| Routing Resource          |                             |
+|     Wire length           |       540064                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #slices               |         2292                |
+|     slices percentage     |        4.37%                |
+|     #RAMs                 |            0                |
+|     #DSPs                 |            0                |
+|     #DRAMHARDCON          |            0                |
+-----------------------------------------------------------
+Report route stage QoR done.
+
+PHY-1034 : Refresh detailed routing grids ...
+RUN-0008 : Do timing check and 0 issue(s) found.
+RUN-0008 : Do routing resoruce check and 0 issue(s) found.
+RUN-1003 : finish command "report_qor -step route -file route.qor" in  6.308230s wall, 5.843750s user + 0.078125s system = 5.921875s CPU (93.9%)
+
+RUN-1004 : used memory is 2196 MB, reserved memory is 2202 MB, peak memory is 2273 MB
+RUN-1002 : start command "update_timing -mode final"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  3.814763s wall, 3.484375s user + 0.125000s system = 3.609375s CPU (94.6%)
+
+RUN-1004 : used memory is 2198 MB, reserved memory is 2207 MB, peak memory is 2273 MB
+RUN-1003 : finish command "update_timing -mode final" in  5.149156s wall, 4.796875s user + 0.125000s system = 4.921875s CPU (95.6%)
+
+RUN-1004 : used memory is 2199 MB, reserved memory is 2207 MB, peak memory is 2273 MB
+RUN-1002 : start command "report_timing_summary -file final_timing.rpt"
+OPT-1001 : QoR tracer report on route step:
+    SWNS [   incr ]    STNS [   incr ]  S-FEPS [   incr ]    HWNS [   incr ]      HTNS [     incr ]    H-FEPS [     incr ]    CELL [   incr ]      WL [   incr ]   RT(s) [   incr ]   MEM(mb) [     incr ]
+    3340 [   3340 ]       0 [      0 ]       0 [      0 ]      31 [     31 ]         0 [        0 ]         0 [        0 ]    2454 [   2454 ]  540064 [ 540064 ]      79 [     79 ]      2273 [     2273 ] : fix_hold_opt
+
+PHY-1001 : End Stage 4 | Report Route Qor; Time: 11.473675s wall, 10.656250s user + 0.203125s system = 10.859375s CPU (94.6%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+PHY-1001 : Stage 5 | Design Rule Check
+PHY-1001 : Stage 5.1 | Check And Add Lut-bridge
+PHY-1001 : End Stage 5.1 | Check And Add Lut-bridge; Time: 0.038795s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (120.8%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1001 : Stage 5.2 | Run Pin Swap Checker
+RUN-1001 : End Stage 5.2 | Run Pin Swap Checker; Time: 0.013364s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (116.9%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1001 : Stage 5.3 | Run Net Connection Checker
+RUN-1001 : End Stage 5.3 | Run Net Connection Checker; Time: 0.016978s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (92.0%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1001 : Stage 5.4 | Run Lut Bridge Checker
+RUN-1001 : End Stage 5.4 | Run Lut Bridge Checker; Time: 0.107922s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (72.4%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1001 : Stage 5.5 | Run Multi Drive Checker
+RUN-1001 : End Stage 5.5 | Run Multi Drive Checker; Time: 0.005450s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1001 : Stage 5.6 | Run Clock Status Checker
+RUN-1001 : End Stage 5.6 | Run Clock Status Checker; Time: 0.005187s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1001 : Stage 5.7 | Run Abnormal Path Checker
+RUN-1001 : End Stage 5.7 | Run Abnormal Path Checker; Time: 0.080110s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (97.5%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1001 : Stage 5.8 | Run Route Region Checker
+RUN-1001 : End Stage 5.8 | Run Route Region Checker; Time: 0.000583s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1001 : Stage 5.9 | Run Bound Checker
+RUN-1001 : End Stage 5.9 | Run Bound Checker; Time: 0.001050s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+PHY-1001 : End Stage 5 | Design Rule Check; Time: 0.968306s wall, 0.890625s user + 0.015625s system = 0.906250s CPU (93.6%); Memory(MB): used = 2199, reserved = 2207, peak = 2273;
+
+RUN-1003 : finish command "route" in  92.310650s wall, 162.734375s user + 3.843750s system = 166.578125s CPU (180.5%)
+
+RUN-1004 : used memory is 2199 MB, reserved memory is 2207 MB, peak memory is 2273 MB
+RUN-1002 : start command "update_timing -mode final"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  3.946497s wall, 3.718750s user + 0.078125s system = 3.796875s CPU (96.2%)
+
+RUN-1004 : used memory is 2162 MB, reserved memory is 2169 MB, peak memory is 2273 MB
+RUN-1003 : finish command "update_timing -mode final" in  5.266596s wall, 5.015625s user + 0.078125s system = 5.093750s CPU (96.7%)
+
+RUN-1004 : used memory is 2162 MB, reserved memory is 2169 MB, peak memory is 2273 MB
+RUN-1002 : start command "report_timing_summary -file gp_route.timing -path_num 5"
+RUN-1002 : start command "report_area -io_info -file gp_route.area"
+SYN-4034 : The count of slices with lut is 1260.
+SYN-4035 : The count of slices with lut+ripple is 130.
+RUN-1001 : standard
+***Report Model: system_wrapper Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         1   out of    126    0.79%
+  #input                    1
+  #output                   0
+  #inout                    0
+#lut6                    1390   out of  52480    2.65%
+#reg                     2770
+  #slice reg             2770   out of 104960    2.64%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                   2292   out of  52480    4.37%
+  #used ram                 0
+    #dram lut               0
+    #shifter lut            0
+  #used logic            2292
+    #with luts           1260
+    #with adder           130
+    #reg only             902
+#feedthrough             1954
+#f7mux                    188   out of  26240    0.72%
+#f8mux                     94   out of  13120    0.72%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of    240    0.00%
+#soc                        1   out of      1  100.00%
+#pad                        1   out of    126    0.79%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       4   out of     72    5.56%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+DataNet Average Fanout:
+
+   Index     Fanout    Nets  
+    #1         1       2048  
+    #2         2       1887  
+    #3         3        91   
+    #4         4        97   
+    #5        5-10     115   
+    #6       11-50      76   
+    #7       51-100     5    
+  Average     2.19           
+
+RUN-1002 : start command "check_timing -verbose -file gp_route.check"
+RUN-1002 : start command "report_route_status -drc -file gp_route.drc"
+RUN-1001 : Stage 6 | Run Pin Swap Checker
+RUN-1001 : End Stage 6 | Run Pin Swap Checker; Time: 0.008870s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 2162, reserved = 2169, peak = 2273;
+
+RUN-1001 : Stage 7 | Run Net Connection Checker
+RUN-1001 : End Stage 7 | Run Net Connection Checker; Time: 0.018586s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (84.1%); Memory(MB): used = 2162, reserved = 2169, peak = 2273;
+
+RUN-1001 : Stage 8 | Run Lut Bridge Checker
+RUN-1001 : End Stage 8 | Run Lut Bridge Checker; Time: 0.116464s wall, 0.125000s user + 0.000000s system = 0.125000s CPU (107.3%); Memory(MB): used = 2162, reserved = 2169, peak = 2273;
+
+RUN-1001 : Stage 9 | Run Multi Drive Checker
+RUN-1001 : End Stage 9 | Run Multi Drive Checker; Time: 0.005589s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 2162, reserved = 2169, peak = 2273;
+
+RUN-1001 : Stage 10 | Run Clock Status Checker
+RUN-1001 : End Stage 10 | Run Clock Status Checker; Time: 0.004415s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (353.9%); Memory(MB): used = 2162, reserved = 2169, peak = 2273;
+
+RUN-1001 : Stage 11 | Run Abnormal Path Checker
+RUN-1001 : End Stage 11 | Run Abnormal Path Checker; Time: 0.103944s wall, 0.093750s user + 0.000000s system = 0.093750s CPU (90.2%); Memory(MB): used = 2162, reserved = 2169, peak = 2273;
+
+RUN-1002 : start command "export_db gp_route.db"
+RUN-1001 : Exported flow parameters
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported phy database
+RUN-1001 : Exported packer
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported ATMR Setting
+RUN-1001 : Exported timing constraints
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported ChipWatcher
+RUN-1002 : start command "bitgen -bit system.bit"
+RUN-1002 : start command "export_bid system_inst.bid"
+BIT-1003 : Start to generate bitstream. 
+BIT-1002 : Bitgen processed 8 pll_pd instances.
+BIT-1002 : Init instances with 22 threads.
+BIT-1002 : Init instances completely, inst num: 2460
+BIT-1002 : Init pips with 22 threads.
+BIT-1002 : Init pips completely, net num: 3680, pip num: 42042
+BIT-1002 : Init feedthrough with 22 threads.
+BIT-1002 : Init feedthrough completely, num: 1954
+BIT-1003 : Multithreading accelaration with 22 threads.
+BIT-1003 : Generate bitstream completely, there are 139944 bits set as '1'.
+BIT-1004 : Generate file system.bit.
+RUN-1003 : finish command "bitgen -bit system.bit" in  5.605493s wall, 15.906250s user + 0.421875s system = 16.328125s CPU (291.3%)
+
+RUN-1004 : used memory is 2163 MB, reserved memory is 2170 MB, peak memory is 2349 MB
+BSP_GP_BOARD_BITSTREAM_COMPLETE

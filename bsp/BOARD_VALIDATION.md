@@ -1,5 +1,9 @@
 # SD实板只读核对
 
+2026-10-12 GP批次：已构建最终GP镜像，PS内部GEN_PL_GP0S时钟模型已修复并完整重布线通过；SD重新烧写、512MiB直接读回哈希与FAT/EXT4检查通过，根PARTUUID为20ae01e9-02。本批尚未冷启动、打开COM4或验收GP/IRQ/快照。下面结果均为原PS-only SD基线。新批次状态见[gp/BUILD_STATUS.md](gp/BUILD_STATUS.md)。
+
+用户已结束本次任务（板卡不在手边）。新GP镜像的启动、GP、IRQ、时间戳/快照均记为NOT_TESTED，不沿用原PS-only基线结果作为本批通过证据。
+
 2026-10-11（Asia/Taipei）。用户确认板卡从SD启动、COM4可进入后，通过COM4/115200/8N1连接，DTR/RTS=false。收到root shell；本次没有重启、加载模块、MMIO访问、DMA/内存压力或主动存储写测试。运行系统自身的rw挂载不等同只读挂载。
 
 ## 已确认

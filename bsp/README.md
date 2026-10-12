@@ -1,7 +1,8 @@
 # Buildroot 最小 SD 启动基线
 
 2026-10-11（Asia/Taipei）。状态：**已构建，实体SD烧写及512MiB直接读回校验成功；已完成SD根启动及DDR/CMA只读核对，冷启动全链路待采集**。实板证据见[BOARD_VALIDATION.md](BOARD_VALIDATION.md)。后续部署实录见[DEPLOYMENT.md](DEPLOYMENT.md)。
-范围是串口、DDR/CMA、SD/eMMC和驱动构建基础。HMI、运动内核、GP/中断和独立AXI DMA硬件联调均未集成。
+2026-10-12 GP控制批次已按冻结契约集成PL控制顶层、匹配HPF/FSBL/BOOT.bin/DTS和platform/misc驱动及验收程序；同一SD重新烧写、512MiB直接读回哈希及文件系统检查通过，根PARTUUID为20ae01e9-02。完整冷启动与GP/IRQ/快照实板验收待用户装卡后进行；详细状态见[gp/BUILD_STATUS.md](gp/BUILD_STATUS.md)。
+范围是串口、DDR/CMA、SD/eMMC和驱动构建基础，以及最小GP控制验证。HMI、运动内核和独立AXI DMA硬件联调尚未集成。
 
 ## 交付物
 

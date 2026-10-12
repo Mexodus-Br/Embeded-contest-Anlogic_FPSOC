@@ -1,0 +1,661 @@
+============================================================
+   TD Release_2026.1_SP2
+   Copyright (c) 2012-2026 Anlogic Inc.
+   Executable = D:/Anlogic/TD_Release_2026.1_SP2.200.067/bin/td_commands_prompt.exe
+   Build number = 6.2.2.200067
+   Built at =   16:15:53 Apr 23 2026
+   Run by =     boru
+   Run Date =   Mon Oct 12 13:31:51 2026
+
+   Run on =     LAPTOP-JS7E5LFJ
+============================================================
+RUN-1002 : start command "import_device dr1_90.db -package DR1M90GEG400 -speed 2"
+ARC-1001 : Device Initialization.
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :           OPTION          |      IO       |   SETTING   
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |    35 IOs     |    gpio    
+ARC-1001 :            jtag           |  F9/J6/G6/F6  |  dedicate  
+ARC-1001 : --------------------------------------------------------
+RUN-1003 : finish command "import_device dr1_90.db -package DR1M90GEG400 -speed 2" in  2.605085s wall, 1.953125s user + 0.171875s system = 2.125000s CPU (81.6%)
+
+RUN-1004 : used memory is 419 MB, reserved memory is 409 MB, peak memory is 452 MB
+RUN-1002 : start command "open_project system.al"
+PRJ-5611 WARNING: gp/gp_control_top.v and gp/gp_control_regs.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/gp_ps_write_adapter.v and gp/gp_control_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/gp_ps_control_top.v and gp/gp_ps_write_adapter.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/axi_protocol_converter_merge.v and gp/gp_ps_control_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/gp.sdc and gp/gp.adc have the same CompileOrder value.
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/system_ARM_Processor_System_0.v
+HDL-1007 : analyze verilog file system/hdl/system.v
+HDL-1007 : analyze verilog file system/hdl/system_wrapper.v
+HDL-1007 : analyze verilog file gp/axi_protocol_converter_merge.v
+Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit (http://www.openssl.org/)
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+All rights reserved.
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(138)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(589)
+HDL-1007 : analyze verilog file gp/gp_ps_control_top.v
+HDL-1007 : analyze verilog file gp/gp_ps_write_adapter.v
+HDL-1007 : analyze verilog file gp/gp_control_top.v
+HDL-1007 : analyze verilog file gp/gp_control_regs.v
+PRJ-1401 : Successfully analyzed 9 source files.
+RUN-1002 : start command "elaborate -top system_wrapper"
+HDL-1007 : elaborate module system_wrapper in system/hdl/system_wrapper.v(2)
+HDL-1007 : port 'master_fahb_haddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hsel' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_htrans' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hwdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_hwrite' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_tx_clk' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_tx_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_txd' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_txen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_txer' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_mcgr_dma_req_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_ptp_pps_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_ptp_timestamp_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe0_ptp_timestamp_toggle_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_tx_clk' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_tx_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_txd' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_txen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_txer' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_mcgr_dma_req_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_ptp_pps_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_ptp_timestamp_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gbe1_ptp_timestamp_toggle_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'f2p_cti_trig_ack' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_gp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_hp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_clk_lcl' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_fahb_clk_glb' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk1' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk2' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk2_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk3' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_clk3_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_rst_n_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_rst_n_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_araddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arcache' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arlen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arlock' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_arvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awaddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awcache' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awlen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awlock' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_awvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_bready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_rready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_wdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_wlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_wstrb' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'master_gp1_axi_wvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'slave_acp_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'p2f_cti_trig' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'standbywfe_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'standbywfi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_de' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_dtr_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_out1_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_out2_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_re' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_rts_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_de' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_dtr_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_out1_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_out2_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_re' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_rts_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma0_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma0_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma0_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma0_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma1_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma1_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma1_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma2_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma2_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma2_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma2_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma3_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma3_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma3_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'dma3_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'can0_stby' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'can0_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'can1_stby' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'can1_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gpio_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'gpio_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'i2c0_scl_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'i2c0_sda_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'i2c1_scl_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'i2c1_sda_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdc0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdc1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdio0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdio1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdio0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'mdio1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_cmd_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_cmd_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_2_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_3_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_4_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_4_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_5_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_5_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_6_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_6_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_7_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_data_7_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio0_pwr_ctrl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_cmd_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_cmd_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_2_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_3_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'sdio1_pwr_ctrl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_miso_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_miso_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_mosi_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_mosi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_sclk_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_sclk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_ss_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_ss_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_ss_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi0_ss_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_miso_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_miso_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_mosi_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_mosi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_sclk_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_sclk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_ss_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_ss_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_ss_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'spi1_ss_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'swdt_rst_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc0_wave1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc0_wave2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc0_wave0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc1_wave1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc1_wave2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'ttc1_wave0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_ctl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_10_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_11_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_12_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_13_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_14_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_15_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_4_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_5_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_6_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_7_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_8_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'trace_data_9_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart0_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'uart1_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : port 'event_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(87)
+HDL-1007 : elaborate module ARM_Processor_System_f6ddd1d59490(P2F_CLK0_DIV=8) in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(4)
+HDL-1007 : elaborate module DR1_PHY_PROCESSOR_SYSTEM(P2F_CLK1_DIV=2,P2F_CLK2_DIV=2,P2F_CLK3_DIV=2) in D:\Anlogic\TD_Release_2026.1_SP2.200.067\arch/dr1_macro.v(1637)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 64 for port 'slave_hp0_axi_wdata' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(212)
+HDL-5007 WARNING: actual bit length 4 differs from formal bit length 8 for port 'slave_hp0_axi_wstrb' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(214)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 64 for port 'slave_hp1_axi_wdata' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(240)
+HDL-5007 WARNING: actual bit length 4 differs from formal bit length 8 for port 'slave_hp1_axi_wstrb' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(242)
+HDL-1007 : elaborate module gp_ps_control_top in gp/gp_ps_control_top.v(3)
+HDL-1007 : elaborate module gp_ps_write_adapter in gp/gp_ps_write_adapter.v(4)
+HDL-1007 : elaborate module gp_control_top in gp/gp_control_top.v(831)
+HDL-1007 : elaborate module axi_protocol_converter_merge(AL_US_AXI_PROTOCOL=1,AL_AXI_ID_WIDTH=32'b01100,AL_AXI_ADDR_WIDTH=32'b0100001,AL_AXI_DATA_WIDTH=32'b0100000,AL_AXI_SUPPORTS_USER_SIGNALS=0) in gp/axi_protocol_converter_merge.v(5)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(13)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2072)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1644)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2545)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(646)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(926)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1032)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1540)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1445)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(752)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(535)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1260)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1118)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2072)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1644)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2545)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(182)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(432)
+HDL-1007 : elaborate module gp_control_regs in gp/gp_control_regs.v(830)
+HDL-1200 : Current top model is system_wrapper
+HDL-1100 : Inferred 0 RAMs.
+RUN-1002 : start command "read_adc -file gp/gp.adc"
+RUN-1002 : start command "set_pin_assignment  clk_100m   LOCATION = H16; IOSTANDARD = LVCMOS33; "
+RUN-1001 : Starting of IO setups legality check.
+RUN-1002 : start command "read_sdc gp/gp.sdc"
+RUN-1002 : start command "optimize_rtl"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+SYN-1001 : Stage 1 | Optimize RTL
+SYN-1001 : Stage 1.1 | Check Design Sanity
+SYN-1001 : End Stage 1.1 | Check Design Sanity; Time: 0.007230s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 492, reserved = 478, peak = 492;
+
+SYN-1079 : finish stage Check Design Sanity. Total instances: 8053, Total nets: 24601.
+
+SYN-1001 : Stage 1.2 | Initialize Design
+SYN-1001 : End Stage 1.2 | Initialize Design; Time: 0.066597s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (117.3%); Memory(MB): used = 492, reserved = 478, peak = 492;
+
+SYN-1079 : finish stage Initialize Design. Total instances: 2833, Total nets: 18860.
+
+SYN-1001 : Stage 1.3 | Flatten Module
+SYN-1011 : Flatten model system_wrapper
+SYN-1001 : End Stage 1.3 | Flatten Module; Time: 0.131147s wall, 0.125000s user + 0.000000s system = 0.125000s CPU (95.3%); Memory(MB): used = 493, reserved = 478, peak = 493;
+
+SYN-1079 : finish stage Flatten Module. Total instances: 3107, Total nets: 13496.
+
+SYN-1001 : Stage 1.4 | Uniform Instance
+SYN-1001 : End Stage 1.4 | Uniform Instance; Time: 0.016932s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 493, reserved = 478, peak = 493;
+
+SYN-1079 : finish stage Uniform Instance. Total instances: 1864, Total nets: 12253.
+
+SYN-1001 : Stage 1.5 | Optimize Design
+SYN-1066 : Inferred FSM for state register 'control/core/converter/conversion_to_lite$axi_axilite/RD$ar_channel/ar_cmd_fsm_0/state_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00             0001
+                    01             0010
+                    10             0100
+                    11             1000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/converter/conversion_to_lite$axi_axilite/RD$ar_channel/ar_cmd_fsm_0/state_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1066 : Inferred FSM for state register 'control/core/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_fsm_aw/state_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00             0001
+                    01             0010
+                    10             0100
+                    11             1000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_fsm_aw/state_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1066 : Inferred FSM for state register 'control/core/registers/phase_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00             0001
+                    01             0010
+                    10             0100
+                    11             1000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/registers/phase_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1057 : Inferred 3 FSM(s)
+SYN-1032 : 12217/18 useful/useless nets, 1824/5 useful/useless insts
+SYN-1021 : Optimized 3 onehot mux instances.
+SYN-1021 : Optimized 4 onehot mux instances.
+SYN-1019 : Optimized 4 mux instances.
+SYN-1021 : Optimized 1 onehot mux instances.
+SYN-1016 : Merged 388 instances.
+USR-6113 CRITICAL-WARNING: Timing analysis risk for (DR1_PHY_PROCESSOR_SYSTEM) ps/DR1_PHY_PROCESSOR_SYSTEM_Inst: clock pin(s) GEN_PL_GP0S is(are) not driven by any clock. 
+Please check sdc and define clock on up stream IO, PLL or any other valid clock sources. 
+Add 'derive_clocks' to sdc if it is driven by a PLL. 
+If it comes from inside hard macro, please check if ip configuration is right, make sure use IPGen and tool will do it all. 
+Contact technical support if everything is right.
+SYN-1016 : Merged 1066 instances.
+SYN-1001 : End Stage 1.5 | Optimize Design; Time: 3.903409s wall, 3.531250s user + 0.250000s system = 3.781250s CPU (96.9%); Memory(MB): used = 548, reserved = 542, peak = 838;
+
+SYN-1079 : finish stage Optimize Design. Total instances: 5117, Total nets: 5445.
+
+SYN-1001 : Stage 1.6 | Optimize Iteratively
+SYN-1019 : Optimized 3 mux instances.
+SYN-1021 : Optimized 180 onehot mux instances.
+SYN-1014 : Optimize round 1
+SYN-1044 : Optimized 35 inv instances.
+SYN-1017 : Remove 6 const input seq instances
+SYN-1019 : Optimized 5 mux instances.
+SYN-1020 : Optimized 50 distributor mux.
+SYN-1001 : Optimize 6 less-than instances
+SYN-1016 : Merged 2409 instances.
+SYN-1015 : Optimize round 1, 3567 better
+SYN-1014 : Optimize round 2
+SYN-1044 : Optimized 4 inv instances.
+SYN-1020 : Optimized 1 distributor mux.
+SYN-1019 : Optimized 166 mux instances.
+SYN-1015 : Optimize round 2, 241 better
+SYN-3010 : Optimized 59 DFF(s)
+SYN-1014 : Optimize round 1
+SYN-1020 : Optimized 164 distributor mux.
+SYN-1016 : Merged 896 instances.
+SYN-1015 : Optimize round 1, 1068 better
+SYN-1014 : Optimize round 2
+SYN-1044 : Optimized 3 inv instances.
+SYN-1016 : Merged 1 instances.
+SYN-1015 : Optimize round 2, 4 better
+SYN-1014 : Optimize round 3
+SYN-1015 : Optimize round 3, 0 better
+SYN-1001 : End Stage 1.6 | Optimize Iteratively; Time: 9.894528s wall, 8.187500s user + 1.484375s system = 9.671875s CPU (97.7%); Memory(MB): used = 569, reserved = 561, peak = 852;
+
+SYN-1079 : finish stage Optimize Iteratively. Total instances: 4802, Total nets: 5114.
+
+SYN-1001 : Stage 1.7 | Check Design
+SYN-1001 : End Stage 1.7 | Check Design; Time: 0.005452s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 569, reserved = 561, peak = 852;
+
+SYN-1079 : finish stage Check Design. Total instances: 4802, Total nets: 5114.
+
+SYN-1001 : End Stage 1 | Optimize RTL; Time: 14.026425s wall, 11.921875s user + 1.734375s system = 13.656250s CPU (97.4%); Memory(MB): used = 569, reserved = 561, peak = 852;
+
+SYN-1079 : finish stage Optimize RTL. Total instances: 4802, Total nets: 5114.
+
+RUN-1003 : finish command "optimize_rtl" in  14.037185s wall, 11.937500s user + 1.734375s system = 13.671875s CPU (97.4%)
+
+RUN-1004 : used memory is 569 MB, reserved memory is 561 MB, peak memory is 852 MB
+RUN-1002 : start command "optimize_gate"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+SYN-1001 : Stage 2 | Optimize Gate
+SYN-1001 : Stage 2.1 | Map Reg
+SYN-1001 : End Stage 2.1 | Map Reg; Time: 0.210756s wall, 0.171875s user + 0.046875s system = 0.218750s CPU (103.8%); Memory(MB): used = 569, reserved = 561, peak = 852;
+
+SYN-1079 : finish stage Map Reg. Total instances: 4802, Total nets: 5114.
+
+SYN-1001 : Stage 2.2 | Map IO
+SYN-2001 : Map 1 IOs to PADs of model 'system_wrapper'
+SYN-1001 : End Stage 2.2 | Map IO; Time: 0.010504s wall, 0.000000s user + 0.015625s system = 0.015625s CPU (148.8%); Memory(MB): used = 569, reserved = 561, peak = 852;
+
+SYN-1001 : Stage 2.3 | Map Macro
+RUN-1002 : start command "update_pll_param -module system_wrapper"
+SYN-2501 : Processed 0 LOGIC_BUF instances.
+SYN-2571 : Optimize after map_dsp, round 1
+SYN-2571 : Optimize after map_dsp, round 1, 0 better
+SYN-1001 : Throwback 68 control mux instances
+SYN-2501 : Optimize round 1
+SYN-1016 : Merged 381 instances.
+SYN-2501 : Optimize round 1, 1057 better
+SYN-2501 : Optimize round 2
+SYN-2501 : Optimize round 2, 0 better
+SYN-2501 : Optimize round 1
+SYN-2501 : Optimize round 1, 0 better
+SYN-1031 : Map 1 macro less-than
+SYN-2501 : Map 30 macro adder(s)
+SYN-3009 : Map 282 FxMUX in MapMacro
+SYN-1019 : Optimized 56 mux instances.
+SYN-1016 : Merged 60 instances.
+SYN-1001 : End Stage 2.3 | Map Macro; Time: 4.724983s wall, 3.828125s user + 0.765625s system = 4.593750s CPU (97.2%); Memory(MB): used = 561, reserved = 552, peak = 853;
+
+SYN-1079 : finish stage Map Macro. Total instances: 6292, Total nets: 6603.
+
+SYN-1001 : Stage 2.4 | Map Gate
+SYN-3001 : Collect 1348 PI 785 PO (4 timing unconstrained) for mapping
+SYN-2581 : Mapping with K=6, #lut = 1147 (3.80), #lev = 7 (2.13), #crit_level = 0, #edge = 4361
+SYN-2551 : Post LUT mapping optimization.
+SYN-2581 : Mapping with K=6, #lut = 1126 (3.79), #lev = 7 (2.12), #crit_level = 0, #edge = 4262
+SYN-3001 : Logic optimization opt = 0.39 sec, map = 0.11 sec, post map opt = 0.57 sec.
+SYN-1001 : End Stage 2.4 | Map Gate; Time: 6.892586s wall, 6.593750s user + 0.171875s system = 6.765625s CPU (98.2%); Memory(MB): used = 562, reserved = 547, peak = 859;
+
+SYN-1001 : Packing model "system_wrapper" ...
+SYN-1001 : Stage 2.5 | Pack Gate
+SYN-4010 : Pack lib has 78 rtl pack models with 50 top pack blocks
+SYN-1014 : Optimize round 1
+SYN-1015 : Optimize round 1, 0 better
+SYN-4002 : Packing 2730 DFF/LATCH to SEQ ...
+SYN-1001 : Remove 9 carry adders
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  2.433040s wall, 2.250000s user + 0.156250s system = 2.406250s CPU (98.9%)
+
+RUN-1004 : used memory is 557 MB, reserved memory is 540 MB, peak memory is 859 MB
+TMR-2502 : Net delay update with mode: Synthesized
+RUN-1002 : start command "end_timer"
+SYN-4009 : Pack 8 carry chain into lslice
+SYN-1001 : End Stage 2.5 | Pack Gate; Time: 3.361765s wall, 3.140625s user + 0.203125s system = 3.343750s CPU (99.5%); Memory(MB): used = 570, reserved = 557, peak = 859;
+
+RUN-1002 : start command "report_qor -step gate -file gate.qor"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  2.625298s wall, 2.515625s user + 0.046875s system = 2.562500s CPU (97.6%)
+
+RUN-1004 : used memory is 593 MB, reserved memory is 581 MB, peak memory is 859 MB
+TMR-2502 : Net delay update with mode: Synthesized
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |         3014                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #registers            |         2730                |
+|     #luts                 |         1126                |
+|     #lut1                 |            5                |
+|     #lut1(~A)             |            5                |
+|     #slices               |          528                |
+|     slices percentage     |        1.01%                |
+|     #RAMs                 |            0                |
+|     #DSPs                 |            0                |
+|     #f7mux                |        0.72%                |
+|     #MACROs               |          102                |
+|     #insts in MACRO       |          622                |
+-----------------------------------------------------------
+| kept_net                  |                             |
+|     #syn_keep             |            0                |
+|     #keep_hier            |            0                |
+|     #dont_touch           |            0                |
+|     #mark_debug           |            0                |
+|     #max_fanout_keep      |            0                |
+|     #async_reg            |            0                |
+-----------------------------------------------------------
+| Top 1% datanet fanout#    |        43.31                |
+| dff(single fanout)->dff   |          100                |
+| dff(single fanout)->dram  |            0                |
+-----------------------------------------------------------
+| Over-quota path num*      |                             |
+|     Total Number          |            0                |
+|     Total Level Slack     |            0                |
+|     Worst Level Slack     |            5                |
+-----------------------------------------------------------
+| Rent**                    |                             |
+-----------------------------------------------------------
+Note*: Over-quota path shows the over-path-level-threshold path number of each clock.
+       The clock will not be shown if no path is with path level over the threshold.
+       The threshold is defined as worst path_margin / 800ps.
+Note**: Rent shows the rent exponent value of the modules whose rent value exceeds the threshold.
+        Only modules under top are reported, and the threshold is defined as 0.7.
+
+Logic Level Distribution
+-----------------------------------------------------------------------------------------------------------------------------------------------
+  Clock                                                 |  Period             |  0     |  1    |  2     |  3    |  4    |  5    |  6   |  7
+-----------------------------------------------------------------------------------------------------------------------------------------------
+  gp_clk                                                |  10.000ns (100MHz)  |  4533  |  466  |  1692  |  136  |  237  |  186  |  30  |  138
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_aclk  |  10.000ns (100MHz)  |  0     |  0    |  0     |  0    |  0    |  0    |  0   |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_gp0_axi_aclk   |  10.000ns (100MHz)  |  0     |  0    |  0     |  0    |  0    |  0    |  0   |  0
+  Total                                                 |  NA                 |  4533  |  466  |  1692  |  136  |  237  |  186  |  30  |  138
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Note: The table count the worst 100000 paths, each endpoint count only one time.(7418 paths analyzed)
+
+Hierarchical Rent Exponent Report
++----------------------------------------------------------------------+
+|Inst      |Model               |Rent     |Cell     |Pin     |Term     |
++----------------------------------------------------------------------+
+|top       |system_wrapper      |-0.18    |4480     |20430   |1        |
+|  control |gp_ps_control_top_1 |0.46     |4477     |20206   |221      |
++----------------------------------------------------------------------+
+Note: Cell represents total number of cells inside module; Pin represents total number of pins
+      which have net connection inside module; Term represents total number of PIs and POs of module.
+      Rent represents the relationship between number of terms and number of cells in module.
+      A module with higher rent corresponds to highly connected logic and strong connectivity with others.
+Report gate stage QoR done.
+
+RUN-0008 : Do critical warning check and 1 issue(s) found.
+RUN-0008 : Do timing check and 0 issue(s) found.
+RUN-0008 : Do area check and 0 issue(s) found.
+QoR Evaluation
+----------------------------------------------------------------------------------------------------------------------------------------
+  ID        |  Priority  |  Description                                                     |  Suggestion
+----------------------------------------------------------------------------------------------------------------------------------------
+  USR-6113  |  MUST FIX  |  - Timing analysis risk for (DR1_PHY_PROCESSOR_SYSTEM) ps/DR1_P  |  - Create clock for reference clock pin.
+            |            |    HY_PROCESSOR_SYSTEM_Inst: clock pin(s) GEN_PL_GP0S is(are) n  |  
+            |            |    ot driven by any clock.                                       |  
+----------------------------------------------------------------------------------------------------------------------------------------
+Note* (*) means this parameter has been set already.
+      (+) means this parameter has been set, suggest to upgrade higher effort level.
+Note** plesae resolve priority MUST FIX and HIGH issues firstly
+       because these have highly possible to block the timing convergence even stop the flow.
+Note*** some suggested settings are not suitable to use together
+        take care of using them separately if suggestion mentioned.
+RUN-1003 : finish command "report_qor -step gate -file gate.qor" in  4.326914s wall, 4.109375s user + 0.078125s system = 4.187500s CPU (96.8%)
+
+RUN-1004 : used memory is 607 MB, reserved memory is 595 MB, peak memory is 859 MB
+SYN-1001 : End Stage 2 | Optimize Gate; Time: 19.771161s wall, 18.078125s user + 1.281250s system = 19.359375s CPU (97.9%); Memory(MB): used = 607, reserved = 595, peak = 859;
+
+RUN-1003 : finish command "optimize_gate" in  19.781042s wall, 18.078125s user + 1.281250s system = 19.359375s CPU (97.9%)
+
+RUN-1004 : used memory is 607 MB, reserved memory is 595 MB, peak memory is 859 MB
+RUN-1002 : start command "report_timing_summary -file diagnostic.timing -path_num 1"
+RUN-1002 : start command "write_verilog diagnostic.v -constnet"
+HDL-1201 : write out verilog file diagnostic.v
+BSP_CLOCK_DIAGNOSTIC_COMPLETE

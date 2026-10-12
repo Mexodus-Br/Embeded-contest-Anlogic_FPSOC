@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-12",
+  "status": "GP_SOFTWARE_ROOTFS_AND_FINAL_IMAGE_BUILT_NOT_BOARD_TESTED",
+  "vm": "uisrc@192.168.43.133",
+  "contract_commit": "ca50bbf",
+  "profile": "gp_control_probe_v1",
+  "kernel_release": "6.1.111-rt42-bsp-sd1",
+  "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1",
+  "kernel_Module_symvers_sha256": "ccc69b7dbd1968066b6ce46d5e5a741f55045f7cc9663db722c3959c1cb548a3",
+  "rootfs": {
+    "vm_path": "/home/uisrc/embedded-bsp/output/gp-rootfs/rootfs.ext4",
+    "bytes": 268435456,
+    "sha256": "82b3d9e6dd40fdaff146a29db2f26afe6972d28ec68a7f3f79584c026faf4883",
+    "fsck": "passed",
+    "readonly_check_embedded_sha256": "dc380b5a5f4bc86c32f605a03c4dbc4eabeb6e30344d0a9c3f757aa40965393a"
+  },
+  "original_bundle_unchanged_sha256": "43c4891b803110844350f64feef96cf6027bd5197975cc1fc901354693b17eac",
+  "build": "W=1 modules/modpost; AArch64 -Wall -Wextra -Werror; candidate DTS compiled disabled",
+  "deployment": "NOT_DONE",
+  "board_GP_IRQ_snapshot": "NOT_TESTED",
+  "files": {
+    "bsp/gp/bsp_gp.c": {
+      "bytes": 10944,
+      "sha256": "f9c966a403a48614fc5be3a8eb365b94878a422f61033c3d160119099802ab11"
+    },
+    "bsp/gp/contract.template.json": {
+      "bytes": 401,
+      "sha256": "380a70f8d2e96ccbb62b0bfc3b6832005be4318f287465e66b17746f375958ae"
+    },
+    "bsp/gp/generated/gp-candidate.dtsi": {
+      "bytes": 333,
+      "sha256": "ad79259d5038bc90e50aa663d6a7ade09a9b23942a7b9ca3d3fe42d0a6115fc6"
+    },
+    "bsp/gp/generated/gp_defs.h": {
+      "bytes": 43773,
+      "sha256": "63fa43a21d93d12935f58eaa59844e907450aaee2a8ef6daab0dcbe23f5ac6b4"
+    },
+    "bsp/gp/generated/inputs.json": {
+      "bytes": 693,
+      "sha256": "2ecd8204b111e2b8debddf7430b87db267cb0ba84eaa453620013f3ea558fdc8"
+    },
+    "bsp/gp/gp_accept.c": {
+      "bytes": 5794,
+      "sha256": "386f8bca517ba8db0828d2d9f017c36a7c0766d7d12451e56bb4adfbbca2d517"
+    },
+    "bsp/gp/gp_uapi.h": {
+      "bytes": 855,
+      "sha256": "8ebdf1e5704e5e3bfc29f4f33c219a7f8cc4bad30e4deea9b563e042d87c4f7a"
+    },
+    "bsp/gp/Makefile": {
+      "bytes": 40,
+      "sha256": "f38e64d52edcdc0461426ad6802e4ee1ebaebfd533fd256e639b989884b92964"
+    },
+    "bsp/gp/README.md": {
+      "bytes": 5672,
+      "sha256": "e63fe124f885a2c6d8b73f057d8530f39f9e29c7ea27ca28d6ae588a71e93e79"
+    },
+    "bsp/gp/test_gate.py": {
+      "bytes": 2880,
+      "sha256": "df2cf27d7560002ff4bb04b88be91dbcca21feb1e07d38cc30735a4b58f1b196"
+    },
+    "bsp/artifacts/gp-software/bsp_gp.ko": {
+      "bytes": 462672,
+      "sha256": "c0131bcdd4d18485e4392e16428778bf2aac5520bfa48a781ec86d1aede3040b"
+    },
+    "bsp/artifacts/gp-software/gp-accept": {
+      "bytes": 19120,
+      "sha256": "ce7a38c0c2e4f35fe1b73d0591fc9881476ce064fede2823a57d552840017136"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+"""Build the actual PS + GP control board wrapper with fixed 10ns clock."""
+from pathlib import Path
+import hashlib
+import json
+import re
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[1]
+WORK = ROOT / 'work/gp_soc_prj'
+TD = Path('D:/Anlogic/TD_Release_2026.1_SP2.200.067/bin/td_commands_prompt.exe')
+script = '''cd D:/Works/Embedded_contest/dev/bsp/work/gp_soc_prj
+import_device dr1_90.db -package DR1M90GEG400 -speed 2
+open_project system.al
+elaborate -top system_wrapper
+read_adc -file gp/gp.adc
+read_sdc gp/gp.sdc
+read_sdc gp/ps-generated-properties.tcl
+optimize_rtl
+optimize_gate -maparea gp_gate.area
+report_timing_summary -file gp_gate.timing -path_num 5
+export_db gp_gate.db
+legalize_phy_inst
+place
+update_timing -mode manhattan
+report_timing_summary -file gp_place.timing -path_num 5
+export_db gp_place.db
+route
+update_timing -mode final
+report_timing_summary -file gp_route.timing -path_num 5
+report_area -io_info -file gp_route.area
+check_timing -verbose -file gp_route.check
+report_route_status -drc -file gp_route.drc
+export_db gp_route.db
+bitgen -bit system.bit
+puts BSP_GP_BOARD_BITSTREAM_COMPLETE
+exit
+'''
+(WORK / 'build_gp.tcl').write_text(script, encoding='utf-8')
+with (WORK / 'build_gp.log').open('w', encoding='utf-8') as log:
+    result = subprocess.run([str(TD), (WORK / 'build_gp.tcl').as_posix()], cwd=WORK,
+                            stdout=log, stderr=subprocess.STDOUT, timeout=900)
+output = (WORK / 'build_gp.log').read_text(encoding='utf-8', errors='replace')
+if result.returncode or 'BSP_GP_BOARD_BITSTREAM_COMPLETE' not in output or re.search(r'\bERROR:|CRITICAL-WARNING', output):
+    raise SystemExit('Full GP system build failed; inspect build_gp.log')
+stages = {}
+for stage in ['gate', 'place', 'route']:
+    text = (WORK / ('gp_' + stage + '.timing')).read_text(encoding='utf-8')
+    setup = float(re.search(r'SWNS:\s*([-\d.]+)ns', text)[1])
+    hold = float(re.search(r'HWNS:\s*([-\d.]+)ns', text)[1])
+    if not re.search(r'100\.000\s+\d+\s+gp_clk', text):
+        raise SystemExit('100MHz GP clock missing from timing report')
+    if not re.search(r'100\.000\s+[1-9]\d*\s+ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S', text):
+        raise SystemExit('100MHz PS GP0 capture clock missing or no active fanout')
+    stages[stage] = {'setup_wns_ns':setup, 'hold_wns_ns':hold}
+    if setup < 0 or hold < 0:
+        raise SystemExit('10ns timing not met at ' + stage)
+summary = {'status':'FULL_PS_GP_BUILT_NOT_BOARD_TESTED', 'reference_speed':2,
+           'stages':stages, 'bitstream_sha256':hashlib.sha256((WORK / 'system.bit').read_bytes()).hexdigest(),
+           'connections':json.loads((WORK / 'connections.json').read_text(encoding='utf-8'))}
+(WORK / 'build-summary.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')
+print(json.dumps(summary,indent=2))

@@ -3,10 +3,20 @@ import hashlib
 import json
 from pathlib import Path
 import tarfile
+import argparse
 
 root = Path(__file__).resolve().parents[1]
-archive = root/'artifacts/bsp-release.tar.gz'
-expected = '43c4891b803110844350f64feef96cf6027bd5197975cc1fc901354693b17eac'
+p = argparse.ArgumentParser(description=__doc__)
+p.add_argument('--archive', default='bsp-release.tar.gz')
+p.add_argument('--sha256', default='43c4891b803110844350f64feef96cf6027bd5197975cc1fc901354693b17eac')
+p.add_argument('--destination', default='bsp-release')
+a = p.parse_args()
+artifacts = (root/'artifacts').resolve()
+archive = (artifacts/a.archive).resolve()
+dest = (artifacts/a.destination).resolve()
+assert archive.is_relative_to(artifacts) and dest.is_relative_to(artifacts)
+assert archive != artifacts and dest != artifacts
+expected = a.sha256
 def sha(path):
     h = hashlib.sha256()
     with path.open('rb') as f:
@@ -14,7 +24,6 @@ def sha(path):
             h.update(data)
     return h.hexdigest()
 assert sha(archive) == expected, 'Transfer checksum mismatch'
-dest = root/'artifacts/bsp-release'
 dest.mkdir(exist_ok=True)
 with tarfile.open(archive,'r:gz') as t:
     for item in t.getmembers():
@@ -22,7 +31,7 @@ with tarfile.open(archive,'r:gz') as t:
         assert path.is_relative_to(dest.resolve()), 'Unsafe path'
         assert item.isfile() or item.isdir(), 'Unexpected link or device'
     t.extractall(dest)
-manifest = json.loads((dest/'release/manifest.json').read_text())
+manifest = json.loads((dest/'release/manifest.json').read_text(encoding='utf-8'))
 for name, meta in manifest['files'].items():
     path = dest/'release'/name
     assert path.stat().st_size == meta['bytes']

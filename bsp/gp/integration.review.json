@@ -1,0 +1,115 @@
+{
+  "description": "Integration evidence template only; authoritative contract is pl_interface/schema.json",
+  "status": "READY_FOR_BSP_INTEGRATION",
+  "schema_sha256": "261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822",
+  "review_reference": "bsp/gp/BUILD_STATUS.md; PL cc16fe2; final full PS+GP timing with native generated IP properties",
+  "records": [
+    {
+      "kind": "gp_ports",
+      "path": "bsp/work/gp_soc_prj/connections.json",
+      "sha256": "bd107a93c3a289503b00865368ef0a84093b5aa475b30a4d6ac18cb1891f40f1",
+      "verified": true
+    },
+    {
+      "kind": "protocol_converter",
+      "path": "pl_motion/GP_SIM_RESULTS.json",
+      "sha256": "eb5b32fa3dfaf506c701888110846d727e69ecb141e5c92ac497ae120d42520e",
+      "verified": true
+    },
+    {
+      "kind": "address_decode",
+      "path": "pl_motion/rtl/gp_control_top.v",
+      "sha256": "a17c46e7786fb1641080c2041c1fa6a8974530942f15861902fce251d4595984",
+      "verified": true
+    },
+    {
+      "kind": "irq_mapping",
+      "path": "pl_interface/schema.json",
+      "sha256": "261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822",
+      "verified": true
+    },
+    {
+      "kind": "clock_reset",
+      "path": "bsp/work/gp_soc_prj/system/hdl/system_wrapper.v",
+      "sha256": "f0ca97fd28c0a05948629ff0f6e82f3ba6977d4c0c33a532bd173a7f61d98971",
+      "verified": true
+    },
+    {
+      "kind": "hdl_simulation",
+      "path": "pl_motion/GP_SIM_RESULTS.json",
+      "sha256": "eb5b32fa3dfaf506c701888110846d727e69ecb141e5c92ac497ae120d42520e",
+      "verified": true
+    },
+    {
+      "kind": "sta",
+      "path": "bsp/evidence/gp-route.timing",
+      "sha256": "ef4d3d81f65fe6becfd484e8726647419158229c894fcd26c4294f30d80d958d",
+      "verified": true
+    },
+    {
+      "kind": "address_map",
+      "path": "pl_interface/schema.json",
+      "sha256": "261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822",
+      "verified": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "pl_interface/schema.json",
+      "sha256": "261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822"
+    },
+    {
+      "path": "pl_interface/generated/interface_defs.vh",
+      "sha256": "2e6f5d9cf2911f47263d98b6d8234cfd9726d18db81883b7855ed8528ea2eb47"
+    },
+    {
+      "path": "bsp/work/gp_soc_prj/system/hdl/system_wrapper.v",
+      "sha256": "f0ca97fd28c0a05948629ff0f6e82f3ba6977d4c0c33a532bd173a7f61d98971"
+    },
+    {
+      "path": "bsp/work/gp_soc_prj/system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v",
+      "sha256": "a2963ecff923a2e67dbc7bc00010da5a917a2b9583b6470265d30c9e67c676ed"
+    },
+    {
+      "path": "bsp/work/gp_soc_prj/gp/ps-generated-properties.tcl",
+      "sha256": "325ab17d87cf7dd0d967de2b95aa090f9ecfa6d24ed4537b6aa75c5fd9cdaa29"
+    },
+    {
+      "path": "bsp/work/gp_soc_prj/gp/axi_protocol_converter_merge.v",
+      "sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61"
+    },
+    {
+      "path": "bsp/work/gp_soc_prj/gp/gp_control_regs.v",
+      "sha256": "e1f550cefad0d4d538eb2d93f0e034840a55e49525c266e6e49eba533f118864"
+    },
+    {
+      "path": "bsp/work/gp_soc_prj/gp/gp_control_top.v",
+      "sha256": "dc76c8c3db115736967f2ff7ffc462982509476cc52e513585233b6497b2248e"
+    },
+    {
+      "path": "bsp/work/gp_soc_prj/gp/gp_ps_control_top.v",
+      "sha256": "c74902388cd323011d770864cf69b195e54ac668fef1bab5537d813adff92465"
+    },
+    {
+      "path": "bsp/work/gp_soc_prj/gp/gp_ps_write_adapter.v",
+      "sha256": "692889145c0858604a502cbae1ea4a75ee6951f7ef0df6ba5a5236a094851fa2"
+    }
+  ],
+  "hpf": {
+    "path": "bsp/work/gp_soc_prj/system.hpf",
+    "sha256": "402615ba459d423cbbda80c42033ab5cdddc05fcc8dce74572fdc99c7d6350ff"
+  },
+  "bitstream_sha256": "e4de04369ea4496c718bb28236c53f2f085c5462a329fd3aa2d7ff9f30a42b42",
+  "ddr_expected_macros": {
+    "DDRC_COMP_DENSITY": "4096",
+    "DDRC_COMP_TYPE": "DDR_COMP_WIDTH_x16",
+    "DDRC_IO_VOL": "1.35",
+    "DDRC_DDR_SPEED": "1333",
+    "DDRC_DQ_WIDTH": "32",
+    "DDRC_TRAINING_EN": "1",
+    "DDRC_SPEED_BIN": "_SPEED_BIN_DDR3_1333G"
+  },
+  "motor_outputs": "not exported",
+  "dma": "not connected",
+  "bsp_review": "REVIEWED_FOR_PROBE_BUILD"
+}

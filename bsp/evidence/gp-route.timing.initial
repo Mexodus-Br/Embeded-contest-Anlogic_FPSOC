@@ -1,0 +1,1436 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Mon Oct 12 09:05:09 2026
+
+Top Model           : system_wrapper
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 98.40%
+Constraint File     : D:/Works/Embedded_contest/dev/bsp/work/gp_soc_prj/gp/gp.sdc;
+Confidence          : Routed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 5 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min     
+------------------------------------
+Slow     | yes      yes     
+Fast     | yes      yes     
+
+
+Timing Status
+--------------------
+	SWNS: 3.340ns, STNS: 0.000ns
+	HWNS: 0.031ns, HTNS: 0.000ns
+	Period Check WNS: 0.000ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000         1631   gp_clk
+           clk1:      100.000            0   ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_aclk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0   Inferred GCLK            0.000      5.000                10.000         100.000                 6.660         150.150            3.340      0.000            0.031      0.000            0.216             1631                7             no       no
+       clk1           local            0.000      5.000                10.000         100.000                10.000         100.000            0.000      0.000            0.000      0.000            0.000                0                0             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     gp_clk -> gp_clk
+Type           :     Self
+From Clock     :     gp_clk
+To Clock       :     gp_clk
+Min Period     :     6.660ns
+Fmax           :     150.150MHz
+
+Statistics:
+Max            : SWNS      3.340ns, STNS      0.000ns,         0 Viol Endpoints,      6524 Total Endpoints,    139113 Paths Analyzed
+Min            : HWNS      0.031ns, HTNS      0.000ns,         0 Viol Endpoints,      6524 Total Endpoints,    139113 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 3.340ns
+Begin Point         : control/core/registers/argument_reg[23]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[4]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.446ns (cell 1.928ns (29%), net 4.518ns (71%))
+Clock Skew          : 0.086ns
+Logic Level         : 7 ( LUT6=2  LUT5=2  LUT4=2  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.825          4.639          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[23]_syn_2.clk
+launch edge                             0.000    r     4.639               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y098z4          0.175    r     4.814          pin: control/core/registers/argument_reg[23]_syn_2.oqa
+net (fo=4)                              0.553          5.367          net: control/core/registers/argument[23],  gp/gp_control_regs.v(852)
+                                                                      pin: control/core/registers/argument_reg[8]_syn_2.ia
+LUT4                x069y094z3          0.323    f     5.690       1  pin: control/core/registers/argument_reg[8]_syn_2.ofa
+net (fo=1)                              0.627          6.317          net: control/core/registers/phase_reg[3]_syn_41,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/captured_argument_reg[11]_syn_2.ia
+LUT5                x069y094z6          0.323    f     6.640       2  pin: control/core/registers/captured_argument_reg[11]_syn_2.ofa
+net (fo=1)                              0.639          7.279          net: control/core/registers/phase_reg[3]_syn_43,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_181.ic
+LUT6                x069y094z7          0.210    r     7.489       3  pin: control/core/registers/phase_reg[3]_syn_181.ofb
+net (fo=1)                              0.434          7.923          net: control/core/registers/phase_reg[3]_syn_57,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_178.ib
+LUT5                x067y098z6          0.242    r     8.165       4  pin: control/core/registers/phase_reg[3]_syn_178.ofb
+net (fo=5)                              0.429          8.594          net: control/core/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ib
+LUT4                x067y101z4          0.324    f     8.918       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          9.110          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     9.199       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.755          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.997       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         11.085          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.cea
+reg                 x070y094z0          0.000    f    11.085               
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.085               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.340               
+
+Slack               : 3.513ns
+Begin Point         : control/core/registers/last_argument_reg[23]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[4]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.275ns (cell 1.793ns (28%), net 4.482ns (72%))
+Clock Skew          : 0.084ns
+Logic Level         : 7 ( LUT6=2  LUT5=2  LUT4=2  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.823          4.637          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/last_argument_reg[23]_syn_2.clk
+launch edge                             0.000    r     4.637               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y096z0          0.175    r     4.812          pin: control/core/registers/last_argument_reg[23]_syn_2.oqa
+net (fo=1)                              0.517          5.329          net: control/core/registers/last_argument[23],  gp/gp_control_regs.v(855)
+                                                                      pin: control/core/registers/argument_reg[8]_syn_2.id
+LUT4                x069y094z3          0.188    f     5.517       1  pin: control/core/registers/argument_reg[8]_syn_2.ofa
+net (fo=1)                              0.627          6.144          net: control/core/registers/phase_reg[3]_syn_41,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/captured_argument_reg[11]_syn_2.ia
+LUT5                x069y094z6          0.323    f     6.467       2  pin: control/core/registers/captured_argument_reg[11]_syn_2.ofa
+net (fo=1)                              0.639          7.106          net: control/core/registers/phase_reg[3]_syn_43,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_181.ic
+LUT6                x069y094z7          0.210    r     7.316       3  pin: control/core/registers/phase_reg[3]_syn_181.ofb
+net (fo=1)                              0.434          7.750          net: control/core/registers/phase_reg[3]_syn_57,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_178.ib
+LUT5                x067y098z6          0.242    r     7.992       4  pin: control/core/registers/phase_reg[3]_syn_178.ofb
+net (fo=5)                              0.429          8.421          net: control/core/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ib
+LUT4                x067y101z4          0.324    f     8.745       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          8.937          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     9.026       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.582          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.824       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         10.912          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.cea
+reg                 x070y094z0          0.000    f    10.912               
+--------------------------------------------------------------------  ---------------
+Arrival                                               10.912               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.513               
+
+Slack               : 3.570ns
+Begin Point         : control/core/registers/opcode_reg[3]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[4]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.221ns (cell 1.935ns (31%), net 4.286ns (69%))
+Clock Skew          : 0.081ns
+Logic Level         : 7 ( LUT6=2  LUT5=2  LUT4=2  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.820          4.634          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/opcode_reg[3]_syn_2.clk
+launch edge                             0.000    r     4.634               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y092z1          0.181    f     4.815          pin: control/core/registers/opcode_reg[3]_syn_2.oqb
+net (fo=4)                              0.321          5.136          net: control/core/registers/argument[3],  gp/gp_control_regs.v(852)
+                                                                      pin: control/core/registers/argument_reg[8]_syn_2.ib
+LUT4                x069y094z3          0.324    f     5.460       1  pin: control/core/registers/argument_reg[8]_syn_2.ofa
+net (fo=1)                              0.627          6.087          net: control/core/registers/phase_reg[3]_syn_41,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/captured_argument_reg[11]_syn_2.ia
+LUT5                x069y094z6          0.323    f     6.410       2  pin: control/core/registers/captured_argument_reg[11]_syn_2.ofa
+net (fo=1)                              0.639          7.049          net: control/core/registers/phase_reg[3]_syn_43,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_181.ic
+LUT6                x069y094z7          0.210    r     7.259       3  pin: control/core/registers/phase_reg[3]_syn_181.ofb
+net (fo=1)                              0.434          7.693          net: control/core/registers/phase_reg[3]_syn_57,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_178.ib
+LUT5                x067y098z6          0.242    r     7.935       4  pin: control/core/registers/phase_reg[3]_syn_178.ofb
+net (fo=5)                              0.429          8.364          net: control/core/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ib
+LUT4                x067y101z4          0.324    f     8.688       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          8.880          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     8.969       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.525          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.767       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         10.855          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.cea
+reg                 x070y094z0          0.000    f    10.855               
+--------------------------------------------------------------------  ---------------
+Arrival                                               10.855               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.570               
+
+Slack               : 3.625ns
+Begin Point         : control/core/registers/argument_reg[15]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[4]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.165ns (cell 1.823ns (29%), net 4.342ns (71%))
+Clock Skew          : 0.082ns
+Logic Level         : 7 ( LUT6=2  LUT5=2  LUT4=2  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.821          4.635          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[15]_syn_2.clk
+launch edge                             0.000    r     4.635               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y093z6          0.181    f     4.816          pin: control/core/registers/argument_reg[15]_syn_2.oqb
+net (fo=1)                              0.377          5.193          net: control/core/registers/last_argument[3],  gp/gp_control_regs.v(855)
+                                                                      pin: control/core/registers/argument_reg[8]_syn_2.imf
+LUT4                x069y094z3          0.212    f     5.405       1  pin: control/core/registers/argument_reg[8]_syn_2.ofa
+net (fo=1)                              0.627          6.032          net: control/core/registers/phase_reg[3]_syn_41,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/captured_argument_reg[11]_syn_2.ia
+LUT5                x069y094z6          0.323    f     6.355       2  pin: control/core/registers/captured_argument_reg[11]_syn_2.ofa
+net (fo=1)                              0.639          6.994          net: control/core/registers/phase_reg[3]_syn_43,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_181.ic
+LUT6                x069y094z7          0.210    r     7.204       3  pin: control/core/registers/phase_reg[3]_syn_181.ofb
+net (fo=1)                              0.434          7.638          net: control/core/registers/phase_reg[3]_syn_57,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_178.ib
+LUT5                x067y098z6          0.242    r     7.880       4  pin: control/core/registers/phase_reg[3]_syn_178.ofb
+net (fo=5)                              0.429          8.309          net: control/core/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ib
+LUT4                x067y101z4          0.324    f     8.633       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          8.825          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     8.914       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.470          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.712       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         10.800          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.cea
+reg                 x070y094z0          0.000    f    10.800               
+--------------------------------------------------------------------  ---------------
+Arrival                                               10.800               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.625               
+
+Slack               : 3.738ns
+Begin Point         : control/core/registers/write_strobe_reg[1]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[4]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.050ns (cell 1.663ns (27%), net 4.387ns (73%))
+Clock Skew          : 0.084ns
+Logic Level         : 7 ( LUT6=3  LUT3=2  LUT5=1  LUT4=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.823          4.637          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/write_strobe_reg[1]_syn_2.clk
+launch edge                             0.000    r     4.637               
+--------------------------------------------------------------------  ---------------
+clk2q               x066y096z4          0.181    f     4.818          pin: control/core/registers/write_strobe_reg[1]_syn_2.oqb
+net (fo=4)                              0.675          5.493          net: control/core/registers/write_data[22],  gp/gp_control_regs.v(850)
+                                                                      pin: control/core/registers/write_data_reg[21]_syn_2.id
+LUT6                x066y096z6          0.161    r     5.654       1  pin: control/core/registers/write_data_reg[21]_syn_2.ofb
+net (fo=2)                              0.433          6.087          net: control/core/registers/phase_reg[3]_syn_137,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_165.ie
+LUT6                x066y096z5          0.141    r     6.228       2  pin: control/core/registers/phase_reg[3]_syn_165.ofb
+net (fo=3)                              0.533          6.761          net: control/core/registers/phase_reg[3]_syn_143,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_168.ia
+LUT5                x069y099z2          0.240    r     7.001       3  pin: control/core/registers/phase_reg[3]_syn_168.ofb
+net (fo=1)                              0.311          7.312          net: control/core/registers/phase_reg[3]_syn_145,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_168.ima
+LUT3                x069y099z2          0.286    f     7.598       4  pin: control/core/registers/phase_reg[3]_syn_168.ofa
+net (fo=5)                              0.599          8.197          net: control/core/registers/phase_reg[3]_syn_147,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ia
+LUT4                x067y101z4          0.323    f     8.520       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          8.712          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     8.801       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.357          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.599       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         10.687          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.cea
+reg                 x070y094z0          0.000    f    10.687               
+--------------------------------------------------------------------  ---------------
+Arrival                                               10.687               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[4]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.738               
+
+Slack               : 3.340ns
+Begin Point         : control/core/registers/argument_reg[23]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[1]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.446ns (cell 1.928ns (29%), net 4.518ns (71%))
+Clock Skew          : 0.086ns
+Logic Level         : 7 ( LUT6=2  LUT5=2  LUT4=2  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.825          4.639          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[23]_syn_2.clk
+launch edge                             0.000    r     4.639               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y098z4          0.175    r     4.814          pin: control/core/registers/argument_reg[23]_syn_2.oqa
+net (fo=4)                              0.553          5.367          net: control/core/registers/argument[23],  gp/gp_control_regs.v(852)
+                                                                      pin: control/core/registers/argument_reg[8]_syn_2.ia
+LUT4                x069y094z3          0.323    f     5.690       1  pin: control/core/registers/argument_reg[8]_syn_2.ofa
+net (fo=1)                              0.627          6.317          net: control/core/registers/phase_reg[3]_syn_41,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/captured_argument_reg[11]_syn_2.ia
+LUT5                x069y094z6          0.323    f     6.640       2  pin: control/core/registers/captured_argument_reg[11]_syn_2.ofa
+net (fo=1)                              0.639          7.279          net: control/core/registers/phase_reg[3]_syn_43,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_181.ic
+LUT6                x069y094z7          0.210    r     7.489       3  pin: control/core/registers/phase_reg[3]_syn_181.ofb
+net (fo=1)                              0.434          7.923          net: control/core/registers/phase_reg[3]_syn_57,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_178.ib
+LUT5                x067y098z6          0.242    r     8.165       4  pin: control/core/registers/phase_reg[3]_syn_178.ofb
+net (fo=5)                              0.429          8.594          net: control/core/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ib
+LUT4                x067y101z4          0.324    f     8.918       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          9.110          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     9.199       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.755          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.997       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         11.085          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.cea
+reg                 x070y094z3          0.000    f    11.085               
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.085               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.340               
+
+Slack               : 3.513ns
+Begin Point         : control/core/registers/last_argument_reg[23]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[1]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.275ns (cell 1.793ns (28%), net 4.482ns (72%))
+Clock Skew          : 0.084ns
+Logic Level         : 7 ( LUT6=2  LUT5=2  LUT4=2  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.823          4.637          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/last_argument_reg[23]_syn_2.clk
+launch edge                             0.000    r     4.637               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y096z0          0.175    r     4.812          pin: control/core/registers/last_argument_reg[23]_syn_2.oqa
+net (fo=1)                              0.517          5.329          net: control/core/registers/last_argument[23],  gp/gp_control_regs.v(855)
+                                                                      pin: control/core/registers/argument_reg[8]_syn_2.id
+LUT4                x069y094z3          0.188    f     5.517       1  pin: control/core/registers/argument_reg[8]_syn_2.ofa
+net (fo=1)                              0.627          6.144          net: control/core/registers/phase_reg[3]_syn_41,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/captured_argument_reg[11]_syn_2.ia
+LUT5                x069y094z6          0.323    f     6.467       2  pin: control/core/registers/captured_argument_reg[11]_syn_2.ofa
+net (fo=1)                              0.639          7.106          net: control/core/registers/phase_reg[3]_syn_43,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_181.ic
+LUT6                x069y094z7          0.210    r     7.316       3  pin: control/core/registers/phase_reg[3]_syn_181.ofb
+net (fo=1)                              0.434          7.750          net: control/core/registers/phase_reg[3]_syn_57,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_178.ib
+LUT5                x067y098z6          0.242    r     7.992       4  pin: control/core/registers/phase_reg[3]_syn_178.ofb
+net (fo=5)                              0.429          8.421          net: control/core/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ib
+LUT4                x067y101z4          0.324    f     8.745       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          8.937          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     9.026       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.582          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.824       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         10.912          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.cea
+reg                 x070y094z3          0.000    f    10.912               
+--------------------------------------------------------------------  ---------------
+Arrival                                               10.912               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.513               
+
+Slack               : 3.570ns
+Begin Point         : control/core/registers/opcode_reg[3]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[1]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.221ns (cell 1.935ns (31%), net 4.286ns (69%))
+Clock Skew          : 0.081ns
+Logic Level         : 7 ( LUT6=2  LUT5=2  LUT4=2  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.820          4.634          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/opcode_reg[3]_syn_2.clk
+launch edge                             0.000    r     4.634               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y092z1          0.181    f     4.815          pin: control/core/registers/opcode_reg[3]_syn_2.oqb
+net (fo=4)                              0.321          5.136          net: control/core/registers/argument[3],  gp/gp_control_regs.v(852)
+                                                                      pin: control/core/registers/argument_reg[8]_syn_2.ib
+LUT4                x069y094z3          0.324    f     5.460       1  pin: control/core/registers/argument_reg[8]_syn_2.ofa
+net (fo=1)                              0.627          6.087          net: control/core/registers/phase_reg[3]_syn_41,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/captured_argument_reg[11]_syn_2.ia
+LUT5                x069y094z6          0.323    f     6.410       2  pin: control/core/registers/captured_argument_reg[11]_syn_2.ofa
+net (fo=1)                              0.639          7.049          net: control/core/registers/phase_reg[3]_syn_43,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_181.ic
+LUT6                x069y094z7          0.210    r     7.259       3  pin: control/core/registers/phase_reg[3]_syn_181.ofb
+net (fo=1)                              0.434          7.693          net: control/core/registers/phase_reg[3]_syn_57,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_178.ib
+LUT5                x067y098z6          0.242    r     7.935       4  pin: control/core/registers/phase_reg[3]_syn_178.ofb
+net (fo=5)                              0.429          8.364          net: control/core/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ib
+LUT4                x067y101z4          0.324    f     8.688       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          8.880          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     8.969       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.525          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.767       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         10.855          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.cea
+reg                 x070y094z3          0.000    f    10.855               
+--------------------------------------------------------------------  ---------------
+Arrival                                               10.855               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.570               
+
+Slack               : 3.625ns
+Begin Point         : control/core/registers/argument_reg[15]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[1]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.165ns (cell 1.823ns (29%), net 4.342ns (71%))
+Clock Skew          : 0.082ns
+Logic Level         : 7 ( LUT6=2  LUT5=2  LUT4=2  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.821          4.635          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[15]_syn_2.clk
+launch edge                             0.000    r     4.635               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y093z6          0.181    f     4.816          pin: control/core/registers/argument_reg[15]_syn_2.oqb
+net (fo=1)                              0.377          5.193          net: control/core/registers/last_argument[3],  gp/gp_control_regs.v(855)
+                                                                      pin: control/core/registers/argument_reg[8]_syn_2.imf
+LUT4                x069y094z3          0.212    f     5.405       1  pin: control/core/registers/argument_reg[8]_syn_2.ofa
+net (fo=1)                              0.627          6.032          net: control/core/registers/phase_reg[3]_syn_41,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/captured_argument_reg[11]_syn_2.ia
+LUT5                x069y094z6          0.323    f     6.355       2  pin: control/core/registers/captured_argument_reg[11]_syn_2.ofa
+net (fo=1)                              0.639          6.994          net: control/core/registers/phase_reg[3]_syn_43,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_181.ic
+LUT6                x069y094z7          0.210    r     7.204       3  pin: control/core/registers/phase_reg[3]_syn_181.ofb
+net (fo=1)                              0.434          7.638          net: control/core/registers/phase_reg[3]_syn_57,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_178.ib
+LUT5                x067y098z6          0.242    r     7.880       4  pin: control/core/registers/phase_reg[3]_syn_178.ofb
+net (fo=5)                              0.429          8.309          net: control/core/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ib
+LUT4                x067y101z4          0.324    f     8.633       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          8.825          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     8.914       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.470          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.712       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         10.800          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.cea
+reg                 x070y094z3          0.000    f    10.800               
+--------------------------------------------------------------------  ---------------
+Arrival                                               10.800               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.625               
+
+Slack               : 3.738ns
+Begin Point         : control/core/registers/write_strobe_reg[1]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/registers/argument_reg[1]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.050ns (cell 1.663ns (27%), net 4.387ns (73%))
+Clock Skew          : 0.084ns
+Logic Level         : 7 ( LUT6=3  LUT3=2  LUT5=1  LUT4=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_2.di
+net (fo=1)                              1.983          2.944          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.547          3.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.823          4.637          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/write_strobe_reg[1]_syn_2.clk
+launch edge                             0.000    r     4.637               
+--------------------------------------------------------------------  ---------------
+clk2q               x066y096z4          0.181    f     4.818          pin: control/core/registers/write_strobe_reg[1]_syn_2.oqb
+net (fo=4)                              0.675          5.493          net: control/core/registers/write_data[22],  gp/gp_control_regs.v(850)
+                                                                      pin: control/core/registers/write_data_reg[21]_syn_2.id
+LUT6                x066y096z6          0.161    r     5.654       1  pin: control/core/registers/write_data_reg[21]_syn_2.ofb
+net (fo=2)                              0.433          6.087          net: control/core/registers/phase_reg[3]_syn_137,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_165.ie
+LUT6                x066y096z5          0.141    r     6.228       2  pin: control/core/registers/phase_reg[3]_syn_165.ofb
+net (fo=3)                              0.533          6.761          net: control/core/registers/phase_reg[3]_syn_143,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_168.ia
+LUT5                x069y099z2          0.240    r     7.001       3  pin: control/core/registers/phase_reg[3]_syn_168.ofb
+net (fo=1)                              0.311          7.312          net: control/core/registers/phase_reg[3]_syn_145,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/registers/phase_reg[3]_syn_168.ima
+LUT3                x069y099z2          0.286    f     7.598       4  pin: control/core/registers/phase_reg[3]_syn_168.ofa
+net (fo=5)                              0.599          8.197          net: control/core/registers/phase_reg[3]_syn_147,  gp/gp_control_regs.v(953)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ia
+LUT4                x067y101z4          0.323    f     8.520       5  pin: control/core/converter/conversion_to_lite$axi_axilite/WR$b_channel/bresp_fifo/memory[2]_reg[1]_syn_2.ofa
+net (fo=1)                              0.192          8.712          net: control/core/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: control/core/registers/irq_pending_b[0]_syn_34.imf
+LUT6                x067y101z1          0.089    r     8.801       6  pin: control/core/registers/irq_pending_b[0]_syn_34.ofb
+net (fo=9)                              0.556          9.357          net: control/core/registers/irq_pending_b[0]_syn_23,  NOFILE(0)
+                                                                      pin: control/core/registers/captured_argument_reg[25]_syn_2.ib
+LUT3                x069y101z4          0.242    r     9.599       7  pin: control/core/registers/captured_argument_reg[25]_syn_2.ofb
+net (fo=32)                             1.088         10.687          net: control/core/registers/mux10_syn_2[0],  gp/gp_control_regs.v(936)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.cea
+reg                 x070y094z3          0.000    f    10.687               
+--------------------------------------------------------------------  ---------------
+Arrival                                               10.687               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_2.di
+net (fo=1)                              1.781          2.738          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.492          3.520          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          3.520          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.739          4.259          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/registers/argument_reg[1]_syn_2.clk
+capture edge                           10.000    r    14.259               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.191               
+clock uncertainty                      -0.060         14.131               
+clock pessimism                         0.294         14.425               
+--------------------------------------------------------------------  ---------------
+Required                                              14.425               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.738               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.031ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[29]_syn_2.ceb (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.330ns (cell 0.096ns (29%), net 0.234ns (71%))
+Clock Skew          : 0.157ns
+Logic Level         : 0
+Max Fanout          : 30
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.221          1.551          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          1.551          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.378          1.929          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.clk
+launch edge                             0.000    r     1.929               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y082z7          0.096    f     2.025          pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.oqb
+net (fo=30)                             0.234          2.259          net: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/S_READY_dup_3,  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[29]_syn_2.ceb
+reg                 x069y077z4          0.000    f     2.259               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.259               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.312          1.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkin
+SCLK                x079y059z0          0.000          1.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkout
+net (fo=238)                            0.444          2.258          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[29]_syn_2.clk
+capture edge                            0.000    r     2.258               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.300               
+clock uncertainty                       0.100          2.400               
+clock pessimism                        -0.172          2.228               
+--------------------------------------------------------------------  ---------------
+Required                                               2.228               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.031               
+
+Slack               : 0.031ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[39]_syn_2.ceb (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.330ns (cell 0.096ns (29%), net 0.234ns (71%))
+Clock Skew          : 0.157ns
+Logic Level         : 0
+Max Fanout          : 30
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.221          1.551          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          1.551          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.378          1.929          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.clk
+launch edge                             0.000    r     1.929               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y082z7          0.096    f     2.025          pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.oqb
+net (fo=30)                             0.234          2.259          net: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/S_READY_dup_3,  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[39]_syn_2.ceb
+reg                 x069y077z6          0.000    f     2.259               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.259               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.312          1.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkin
+SCLK                x079y059z0          0.000          1.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkout
+net (fo=238)                            0.444          2.258          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[39]_syn_2.clk
+capture edge                            0.000    r     2.258               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.300               
+clock uncertainty                       0.100          2.400               
+clock pessimism                        -0.172          2.228               
+--------------------------------------------------------------------  ---------------
+Required                                               2.228               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.031               
+
+Slack               : 0.033ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[14]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[19]_reg[14]_syn_2.imb (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.331ns (cell 0.158ns (47%), net 0.173ns (53%))
+Clock Skew          : 0.156ns
+Logic Level         : 0
+Max Fanout          : 2
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.221          1.551          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.551          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=475)                            0.385          1.936          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[14]_syn_2.clk
+launch edge                             0.000    r     1.936               
+--------------------------------------------------------------------  ---------------
+clk2q               x088y080z6          0.090    f     2.026          pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[14]_syn_2.oqa
+net (fo=2)                              0.173          2.199          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21][14],  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[19]_reg[14]_syn_2.imb
+reg                 x088y079z5          0.068    f     2.267          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[22][14],  gp/axi_protocol_converter_merge.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.267               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.312          1.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=62)                             0.450          2.264          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[19]_reg[14]_syn_2.clk
+capture edge                            0.000    r     2.264               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.306               
+clock uncertainty                       0.100          2.406               
+clock pessimism                        -0.172          2.234               
+--------------------------------------------------------------------  ---------------
+Required                                               2.234               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.033               
+
+Slack               : 0.035ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[14]_reg[12]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[12]_reg[12]_syn_2.imb (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.333ns (cell 0.164ns (49%), net 0.169ns (51%))
+Clock Skew          : 0.156ns
+Logic Level         : 0
+Max Fanout          : 2
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.221          1.551          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          1.551          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.379          1.930          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[14]_reg[12]_syn_2.clk
+launch edge                             0.000    r     1.930               
+--------------------------------------------------------------------  ---------------
+clk2q               x068y080z0          0.096    f     2.026          pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[14]_reg[12]_syn_2.oqb
+net (fo=2)                              0.169          2.195          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[0][12],  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[12]_reg[12]_syn_2.imb
+reg                 x069y079z7          0.068    f     2.263          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[1][12],  gp/axi_protocol_converter_merge.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.263               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.312          1.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkin
+SCLK                x079y059z0          0.000          1.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkout
+net (fo=238)                            0.444          2.258          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[12]_reg[12]_syn_2.clk
+capture edge                            0.000    r     2.258               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.300               
+clock uncertainty                       0.100          2.400               
+clock pessimism                        -0.172          2.228               
+--------------------------------------------------------------------  ---------------
+Required                                               2.228               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.035               
+
+Slack               : 0.041ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[28]_reg[8]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[1]_reg[28]_syn_2.ima (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.339ns (cell 0.162ns (47%), net 0.177ns (53%))
+Clock Skew          : 0.156ns
+Logic Level         : 0
+Max Fanout          : 2
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.221          1.551          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          1.551          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.379          1.930          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[28]_reg[8]_syn_2.clk
+launch edge                             0.000    r     1.930               
+--------------------------------------------------------------------  ---------------
+clk2q               x077y080z5          0.096    f     2.026          pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[28]_reg[8]_syn_2.oqb
+net (fo=2)                              0.177          2.203          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[0][28],  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[1]_reg[28]_syn_2.ima
+reg                 x077y078z3          0.066    f     2.269          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[1][28],  gp/axi_protocol_converter_merge.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.269               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.312          1.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkin
+SCLK                x079y059z0          0.000          1.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkout
+net (fo=238)                            0.444          2.258          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[1]_reg[28]_syn_2.clk
+capture edge                            0.000    r     2.258               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.300               
+clock uncertainty                       0.100          2.400               
+clock pessimism                        -0.172          2.228               
+--------------------------------------------------------------------  ---------------
+Required                                               2.228               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.041               
+
+Slack               : 0.058ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/r_arid_r_reg[9]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[0]_reg[10]_syn_2.ima (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.355ns (cell 0.156ns (43%), net 0.199ns (57%))
+Clock Skew          : 0.155ns
+Logic Level         : 0
+Max Fanout          : 1
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.221          1.551          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          1.551          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.378          1.929          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/r_arid_r_reg[9]_syn_2.clk
+launch edge                             0.000    r     1.929               
+--------------------------------------------------------------------  ---------------
+clk2q               x068y081z7          0.090    f     2.019          pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/r_arid_r_reg[9]_syn_2.oqa
+net (fo=1)                              0.199          2.218          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/din[10],  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[0]_reg[10]_syn_2.ima
+reg                 x068y073z4          0.066    f     2.284          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[0][10],  gp/axi_protocol_converter_merge.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.284               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.312          1.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkin
+SCLK                x079y059z0          0.000          1.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkout
+net (fo=238)                            0.442          2.256          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[0]_reg[10]_syn_2.clk
+capture edge                            0.000    r     2.256               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.298               
+clock uncertainty                       0.100          2.398               
+clock pessimism                        -0.172          2.226               
+--------------------------------------------------------------------  ---------------
+Required                                               2.226               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.058               
+
+Slack               : 0.070ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/skid_buffer_reg[36]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.368ns (cell 0.096ns (26%), net 0.272ns (74%))
+Clock Skew          : 0.156ns
+Logic Level         : 0
+Max Fanout          : 30
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.221          1.551          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          1.551          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.378          1.929          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.clk
+launch edge                             0.000    r     1.929               
+--------------------------------------------------------------------  ---------------
+clk2q               x069y082z7          0.096    f     2.025          pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[11]_syn_3.oqb
+net (fo=30)                             0.272          2.297          net: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/S_READY_dup_3,  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/skid_buffer_reg[36]_syn_2.cea
+reg                 x066y074z2          0.000    f     2.297               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.297               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.312          1.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkin
+SCLK                x079y059z0          0.000          1.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkout
+net (fo=238)                            0.443          2.257          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/skid_buffer_reg[36]_syn_2.clk
+capture edge                            0.000    r     2.257               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.299               
+clock uncertainty                       0.100          2.399               
+clock pessimism                        -0.172          2.227               
+--------------------------------------------------------------------  ---------------
+Required                                               2.227               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.070               
+
+Slack               : 0.073ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[16]_reg[8]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[8]_syn_2.imb (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.372ns (cell 0.158ns (42%), net 0.214ns (58%))
+Clock Skew          : 0.157ns
+Logic Level         : 0
+Max Fanout          : 2
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.221          1.551          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          1.551          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.378          1.929          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[16]_reg[8]_syn_2.clk
+launch edge                             0.000    r     1.929               
+--------------------------------------------------------------------  ---------------
+clk2q               x077y082z6          0.090    f     2.019          pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[16]_reg[8]_syn_2.oqa
+net (fo=2)                              0.214          2.233          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[16][8],  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[8]_syn_2.imb
+reg                 x078y079z6          0.068    f     2.301          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[17][8],  gp/axi_protocol_converter_merge.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.301               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.312          1.814          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkin
+SCLK                x079y059z0          0.000          1.814          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkout
+net (fo=238)                            0.444          2.258          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[8]_syn_2.clk
+capture edge                            0.000    r     2.258               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.300               
+clock uncertainty                       0.100          2.400               
+clock pessimism                        -0.172          2.228               
+--------------------------------------------------------------------  ---------------
+Required                                               2.228               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.073               
+
+Slack               : 0.073ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[28]_reg[4]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[29]_reg[4]_syn_2.ima (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.283ns (cell 0.156ns (55%), net 0.127ns (45%))
+Clock Skew          : 0.068ns
+Logic Level         : 0
+Max Fanout          : 2
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.262          1.592          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkin
+SCLK                x079y059z0          0.000          1.592          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1.clkout
+net (fo=238)                            0.378          1.970          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[28]_reg[4]_syn_2.clk
+launch edge                             0.000    r     1.970               
+--------------------------------------------------------------------  ---------------
+clk2q               x073y079z0          0.090    f     2.060          pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[28]_reg[4]_syn_2.oqa
+net (fo=2)                              0.127          2.187          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[28][4],  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[29]_reg[4]_syn_2.ima
+reg                 x073y080z1          0.066    f     2.253          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[29][4],  gp/axi_protocol_converter_merge.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.253               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.263          1.765          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkin
+SCLK                x079y099z0          0.000          1.765          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1.clkout
+net (fo=856)                            0.445          2.210          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/transaction_fifo_0/memory[29]_reg[4]_syn_2.clk
+capture edge                            0.000    r     2.210               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.252               
+clock uncertainty                       0.100          2.352               
+clock pessimism                        -0.172          2.180               
+--------------------------------------------------------------------  ---------------
+Required                                               2.180               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.073               
+
+Slack               : 0.073ns
+Begin Point         : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[20]_reg[14]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[14]_syn_2.ima (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { gp_clk rising@0.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 0.283ns (cell 0.156ns (55%), net 0.127ns (45%))
+Clock Skew          : 0.068ns
+Logic Level         : 0
+Max Fanout          : 2
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_2.di
+net (fo=1)                              0.792          1.197          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.262          1.592          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=62)                             0.384          1.976          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[20]_reg[14]_syn_2.clk
+launch edge                             0.000    r     1.976               
+--------------------------------------------------------------------  ---------------
+clk2q               x088y079z4          0.090    f     2.066          pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[20]_reg[14]_syn_2.oqa
+net (fo=2)                              0.127          2.193          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[20][14],  gp/axi_protocol_converter_merge.v(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[14]_syn_2.ima
+reg                 x088y080z6          0.066    f     2.259          net: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21][14],  gp/axi_protocol_converter_merge.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.259               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_2.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_2.di
+net (fo=1)                              0.938          1.344          net: clk_100m_dup_1,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: clk_100m_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.263          1.765          net: clk_100m_syn_59,  system/hdl/system_wrapper.v(2)
+                                                                      pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.765          pin: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=475)                            0.451          2.216          net: clk_100m_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[21]_reg[14]_syn_2.clk
+capture edge                            0.000    r     2.216               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.258               
+clock uncertainty                       0.100          2.358               
+clock pessimism                        -0.172          2.186               
+--------------------------------------------------------------------  ---------------
+Required                                               2.186               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.073               
+
+
+Inter clock domain timing
+--------------------------------------------------
+
+IP timing
+--------------------------------------------------

@@ -1,0 +1,162 @@
+{
+  "status": "BUILT_NOT_BOARD_BOOT_TESTED",
+  "ddr": {
+    "capacity_mib": 1024,
+    "dq_width": 32,
+    "rate_mts": 1333,
+    "io_voltage_v": 1.35,
+    "physical_voltage_measured": false
+  },
+  "root_partuuid": "20ae01e9-02",
+  "partitions": [
+    {
+      "number": 1,
+      "start_sector": 2048,
+      "sectors": 131072,
+      "filesystem": "FAT32"
+    },
+    {
+      "number": 2,
+      "start_sector": 133120,
+      "sectors": 524288,
+      "filesystem": "EXT4"
+    }
+  ],
+  "versions": {
+    "linux": "6.1.111-rt42-bsp-sd1",
+    "uboot": "2021.01",
+    "buildroot": "2022.02.6",
+    "TD": "2026.1 SP2 6.2.2.200067",
+    "FD": "2026.1 SP1"
+  },
+  "files": {
+    "BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "af7d43156e7d8810c21886627c9d2e47503c37a75e80a6c2402ef112cdcea5b6"
+    },
+    "Design.xml": {
+      "bytes": 72270,
+      "sha256": "65a60e9c658f20deaf4b818fa406e66edae9dafd5c2f90025a7900d79baeaf32"
+    },
+    "boot/BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "af7d43156e7d8810c21886627c9d2e47503c37a75e80a6c2402ef112cdcea5b6"
+    },
+    "boot/boot.scr": {
+      "bytes": 779,
+      "sha256": "48e3e378d8ace4296cfef949e635d6ea2f5b03c7fa17cbefea03d06588d95468"
+    },
+    "boot/system.dtb": {
+      "bytes": 14357,
+      "sha256": "55124e3263373391314d2a944d8ae40b68a6592a80513b7a7551e3a3e39791a5"
+    },
+    "boot/uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    },
+    "boot.bif": {
+      "bytes": 365,
+      "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
+    },
+    "boot.cmd": {
+      "bytes": 707,
+      "sha256": "3067848437b2b379158e33bccf0b5e21d66301018763ac4b41f336db3e928dcb"
+    },
+    "boot.scr": {
+      "bytes": 779,
+      "sha256": "48e3e378d8ace4296cfef949e635d6ea2f5b03c7fa17cbefea03d06588d95468"
+    },
+    "boot.vfat": {
+      "bytes": 67108864,
+      "sha256": "10f3a3a99f9e1330a7de6177e2f601670d0959683cf94d0041d8fdc815ad9c14"
+    },
+    "bootgen.log": {
+      "bytes": 3334,
+      "sha256": "1cc9bb8a9b951791508d9022f195a59fed8d816da77cef378ef547fb47c2b41a"
+    },
+    "fsbl.elf": {
+      "bytes": 1506472,
+      "sha256": "c220f42e7c92f88f9d98e0a4a9b2fe4336df13f3236c4a67f7223f626f642f0b"
+    },
+    "hpf.info": {
+      "bytes": 118,
+      "sha256": "0a4aeb270ef873ddb6c20d520b47041a07b9f768e42796cfbb7a5f85b657ae83"
+    },
+    "rootfs.ext4": {
+      "bytes": 268435456,
+      "sha256": "82b3d9e6dd40fdaff146a29db2f26afe6972d28ec68a7f3f79584c026faf4883"
+    },
+    "sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "87a6d3af15a0921847634e0801e1dab1277492b2464d70bb02311bed3f9126c7"
+    },
+    "soc_plat.c": {
+      "bytes": 129455,
+      "sha256": "f68ee7d4d9c9e02fd10b91c3f317c4b98b8d9819ac63c430c473e4b097e46406"
+    },
+    "soc_plat.h": {
+      "bytes": 14296,
+      "sha256": "18f2b946f974add3478120d00263191752433c3f09ebc0c1a85d2f6698bed95c"
+    },
+    "soc_plat_dts.h": {
+      "bytes": 4132,
+      "sha256": "4658518f7a90d5f1fb8c92e52bd4a882559323bd04f1dd9e670aae5e31cdf1c0"
+    },
+    "system.bit": {
+      "bytes": 4052168,
+      "sha256": "e4de04369ea4496c718bb28236c53f2f085c5462a329fd3aa2d7ff9f30a42b42"
+    },
+    "system.dtb": {
+      "bytes": 14357,
+      "sha256": "55124e3263373391314d2a944d8ae40b68a6592a80513b7a7551e3a3e39791a5"
+    },
+    "system.hpf": {
+      "bytes": 227257,
+      "sha256": "402615ba459d423cbbda80c42033ab5cdddc05fcc8dce74572fdc99c7d6350ff"
+    },
+    "u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    }
+  },
+  "bsp_bundle": {
+    "local_path": "bsp/artifacts/gp-release.tar.gz",
+    "vm_path": "/home/uisrc/embedded-bsp-gp/gp-release.tar.gz",
+    "sha256": "b0730d3a1790a674034bc8e83816794887af22c07ec6ce0cfde9730a0912e7ba",
+    "local_transfer_and_23_files_verified": true
+  },
+  "deployment": {
+    "status": "SD_DEPLOYMENT_VERIFIED_NOT_BOARD_BOOT_TESTED",
+    "date": "2026-10-12",
+    "timezone": "Asia/Taipei",
+    "device": "/dev/sdb",
+    "by_id": "/dev/disk/by-id/usb-Generic-_SD_MMC_MS_PRO_20121112761000000-0:0",
+    "reader_serial": "20121112761000000",
+    "sectors": 61132800,
+    "bytes_written_and_direct_readback": 536870912,
+    "direct_readback_sha256": "87a6d3af15a0921847634e0801e1dab1277492b2464d70bb02311bed3f9126c7",
+    "root_partuuid": "20ae01e9-02",
+    "fat_fsck": "PASS",
+    "ext4_fsck": "PASS",
+    "script_exit_code": 0,
+    "partitions_unmounted_at_completion": true,
+    "board_boot_gp_irq_snapshot": "NOT_TESTED",
+    "write_log": "bsp/evidence/gp-sd-rewrite.log",
+    "write_log_sha256": "f4e4e08b8ee9f99fdb76ee02a0c6426164e67caddd6e8c6e8fde30320f3f9b1b",
+    "transport_log": "bsp/evidence/gp-sd-rewrite-transport.log",
+    "previous_failed_attempt": {
+      "status": "PAUSED_SD_WRITE_INCOMPLETE_UNVERIFIED",
+      "user_requested_pause": true,
+      "writeback_stalled_after_about_mib": 44,
+      "direct_readback": "NOT_DONE",
+      "board_boot_gp_irq_snapshot": "NOT_TESTED"
+    },
+    "write_seconds": 93.3569,
+    "direct_readback_seconds": 87.4153,
+    "task_end_reason": "User ended this batch; board not available. Cold boot, GP, IRQ and snapshot remain NOT_TESTED."
+  }
+}

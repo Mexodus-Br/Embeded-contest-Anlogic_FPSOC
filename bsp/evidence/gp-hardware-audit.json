@@ -1,0 +1,197 @@
+{
+  "status": "FULL_PS_GP_BUILT_NOT_BOARD_TESTED",
+  "reference_speed": 2,
+  "stages": {
+    "gate": {
+      "setup_wns_ns": 3.014,
+      "hold_wns_ns": 0.0
+    },
+    "place": {
+      "setup_wns_ns": 5.485,
+      "hold_wns_ns": 0.0
+    },
+    "route": {
+      "setup_wns_ns": 3.211,
+      "hold_wns_ns": 0.03
+    }
+  },
+  "bitstream_sha256": "e4de04369ea4496c718bb28236c53f2f085c5462a329fd3aa2d7ff9f30a42b42",
+  "connections": {
+    "status": "CONNECTED_NOT_YET_BUILT",
+    "ps_ports": {
+      "master_gp0_axi_aclk": [
+        "input",
+        1
+      ],
+      "master_gp0_axi_araddr": [
+        "output",
+        33
+      ],
+      "master_gp0_axi_arburst": [
+        "output",
+        2
+      ],
+      "master_gp0_axi_arcache": [
+        "output",
+        4
+      ],
+      "master_gp0_axi_arid": [
+        "output",
+        12
+      ],
+      "master_gp0_axi_arlen": [
+        "output",
+        4
+      ],
+      "master_gp0_axi_arlock": [
+        "output",
+        1
+      ],
+      "master_gp0_axi_arprot": [
+        "output",
+        3
+      ],
+      "master_gp0_axi_arready": [
+        "input",
+        1
+      ],
+      "master_gp0_axi_arsize": [
+        "output",
+        2
+      ],
+      "master_gp0_axi_arvalid": [
+        "output",
+        1
+      ],
+      "master_gp0_axi_awaddr": [
+        "output",
+        33
+      ],
+      "master_gp0_axi_awburst": [
+        "output",
+        2
+      ],
+      "master_gp0_axi_awcache": [
+        "output",
+        4
+      ],
+      "master_gp0_axi_awid": [
+        "output",
+        12
+      ],
+      "master_gp0_axi_awlen": [
+        "output",
+        4
+      ],
+      "master_gp0_axi_awlock": [
+        "output",
+        1
+      ],
+      "master_gp0_axi_awprot": [
+        "output",
+        3
+      ],
+      "master_gp0_axi_awready": [
+        "input",
+        1
+      ],
+      "master_gp0_axi_awsize": [
+        "output",
+        2
+      ],
+      "master_gp0_axi_awvalid": [
+        "output",
+        1
+      ],
+      "master_gp0_axi_bid": [
+        "input",
+        12
+      ],
+      "master_gp0_axi_bready": [
+        "output",
+        1
+      ],
+      "master_gp0_axi_bresp": [
+        "input",
+        2
+      ],
+      "master_gp0_axi_bvalid": [
+        "input",
+        1
+      ],
+      "master_gp0_axi_rdata": [
+        "input",
+        32
+      ],
+      "master_gp0_axi_rid": [
+        "input",
+        12
+      ],
+      "master_gp0_axi_rlast": [
+        "input",
+        1
+      ],
+      "master_gp0_axi_rready": [
+        "output",
+        1
+      ],
+      "master_gp0_axi_rresp": [
+        "input",
+        2
+      ],
+      "master_gp0_axi_rvalid": [
+        "input",
+        1
+      ],
+      "master_gp0_axi_wdata": [
+        "output",
+        32
+      ],
+      "master_gp0_axi_wlast": [
+        "output",
+        1
+      ],
+      "master_gp0_axi_wready": [
+        "input",
+        1
+      ],
+      "master_gp0_axi_wstrb": [
+        "output",
+        4
+      ],
+      "master_gp0_axi_wvalid": [
+        "output",
+        1
+      ],
+      "f2p_irq": [
+        "input",
+        16
+      ],
+      "p2f_rst0_n": [
+        "output",
+        1
+      ],
+      "p2f_clk0": [
+        "output",
+        1
+      ]
+    },
+    "ps_raw_sha256": "a2963ecff923a2e67dbc7bc00010da5a917a2b9583b6470265d30c9e67c676ed",
+    "PL_sources_sha256_lf": {
+      "gp_control_regs.v": "79096107a067b887b8ff98a09dee8ef2e278b129fd0b80f52987b2ba19870cf6",
+      "gp_control_top.v": "a17c46e7786fb1641080c2041c1fa6a8974530942f15861902fce251d4595984",
+      "gp_ps_write_adapter.v": "87d273c470a9a1e0405fa91ed40fa64fd778b9ae833710613d78a1a323bcb6c9",
+      "gp_ps_control_top.v": "d8509187d04b80bdd9c37ea8ba45dee73ad7c2f1e4dacaff8d547ebf77c1f91a"
+    },
+    "converter_sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61",
+    "clock_pin": "H16",
+    "clock_hz": 100000000,
+    "reset": "p2f_rst0_n -> two-stage common release",
+    "motor_outputs": "not exported",
+    "dma": "not connected"
+  },
+  "clock_warning": "CLOSED by mapping and loading native generated PS properties; no synthetic clock or false path",
+  "sta_coverage_percent": 99.99,
+  "board_tested": false,
+  "hpf_sha256": "402615ba459d423cbbda80c42033ab5cdddc05fcc8dce74572fdc99c7d6350ff"
+}

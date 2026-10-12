@@ -6,7 +6,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / '.host-pyth
 import paramiko
 
 p = argparse.ArgumentParser()
-p.add_argument('--host', default='192.168.43.132')
+p.add_argument('--host', default='192.168.43.133')
 p.add_argument('--user', default='uisrc')
 p.add_argument('--command')
 p.add_argument('--command-file')
