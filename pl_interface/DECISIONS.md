@@ -1,5 +1,11 @@
 # 决策记录与依赖 — 2026-10-07
 
+## 2026-10-12 GP 最小控制契约确认
+
+用户对 GP 集中五项提问及 `pl_motion/GP_CONTROL_DRAFT.md` 答复“接受”。确认 `gp_control_probe_v1`：仅 NOP/SNAPSHOT、测试寄存器/原子快照/level IRQ；GP0 AXI3 A33/D32/ID12 经 Anlogic Protocol Converter 1.0 转 Lite，0x80400000/4KiB；f2p_irq[0] 对应约定 INTID114/SPI82、电平高，部署前核对实际 HPF/DTS；共同板载100MHz、共同复位异步置位同步释放，整域复位新 epoch，重绑不复位时间；无独立 GP reset。事务非零递增、不回绕、重复重用、忙/非法编号拒绝；整帧采样上升沿前登记实际状态；W1C set 优先、持续源解除后再清；completed 只表示控制操作完成。
+
+影响与迁移：在唯一 schema 增加四个空位寄存器 TEST_RW/FEATURES/TEST_IRQ_LEVEL/LAST_TXN_ID、NOP=16、IRQ TEST bit7 与 profile 元数据；原有地址和命令编号保持。全局 SNAP 序号 reset 草案保持，profile 专属 override 为无点 0xFFFFFFFF。只冻结白名单及 OK/BAD_COMMAND 和 INIT/NOT_READY 子集，其他运动/报文/CRC/容量/驱动时序仍 Draft。首次 GP 实现按 profile 和 FEATURES 检查功能，并从同一规范生成 C/Verilog；现无已部署 GP ABI 需兼容。实际地址图/IP/IRQ/时序和板级证据仍待验收，契约确认不构成可部署证明。详细契约及全部边界语义见上述文件与 schema profile。
+
 ## 已确认，不在本次重新选择
 
 PS/PL职责；四轴绝对目标且实际STEP命令位置差分；GP Lite控制+FIFO/HP/DMA数据；PL基础100MHz；u64上电初始化后零起点时间戳；对应STEP边沿<50μs（对应和测量位置未定）；PL三信号半双工RS485 Master/CHECKSUM-8/STP期间轮询；可关闭M4节点；PL整机安全+外部最终急停；唯一机器规范生成Verilog/C原则。本轮进一步确认见末节。

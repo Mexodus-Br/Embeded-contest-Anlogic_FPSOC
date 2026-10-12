@@ -1,5 +1,7 @@
 # Register Map / Error Definition — Draft
 
+2026-10-12 补充：`schema.gp_control_profiles.gp_control_probe_v1` 的最小子集已由用户确认，完整语义见 [GP 最小控制契约](../pl_motion/GP_CONTROL_DRAFT.md)。本页下文的整体运动寄存器/命令/CDC 描述仍为 Draft；冲突处以该 profile 为准。首轮只支持 NOP/SNAPSHOT、ACK/TEST IRQ，无运动/DMA。生成表列出白名单、profile reset 和字段限制；GP 资源实际核验及 RTL/板级实现仍待完成。
+
 所有offset是设备窗口内相对偏移，不是GP绝对物理地址。候选窗口4KiB，32bit访问，little endian。具体表由唯一机器源schema.json生成到generated/registers.md、errors.md；地址/错误码不得在手写PS/RTL再定义第二套。JSON格式和生成产物入库已确认，地址/位域/错误策略表本身仍Draft。
 
 ## AXI与副作用

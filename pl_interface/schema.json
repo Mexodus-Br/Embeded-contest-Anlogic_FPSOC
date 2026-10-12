@@ -373,6 +373,11 @@
           "name": "LINK",
           "lsb": 6,
           "width": 1
+        },
+        {
+          "name": "TEST",
+          "lsb": 7,
+          "width": 1
         }
       ]
     },
@@ -418,6 +423,11 @@
         {
           "name": "LINK",
           "lsb": 6,
+          "width": 1
+        },
+        {
+          "name": "TEST",
+          "lsb": 7,
           "width": 1
         }
       ]
@@ -526,6 +536,90 @@
       "reset": 1000000,
       "unit": "Hz confirmed",
       "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TEST_RW",
+      "offset": 108,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "scratch",
+      "effect": "byte-strobe scratch only",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "FEATURES",
+      "offset": 112,
+      "width": 32,
+      "access": "RO",
+      "reset": 7,
+      "unit": "profile features",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "NOP",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "SNAPSHOT",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "IRQ_TEST",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "MOTION",
+          "lsb": 3,
+          "width": 1
+        },
+        {
+          "name": "DMA",
+          "lsb": 4,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "TEST_IRQ_LEVEL",
+      "offset": 116,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "test source",
+      "effect": "persistent IRQ test source; full WSTRB",
+      "fields": [
+        {
+          "name": "ACTIVE",
+          "lsb": 0,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "LAST_TXN_ID",
+      "offset": 120,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "transaction ID",
+      "effect": "last consumed legal new transaction",
       "fields": [
         {
           "name": "VALUE",
@@ -2575,7 +2669,8 @@
     "HOME": 12,
     "SNAPSHOT": 13,
     "CLEAR_STATS": 14,
-    "LINK_RECOVER": 15
+    "LINK_RECOVER": 15,
+    "NOP": 16
   },
   "frames": {
     "motion": {
@@ -2877,7 +2972,9 @@
     "continuous_sequence": "logical u32 from 0 strictly contiguous without wrap; duplicate/gap/order/post-END cancels current session; old session handshake discarded with stale, isolated from current session; OPEN idle/flushed with new nonzero globally unique upstream ID",
     "continuous_start": "first point prechecked plus explicit START_MIN_POINTS and config/position/EN safety; complete cached END allows short trajectory below threshold",
     "continuous_underflow": "boundary without prechecked next point cancels and flushes FIFO/all prefetch/prediction; same-cycle late point cannot rescue; STOP/fault/reset likewise flush; retain emitted count except reset zero/invalid; never restore old session",
-    "continuous_scope": "additive logical record interface; wire layout/CRC/product capacity/driver timing remain draft or explicit parameters; no AXI/DMA/BSP/hardware integration"
+    "continuous_scope": "additive logical record interface; wire layout/CRC/product capacity/driver timing remain draft or explicit parameters; no AXI/DMA/BSP/hardware integration",
+    "gp_control_contract_date": "2026-10-12",
+    "gp_control_profile": "gp_control_probe_v1; logic/resource choices confirmed, implementation and HPF/DTS/board verification pending; all other GP entries remain draft"
   },
   "states": {
     "INIT": 0,
@@ -2889,5 +2986,293 @@
     "STOPPING": 6,
     "FAULT": 7,
     "HOMING": 8
+  },
+  "gp_control_profiles": {
+    "gp_control_probe_v1": {
+      "status": "USER_CONFIRMED_IMPLEMENTATION_PENDING",
+      "confirmation": {
+        "date": "2026-10-12",
+        "reply": "接受",
+        "scope": "Five numbered items and GP_CONTROL_DRAFT.md minimum contract"
+      },
+      "abi_version": 1,
+      "documentation": "pl_motion/GP_CONTROL_DRAFT.md",
+      "deployment": {
+        "status": "NOT_DEPLOYABLE",
+        "required_evidence": [
+          "actual generated GP port widths/IP configuration",
+          "HPF and full address map/DTS conflict audit",
+          "actual IRQ mapping and level-high DTS",
+          "clock/reset and 10ns STA",
+          "self-checking HDL simulation",
+          "board MMIO/IRQ results"
+        ],
+        "hardware_verified": false
+      },
+      "address": {
+        "gp_port": "GP0",
+        "base": 2151677952,
+        "size": 4096,
+        "address_width": 33,
+        "data_width": 32,
+        "id_width": 12,
+        "endianness": "little",
+        "decode": "Full 33bit window comparison before low 12bit offset",
+        "out_of_window_response": "DECERR",
+        "legacy_avoidance": {
+          "base": 2147483648,
+          "size": 4194304,
+          "permanent_reservation": false
+        }
+      },
+      "converter": {
+        "ip": "Anlogic AXI Protocol Converter",
+        "version": "1.0",
+        "input_protocol": "AXI3",
+        "output_protocol": "AXI4-Lite",
+        "address_width": 33,
+        "data_width": 32,
+        "id_width": 12,
+        "read_write": true,
+        "user_signals": false
+      },
+      "irq": {
+        "pl_line": 0,
+        "gic_intid": 114,
+        "spi": 82,
+        "dts_cells": [
+          0,
+          82,
+          4
+        ],
+        "trigger": "level-high",
+        "mapping_status": "vendor paired-example inference; actual HPF/DTS verification required",
+        "supported_fields": [
+          "ACK",
+          "TEST"
+        ],
+        "pending_semantics": "latched-set-wins",
+        "clear_semantics": "W1C",
+        "mask_semantics": "1 enables output only; masked events still latch",
+        "pending_update": "(pending & ~w1c) | event_or_active_source",
+        "rearm": "mask persistent source if needed; remove source, W1C, readback, unmask; ACK unchanged by IRQ clear"
+      },
+      "clock_reset": {
+        "gp_hz": 100000000,
+        "control_hz": 100000000,
+        "timestamp_hz": 1000000,
+        "clock_source": "board H16 through legal global clock network",
+        "clock_domains": "one shared GP/control domain; no custom asynchronous GP-to-control CDC",
+        "reset_assertion": "asynchronous",
+        "reset_release": "synchronous, at least two stages",
+        "init_complete": "common synchronized reset released; enter NOT_READY and start timestamp at zero",
+        "new_epoch": [
+          "power-up initialization",
+          "whole PL control-domain reset",
+          "PL reconfiguration"
+        ],
+        "preserve_timestamp": [
+          "driver unbind/rebind",
+          "IRQ clear",
+          "STOP",
+          "clear fault",
+          "DMA reset"
+        ],
+        "gp_only_reset_supported": false,
+        "reset_ioctl_supported": false,
+        "hot_reconfiguration_supported": false,
+        "reset_precondition": "driver stops MMIO and all AXI channels quiescent before controlled whole-domain reset",
+        "epoch_identity": "software rebuilds device context and discards samples; no persistent hardware epoch number"
+      },
+      "supported_registers": [
+        "VERSION",
+        "CAPS",
+        "STATE",
+        "CMD_STATUS",
+        "ACK_ID",
+        "ACK_ERROR",
+        "POSITION_VALID",
+        "IRQ_PENDING",
+        "IRQ_MASK",
+        "SNAP_ID",
+        "SNAP_VALID",
+        "SNAP_TIME_LO",
+        "SNAP_TIME_HI",
+        "TICK_HZ",
+        "TEST_RW",
+        "FEATURES",
+        "TEST_IRQ_LEVEL",
+        "LAST_TXN_ID",
+        "SNAP_A0_POSITION_LO",
+        "SNAP_A0_POSITION_HI",
+        "SNAP_A0_PULSE_LO",
+        "SNAP_A0_PULSE_HI",
+        "SNAP_A1_POSITION_LO",
+        "SNAP_A1_POSITION_HI",
+        "SNAP_A1_PULSE_LO",
+        "SNAP_A1_PULSE_HI",
+        "SNAP_A2_POSITION_LO",
+        "SNAP_A2_POSITION_HI",
+        "SNAP_A2_PULSE_LO",
+        "SNAP_A2_PULSE_HI",
+        "SNAP_A3_POSITION_LO",
+        "SNAP_A3_POSITION_HI",
+        "SNAP_A3_PULSE_LO",
+        "SNAP_A3_PULSE_HI",
+        "SNAP_STATE",
+        "SNAP_SESSION_LO",
+        "SNAP_SESSION_HI",
+        "SNAP_ACCEPTED_SEQ",
+        "SNAP_DONE_SEQ",
+        "SNAP_POSITION_VALID",
+        "CMD_OPCODE",
+        "CMD_ARG",
+        "TXN_ID",
+        "CMD_SUBMIT"
+      ],
+      "supported_commands": [
+        "SNAPSHOT",
+        "NOP"
+      ],
+      "supported_errors": [
+        "OK",
+        "BAD_COMMAND"
+      ],
+      "supported_states": [
+        "INIT",
+        "NOT_READY"
+      ],
+      "expected_values": {
+        "VERSION": 1,
+        "CAPS": 15,
+        "FEATURES": 7,
+        "TICK_HZ": 1000000
+      },
+      "field_restrictions": {
+        "IRQ_PENDING": [
+          "ACK",
+          "TEST"
+        ],
+        "IRQ_MASK": [
+          "ACK",
+          "TEST"
+        ],
+        "FEATURES": [
+          "NOP",
+          "SNAPSHOT",
+          "IRQ_TEST"
+        ]
+      },
+      "reset_overrides": {
+        "SNAP_ACCEPTED_SEQ": 4294967295,
+        "SNAP_DONE_SEQ": 4294967295
+      },
+      "board_idle_values": {
+        "STATE": "NOT_READY",
+        "POSITION_VALID": 0,
+        "position": 0,
+        "pulse_total": 0,
+        "session": 0,
+        "accepted_seq": 4294967295,
+        "done_seq": 4294967295,
+        "external_motor_outputs": "not exported",
+        "motion_controls": "disconnected",
+        "DMA": "not connected"
+      },
+      "axi": {
+        "writes_inflight": 1,
+        "reads_inflight": 1,
+        "aw_w": "independent capture; pair exactly once",
+        "backpressure": "BVALID/RVALID held; RDATA/RRESP stable",
+        "read_side_effects": false,
+        "byte_strobe_registers": [
+          "TEST_RW",
+          "IRQ_MASK",
+          "CMD_OPCODE",
+          "CMD_ARG",
+          "TXN_ID"
+        ],
+        "full_strobe_registers": [
+          "IRQ_PENDING",
+          "TEST_IRQ_LEVEL",
+          "CMD_SUBMIT"
+        ],
+        "zero_strobe": "OKAY no side effect",
+        "reserved_bits": "effective write of 1 rejected entirely",
+        "invalid_access_response": "SLVERR no side effect",
+        "invalid_access": [
+          "unknown/unaligned offset",
+          "RO write",
+          "WO read",
+          "reserved bits set",
+          "illegal nonzero strobe"
+        ],
+        "submit_value": 1,
+        "linux_access": "whitelist only; illegal MMIO tested in HDL, not CPU"
+      },
+      "transaction": {
+        "single_writer": true,
+        "arg": 0,
+        "session_field": false,
+        "submit_capture": "all shadows captured atomically on paired SUBMIT",
+        "axi_okay": "submission only, not operation or motion completion",
+        "completion": "ACK_VALID and matching ACK_ID and COMPLETED; only NOP/snapshot operation",
+        "success": {
+          "accepted": 1,
+          "completed": 1,
+          "error": "OK"
+        },
+        "unsupported_opcode_or_arg": {
+          "accepted": 0,
+          "completed": 1,
+          "error": "BAD_COMMAND"
+        },
+        "id": "nonzero u32 strictly increasing, gaps allowed, no wrap",
+        "initial_id": 1,
+        "new_legal_id": "consume and update LAST_TXN_ID even for BAD_COMMAND; cache result",
+        "duplicate_same_payload": "reuse most recent cached result; no resampling; reassert ACK pending",
+        "invalid_id": [
+          "zero",
+          "backward",
+          "same ID different payload"
+        ],
+        "invalid_id_response": "SLVERR; preserve LAST_TXN_ID/cache/snapshot",
+        "busy_submit_response": "SLVERR; preserve in-flight payload/result",
+        "shadow_writes_while_busy": "allowed; captured payload unchanged",
+        "on_new_submit": "clear old ACK_VALID and set BUSY",
+        "on_publish": "clear BUSY, set ACK_VALID, emit ACK event",
+        "reset_priority": "cancel in-flight; no old ACK/snapshot publication",
+        "id_exhaustion": "stop submission; controlled whole-domain new epoch required",
+        "driver_rebind": "read LAST_TXN_ID before choosing next ID; consume old result before new submission"
+      },
+      "snapshot": {
+        "sampling": "one shared rising edge, pre-edge registered actual state",
+        "fields": [
+          "signed64 actual position per axis",
+          "u64 actual pulse_total per axis",
+          "u64 timestamp",
+          "position_valid",
+          "state",
+          "session",
+          "accepted_seq",
+          "done_seq"
+        ],
+        "same_edge_step_update": "visible only to a later snapshot",
+        "publication": "whole frame, SNAP_ID=TXN_ID and SNAP_VALID=1 same cycle; success ACK no earlier",
+        "hold": "until next successful new SNAPSHOT; duplicate/failed commands, NOP, reads and IRQ clear preserve",
+        "reset": "SNAP_VALID=0; frame zero except no-point sequence overrides",
+        "software_read": "serial request; ID/VALID, all LO/HI, ID/VALID; discard if invalid or changed",
+        "old_frame_during_busy": "readable but not completion for new ID",
+        "position_source": "emitted STEP command position; never planner endpoint or encoder feedback"
+      },
+      "unfrozen": [
+        "wire frame layouts and CRC",
+        "DMA configuration/deployment",
+        "FIFO capacity and drive timing values",
+        "other global registers/errors/states and command semantics",
+        "physical motor wiring"
+      ],
+      "migration": "additive profile and four registers/NOP/TEST bit in unused slots; existing draft addresses/commands unchanged; regenerate shared headers from schema; check FEATURES before enabling functionality; future motion/CDC changes require review"
+    }
   }
 }

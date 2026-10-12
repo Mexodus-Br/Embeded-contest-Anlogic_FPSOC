@@ -1,5 +1,5 @@
-<!-- Generated from schema.json SHA256 56b6d173be1fd9db15ae390747df9b6b13d49d41ab4c7d0da44ef972d10ac0ff; DRAFT semantics. -->
-# Register candidate table
+<!-- Generated from schema.json SHA256 261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822; GP profiles explicitly confirmed; other layouts/semantics DRAFT. -->
+# Register table (global Draft, confirmed GP subsets below)
 
 | Offset | Name | Width | Reset | Access | Fields | Unit | Side effect |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -21,8 +21,8 @@
 | 0x03C | FAULT_TIME_LO | 32 | 0x00000000 | RO | VALUE[31:0] | tick | none |
 | 0x040 | FAULT_TIME_HI | 32 | 0x00000000 | RO | VALUE[31:0] | tick | none |
 | 0x044 | POSITION_VALID | 32 | 0x00000000 | RO | AXES[3:0] | axis bitmap | none |
-| 0x048 | IRQ_PENDING | 32 | 0x00000000 | W1C | ACK[0:0], FAULT[1:1], MOTION_LOW[2:2], TELEMETRY[3:3], DROP[4:4], END[5:5], LINK[6:6] | bitmap | set-wins W1C |
-| 0x04C | IRQ_MASK | 32 | 0x00000000 | RW | ACK[0:0], FAULT[1:1], MOTION_LOW[2:2], TELEMETRY[3:3], DROP[4:4], END[5:5], LINK[6:6] | bitmap | none |
+| 0x048 | IRQ_PENDING | 32 | 0x00000000 | W1C | ACK[0:0], FAULT[1:1], MOTION_LOW[2:2], TELEMETRY[3:3], DROP[4:4], END[5:5], LINK[6:6], TEST[7:7] | bitmap | set-wins W1C |
+| 0x04C | IRQ_MASK | 32 | 0x00000000 | RW | ACK[0:0], FAULT[1:1], MOTION_LOW[2:2], TELEMETRY[3:3], DROP[4:4], END[5:5], LINK[6:6], TEST[7:7] | bitmap | none |
 | 0x050 | SNAP_ID | 32 | 0x00000000 | RO | VALUE[31:0] | transaction | none |
 | 0x054 | SNAP_VALID | 32 | 0x00000000 | RO | VALID[0:0] | bool | none |
 | 0x058 | SNAP_TIME_LO | 32 | 0x00000000 | RO | VALUE[31:0] | tick | none |
@@ -30,6 +30,10 @@
 | 0x060 | MOTION_CAPACITY | 32 | 0x00000000 | RO | VALUE[31:0] | records implemented | none |
 | 0x064 | TELEMETRY_CAPACITY | 32 | 0x00000000 | RO | VALUE[31:0] | records implemented | none |
 | 0x068 | TICK_HZ | 32 | 0x000F4240 | RO | VALUE[31:0] | Hz confirmed | none |
+| 0x06C | TEST_RW | 32 | 0x00000000 | RW | VALUE[31:0] | scratch | byte-strobe scratch only |
+| 0x070 | FEATURES | 32 | 0x00000007 | RO | NOP[0:0], SNAPSHOT[1:1], IRQ_TEST[2:2], MOTION[3:3], DMA[4:4] | profile features | none |
+| 0x074 | TEST_IRQ_LEVEL | 32 | 0x00000000 | RW | ACTIVE[0:0] | test source | persistent IRQ test source; full WSTRB |
+| 0x078 | LAST_TXN_ID | 32 | 0x00000000 | RO | VALUE[31:0] | transaction ID | last consumed legal new transaction |
 | 0x080 | SNAP_A0_POSITION_LO | 32 | 0x00000000 | RO | VALUE[31:0] | step | none |
 | 0x084 | SNAP_A0_POSITION_HI | 32 | 0x00000000 | RO | VALUE[31:0] | step | none |
 | 0x088 | SNAP_A0_PULSE_LO | 32 | 0x00000000 | RO | VALUE[31:0] | pulse | none |
@@ -163,6 +167,7 @@
 | SNAPSHOT | 13 |
 | CLEAR_STATS | 14 |
 | LINK_RECOVER | 15 |
+| NOP | 16 |
 
 ## States
 
@@ -177,3 +182,60 @@
 | STOPPING | 6 |
 | FAULT | 7 |
 | HOMING | 8 |
+
+## gp_control_probe_v1
+
+USER_CONFIRMED_IMPLEMENTATION_PENDING; confirmed 2026-10-12. NOT_DEPLOYABLE.
+
+Only this register/field subset is frozen for this profile; unlisted global entries remain Draft.
+
+| Offset | Approved register | Profile field restriction | Profile reset |
+| --- | --- | --- | --- |
+| 0x000 | VERSION | all defined fields | 0x00000001 |
+| 0x004 | CAPS | all defined fields | 0x0000000F |
+| 0x008 | STATE | all defined fields | 0x00000000 |
+| 0x010 | CMD_STATUS | all defined fields | 0x00000000 |
+| 0x014 | ACK_ID | all defined fields | 0x00000000 |
+| 0x018 | ACK_ERROR | all defined fields | 0x00000000 |
+| 0x044 | POSITION_VALID | all defined fields | 0x00000000 |
+| 0x048 | IRQ_PENDING | ACK, TEST | 0x00000000 |
+| 0x04C | IRQ_MASK | ACK, TEST | 0x00000000 |
+| 0x050 | SNAP_ID | all defined fields | 0x00000000 |
+| 0x054 | SNAP_VALID | all defined fields | 0x00000000 |
+| 0x058 | SNAP_TIME_LO | all defined fields | 0x00000000 |
+| 0x05C | SNAP_TIME_HI | all defined fields | 0x00000000 |
+| 0x068 | TICK_HZ | all defined fields | 0x000F4240 |
+| 0x06C | TEST_RW | all defined fields | 0x00000000 |
+| 0x070 | FEATURES | NOP, SNAPSHOT, IRQ_TEST | 0x00000007 |
+| 0x074 | TEST_IRQ_LEVEL | all defined fields | 0x00000000 |
+| 0x078 | LAST_TXN_ID | all defined fields | 0x00000000 |
+| 0x080 | SNAP_A0_POSITION_LO | all defined fields | 0x00000000 |
+| 0x084 | SNAP_A0_POSITION_HI | all defined fields | 0x00000000 |
+| 0x088 | SNAP_A0_PULSE_LO | all defined fields | 0x00000000 |
+| 0x08C | SNAP_A0_PULSE_HI | all defined fields | 0x00000000 |
+| 0x090 | SNAP_A1_POSITION_LO | all defined fields | 0x00000000 |
+| 0x094 | SNAP_A1_POSITION_HI | all defined fields | 0x00000000 |
+| 0x098 | SNAP_A1_PULSE_LO | all defined fields | 0x00000000 |
+| 0x09C | SNAP_A1_PULSE_HI | all defined fields | 0x00000000 |
+| 0x0A0 | SNAP_A2_POSITION_LO | all defined fields | 0x00000000 |
+| 0x0A4 | SNAP_A2_POSITION_HI | all defined fields | 0x00000000 |
+| 0x0A8 | SNAP_A2_PULSE_LO | all defined fields | 0x00000000 |
+| 0x0AC | SNAP_A2_PULSE_HI | all defined fields | 0x00000000 |
+| 0x0B0 | SNAP_A3_POSITION_LO | all defined fields | 0x00000000 |
+| 0x0B4 | SNAP_A3_POSITION_HI | all defined fields | 0x00000000 |
+| 0x0B8 | SNAP_A3_PULSE_LO | all defined fields | 0x00000000 |
+| 0x0BC | SNAP_A3_PULSE_HI | all defined fields | 0x00000000 |
+| 0x0C0 | SNAP_STATE | all defined fields | 0x00000000 |
+| 0x0C4 | SNAP_SESSION_LO | all defined fields | 0x00000000 |
+| 0x0C8 | SNAP_SESSION_HI | all defined fields | 0x00000000 |
+| 0x0CC | SNAP_ACCEPTED_SEQ | all defined fields | 0xFFFFFFFF |
+| 0x0D0 | SNAP_DONE_SEQ | all defined fields | 0xFFFFFFFF |
+| 0x0D4 | SNAP_POSITION_VALID | all defined fields | 0x00000000 |
+| 0x100 | CMD_OPCODE | all defined fields | 0x00000000 |
+| 0x104 | CMD_ARG | all defined fields | 0x00000000 |
+| 0x108 | TXN_ID | all defined fields | 0x00000000 |
+| 0x114 | CMD_SUBMIT | all defined fields | 0x00000000 |
+
+Supported commands: SNAPSHOT, NOP.
+Supported ACK errors: OK, BAD_COMMAND.
+INIT/NOT_READY only; CAPS axis slots do not authorize motion. See pl_motion/GP_CONTROL_DRAFT.md and schema profile for complete semantics.

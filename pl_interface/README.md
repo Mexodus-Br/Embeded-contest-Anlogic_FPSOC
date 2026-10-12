@@ -2,6 +2,8 @@
 
 2026-10-07，整体状态 **Draft / 部分决策已确认**。用户本轮已确认项见DECISIONS；完整地址、报文布局、位域和具体时序尚未冻结。
 
+2026-10-12：[GP 最小控制 profile](../pl_motion/GP_CONTROL_DRAFT.md) 已确认，唯一源为 `schema.json` 中 `gp_control_profiles.gp_control_probe_v1`。只有此子集冻结，其他报文/寄存器仍 Draft。生成定义含 profile 专属窗口、IRQ、特性掩码与 reset override；不能把全局草案条目当作支持项。GP RTL/IP/HPF/DTS 和实板验证尚未完成。
+
 - [整体接口、时钟复位与安全](SPECIFICATION.md)
 - [运动点及执行数学](MOTION.md)
 - [遥测与通信策略](TELEMETRY.md)

@@ -1,5 +1,11 @@
 # Phase 0 基础约束确认清单
 
+## 2026-10-12 GP 最小控制 profile 确认（覆盖相关待定项）
+
+用户对集中五项 GP 契约答复“接受”。唯一规范为 `pl_interface/schema.json` 的 `gp_control_profiles.gp_control_probe_v1`，完整说明见 [GP_CONTROL_DRAFT.md](pl_motion/GP_CONTROL_DRAFT.md)（保留评审文件名，已确认）。首轮 NOP/SNAPSHOT/测试 MMIO/电平 IRQ；GP0 AXI3 A33/D32/ID12 → Anlogic Protocol Converter 1.0 → Lite，窗口 0x80400000/4KiB；f2p_irq[0] 约定 INTID114/SPI82/level-high。资源选择已确认，实际生成 IP/HPF/DTS 和地址冲突/IRQ 映射仍须核验。
+
+共同板载100MHz、共同异步置位同步释放复位，整域 PL 复位新 epoch；驱动重绑、IRQ 清除、STOP/清错/DMA复位保持时间戳。首轮无独立 GP reset/热重配置。事务 ID 非零递增不回绕、重复重用，忙或非法编号提交 SLVERR 且保留在途结果；快照同拍采样上升沿前实际登记值；IRQ W1C/set 优先、持续源解除再清。仅冻结 profile 寄存器/状态/错误子集；不开放运动/DMA或电机引脚，不改变连续内核契约。接口定义检查不代表 GP RTL/时序/实板已验收。
+
 2026-10-11后续实板补充：用户确认SD启动与COM4可进入，只读核对确认Linux6.1.111-rt42-bsp-sd1、根为SD mmcblk0p2/PARTUUID=d0e414b9-02、1GiB物理映射及128MiB CMA预留；运行.config哈希与交付匹配。完整冷启动FSBL/U-Boot、实物DDR供电/颗粒及压力/DMA/运动验收仍未完成，详见[bsp/BOARD_VALIDATION.md](bsp/BOARD_VALIDATION.md)。
 
 2026-10-11本批执行范围：用户授权dev/bsp建立Buildroot核心系统的可重复构建与最小SD启动基线，DDR保持1GiB/32bit/1333MT/s/1.35V。已完成独立虚拟机构建及主机端镜像验证，结果/补丁/版本哈希/部署步骤见[bsp/README.md](bsp/README.md)。使用PS-only最小PL，HMI暂缓，连续运动100MHz时序验收前不集成；GP/IRQ和独立Anlogic AXI DMA/HP0仅准备驱动构建产物，地址、中断、CDC与具体IP仍共同确认。本批root绑定镜像SD根分区PARTUUID，不沿用eMMC根设备名。实物DDR供电/颗粒、完整串口启动和DMA/存储运行未验证；后续用户授权已插入SD格式化/烧写，实体卡写入及前512MiB直接读回哈希、FAT32/EXT4检查均通过，部署记录见[bsp/DEPLOYMENT.md](bsp/DEPLOYMENT.md)，实板启动仍待验证。此范围不代替未来HMI发行版或运动硬件接口冻结。

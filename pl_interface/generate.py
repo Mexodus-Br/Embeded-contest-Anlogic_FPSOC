@@ -33,6 +33,30 @@ def validate(s):
         if e['value'] in codes or not 0<=e['value']<2**32:raise ValueError('duplicate/range error code')
         codes.add(e['value'])
     if len(set(s['commands'].values()))!=len(s['commands']):raise ValueError('duplicate opcode')
+    regs={r['name']:r for r in s['registers']}
+    errors={e['name'] for e in s['errors']}
+    for name,p in s.get('gp_control_profiles',{}).items():
+        unique('GP_'+name.upper())
+        a=p['address']; irq=p['irq']; clk=p['clock_reset']
+        if (a['base']%a['size'] or a['size']!=4096 or
+            a['base']<0 or a['base']+a['size']>2**a['address_width'] or
+            a['data_width']!=32):raise ValueError('GP window/width')
+        if irq['gic_intid']!=irq['spi']+32 or irq['dts_cells']!=[0,irq['spi'],4] or irq['trigger']!='level-high':raise ValueError('GP IRQ mapping/trigger')
+        if clk['gp_hz']!=clk['control_hz'] or clk['control_hz']%clk['timestamp_hz']:raise ValueError('GP shared clock/timestamp')
+        supported=p['supported_registers']
+        if len(set(supported))!=len(supported) or any(n not in regs for n in supported):raise ValueError('GP register subset')
+        if any(n not in s['commands'] for n in p['supported_commands']) or any(n not in errors for n in p['supported_errors']) or any(n not in s['states'] for n in p['supported_states']):raise ValueError('GP command/error/state subset')
+        for n,fields in p['field_restrictions'].items():
+            available={f['name'] for f in regs[n]['fields']} if n in regs else set()
+            if n not in supported or len(set(fields))!=len(fields) or not set(fields)<=available:raise ValueError('GP field subset')
+        for n,val in p['reset_overrides'].items():
+            if n not in supported or not 0<=val<2**32:raise ValueError('GP reset override')
+        for n,val in p['expected_values'].items():
+            if n not in supported or regs[n]['reset']!=val:raise ValueError('GP identity/reset mismatch')
+        for key,accesses in [('byte_strobe_registers',('RW',)),('full_strobe_registers',('RW','WO','W1C'))]:
+            for n in p['axi'][key]:
+                if n not in supported or regs[n]['access'] not in accesses:raise ValueError('GP strobe/access mismatch')
+        if set(p['axi']['byte_strobe_registers'])&set(p['axi']['full_strobe_registers']):raise ValueError('GP strobe overlap')
     for n,f in s['frames'].items():
         occupied=set(); fieldnames=set()
         for x in f['fields']:
@@ -53,6 +77,20 @@ def constants(s):
     out.update({'ERR_'+e['name']:e['value'] for e in s['errors']})
     out.update({'CMD_'+n:v for n,v in s['commands'].items()})
     out.update({'STATE_'+n:v for n,v in s.get('states',{}).items()})
+    for name,p in s.get('gp_control_profiles',{}).items():
+        pre='GP_'+name.upper()
+        out[pre+'_ABI_VERSION']=p['abi_version']
+        for key in ['base','size','address_width','data_width','id_width']:
+            out[pre+'_'+key.upper()]=p['address'][key]
+        for key in ['pl_line','gic_intid','spi']:
+            out[pre+'_IRQ_'+key.upper()]=p['irq'][key]
+        for key in ['gp_hz','control_hz','timestamp_hz']:
+            out[pre+'_'+key.upper()]=p['clock_reset'][key]
+        for n,val in p['expected_values'].items():out[pre+'_EXPECTED_'+n]=val
+        for n,val in p['reset_overrides'].items():out[pre+'_'+n+'_RESET']=val
+        regs={r['name']:r for r in s['registers']}
+        for n,fields in p['field_restrictions'].items():
+            out[pre+'_'+n+'_MASK']=sum(((1<<f['width'])-1)<<f['lsb'] for f in regs[n]['fields'] if f['name'] in fields)
     for n,f in s['frames'].items():
         pre=n.upper(); out[pre+'_LENGTH']=f['length']
         for x in f['fields']:
@@ -65,20 +103,32 @@ def constants(s):
 
 def outputs(s):
     digest=hashlib.sha256(SOURCE.read_bytes()).hexdigest()
-    banner='Generated from schema.json SHA256 '+digest+'; DRAFT semantics.'
+    banner='Generated from schema.json SHA256 '+digest+'; GP profiles explicitly confirmed; other layouts/semantics DRAFT.'
     c=['/* '+banner+' */','#ifndef PL_INTERFACE_DEFS_H','#define PL_INTERFACE_DEFS_H','#include <stdint.h>']
     v=['// '+banner,'`ifndef PL_INTERFACE_DEFS_VH','`define PL_INTERFACE_DEFS_VH']
     for n,val in constants(s).items():
         c.append(f'#define PLI_{n} UINT32_C(0x{val:08X})')
         v.append(f'`define PLI_{n} 32\'h{val:08X}')
     c.extend(['#endif','']); v.extend(['`endif',''])
-    table=['<!-- '+banner+' -->','# Register candidate table','', '| Offset | Name | Width | Reset | Access | Fields | Unit | Side effect |','| --- | --- | --- | --- | --- | --- | --- | --- |']
+    table=['<!-- '+banner+' -->','# Register table (global Draft, confirmed GP subsets below)','', '| Offset | Name | Width | Reset | Access | Fields | Unit | Side effect |','| --- | --- | --- | --- | --- | --- | --- | --- |']
     for r in s['registers']:
         fields=', '.join(f"{x['name']}[{x['lsb']+x['width']-1}:{x['lsb']}]" for x in r['fields'])
         table.append(f"| 0x{r['offset']:03X} | {r['name']} | 32 | 0x{r['reset']:08X} | {r['access']} | {fields} | {r['unit']} | {r['effect']} |")
     for title,key in [('Commands','commands'),('States','states')]:
         table.extend(['', '## '+title, '', '| Name | Value |', '| --- | --- |'])
         table.extend(f'| {n} | {v} |' for n,v in s[key].items())
+    for name,p in s.get('gp_control_profiles',{}).items():
+        table.extend(['','## '+name,'',p['status']+'; confirmed '+p['confirmation']['date']+'. '+p['deployment']['status']+'.',
+                      '', 'Only this register/field subset is frozen for this profile; unlisted global entries remain Draft.',
+                      '', '| Offset | Approved register | Profile field restriction | Profile reset |', '| --- | --- | --- | --- |'])
+        regs={r['name']:r for r in s['registers']}
+        for n in p['supported_registers']:
+            r=regs[n]; fields=', '.join(p['field_restrictions'].get(n,[])) or 'all defined fields'
+            reset=p['reset_overrides'].get(n,r['reset'])
+            table.append(f'| 0x{r["offset"]:03X} | {n} | {fields} | 0x{reset:08X} |')
+        table.extend(['','Supported commands: '+', '.join(p['supported_commands'])+'.',
+                      'Supported ACK errors: '+', '.join(p['supported_errors'])+'.',
+                      'INIT/NOT_READY only; CAPS axis slots do not authorize motion. See '+p['documentation']+' and schema profile for complete semantics.'])
     err=['<!-- '+banner+' -->','# Error candidate table','','| Code | Name | Severity | State impact | Report |','| --- | --- | --- | --- | --- |']
     err += [f"| 0x{e['value']:04X} | {e['name']} | {e['severity']} | {e['impact']} | {e['report']} |" for e in s['errors']]
     return {'interface_defs.h':'\n'.join(c),'interface_defs.vh':'\n'.join(v),'registers.md':'\n'.join(table)+'\n','errors.md':'\n'.join(err)+'\n'}

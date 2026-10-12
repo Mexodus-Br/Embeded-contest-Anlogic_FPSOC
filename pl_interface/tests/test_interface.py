@@ -71,6 +71,34 @@ class InterfaceTests(unittest.TestCase):
         for m in mutations:
             s=copy.deepcopy(source);m(s)
             with self.assertRaises(ValueError):generate.validate(s)
+        profile_mutations=[
+            lambda p:p['supported_registers'].append('NO_SUCH_REGISTER'),
+            lambda p:p['supported_registers'].append('VERSION'),
+            lambda p:p['irq'].update(gic_intid=p['irq']['spi']),
+            lambda p:p['irq'].update(dts_cells=[0,p['irq']['gic_intid'],4]),
+            lambda p:p['clock_reset'].update(gp_hz=50_000_000),
+            lambda p:p['field_restrictions']['IRQ_MASK'].append('NO_SUCH_FIELD'),
+            lambda p:p['expected_values'].update(FEATURES=31),
+            lambda p:p['reset_overrides'].update(SNAP_DONE_SEQ=1<<32),
+            lambda p:p['axi']['byte_strobe_registers'].append('VERSION'),
+        ]
+        for m in profile_mutations:
+            s=copy.deepcopy(source);m(s['gp_control_profiles']['gp_control_probe_v1'])
+            with self.assertRaises(ValueError):generate.validate(s)
+
+    def test_gp_profile_safety_and_generated_restrictions(self):
+        s=generate.load();p=s['gp_control_profiles']['gp_control_probe_v1']
+        self.assertEqual(set(p['supported_commands']),{'NOP','SNAPSHOT'})
+        self.assertFalse(p['deployment']['hardware_verified'])
+        self.assertEqual(p['deployment']['status'],'NOT_DEPLOYABLE')
+        self.assertEqual(p['board_idle_values']['external_motor_outputs'],'not exported')
+        d=generate.constants(s);pre='GP_GP_CONTROL_PROBE_V1_'
+        self.assertEqual(d[pre+'IRQ_PENDING_MASK'],0x81)
+        self.assertEqual(d[pre+'IRQ_MASK_MASK'],0x81)
+        self.assertEqual(d[pre+'FEATURES_MASK'],7)
+        self.assertEqual(d[pre+'EXPECTED_FEATURES'] & (d['REG_FEATURES_MOTION_MASK']|d['REG_FEATURES_DMA_MASK']),0)
+        self.assertEqual(d[pre+'SNAP_DONE_SEQ_RESET'],0xffffffff)
+        self.assertEqual(d['REG_SNAP_DONE_SEQ_RESET'],0) # global unconfirmed default remains separate
 
     def test_generated_c_verilog_all_constants(self):
         defs=generate.constants(generate.load())

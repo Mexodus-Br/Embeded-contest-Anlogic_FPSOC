@@ -1,5 +1,13 @@
 # 实际验证记录 — 2026-10-07
 
+## 2026-10-12 GP 最小契约冻结与定义检查
+
+用户确认 `gp_control_probe_v1`；本次只落实唯一 JSON 规范、生成工具/定义及契约说明。实际运行 `python pl_interface/generate.py --check`：4 个派生文件逐字节一致；`python pl_interface/tests/test_interface.py`：8 项通过，含 C 编译、完整定义对照、非法 profile 引用/映射/时钟/reset/strobe 变异拒绝及首轮无 MOTION/DMA 特性检查；`python pl_interface/tests/check_verilog.py`：Icarus 编译/仿真实际核对 822 常量通过。运行于正常本地进程环境，无自动重试/跳过。`git diff --check` 通过。
+
+与本次修改前 Git schema 比较：所有旧寄存器偏移/属性、旧 opcode、error/state 数值及 frame 布局保持；IRQ_PENDING/MASK 仅新增 TEST bit7，另有四个空位寄存器和 NOP。Global SNAP 序号 reset 仍为草案 0，profile override 生成 0xFFFFFFFF。Golden Model 文件与运动 RTL 未修改；本次未重跑运动波形/Golden 算法测试。
+
+以上是规范/生成定义一致性验收，**不是 GP RTL/AXI 握手/快照硬件/IRQ 路由或板级验收**。新 profile 标为 USER_CONFIRMED_IMPLEMENTATION_PENDING，部署仍 NOT_DEPLOYABLE；需要新增自检 RTL、适配器集成、10ns STA、实际 HPF/DTS 地址/IRQ 核验及板级 MMIO/IRQ 证据。既有运动时序结果见 pl_motion/TIMING.md。
+
 2026-10-09 后续记录：原 Icarus 崩溃复现，PATH/TMP 隔离和工具升级均不能证明沙箱内稳定；普通进程环境中原 12.0/独立 13.0 各完成 50 次编译/运行和完整单轴仿真。最终默认原 12.0 的独立 HDL 入口实际核对 772 常量通过。check_verilog.py 改用 pl_motion/sim_tools.py 的统一 fail-fast 调用；历史失败保留，下文“不含运动 RTL/HDL异常未解决”描述属于 2026-10-07 快照。最新单轴结果与尚未验证范围见 pl_motion/VALIDATION.md；无板级验收。
 
 同日四轴追加：用户确认共同主槽/对应边沿及单点 scope 后，四轴 12 组自检通过，9,710,041 检查、3,360 安全扫描、840 复位扫描；同槽逻辑输出边沿偏差 0 cycle，非实板验收。接口 7 项、schema 重生成 4 文件一致及实际 HDL 772 常量再次通过。详见 pl_motion/VALIDATION.md 的四轴追加节，连续 FIFO/END/暂停未实现。
