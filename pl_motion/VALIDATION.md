@@ -1,5 +1,7 @@
 # 单轴仿真验收 — 2026-10-09
 
+2026-10-12 GP追加：独立寄存器Icarus3,822检查、真实TD受保护AXI3→Lite转换器Questa7,216检查通过；实际PS无WID写适配器3,167检查通过，两个顶层各7,216集成检查；最终PS封装参考speed2 OOC门级SWNS+3.013ns、route+3.533ns/hold+0.025ns。单轴/四轴/连续组件及22组/接口全量回归再次通过。完整证据、历史工具失败与系统/板级未验收项见 [GP_VALIDATION.md](GP_VALIDATION.md)，PS接线/共同复位见 [GP_INTEGRATION.md](GP_INTEGRATION.md)。既有运动RTL/Golden基线不改。
+
 实际环境：Windows / Python 3.10.11；默认 D:/iverilog 的 Icarus 12.0 devel；另对官方 MSYS2 Icarus 13.0 stable 做了独立对照。100MHz 为 testbench 时钟，全部时序值为仿真夹具；未综合、未接电机。
 
 ## Icarus 异常与解决路径

@@ -1,0 +1,138 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Mon Oct 12 08:33:40 2026
+
+Top Model           : gp_td_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 99.53%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp.sdc;
+Confidence          : Synthesized
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 5 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min
+------------------------------------
+Slow     | yes      yes
+Fast     | yes      yes
+
+
+Timing Status
+--------------------
+	SWNS: 3.015ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 0.000ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000         2991   gp_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0           local            0.000      5.000                10.000         100.000                 6.985         143.164            3.015      0.000            0.000      0.000            0.000             2991                7             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     gp_clk -> gp_clk
+Type           :     Self
+From Clock     :     gp_clk
+To Clock       :     gp_clk
+Min Period     :     6.985ns
+Fmax           :     143.164MHz
+
+Statistics:
+Max            : SWNS      3.015ns, STNS      0.000ns,         0 Viol Endpoints,      7818 Total Endpoints,     82738 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 3.015ns
+Begin Point         : dut/reset_release_reg[1].clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_reg[0].d (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 6.915ns (cell 1.665ns (24%), net 5.250ns (76%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( LUT5=2  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 636
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=2991)                           0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: dut/reset_release_reg[1].clk
+launch edge                             0.000    r     0.000
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: dut/reset_release_reg[1].q
+net (fo=636)                            1.285          1.436          net: dut/registers/rst_n,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(831)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_6.d
+LUT6                                    0.238    r     1.674       1  pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_6.o
+net (fo=2)                              0.478          2.152          net: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_7,  D:/Works/Embedded_contest/dev/pl_motion/build/gp_ip/axi_protocol_converter_merge.v(0)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_8.a
+LUT5                                    0.240    r     2.392       2  pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_8.o
+net (fo=2)                              0.478          2.870          net: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_fsm_aw/mux6_syn_29,  D:/Works/Embedded_contest/dev/pl_motion/build/gp_ip/axi_protocol_converter_merge.v(0)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_9.a
+LUT3                                    0.240    r     3.110       3  pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_9.o
+net (fo=64)                             0.972          4.082          net: dut/converter/conversion_to_lite$axi_axilite/WR$b_channel/bid_fifo/wr_en,  D:/Works/Embedded_contest/dev/pl_motion/build/gp_ip/axi_protocol_converter_merge.v(0)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_10.a
+LUT2                                    0.240    r     4.322       4  pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_10.o
+net (fo=31)                             0.867          5.189          net: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/incr_cmd/axlen_cnt_reg[0]_syn_11,  D:/Works/Embedded_contest/dev/pl_motion/build/gp_ip/axi_protocol_converter_merge.v(0)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_b[4]_syn_3.a
+LUT4                                    0.240    r     5.429       5  pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_b[4]_syn_3.o
+net (fo=12)                             0.722          6.151          net: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_b_n,  NOFILE(0)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_b[0]_syn_1.a
+LUT5                                    0.240    r     6.391       6  pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_b[0]_syn_1.o
+net (fo=1)                              0.448          6.839          net: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_b[0],  NOFILE(0)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_reg[0].d
+SEQ (reg)                               0.076    f     6.915
+--------------------------------------------------------------------  ---------------
+Arrival                                                6.915
+
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=2991)                           0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_reg[0].clk
+capture edge                           10.000    r    10.000
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930
+clock uncertainty                       0.000          9.930
+clock pessimism                         0.000          9.930
+--------------------------------------------------------------------  ---------------
+Required                                               9.930
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.015
+
+Slack               : 3.623ns

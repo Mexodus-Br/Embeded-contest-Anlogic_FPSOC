@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-12",
+  "status": "PASS",
+  "profile": "gp_control_probe_v1",
+  "component": "PASS",
+  "log": "PASS gp_control_regs checks=3822\nD:\\Works\\Embedded_contest\\dev\\pl_motion\\tb\\tb_gp_control_regs.v:237: $finish called at 36650000 (1ps)",
+  "schema_sha256": "261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822",
+  "source_sha256_lf": {
+    "rtl\\gp_control_regs.v": "79096107a067b887b8ff98a09dee8ef2e278b129fd0b80f52987b2ba19870cf6",
+    "tb\\tb_gp_control_regs.v": "1eefed6cbe2c677eefc6a6bc752af3cbb11941fba0e3850586224c324a11895b",
+    "rtl\\gp_control_top.v": "a17c46e7786fb1641080c2041c1fa6a8974530942f15861902fce251d4595984",
+    "rtl\\gp_ps_write_adapter.v": "87d273c470a9a1e0405fa91ed40fa64fd778b9ae833710613d78a1a323bcb6c9",
+    "rtl\\gp_ps_control_top.v": "d8509187d04b80bdd9c37ea8ba45dee73ad7c2f1e4dacaff8d547ebf77c1f91a",
+    "tb\\tb_gp_control_top.v": "0c4b6cf01ead13cbd6949a3ed8fadb1320e5bf0f04a26d8883c778483874b1d4",
+    "tb\\tb_gp_ps_control_top.v": "3ab97762d75aacbd39b39d05ff6c9c235ef94d23bf1b9151c2a07b166c598655",
+    "tb\\tb_gp_ps_write_adapter.v": "e3d75ffcc886c4dd0fce502f7d4bd9b9f9e071c4134b434d6d5245b6b834d663"
+  },
+  "integration": "PASS",
+  "integration_log": "# PASS gp_control_top checks=7216",
+  "integration_simulator": "D:\\altera_lite\\25.1std\\questa_fse\\win64\\vsim.EXE",
+  "integration_reports": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_questa\\verified_2.log",
+  "ps_write_adapter": "PASS",
+  "ps_write_adapter_log": "PASS gp_ps_write_adapter checks=3167\nD:\\Works\\Embedded_contest\\dev\\pl_motion\\tb\\tb_gp_ps_write_adapter.v:59: $finish called at 25030000 (1ps)",
+  "ps_boundary": "PASS",
+  "ps_boundary_log": "# PASS gp_ps_control_top checks=7216",
+  "ps_boundary_reports": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_questa\\verified_3.log",
+  "converter": {
+    "tool_root": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067",
+    "library_source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\AXI_MM\\RTL\\axi_protocol_converter_merge.v",
+    "staged_source": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_ip\\axi_protocol_converter_merge.v",
+    "library_sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61",
+    "component_sha256": "681e8d50d5edbfb5444d1821157b54538e9344b8cec9211e2bc25a3cd8a9ca58",
+    "schema_sha256": "261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822",
+    "instance": "gp_control_top/converter",
+    "generation": "direct parameterized installed vendor RTL; not wizard-generated XML",
+    "parameters": {
+      "AL_US_AXI_PROTOCOL": 1,
+      "AL_DS_AXI_PROTOCOL": 2,
+      "AL_AXI_ADDR_WIDTH": 33,
+      "AL_AXI_DATA_WIDTH": 32,
+      "AL_AXI_ID_WIDTH": 12,
+      "AL_AXI_SUPPORTS_WRITE": 1,
+      "AL_AXI_SUPPORTS_READ": 1,
+      "AL_AXI_SUPPORTS_USER_SIGNALS": 0
+    }
+  },
+  "hardware_verified": false
+}

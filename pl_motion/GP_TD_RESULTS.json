@@ -1,0 +1,374 @@
+{
+  "date": "2026-10-12",
+  "profile": "gp_control_probe_v1",
+  "status": "GP_LOGIC_SIM_AND_OOC_TIMING_PASS_SYSTEM_INTEGRATION_PENDING",
+  "gate": {
+    "status": "GATE_ESTIMATE_NOT_BOARD_TIMING",
+    "tool": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\bin\\td_commands_prompt.EXE",
+    "device": "DR1M90GEG400",
+    "reference_speed": 2,
+    "clock_period_ns": 10,
+    "gate_wns_ns": 3.015,
+    "gate_hold_wns_ns": 0.0,
+    "timing_pass": true,
+    "converter": {
+      "tool_root": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067",
+      "library_source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\AXI_MM\\RTL\\axi_protocol_converter_merge.v",
+      "staged_source": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_ip\\axi_protocol_converter_merge.v",
+      "library_sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61",
+      "component_sha256": "681e8d50d5edbfb5444d1821157b54538e9344b8cec9211e2bc25a3cd8a9ca58",
+      "schema_sha256": "261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822",
+      "instance": "gp_control_top/converter",
+      "generation": "direct parameterized installed vendor RTL; not wizard-generated XML",
+      "parameters": {
+        "AL_US_AXI_PROTOCOL": 1,
+        "AL_DS_AXI_PROTOCOL": 2,
+        "AL_AXI_ADDR_WIDTH": 33,
+        "AL_AXI_DATA_WIDTH": 32,
+        "AL_AXI_ID_WIDTH": 12,
+        "AL_AXI_SUPPORTS_WRITE": 1,
+        "AL_AXI_SUPPORTS_READ": 1,
+        "AL_AXI_SUPPORTS_USER_SIGNALS": 0
+      }
+    },
+    "critical_start": "dut/reset_release_reg[1].clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+    "critical_end": "dut/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_reg[0].d (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+    "reports": {
+      "gate.timing": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\gate.timing",
+      "gate.area": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\gate.area",
+      "gate.check": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\gate.check",
+      "run.log": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\run.log"
+    },
+    "source_sha256_lf": {
+      "build\\gp_ip\\axi_protocol_converter_merge.v": "69099d361575af211d79e6bfeb74d95fc654796f315ae4075186bd4b5fe5b9fc",
+      "build\\td_gp_verified\\gp_control_regs.v": "7056144b19645eda081cd8b8f272c9d731044fa6ea75eef4eac24b7f2becd0d5",
+      "build\\td_gp_verified\\gp_control_top.v": "6479790e192473adb5ea9dbad64b7e546892c092ef75ad11e75860f46fc1f30c",
+      "build\\td_gp_verified\\probe.v": "5d43febc761fec5e2f56eb16dcb94fd4978be2eefb8500b8c7d7aa5980c9215d"
+    },
+    "inputs_sha256_lf": {
+      "D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\gp_control_regs.v": "79096107a067b887b8ff98a09dee8ef2e278b129fd0b80f52987b2ba19870cf6",
+      "D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\gp_control_top.v": "a17c46e7786fb1641080c2041c1fa6a8974530942f15861902fce251d4595984",
+      "D:\\Works\\Embedded_contest\\dev\\pl_interface\\generated\\interface_defs.vh": "2e6f5d9cf2911f47263d98b6d8234cfd9726d18db81883b7855ed8528ea2eb47"
+    },
+    "constraints_sha256": "c9d199cb671d31c0ddd81519923f15e1a685b8f42205fb3780f2dd625eb93ab3"
+  },
+  "physical": {
+    "place": {
+      "wns_ns": 5.676,
+      "hold_wns_ns": 0.0,
+      "timing_pass": true,
+      "critical_start": "dut/registers/last_id_reg[1]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "critical_end": "dut/registers/irq_pending_reg[7]_syn_2.ia (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })"
+    },
+    "route": {
+      "wns_ns": 4.186,
+      "hold_wns_ns": 0.033,
+      "timing_pass": true,
+      "critical_start": "dut/registers/argument_reg[22]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "critical_end": "dut/registers/result_error_reg[0]_syn_39.imb (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })"
+    }
+  },
+  "resource": {
+    "gate_probe": {
+      "logic_lut": 1154,
+      "adder": 177,
+      "registers": 2995
+    },
+    "gate_register_block": {
+      "logic_lut": 468,
+      "adder": 99,
+      "registers": 624
+    },
+    "route_probe": {
+      "logic_lut": 1303,
+      "adder": 130,
+      "registers": 3023,
+      "slices": 2400,
+      "DSP": 0,
+      "ERAM": 0,
+      "GCLK": 1,
+      "SCLK": 4
+    }
+  },
+  "check_timing": {
+    "route_high_findings": 0,
+    "missing_input_delays": 3,
+    "missing_output_delays": 1,
+    "coverage_percent": 99.56
+  },
+  "reports": {
+    "gate.timing": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\gate.timing",
+      "original_sha256": "50b9f1bf33a23d93a9c9fba0ce0deab49caab892a11f8e3bb6912f828bdc0a57",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\gate.timing.first_path.txt",
+      "excerpt_sha256": "23d7195ded5dee3df988bd6f45ccd13ce613cbe954050de111121485311179e4"
+    },
+    "place.timing": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\place.timing",
+      "original_sha256": "5d4807782f009ff043ec901c462d5ed7de32f62c5c90bf282eac9820db9c92ea",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\place.timing.first_path.txt",
+      "excerpt_sha256": "866b4a1c0ad8b4812ce14d20854d36a6d7f139b0a7d406be79e0c9d7601639c9"
+    },
+    "route.timing": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\route.timing",
+      "original_sha256": "938f73d814a6c6a2c1f4eedb6800a475cf67314abadee2b90e544820a89d19e1",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\route.timing.first_path.txt",
+      "excerpt_sha256": "91165250a52308806d2b4ca1d93e23bfce42bbcc60ec3c58886b8c2026f8eec5"
+    },
+    "gate.area": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\gate.area",
+      "original_sha256": "fb41a463e3afb03abffbf09a56b8454bfa1ee3ff5ea01b8f8cc547ba7a6b8141",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\gate.area.txt",
+      "excerpt_sha256": "fdeb89d7967cc1e37be2924717df2a190430edf9283baf50304f37df6692b778"
+    },
+    "route.area": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\route.area",
+      "original_sha256": "27b1ebfbf10e4ba48e30f420f96f364c200cce3f57e3dca04f9d6e9bbbc82572",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\route.area.txt",
+      "excerpt_sha256": "80d2ddfb1cb092b4eaf104691c7cd77db4b7a565f27a4a8efeb226bee21267ab"
+    },
+    "gate.check": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\gate.check",
+      "original_sha256": "246a25b818843c59df26756aaa05d42ea06224876d1ea54ae4f1fcccf2f7d56c",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\gate.check.txt",
+      "excerpt_sha256": "8528ef2ac53ca94a363292de4e6bc035f0909050bdf68a9a6fa30cd52b4be41d"
+    },
+    "route.check": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\route.check",
+      "original_sha256": "9df2aa89419d7f6b59f2e679d0ebfdf806f0642ff207fd2b007d0efc48a59be8",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\route.check.txt",
+      "excerpt_sha256": "fe4f11c87ee991b93a32588f67bc70e88a958d160047adce43dc2995afedd07e"
+    },
+    "route_check.log": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_verified\\route_check.log",
+      "original_sha256": "73368b8d2b0c58433c90a8cb06239dc6dedb81698b44e236468f421189986292",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\route_check.log.txt",
+      "excerpt_sha256": "add30292e3a4acce2794f32693ded955970148ff1e7b5cb5a9438c82a0af14d8"
+    },
+    "regs_pass": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_sim\\regs.log",
+      "original_sha256": "902c28c9e6a30ec757234a13c507dd0e4b446b0f790f1454748c1c95d3bd3418",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\regs_pass.log",
+      "excerpt_sha256": "775bf0805f53eaeec79148860754ce85cc73b35939f946d1b974f497f80c2f31"
+    },
+    "questa_compile": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_questa\\verified_1.log",
+      "original_sha256": "a7fd155db1bda29b01cfc029b641c0362dfb09f6266fdb6076ef073118416935",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\questa_compile.log",
+      "excerpt_sha256": "3aa33ae8f95842615aee46f611232bf09fdbd8848e0ce0132c57cd76af59d49e"
+    },
+    "questa_pass": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_questa\\verified_2.log",
+      "original_sha256": "d2f7c55ed3dc8264d3a25d587ca1d5e89006f4284cba6b3ec8e80ee686859d09",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\questa_pass.log",
+      "excerpt_sha256": "cda9eba74bf62084decd2e9c98533f771d85f071f1cb122579595930fa1c3669"
+    },
+    "questa_rpc_failure": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_questa\\step2.log",
+      "original_sha256": "d85d33efb80bda89c043a80b2395e72de29449b45b23ada35e0ea01bf28d39a9",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\questa_rpc_failure.log",
+      "excerpt_sha256": "6e7fe9aec6cde251de028f4df9d7e58385f54ca178ddee6f62cf0fea03e5bc30"
+    },
+    "questa_library_failure": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_questa\\batch.log",
+      "original_sha256": "5607c895678cef62dfa84b8f4460b2d2c7ff763b5d8ea381338c3de4b9ee6d0c",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\questa_library_failure.log",
+      "excerpt_sha256": "ba313d8dddbdef68f860f3c778d318934360e4a7136efc64d96c94021e4ceff9"
+    },
+    "td_include_failure": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_r1\\run.log",
+      "original_sha256": "f5172c93b02c35b87d5f41c688af9ee426d0855749ad16a2b7add39b274abc27",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\td_include_failure.log",
+      "excerpt_sha256": "c70b054d74911bca2f89dc1cb66b354c79cb6c55aac561dd72683985bcd93c4b"
+    },
+    "td_option_failure": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_r2_include\\run.log",
+      "original_sha256": "b55dba614f831c7a4b5debec1a501d9d7069f87dae5cf97ccba2589f4d1ce809",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\td_option_failure.log",
+      "excerpt_sha256": "ac7920bf37cf321480ac1af0c9ad5a39b1f8f661c2042862167557065d8fa270"
+    },
+    "iptool_exit1": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_ip_default\\inspect2.log",
+      "original_sha256": "a78ea0c60b4055396476e91465cb99bba0d6d47976ce2cf91d1c9850bcfbd229",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\iptool_exit1.log",
+      "excerpt_sha256": "391b4ba5f22dab62a845c90ef5b4504baeabcf30bd33c81d4bd2a88e48e96d65"
+    },
+    "icarus_protected_failure": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_sim\\top_compile_failure.log",
+      "original_sha256": "39c66d34570367f999bedfaf2be9b83bc93215f405062572a81e64b97df13412",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\icarus_protected_failure.log",
+      "excerpt_sha256": "0c006b9ee3e4fa78b0960a581a8944602013c6768b20fdcdc433722c3d2651ce"
+    },
+    "adapter_pass": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_sim\\adapter.log",
+      "original_sha256": "71158b7ec8fed07eae75554239ece295192971761de6486e722d3c85a1895466",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\adapter_pass.log",
+      "excerpt_sha256": "84b6d93862da07d28f1fb41b6c85a7b2bd8c1a6ff24519dc521d93267f3cbc1f"
+    },
+    "questa_ps_pass": {
+      "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_questa\\verified_3.log",
+      "original_sha256": "bc839786d6afb1f62fe11c66b9fd0477fa68e77275812d1a73d9a712be2ba74b",
+      "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\questa_ps_pass.log",
+      "excerpt_sha256": "da4b0419d6183990ac20afdfd189daa5e7db22d800da5e6fed0ca0d16f126056"
+    }
+  },
+  "board_verified": false,
+  "unverified": [
+    "whole-system HPF/DTS/address audit",
+    "FSBL GP port and p2f_reset0 release",
+    "whole-system timing",
+    "board MMIO/IRQ/timestamp/snapshot/recovery"
+  ],
+  "ps_boundary": {
+    "gate": {
+      "status": "GATE_ESTIMATE_NOT_BOARD_TIMING",
+      "tool": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\bin\\td_commands_prompt.EXE",
+      "device": "DR1M90GEG400",
+      "reference_speed": 2,
+      "clock_period_ns": 10,
+      "gate_wns_ns": 3.013,
+      "gate_hold_wns_ns": 0.0,
+      "timing_pass": true,
+      "converter": {
+        "tool_root": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067",
+        "library_source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\AXI_MM\\RTL\\axi_protocol_converter_merge.v",
+        "staged_source": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\gp_ip\\axi_protocol_converter_merge.v",
+        "library_sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61",
+        "component_sha256": "681e8d50d5edbfb5444d1821157b54538e9344b8cec9211e2bc25a3cd8a9ca58",
+        "schema_sha256": "261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822",
+        "instance": "gp_control_top/converter",
+        "generation": "direct parameterized installed vendor RTL; not wizard-generated XML",
+        "parameters": {
+          "AL_US_AXI_PROTOCOL": 1,
+          "AL_DS_AXI_PROTOCOL": 2,
+          "AL_AXI_ADDR_WIDTH": 33,
+          "AL_AXI_DATA_WIDTH": 32,
+          "AL_AXI_ID_WIDTH": 12,
+          "AL_AXI_SUPPORTS_WRITE": 1,
+          "AL_AXI_SUPPORTS_READ": 1,
+          "AL_AXI_SUPPORTS_USER_SIGNALS": 0
+        }
+      },
+      "critical_start": "dut/core/reset_release_reg[1].clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "critical_end": "dut/core/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_reg[0].d (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "reports": {
+        "gate.timing": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\gate.timing",
+        "gate.area": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\gate.area",
+        "gate.check": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\gate.check",
+        "run.log": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\run.log"
+      },
+      "source_sha256_lf": {
+        "build\\gp_ip\\axi_protocol_converter_merge.v": "69099d361575af211d79e6bfeb74d95fc654796f315ae4075186bd4b5fe5b9fc",
+        "build\\td_gp_ps_final\\gp_control_regs.v": "7056144b19645eda081cd8b8f272c9d731044fa6ea75eef4eac24b7f2becd0d5",
+        "build\\td_gp_ps_final\\gp_control_top.v": "6479790e192473adb5ea9dbad64b7e546892c092ef75ad11e75860f46fc1f30c",
+        "build\\td_gp_ps_final\\gp_ps_write_adapter.v": "87d273c470a9a1e0405fa91ed40fa64fd778b9ae833710613d78a1a323bcb6c9",
+        "build\\td_gp_ps_final\\gp_ps_control_top.v": "d8509187d04b80bdd9c37ea8ba45dee73ad7c2f1e4dacaff8d547ebf77c1f91a",
+        "build\\td_gp_ps_final\\probe.v": "db736391e612e9860ba0e2e4a51372a0153dae57ffb996c1e72bc81894ffee3f"
+      },
+      "inputs_sha256_lf": {
+        "D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\gp_control_regs.v": "79096107a067b887b8ff98a09dee8ef2e278b129fd0b80f52987b2ba19870cf6",
+        "D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\gp_control_top.v": "a17c46e7786fb1641080c2041c1fa6a8974530942f15861902fce251d4595984",
+        "D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\gp_ps_write_adapter.v": "87d273c470a9a1e0405fa91ed40fa64fd778b9ae833710613d78a1a323bcb6c9",
+        "D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\gp_ps_control_top.v": "d8509187d04b80bdd9c37ea8ba45dee73ad7c2f1e4dacaff8d547ebf77c1f91a",
+        "D:\\Works\\Embedded_contest\\dev\\pl_interface\\generated\\interface_defs.vh": "2e6f5d9cf2911f47263d98b6d8234cfd9726d18db81883b7855ed8528ea2eb47"
+      },
+      "constraints_sha256": "c9d199cb671d31c0ddd81519923f15e1a685b8f42205fb3780f2dd625eb93ab3",
+      "top": "gp_ps_control_top"
+    },
+    "physical": {
+      "place": {
+        "wns_ns": 5.451,
+        "hold_wns_ns": 0.0,
+        "timing_pass": true,
+        "critical_start": "dut/core/reset_release_reg[1]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "critical_end": "dut/core/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_translator_w/wrap_cmd/axaddr_wrap_reg[9]_syn_2.ima (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })"
+      },
+      "route": {
+        "wns_ns": 3.533,
+        "hold_wns_ns": 0.025,
+        "timing_pass": true,
+        "critical_start": "dut/core/registers/txn_shadow_reg[6]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "critical_end": "dut/core/registers/txn_shadow_reg[18]_syn_2.cea (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })"
+      }
+    },
+    "instance": "gp_ps_control_top/core/converter",
+    "resource": {
+      "gate_probe": {
+        "logic_lut": 1144,
+        "adder": 177,
+        "registers": 2981
+      },
+      "gate_boundary_core": {
+        "logic_lut": 1109,
+        "adder": 177,
+        "registers": 2734
+      },
+      "route_probe": {
+        "logic_lut": 1317,
+        "adder": 130,
+        "registers": 3015,
+        "slices": 2397,
+        "DSP": 0,
+        "ERAM": 0,
+        "GCLK": 1,
+        "SCLK": 4
+      }
+    },
+    "coverage_percent": 99.55,
+    "missing_input_delays": 3,
+    "missing_output_delays": 1,
+    "route_high_findings": 0,
+    "reports": {
+      "gate.timing": {
+        "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\gate.timing",
+        "original_sha256": "a485baa12d8e03fdf79ab232056660f6a08a9e1529e11af02e4fe39104300df6",
+        "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\ps_gate.timing.first_path.txt",
+        "excerpt_sha256": "a37852b2a272a6e2c02411078600ea73b50b50b951360a79582f7677eaeff67a"
+      },
+      "place.timing": {
+        "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\place.timing",
+        "original_sha256": "c4bf101a0ace243b4dd756c406caef8237c8d8603991d3103e66ca45d9fd603e",
+        "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\ps_place.timing.first_path.txt",
+        "excerpt_sha256": "ce5083765ad82b07b3bec4866564cbf4b0a1c2578062e9996fed3237921d1df6"
+      },
+      "route.timing": {
+        "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\route.timing",
+        "original_sha256": "86df794df4a685d1eec720994c0e8f7ff2aa1833b1d948d96649db8226ada98d",
+        "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\ps_route.timing.first_path.txt",
+        "excerpt_sha256": "8352feaa76969f11ef49e34df51685aeb150e27b994ff6a97205dd16101669da"
+      },
+      "gate.area": {
+        "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\gate.area",
+        "original_sha256": "601ff91c972f7acd67397ad1e42a4252af716959744193ce31a86bf2315dc985",
+        "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\ps_gate.area.txt",
+        "excerpt_sha256": "1074f18ad7999f60ac3250ef9f7af3c69fe0c8ca629dda103300e856f3492fa7"
+      },
+      "route.area": {
+        "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\route.area",
+        "original_sha256": "168d77511e506310d7aba4c00afdb58f883101cc5a30a89a7cf010b724a7da0f",
+        "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\ps_route.area.txt",
+        "excerpt_sha256": "c4178c0be9ae1754c04059b3fa679eb9533e3ee504d3d9eabe37a34bcd40e56b"
+      },
+      "gate.check": {
+        "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\gate.check",
+        "original_sha256": "3b3495f1357dadb9abff934a91569b7769593c7f27d5e6b605be5cccb8f281f9",
+        "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\ps_gate.check.txt",
+        "excerpt_sha256": "3c2f83ad4b64a2797e69409482a1978a5443bd0dac3571868b05485eb5afcb8e"
+      },
+      "route.check": {
+        "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\route.check",
+        "original_sha256": "9df2aa89419d7f6b59f2e679d0ebfdf806f0642ff207fd2b007d0efc48a59be8",
+        "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\ps_route.check.txt",
+        "excerpt_sha256": "fe4f11c87ee991b93a32588f67bc70e88a958d160047adce43dc2995afedd07e"
+      },
+      "route_check.log": {
+        "original_path": "D:\\Works\\Embedded_contest\\dev\\pl_motion\\build\\td_gp_ps_final\\route_check.log",
+        "original_sha256": "9b148f98ba864f10e418725a13a8ecb15bed104324c2ca0208bb1ad72ff63ed0",
+        "versioned_excerpt": "pl_motion\\reports\\gp_20261012\\ps_route_check.log.txt",
+        "excerpt_sha256": "20de276725c2e4dce68cbcb47c6206993cb4b802897b65d5a4a717c21ec8fa7c"
+      }
+    }
+  },
+  "actual_ps_ports": "GP_PS_PORTS.json",
+  "acceptance_top": "gp_ps_control_top"
+}

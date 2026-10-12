@@ -1,0 +1,20 @@
+Reading pref.tcl
+
+# 2025.2
+
+RPC_Init: TCL_ERROR: set rpc_port [split {::1:43067} :]
+if {[llength $rpc_port]>1} {
+  set VsimHost [join [lrange $rpc_port 0 end-1] :]
+  set VsimPort [lindex $rpc_port end]
+} else {
+  set VsimHost localhost
+  set VsimPort $rpc_port
+}
+set client [mti_MakeRPCClient -sigio true $VsimHost $VsimPort -onclose {CloseRPCClient client}]
+set VsimPort
+ -> couldn't open socket: invalid argument
+RPC_Init: Invalid argument
+# Errors: 0, Warnings: 0
+
+vish lost connection to vsim process.
+** Fatal: Exiting VSIM license process.

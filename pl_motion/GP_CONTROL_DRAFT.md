@@ -1,5 +1,7 @@
 # GP 最小控制契约 — 2026-10-12
 
+同日实施进展：本 profile 的 GP RTL、独立/真实转换器集成自检及参考100MHz OOC时序已通过，见 [GP_VALIDATION.md](GP_VALIDATION.md)、[GP_INTEGRATION.md](GP_INTEGRATION.md)。下面保留冻结时的范围和部署门槛；唯一schema的implementation-pending指平台整体尚未完成，不表示已有RTL/仿真证据不存在。PS/HPF/DTS/FSBL及板级仍未验收。
+
 状态：**USER_CONFIRMED_IMPLEMENTATION_PENDING / NOT_DEPLOYABLE**。用户于 2026-10-12 对集中五项提问答复“接受”，确认本文最小 profile。文件名保留供原评审链接继续使用。资源选择与逻辑契约已确认；实际 HPF/DTS、IP、时序和板级证据尚未完成。唯一机器规范为 `pl_interface/schema.json` 的 `gp_control_profiles.gp_control_probe_v1`；所有常量由该源生成，本文是语义说明，不是另一套定义来源。
 
 ## 1. 首轮范围与确认边界

@@ -1,0 +1,105 @@
+standard
+***Report Model: gp_td_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         5   out of    126    3.97%
+  #input                    4
+  #output                   1
+  #inout                    0
+#lut6                    1447   out of  52480    2.76%
+#reg                     3015
+  #slice reg             3015   out of 104960    2.87%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                   2397   out of  52480    4.57%
+  #used ram                 0
+    #dram lut               0
+    #shifter lut            0
+  #used logic            2397
+    #with luts           1317
+    #with adder           130
+    #reg only             950
+#feedthrough             2121
+#f7mux                    188   out of  26240    0.72%
+#f8mux                     94   out of  13120    0.72%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of    240    0.00%
+#pad                        5   out of    126    3.97%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       4   out of     72    5.56%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+Detailed IO Report
+
+     Name       Direction    Location    IOStandard    IOType    DriveStrength    PullType    PackReg    DiffResistor
+    arst_n        INPUT        Y18        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE
+     clk          INPUT         Y9        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE
+     load         INPUT        T15        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE
+  serial_in       INPUT        J20        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE
+  serial_out     OUTPUT        E19        LVCMOS33      HRIO           8            NONE       NONE          NONE
+
+Report Clock Domain Luts:
+
+-------------------------------------------------------------------------------------------------------------
+  Index   |  Name    |  Frequency   |  LUT As Logic   |  LUT As Shifter   |  LUT As Dram   |  BRAM   |  DSP
+-------------------------------------------------------------------------------------------------------------
+  #1      |  gp_clk  |  100MHz      |  1542           |  0                |  0             |  0      |  0
+-------------------------------------------------------------------------------------------------------------
+
+Clock Resource Statistics
+Index     ClockNet     Type            DriverType         Driver          ClockFanout        GclkLocation
+#1        clk_dup_1    InferredGclk    io                 clk_syn_2.di    1752               x79y59z0
+
+Report Hierarchy Area:
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance                               |Module                                     |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |adc    |soc     |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|top                                    |gp_td_probe                                |1317      |130     |3015    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|  dut                                  |gp_ps_control_top                          |1259      |130     |2775    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|    core                               |gp_control_top                             |1257      |130     |2773    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|      converter                        |axi_protocol_converter_merge               |787       |66      |2147    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|        conversion_to_lite$axi_axilite |axi_protocol_converter_lite                |787       |66      |2147    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|          RD$ar_channel                |axi_protocol_converter_lite_ar             |65        |33      |74      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ar_cmd_fsm_0               |axi_protocol_converter_lite_rd_cmd_fsm     |4         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            cmd_translator_0           |axi_protocol_converter_lite_cmd_translator |60        |33      |58      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              incr_cmd                 |axi_protocol_converter_lite_incr_cmd       |23        |21      |19      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              wrap_cmd                 |axi_protocol_converter_lite_wrap_cmd       |35        |12      |38      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          RD$r_channel                 |axi_protocol_converter_lite_r              |441       |0       |1559    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|            rd_data_fifo_0             |axi_protocol_converter_lite_simple_fifo    |318       |0       |1123    |0       |0       |0        |0           |136     |68      |0       |0      |0       |
+|            transaction_fifo_0         |axi_protocol_converter_lite_simple_fifo    |120       |0       |422     |0       |0       |0        |0           |52      |26      |0       |0      |0       |
+|          SI_REG                       |axi_register_slice_top                     |195       |0       |352     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ar_slice                   |axi_register_slice_c                       |54        |0       |108     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            aw_slice                   |axi_register_slice_c                       |56        |0       |108     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            r_slice                    |axi_register_slice_c                       |59        |0       |103     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            b_slice                    |axi_register_slice_c                       |26        |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          WR$aw_channel                |axi_protocol_converter_lite_aw             |64        |33      |74      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            cmd_translator_w           |axi_protocol_converter_lite_cmd_translator |58        |33      |59      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              incr_cmd                 |axi_protocol_converter_lite_incr_cmd       |26        |21      |21      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              wrap_cmd                 |axi_protocol_converter_lite_wrap_cmd       |30        |12      |37      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            cmd_fsm_aw                 |axi_protocol_converter_lite_wr_cmd_fsm     |3         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          WR$b_channel                 |axi_protocol_converter_lite_b              |21        |0       |86      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            bid_fifo                   |axi_protocol_converter_lite_simple_fifo    |9         |0       |62      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            bresp_fifo                 |axi_protocol_converter_lite_simple_fifo    |1         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|      registers                        |gp_control_regs                            |470       |64      |624     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|    write_owner                        |gp_ps_write_adapter                        |2         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+DataNet Average Fanout:
+
+   Index     Fanout    Nets
+    #1         1       2174
+    #2         2       1869
+    #3         3       141
+    #4         4       101
+    #5        5-10     106
+    #6       11-50      73
+    #7       51-100     5
+  Average     2.15

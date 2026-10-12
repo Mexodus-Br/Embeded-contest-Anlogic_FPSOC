@@ -1,0 +1,83 @@
+{
+  "status": "ACTUAL_GENERATED_PS_HDL_PORTS_CHECKED_NOT_BOARD_VERIFIED",
+  "path": "D:\\Works\\Embedded_contest\\dev\\bsp\\work\\gp_soc_prj\\system\\ip\\system_ARM_Processor_System_0\\RTL\\ARM_Processor_System_f6ddd1d59490.v",
+  "sha256": "a2963ecff923a2e67dbc7bc00010da5a917a2b9583b6470265d30c9e67c676ed",
+  "ports": {
+    "master_gp0_axi_aclk": {
+      "direction": "input",
+      "width": 1
+    },
+    "f2p_irq": {
+      "direction": "input",
+      "width": 16
+    },
+    "p2f_rst0_n": {
+      "direction": "output",
+      "width": 1
+    },
+    "master_gp0_axi_awaddr": {
+      "direction": "output",
+      "width": 33
+    },
+    "master_gp0_axi_araddr": {
+      "direction": "output",
+      "width": 33
+    },
+    "master_gp0_axi_awid": {
+      "direction": "output",
+      "width": 12
+    },
+    "master_gp0_axi_arid": {
+      "direction": "output",
+      "width": 12
+    },
+    "master_gp0_axi_awlen": {
+      "direction": "output",
+      "width": 4
+    },
+    "master_gp0_axi_arlen": {
+      "direction": "output",
+      "width": 4
+    },
+    "master_gp0_axi_awsize": {
+      "direction": "output",
+      "width": 2
+    },
+    "master_gp0_axi_arsize": {
+      "direction": "output",
+      "width": 2
+    },
+    "master_gp0_axi_awlock": {
+      "direction": "output",
+      "width": 1
+    },
+    "master_gp0_axi_arlock": {
+      "direction": "output",
+      "width": 1
+    },
+    "master_gp0_axi_wdata": {
+      "direction": "output",
+      "width": 32
+    },
+    "master_gp0_axi_wstrb": {
+      "direction": "output",
+      "width": 4
+    },
+    "master_gp0_axi_bid": {
+      "direction": "input",
+      "width": 12
+    },
+    "master_gp0_axi_rid": {
+      "direction": "input",
+      "width": 12
+    },
+    "master_gp0_axi_rdata": {
+      "direction": "input",
+      "width": 32
+    }
+  },
+  "wid_present": false,
+  "adapter": "gp_ps_control_top: SIZE2/LOCK1 zero extension; serialized AW-ID ownership supplies internal WID",
+  "reset": "p2f_rst0_n connected to PS p2f_clk0_rst_n; boot release still BSP responsibility",
+  "irq": "f2p_irq[15:0] directly feeds macro; GIC INTID114/SPI82 remains board/HPF validation pending"
+}

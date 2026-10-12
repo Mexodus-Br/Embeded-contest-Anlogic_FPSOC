@@ -1,0 +1,144 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Mon Oct 12 08:34:38 2026
+
+Top Model           : gp_td_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 99.56%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp.sdc;
+Confidence          : Placed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 5 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min
+------------------------------------
+Slow     | yes      yes
+Fast     | yes      yes
+
+
+Timing Status
+--------------------
+	SWNS: 5.676ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 0.000ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000         1740   gp_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0   Inferred GCLK            0.000      5.000                10.000         100.000                 4.324         231.267            5.676      0.000            0.000      0.000            0.000             1740                7             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     gp_clk -> gp_clk
+Type           :     Self
+From Clock     :     gp_clk
+To Clock       :     gp_clk
+Min Period     :     4.324ns
+Fmax           :     231.267MHz
+
+Statistics:
+Max            : SWNS      5.676ns, STNS      0.000ns,         0 Viol Endpoints,      6905 Total Endpoints,     82306 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 5.676ns
+Begin Point         : dut/registers/last_id_reg[1]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/registers/irq_pending_reg[7]_syn_2.ia (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 4.196ns (cell 2.080ns (49%), net 2.116ns (51%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT6=3  LUT5=2  LUT4=2 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=1740)                           0.000          0.000          net: clk_syn_53,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: dut/registers/last_id_reg[1]_syn_2.clk
+launch edge                             0.000    r     0.000
+--------------------------------------------------------------------  ---------------
+clk2q               x094y069z1          0.175    r     0.175          pin: dut/registers/last_id_reg[1]_syn_2.oqa
+net (fo=3)                              0.343          0.518          net: dut/registers/last_id[1],  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(855)
+                                                                      pin: dut/registers/phase_reg[3]_syn_184.ib
+LUT4                x094y076z0          0.324    f     0.842       1  pin: dut/registers/phase_reg[3]_syn_184.ofa
+net (fo=1)                              0.329          1.171          net: dut/registers/phase_reg[3]_syn_12,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(953)
+                                                                      pin: dut/registers/phase_reg[3]_syn_185.ia
+LUT5                x093y073z1          0.240    r     1.411       2  pin: dut/registers/phase_reg[3]_syn_185.ofb
+net (fo=1)                              0.215          1.626          net: dut/registers/phase_reg[3]_syn_14,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(953)
+                                                                      pin: dut/registers/duplicate_reg_syn_3.ic
+LUT6                x093y072z7          0.210    r     1.836       3  pin: dut/registers/duplicate_reg_syn_3.ofb
+net (fo=1)                              0.425          2.261          net: dut/registers/duplicate_n1,  NOFILE(0)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[16]_reg[2]_syn_2.ic
+LUT5                x087y073z7          0.287    f     2.548       4  pin: dut/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[16]_reg[2]_syn_2.ofa
+net (fo=7)                              0.532          3.080          net: dut/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: dut/registers/phase_reg[3]_syn_193.ic
+LUT4                x097y071z4          0.150    f     3.230       5  pin: dut/registers/phase_reg[3]_syn_193.ofb
+net (fo=1)                              0.136          3.366          net: dut/registers/irq_pending_b[0]_syn_2,  NOFILE(0)
+                                                                      pin: dut/registers/irq_pending_b[0]_syn_31.ia
+LUT6                x097y071z3          0.238    r     3.604       6  pin: dut/registers/irq_pending_b[0]_syn_31.ofb
+net (fo=6)                              0.136          3.740          net: dut/registers/irq_pending_b[0]_syn_21,  NOFILE(0)
+                                                                      pin: dut/registers/irq_pending_reg[7]_syn_2.ia
+LUT6 (reg)          x097y071z2          0.456    r     4.196       7  net: dut/registers/irq_pending[7],  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(853)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.196
+
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=1740)                           0.000          0.000          net: clk_syn_53,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: dut/registers/irq_pending_reg[7]_syn_2.clk
+capture edge                           10.000    r    10.000
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932
+clock uncertainty                      -0.060          9.872
+clock pessimism                         0.000          9.872
+--------------------------------------------------------------------  ---------------
+Required                                               9.872
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.676
+
+Slack               : 5.806ns

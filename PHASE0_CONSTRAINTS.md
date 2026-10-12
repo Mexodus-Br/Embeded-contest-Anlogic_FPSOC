@@ -1,5 +1,7 @@
 # Phase 0 基础约束确认清单
 
+2026-10-12 GP实现补充：用户在BSP任务答复“授权PL任务继续实现”。冻结profile的GP寄存器与真实TD转换器独立/集成自检通过，实际PS端口A33/D32/ID12、无WID及SIZE2/LOCK1已核对，添加单笔AW–B/WLAST所有权适配并自检通过；最终PS封装参考speed2固定10ns OOC门级SWNS+3.013ns、route+3.533ns/hold+0.025ns；原单轴/四轴/连续与接口回归再次通过。完整结果及失败记录见 pl_motion/GP_VALIDATION.md，BSP接线/共同p2f_reset0建议见 GP_INTEGRATION.md；实际PS/HPF/DTS/FSBL、系统时序和板级仍待核验。冻结资源/行为不变、首轮无电机输出/DMA。
+
 ## 2026-10-12 GP 最小控制 profile 确认（覆盖相关待定项）
 
 用户对集中五项 GP 契约答复“接受”。唯一规范为 `pl_interface/schema.json` 的 `gp_control_profiles.gp_control_probe_v1`，完整说明见 [GP_CONTROL_DRAFT.md](pl_motion/GP_CONTROL_DRAFT.md)（保留评审文件名，已确认）。首轮 NOP/SNAPSHOT/测试 MMIO/电平 IRQ；GP0 AXI3 A33/D32/ID12 → Anlogic Protocol Converter 1.0 → Lite，窗口 0x80400000/4KiB；f2p_irq[0] 约定 INTID114/SPI82/level-high。资源选择已确认，实际生成 IP/HPF/DTS 和地址冲突/IRQ 映射仍须核验。

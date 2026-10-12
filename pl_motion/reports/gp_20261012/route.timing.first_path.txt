@@ -1,0 +1,150 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Mon Oct 12 08:35:16 2026
+
+Top Model           : gp_td_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 99.56%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp.sdc;
+Confidence          : Routed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 5 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min
+------------------------------------
+Slow     | yes      yes
+Fast     | yes      yes
+
+
+Timing Status
+--------------------
+	SWNS: 4.186ns, STNS: 0.000ns
+	HWNS: 0.033ns, HTNS: 0.000ns
+	Period Check WNS: 0.000ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000         1740   gp_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0   Inferred GCLK            0.000      5.000                10.000         100.000                 5.814         171.999            4.186      0.000            0.033      0.000            0.216             1740                7             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     gp_clk -> gp_clk
+Type           :     Self
+From Clock     :     gp_clk
+To Clock       :     gp_clk
+Min Period     :     5.814ns
+Fmax           :     171.999MHz
+
+Statistics:
+Max            : SWNS      4.186ns, STNS      0.000ns,         0 Viol Endpoints,      6905 Total Endpoints,     82306 Paths Analyzed
+Min            : HWNS      0.033ns, HTNS      0.000ns,         0 Viol Endpoints,      6905 Total Endpoints,     82306 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 4.186ns
+Begin Point         : dut/registers/argument_reg[22]_syn_2.clk (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/registers/result_error_reg[0]_syn_39.imb (rising edge triggered by clock gp_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { gp_clk rising@10.000ns - gp_clk rising@0.000ns }
+Data Path Delay     : 5.599ns (cell 1.727ns (30%), net 3.872ns (70%))
+Clock Skew          : 0.087ns
+Logic Level         : 6 ( LUT5=2  LUT4=2  LUT6=1  LUT3=1 )
+Max Fanout          : 10
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.616          3.430          net: clk_syn_53,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=931)                            0.823          4.253          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/registers/argument_reg[22]_syn_2.clk
+launch edge                             0.000    r     4.253
+--------------------------------------------------------------------  ---------------
+clk2q               x088y078z2          0.175    r     4.428          pin: dut/registers/argument_reg[22]_syn_2.oqa
+net (fo=3)                              0.463          4.891          net: dut/registers/argument[22],  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(852)
+                                                                      pin: dut/registers/argument_reg[22]_syn_2.ic
+LUT4                x088y078z2          0.150    f     5.041       1  pin: dut/registers/argument_reg[22]_syn_2.ofb
+net (fo=1)                              0.906          5.947          net: dut/registers/phase_reg[3]_syn_95,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(953)
+                                                                      pin: dut/registers/last_argument_reg[22]_syn_2.ic
+LUT5                x088y078z5          0.287    f     6.234       2  pin: dut/registers/last_argument_reg[22]_syn_2.ofa
+net (fo=1)                              0.216          6.450          net: dut/registers/phase_reg[3]_syn_97,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(953)
+                                                                      pin: dut/registers/captured_argument_reg[26]_syn_2.ib
+LUT6                x087y077z6          0.241    r     6.691       3  pin: dut/registers/captured_argument_reg[26]_syn_2.ofb
+net (fo=1)                              0.491          7.182          net: dut/registers/phase_reg[3]_syn_111,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(953)
+                                                                      pin: dut/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[16]_reg[2]_syn_2.imf
+LUT5                x087y073z7          0.212    f     7.394       4  pin: dut/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/memory[16]_reg[2]_syn_2.ofa
+net (fo=7)                              0.672          8.066          net: dut/registers/write_response_b2_n12,  NOFILE(0)
+                                                                      pin: dut/registers/phase_reg[3]_syn_197.ic
+LUT4                x094y070z7          0.287    f     8.353       5  pin: dut/registers/phase_reg[3]_syn_197.ofa
+net (fo=10)                             0.425          8.778          net: dut/registers/ack_valid_n4_dup_59,  NOFILE(0)
+                                                                      pin: dut/registers/ack_valid_reg_syn_7.ia
+LUT3                x094y067z7          0.240    r     9.018       6  pin: dut/registers/ack_valid_reg_syn_7.ofb
+net (fo=1)                              0.699          9.717          net: dut/registers/ack_valid_reg_syn_3,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(953)
+                                                                      pin: dut/registers/result_error_reg[0]_syn_39.imb
+reg                 x094y067z6          0.135    r     9.852          net: dut/registers/ack_valid,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/gp_control_regs.v(857)
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.852
+
+source latency                          0.000          0.000
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=4)                              0.554          3.175          net: clk_syn_53,  D:/Works/Embedded_contest/dev/pl_motion/build/td_gp_verified/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=931)                            0.736          3.911          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/registers/result_error_reg[0]_syn_39.clk
+capture edge                           10.000    r    13.911
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.843
+clock uncertainty                      -0.060         13.783
+clock pessimism                         0.255         14.038
+--------------------------------------------------------------------  ---------------
+Required                                              14.038
+--------------------------------------------------------------------  ---------------
+Slack                                                  4.186
+
+Slack               : 4.231ns
