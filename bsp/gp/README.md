@@ -1,6 +1,6 @@
 # GP最小控制软件
 
-2026-10-12。权威契约为 `pl_interface/schema.json` 的 `gp_control_probe_v1`（确认提交ca50bbf），不是本目录另设地址表。用户已确认platform驱动＋字符设备方案。软件已在虚拟机192.168.43.133、原配套内核树实际构建。PL交付cc16fe2已集成，真实PS＋GP完成bitgen、含bitstream的HPF与匹配FSBL、BOOT.bin及完整SD镜像；**PS内部时钟模型已修复，完整重布线通过，最终GP节点okay；同一SD烧写、512MiB直接读回及文件系统检查通过。用户结束本次任务，冷启动/GP/IRQ/快照实板验收未执行**。详细实际结果和重建步骤见[BUILD_STATUS.md](BUILD_STATUS.md)。
+2026-10-12。权威契约为 `pl_interface/schema.json` 的 `gp_control_probe_v1`（确认提交ca50bbf），不是本目录另设地址表。用户已确认platform驱动＋字符设备方案。软件在虚拟机192.168.43.133原配套内核树构建；PL交付cc16fe2已集成，真实PS＋GP完成bitgen、含bitstream的HPF、匹配FSBL/BOOT.bin及完整SD镜像。**时钟模型修复后完整重布线通过；SD完整读回、一次用户冷启动和GP/IRQ/空闲四轴快照41项实板检查通过。动态运动、DMA和电机未验证。**详细结果和重建步骤见[BUILD_STATUS.md](BUILD_STATUS.md)。
 
 ## 软件与访问边界
 
@@ -30,7 +30,7 @@ python bsp/scripts/check_gp_contract.py
 
 已通过stage_gp_rootfs.sh重新打包256MiB rootfs，安装本次模块和gp-accept、运行depmod，并安装已经修正的 `bsp/scripts/board_readonly_check.sh`；现有完整Linux构建及finalize脚本已安装该检查脚本。直接读取EXT4文件内的三份新增/更新产物哈希已匹配，e2fsck通过，见../evidence/gp-rootfs-stage.log与gp-software-manifest.json。最终镜像绑定新SD根PARTUUID=20ae01e9-02，原发布镜像仍为d0e414b9-02；最终启用GP重新打包后必须以新manifest为准，不能沿用旧UUID。保留原发布包及eMMC原系统。
 
-## 首轮板上流程（尚未执行）
+## 首轮板上流程（已执行一次，证据见BUILD_STATUS）
 
 1. 新PL自检和实际系统时序/地址/IRQ/DDR审查通过，生成匹配HPF→FSBL→bitstream→BOOT.bin及DTS，才启用probe节点。审查镜像后核对目标SD身份并按已有授权部署；目标不明或换卡先确认。
 2. 明确板卡状态、串口空闲后启动 `python bsp/scripts/capture_serial.py --log bsp/evidence/<唯一名称>.log --seconds 300`。该脚本COM4/115200/8N1、DTR/RTS=false，只接收原始字节。就绪后由用户冷启动，保存FSBL→U-Boot→Linux，核对PL实际版本、加载输入及SD根PARTUUID。

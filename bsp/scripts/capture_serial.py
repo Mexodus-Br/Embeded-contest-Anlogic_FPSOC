@@ -14,6 +14,8 @@ def main():
     p.add_argument('--port', default='COM4')
     p.add_argument('--seconds', type=float, default=300)
     p.add_argument('--log', type=Path, required=True)
+    p.add_argument('--stop-file', type=Path,
+                   help='Finish and save metadata when this host file appears')
     a = p.parse_args()
     if a.seconds <= 0:
         p.error('seconds must be positive')
@@ -33,6 +35,8 @@ def main():
             print('SERIAL_CAPTURE_READY: user may perform authorized cold boot', flush=True)
             deadline = time.monotonic() + a.seconds
             while time.monotonic() < deadline:
+                if a.stop_file and a.stop_file.exists():
+                    break
                 chunk = s.read(65536)
                 if chunk:
                     output.write(chunk)

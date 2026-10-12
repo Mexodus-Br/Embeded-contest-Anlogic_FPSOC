@@ -1,8 +1,21 @@
-# SD实板只读核对
+# SD启动与GP实板核对
 
-2026-10-12 GP批次：已构建最终GP镜像，PS内部GEN_PL_GP0S时钟模型已修复并完整重布线通过；SD重新烧写、512MiB直接读回哈希与FAT/EXT4检查通过，根PARTUUID为20ae01e9-02。本批尚未冷启动、打开COM4或验收GP/IRQ/快照。下面结果均为原PS-only SD基线。新批次状态见[gp/BUILD_STATUS.md](gp/BUILD_STATUS.md)。
+2026-10-12 GP批次：最终GP镜像构建与SD完整读回通过，用户装卡上电后采集FSBL→U-Boot→Linux日志。SD根20ae01e9-02、1GiB和128MiB CMA确认，GP/IRQ/空闲四轴快照41项验收通过。实际范围见[gp/BUILD_STATUS.md](gp/BUILD_STATUS.md)。
 
-用户已结束本次任务（板卡不在手边）。新GP镜像的启动、GP、IRQ、时间戳/快照均记为NOT_TESTED，不沿用原PS-only基线结果作为本批通过证据。
+用户曾因板卡不在手边结束任务，提交eb68206时尚未板测；随后明确装卡、接串口并上电，以下新增证据替代该历史NOT_TESTED状态。原PS-only结果单独保留。
+
+## 2026-10-12 GP新镜像：一次冷启动和首轮验收
+
+- COM4 115200/8N1、DTR/RTS=false；就绪后由用户上电，无自动复位或串口控制线切换。FSBL识别SD（mmc@0xf8049000/MSSD0）、读取1:/BOOT.bin并加载PL、释放GP common reset0；U-Boot读取boot.scr/DTB/kernel，Linux成功进入登录。Boot模式文字EMMC or SD本身不作为来源证据，结合明确SD识别和文件加载记录。
+- Linux6.1.111-rt42-bsp-sd1、Buildroot2022.02.6；根mmcblk0p2、179:2、EXT4，sysfs type=SD，PARTUUID20ae01e9-02。Linux物理映射1048576KiB，MemTotal1013516KiB，CmaTotal131072KiB；只证明映射/预留，不是DDR/CMA压力验收。eMMC mmcblk1枚举但未挂载，未修改。
+- 配套.config SHA256、模块/测试程序SHA256及vermagic门禁通过后显式modprobe bsp_gp。设备窗口0x80400000/4KiB，VERSION1/CAPS0xf/FEATURES0x7/TICK_HZ1000000匹配。树外模块taint提示为本次已知来源。
+- gp-accept退出0、GP_ACCEPT_PASS checks=41：4种scratch写/读，软件拒绝运动opcode，NOP/SNAPSHOT应答及重复缓存保持、快照ID/valid一致性、空闲四轴0/invalid/NOT_READY状态、时间戳推进。20177tick/host0.020199秒只做粗略1MHz合理性检查。
+- IRQ mask锁存、持续源W1C保持、poll唤醒、清源后W1C清除、无风暴、retrigger及ACK IRQ通过。实板Linux IRQ24/GIC INTID114（SPI82）、Level，验收结束计数3，Err0。命令/快照事件不表示运动完成；空闲快照不证明动态运动源原子性。
+- 原始日志evidence/gp-coldboot-20261012-01.log、gp-board-accept-20261012-01.log；旁边JSON保存原始字节SHA256和串口参数，gp-board-validation.json汇总。冷启动接收被中断后重建元数据，明确未执行原finally；接受测试日志正常保存元数据。原始字节和终端回显不改写。
+
+尚未验证：反复冷/暖启动、长期存储/DDR/CMA、实物DDR1.35V/颗粒/速度等级、动态快照、运动DMA/HP0/CDC、实际运动和实体电机。结束时串口关闭，模块保留加载，测试文件关闭清源/屏蔽；未进行自动重启、DMA或电机操作。
+
+## 历史：2026-10-11 PS-only基线
 
 2026-10-11（Asia/Taipei）。用户确认板卡从SD启动、COM4可进入后，通过COM4/115200/8N1连接，DTR/RTS=false。收到root shell；本次没有重启、加载模块、MMIO访问、DMA/内存压力或主动存储写测试。运行系统自身的rw挂载不等同只读挂载。
 

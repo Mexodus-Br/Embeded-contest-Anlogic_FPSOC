@@ -1,6 +1,6 @@
 # GP BSP 构建检查点
 
-2026-10-12，Asia/Taipei。**最终GP镜像已构建并通过主机检查；同一SD重新烧写、512MiB直接读回及FAT/EXT4检查通过。用户因板卡不在手边结束本次任务；冷启动/GP/IRQ/快照实板验收未执行。**
+2026-10-12，Asia/Taipei。**最终GP镜像构建、同一SD完整烧写/读回、用户上电后的FSBL→U-Boot→Linux启动，以及41项无运动GP/IRQ/空闲快照验收通过。实物DDR供电/颗粒、动态运动快照、DMA和电机仍未验证。**
 
 | 项目 | 实际结果 |
 |---|---|
@@ -12,9 +12,9 @@
 | 路径时序 | 参考speed=2、10ns，完整重建route setup +3.211ns、hold +0.030ns，PS捕获路径纳入，STA coverage 99.99%；参考speed=2，不代表实物等级已确认 |
 | HPF/FSBL/BOOT | HPF内bit字节匹配本次bitgen；隔离SDK平台生成FSBL，bootgen生成BOOT.bin；SDK/平台源码、map、符号、反汇编已保存 |
 | DDR | HPF实际1.35V/32bit/1333MT/s，两片x16/4096Mbit；与已启动基线的soc_plat.c差异仅新增GP normal-access保护写，DDR初始化不变 |
-| DTS | GP地址/IRQ格式检查通过，status=okay；内存1GiB/CMA128MiB沿用；GP模块仅安装，尚未板上加载 |
-| SD部署/启动 | 完整512MiB写入和直接读回SHA256匹配，FAT/EXT4检查通过，根20ae01e9-02；未冷启动或打开COM4，原SD基线结果不替代新镜像结果 |
-| GP/IRQ/快照 | 尚未板测。首轮仅NOP/SNAPSHOT、空闲四轴快照；事件完成不等同实际运动完成 |
+| DTS | GP节点okay；实板模块身份probe通过，地址0x80400000/4KiB，GIC INTID114/SPI82、level-high |
+| SD部署/启动 | 512MiB完整读回哈希、FAT/EXT4通过；用户上电完整启动日志已采集，FSBL识别SD并加载PL、释放common reset0，Linux根mmcblk0p2/20ae01e9-02；1GiB/CMA128MiB确认 |
+| GP/IRQ/快照 | GP_ACCEPT_PASS checks=41/退出0；版本/能力、scratch、NOP/SNAPSHOT ACK、重复完整帧、时间戳推进、空闲四轴/invalid快照、IRQ清源/W1C/retrigger/ACK通过。事件完成不等同运动完成 |
 
 ## PS时钟警告定位与修复
 
@@ -61,3 +61,11 @@ DDR实物供电/颗粒/训练、实物speed grade、长期DDR/CMA/存储稳定�
 成功原始证据为../evidence/gp-sd-rewrite.log、gp-sd-rewrite-transport.log，部署元数据更新至gp-release-manifest.json；不可变交付包及其哈希未改变。完整512MiB写入93.3569秒、直接读回87.4153秒。本次未见新的USB复位或块I/O错误，但不视为长期可靠性验收。
 
 用户随后明确本次任务结束，板卡不在手边。本批交付范围结束于镜像构建与SD主机部署通过；未打开COM4，完整冷启动、GP寄存器/命令、GIC IRQ触发/清除/恢复以及时间戳/四轴快照实板验收均未执行。eMMC保留。首轮板上步骤和受限验收脚本已准备，留待后续任务执行；本批按此实际范围提交Git。
+
+## 后续恢复：2026-10-12 19:12–19:14 实板首轮通过
+
+用户随后装卡并连接串口，要求先准备记录再通知上电；COM4以115200/8N1、DTR/RTS=false只接收，就绪后用户上电。保存原始字节gp-coldboot-20261012-01.log：FSBL明确Identify Card: SD、drv is sd、bootfile 1:/BOOT.bin，PL init done，BSP GP common reset0 released；U-Boot 2021.01读取boot.scr、DTB/kernel，Linux6.1.111-rt42-bsp-sd1成功进入Buildroot登录。开头少量非文本字节和FSBL探测CMD1错误原样保留；随后SD识别和全链成功，不把探测错误标为启动失败。该次接收进程被中断以释放COM4，未执行原脚本finally；冷启动元数据按已保存字节重建并明确说明，文件字节哈希已保存。后续capture_serial支持--stop-file以正常结束并保存元数据。
+
+随后通过串口登录，board_gp_accept.sh经sh标准输入运行。修正版bsp-readonly-check通过，实际根mmcblk0p2/type SD/20ae01e9-02，1GiB物理映射、CMA131072KiB；eMMC枚举但未挂载。脚本严格匹配.config、bsp_gp.ko、gp-accept哈希和vermagic后才加载模块。probe VERSION1/CAPS0xf/FEATURES0x7/TICK_HZ1000000匹配；gp-accept的41项均PASS，最终退出0。测试IRQ两次和ACK IRQ一次，Linux IRQ24/GIC114 level累计3，Err=0。时间戳20177tick对应host0.020199秒，仅粗略1MHz核对；四轴均空闲0/invalid，NOT_READY和重复快照保持验证通过，不证明变化运动源原子性或真实到位。
+
+串口原始证据为../evidence/gp-board-accept-20261012-01.log及两份日志.json；结构化汇总gp-board-validation.json和gp-release-manifest.json。bsp_gp作为树外模块产生预期taint提示；板上未见总线abort、MMC CRC/timeout或中断风暴。结束时串口关闭，板卡仍在root shell，bsp_gp保留加载，测试文件关闭清源/屏蔽；未执行电机、DMA、复位/重启或存储压力。QSPI gd25q256/声明gd25lb256e差异及DDR物理验证项仍保留。
