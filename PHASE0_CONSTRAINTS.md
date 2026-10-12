@@ -152,3 +152,13 @@ sequence 为逻辑 u32，从 0 严格连续不回绕；当前会话重复/缺号
 在既有连续逻辑契约下，将输入捕获、signed65 差分、绝对值、两级 max 与预算检查分级寄存；记录元数据完整保留，取消作废整条规划链。规划延迟/无背压请求间隔从原非零 65/67 拍变为 71/73 拍，驻留为 6/8 拍；上游需更新提前量预算，逻辑口/精确 duration/同拍边界/END/暂停/安全停止没有变更。100 拍最短 duration 和预检截止前后逐拍试验通过，见 pl_motion/TIMING.md。
 
 TD 2026.1 SP2、DR1M90GEG400 参考 speed=2 的连续顶层夹具：固定 10ns，门级 SWNS +0.497ns、布线 SWNS +0.688ns/hold +0.020ns。参考 speed 不作为实物已确认值；包装自动 IO 放置不作为板脚，真实 IO/时钟抖动/CDC/复位约束未签核，check_timing 仍有悬空物理输出及未设 IO delay 诊断。单轴/四轴接口与 Golden 基线回归保持。未下载板卡或接电机；下一步应确认实物器件与真实顶层约束，再评估系统级硬件接入。
+
+## 13. 2026-10-12 独立 DMA / HP0 回环契约
+
+用户集中答复“接受以上契约”：新增DMA窗口0x80500000/4KiB，完整A33译码、前1KiB为原厂控制寄存器，D32完整字写；保留原GP0x80400000/4KiB及f2p_irq[0]/SPI82。MM2S使用bit1/SPI83/INTID115，S2MM使用bit2/SPI84/INTID116，均level-high；新增两路实板映射由BSP验收。
+
+沿用当前Anlogic AXI DMA1.0/HP0，memory和stream64、DMA地址32补高位0接实际HP0 A33/D64/ID6；实际LEN4/SIZE2/LOCK1/QoS4、无WID，使用真实AXI4→AXI3转换器。所有Lite/MM/stream/HP时钟同H16 100MHz，ASYNC0。双向开启，SG/Micro/额外status-control关闭，DRE/SF双向开启、burst16、BTT16，合法长度1..65535B、DMA地址8B对齐，由Linux设备DMA API分配。没有冻结80B/128B运动记录或DDR固定buffer地址。
+
+本PL回环FIFO16拍数据容量128B，透传DATA/KEEP/LAST/USER/ID/DEST，满则背压；每条MM2S传输一包，先投同长度S2MM。任一原厂primary reset或common reset低清全部有效队列，两个方向都恢复后2拍放行；运行中取消要求BSP阻断新提交、terminate_sync、协调reset两个方向并确认DDR静止后重用buffer/建立新generation。单方向reset/W1C不能作为恢复证明。DMA-only恢复保持GP时间戳；common p2f_rst0_n仍是整域epoch reset，仅启动/受控重建使用。
+
+唯一规范与交付见pl_interface/schema.json、pl_dma/DMA_HANDOFF.md。真实IP仿真与原GP/运动/接口/Golden回归通过；OOC10ns route setup+2.956ns/hold+0.026ns，隔离真实PS＋GP0＋HP0参考setup+3.117ns/hold+0.020ns，无critical warning；参考speed2不视为实物确认。厂商内部dummy node2等remaining诊断保留，由BSP最终工程审核；LinuxDMA/新IRQ/DDR-cache/吞吐与实板回环未验收。本批不修改BSP、接运动FIFO或电机，不生成启动部署镜像。

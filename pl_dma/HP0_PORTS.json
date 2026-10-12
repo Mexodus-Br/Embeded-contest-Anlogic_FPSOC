@@ -1,0 +1,209 @@
+{
+  "status": "ACTUAL_GENERATED_HP0_PORTS_AUDITED",
+  "board_verified": false,
+  "source_configuration": "D:\\Works\\Embedded_contest\\dev\\bsp\\work\\gp_soc_prj\\system\\ip\\system_ARM_Processor_System_0\\Design.xml",
+  "source_configuration_sha256": "65a60e9c658f20deaf4b818fa406e66edae9dafd5c2f90025a7900d79baeaf32",
+  "generation": "vendor xmlipgen, HP0 enable only in isolated PL build copy",
+  "generated_raw": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ps\\RTL\\ARM_Processor_System_f6ddd1d59490.v",
+  "raw_sha256": "7cfbddbb88c6b914fa88b1e2b7ec50d53aa54d3948b00ec96ce9f73d78bb3db1",
+  "ports": {
+    "slave_hp0_axi_aclk": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_araddr": {
+      "direction": "input",
+      "width": 33,
+      "expression": "32"
+    },
+    "slave_hp0_axi_arburst": {
+      "direction": "input",
+      "width": 2,
+      "expression": "1"
+    },
+    "slave_hp0_axi_arcache": {
+      "direction": "input",
+      "width": 4,
+      "expression": "3"
+    },
+    "slave_hp0_axi_arid": {
+      "direction": "input",
+      "width": 6,
+      "expression": "5"
+    },
+    "slave_hp0_axi_arlen": {
+      "direction": "input",
+      "width": 4,
+      "expression": "3"
+    },
+    "slave_hp0_axi_arlock": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_arprot": {
+      "direction": "input",
+      "width": 3,
+      "expression": "2"
+    },
+    "slave_hp0_axi_arqos": {
+      "direction": "input",
+      "width": 4,
+      "expression": "3"
+    },
+    "slave_hp0_axi_arready": {
+      "direction": "output",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_arsize": {
+      "direction": "input",
+      "width": 2,
+      "expression": "1"
+    },
+    "slave_hp0_axi_arvalid": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_awaddr": {
+      "direction": "input",
+      "width": 33,
+      "expression": "32"
+    },
+    "slave_hp0_axi_awburst": {
+      "direction": "input",
+      "width": 2,
+      "expression": "1"
+    },
+    "slave_hp0_axi_awcache": {
+      "direction": "input",
+      "width": 4,
+      "expression": "3"
+    },
+    "slave_hp0_axi_awid": {
+      "direction": "input",
+      "width": 6,
+      "expression": "5"
+    },
+    "slave_hp0_axi_awlen": {
+      "direction": "input",
+      "width": 4,
+      "expression": "3"
+    },
+    "slave_hp0_axi_awlock": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_awprot": {
+      "direction": "input",
+      "width": 3,
+      "expression": "2"
+    },
+    "slave_hp0_axi_awqos": {
+      "direction": "input",
+      "width": 4,
+      "expression": "3"
+    },
+    "slave_hp0_axi_awready": {
+      "direction": "output",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_awsize": {
+      "direction": "input",
+      "width": 2,
+      "expression": "1"
+    },
+    "slave_hp0_axi_awvalid": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_bid": {
+      "direction": "output",
+      "width": 6,
+      "expression": "5"
+    },
+    "slave_hp0_axi_bready": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_bresp": {
+      "direction": "output",
+      "width": 2,
+      "expression": "1"
+    },
+    "slave_hp0_axi_bvalid": {
+      "direction": "output",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_rdata": {
+      "direction": "output",
+      "width": 64,
+      "expression": "Slave_AXI_HP0_DATA_WIDTH-1"
+    },
+    "slave_hp0_axi_rid": {
+      "direction": "output",
+      "width": 6,
+      "expression": "5"
+    },
+    "slave_hp0_axi_rlast": {
+      "direction": "output",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_rready": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_rresp": {
+      "direction": "output",
+      "width": 2,
+      "expression": "1"
+    },
+    "slave_hp0_axi_rvalid": {
+      "direction": "output",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_wdata": {
+      "direction": "input",
+      "width": 64,
+      "expression": "Slave_AXI_HP0_DATA_WIDTH-1"
+    },
+    "slave_hp0_axi_wlast": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_wready": {
+      "direction": "output",
+      "width": 1,
+      "expression": ""
+    },
+    "slave_hp0_axi_wstrb": {
+      "direction": "input",
+      "width": 8,
+      "expression": "Slave_AXI_HP0_DATA_WIDTH/8-1"
+    },
+    "slave_hp0_axi_wvalid": {
+      "direction": "input",
+      "width": 1,
+      "expression": ""
+    }
+  },
+  "wid_present": false,
+  "gp0_preserved": true,
+  "reset_port": {
+    "direction": "output",
+    "width": 1,
+    "expression": ""
+  },
+  "configuration_sha256": "d12bcbab07dd64c7f00166be28d714e07df702b98e661c45f791c71410f0b989"
+}

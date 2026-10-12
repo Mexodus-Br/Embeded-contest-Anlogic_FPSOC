@@ -57,6 +57,17 @@ def validate(s):
             for n in p['axi'][key]:
                 if n not in supported or regs[n]['access'] not in accesses:raise ValueError('GP strobe/access mismatch')
         if set(p['axi']['byte_strobe_registers'])&set(p['axi']['full_strobe_registers']):raise ValueError('GP strobe overlap')
+    for name,p in s.get('dma_loopback_profiles',{}).items():
+        a=p['address']; q=p['parameters']; irq=p['irq']
+        if a['base']%4096 or a['size']!=4096 or a['register_span']!=1024 or a['address_width']!=33 or a['data_width']!=32:raise ValueError('DMA window')
+        for g in s.get('gp_control_profiles',{}).values():
+            b=g['address']
+            if max(a['base'],b['base'])<min(a['base']+a['size'],b['base']+b['size']):raise ValueError('DMA/GP overlap')
+            if g['irq']['pl_line'] in [irq['mm2s_line'],irq['s2mm_line']]:raise ValueError('DMA/GP IRQ collision')
+        if irq['mm2s_line']==irq['s2mm_line'] or irq['mm2s_intid']!=irq['mm2s_spi']+32 or irq['s2mm_intid']!=irq['s2mm_spi']+32:raise ValueError('DMA IRQ mapping')
+        if q['AL_INCLUDE_SG'] or q['AL_MICRO_DMA'] or q['AL_PRMRY_IS_ACLK_ASYNC'] or q['AL_SG_INCLUDE_STSCNTRL_STRM']:raise ValueError('DMA simple synchronous profile')
+        if p['maximum_transfer_bytes']!=(1<<q['AL_SG_LENGTH_WIDTH'])-1 or p['fifo_depth']<2:raise ValueError('DMA length/FIFO')
+        if any(q[k]!=p['clock_hz'] for k in q if k.endswith('FREQ_HZ')):raise ValueError('DMA frequency')
     for n,f in s['frames'].items():
         occupied=set(); fieldnames=set()
         for x in f['fields']:
@@ -91,6 +102,16 @@ def constants(s):
         regs={r['name']:r for r in s['registers']}
         for n,fields in p['field_restrictions'].items():
             out[pre+'_'+n+'_MASK']=sum(((1<<f['width'])-1)<<f['lsb'] for f in regs[n]['fields'] if f['name'] in fields)
+    for name,p in s.get('dma_loopback_profiles',{}).items():
+        pre='DMA_'+name.upper()
+        for key,value in p['address'].items():
+            if isinstance(value,int) and not isinstance(value,bool):out[pre+'_'+key.upper()]=value
+        for key,value in p['irq'].items():
+            if isinstance(value,int) and not isinstance(value,bool):out[pre+'_IRQ_'+key.upper()]=value
+        for key in ['clock_hz','memory_address_width','hp_address_width','hp_id_width','stream_width','fifo_depth','maximum_transfer_bytes','minimum_transfer_bytes','address_alignment_bytes']:
+            out[pre+'_'+key.upper()]=p[key]
+        for key,value in p['parameters'].items():out[pre+'_'+key]=value
+        for key,value in p.get('control_registers',{}).items():out[pre+'_REG_'+key]=value
     for n,f in s['frames'].items():
         pre=n.upper(); out[pre+'_LENGTH']=f['length']
         for x in f['fields']:
@@ -103,7 +124,7 @@ def constants(s):
 
 def outputs(s):
     digest=hashlib.sha256(SOURCE.read_bytes()).hexdigest()
-    banner='Generated from schema.json SHA256 '+digest+'; GP profiles explicitly confirmed; other layouts/semantics DRAFT.'
+    banner='Generated from schema.json SHA256 '+digest+'; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT.'
     c=['/* '+banner+' */','#ifndef PL_INTERFACE_DEFS_H','#define PL_INTERFACE_DEFS_H','#include <stdint.h>']
     v=['// '+banner,'`ifndef PL_INTERFACE_DEFS_VH','`define PL_INTERFACE_DEFS_VH']
     for n,val in constants(s).items():
@@ -129,6 +150,15 @@ def outputs(s):
         table.extend(['','Supported commands: '+', '.join(p['supported_commands'])+'.',
                       'Supported ACK errors: '+', '.join(p['supported_errors'])+'.',
                       'INIT/NOT_READY only; CAPS axis slots do not authorize motion. See '+p['documentation']+' and schema profile for complete semantics.'])
+    for name,p in s.get('dma_loopback_profiles',{}).items():
+        a=p['address'];irq=p['irq']
+        table.extend(['','## '+name,'',p['status']+'; confirmed '+p['confirmation']['date']+'.',
+                      '',f"Window 0x{a['base']:08X}/0x{a['size']:X}; register span 0x{a['register_span']:X}; full aligned D32 writes only.",
+                      f"MM2S line {irq['mm2s_line']}/SPI{irq['mm2s_spi']}; S2MM line {irq['s2mm_line']}/SPI{irq['s2mm_spi']}; {irq['trigger']}.",
+                      f"Shared {p['clock_hz']}Hz; stream {p['stream_width']}bit; FIFO {p['fifo_depth']} beats; transfer {p['minimum_transfer_bytes']}..{p['maximum_transfer_bytes']} bytes.",
+                      '', 'Native vendor register behavior with the profile guard; no motion record layout is frozen.',
+                      '', '| Offset | DMA register |', '| --- | --- |'])
+        table.extend(f'| 0x{v:03X} | {n} |' for n,v in p['control_registers'].items())
     err=['<!-- '+banner+' -->','# Error candidate table','','| Code | Name | Severity | State impact | Report |','| --- | --- | --- | --- | --- |']
     err += [f"| 0x{e['value']:04X} | {e['name']} | {e['severity']} | {e['impact']} | {e['report']} |" for e in s['errors']]
     return {'interface_defs.h':'\n'.join(c),'interface_defs.vh':'\n'.join(v),'registers.md':'\n'.join(table)+'\n','errors.md':'\n'.join(err)+'\n'}

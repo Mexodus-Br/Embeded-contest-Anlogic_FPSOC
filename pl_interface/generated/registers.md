@@ -1,4 +1,4 @@
-<!-- Generated from schema.json SHA256 261fa09b715dc2f636d5fa3a5f6a34f6e392e7bf04e65901576f34dcaeeb3822; GP profiles explicitly confirmed; other layouts/semantics DRAFT. -->
+<!-- Generated from schema.json SHA256 f6eb4cfbf113a5315026c65f8b56a5eb087aa8536bf6239791ac1c6261877309; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
 # Register table (global Draft, confirmed GP subsets below)
 
 | Offset | Name | Width | Reset | Access | Fields | Unit | Side effect |
@@ -239,3 +239,26 @@ Only this register/field subset is frozen for this profile; unlisted global entr
 Supported commands: SNAPSHOT, NOP.
 Supported ACK errors: OK, BAD_COMMAND.
 INIT/NOT_READY only; CAPS axis slots do not authorize motion. See pl_motion/GP_CONTROL_DRAFT.md and schema profile for complete semantics.
+
+## dma_loopback_v1
+
+USER_CONFIRMED_PL_SIMULATION_OOC_VALIDATED_NOT_BOARD_TESTED; confirmed 2026-10-12.
+
+Window 0x80500000/0x1000; register span 0x400; full aligned D32 writes only.
+MM2S line 1/SPI83; S2MM line 2/SPI84; level-high.
+Shared 100000000Hz; stream 64bit; FIFO 16 beats; transfer 1..65535 bytes.
+
+Native vendor register behavior with the profile guard; no motion record layout is frozen.
+
+| Offset | DMA register |
+| --- | --- |
+| 0x000 | MM2S_CONTROL |
+| 0x004 | MM2S_STATUS |
+| 0x018 | MM2S_ADDRESS |
+| 0x01C | MM2S_ADDRESS_MSB |
+| 0x028 | MM2S_LENGTH |
+| 0x030 | S2MM_CONTROL |
+| 0x034 | S2MM_STATUS |
+| 0x048 | S2MM_ADDRESS |
+| 0x04C | S2MM_ADDRESS_MSB |
+| 0x058 | S2MM_LENGTH |

@@ -1,5 +1,7 @@
 # DDR / DMA / Linux 接口契约 — Draft
 
+> 2026-10-12：用户已确认独立数据通路 profile `dma_loopback_v1`，见唯一 `schema.json/dma_loopback_profiles` 和 `../pl_dma/DMA_HANDOFF.md`。本批新增0x80500000/4KiB、IRQ1/2（SPI83/84）、32bit DMA地址、64bit memory/stream、同源100MHz、simple双向/BTT16/burst16/DRE/SF、16拍回环FIFO及双方向取消恢复契约。原GP资源保持。本页下方80B/128B记录与运动/遥测软件环仍为Draft，不据回环验收冻结；本批不接运动FIFO。当前PL真实IP仿真及OOC/隔离PS参考时序通过，不代表Linux DMAengine或DMA实板验收。
+
 ## 1. 首批选择已确认，集成行为待验证
 
 用户已接受Anlogic AXI DMA / HP0 / 64bit stream / simple模式 / 每记录一packet / Linux DMAengine验证。该确认不代表板上回环通过或其余DDR/cache参数冻结。
