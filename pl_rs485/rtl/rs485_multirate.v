@@ -16,7 +16,9 @@ module rs485_multirate #(
  input wire [5:0] debug_task,input wire [3:0] debug_node,
  output wire [31:0] stat_scheduled,stat_sent,stat_valid,stat_missed,stat_max_lateness_us,
  output wire [7:0] node_failure_streak,output wire [63:0] node_cooldown_until_us,
- output wire [31:0] node_backoff_entries);
+ output wire [31:0] node_backoff_entries,
+ output wire observe_push,output wire [255:0] observe_data,
+ output wire [7999:0] observe_tasks,output wire [1279:0] observe_nodes);
  `include "rs485_defs.vh"
  `include "rate_defs.vh"
  localparam integer TASKS=SLAVE_COUNT*5;
@@ -84,6 +86,17 @@ module rs485_multirate #(
  assign node_failure_streak=debug_node<SLAVE_COUNT?failures[debug_node]:0;
  assign node_cooldown_until_us=debug_node<SLAVE_COUNT?cooldown[debug_node]:0;
  assign node_backoff_entries=debug_node<SLAVE_COUNT?backoffs[debug_node]:0;
+ assign observe_push=push;
+ assign observe_data=push_data;
+ genvar view;
+ generate for(view=0;view<50;view=view+1) begin: task_view
+  if(view<TASKS) assign observe_tasks[view*160 +:160]={max_late[view],missed[view],valid_count[view],sent[view],scheduled[view]};
+  else assign observe_tasks[view*160 +:160]=0;
+ end
+ for(view=0;view<10;view=view+1) begin: node_view
+  if(view<SLAVE_COUNT) assign observe_nodes[view*128 +:128]={backoffs[view],cooldown[view],23'd0,offline[view],failures[view]};
+  else assign observe_nodes[view*128 +:128]=0;
+ end endgenerate
  genvar g;generate for(g=0;g<10;g=g+1) begin: off_view
   if(g<SLAVE_COUNT) assign node_offline[g]=offline[g];else assign node_offline[g]=1'b0;
  end endgenerate

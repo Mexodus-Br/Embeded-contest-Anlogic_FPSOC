@@ -1,4 +1,4 @@
-<!-- Generated from schema.json SHA256 ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
+<!-- Generated from schema.json SHA256 fc3172823b78ad5da25ac0261ec7a29c20723e81583593b01a9c7e54f4130f82; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
 # Register table (global Draft, confirmed GP subsets below)
 
 | Offset | Name | Width | Reset | Access | Fields | Unit | Side effect |
@@ -389,3 +389,67 @@ Independent window 0x80600000/4KiB, IRQ3/SPI85; S2MM telemetry unsupported.
 | 0x2F4 | SNAP_61 | RO |
 | 0x2F8 | SNAP_62 | RO |
 | 0x2FC | SNAP_63 | RO |
+
+## gp_rs485_v1
+
+USER_CONFIRMED; confirmed 2026-10-14.
+
+Candidate window 0x80700000/4KiB; IRQ4/SPI86; BSP final audit required.
+
+| Offset | Register | Access |
+| --- | --- | --- |
+| 0x000 | VERSION | RO |
+| 0x004 | PROFILE | RO |
+| 0x008 | CAPS | RO |
+| 0x00C | FEATURES | RO |
+| 0x010 | RUN | RW |
+| 0x014 | STATUS | RO |
+| 0x018 | GENERATION | RO |
+| 0x01C | LOCAL_RESET | WO |
+| 0x020 | IRQ_PENDING | W1C |
+| 0x024 | IRQ_MASK | RW |
+| 0x028 | LAST_ACCESS_ERROR | RO |
+| 0x02C | FIFO_LEVEL | RO |
+| 0x040 | SHADOW_PERIOD0 | RW |
+| 0x044 | SHADOW_PERIOD1 | RW |
+| 0x048 | SHADOW_PERIOD2 | RW |
+| 0x04C | SHADOW_PERIOD3 | RW |
+| 0x050 | SHADOW_PERIOD4 | RW |
+| 0x054 | SHADOW_MASK | RW |
+| 0x058 | TXN_ID | RW |
+| 0x05C | CFG_SUBMIT | WO |
+| 0x060 | CFG_STATE | RO |
+| 0x064 | CFG_TXN | RO |
+| 0x068 | CFG_ERROR | RO |
+| 0x06C | CFG_REVISION | RO |
+| 0x070 | CFG_SEQUENCE | RO |
+| 0x074 | CFG_TIME_LO | RO |
+| 0x078 | CFG_TIME_HI | RO |
+| 0x07C | CFG_GENERATION | RO |
+| 0x080 | CURRENT_PERIOD0 | RO |
+| 0x084 | CURRENT_PERIOD1 | RO |
+| 0x088 | CURRENT_PERIOD2 | RO |
+| 0x08C | CURRENT_PERIOD3 | RO |
+| 0x090 | CURRENT_PERIOD4 | RO |
+| 0x094 | CURRENT_MASK | RO |
+| 0x098 | CURRENT_LOAD | RO |
+| 0x0A0 | CAPTURE | WO |
+| 0x0A4 | CAPTURE_ID | RO |
+| 0x0A8 | CAPTURE_STATUS | RO |
+| 0x0AC | CAPTURE_GENERATION | RO |
+| 0x0B0 | CAPTURE_REVISION | RO |
+| 0x0B4 | CONSUME_ID | WO |
+| 0x0B8 | ABANDON_ID | WO |
+| 0x0BC | LAST_CONSUMED_ID | RO |
+| 0x0C0 | WORD0 | RO |
+| 0x0C4 | WORD1 | RO |
+| 0x0C8 | WORD2 | RO |
+| 0x0CC | WORD3 | RO |
+| 0x0D0 | WORD4 | RO |
+| 0x0D4 | WORD5 | RO |
+| 0x0D8 | WORD6 | RO |
+| 0x0DC | WORD7 | RO |
+| 0x100 | SNAP_REQ_ID | RW |
+| 0x104 | SNAP_SUBMIT | WO |
+| 0x108 | SNAP_STATUS | RO |
+| 0x10C | SNAP_ID | RO |

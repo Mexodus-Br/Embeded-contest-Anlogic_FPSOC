@@ -1,0 +1,58 @@
+standard
+***Report Model: td_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         8   out of    126    6.35%
+  #input                    5
+  #output                   3
+  #inout                    0
+#lut                     9264
+  #lut1                    10
+  #lut2                  1068
+  #lut3                   741
+  #lut4                   953
+  #lut5                  2023
+  #lut6                  2915
+  #1-bit adder           1554
+#reg                    10360
+  #slice reg            10360   out of 104960    9.87%
+  #pad reg                  0
+
+Utilization Statistics
+#unit lut*               7030   out of  52480   13.40%
+  #logic lut*            5476
+  #1-bit adder           1554
+#reg                    10360   out of 104960    9.87%
+  #dff                  10360
+  #latch                    0
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       6   out of    280    2.14%
+  #eram20k                  6
+  #fifo20k                  0
+#dsp                        1   out of    240    0.42%
+#dram                       2
+#pad                        8   out of    126    6.35%
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+Report Hierarchy Area:
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance      |Module            |logic lut |ripple  |seq     |eram    |dsp     |dram     |shifter |f7mux   |f8mux   |pll     |adc    |soc     |
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+|top           |td_probe          |5476      |1554    |10360   |6       |1       |2        |0       |0       |0       |0       |0      |0       |
+|  dut         |rs485_gp_bridge   |5451      |1554    |10145   |6       |1       |2        |0       |0       |0       |0       |0      |0       |
+|    collector |rs485_multirate   |3116      |1420    |5734    |6       |1       |0        |0       |0       |0       |0       |0      |0       |
+|      divider |div_u64_u32       |123       |33      |232     |0       |0       |0        |0       |0       |0       |0       |0      |0       |
+|      engine  |rs485_transaction |345       |306     |779     |0       |0       |0        |0       |0       |0       |0       |0      |0       |
+|        u_rx  |uart_rx           |51        |33      |60      |0       |0       |0        |0       |0       |0       |0       |0      |0       |
+|        u_tx  |uart_tx           |18        |0       |26      |0       |0       |0        |0       |0       |0       |0       |0      |0       |
+|      fifo    |record_fifo       |20        |33      |42      |6       |0       |0        |0       |0       |0       |0       |0      |0       |
+|    regs      |rs485_gp_regs     |2335      |134     |4411    |0       |0       |2        |0       |0       |0       |0       |0      |0       |
++-----------------------------------------------------------------------------------------------------------------------------------------------+

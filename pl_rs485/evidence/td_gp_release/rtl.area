@@ -1,0 +1,43 @@
+standard
+***Report Model: td_probe Device: DR1M90GEG400***
+
+IO Statistics
+#IO                         8
+  #input                    5
+  #output                   3
+  #inout                    0
+
+Gate Statistics
+#Basic gates            20425
+  #and                   3002
+  #nand                     0
+  #or                    4090
+  #nor                      0
+  #xor                      0
+  #xnor                     1
+  #buf                      0
+  #not                    226
+  #bufif1                   0
+  #MX21                  2515
+  #FADD                     0
+  #DFF                  10591
+  #LATCH                    0
+#MACRO_ADD                 86
+#MACRO_EQ                  92
+#MACRO_MULT                 1
+#MACRO_MUX               2962
+
+Report Hierarchy Area:
++---------------------------------------------------------+
+|Instance      |Module            |gates  |seq    |macros |
++---------------------------------------------------------+
+|top           |td_probe          |9834   |10591  |179    |
+|  dut         |rs485_gp_bridge   |9822   |10376  |179    |
+|    collector |rs485_multirate   |8153   |5734   |112    |
+|      divider |div_u64_u32       |5      |232    |4      |
+|      engine  |rs485_transaction |1510   |779    |38     |
+|        u_rx  |uart_rx           |28     |60     |3      |
+|        u_tx  |uart_tx           |17     |26     |4      |
+|      fifo    |record_fifo       |19     |42     |9      |
+|    regs      |rs485_gp_regs     |1669   |4642   |67     |
++---------------------------------------------------------+

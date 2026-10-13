@@ -1,0 +1,13 @@
+COMMAND ['D:\\iverilog\\bin\\iverilog.EXE', '-g2005', '-Wall', '-I', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\generated', '-s', 'tb_multirate_profile', '-o', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\evidence\\sim_gp_multirate_release\\tb_multirate_profile.vvp', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\div_u64_u32.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\record_fifo.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\rs485_gp_bridge.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\rs485_gp_regs.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\rs485_master.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\rs485_multirate.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\rs485_transaction.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\uart_rx.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\uart_tx.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\tests\\tb_multirate_profile.v']
+EXIT 0
+warning: Some modules have no timescale. This may cause
+       : confusing timing results.	Affected modules are:
+       :   -- module div_u64_u32 declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\div_u64_u32.v:2
+       :   -- module record_fifo declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\record_fifo.v:1
+       :   -- module rs485_gp_bridge declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\rs485_gp_bridge.v:1
+       :   -- module rs485_gp_regs declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\rs485_gp_regs.v:2
+       :   -- module rs485_master declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\rs485_master.v:2
+       :   -- module rs485_multirate declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\rs485_multirate.v:2
+       :   -- module rs485_transaction declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\rs485_transaction.v:3
+       :   -- module uart_rx declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\uart_rx.v:3
+       :   -- module uart_tx declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\uart_tx.v:2

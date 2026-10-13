@@ -3,12 +3,13 @@ import argparse,hashlib,json,re,shutil,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--multirate',action='store_true');ap.add_argument('--fast',action='store_true');ap.add_argument('--tag',default='');a=ap.parse_args()
-    if a.fast and not a.multirate:raise ValueError('--fast requires --multirate')
+    ap=argparse.ArgumentParser();ap.add_argument('--multirate',action='store_true');ap.add_argument('--gp',action='store_true');ap.add_argument('--fast',action='store_true');ap.add_argument('--tag',default='');a=ap.parse_args()
+    if a.fast and not (a.multirate or a.gp):raise ValueError('--fast requires --multirate')
     if a.tag and not a.tag.replace('_','').replace('-','').isalnum():raise ValueError('invalid tag')
     td=shutil.which('td_commands_prompt')
     if not td:raise RuntimeError('TD command prompt required')
     name=('td_multirate_fast' if a.fast else 'td_multirate') if a.multirate else 'td'
+    if a.gp:name='td_gp_fast' if a.fast else 'td_gp'
     if a.tag:name+='_'+a.tag
     b=ROOT/'build'/name;b.mkdir(parents=True,exist_ok=True)
     staged=[]
@@ -35,8 +36,9 @@ rs485_master dut(.clk(clk),.rst_n(rst_n),.enable(inp[70]),.query_mask(inp[69:65]
  .accepted(accepted),.errors(errors),.ignored_rx(ignored),.busy(busy));
 endmodule
 '''
-    if a.multirate:
-        header=(ROOT/'rtl/rs485_multirate.v').read_text().split(')(input',1)[1].split(');',1)[0]
+    if a.multirate or a.gp:
+        module='rs485_gp_bridge' if a.gp else 'rs485_multirate'
+        header=(ROOT/('rtl/'+module+'.v')).read_text().split(')(input',1)[1].split(');',1)[0]
         ports={}
         for m in re.finditer(r'\b(input|output)\s+(?:wire|reg)\s*(?:\[(\d+):0\]\s*)?(.*?)(?=\binput|\boutput|$)','input'+header,re.S):
             direction,width,names=m.groups()
@@ -54,7 +56,7 @@ endmodule
         if a.fast:
             clock=json.loads((ROOT/'schema.json').read_text())['profile']['CLK_HZ'];cycles=clock//1000
             params=f'#(.NORMAL_CYCLES({cycles}),.POLL_CYCLES({cycles}))'
-        wrapper+='rs485_multirate '+params+' dut(.clk(clk),.rst_n(rst_n),.rx(rx_async),\n'
+        wrapper+=module+' '+params+' dut(.clk(clk),.rst_n(rst_n),.rx(rx_async),\n'
         bindings=[];offset=0
         for n,w in ins.items():bindings.append(f'.{n}(inp[{offset} +: {w}])');offset+=w
         bindings += [f'.{n}({n})' for n in outs]
@@ -97,10 +99,10 @@ exit
     # OOC scan/serial ports intentionally have no physical board assignments.
     serious='\n'.join(x for x in log.splitlines() if 'SYN-6021' not in x)
     if p.returncode or 'RS485_TD_COMPLETE' not in log or re.search(r'\bERROR:|CRITICAL-WARNING',serious):raise RuntimeError('TD failed; build/td/run.log retained')
-    summary={'tool':td,'top':'rs485_multirate' if a.multirate else 'rs485_master','fast_simulation_candidate':a.fast,'device':'DR1M90GEG400','speed':2,'clock_MHz':100,'source_sha256':hashes,'profile':json.loads((ROOT/'schema.json').read_text())['profile'],'fixture':'OOC scan input/output wrapper; no board IO timing claim'}
+    summary={'tool':td,'top':'rs485_gp_bridge' if a.gp else 'rs485_multirate' if a.multirate else 'rs485_master','fast_simulation_candidate':a.fast,'device':'DR1M90GEG400','speed':2,'clock_MHz':100,'source_sha256':hashes,'profile':json.loads((ROOT/'schema.json').read_text())['profile'],'fixture':'OOC scan input/output wrapper; no board IO timing claim'}
     summary['constraint_sha256']=hashlib.sha256((b/'clock.sdc').read_bytes()).hexdigest()
     summary['fixture_sha256']=hashlib.sha256((b/'probe.v').read_bytes()).hexdigest()
-    if a.multirate:summary['rate_design_sha256']=hashlib.sha256((ROOT/'rate_design.json').read_bytes()).hexdigest()
+    if a.multirate or a.gp:summary['rate_design_sha256']=hashlib.sha256((ROOT/'rate_design.json').read_bytes()).hexdigest()
     for stage in ['gate','place','route']:
         content=(b/(stage+'.timing')).read_text()
         if not re.search(r'100\.000\s+\d+\s+rs485_clk',content):raise RuntimeError('100MHz clock missing')
@@ -108,7 +110,7 @@ exit
         summary[stage]={'setup_wns_ns':setup,'hold_wns_ns':hold,'pass':setup>=0 and hold>=0}
     (b/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     e=ROOT/'evidence'/name;e.mkdir(exist_ok=True)
-    for name in ['run.tcl','run.log','clock.sdc','probe.v','rtl.area','gate.area','gate.timing','place.area','place.timing','route.area','route.timing','check.timing','summary.json']:
+    for name in ['route.qor','run.tcl','run.log','clock.sdc','probe.v','rtl.area','gate.area','gate.timing','place.area','place.timing','route.area','route.timing','check.timing','summary.json']:
         shutil.copyfile(b/name,e/name)
     print(json.dumps(summary,indent=2))
     if not summary['route']['pass']:raise RuntimeError('routed setup/hold failed')

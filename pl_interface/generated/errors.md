@@ -1,4 +1,4 @@
-<!-- Generated from schema.json SHA256 ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
+<!-- Generated from schema.json SHA256 fc3172823b78ad5da25ac0261ec7a29c20723e81583593b01a9c7e54f4130f82; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
 # Error candidate table
 
 | Code | Name | Severity | State impact | Report |

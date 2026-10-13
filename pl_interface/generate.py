@@ -90,6 +90,19 @@ def validate(s):
             a=q['address']
             if max(p['base'],a['base'])<min(p['base']+4096,a['base']+a['size']) or p['irq_line'] in (q['irq']['mm2s_line'],q['irq']['s2mm_line']):raise ValueError('motion DMA overlap')
 
+
+    for p in s.get('rs485_gp_profiles',{}).values():
+        if p['base']%4096 or p['size']!=4096 or p['address_width']!=33 or p['data_width']!=32 or p['irq_intid']!=p['irq_spi']+32:raise ValueError('RS485 resource')
+        resources=[(q['address']['base'],q['address']['size'],[q['irq']['pl_line']]) for q in s.get('gp_control_profiles',{}).values()]
+        resources += [(q['address']['base'],q['address']['size'],[q['irq']['mm2s_line'],q['irq']['s2mm_line']]) for q in s.get('dma_loopback_profiles',{}).values()]
+        resources += [(q['base'],q['size'],[q['irq_line']]) for q in s.get('motion_integration_profiles',{}).values()]
+        for b,n,irq in resources:
+            if max(b,p['base'])<min(b+n,p['base']+p['size']) or p['irq_line'] in irq:raise ValueError('RS485 resource overlap')
+        vals=list(p['registers'].values())
+        if len(vals)!=len(set(vals)) or any(v%4 or not 0<=v<512 for v in vals):raise ValueError('RS485 register overlap')
+        if set(p['registers'])!=set(p['register_access']):raise ValueError('RS485 access set')
+        if p['snapshot_words']*4+p['snapshot_base']>4096:raise ValueError('RS485 snapshot span')
+
 def constants(s):
     out={'ABI_VERSION':s['version']}
     for r in s['registers']:
@@ -136,6 +149,20 @@ def constants(s):
             for n,(shift,width) in fields.items():
                 out[pre+'_SNAP_'+group+'_'+n+'_SHIFT']=shift
                 out[pre+'_SNAP_'+group+'_'+n+'_MASK']=((1<<width)-1)<<shift
+    for name,p in s.get('rs485_gp_profiles',{}).items():
+        pre='RS485_'+name.upper()+'_'
+        for k,v in p.items():
+            if type(v)==int:out[pre+k.upper()]=v
+        for group in ['registers','snapshot_header','task_fields','node_fields','errors']:
+            for k,v in p[group].items():out[pre+group.upper()+'_'+k]=v
+        for group in ['irq_bits','cfg_bits','status_bits','feature_bits']:
+            for k,v in p[group].items():out[pre+group.upper()+'_'+k+'_MASK']=1<<v
+        rate=json.loads((ROOT.parent/'pl_rs485/rate_design.json').read_text())
+        for k,v in rate['implementation']['cfg_error'].items():out[pre+'CFG_ERRORS_'+k]=v
+        for group in ['capture_fields','node_flag_fields']:
+            for k,(shift,width) in p[group].items():
+                out[pre+group.upper()+'_'+k+'_SHIFT']=shift
+                out[pre+group.upper()+'_'+k+'_MASK']=((1<<width)-1)<<shift
     for n,f in s['frames'].items():
         pre=n.upper(); out[pre+'_LENGTH']=f['length']
         for x in f['fields']:
@@ -185,6 +212,11 @@ def outputs(s):
         table.extend(f'| 0x{v:03X} | {n} |' for n,v in p['control_registers'].items())
     for name,p in s.get('motion_integration_profiles',{}).items():
         table+=['','## '+name,'',p['status']+'; confirmed '+p['confirmation']['date']+'.','',f"Independent window 0x{p['base']:08X}/4KiB, IRQ{p['irq_line']}/SPI{p['irq_spi']}; S2MM telemetry unsupported.",'','| Offset | Register | Access |','| --- | --- | --- |']
+        table += [f'| 0x{o:03X} | {n} | {p["register_access"][n]} |' for n,o in p['registers'].items()]
+    for name,p in s.get('rs485_gp_profiles',{}).items():
+        table+=['','## '+name,'',p['status']+'; confirmed '+p['confirmation']['date']+'.',
+                '',f"Candidate window 0x{p['base']:08X}/4KiB; IRQ{p['irq_line']}/SPI{p['irq_spi']}; BSP final audit required.",
+                '','| Offset | Register | Access |','| --- | --- | --- |']
         table += [f'| 0x{o:03X} | {n} | {p["register_access"][n]} |' for n,o in p['registers'].items()]
     err=['<!-- '+banner+' -->','# Error candidate table','','| Code | Name | Severity | State impact | Report |','| --- | --- | --- | --- | --- |']
     err += [f"| 0x{e['value']:04X} | {e['name']} | {e['severity']} | {e['impact']} | {e['report']} |" for e in s['errors']]

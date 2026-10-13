@@ -1,0 +1,807 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Wed Oct 14 00:40:34 2026
+
+Top Model           : td_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 98.63%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/clock.sdc;
+Confidence          : Synthesized
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 3 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min     
+------------------------------------
+Slow     | yes      yes     
+Fast     | yes      yes     
+
+
+Timing Status
+--------------------
+	SWNS: 0.964ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 8.470ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000        10389   rs485_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0           local            0.000      5.000                10.000         100.000                 9.036         110.668            0.964      0.000            0.000      0.000            0.000            10389                9             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     rs485_clk -> rs485_clk
+Type           :     Self
+From Clock     :     rs485_clk
+To Clock       :     rs485_clk
+Min Period     :     9.036ns
+Fmax           :     110.668MHz
+
+Statistics:
+Max            : SWNS      0.964ns, STNS      0.000ns,         0 Viol Endpoints,     26159 Total Endpoints,  57029831 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.964ns
+Begin Point         : inp_reg[101].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[0].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.966ns (cell 2.383ns (26%), net 6.583ns (74%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=4  LUT6=2  LUT4=2  LUT5=1 )
+Max Fanout          : 599
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[101].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[101].q
+net (fo=599)                            1.277          1.428          net: dut/regs/s_araddr[4],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_170.a
+LUT2                                    0.240    r     1.668       1  pin: dut/regs/access_error_reg[2]_syn_170.o
+net (fo=54)                             0.948          2.616          net: dut/regs/access_error_reg[2]_syn_171,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.a
+LUT2                                    0.240    r     2.856       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.760          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.998       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.446          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.686       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.206          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.446       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.924          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.164       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.720          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.960       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.516          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[0]_syn_23.e
+LUT6                                    0.238    r     7.754       8  pin: dut/regs/access_error_reg[0]_syn_23.o
+net (fo=1)                              0.448          8.202          net: dut/regs/access_error_reg[0]_syn_24,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[0]_syn_27.b
+LUT4                                    0.240    r     8.442       9  pin: dut/regs/access_error_reg[0]_syn_27.o
+net (fo=1)                              0.448          8.890          net: dut/regs/access_error_reg[0]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[0].d
+SEQ (reg)                               0.076    f     8.966               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.966               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[0].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.964               
+
+Slack               : 1.048ns
+Begin Point         : inp_reg[102].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[0].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.882ns (cell 2.383ns (26%), net 6.499ns (74%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=4  LUT6=2  LUT4=2  LUT5=1 )
+Max Fanout          : 319
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[102].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[102].q
+net (fo=319)                            1.193          1.344          net: dut/regs/s_araddr[5],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_170.b
+LUT2                                    0.240    r     1.584       1  pin: dut/regs/access_error_reg[2]_syn_170.o
+net (fo=54)                             0.948          2.532          net: dut/regs/access_error_reg[2]_syn_171,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.a
+LUT2                                    0.240    r     2.772       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.676          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.914       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.362          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.602       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.122          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.362       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.840          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.080       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.636          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.876       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.432          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[0]_syn_23.e
+LUT6                                    0.238    r     7.670       8  pin: dut/regs/access_error_reg[0]_syn_23.o
+net (fo=1)                              0.448          8.118          net: dut/regs/access_error_reg[0]_syn_24,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[0]_syn_27.b
+LUT4                                    0.240    r     8.358       9  pin: dut/regs/access_error_reg[0]_syn_27.o
+net (fo=1)                              0.448          8.806          net: dut/regs/access_error_reg[0]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[0].d
+SEQ (reg)                               0.076    f     8.882               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.882               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[0].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.048               
+
+Slack               : 1.121ns
+Begin Point         : inp_reg[99].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[0].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.809ns (cell 2.383ns (27%), net 6.426ns (73%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=4  LUT6=2  LUT4=2  LUT5=1 )
+Max Fanout          : 1128
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[99].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[99].q
+net (fo=1128)                           1.360          1.511          net: dut/regs/s_araddr[2],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_172.a
+LUT2                                    0.240    r     1.751       1  pin: dut/regs/access_error_reg[2]_syn_172.o
+net (fo=11)                             0.708          2.459          net: dut/regs/sel57_syn_4035,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.b
+LUT2                                    0.240    r     2.699       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.603          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.841       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.289          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.529       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.049          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.289       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.767          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.007       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.563          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.803       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.359          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[0]_syn_23.e
+LUT6                                    0.238    r     7.597       8  pin: dut/regs/access_error_reg[0]_syn_23.o
+net (fo=1)                              0.448          8.045          net: dut/regs/access_error_reg[0]_syn_24,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[0]_syn_27.b
+LUT4                                    0.240    r     8.285       9  pin: dut/regs/access_error_reg[0]_syn_27.o
+net (fo=1)                              0.448          8.733          net: dut/regs/access_error_reg[0]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[0].d
+SEQ (reg)                               0.076    f     8.809               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.809               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[0].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.121               
+
+Slack               : 0.964ns
+Begin Point         : inp_reg[101].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[2].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.966ns (cell 2.383ns (26%), net 6.583ns (74%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=5  LUT6=2  LUT5=1  LUT4=1 )
+Max Fanout          : 599
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[101].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[101].q
+net (fo=599)                            1.277          1.428          net: dut/regs/s_araddr[4],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_170.a
+LUT2                                    0.240    r     1.668       1  pin: dut/regs/access_error_reg[2]_syn_170.o
+net (fo=54)                             0.948          2.616          net: dut/regs/access_error_reg[2]_syn_171,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.a
+LUT2                                    0.240    r     2.856       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.760          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.998       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.446          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.686       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.206          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.446       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.924          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.164       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.720          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.960       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.516          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_691.b
+LUT2                                    0.240    r     7.756       8  pin: dut/regs/access_error_reg[2]_syn_691.o
+net (fo=1)                              0.448          8.204          net: dut/regs/mux290_syn_39,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_692.c
+LUT6                                    0.238    r     8.442       9  pin: dut/regs/access_error_reg[2]_syn_692.o
+net (fo=1)                              0.448          8.890          net: dut/regs/access_error_reg[2]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2].d
+SEQ (reg)                               0.076    f     8.966               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.966               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[2].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.964               
+
+Slack               : 1.048ns
+Begin Point         : inp_reg[102].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[2].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.882ns (cell 2.383ns (26%), net 6.499ns (74%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=5  LUT6=2  LUT5=1  LUT4=1 )
+Max Fanout          : 319
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[102].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[102].q
+net (fo=319)                            1.193          1.344          net: dut/regs/s_araddr[5],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_170.b
+LUT2                                    0.240    r     1.584       1  pin: dut/regs/access_error_reg[2]_syn_170.o
+net (fo=54)                             0.948          2.532          net: dut/regs/access_error_reg[2]_syn_171,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.a
+LUT2                                    0.240    r     2.772       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.676          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.914       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.362          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.602       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.122          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.362       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.840          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.080       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.636          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.876       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.432          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_691.b
+LUT2                                    0.240    r     7.672       8  pin: dut/regs/access_error_reg[2]_syn_691.o
+net (fo=1)                              0.448          8.120          net: dut/regs/mux290_syn_39,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_692.c
+LUT6                                    0.238    r     8.358       9  pin: dut/regs/access_error_reg[2]_syn_692.o
+net (fo=1)                              0.448          8.806          net: dut/regs/access_error_reg[2]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2].d
+SEQ (reg)                               0.076    f     8.882               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.882               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[2].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.048               
+
+Slack               : 1.121ns
+Begin Point         : inp_reg[99].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[2].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.809ns (cell 2.383ns (27%), net 6.426ns (73%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=5  LUT6=2  LUT5=1  LUT4=1 )
+Max Fanout          : 1128
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[99].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[99].q
+net (fo=1128)                           1.360          1.511          net: dut/regs/s_araddr[2],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_172.a
+LUT2                                    0.240    r     1.751       1  pin: dut/regs/access_error_reg[2]_syn_172.o
+net (fo=11)                             0.708          2.459          net: dut/regs/sel57_syn_4035,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.b
+LUT2                                    0.240    r     2.699       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.603          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.841       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.289          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.529       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.049          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.289       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.767          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.007       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.563          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.803       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.359          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_691.b
+LUT2                                    0.240    r     7.599       8  pin: dut/regs/access_error_reg[2]_syn_691.o
+net (fo=1)                              0.448          8.047          net: dut/regs/mux290_syn_39,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_692.c
+LUT6                                    0.238    r     8.285       9  pin: dut/regs/access_error_reg[2]_syn_692.o
+net (fo=1)                              0.448          8.733          net: dut/regs/access_error_reg[2]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2].d
+SEQ (reg)                               0.076    f     8.809               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.809               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[2].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.121               
+
+Slack               : 0.966ns
+Begin Point         : inp_reg[101].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[3].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.964ns (cell 2.381ns (26%), net 6.583ns (74%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=4  LUT6=3  LUT5=1  LUT4=1 )
+Max Fanout          : 599
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[101].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[101].q
+net (fo=599)                            1.277          1.428          net: dut/regs/s_araddr[4],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_170.a
+LUT2                                    0.240    r     1.668       1  pin: dut/regs/access_error_reg[2]_syn_170.o
+net (fo=54)                             0.948          2.616          net: dut/regs/access_error_reg[2]_syn_171,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.a
+LUT2                                    0.240    r     2.856       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.760          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.998       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.446          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.686       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.206          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.446       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.924          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.164       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.720          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.960       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.516          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[3]_syn_4.b
+LUT6                                    0.238    r     7.754       8  pin: dut/regs/access_error_reg[3]_syn_4.o
+net (fo=1)                              0.448          8.202          net: dut/regs/access_error_reg[3]_syn_5,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[3]_syn_6.c
+LUT6                                    0.238    r     8.440       9  pin: dut/regs/access_error_reg[3]_syn_6.o
+net (fo=1)                              0.448          8.888          net: dut/regs/access_error_reg[3]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[3].d
+SEQ (reg)                               0.076    f     8.964               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.964               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[3].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.966               
+
+Slack               : 1.050ns
+Begin Point         : inp_reg[102].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[3].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.880ns (cell 2.381ns (26%), net 6.499ns (74%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=4  LUT6=3  LUT5=1  LUT4=1 )
+Max Fanout          : 319
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[102].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[102].q
+net (fo=319)                            1.193          1.344          net: dut/regs/s_araddr[5],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_170.b
+LUT2                                    0.240    r     1.584       1  pin: dut/regs/access_error_reg[2]_syn_170.o
+net (fo=54)                             0.948          2.532          net: dut/regs/access_error_reg[2]_syn_171,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.a
+LUT2                                    0.240    r     2.772       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.676          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.914       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.362          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.602       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.122          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.362       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.840          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.080       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.636          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.876       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.432          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[3]_syn_4.b
+LUT6                                    0.238    r     7.670       8  pin: dut/regs/access_error_reg[3]_syn_4.o
+net (fo=1)                              0.448          8.118          net: dut/regs/access_error_reg[3]_syn_5,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[3]_syn_6.c
+LUT6                                    0.238    r     8.356       9  pin: dut/regs/access_error_reg[3]_syn_6.o
+net (fo=1)                              0.448          8.804          net: dut/regs/access_error_reg[3]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[3].d
+SEQ (reg)                               0.076    f     8.880               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.880               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[3].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.050               
+
+Slack               : 1.123ns
+Begin Point         : inp_reg[99].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[3].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.807ns (cell 2.381ns (27%), net 6.426ns (73%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT2=4  LUT6=3  LUT5=1  LUT4=1 )
+Max Fanout          : 1128
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[99].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[99].q
+net (fo=1128)                           1.360          1.511          net: dut/regs/s_araddr[2],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_172.a
+LUT2                                    0.240    r     1.751       1  pin: dut/regs/access_error_reg[2]_syn_172.o
+net (fo=11)                             0.708          2.459          net: dut/regs/sel57_syn_4035,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.b
+LUT2                                    0.240    r     2.699       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.603          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.841       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.289          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.529       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.049          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.289       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.767          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.007       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.563          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.803       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.359          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[3]_syn_4.b
+LUT6                                    0.238    r     7.597       8  pin: dut/regs/access_error_reg[3]_syn_4.o
+net (fo=1)                              0.448          8.045          net: dut/regs/access_error_reg[3]_syn_5,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[3]_syn_6.c
+LUT6                                    0.238    r     8.283       9  pin: dut/regs/access_error_reg[3]_syn_6.o
+net (fo=1)                              0.448          8.731          net: dut/regs/access_error_reg[3]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[3].d
+SEQ (reg)                               0.076    f     8.807               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.807               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[3].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.123               
+
+Slack               : 1.650ns
+Begin Point         : inp_reg[101].clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/regs/access_error_reg[1].d (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.280ns (cell 2.145ns (25%), net 6.135ns (75%))
+Clock Skew          : 0.000ns
+Logic Level         : 8 ( LUT2=4  LUT5=2  LUT6=1  LUT4=1 )
+Max Fanout          : 599
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: inp_reg[101].clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+SEQ (clk2q)                             0.151    f     0.151          pin: inp_reg[101].q
+net (fo=599)                            1.277          1.428          net: dut/regs/s_araddr[4],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(4)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_170.a
+LUT2                                    0.240    r     1.668       1  pin: dut/regs/access_error_reg[2]_syn_170.o
+net (fo=54)                             0.948          2.616          net: dut/regs/access_error_reg[2]_syn_171,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_173.a
+LUT2                                    0.240    r     2.856       2  pin: dut/regs/access_error_reg[2]_syn_173.o
+net (fo=40)                             0.904          3.760          net: dut/regs/sel57_syn_4318,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(420)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_174.f
+LUT6                                    0.238    r     3.998       3  pin: dut/regs/access_error_reg[2]_syn_174.o
+net (fo=1)                              0.448          4.446          net: dut/regs/access_error_reg[2]_syn_175,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_194.a
+LUT5                                    0.240    r     4.686       4  pin: dut/regs/access_error_reg[2]_syn_194.o
+net (fo=3)                              0.520          5.206          net: dut/regs/access_error_reg[2]_syn_195,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_198.a
+LUT4                                    0.240    r     5.446       5  pin: dut/regs/access_error_reg[2]_syn_198.o
+net (fo=2)                              0.478          5.924          net: dut/regs/access_error_b2_n,  NOFILE(0)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_688.a
+LUT2                                    0.240    r     6.164       6  pin: dut/regs/access_error_reg[2]_syn_688.o
+net (fo=4)                              0.556          6.720          net: dut/regs/access_error_reg[2]_syn_689,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[2]_syn_690.a
+LUT2                                    0.240    r     6.960       7  pin: dut/regs/access_error_reg[2]_syn_690.o
+net (fo=4)                              0.556          7.516          net: dut/regs/mux290_syn_92,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(414)
+                                                                      pin: dut/regs/access_error_reg[1]_syn_7.c
+LUT5                                    0.240    r     7.756       8  pin: dut/regs/access_error_reg[1]_syn_7.o
+net (fo=1)                              0.448          8.204          net: dut/regs/access_error_reg[1]_syn_2,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/rs485_gp_regs.v(302)
+                                                                      pin: dut/regs/access_error_reg[1].d
+SEQ (reg)                               0.076    f     8.280               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.280               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=10373)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_gp_fast_final/probe.v(1)
+                                                                      pin: dut/regs/access_error_reg[1].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.650               
+
+
+Period Check
+----------------------------------------------------------------------------------------------------
+    Type       Setting(ns)      Required(ns)         Slack(ns)   Point
+--------------------------------------------------------------------------------
+    DRAM            10.000             1.530             8.470   dut/regs/ramread0_syn_22.wclk
+    DRAM            10.000             1.530             8.470   dut/regs/ramread0_syn_42.wclk
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+Inter clock domain timing
+--------------------------------------------------
+
+IP timing
+--------------------------------------------------
