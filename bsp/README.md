@@ -1,5 +1,7 @@
 # Buildroot 最小 SD 启动基线
 
+2026-10-13最新：Linux→MM2S→PL内部四轴集成、最终镜像SD完整读回/用户冷启动、两轮动态与取消恢复通过。持续补给普通调度复验欠流；明确FIFO50隔离调度配置下102432个100μs点/6400批通过、max成功补给1.651740ms、水位采样最小31。实体电机IO未绑定，不能作为产品参数或Linux最坏界。最终client卸载、buffer释放、无活动DMA、串口关闭。交付与全部限制见[motion/BUILD_STATUS.md](motion/BUILD_STATUS.md)及[BOARD_VALIDATION.md](BOARD_VALIDATION.md)。下方未接运动FIFO的文字为历史批次。
+
 2026-10-13最新结果：恢复修正版SD根a3d29e67-02冷启动、匹配内核/模块/资源门禁、GP前后各41项及独立DMA444场景全部通过。426正常回环、12预期超时、6在途terminate，错误0；buffer释放/重分配后复测、GP epoch保持和两路IRQ各426次/闲置稳定通过。完整原始证据和吞吐口径见[BOARD_VALIDATION.md](BOARD_VALIDATION.md)，接运动FIFO前条件见[dma/BUILD_STATUS.md](dma/BUILD_STATUS.md)。以下暂停/待板测是历史记录，已由本次结果替代；运动FIFO/电机未接入。
 
 最新检查点：独立DMA首版冷启动/GP41项/204正常回环通过，两路新IRQ各204次；首个超时恢复失败，缓冲区安全保留。恢复修正版已在匹配内核构建树重编并生成独立交付包，同一SD Windows完整烧录/512MiB无缓存读回通过，根a3d29e67-02。用户因额度要求暂停，修正版冷启动/恢复及buffer释放重分配尚未验收。见[dma/BUILD_STATUS.md](dma/BUILD_STATUS.md)及[BOARD_VALIDATION.md](BOARD_VALIDATION.md)。

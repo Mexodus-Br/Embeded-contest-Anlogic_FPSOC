@@ -1,0 +1,154 @@
+
+# stty -echo
+WED_SCRIPT_EOF'
+#!/bin/sh
+set -eu
+/usr/bin/bsp-readonly-check b1fbee52-02
+test "$(sha256sum /li# > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > Linux delta-bsp 6.1.111-rt42-bsp-sd1 #1 SMP PREEMPT Sun Oct 11 00:00:00 UTC 2026 aarch64 GNU/Linux
+NAME=Buildroot
+VERSION=2022.02.6
+ID=buildroot
+VERSION_ID=2022.02.6
+PRETTY_NAME="Buildroot 2022.02.6"
+console=ttyS0,115200n8 earlycon=uart,mmio32,0xf8401000 loglevel=7 root=PARTUUID=b1fbee52-02 rootwait rootfstype=ext4 rw
+/dev/mmcblk0p2 179:2   ext4
+Root block device: mmcblk0p2
+SD
+SD root PARTUUID: b1fbee52-02
+NAME         TYPE  SIZE FSTYPE PARTUUID                             MOUNTPOINT
+mtdblock0    disk   32M                                             
+mmcblk0      disk 29.2G                                             
+|-mmcblk0p1  part   64M vfat   b1fbee52-01                          
+`-mmcblk0p2  part  256M ext4   b1fbee52-02                          /
+mmcblk1      disk  7.3G                                             
+|-mmcblk1p1  part   99M vfat   9fee0ece-01                          
+`-mmcblk1p2  part  7.2G ext4   9fee0ece-02                          
+mmcblk1boot0 disk    4M                                             
+mmcblk1boot1 disk    4M                                             
+MemTotal:        1013512 kB
+MemAvailable:     986364 kB
+CmaTotal:         131072 kB
+CmaFree:          130528 kB
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000017c00000, size 128 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] Memory: 880840K/1048576K available (9664K kernel code, 1364K rwdata, 3028K rodata, 1600K init, 574K bss, 36664K reserved, 131072K cma-reserved)
+[    0.398484] tcp_listen_portaddr_hash hash table entries: 512 (order: 1, 8192 bytes, linear)
+[    0.678591] sdhci: Secure Digital Host Controller Interface driver
+[    0.678595] sdhci: Copyright(c) Pierre Ossman
+[    0.678598] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.679813] sdhci-dwcmshc f8049000.mmc: Got CD GPIO
+[    0.726029] mmc0: SDHCI controller on f8049000.mmc [f8049000.mmc] using ADMA
+[    0.726390] mmc1: SDHCI controller on f804a000.mmc [f804a000.mmc] using ADMA
+[    0.833624] mmc0: new high speed SDHC card at address 0001
+[    0.834160] mmcblk0: mmc0:0001 MSSD0 29.2 GiB 
+[    0.847851]  mmcblk0: p1 p2
+[    0.866661] mmc1: new high speed MMC card at address 0001
+[    0.867202] mmcblk1: mmc1:0001 IS008G 7.30 GiB 
+[    0.868442]  mmcblk1: p1 p2
+[    0.869028] mmcblk1boot0: mmc1:0001 IS008G 4.00 MiB 
+[    0.869835] mmcblk1boot1: mmc1:0001 IS008G 4.00 MiB 
+[    0.870307] mmcblk1rpmb: mmc1:0001 IS008G 4.00 MiB, chardev (239:0)
+[    0.876498] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Quota mode: disabled.
+[    0.881285] Freeing unused kernel memory: 1600K
+[    1.094016] EXT4-fs (mmcblk0p2): re-mounted. Quota mode: disabled.
+CONFIG_MODVERSIONS=y
+CONFIG_CMA=y
+# CONFIG_CMA_DEBUG is not set
+CONFIG_CMA_DEBUGFS=y
+# CONFIG_CMA_SYSFS is not set
+CONFIG_CMA_AREAS=7
+# CONFIG_AXI_DMAC is not set
+CONFIG_ANLOGIC_DMA=m
+CONFIG_AXI_DMA=y
+CONFIG_AXI_DMA_TEST=m
+CONFIG_UIO=y
+# CONFIG_UIO_CIF is not set
+CONFIG_UIO_PDRV_GENIRQ=m
+CONFIG_UIO_DMEM_GENIRQ=y
+# CONFIG_UIO_AEC is not set
+# CONFIG_UIO_SERCOS3 is not set
+# CONFIG_UIO_PCI_GENERIC is not set
+# CONFIG_UIO_NETX is not set
+# CONFIG_UIO_PRUSS is not set
+# CONFIG_UIO_MF624 is not set
+CONFIG_UIO_AL_GENERIC=m
+CONFIG_DMA_CMA=y
+CONFIG_CMA_SIZE_MBYTES=16
+CONFIG_CMA_SIZE_SEL_MBYTES=y
+# CONFIG_CMA_SIZE_SEL_PERCENTAGE is not set
+# CONFIG_CMA_SIZE_SEL_MIN is not set
+# CONFIG_CMA_SIZE_SEL_MAX is not set
+CONFIG_CMA_ALIGNMENT=8
+           CPU0       CPU1       
+ 11:        805      57680     GICv3  27 Level     arch_timer
+ 13:          0          0     GICv3  78 Level     dw:dmac-1
+ 18:       1952          0     GICv3 103 Level     ttyS0
+ 19:          0          0     GICv3  80 Level     f804e000.spi
+ 21:        853          0     GICv3  94 Level     mmc0
+ 22:        725          0     GICv3  95 Level     mmc1
+ 23:          0          0  gpio-dwapb  15 Edge      f8049000.mmc cd
+ 24:          3          0     GICv3 114 Level     bsp-gp
+ 25:          5          0     GICv3 115 Level     anlogic-dma-controller
+ 26:          0          0     GICv3 116 Level     anlogic-dma-controller
+ 27:          1          0     GICv3 117 Level     bsp-motion
+IPI0:        99         90       Rescheduling interrupts
+IPI1:       754       1829       Function call interrupts
+IPI2:         0          0       CPU stop interrupts
+IPI3:         0          0       CPU stop (for crash dump) interrupts
+IPI4:         0          0       Timer broadcast interrupts
+IPI5:         0          0       IRQ work interrupts
+IPI6:         0          0       CPU wake-up interrupts
+Err:          0
+/sys/class/dma:
+total 0
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mdma0chan0[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan0[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mdma0chan1[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan1[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mdma0chan2[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan2[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mdma0chan3[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan3[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mdma0chan4[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan4[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mdma0chan5[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan5[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mdma0chan6[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan6[m
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mdma0chan7[m -> [1;34m../../devices/platform/soc/f804d000.ahb_dma/dma/dma0chan7[m
+lrwxrwxrwx    1 root     root            [  337.466428] anlogic-dma 80500000.dma: BSP motion controller quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+ 0 Jan  1 00:05 [1;36mdma1chan0[m -> [1;34m../../devices/platform/soc/80500000.dma/dma/dma1chan0[m
+lrwxrwxrwx    1 root    [  337.486384] anlogic-dma 80500000.dma: BSP motion controller quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+ root             0 Jan  1 00:05 [1;36mdma1chan1[m -> [1;34m../../devices/platform/soc/80500000.dma/dma/dma1chan1[m
+
+/sys/class/fpga_manager:
+total 0
+lrwxrwxrwx    1 root     root             0 Jan  1 00:01 [1;36mfpga0[m -> [1;34m../../devices/platform/soc/f8801000.fpga-mgr/fpga_manager/fpga0[m
+filename:       /lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko
+license:        GPL
+description:    anlogic dma driver
+author:         anlogic, Inc.
+license:        GPL
+description:    anlogic axi dma Controller Driver
+author:         anlogic, Inc.
+alias:          of:N*T*Canlogic,axi-dmaC*
+alias:          of:N*T*Canlogic,axi-dma
+depends:        
+name:           anlogic_dma_engine
+vermagic:       6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64
+filename:       /lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/axi-dma-test.ko
+license:        GPL
+description:    anlogic axi dma Test Driver
+author:         Naiyuan Que <naiyuan.que@anlogic.com>
+depends:        
+intree:         Y
+name:           axi_dma_test
+vermagic:       6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64
+bsp_motion 20480 1 - Live 0xffffffc000992000 (O)
+anlogic_dma_engine 24576 3 bsp_motion, Live 0xffffffc000986000 (O)
+bsp_gp 20480 0 - Live 0xffffffc000980000 (O)
+This check did not load modules or perform MMIO/DMA/memory stress or storage writes.
+bsp_motion 20480 1 - Live 0xffffffc000992000 (O)
+anlogic_dma_engine 24576 3 bsp_motion, Live 0xffffffc000986000 (O)
+bsp_gp 20480 0 - Live 0xffffffc000980000 (O)
+SNAP initial gen=16 status=240 error=103 accepted=0 active=0 done=2 valid=ff buffered=0 ends=2 cancels=3 time=344914214 pos0=0 pulse0=41 pos1=0 pulse1=26 pos2=0 pulse2=2 pos3=0 pulse3=14
+SNAP final-idle gen=17 status=240 error=0 accepted=0 active=0 done=2 valid=f0 buffered=0 ends=2 cancels=3 time=344932260 pos0=0 pulse0=41 pos1=0 pulse1=26 pos2=0 pulse2=2 pos3=0 pulse3=14
+MOTION_ACCEPT_PASS checks=12
+d06115e2a7bf556391d84a603d05638ddc652d63aecffe80701d242bbb6c6938  /usr/bin/motion-accept
+BSP_MOTION_V2_TEST_APP_INSTALLED_BUFFERS_RELEASED
+# 
+BSP_SERIAL_EXIT=0
+# 

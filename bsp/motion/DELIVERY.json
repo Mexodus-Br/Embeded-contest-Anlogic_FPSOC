@@ -1,0 +1,999 @@
+{
+  "date": "2026-10-13 Asia/Taipei",
+  "scope": "ISOLATED_INTERNAL_MOTION_TEST_ONLY",
+  "source_commit": "22ea0a41daa974d24f16b72df7c31db212b7ab8f",
+  "handoff_commit": "3a4ea5c",
+  "schema_sha256": "ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10",
+  "ip_manifest": {
+    "td_root": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067",
+    "schema_sha256": "ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10",
+    "generation": "unmodified installed vendor RTL, directly parameterized; not copied example IP",
+    "parameters": {
+      "AL_S_AXI_LITE_ADDR_WIDTH": 10,
+      "AL_S_AXI_LITE_DATA_WIDTH": 32,
+      "AL_DLYTMR_RESOLUTION": 125,
+      "AL_PRMRY_IS_ACLK_ASYNC": 0,
+      "AL_INCLUDE_SG": 0,
+      "AL_SG_INCLUDE_STSCNTRL_STRM": 0,
+      "AL_SG_USE_STSAPP_LENGTH": 0,
+      "AL_SG_LENGTH_WIDTH": 16,
+      "AL_M_AXI_SG_ADDR_WIDTH": 32,
+      "AL_M_AXI_SG_DATA_WIDTH": 32,
+      "AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH": 32,
+      "AL_S_AXIS_S2MM_STS_TDATA_WIDTH": 32,
+      "AL_INCLUDE_MM2S": 1,
+      "AL_INCLUDE_MM2S_SF": 1,
+      "AL_INCLUDE_MM2S_DRE": 1,
+      "AL_MM2S_BURST_SIZE": 16,
+      "AL_M_AXI_MM2S_ADDR_WIDTH": 32,
+      "AL_M_AXI_MM2S_DATA_WIDTH": 64,
+      "AL_M_AXIS_MM2S_TDATA_WIDTH": 64,
+      "AL_INCLUDE_S2MM": 1,
+      "AL_INCLUDE_S2MM_SF": 1,
+      "AL_INCLUDE_S2MM_DRE": 1,
+      "AL_S2MM_BURST_SIZE": 16,
+      "AL_M_AXI_S2MM_ADDR_WIDTH": 32,
+      "AL_M_AXI_S2MM_DATA_WIDTH": 64,
+      "AL_S_AXIS_S2MM_TDATA_WIDTH": 64,
+      "AL_MICRO_DMA": 0,
+      "AL_INCREASE_THROUGHPUT": 0,
+      "AL_S_AXI_LITE_ACLK_FREQ_HZ": 100000000,
+      "AL_M_AXI_MM2S_ACLK_FREQ_HZ": 100000000,
+      "AL_M_AXI_S2MM_ACLK_FREQ_HZ": 100000000,
+      "AL_M_AXI_SG_ACLK_FREQ_HZ": 100000000
+    },
+    "dma_ports": {
+      "s_axi_lite_aclk": [
+        "input",
+        1
+      ],
+      "m_axi_sg_aclk": [
+        "input",
+        1
+      ],
+      "m_axi_mm2s_aclk": [
+        "input",
+        1
+      ],
+      "m_axi_s2mm_aclk": [
+        "input",
+        1
+      ],
+      "axi_resetn": [
+        "input",
+        1
+      ],
+      "s_axi_lite_awvalid": [
+        "input",
+        1
+      ],
+      "s_axi_lite_awready": [
+        "output",
+        1
+      ],
+      "s_axi_lite_awaddr": [
+        "input",
+        10
+      ],
+      "s_axi_lite_wvalid": [
+        "input",
+        1
+      ],
+      "s_axi_lite_wready": [
+        "output",
+        1
+      ],
+      "s_axi_lite_wdata": [
+        "input",
+        32
+      ],
+      "s_axi_lite_bresp": [
+        "output",
+        2
+      ],
+      "s_axi_lite_bvalid": [
+        "output",
+        1
+      ],
+      "s_axi_lite_bready": [
+        "input",
+        1
+      ],
+      "s_axi_lite_arvalid": [
+        "input",
+        1
+      ],
+      "s_axi_lite_arready": [
+        "output",
+        1
+      ],
+      "s_axi_lite_araddr": [
+        "input",
+        10
+      ],
+      "s_axi_lite_rvalid": [
+        "output",
+        1
+      ],
+      "s_axi_lite_rready": [
+        "input",
+        1
+      ],
+      "s_axi_lite_rdata": [
+        "output",
+        32
+      ],
+      "s_axi_lite_rresp": [
+        "output",
+        2
+      ],
+      "m_axi_sg_awaddr": [
+        "output",
+        32
+      ],
+      "m_axi_sg_awlen": [
+        "output",
+        8
+      ],
+      "m_axi_sg_awsize": [
+        "output",
+        3
+      ],
+      "m_axi_sg_awburst": [
+        "output",
+        2
+      ],
+      "m_axi_sg_awprot": [
+        "output",
+        3
+      ],
+      "m_axi_sg_awcache": [
+        "output",
+        4
+      ],
+      "m_axi_sg_awuser": [
+        "output",
+        4
+      ],
+      "m_axi_sg_awvalid": [
+        "output",
+        1
+      ],
+      "m_axi_sg_awready": [
+        "input",
+        1
+      ],
+      "m_axi_sg_wdata": [
+        "output",
+        32
+      ],
+      "m_axi_sg_wstrb": [
+        "output",
+        4
+      ],
+      "m_axi_sg_wlast": [
+        "output",
+        1
+      ],
+      "m_axi_sg_wvalid": [
+        "output",
+        1
+      ],
+      "m_axi_sg_wready": [
+        "input",
+        1
+      ],
+      "m_axi_sg_bresp": [
+        "input",
+        2
+      ],
+      "m_axi_sg_bvalid": [
+        "input",
+        1
+      ],
+      "m_axi_sg_bready": [
+        "output",
+        1
+      ],
+      "m_axi_sg_araddr": [
+        "output",
+        32
+      ],
+      "m_axi_sg_arlen": [
+        "output",
+        8
+      ],
+      "m_axi_sg_arsize": [
+        "output",
+        3
+      ],
+      "m_axi_sg_arburst": [
+        "output",
+        2
+      ],
+      "m_axi_sg_arprot": [
+        "output",
+        3
+      ],
+      "m_axi_sg_arcache": [
+        "output",
+        4
+      ],
+      "m_axi_sg_aruser": [
+        "output",
+        4
+      ],
+      "m_axi_sg_arvalid": [
+        "output",
+        1
+      ],
+      "m_axi_sg_arready": [
+        "input",
+        1
+      ],
+      "m_axi_sg_rdata": [
+        "input",
+        32
+      ],
+      "m_axi_sg_rresp": [
+        "input",
+        2
+      ],
+      "m_axi_sg_rlast": [
+        "input",
+        1
+      ],
+      "m_axi_sg_rvalid": [
+        "input",
+        1
+      ],
+      "m_axi_sg_rready": [
+        "output",
+        1
+      ],
+      "m_axi_mm2s_araddr": [
+        "output",
+        32
+      ],
+      "m_axi_mm2s_arlen": [
+        "output",
+        8
+      ],
+      "m_axi_mm2s_arsize": [
+        "output",
+        3
+      ],
+      "m_axi_mm2s_arburst": [
+        "output",
+        2
+      ],
+      "m_axi_mm2s_arprot": [
+        "output",
+        3
+      ],
+      "m_axi_mm2s_arcache": [
+        "output",
+        4
+      ],
+      "m_axi_mm2s_aruser": [
+        "output",
+        4
+      ],
+      "m_axi_mm2s_arvalid": [
+        "output",
+        1
+      ],
+      "m_axi_mm2s_arready": [
+        "input",
+        1
+      ],
+      "m_axi_mm2s_rdata": [
+        "input",
+        64
+      ],
+      "m_axi_mm2s_rresp": [
+        "input",
+        2
+      ],
+      "m_axi_mm2s_rlast": [
+        "input",
+        1
+      ],
+      "m_axi_mm2s_rvalid": [
+        "input",
+        1
+      ],
+      "m_axi_mm2s_rready": [
+        "output",
+        1
+      ],
+      "mm2s_prmry_reset_out_n": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_tdata": [
+        "output",
+        64
+      ],
+      "m_axis_mm2s_tkeep": [
+        "output",
+        8
+      ],
+      "m_axis_mm2s_tvalid": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_tready": [
+        "input",
+        1
+      ],
+      "m_axis_mm2s_tlast": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_tuser": [
+        "output",
+        4
+      ],
+      "m_axis_mm2s_tid": [
+        "output",
+        5
+      ],
+      "m_axis_mm2s_tdest": [
+        "output",
+        5
+      ],
+      "mm2s_cntrl_reset_out_n": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_cntrl_tdata": [
+        "output",
+        32
+      ],
+      "m_axis_mm2s_cntrl_tkeep": [
+        "output",
+        4
+      ],
+      "m_axis_mm2s_cntrl_tvalid": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_cntrl_tready": [
+        "input",
+        1
+      ],
+      "m_axis_mm2s_cntrl_tlast": [
+        "output",
+        1
+      ],
+      "m_axi_s2mm_awaddr": [
+        "output",
+        32
+      ],
+      "m_axi_s2mm_awlen": [
+        "output",
+        8
+      ],
+      "m_axi_s2mm_awsize": [
+        "output",
+        3
+      ],
+      "m_axi_s2mm_awburst": [
+        "output",
+        2
+      ],
+      "m_axi_s2mm_awprot": [
+        "output",
+        3
+      ],
+      "m_axi_s2mm_awcache": [
+        "output",
+        4
+      ],
+      "m_axi_s2mm_awuser": [
+        "output",
+        4
+      ],
+      "m_axi_s2mm_awvalid": [
+        "output",
+        1
+      ],
+      "m_axi_s2mm_awready": [
+        "input",
+        1
+      ],
+      "m_axi_s2mm_wdata": [
+        "output",
+        64
+      ],
+      "m_axi_s2mm_wstrb": [
+        "output",
+        8
+      ],
+      "m_axi_s2mm_wlast": [
+        "output",
+        1
+      ],
+      "m_axi_s2mm_wvalid": [
+        "output",
+        1
+      ],
+      "m_axi_s2mm_wready": [
+        "input",
+        1
+      ],
+      "m_axi_s2mm_bresp": [
+        "input",
+        2
+      ],
+      "m_axi_s2mm_bvalid": [
+        "input",
+        1
+      ],
+      "m_axi_s2mm_bready": [
+        "output",
+        1
+      ],
+      "s2mm_prmry_reset_out_n": [
+        "output",
+        1
+      ],
+      "s_axis_s2mm_tdata": [
+        "input",
+        64
+      ],
+      "s_axis_s2mm_tkeep": [
+        "input",
+        8
+      ],
+      "s_axis_s2mm_tvalid": [
+        "input",
+        1
+      ],
+      "s_axis_s2mm_tready": [
+        "output",
+        1
+      ],
+      "s_axis_s2mm_tlast": [
+        "input",
+        1
+      ],
+      "s_axis_s2mm_tuser": [
+        "input",
+        4
+      ],
+      "s_axis_s2mm_tid": [
+        "input",
+        5
+      ],
+      "s_axis_s2mm_tdest": [
+        "input",
+        5
+      ],
+      "s2mm_sts_reset_out_n": [
+        "output",
+        1
+      ],
+      "s_axis_s2mm_sts_tdata": [
+        "input",
+        32
+      ],
+      "s_axis_s2mm_sts_tkeep": [
+        "input",
+        4
+      ],
+      "s_axis_s2mm_sts_tvalid": [
+        "input",
+        1
+      ],
+      "s_axis_s2mm_sts_tready": [
+        "output",
+        1
+      ],
+      "s_axis_s2mm_sts_tlast": [
+        "input",
+        1
+      ],
+      "mm2s_introut": [
+        "output",
+        1
+      ],
+      "s2mm_introut": [
+        "output",
+        1
+      ]
+    },
+    "libraries": {
+      "dma": {
+        "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma.v",
+        "staged": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ip\\axi_dma.v",
+        "sha256": "24d6d6d4b741b497baf3b10ba50010e2df830b2a0681e16eb49ce84471011ef1"
+      },
+      "converter": {
+        "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\AXI_MM\\RTL\\axi_protocol_converter_merge.v",
+        "staged": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ip\\axi_protocol_converter_merge.v",
+        "sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61"
+      }
+    },
+    "AXI_DMA_1.0_component_sha256": "1f53521dce6a4bc791e7d93f2d7ea34d486d2bd2d011983ea2340cca5a97eeab",
+    "AXI_Protocol_Converter_1.0_component_sha256": "681e8d50d5edbfb5444d1821157b54538e9344b8cec9211e2bc25a3cd8a9ca58",
+    "headers": {
+      "axi_dma_func_pkg.vh": {
+        "sha256": "07402a26ab19cb9a14c5990addd329df38713d4c57a75cbf2b19d47b7a0c4f66",
+        "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma_func_pkg.vh"
+      },
+      "axi_dma_param_pkg.vh": {
+        "sha256": "e756686e5426d92dd05c82df33557d8b2765e425a877e6b0db2b5931d0ee7664",
+        "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma_param_pkg.vh"
+      }
+    }
+  },
+  "package": {
+    "path": "bsp/artifacts/motion-validated-release.tar.gz",
+    "sha256": "fe129e9bd8ff3f818a0ba1cdd602674759f03576398923c3a16afbd19c6292a1"
+  },
+  "image_manifest": {
+    "status": "BUILT_NOT_BOARD_BOOT_TESTED",
+    "ddr": {
+      "capacity_mib": 1024,
+      "dq_width": 32,
+      "rate_mts": 1333,
+      "io_voltage_v": 1.35,
+      "physical_voltage_measured": false
+    },
+    "root_partuuid": "2176bfe4-02",
+    "partitions": [
+      {
+        "number": 1,
+        "start_sector": 2048,
+        "sectors": 131072,
+        "filesystem": "FAT32"
+      },
+      {
+        "number": 2,
+        "start_sector": 133120,
+        "sectors": 524288,
+        "filesystem": "EXT4"
+      }
+    ],
+    "versions": {
+      "linux": "6.1.111-rt42-bsp-sd1",
+      "uboot": "2021.01",
+      "buildroot": "2022.02.6",
+      "TD": "2026.1 SP2 6.2.2.200067",
+      "FD": "2026.1 SP1"
+    },
+    "files": {
+      "BOOT.bin": {
+        "bytes": 5160448,
+        "sha256": "4d1a82ef4abdc83883cc803726686b2f7538ffe055c3e920a542584f67920b2c"
+      },
+      "Design.xml": {
+        "bytes": 72971,
+        "sha256": "3de549542223ae25a7b3ed1de6cac44260c071d1fe1ea2bcea57f935dbe3bc75"
+      },
+      "boot/BOOT.bin": {
+        "bytes": 5160448,
+        "sha256": "4d1a82ef4abdc83883cc803726686b2f7538ffe055c3e920a542584f67920b2c"
+      },
+      "boot/boot.scr": {
+        "bytes": 779,
+        "sha256": "eafc5f91ab6994ffebf7fe2ed11a3ca3fac8070d27f8db41aa7ab5a95ac7dd62"
+      },
+      "boot/system.dtb": {
+        "bytes": 15458,
+        "sha256": "fa8da409b0f93d687348ef8cc457abecef771ac77e2d3b4e3bb951eb4e7cb196"
+      },
+      "boot/uImage.lz4": {
+        "bytes": 8122647,
+        "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+      },
+      "boot.bif": {
+        "bytes": 365,
+        "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
+      },
+      "boot.cmd": {
+        "bytes": 707,
+        "sha256": "25e3d146cf9aae10cfb3c475e05fc1f18c4b65cfd8e02af89078a6859a59304a"
+      },
+      "boot.scr": {
+        "bytes": 779,
+        "sha256": "eafc5f91ab6994ffebf7fe2ed11a3ca3fac8070d27f8db41aa7ab5a95ac7dd62"
+      },
+      "boot.vfat": {
+        "bytes": 67108864,
+        "sha256": "a26412f8251eee22826a232145ec16ec668d67c14dde0bdc1a232548b6717a23"
+      },
+      "bootgen.log": {
+        "bytes": 3334,
+        "sha256": "572a75f9fecfb242bfb0ee10afa9064eddf76c6c7d260397d2bbff59ce012c44"
+      },
+      "fsbl.elf": {
+        "bytes": 1507200,
+        "sha256": "b1dea2f88c712efaa2a67f12213d7e477dc55d58c996cfd5f48e304e5174dd30"
+      },
+      "hpf.info": {
+        "bytes": 118,
+        "sha256": "4208ee509f61abda873a81232dd63aec5c0abcd5f072167093b2a4b203ccb246"
+      },
+      "rootfs.ext4": {
+        "bytes": 268435456,
+        "sha256": "140974123d9e7ce57a17806fb03eff9f22873b466fe4e2ab31e00cb2bf44812a"
+      },
+      "sdcard.img": {
+        "bytes": 536870912,
+        "sha256": "915d25b78c5afd2887f1d35b7327afb8cd12fb0529967560e92bc32c87b6b8e5"
+      },
+      "soc_plat.c": {
+        "bytes": 129854,
+        "sha256": "6dc252d86fa0d2417890215bf506207f9a06b7688af3c28bf821883c61ca8fbd"
+      },
+      "soc_plat.h": {
+        "bytes": 14296,
+        "sha256": "b531f443fc6eaf29f484c13d369c6161ad138eb5de7e63cf21dbd8e81b48e148"
+      },
+      "soc_plat_dts.h": {
+        "bytes": 4132,
+        "sha256": "4658518f7a90d5f1fb8c92e52bd4a882559323bd04f1dd9e670aae5e31cdf1c0"
+      },
+      "system.bit": {
+        "bytes": 4052214,
+        "sha256": "ddf1050db305059341281c0188e2eba02bbaa240901f533b43132aa426e99ca4"
+      },
+      "system.dtb": {
+        "bytes": 15458,
+        "sha256": "fa8da409b0f93d687348ef8cc457abecef771ac77e2d3b4e3bb951eb4e7cb196"
+      },
+      "system.hpf": {
+        "bytes": 651410,
+        "sha256": "4e312d7c0600477d022a75364f0a4a8f5d6c1a1a05cdad4d461877c523f85afd"
+      },
+      "u-boot.bin": {
+        "bytes": 920348,
+        "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+      },
+      "uImage.lz4": {
+        "bytes": 8122647,
+        "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+      }
+    }
+  },
+  "software": {
+    "provider_sha256": "022804d6d6f8aa2a0d93189735ddb13f037d99998b9bd71896c44bd4f3b48c32",
+    "client_sha256": "ce8d2418734ec437e52a4ade6927aa697275559138c897f30b17b752002ccac1",
+    "accept_sha256": "29c2e1646f3b9d7980b398b121e982bf77c4e7d9573ae604bdb476550319b3f6",
+    "provider_symvers_sha256": "d0c3dda3afe717aded0eb307f6f3bc5639c1278b6b851270398beb44bae23c9d",
+    "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1"
+  },
+  "rollback": {
+    "path": "bsp/artifacts/dma-recovery-release/release/sdcard.img",
+    "sha256": "afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d"
+  },
+  "stages": {
+    "build": "PASS",
+    "sd_full_readback": "PASS",
+    "final_coldboot": "PASS",
+    "final_dynamic": "PASS_TWO_ROUNDS_INCLUDING_EVENT_POLL",
+    "final_cancel_recovery": "PASS_TWO_ROUNDS_AND_FAILURE_SAFE_RELEASE",
+    "final_supply": "CONDITIONAL_PASS_FIFO50_TWO_SCHED_OTHER_CPU_LOADS; SCHED_OTHER_FAILED_UNDERRUN_0x202",
+    "previous_dynamic_cancel_recovery_supply": "PASS; app d06115e2 without additional event_poll"
+  },
+  "limits": [
+    "internal STEP/DIR/EN only; no motor pins",
+    "default frozen RTL parameters zero prohibit run; explicit isolation test parameters only",
+    "finite ordinary PREEMPT two-CPU-load observation, not Linux worst case",
+    "watermark sampled, not continuous minimum",
+    "physical DDR voltage/grade and motor pulses not measured",
+    "hard PS outstanding DDR bus closure not independently instrumented",
+    "stop-failure quarantine coded but physical HALTED failure not injected",
+    "no eMMC/QSPI writes"
+  ],
+  "deployment": {
+    "status": "SD_DEPLOYMENT_VERIFIED_NOT_BOARD_BOOT_TESTED",
+    "expected_sha256": "915d25b78c5afd2887f1d35b7327afb8cd12fb0529967560e92bc32c87b6b8e5",
+    "root_partuuid": "2176bfe4-02",
+    "image": "D:\\Works\\Embedded_contest\\dev\\bsp\\artifacts\\motion-validated-release\\release\\sdcard.img",
+    "disk_number": 1,
+    "emmc": "NOT_MODIFIED",
+    "board_tests": "NOT_TESTED",
+    "started_local": "2026-10-13T10:40:31+0800",
+    "identity": {
+      "partitions": [
+        {
+          "PartitionNumber": 1,
+          "DriveLetter": "E",
+          "Offset": 1048576,
+          "Size": 67108864
+        },
+        {
+          "PartitionNumber": 2,
+          "DriveLetter": null,
+          "Offset": 68157440,
+          "Size": 268435456
+        }
+      ],
+      "disk": {
+        "Number": 1,
+        "FriendlyName": "Generic- SD/MMC/MS PRO",
+        "UniqueId": "USBSTOR\\DISK&VEN_RSUER&PROD_RTSUERLUN0&REV_1.00\\0000:LAPTOP-JS7E5LFJ",
+        "BusType": "USB",
+        "Size": 31299993600,
+        "LogicalSectorSize": 512,
+        "IsBoot": false,
+        "IsSystem": false,
+        "IsReadOnly": false
+      }
+    },
+    "written_bytes": 536870912,
+    "write_seconds": 24.625,
+    "readback_bytes": 536870912,
+    "readback_seconds": 18.406000000002678,
+    "actual_readback_sha256": "915d25b78c5afd2887f1d35b7327afb8cd12fb0529967560e92bc32c87b6b8e5",
+    "partition_and_filesystem_signatures": "PASS",
+    "fsck": "NOT_RUN_ON_WINDOWS; source FAT/EXT4 fsck passed before byte-identical deployment",
+    "finished_local": "2026-10-13T10:41:17+0800",
+    "exit_code": 0
+  },
+  "board_result": {
+    "scope": "ISOLATED_INTERNAL_MOTION_TEST_ONLY",
+    "final_root_partuuid": "2176bfe4-02",
+    "coldboot": {
+      "start_utc": "2026-10-13T02:45:37.671947+00:00",
+      "end_utc": "2026-10-13T02:47:20.263112+00:00",
+      "port": "COM4",
+      "baud": 115200,
+      "format": "8N1",
+      "dtr": false,
+      "rts": false,
+      "sent_bytes": 0,
+      "received_bytes": 19008,
+      "sha256": "9cd905d56ac0dd548cc72c9bae44b3034bb2976cf2c968f8bc294be531f1461c"
+    },
+    "final_dynamic_cancel_recovery": {
+      "status": "PASS",
+      "pass_checks": [
+        4239,
+        4254
+      ],
+      "event_poll_passes": 2,
+      "raw": {
+        "start_utc": "2026-10-13T02:47:39.145493+00:00",
+        "end_utc": "2026-10-13T02:47:56.739730+00:00",
+        "port": "COM4",
+        "baud": 115200,
+        "format": "8N1",
+        "dtr": false,
+        "rts": false,
+        "sent_bytes": 22903,
+        "received_bytes": 29006,
+        "sha256": "0977f3ebe4c814e30dbd7a6040f870c378d83eb828b200f594196eb125c4fd2a",
+        "script": "bsp/scripts/board_motion_accept.sh",
+        "script_sha256": "6b016289e45a1d21217a9c717b70a17ac7e8aeb8f5006a6e397bf2944bea0c5c",
+        "arguments": [
+          "2176bfe4-02"
+        ],
+        "script_exit": 1
+      }
+    },
+    "ordinary_scheduler_final_supply": {
+      "status": "FAIL_UNDERRUN_0x202",
+      "snapshot": {
+        "gen": 74,
+        "status": 576,
+        "error": 514,
+        "accepted": 239,
+        "active": 239,
+        "done": 238,
+        "valid": 1023,
+        "buffered": 0,
+        "ends": 6,
+        "cancels": 17,
+        "time": 139176501,
+        "pos0": 19,
+        "pulse0": 649,
+        "pos1": 14,
+        "pulse1": 548,
+        "pos2": 0,
+        "pulse2": 4,
+        "pos3": 4,
+        "pulse3": 480
+      },
+      "raw": {
+        "start_utc": "2026-10-13T02:47:39.145493+00:00",
+        "end_utc": "2026-10-13T02:47:56.739730+00:00",
+        "port": "COM4",
+        "baud": 115200,
+        "format": "8N1",
+        "dtr": false,
+        "rts": false,
+        "sent_bytes": 22903,
+        "received_bytes": 29006,
+        "sha256": "0977f3ebe4c814e30dbd7a6040f870c378d83eb828b200f594196eb125c4fd2a",
+        "script": "bsp/scripts/board_motion_accept.sh",
+        "script_sha256": "6b016289e45a1d21217a9c717b70a17ac7e8aeb8f5006a6e397bf2944bea0c5c",
+        "arguments": [
+          "2176bfe4-02"
+        ],
+        "script_exit": 1
+      },
+      "safe_release_raw": {
+        "start_utc": "2026-10-13T02:49:02.447317+00:00",
+        "end_utc": "2026-10-13T02:49:06.166200+00:00",
+        "port": "COM4",
+        "baud": 115200,
+        "format": "8N1",
+        "dtr": false,
+        "rts": false,
+        "sent_bytes": 597,
+        "received_bytes": 20220,
+        "sha256": "3efecceeae5f9b7bc02de90aa978b021a9b4353abdec2cb7ea7ef3de4cf00ed8",
+        "script": "bsp/scripts/board_motion_safe_release.sh",
+        "script_sha256": "7f637ac2389134e8d5e1e174479e2ee4dd250a255b8598a75cc0969ba7aebe5b",
+        "arguments": [],
+        "script_exit": 0
+      },
+      "automatically_resumed_old_trajectory": false
+    },
+    "previous_ordinary_scheduler_supply_success": {
+      "points": 102432,
+      "elapsed_ns": 10243575972,
+      "max_success_gap_ns": 1718370,
+      "min_sampled_watermark": 31,
+      "target_gap_ns": 2000000,
+      "target_met": 1,
+      "batches": 6400,
+      "raw_sha256": "47ab9cce201b820c83437498172d2edb7aeb97f90ac4578729b113833eda29fb",
+      "script_exit": 0,
+      "estimated_sample_margin_ns": 1381630,
+      "gap_ns": {
+        "min": 0,
+        "max": 1718370,
+        "p99": 1657200
+      },
+      "submit_ns": {
+        "min": 2730,
+        "max": 4590,
+        "p99": 3030
+      },
+      "ioc_ns": {
+        "min": 8100,
+        "max": 27930,
+        "p99": 9900
+      },
+      "closed_ns": {
+        "min": 39030,
+        "max": 111510,
+        "p99": 39960
+      }
+    },
+    "final_fifo50_two_normal_cpu_loads_supply": {
+      "points": 102432,
+      "elapsed_ns": 10243593432,
+      "max_success_gap_ns": 1651740,
+      "min_sampled_watermark": 31,
+      "target_gap_ns": 2000000,
+      "target_met": 1,
+      "batches": 6400,
+      "raw_sha256": "af04ee6d77e0818a5b9c62844287871c289078c6bbc321770832dd59614c6dfc",
+      "script_exit": 0,
+      "estimated_sample_margin_ns": 1448260,
+      "gap_ns": {
+        "min": 0,
+        "max": 1651740,
+        "p99": 1640970
+      },
+      "submit_ns": {
+        "min": 2730,
+        "max": 5010,
+        "p99": 3030
+      },
+      "ioc_ns": {
+        "min": 9300,
+        "max": 34410,
+        "p99": 10020
+      },
+      "closed_ns": {
+        "min": 27180,
+        "max": 42240,
+        "p99": 28770
+      }
+    },
+    "long_trajectory": {
+      "positions": [
+        11,
+        -4,
+        0,
+        -4
+      ],
+      "expected_pulse_deltas": [
+        199731,
+        198038,
+        0,
+        184380
+      ],
+      "actual_pulse_deltas": [
+        199731,
+        198038,
+        0,
+        184380
+      ],
+      "accepted_active_done": 102431,
+      "end_count_delta": 1
+    },
+    "final_irq_idle_stable": {
+      "114": [
+        9,
+        0
+      ],
+      "115": [
+        6433,
+        0
+      ],
+      "116": [
+        0,
+        0
+      ],
+      "117": [
+        7,
+        0
+      ]
+    },
+    "final_state": {
+      "motion_client": "UNLOADED",
+      "coherent_motion_buffer": "RELEASED",
+      "gp_provider": "LOADED",
+      "dma_provider": "LOADED",
+      "active_dma": "NONE",
+      "uart": "CLOSED"
+    },
+    "limits": [
+      "finite measurement, not Linux worst-case bound",
+      "watermark sampled, not continuous minimum",
+      "FIFO50 is explicit isolation test scheduling configuration",
+      "no physical motor IO or driver synchronization verified"
+    ]
+  },
+  "source_identities": {
+    "status": "PASS",
+    "source_commit": "22ea0a41daa974d24f16b72df7c31db212b7ab8f",
+    "handoff_commit": "3a4ea5c8e56024bd2407916bafed48508e5a1e69",
+    "schema_sha256": "ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10",
+    "release_sha256": "3d9d66bdb9db85628d9f8c7840fa04aa714c35f4f659d34a6b9390a53e9b335b",
+    "ps_properties_sha256": "11c2ceeed4f70efa7e1847128457d1845a658c5d25ba2d7cd38422d67a701801",
+    "source_count": 84,
+    "evidence_count": 7,
+    "ip_count": 6
+  },
+  "source_tree_files_sha256": {
+    "client/bsp_motion.c": "e89e2e10722369e53cef42e4c3128df732dfbfc657e8ccd04e336a96d0c33f89",
+    "codec_fixture.c": "2507939ac6e24cc76d52ea73aafe09d2b7af85bc16f8a339849e3c057c79a0d9",
+    "generated/dma_defs.h": "63f1cb1bb5190919e78ad6a263039aec516dcd6825ce550599ebd345a457d179",
+    "generated/interface_defs.h": "d20ea0824a22bbdabdf774ab950a6894fdab2b62de3b935d2283e305bf91c6c5",
+    "mot2_codec.h": "3e66c6a10861ad4bc9665f3cd6d6e3bd517929d88c11b68d5eea6ba5589c3272",
+    "motion-control.dtsi": "0d8605159b1c4e35b10de39dec8af41a7c259e48b6ef2d7297830ee253e438be",
+    "motion_accept.c": "0a02b6e0db801870292e6960af8de0733badbc890fa12c1f100db37850749ef6",
+    "motion_uapi.h": "2122782bfaea608ee198032307eff98625b758b12ed153409a2997a86b9b8200",
+    "provider/anlogic_dma.c": "bf9f045469f5e9744c5ddb5f7a7002cc98348f0097d5f7fa79434b0d366182b2",
+    "provider/axi-dma.c": "dce2bfb909bf25447e7c298a5aa510d0032597fbd892a7fa81cb9d048ec377f0",
+    "provider/dmaengine.h": "8ddac9c5ff009cf3b70c23d4b0e8e174f43eb2ea00d87454b17f32aedfda9d58",
+    "provider/include/linux/dma/anlogic_dma.h": "e754262d5e865d68dc5cb0e5c7b9bd5dbb5af2adbff17f84a870b78e20c6b557",
+    "provider_api.h": "ef9422ba4da64967c655f06ac189c158f96390384d28b2289584523b63e679ae"
+  },
+  "source_tree_files_sha256_lf": {
+    "client/bsp_motion.c": "18f0bb79e5d4401555de6cc0a165f5d87d5e092fe9ba5e74bbe8624f1705707a",
+    "codec_fixture.c": "61df29fd35e3b50e736e6744e622c1c5365f24a7eb8f1377af883cd62cdde2d1",
+    "generated/dma_defs.h": "61351a10a64af73e4357c032b685be0e5a74338e7a5f7f169af6699336b871f1",
+    "generated/interface_defs.h": "8710751a781a233b2d52d48d4a1c0a19e8d2afd31f0cc999bcd56e8100fb9f07",
+    "mot2_codec.h": "6e0e27d99a4cb742c9084861e30dda5cada1c8ebcb505079e89219ef6cd7eab3",
+    "motion-control.dtsi": "217b93cf65ecf26c14a06cd324cf0f532d91d50e7235593d0550bdfba8593bd9",
+    "motion_accept.c": "c68ebb1c528d67391b349edfa31a29d31b8b08f859110ee900da193578f6869e",
+    "motion_uapi.h": "cef876bb2d40894b0e0e65feeafa283ca9178e1febedddb6de14a0b0bd618ab1",
+    "provider/anlogic_dma.c": "babb0fe009f7366ef761e2a7fcc7a3b53fdb1c7c9c88e20129a77e98fa634330",
+    "provider/axi-dma.c": "20931eea2ee6b2248a15f015abfd9ff70c009a2eab2008d9b274abf35a5eb230",
+    "provider/dmaengine.h": "09d1c31b6a025adc25a6529854642689ab4302ae19007923f9cfa68f7733ec28",
+    "provider/include/linux/dma/anlogic_dma.h": "65fc512d35fe225c2b068d3815575303ae1f4c68f7d59bc52ba9c8ec47d9395a",
+    "provider_api.h": "7541365b332a7876988f36a4e5209b7950003112c5140a1c408b56b52354b605"
+  },
+  "source_tree_files_sha256_semantics": "raw Windows workspace bytes; _lf identities are committed/reproduction source identities"
+}

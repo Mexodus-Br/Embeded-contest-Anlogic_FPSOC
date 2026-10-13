@@ -1,0 +1,46 @@
+{
+  "status": "SD_DEPLOYMENT_VERIFIED_NOT_BOARD_BOOT_TESTED",
+  "expected_sha256": "915d25b78c5afd2887f1d35b7327afb8cd12fb0529967560e92bc32c87b6b8e5",
+  "root_partuuid": "2176bfe4-02",
+  "image": "D:\\Works\\Embedded_contest\\dev\\bsp\\artifacts\\motion-validated-release\\release\\sdcard.img",
+  "disk_number": 1,
+  "emmc": "NOT_MODIFIED",
+  "board_tests": "NOT_TESTED",
+  "started_local": "2026-10-13T10:40:31+0800",
+  "identity": {
+    "partitions": [
+      {
+        "PartitionNumber": 1,
+        "DriveLetter": "E",
+        "Offset": 1048576,
+        "Size": 67108864
+      },
+      {
+        "PartitionNumber": 2,
+        "DriveLetter": null,
+        "Offset": 68157440,
+        "Size": 268435456
+      }
+    ],
+    "disk": {
+      "Number": 1,
+      "FriendlyName": "Generic- SD/MMC/MS PRO",
+      "UniqueId": "USBSTOR\\DISK&VEN_RSUER&PROD_RTSUERLUN0&REV_1.00\\0000:LAPTOP-JS7E5LFJ",
+      "BusType": "USB",
+      "Size": 31299993600,
+      "LogicalSectorSize": 512,
+      "IsBoot": false,
+      "IsSystem": false,
+      "IsReadOnly": false
+    }
+  },
+  "written_bytes": 536870912,
+  "write_seconds": 24.625,
+  "readback_bytes": 536870912,
+  "readback_seconds": 18.406000000002678,
+  "actual_readback_sha256": "915d25b78c5afd2887f1d35b7327afb8cd12fb0529967560e92bc32c87b6b8e5",
+  "partition_and_filesystem_signatures": "PASS",
+  "fsck": "NOT_RUN_ON_WINDOWS; source FAT/EXT4 fsck passed before byte-identical deployment",
+  "finished_local": "2026-10-13T10:41:17+0800",
+  "exit_code": 0
+}

@@ -1,5 +1,18 @@
 # SD启动与GP实板核对
 
+## 2026-10-13 最新：Linux→MM2S→PL 内部四轴运动集成
+
+最终包motion-validated-release.tar.gz（SHA fe129e9b…9292a1）、SD镜像915d25b7…b6b8e5、根2176bfe4-02。源码22ea0a41…ab8f/封存3a4ea5c只读，源/IP/规范门禁通过；最终BSP独立100MHz route setup+0.454ns/hold+0.020ns及PS/HPF/FSBL/BOOT/DTS审核通过。保留DDR1.35V/32bit/1333MT/s/存储和原PS属性加载；实体电机输出未绑定，内部隔离参数/raw64/prepared8/START32明确为测试配置。
+
+同一Windows SD身份再次核对，排除系统NVMe；全512MiB写入/无缓存读回哈希一致。最终用户上电冷启动19008B完整FSBL→U-Boot→Linux/SD根与资源门禁通过；此前0B采集原始记录保留，重新打开COM4后采集成功。旧GP前后41项、运动0x80600000身份/SPI85(INTID117)/poll事件、真实动态快照、四轴正反/零位移/END、PAUSE/RESUME、忙PAUSE中STOP、CRC/序号/旧session/截断/ARM错配/欠流/910条背压在途STOP/reset、位置和时间戳保持、buffer释放重分配两轮通过。DMA仅MM2S，无S2MM RX；IOC、packet_closed与真实accepted/done分开检查。
+
+持续补给有明确限制：此前普通调度两路CPU负载一次10.2436秒/102432点/6400批成功，最大成功间隔1.718370ms、最低采样水位31；最终同样普通调度复验欠流0x202，accepted239/done238，保留失败日志。程序STOP、独立显式恢复和安全释放通过，未自动续跑。新session的SCHED_FIFO50生产者/两路SCHED_OTHER负载隔离测试成功，100μs点、16..32条補给6400批/102432点、max成功间隔1.651740ms/采样水位31；2ms验证目标仅对该配置有限实测成立。长轨迹最终四轴位置[11,-4,0,-4]，脉冲增量[199731,198038,0,184380]与逐点积分一致；accepted=active=done102431、END+1。约1.448260ms采样估算余量不是Linux最坏界，不能用仿真或199.756MB/s回环代替。
+
+最终GIC114/115/116/117计数9/6433/0/7，闲置1秒稳定、Err0。client卸载、运动coherent buffer释放、GP和DMA provider加载且引用0、无活动传输、COM4关闭。原始log/sidecar、失败、安全释放、FIFO50每批submit/IOC/closed与成功间隔保存；结构化校验结果见[evidence/motion-board-result-20261013.json](evidence/motion-board-result-20261013.json)。全部哈希、复现、失败和限制见[motion/BUILD_STATUS.md](motion/BUILD_STATUS.md)、[motion/DELIVERY.json](motion/DELIVERY.json)。eMMC/QSPI未写入，原回退镜像保留。
+
+实体引脚脉宽/驱动器输入同步、电机、物理DDR电压/速度等级、长期DDR/CMA/存储、硬PS在途DDR独立探针证明及人为停止失败quarantine注入未执行。进入实体IO前需确认引脚/电气极性、驱动时序/最大频率、安全停机/回零/限位/报警/急停及机械位置恢复；普通调度欠流限制尚须生产调度策略与更长压力验收解决。
+
+
 ## 2026-10-13 恢复修正版冷启动与完整验收通过
 
 - 镜像afa13b144ff165d171d3b6c5c7ebe8403a2ef216bfc2bbca3f3de8f88420050d此前同一SD Windows完整无缓存读回通过；用户装卡冷启动。COM4 115200/8N1、DTR/RTS=false，完整FSBL→U-Boot→Linux日志19106B，SHA256 c67fbdfbd5a0529360fc7d4665ee20a7c9d86df5f13c712d960ff68f7c81db50。FSBL bit生成20:51:00/HPF导出20:53:02、DDR1024MB/1333Mbps、SD来源/PL加载及common reset释放，Linux新根PARTUUID a3d29e67-02、mmcblk0p2/type SD；1GiB映射、MemTotal1013512KiB、CmaTotal131072KiB。EXT4 journal recovery完成，无文件系统错误报告；不作为掉电或长期存储压力验收。

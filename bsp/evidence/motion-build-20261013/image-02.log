@@ -1,0 +1,95 @@
+
+
+[INFO]   : Command line parsing completed successfully
+[INFO]   : BIF file parsing completed successfully
+[INFO]   : Parsing Partition Data to Image
+[INFO]   : Building image - the_ROM_image
+[INFO]   : fsbl.elf -- len: 1507200
+[INFO]   : u-boot.bin -- len: 920348
+[INFO]   : Building the Partition Header Table
+[INFO]   : After build 
+           -- Dump of Binary Image ----
+   Offset      Length     Reserve     Name
+   00000000   00000300   00000000   BootHeader
+   00000000   00000040   00000000   PartitionHeader_fsbl.elf.0
+   00000000   00000040   00000000   PartitionHeader_system.bit.0
+   00000000   00000040   00000000   PartitionHeader_u-boot.bin.0
+   00000000   0002dab0   00000000   fsbl.elf.0
+   00000000   00000020   00000000   sha2checksum_fsbl.elf.0
+   00000000   003dd360   00000000   system.bit.0
+   00000000   00000020   00000000   sha2checksum_system.bit.0
+   00000000   000e0b1c   00000000   u-boot.bin.0
+   00000000   00000020   00000000   sha2checksum_u-boot.bin.0
+           -- End of Dump
+
+[INFO]   : After align 
+           -- Dump of Binary Image ----
+   Offset      Length     Reserve     Name
+   00000000   00000300   00000000   BootHeader
+   00000300   00000040   00000000   PartitionHeader_fsbl.elf.0
+   00000340   00000040   00000000   PartitionHeader_system.bit.0
+   00000380   00000040   00000000   PartitionHeader_u-boot.bin.0
+   000003c0   0002dab0   00000000   fsbl.elf.0
+   0002de80   00000020   00000000   sha2checksum_fsbl.elf.0
+   0002dec0   003dd360   00000000   system.bit.0
+   0040b240   00000020   00000000   sha2checksum_system.bit.0
+   0040b280   000e0b1c   00000000   u-boot.bin.0
+   004ebdc0   00000020   00000000   sha2checksum_u-boot.bin.0
+           -- End of Dump
+
+[INFO]   : Partition Information: 
+[INFO]   : Image: fsbl.elf
+[INFO]   :        Partition 0: fsbl.elf.0,  Size: 187072
+
+[INFO]   : Image: system.bit
+[INFO]   :        Partition 1: system.bit.0,  Size: 4051840
+
+[INFO]   : Image: u-boot.bin
+[INFO]   :        Partition 2: u-boot.bin.0,  Size: 920384
+
+[INFO]   : After Link 
+           -- Dump of Binary Image ----
+   Offset      Length     Reserve     Name
+   00000000   00000300   00000000   BootHeader
+   00000300   00000040   00000000   PartitionHeader_fsbl.elf.0
+   00000340   00000040   00000000   PartitionHeader_system.bit.0
+   00000380   00000040   00000000   PartitionHeader_u-boot.bin.0
+   000003c0   0002dab0   00000000   fsbl.elf.0
+   0002de80   00000020   00000000   sha2checksum_fsbl.elf.0
+   0002dec0   003dd360   00000000   system.bit.0
+   0040b240   00000020   00000000   sha2checksum_system.bit.0
+   0040b280   000e0b1c   00000000   u-boot.bin.0
+   004ebdc0   00000020   00000000   sha2checksum_u-boot.bin.0
+           -- End of Dump
+
+[INFO]   : sha2checksum_fsbl.elf.0 addresses 0002de80 is going forkwards 0002de70, fill gap with 0xff*16
+
+[INFO]   : system.bit.0 addresses 0002dec0 is going forkwards 0002dea0, fill gap with 0xff*32
+
+[INFO]   : sha2checksum_system.bit.0 addresses 0040b240 is going forkwards 0040b220, fill gap with 0xff*32
+
+[INFO]   : u-boot.bin.0 addresses 0040b280 is going forkwards 0040b260, fill gap with 0xff*32
+
+[INFO]   : sha2checksum_u-boot.bin.0 addresses 004ebdc0 is going forkwards 004ebd9c, fill gap with 0xff*36
+
+[INFO]   : sha2checksum_u-boot.bin.0 length 32 not align by 64 bytes, fill alignment with 0xff*32
+
+
+Bootimage generated successfully!
+
+Bootimage saved to BOOT.bin
+
+Image Name:   BSP SD only
+Created:      Sun Oct 11 00:00:00 2026
+Image Type:   AArch64 Linux Script (uncompressed)
+Data Size:    715 Bytes = 0.70 KiB = 0.00 MiB
+Load Address: 00000000
+Entry Point:  00000000
+Contents:
+   Image 0: 707 Bytes = 0.69 KiB = 0.00 MiB
+mkfs.fat 4.1 (2017-01-24)
+{
+  "image": "/home/uisrc/embedded-bsp-motion/output/release/sdcard.img",
+  "partuuid": "55dca408-02",
+  "sha256": "e302be1bc49bcea4f164301620e36b6cbe38fddf4966cefe6eec0f0fe2fc534f"
+}

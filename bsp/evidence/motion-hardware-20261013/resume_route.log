@@ -1,0 +1,1075 @@
+============================================================
+   TD Release_2026.1_SP2
+   Copyright (c) 2012-2026 Anlogic Inc.
+   Executable = D:/Anlogic/TD_Release_2026.1_SP2.200.067/bin/td_commands_prompt.exe
+   Build number = 6.2.2.200067
+   Built at =   16:15:53 Apr 23 2026
+   Run by =     boru
+   Run Date =   Tue Oct 13 09:49:14 2026
+
+   Run on =     LAPTOP-JS7E5LFJ
+============================================================
+RUN-1002 : start command "import_device dr1_90.db -package DR1M90GEG400 -speed 2"
+ARC-1001 : Device Initialization.
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :           OPTION          |      IO       |   SETTING   
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |    35 IOs     |    gpio    
+ARC-1001 :            jtag           |  F9/J6/G6/F6  |  dedicate  
+ARC-1001 : --------------------------------------------------------
+RUN-1003 : finish command "import_device dr1_90.db -package DR1M90GEG400 -speed 2" in  2.625868s wall, 2.062500s user + 0.171875s system = 2.234375s CPU (85.1%)
+
+RUN-1004 : used memory is 418 MB, reserved memory is 409 MB, peak memory is 451 MB
+RUN-1002 : start command "open_project system.al"
+PRJ-5611 WARNING: gp/axi_lite_two_way.v and gp/axi_lite_three_way.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/axis_loop_fifo.v and gp/axi_lite_two_way.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_gp_full_top.v and gp/axis_loop_fifo.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_gp_ps_top.v and gp/dma_gp_full_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_lite_guard.v and gp/dma_gp_ps_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_loopback_top.v and gp/dma_lite_guard.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_shared_lite_top.v and gp/dma_loopback_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/motion_dma_lite_top.v and gp/dma_shared_lite_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/motion_gp_full_top.v and gp/motion_dma_lite_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/motion_gp_ps_top.v and gp/motion_gp_full_top.v have the same CompileOrder value.
+PRJ-5611 Similar messages will be suppressed.
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/system_ARM_Processor_System_0.v
+HDL-1007 : analyze verilog file system/hdl/system.v
+HDL-1007 : analyze verilog file system/hdl/system_wrapper.v
+HDL-1007 : analyze verilog file gp/axi_protocol_converter_merge.v
+Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit (http://www.openssl.org/)
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+All rights reserved.
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(138)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(589)
+HDL-1007 : analyze verilog file gp/axi_dma.v
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2)
+HDL-1007 : back to file 'gp/axi_dma_func_pkg.vh' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(1902)
+HDL-1007 : back to file 'gp/axi_dma_param_pkg.vh' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(1902)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(1943)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(1943)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2308)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2308)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2629)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2629)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3563)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3563)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3583)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3583)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3676)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3676)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3798)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3798)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4139)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4139)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4160)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4160)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4488)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4488)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4548)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4548)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4993)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4993)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5058)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5058)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5344)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5344)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5378)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5378)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5584)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5656)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5656)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6272)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6272)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6365)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6365)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6840)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6840)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6881)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6881)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7063)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7063)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7074)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7074)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7820)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7820)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7831)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7831)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8568)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8568)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8625)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8625)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8741)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8741)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8773)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8773)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8925)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8925)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8940)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8940)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9225)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9225)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9246)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9246)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9412)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9412)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9441)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9441)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9630)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9630)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9667)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9667)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10608)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10652)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10652)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10881)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10881)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10923)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10923)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11394)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11394)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11425)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11425)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11608)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11674)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11674)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12095)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12095)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12136)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12136)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12486)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12486)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12608)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(13746)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(13746)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(13868)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(13868)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16267)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16267)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16322)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16322)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16793)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16793)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16826)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16826)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(17792)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(17792)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(17862)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(17862)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18389)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18389)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18442)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18442)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18737)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18737)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18798)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18798)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19043)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19043)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19069)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19069)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19175)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19175)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19212)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19212)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19544)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19544)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19604)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19604)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20247)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20247)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20268)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20268)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20432)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20432)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20452)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20452)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20547)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20547)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20574)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20574)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(20636)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20758)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20758)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20777)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20777)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20968)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20968)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20989)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20989)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(21277)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(21277)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(21352)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(21352)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22057)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22057)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22081)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22081)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22177)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22177)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22286)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22286)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22809)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22809)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22838)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22838)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23076)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23076)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23116)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23116)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23366)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23366)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23427)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23427)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24023)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24023)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24049)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24049)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24584)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24620)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24620)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24809)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24809)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24837)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24837)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25282)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25282)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(25584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25600)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25600)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25626)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25626)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25716)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25716)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25740)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25740)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25886)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25886)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25961)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25961)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26176)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26176)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26238)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26238)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26628)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26628)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26654)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26654)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27178)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27178)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27244)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27244)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27859)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27859)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27880)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27880)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(28129)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(28129)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(28205)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(28205)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29095)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29095)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29114)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29114)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29306)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29306)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29367)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29367)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29924)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29925)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29927)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30030)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30031)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30033)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30085)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30086)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30088)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29625)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29741)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29743)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29744)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29745)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29747)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29749)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29751)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29753)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29755)
+HDL-5370 Similar messages will be suppressed.
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30458)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30459)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30558)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30559)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30176)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30177)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30276)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30277)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30278)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30279)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30281)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30283)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30284)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30285)
+HDL-5370 Similar messages will be suppressed.
+HDL-5007 WARNING: block identifier is required on this block in gp/axi_dma.v(36931)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36885)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36886)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36887)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36888)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36889)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36890)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36891)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36892)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36893)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(41154)
+HDL-5370 Similar messages will be suppressed.
+HDL-5007 WARNING: block identifier is required on this block in gp/axi_dma.v(47218)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47173)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47174)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47175)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47176)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47177)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47178)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47179)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47180)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47181)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(51280)
+HDL-5370 Similar messages will be suppressed.
+HDL-1007 : back to file 'gp/axi_dma.v' in gp/axi_dma.v(182)
+HDL-1007 : analyze verilog file gp/motion_stream_rx.v
+HDL-1007 : analyze verilog file gp/motion_service.v
+HDL-1007 : analyze verilog file gp/motion_planner.v
+HDL-1007 : analyze verilog file gp/motion_fifo.v
+HDL-1007 : analyze verilog file gp/motion_executor.v
+HDL-1007 : analyze verilog file gp/gp_ps_write_adapter.v
+HDL-1007 : analyze verilog file gp/gp_ps_control_top.v
+HDL-1007 : analyze verilog file gp/gp_control_top.v
+HDL-1007 : analyze verilog file gp/gp_control_regs.v
+HDL-1007 : analyze verilog file gp/four_axis_motion.v
+HDL-1007 : analyze verilog file gp/continuous_motion.v
+HDL-1007 : analyze verilog file gp/axis_motion.v
+HDL-1007 : analyze verilog file gp/motion_shared_lite_top.v
+HDL-1007 : analyze verilog file gp/motion_gp_ps_top.v
+HDL-1007 : analyze verilog file gp/motion_gp_full_top.v
+HDL-1007 : analyze verilog file gp/motion_dma_lite_top.v
+HDL-1007 : analyze verilog file gp/dma_shared_lite_top.v
+HDL-5007 WARNING: column 1026 exceeds maximum value 1023 in gp/dma_shared_lite_top.v(1198)
+HDL-1007 : analyze verilog file gp/dma_loopback_top.v
+HDL-1007 : analyze verilog file gp/dma_lite_guard.v
+HDL-1007 : analyze verilog file gp/dma_gp_ps_top.v
+HDL-1007 : analyze verilog file gp/dma_gp_full_top.v
+HDL-5007 WARNING: column 1025 exceeds maximum value 1023 in gp/dma_gp_full_top.v(1234)
+HDL-1007 : analyze verilog file gp/axis_loop_fifo.v
+HDL-1007 : analyze verilog file gp/axi_lite_two_way.v
+HDL-1007 : analyze verilog file gp/axi_lite_three_way.v
+PRJ-1401 : Successfully analyzed 30 source files.
+RUN-1003 : finish command "open_project system.al" in  1.202352s wall, 1.046875s user + 0.093750s system = 1.140625s CPU (94.9%)
+
+RUN-1004 : used memory is 480 MB, reserved memory is 468 MB, peak memory is 480 MB
+RUN-1002 : start command "import_db gp_place.db"
+RUN-1001 : Database version number 46207
+RUN-1001 : Importing database generated by Tang Dynasty, V6.2.2.200067.
+RUN-1001 : Import flow parameters
+RUN-1001 : Import netlist
+RUN-1001 : Import phy database
+RUN-1001 : Import timing constraints
+RUN-1001 : Import IO constraints
+RUN-1001 : Import Inst constraints
+RUN-1001 : Import ChipWatcher
+RUN-1001 : Import design success TD_VERSION=Release_2026.1_SP2 , DB_VERSION=46207
+RUN-1003 : finish command "import_db gp_place.db" in  1.821141s wall, 0.906250s user + 0.156250s system = 1.062500s CPU (58.3%)
+
+RUN-1004 : used memory is 909 MB, reserved memory is 913 MB, peak memory is 948 MB
+RUN-1002 : start command "read_adc -file gp/gp.adc"
+RUN-1002 : start command "set_pin_assignment  clk_100m   LOCATION = H16; IOSTANDARD = LVCMOS33; "
+RUN-1001 : Starting of IO setups legality check.
+RUN-1002 : start command "read_sdc gp/gp.sdc"
+RUN-1002 : start command "read_sdc gp/ps-generated-properties.tcl"
+RUN-1002 : start command "route"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+PHY-1001 : Reconnected 9 VDD pins with routing demanding
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-1001 : Working orders of clock nets being processed in bank assignment:
+PHY-1001 : control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1;
+PHY-1001 : Internal bound Intnl_0_0_81_40 is being created by clock  through SCLK.
+PHY-1001 : Internal bound Intnl_81_0_43_40 is being created by clock  through SCLK.
+PHY-1001 : Internal bound Intnl_0_40_81_40 is being created by clock  through SCLK.
+PHY-1001 : Internal bound Intnl_81_40_43_40 is being created by clock  through SCLK.
+PHY-1001 : Internal bound Intnl_0_80_81_40 is being created by clock  through SCLK.
+PHY-1001 : Internal bound Intnl_81_80_43_40 is being created by clock  through SCLK.
+RUN-1001 : Clock region assignment statistics:
+RUN-1001 : Clock Region s_0_l [0,0][79,39]; Utilization: 1 out of 12
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Leading Clock                                           |       Type        |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  (infered sclk)   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1  |            23            
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_0_r [80,0][123,39]; Utilization: 1 out of 12
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Leading Clock                                           |       Type        |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  (infered sclk)   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1  |           1181           
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_1_l [0,40][79,79]; Utilization: 1 out of 12
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Leading Clock                                           |       Type        |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  (infered sclk)   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_l_bk1  |           1239           
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_1_r [80,40][123,79]; Utilization: 1 out of 12
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Leading Clock                                           |       Type        |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  (infered sclk)   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1  |           4128           
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_l [0,80][79,119]; Utilization: 1 out of 12
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Leading Clock                                           |       Type        |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  (infered sclk)   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_2_l_bk1  |           1214           
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_r [80,80][123,119]; Utilization: 1 out of 12
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Leading Clock                                           |       Type        |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  (infered sclk)   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_2_r_bk1  |           986            
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-1001 : Route runs in 22 thread(s)
+RUN-1001 : There are total 16742 instances
+RUN-1001 : 864 mslices, 15339 lslices, 1 pads, 16 brams, 4 dsps
+RUN-1001 : There are total 37469 nets
+RUN-1001 : 25203 nets have 2 pins
+RUN-1001 : 9075 nets have [3 - 5] pins
+RUN-1001 : 2114 nets have [6 - 10] pins
+RUN-1001 : 398 nets have [11 - 20] pins
+RUN-1001 : 641 nets have [21 - 99] pins
+RUN-1001 : 38 nets have 100+ pins
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  5.821295s wall, 5.484375s user + 0.281250s system = 5.765625s CPU (99.0%)
+
+RUN-1004 : used memory is 1257 MB, reserved memory is 1276 MB, peak memory is 1416 MB
+PHY-1001 : 864 mslices, 15339 lslices, 1 pads, 16 brams, 4 dsps
+TMR-2502 : Net delay update with mode: Placed
+
+PHY-1001 : Stage 1 | Global Routing
+PHY-1001 : Start global routing, caller is route ...
+RUN-1001 : Generating global routing grids ...
+RUN-1001 : Building simple global routing graph ...
+PHY-1001 : Generate routing nets ...
+RUN-1001 : Generate nets statistics:
+RUN-1001 : ----------------------------
+RUN-1001 :        Type       |  Nets   
+RUN-1001 : ----------------------------
+RUN-1001 :   TotalRouteNets  |  25245  
+RUN-1001 :   DontRouteNets   |  4598   
+RUN-1001 :     RouteNets     |  20647  
+RUN-1001 :     RouteSinks    |  43819  
+RUN-1001 : ----------------------------
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 2.2972e+06, over cnt = 2901(1%), over = 5959, worst = 9
+PHY-1002 : len = 2.36747e+06, over cnt = 1396(0%), over = 1417, worst = 2
+PHY-1002 : len = 2.40888e+06, over cnt = 51(0%), over = 51, worst = 1
+PHY-1002 : len = 2.41181e+06, over cnt = 2(0%), over = 2, worst = 1
+PHY-1002 : len = 2.412e+06, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  2.735586s wall, 3.140625s user + 0.125000s system = 3.265625s CPU (119.4%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 83.02 (S 69.25, N 49.04, E 80.56, W 69.32, I 60.93, O 83.68)
+PHY-1001 : top5  = 68.64 (S 54.52, N 38.16, E 64.39, W 50.22, I 48.90, O 57.00)
+PHY-1001 : top10 = 60.14 (S 46.16, N 31.87, E 55.02, W 41.94, I 42.31, O 46.98)
+PHY-1001 : top15 = 54.39 (S 40.01, N 27.62, E 48.35, W 36.55, I 37.42, O 40.64)
+PHY-1001 : End global routing;  3.759317s wall, 4.109375s user + 0.171875s system = 4.281250s CPU (113.9%)
+
+PHY-1001 : End Stage 1 | Global Routing; Time: 3.759387s wall, 4.109375s user + 0.171875s system = 4.281250s CPU (113.9%); Memory(MB): used = 1524, reserved = 1549, peak = 1524;
+
+PHY-1001 : Stage 2 | Detail Routing
+PHY-1001 : Stage 2.1 | Build Routing Design
+PHY-1001 : Routing in high effort: false
+PHY-1001 : Routing Mode: normal
+PHY-1001 : Generate detailed routing grids ...
+RUN-1001 : Constructing routing connections ...
+PHY-1001 : End build routing graph; 7.087323s wall, 55.250000s user + 0.578125s system = 55.828125s CPU (787.7%)
+
+PHY-1001 : Generate nets ...
+RUN-1001 : Generate nets statistics:
+RUN-1001 : ------------------------------
+RUN-1001 :         Type        |  Nets   
+RUN-1001 : ------------------------------
+RUN-1001 :        Route        |  25497  
+RUN-1001 :      DontRoute      |  11972  
+RUN-1001 :      RouteSinks     |  96201  
+RUN-1001 :   RouteEntitySinks  |    0    
+RUN-1001 :       Lut2Dff       |    0    
+RUN-1001 :       Ram2Dff       |    0    
+RUN-1001 :      Carry2Dff      |    0    
+RUN-1001 : ------------------------------
+RUN-1001 : DR clock net summary:
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Net Idx  |                                             Net Name                                             |  Clock Type  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :      1     |     control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh     |    Normal    
+RUN-1001 :      2     |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |    Normal    
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : DR clock buffer summary:
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Idx  |                                                                  Name                                                                   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1  
+RUN-1001 :    2   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1  
+RUN-1001 :    3   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_l_bk1  
+RUN-1001 :    4   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1  
+RUN-1001 :    5   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_2_l_bk1  
+RUN-1001 :    6   |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_2_r_bk1  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  4.713696s wall, 4.453125s user + 0.156250s system = 4.609375s CPU (97.8%)
+
+RUN-1004 : used memory is 2513 MB, reserved memory is 2566 MB, peak memory is 2733 MB
+RUN-1001 : Top Percentage Crit. Net Stat.
+RUN-1001 : -------------------------------------------------------
+RUN-1001 :   Top %  |  Net Count  |  Avg. Fanout  |  Avg. Slack   
+RUN-1001 : -------------------------------------------------------
+RUN-1001 :     1    |     374     |   10.510695   |  3140.954545  
+RUN-1001 :     2    |     749     |   7.766355    |  3251.826435  
+RUN-1001 :     3    |    1124     |   7.420819    |  3329.411922  
+RUN-1001 :     4    |    1498     |   6.791055    |  3390.208278  
+RUN-1001 :     5    |    1873     |   6.087560    |  3446.121196  
+RUN-1001 :     6    |    2248     |   5.584520    |  3500.237989  
+RUN-1001 :     7    |    2622     |   5.284516    |  3553.672769  
+RUN-1001 :     8    |    2997     |   5.444444    |  3607.378045  
+RUN-1001 :     9    |    3372     |   5.422598    |  3661.021056  
+RUN-1001 :    10    |    3746     |   5.192739    |  3713.949012  
+RUN-1001 : -------------------------------------------------------
+PHY-1001 : End Stage 2.1 | Build Routing Design; Time: 14.769593s wall, 62.578125s user + 0.781250s system = 63.359375s CPU (429.0%); Memory(MB): used = 2602, reserved = 2648, peak = 2733;
+
+PHY-1001 : Stage 2.2 | Tile Base Routing
+PHY-1001 : 363 nets need to preroute.
+PHY-1001 : len = 0, over cnt = 0(0%), over = 0, worst = 0, crit = 0
+PHY-1001 : End Stage 2.2 | Tile Base Routing; Time: 0.948367s wall, 10.921875s user + 0.031250s system = 10.953125s CPU (1154.9%); Memory(MB): used = 2612, reserved = 2653, peak = 2733;
+
+PHY-1001 : Stage 2.3 | Clock Nets Routing
+PHY-1001 : Routed 0% nets.
+PHY-1001 : len = 356912, over cnt = 0(0%), over = 0, worst = 0, crit = 0
+PHY-1001 : End Stage 2.3 | Clock Nets Routing; Time: 0.225266s wall, 0.312500s user + 0.031250s system = 0.343750s CPU (152.6%); Memory(MB): used = 2633, reserved = 2675, peak = 2733;
+
+RUN-1001 : Perform detailed routing kernel under the defined configuration
+RUN-1001 : ---------------------------------
+RUN-1001 :      Parameter      |  Setting   
+RUN-1001 : ---------------------------------
+RUN-1001 :       strategy      |  balanced  
+RUN-1001 :   multi-threading   |  by level  
+RUN-1001 :   LUT pin swapping  |     on     
+RUN-1001 :   LUT feedthrough   |     on     
+RUN-1001 :     congo factor    |    1.5     
+RUN-1001 : ---------------------------------
+PHY-1001 : Stage 2.4 | Path based DR route
+PHY-1001 : Stage 2.4.1 | Design preparation
+PHY-1001 : Path generation: total path = 75150
+PHY-1001 : Generate equivalent LUT input pin mapping
+PHY-1001 : Path fanout statistic: total 75150, multi-sinks 42526(56.59%) avg. sink = 4.25, blocked multi-sink 386(0.51%)
+PHY-1001 : Marked 185251 pre-route search node.
+PHY-1001 : Exclusive sink check marked 33 extra paths; pre-route search node = 33, drc = 0
+PHY-1001 : Generate LUT feedthroughs
+PHY-1001 : Build lut bridge;  0.255808s wall, 0.250000s user + 0.000000s system = 0.250000s CPU (97.7%)
+
+PHY-1001 : End Stage 2.4.1 | Design preparation; Time: 7.730703s wall, 7.312500s user + 0.250000s system = 7.562500s CPU (97.8%); Memory(MB): used = 2756, reserved = 2802, peak = 2756;
+
+PHY-1001 : Stage 2.4.2 | Launching routing kernel
+PHY-1001 : Stage 2.4.2.1 | Detailed Routing
+PHY-1001 : Kernel to route 75150 paths with scheme = by level reroute_crit = 0.9.
+PHY-1001 :   Iter. 1: runtime[   3.4s]; rr_path[  75150]; Path[overflow =   53497, finished =   21653].
+PHY-1001 : Setup: WNS(ns) = -0.895, TNS(ns) = -74.265, FEP = 321 | Hold: WNS(ns) = -0.029, TNS(ns) = -0.198, FEP = 16.
+PHY-1001 :   Iter. 2: runtime[  36.7s]; rr_path[  46228]; Path[overflow =   37608, finished =   37542].
+PHY-1001 :   Iter. 3: runtime[  41.8s]; rr_path[  32305]; Path[overflow =   23085, finished =   52065].
+PHY-1001 :   Iter. 4: runtime[  45.7s]; rr_path[  19292]; Path[overflow =   12285, finished =   62865].
+PHY-1001 : Setup: WNS(ns) = 0.169, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = -0.060, TNS(ns) = -0.528, FEP = 21.
+PHY-1001 :   Iter. 5: runtime[  55.9s]; rr_path[  10144]; Path[overflow =    4815, finished =   70335].
+PHY-1001 :   Iter. 6: runtime[  57.8s]; rr_path[   4385]; Path[overflow =    1677, finished =   73473].
+PHY-1001 :   Iter. 7: runtime[  58.7s]; rr_path[   1725]; Path[overflow =     290, finished =   74860].
+PHY-1001 :   Iter. 8: runtime[  60.2s]; rr_path[   1186]; Path[overflow =     156, finished =   74994].
+PHY-1001 :   Iter. 9: runtime[  61.6s]; rr_path[   1087]; Path[overflow =       5, finished =   75145].
+PHY-1001 : Setup: WNS(ns) = -0.091, TNS(ns) = -0.511, FEP = 7 | Hold: WNS(ns) = -0.013, TNS(ns) = -0.043, FEP = 4.
+PHY-1001 :   Iter.10: runtime[  69.3s]; rr_path[    940]; Path[overflow =      15, finished =   75135].
+PHY-1001 :   Iter.11: runtime[  70.5s]; rr_path[    920]; Path[overflow =       0, finished =   75150].
+PHY-1001 : Commit pin-swaps (committed paths = 28080, total paths = 75150, ratio = 37.37%)
+PHY-1001 : Setup: WNS(ns) = 0.255, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = -0.013, TNS(ns) = -0.039, FEP = 3.
+PHY-1001 : Commit better result to database ...
+PHY-1001 : Post DRC closure timing fix, 2 path to be processed
+PHY-1001 :   Iter.12: runtime[  85.3s]; rr_path[    633]; Path[overflow =       0, finished =   75150].
+PHY-1001 : Proceeding with existing pin configuration
+PHY-1001 : Setup: WNS(ns) = 0.454, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = -0.013, TNS(ns) = -0.039, FEP = 3.
+PHY-1001 : Commit better result to database ...
+PHY-1001 : Kernel finished in 12 iterations
+PHY-1001 : End Stage 2.4.2.1 | Detailed Routing; Time: 89.589515s wall, 101.828125s user + 1.656250s system = 103.484375s CPU (115.5%); Memory(MB): used = 3425, reserved = 3498, peak = 3427;
+
+PHY-1001 : Setup: WNS(ns) = 0.454, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = -0.013, TNS(ns) = -0.039, FEP = 3.
+PHY-1001 : End Stage 2.4.2 | Launching routing kernel; Time: 89.589674s wall, 101.828125s user + 1.656250s system = 103.484375s CPU (115.5%); Memory(MB): used = 3425, reserved = 3498, peak = 3427;
+
+PHY-1001 : End Stage 2.4 | Path based DR route; Time: 97.320547s wall, 109.140625s user + 1.906250s system = 111.046875s CPU (114.1%); Memory(MB): used = 3425, reserved = 3498, peak = 3427;
+
+RUN-1001 : Clock region assignment statistics:
+RUN-1001 : Clock Region s_0_l [0,0][79,39]; Utilization: 1 out of 12
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Assigned Clock                                          |                                           Route Clock                                            |  Marking  |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |           |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1  |            23            
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_0_r [80,0][123,39]; Utilization: 1 out of 12
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Assigned Clock                                          |                                           Route Clock                                            |  Marking  |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |           |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1  |           1181           
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_1_l [0,40][79,79]; Utilization: 1 out of 12
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Assigned Clock                                          |                                           Route Clock                                            |  Marking  |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |           |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_l_bk1  |           1239           
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_1_r [80,40][123,79]; Utilization: 1 out of 12
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Assigned Clock                                          |                                           Route Clock                                            |  Marking  |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |           |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1  |           4128           
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_l [0,80][79,119]; Utilization: 1 out of 12
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Assigned Clock                                          |                                           Route Clock                                            |  Marking  |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |           |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_2_l_bk1  |           1214           
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_r [80,80][123,119]; Utilization: 1 out of 12
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |                                          Assigned Clock                                          |                                           Route Clock                                            |  Marking  |                                                                 Buffer                                                                  |  Regional Clock Fanouts  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1  |           |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_2_r_bk1  |           986            
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : Current memory(MB): used = 3425, reserved = 3498, peak = 3427.
+PHY-1001 : End export database. 0.098609s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (79.2%)
+
+PHY-1001 : End detail routing;  113.669077s wall, 183.296875s user + 2.796875s system = 186.093750s CPU (163.7%)
+
+PHY-1001 : End Stage 2 | Detail Routing; Time: 113.669240s wall, 183.296875s user + 2.796875s system = 186.093750s CPU (163.7%); Memory(MB): used = 3082, reserved = 3152, peak = 3427;
+
+RUN-1002 : start command "fix_hold"
+
+PHY-1001 : Stage 3 | Hold Fix
+PHY-1001 : Stage 3.1 | Load Design Data
+PHY-1034 : Refresh detailed routing grids ...
+PHY-1001 : Generate nets ...
+PHY-1001 : eco open net = 0
+PHY-1001 : End Stage 3.1 | Load Design Data; Time: 1.225907s wall, 1.359375s user + 0.015625s system = 1.375000s CPU (112.2%); Memory(MB): used = 3163, reserved = 3243, peak = 3427;
+
+PHY-1001 : Stage 3.2 | Hold Fix Optimization
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  4.972703s wall, 4.859375s user + 0.093750s system = 4.953125s CPU (99.6%)
+
+RUN-1004 : used memory is 2784 MB, reserved memory is 2844 MB, peak memory is 3427 MB
+PHY-1001 : Timing info: SWNS 0.454ns | STNS 0.000ns | HWNS -0.013ns | HTNS -0.039ns.
+PHY-1001 : Processing hold violation on 30 end-point, worst slack = -13ps, best slack = 19ps.
+PHY-1001 : End timing refresh.  13.452808s wall, 12.984375s user + 0.250000s system = 13.234375s CPU (98.4%)
+
+PHY-1001 : Stage 3.2.1 | Phase 1
+PHY-1001 : Stage 3.2.1.1 | Hold Fix By LutBridge
+PHY-1001 : len = 4.71459e+06, over cnt = 0(0%), over = 0, worst = 0, crit = 0
+PHY-1001 : Bridge count = 13; unresolved count = 0.
+PHY-1001 : 10 out of 30 ((33.33)%) EP fixed by LB.
+PHY-1001 : End Stage 3.2.1.1 | Hold Fix By LutBridge; Time: 2.808591s wall, 2.906250s user + 0.031250s system = 2.937500s CPU (104.6%); Memory(MB): used = 3091, reserved = 3185, peak = 3427;
+
+PHY-1001 : Timing info: SWNS 0.454ns | STNS 0.000ns | HWNS 0.001ns | HTNS 0.000ns.
+PHY-1001 : Processing hold violation on 13 end-point, worst slack = 1ps, best slack = 16ps.
+PHY-1001 : End timing refresh.  0.062551s wall, 0.062500s user + 0.000000s system = 0.062500s CPU (99.9%)
+
+PHY-1001 : Stage 3.2.1.2 | Hold Fix By Pin
+PHY-1001 : len = 4.71502e+06, over cnt = 0(0%), over = 0, worst = 0, crit = 0
+PHY-1001 : 13 out of 13 ((100.00)%) EP fixed by pin delay.
+PHY-1001 : End Stage 3.2.1.2 | Hold Fix By Pin; Time: 10.111156s wall, 9.968750s user + 0.203125s system = 10.171875s CPU (100.6%); Memory(MB): used = 3095, reserved = 3189, peak = 3427;
+
+PHY-1001 : Timing info: SWNS 0.454ns | STNS 0.000ns | HWNS 0.020ns | HTNS 0.000ns.
+PHY-1001 : End timing refresh.  0.066193s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (118.0%)
+
+PHY-1001 : End Stage 3.2.1 | Phase 1; Time: 13.049298s wall, 13.015625s user + 0.234375s system = 13.250000s CPU (101.5%); Memory(MB): used = 3095, reserved = 3189, peak = 3427;
+
+PHY-1001 : End Stage 3.2 | Hold Fix Optimization; Time: 26.504040s wall, 26.015625s user + 0.484375s system = 26.500000s CPU (100.0%); Memory(MB): used = 3095, reserved = 3189, peak = 3427;
+
+PHY-1001 : End Stage 3 | Hold Fix; Time: 28.024649s wall, 27.687500s user + 0.500000s system = 28.187500s CPU (100.6%); Memory(MB): used = 3087, reserved = 3187, peak = 3427;
+
+RUN-1003 : finish command "fix_hold" in  28.098143s wall, 27.750000s user + 0.515625s system = 28.265625s CPU (100.6%)
+
+RUN-1004 : used memory is 3087 MB, reserved memory is 3187 MB, peak memory is 3427 MB
+PHY-1001 : Stage 4 | Report Route Qor
+RUN-1002 : start command "report_qor -step route -file route.qor"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  5.131320s wall, 4.937500s user + 0.171875s system = 5.109375s CPU (99.6%)
+
+RUN-1004 : used memory is 2690 MB, reserved memory is 2745 MB, peak memory is 3427 MB
+TMR-2502 : Net delay update with mode: Routed
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |          454                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+|     Hold WNS              |           20                |
+|     Hold TNS              |            0                |
+|     Num of violated H-EP  |            0                |
+-----------------------------------------------------------
+| Routing Resource          |                             |
+|     Wire length           |      4715024                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #slices               |        16203                |
+|     slices percentage     |       30.87%                |
+|     #RAMs                 |           16                |
+|     #DSPs                 |            4                |
+|     #DRAMHARDCON          |          108                |
+-----------------------------------------------------------
+Report route stage QoR done.
+
+PHY-1034 : Refresh detailed routing grids ...
+RUN-0008 : Do timing check and 0 issue(s) found.
+RUN-0008 : Do routing resoruce check and 0 issue(s) found.
+RUN-1003 : finish command "report_qor -step route -file route.qor" in  15.614411s wall, 15.453125s user + 0.234375s system = 15.687500s CPU (100.5%)
+
+RUN-1004 : used memory is 3072 MB, reserved memory is 3147 MB, peak memory is 3427 MB
+RUN-1002 : start command "update_timing -mode final"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  5.079709s wall, 5.015625s user + 0.046875s system = 5.062500s CPU (99.7%)
+
+RUN-1004 : used memory is 2914 MB, reserved memory is 3034 MB, peak memory is 3427 MB
+RUN-1003 : finish command "update_timing -mode final" in  13.747390s wall, 13.562500s user + 0.093750s system = 13.656250s CPU (99.3%)
+
+RUN-1004 : used memory is 3021 MB, reserved memory is 3111 MB, peak memory is 3427 MB
+RUN-1002 : start command "report_timing_summary -file final_timing.rpt"
+OPT-1001 : QoR tracer report on route step:
+    SWNS [   incr ]    STNS [   incr ]  S-FEPS [   incr ]    HWNS [   incr ]      HTNS [     incr ]    H-FEPS [     incr ]    CELL [   incr ]       WL [    incr ]   RT(s) [   incr ]   MEM(mb) [     incr ]
+     454 [    454 ]       0 [      0 ]       0 [      0 ]      20 [     20 ]         0 [        0 ]         0 [        0 ]   16742 [  16742 ]  4715024 [ 4715024 ]     153 [    153 ]      3427 [     3427 ] : fix_hold_opt
+
+PHY-1001 : End Stage 4 | Report Route Qor; Time: 29.405860s wall, 29.062500s user + 0.328125s system = 29.390625s CPU (99.9%); Memory(MB): used = 3022, reserved = 3111, peak = 3427;
+
+PHY-1001 : Stage 5 | Design Rule Check
+PHY-1001 : Stage 5.1 | Check And Add Lut-bridge
+PHY-1001 : End Stage 5.1 | Check And Add Lut-bridge; Time: 0.107717s wall, 0.109375s user + 0.000000s system = 0.109375s CPU (101.5%); Memory(MB): used = 3022, reserved = 3111, peak = 3427;
+
+RUN-1001 : Stage 5.2 | Run Pin Swap Checker
+RUN-1001 : End Stage 5.2 | Run Pin Swap Checker; Time: 0.038454s wall, 0.031250s user + 0.000000s system = 0.031250s CPU (81.3%); Memory(MB): used = 3022, reserved = 3111, peak = 3427;
+
+RUN-1001 : Stage 5.3 | Run Net Connection Checker
+RUN-1001 : End Stage 5.3 | Run Net Connection Checker; Time: 0.078498s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (99.5%); Memory(MB): used = 3024, reserved = 3114, peak = 3427;
+
+RUN-1001 : Stage 5.4 | Run Lut Bridge Checker
+RUN-1001 : End Stage 5.4 | Run Lut Bridge Checker; Time: 0.347589s wall, 0.343750s user + 0.000000s system = 0.343750s CPU (98.9%); Memory(MB): used = 3024, reserved = 3114, peak = 3427;
+
+RUN-1001 : Stage 5.5 | Run Multi Drive Checker
+RUN-1001 : End Stage 5.5 | Run Multi Drive Checker; Time: 0.015622s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (100.0%); Memory(MB): used = 3024, reserved = 3114, peak = 3427;
+
+RUN-1001 : Stage 5.6 | Run Clock Status Checker
+RUN-1001 : End Stage 5.6 | Run Clock Status Checker; Time: 0.017928s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (87.2%); Memory(MB): used = 3024, reserved = 3114, peak = 3427;
+
+RUN-1001 : Stage 5.7 | Run Abnormal Path Checker
+RUN-1001 : End Stage 5.7 | Run Abnormal Path Checker; Time: 0.416497s wall, 0.406250s user + 0.000000s system = 0.406250s CPU (97.5%); Memory(MB): used = 3024, reserved = 3114, peak = 3427;
+
+RUN-1001 : Stage 5.8 | Run Route Region Checker
+RUN-1001 : End Stage 5.8 | Run Route Region Checker; Time: 0.000656s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (n/a%); Memory(MB): used = 3024, reserved = 3114, peak = 3427;
+
+RUN-1001 : Stage 5.9 | Run Bound Checker
+RUN-1001 : End Stage 5.9 | Run Bound Checker; Time: 0.003282s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 3024, reserved = 3114, peak = 3427;
+
+PHY-1001 : End Stage 5 | Design Rule Check; Time: 2.955853s wall, 2.921875s user + 0.000000s system = 2.921875s CPU (98.9%); Memory(MB): used = 3024, reserved = 3114, peak = 3427;
+
+RUN-1003 : finish command "route" in  186.193958s wall, 254.906250s user + 4.250000s system = 259.156250s CPU (139.2%)
+
+RUN-1004 : used memory is 3020 MB, reserved memory is 3109 MB, peak memory is 3427 MB
+RUN-1002 : start command "update_timing -mode final"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  4.984847s wall, 4.859375s user + 0.062500s system = 4.921875s CPU (98.7%)
+
+RUN-1004 : used memory is 2833 MB, reserved memory is 2947 MB, peak memory is 3427 MB
+RUN-1003 : finish command "update_timing -mode final" in  13.541711s wall, 13.203125s user + 0.156250s system = 13.359375s CPU (98.7%)
+
+RUN-1004 : used memory is 2944 MB, reserved memory is 3029 MB, peak memory is 3427 MB
+RUN-1002 : start command "report_timing_summary -file gp_route.timing -path_num 5"
+RUN-1002 : start command "report_area -io_info -file gp_route.area"
+SYN-4034 : The count of slices with lut is 8790.
+SYN-4035 : The count of slices with lut+ripple is 4341.
+RUN-1001 : standard
+***Report Model: system_wrapper Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         1   out of    126    0.79%
+  #input                    1
+  #output                   0
+  #inout                    0
+#lut6                   13995   out of  52480   26.67%
+#reg                    14022
+  #slice reg            14022   out of 104960   13.36%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                  16203   out of  52480   30.87%
+  #used ram               864
+    #dram lut             864
+    #shifter lut            0
+  #used logic           15339
+    #with luts           8790
+    #with adder          4341
+    #reg only            2208
+#feedthrough             7363
+#f7mux                    238   out of  26240    0.91%
+#f8mux                     94   out of  13120    0.72%
+#eram                      16   out of    280    5.71%
+  #eram20k                 16
+  #fifo20k                  0
+#dsp                        4   out of    240    1.67%
+#soc                        1   out of      1  100.00%
+#pad                        1   out of    126    0.79%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       6   out of     72    8.33%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+DataNet Average Fanout:
+
+   Index     Fanout     Nets   
+    #1          1       25117  
+    #2          2       5064   
+    #3          3       3223   
+    #4          4        751   
+    #5        5-10      2043   
+    #6        11-50      588   
+    #7       51-100      53    
+    #8       101-500     11    
+  Average     2.26             
+
+RUN-1002 : start command "check_timing -verbose -file gp_route.check"
+RUN-1002 : start command "report_route_status -drc -file gp_route.drc"
+RUN-1001 : Stage 6 | Run Pin Swap Checker
+RUN-1001 : End Stage 6 | Run Pin Swap Checker; Time: 0.045879s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (102.2%); Memory(MB): used = 2946, reserved = 3030, peak = 3427;
+
+RUN-1001 : Stage 7 | Run Net Connection Checker
+RUN-1001 : End Stage 7 | Run Net Connection Checker; Time: 0.101213s wall, 0.078125s user + 0.015625s system = 0.093750s CPU (92.6%); Memory(MB): used = 2949, reserved = 3033, peak = 3427;
+
+RUN-1001 : Stage 8 | Run Lut Bridge Checker
+RUN-1001 : End Stage 8 | Run Lut Bridge Checker; Time: 0.397539s wall, 0.390625s user + 0.000000s system = 0.390625s CPU (98.3%); Memory(MB): used = 2949, reserved = 3033, peak = 3427;
+
+RUN-1001 : Stage 9 | Run Multi Drive Checker
+RUN-1001 : End Stage 9 | Run Multi Drive Checker; Time: 0.017525s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (89.2%); Memory(MB): used = 2949, reserved = 3033, peak = 3427;
+
+RUN-1001 : Stage 10 | Run Clock Status Checker
+RUN-1001 : End Stage 10 | Run Clock Status Checker; Time: 0.019186s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (81.4%); Memory(MB): used = 2949, reserved = 3033, peak = 3427;
+
+RUN-1001 : Stage 11 | Run Abnormal Path Checker
+RUN-1001 : End Stage 11 | Run Abnormal Path Checker; Time: 0.457557s wall, 0.453125s user + 0.000000s system = 0.453125s CPU (99.0%); Memory(MB): used = 2949, reserved = 3033, peak = 3427;
+
+RUN-1003 : finish command "report_route_status -drc -file gp_route.drc" in  1.042854s wall, 1.000000s user + 0.015625s system = 1.015625s CPU (97.4%)
+
+RUN-1004 : used memory is 2949 MB, reserved memory is 3033 MB, peak memory is 3427 MB
+RUN-1002 : start command "all_clocks -verbose"
+all_clocks num[34] : gp_clk ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_FCLK0 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_FCLK1 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_FCLK2 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_FCLK3 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_IO_100 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_IO_200 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_IO_25 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_IO_50 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO0_100M_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO0_400K_init_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO0_BCKDIV ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO0_RX_100M_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO0_RX_400K_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO0_TMDIV ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO0_TX_100M_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO0_TX_400K_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO1_100M_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO1_400K_init_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO1_BCKDIV ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO1_RX_100M_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO1_RX_400K_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO1_TMDIV ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO1_TX_100M_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_SDIO1_TX_400K_CK ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.IOOCC_400 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_aclk ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.sdio0_clk_out_1 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.sdio0_clk_out_2 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.sdio1_clk_out_1 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.sdio1_clk_out_2 ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_aclk
+RUN-1002 : start command "export_db gp_route.db"
+RUN-1001 : Exported flow parameters
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported phy database
+RUN-1001 : Exported packer
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported ATMR Setting
+RUN-1001 : Exported timing constraints
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported ChipWatcher
+RUN-1003 : finish command "export_db gp_route.db" in  1.389585s wall, 1.781250s user + 0.046875s system = 1.828125s CPU (131.6%)
+
+RUN-1004 : used memory is 3012 MB, reserved memory is 3093 MB, peak memory is 3427 MB
+RUN-1002 : start command "bitgen -bit system.bit"
+RUN-1002 : start command "export_bid system_inst.bid"
+BIT-1003 : Start to generate bitstream. 
+BIT-1002 : Bitgen processed 8 pll_pd instances.
+BIT-1002 : Init instances with 22 threads.
+BIT-1002 : Init instances completely, inst num: 16748
+BIT-1002 : Init pips with 22 threads.
+BIT-1002 : Init pips completely, net num: 25497, pip num: 270190
+BIT-1002 : Init feedthrough with 22 threads.
+BIT-1002 : Init feedthrough completely, num: 7363
+BIT-1003 : Multithreading accelaration with 22 threads.
+BIT-1003 : Generate bitstream completely, there are 926003 bits set as '1'.
+BIT-1004 : Generate file system.bit.
+RUN-1003 : finish command "bitgen -bit system.bit" in  13.406689s wall, 68.812500s user + 1.078125s system = 69.890625s CPU (521.3%)
+
+RUN-1004 : used memory is 3022 MB, reserved memory is 3102 MB, peak memory is 3427 MB
+BSP_MOTION_BOARD_BITSTREAM_COMPLETE

@@ -1,0 +1,219 @@
+{
+  "scope": "ISOLATED_INTERNAL_MOTION_TEST_ONLY",
+  "final_root_partuuid": "2176bfe4-02",
+  "coldboot": {
+    "start_utc": "2026-10-13T02:45:37.671947+00:00",
+    "end_utc": "2026-10-13T02:47:20.263112+00:00",
+    "port": "COM4",
+    "baud": 115200,
+    "format": "8N1",
+    "dtr": false,
+    "rts": false,
+    "sent_bytes": 0,
+    "received_bytes": 19008,
+    "sha256": "9cd905d56ac0dd548cc72c9bae44b3034bb2976cf2c968f8bc294be531f1461c"
+  },
+  "final_dynamic_cancel_recovery": {
+    "status": "PASS",
+    "pass_checks": [
+      4239,
+      4254
+    ],
+    "event_poll_passes": 2,
+    "raw": {
+      "start_utc": "2026-10-13T02:47:39.145493+00:00",
+      "end_utc": "2026-10-13T02:47:56.739730+00:00",
+      "port": "COM4",
+      "baud": 115200,
+      "format": "8N1",
+      "dtr": false,
+      "rts": false,
+      "sent_bytes": 22903,
+      "received_bytes": 29006,
+      "sha256": "0977f3ebe4c814e30dbd7a6040f870c378d83eb828b200f594196eb125c4fd2a",
+      "script": "bsp/scripts/board_motion_accept.sh",
+      "script_sha256": "6b016289e45a1d21217a9c717b70a17ac7e8aeb8f5006a6e397bf2944bea0c5c",
+      "arguments": [
+        "2176bfe4-02"
+      ],
+      "script_exit": 1
+    }
+  },
+  "ordinary_scheduler_final_supply": {
+    "status": "FAIL_UNDERRUN_0x202",
+    "snapshot": {
+      "gen": 74,
+      "status": 576,
+      "error": 514,
+      "accepted": 239,
+      "active": 239,
+      "done": 238,
+      "valid": 1023,
+      "buffered": 0,
+      "ends": 6,
+      "cancels": 17,
+      "time": 139176501,
+      "pos0": 19,
+      "pulse0": 649,
+      "pos1": 14,
+      "pulse1": 548,
+      "pos2": 0,
+      "pulse2": 4,
+      "pos3": 4,
+      "pulse3": 480
+    },
+    "raw": {
+      "start_utc": "2026-10-13T02:47:39.145493+00:00",
+      "end_utc": "2026-10-13T02:47:56.739730+00:00",
+      "port": "COM4",
+      "baud": 115200,
+      "format": "8N1",
+      "dtr": false,
+      "rts": false,
+      "sent_bytes": 22903,
+      "received_bytes": 29006,
+      "sha256": "0977f3ebe4c814e30dbd7a6040f870c378d83eb828b200f594196eb125c4fd2a",
+      "script": "bsp/scripts/board_motion_accept.sh",
+      "script_sha256": "6b016289e45a1d21217a9c717b70a17ac7e8aeb8f5006a6e397bf2944bea0c5c",
+      "arguments": [
+        "2176bfe4-02"
+      ],
+      "script_exit": 1
+    },
+    "safe_release_raw": {
+      "start_utc": "2026-10-13T02:49:02.447317+00:00",
+      "end_utc": "2026-10-13T02:49:06.166200+00:00",
+      "port": "COM4",
+      "baud": 115200,
+      "format": "8N1",
+      "dtr": false,
+      "rts": false,
+      "sent_bytes": 597,
+      "received_bytes": 20220,
+      "sha256": "3efecceeae5f9b7bc02de90aa978b021a9b4353abdec2cb7ea7ef3de4cf00ed8",
+      "script": "bsp/scripts/board_motion_safe_release.sh",
+      "script_sha256": "7f637ac2389134e8d5e1e174479e2ee4dd250a255b8598a75cc0969ba7aebe5b",
+      "arguments": [],
+      "script_exit": 0
+    },
+    "automatically_resumed_old_trajectory": false
+  },
+  "previous_ordinary_scheduler_supply_success": {
+    "points": 102432,
+    "elapsed_ns": 10243575972,
+    "max_success_gap_ns": 1718370,
+    "min_sampled_watermark": 31,
+    "target_gap_ns": 2000000,
+    "target_met": 1,
+    "batches": 6400,
+    "raw_sha256": "47ab9cce201b820c83437498172d2edb7aeb97f90ac4578729b113833eda29fb",
+    "script_exit": 0,
+    "estimated_sample_margin_ns": 1381630,
+    "gap_ns": {
+      "min": 0,
+      "max": 1718370,
+      "p99": 1657200
+    },
+    "submit_ns": {
+      "min": 2730,
+      "max": 4590,
+      "p99": 3030
+    },
+    "ioc_ns": {
+      "min": 8100,
+      "max": 27930,
+      "p99": 9900
+    },
+    "closed_ns": {
+      "min": 39030,
+      "max": 111510,
+      "p99": 39960
+    }
+  },
+  "final_fifo50_two_normal_cpu_loads_supply": {
+    "points": 102432,
+    "elapsed_ns": 10243593432,
+    "max_success_gap_ns": 1651740,
+    "min_sampled_watermark": 31,
+    "target_gap_ns": 2000000,
+    "target_met": 1,
+    "batches": 6400,
+    "raw_sha256": "af04ee6d77e0818a5b9c62844287871c289078c6bbc321770832dd59614c6dfc",
+    "script_exit": 0,
+    "estimated_sample_margin_ns": 1448260,
+    "gap_ns": {
+      "min": 0,
+      "max": 1651740,
+      "p99": 1640970
+    },
+    "submit_ns": {
+      "min": 2730,
+      "max": 5010,
+      "p99": 3030
+    },
+    "ioc_ns": {
+      "min": 9300,
+      "max": 34410,
+      "p99": 10020
+    },
+    "closed_ns": {
+      "min": 27180,
+      "max": 42240,
+      "p99": 28770
+    }
+  },
+  "long_trajectory": {
+    "positions": [
+      11,
+      -4,
+      0,
+      -4
+    ],
+    "expected_pulse_deltas": [
+      199731,
+      198038,
+      0,
+      184380
+    ],
+    "actual_pulse_deltas": [
+      199731,
+      198038,
+      0,
+      184380
+    ],
+    "accepted_active_done": 102431,
+    "end_count_delta": 1
+  },
+  "final_irq_idle_stable": {
+    "114": [
+      9,
+      0
+    ],
+    "115": [
+      6433,
+      0
+    ],
+    "116": [
+      0,
+      0
+    ],
+    "117": [
+      7,
+      0
+    ]
+  },
+  "final_state": {
+    "motion_client": "UNLOADED",
+    "coherent_motion_buffer": "RELEASED",
+    "gp_provider": "LOADED",
+    "dma_provider": "LOADED",
+    "active_dma": "NONE",
+    "uart": "CLOSED"
+  },
+  "limits": [
+    "finite measurement, not Linux worst-case bound",
+    "watermark sampled, not continuous minimum",
+    "FIFO50 is explicit isolation test scheduling configuration",
+    "no physical motor IO or driver synchronization verified"
+  ]
+}

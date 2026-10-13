@@ -10,3 +10,8 @@ evidence/** -whitespace
 evidence/gp-* -text
 evidence/dma-* -text
 *.patch -whitespace
+
+# Motion evidence is raw; preserve SHA256 across checkouts.
+evidence/motion-* -text
+evidence/motion-*/** -text
+motion/** text eol=lf

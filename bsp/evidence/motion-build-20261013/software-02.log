@@ -1,0 +1,37 @@
+make: Entering directory '/home/uisrc/embedded-bsp/vendor/sources/linux'
+make[1]: Entering directory '/home/uisrc/embedded-bsp/output/kernel'
+  CC [M]  /home/uisrc/embedded-bsp-motion/bsp/motion/provider/anlogic_dma.o
+  CC [M]  /home/uisrc/embedded-bsp-motion/bsp/motion/provider/axi-dma.o
+  LD [M]  /home/uisrc/embedded-bsp-motion/bsp/motion/provider/anlogic-dma-engine.o
+  MODPOST /home/uisrc/embedded-bsp-motion/bsp/motion/provider/Module.symvers
+  CC [M]  /home/uisrc/embedded-bsp-motion/bsp/motion/provider/anlogic-dma-engine.mod.o
+  LD [M]  /home/uisrc/embedded-bsp-motion/bsp/motion/provider/anlogic-dma-engine.ko
+make[1]: Leaving directory '/home/uisrc/embedded-bsp/output/kernel'
+make: Leaving directory '/home/uisrc/embedded-bsp/vendor/sources/linux'
+make: Entering directory '/home/uisrc/embedded-bsp/vendor/sources/linux'
+make[1]: Entering directory '/home/uisrc/embedded-bsp/output/kernel'
+  MODPOST /home/uisrc/embedded-bsp-motion/bsp/motion/client/Module.symvers
+  CC [M]  /home/uisrc/embedded-bsp-motion/bsp/motion/client/bsp_motion.mod.o
+  LD [M]  /home/uisrc/embedded-bsp-motion/bsp/motion/client/bsp_motion.ko
+make[1]: Leaving directory '/home/uisrc/embedded-bsp/output/kernel'
+make: Leaving directory '/home/uisrc/embedded-bsp/vendor/sources/linux'
+/home/uisrc/embedded-bsp-motion/bsp/motion/motion_accept.c: In function 'sustained':
+/home/uisrc/embedded-bsp-motion/bsp/motion/motion_accept.c:63:10: error: format '%lu' expects argument of type 'long unsigned int', but argument 4 has type '__u64 {aka long long unsigned int}' [-Werror=format=]
+   printf("SUPPLY batch=%u seq=%u submit_ns=%"PRIu64" ioc_ns=%"PRIu64" closed_ns=%"PRIu64"\n",batch,seq,q.submit_ns,q.ioc_ns,q.closed_ns);
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                          ~~~~~~~~~~~
+In file included from /home/uisrc/embedded-bsp-motion/bsp/motion/motion_accept.c:5:0:
+/home/uisrc/embedded-bsp/vendor/tools/aarch64-linux/aarch64-linux-gnu/libc/usr/include/inttypes.h:105:34: note: format string is defined here
+ # define PRIu64  __PRI64_PREFIX "u"
+/home/uisrc/embedded-bsp-motion/bsp/motion/motion_accept.c:63:10: error: format '%lu' expects argument of type 'long unsigned int', but argument 5 has type '__u64 {aka long long unsigned int}' [-Werror=format=]
+   printf("SUPPLY batch=%u seq=%u submit_ns=%"PRIu64" ioc_ns=%"PRIu64" closed_ns=%"PRIu64"\n",batch,seq,q.submit_ns,q.ioc_ns,q.closed_ns);
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                      ~~~~~~~~
+In file included from /home/uisrc/embedded-bsp-motion/bsp/motion/motion_accept.c:5:0:
+/home/uisrc/embedded-bsp/vendor/tools/aarch64-linux/aarch64-linux-gnu/libc/usr/include/inttypes.h:105:34: note: format string is defined here
+ # define PRIu64  __PRI64_PREFIX "u"
+/home/uisrc/embedded-bsp-motion/bsp/motion/motion_accept.c:63:10: error: format '%lu' expects argument of type 'long unsigned int', but argument 6 has type '__u64 {aka long long unsigned int}' [-Werror=format=]
+   printf("SUPPLY batch=%u seq=%u submit_ns=%"PRIu64" ioc_ns=%"PRIu64" closed_ns=%"PRIu64"\n",batch,seq,q.submit_ns,q.ioc_ns,q.closed_ns);
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                               ~~~~~~~~~~~
+In file included from /home/uisrc/embedded-bsp-motion/bsp/motion/motion_accept.c:5:0:
+/home/uisrc/embedded-bsp/vendor/tools/aarch64-linux/aarch64-linux-gnu/libc/usr/include/inttypes.h:105:34: note: format string is defined here
+ # define PRIu64  __PRI64_PREFIX "u"
+cc1: all warnings being treated as errors

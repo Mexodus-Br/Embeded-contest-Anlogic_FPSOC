@@ -1,0 +1,5 @@
+si_select_dialog HpfToolDialog
+si_set_checkbox HpfToolDialog HpfToolDialog.IncludeBitstream checked
+si_click_push_button HpfToolDialog HpfToolDialog.OK
+
+exit

@@ -1,0 +1,126 @@
+{
+  "status": "BUILT_NOT_BOARD_BOOT_TESTED",
+  "ddr": {
+    "capacity_mib": 1024,
+    "dq_width": 32,
+    "rate_mts": 1333,
+    "io_voltage_v": 1.35,
+    "physical_voltage_measured": false
+  },
+  "root_partuuid": "2176bfe4-02",
+  "partitions": [
+    {
+      "number": 1,
+      "start_sector": 2048,
+      "sectors": 131072,
+      "filesystem": "FAT32"
+    },
+    {
+      "number": 2,
+      "start_sector": 133120,
+      "sectors": 524288,
+      "filesystem": "EXT4"
+    }
+  ],
+  "versions": {
+    "linux": "6.1.111-rt42-bsp-sd1",
+    "uboot": "2021.01",
+    "buildroot": "2022.02.6",
+    "TD": "2026.1 SP2 6.2.2.200067",
+    "FD": "2026.1 SP1"
+  },
+  "files": {
+    "BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "4d1a82ef4abdc83883cc803726686b2f7538ffe055c3e920a542584f67920b2c"
+    },
+    "Design.xml": {
+      "bytes": 72971,
+      "sha256": "3de549542223ae25a7b3ed1de6cac44260c071d1fe1ea2bcea57f935dbe3bc75"
+    },
+    "boot/BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "4d1a82ef4abdc83883cc803726686b2f7538ffe055c3e920a542584f67920b2c"
+    },
+    "boot/boot.scr": {
+      "bytes": 779,
+      "sha256": "eafc5f91ab6994ffebf7fe2ed11a3ca3fac8070d27f8db41aa7ab5a95ac7dd62"
+    },
+    "boot/system.dtb": {
+      "bytes": 15458,
+      "sha256": "fa8da409b0f93d687348ef8cc457abecef771ac77e2d3b4e3bb951eb4e7cb196"
+    },
+    "boot/uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    },
+    "boot.bif": {
+      "bytes": 365,
+      "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
+    },
+    "boot.cmd": {
+      "bytes": 707,
+      "sha256": "25e3d146cf9aae10cfb3c475e05fc1f18c4b65cfd8e02af89078a6859a59304a"
+    },
+    "boot.scr": {
+      "bytes": 779,
+      "sha256": "eafc5f91ab6994ffebf7fe2ed11a3ca3fac8070d27f8db41aa7ab5a95ac7dd62"
+    },
+    "boot.vfat": {
+      "bytes": 67108864,
+      "sha256": "a26412f8251eee22826a232145ec16ec668d67c14dde0bdc1a232548b6717a23"
+    },
+    "bootgen.log": {
+      "bytes": 3334,
+      "sha256": "572a75f9fecfb242bfb0ee10afa9064eddf76c6c7d260397d2bbff59ce012c44"
+    },
+    "fsbl.elf": {
+      "bytes": 1507200,
+      "sha256": "b1dea2f88c712efaa2a67f12213d7e477dc55d58c996cfd5f48e304e5174dd30"
+    },
+    "hpf.info": {
+      "bytes": 118,
+      "sha256": "4208ee509f61abda873a81232dd63aec5c0abcd5f072167093b2a4b203ccb246"
+    },
+    "rootfs.ext4": {
+      "bytes": 268435456,
+      "sha256": "140974123d9e7ce57a17806fb03eff9f22873b466fe4e2ab31e00cb2bf44812a"
+    },
+    "sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "915d25b78c5afd2887f1d35b7327afb8cd12fb0529967560e92bc32c87b6b8e5"
+    },
+    "soc_plat.c": {
+      "bytes": 129854,
+      "sha256": "6dc252d86fa0d2417890215bf506207f9a06b7688af3c28bf821883c61ca8fbd"
+    },
+    "soc_plat.h": {
+      "bytes": 14296,
+      "sha256": "b531f443fc6eaf29f484c13d369c6161ad138eb5de7e63cf21dbd8e81b48e148"
+    },
+    "soc_plat_dts.h": {
+      "bytes": 4132,
+      "sha256": "4658518f7a90d5f1fb8c92e52bd4a882559323bd04f1dd9e670aae5e31cdf1c0"
+    },
+    "system.bit": {
+      "bytes": 4052214,
+      "sha256": "ddf1050db305059341281c0188e2eba02bbaa240901f533b43132aa426e99ca4"
+    },
+    "system.dtb": {
+      "bytes": 15458,
+      "sha256": "fa8da409b0f93d687348ef8cc457abecef771ac77e2d3b4e3bb951eb4e7cb196"
+    },
+    "system.hpf": {
+      "bytes": 651410,
+      "sha256": "4e312d7c0600477d022a75364f0a4a8f5d6c1a1a05cdad4d461877c523f85afd"
+    },
+    "u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    }
+  }
+}

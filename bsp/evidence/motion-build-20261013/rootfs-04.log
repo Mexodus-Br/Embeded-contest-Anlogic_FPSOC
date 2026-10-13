@@ -1,0 +1,28 @@
+extra/bsp_motion.ko: kernel/drivers/dma/anlogic/anlogic-dma-engine.ko
+rootdir=/home/uisrc/embedded-bsp-motion/output/rootfs-target
+table='/home/uisrc/embedded-bsp/output/buildroot/build/buildroot-fs/full_devices_table.txt'
+mke2fs 1.46.5 (30-Dec-2021)
+64-bit filesystem support is not enabled.  The larger fields afforded by this feature enable full-strength checksumming.  Pass -O 64bit to rectify.
+Discarding device blocks:      0/262144             done                            
+Creating filesystem with 262144 1k blocks and 65536 inodes
+Filesystem UUID: 6d398841-220c-4d38-aefa-20ab09f33832
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729, 204801, 221185
+
+Allocating group tables:  0/32     done                            
+Writing inode tables:  0/32     done                            
+Creating journal (8192 blocks): done
+Copying files into the device: done
+Writing superblocks and filesystem accounting information:  0/32     done
+
+e2fsck 1.44.1 (24-Mar-2018)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+bsp-root: 762/65536 files (1.7% non-contiguous), 136830/262144 blocks
+28f100b84f9f48b6302a9ed90882c3ec68d51d6ffefbaa9827040e3856ecc08c  /home/uisrc/embedded-bsp-motion/output/buildroot/images/rootfs.ext4
+e1fbd52740423e672c7505128f4672db43abb05d01350d7a1644da12230b803a  /home/uisrc/embedded-bsp-motion/output/rootfs-target/usr/bin/motion-accept
+ce8d2418734ec437e52a4ade6927aa697275559138c897f30b17b752002ccac1  /home/uisrc/embedded-bsp-motion/output/rootfs-target/lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_motion.ko
+022804d6d6f8aa2a0d93189735ddb13f037d99998b9bd71896c44bd4f3b48c32  /home/uisrc/embedded-bsp-motion/output/rootfs-target/lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko
