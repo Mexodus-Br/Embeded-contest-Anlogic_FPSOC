@@ -1,0 +1,117 @@
+{
+  "source": "schema.json + rate_design.json",
+  "assumptions": {
+    "response_start_bound_us": 200,
+    "response_bound_status": "planning assumption, not measured hardware evidence",
+    "nominal_load_limit": 0.75,
+    "admission_status": "proposed; checked before config acceptance; runtime monitors still required"
+  },
+  "scope": "normal traffic only; admission estimate, not scheduling or physical proof",
+  "results": [
+    {
+      "profile": "compatibility",
+      "per_query": [
+        {
+          "query": "30",
+          "per_node_hz": 8.0,
+          "normal_service_budget_us": 11174.8
+        },
+        {
+          "query": "33",
+          "per_node_hz": 2.0,
+          "normal_service_budget_us": 11001.2
+        },
+        {
+          "query": "39",
+          "per_node_hz": 8.0,
+          "normal_service_budget_us": 10827.6
+        },
+        {
+          "query": "3A",
+          "per_node_hz": 1.0,
+          "normal_service_budget_us": 10740.8
+        },
+        {
+          "query": "3E",
+          "per_node_hz": 1.0,
+          "normal_service_budget_us": 10740.8
+        }
+      ],
+      "requests_per_second": 60.0,
+      "wire_fraction": 0.04531,
+      "normal_service_fraction": 0.65851,
+      "planning_limit": 0.75,
+      "within_planning_limit": true
+    },
+    {
+      "profile": "fast_training",
+      "per_query": [
+        {
+          "query": "30",
+          "per_node_hz": 50.0,
+          "normal_service_budget_us": 2174.8
+        },
+        {
+          "query": "33",
+          "per_node_hz": 10.0,
+          "normal_service_budget_us": 2001.2
+        },
+        {
+          "query": "39",
+          "per_node_hz": 50.0,
+          "normal_service_budget_us": 1827.6
+        },
+        {
+          "query": "3A",
+          "per_node_hz": 5.0,
+          "normal_service_budget_us": 1740.8
+        },
+        {
+          "query": "3E",
+          "per_node_hz": 5.0,
+          "normal_service_budget_us": 1740.8
+        }
+      ],
+      "requests_per_second": 360.0,
+      "wire_fraction": 0.27342,
+      "normal_service_fraction": 0.71262,
+      "planning_limit": 0.75,
+      "within_planning_limit": true
+    },
+    {
+      "profile": "fast_rates_with_legacy_guard_NOT_ADMISSIBLE",
+      "per_query": [
+        {
+          "query": "30",
+          "per_node_hz": 50.0,
+          "normal_service_budget_us": 11174.8
+        },
+        {
+          "query": "33",
+          "per_node_hz": 10.0,
+          "normal_service_budget_us": 11001.2
+        },
+        {
+          "query": "39",
+          "per_node_hz": 50.0,
+          "normal_service_budget_us": 10827.6
+        },
+        {
+          "query": "3A",
+          "per_node_hz": 5.0,
+          "normal_service_budget_us": 10740.8
+        },
+        {
+          "query": "3E",
+          "per_node_hz": 5.0,
+          "normal_service_budget_us": 10740.8
+        }
+      ],
+      "requests_per_second": 360.0,
+      "wire_fraction": 0.27342,
+      "normal_service_fraction": 3.95262,
+      "planning_limit": 0.75,
+      "within_planning_limit": false
+    }
+  ]
+}
