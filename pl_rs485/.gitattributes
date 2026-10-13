@@ -1,0 +1,5 @@
+# Preserve the exact verified bytes and machine-readable SHA-256 identities.
+* -text whitespace=cr-at-eol
+# Retain raw tool formatting in the evidence rather than rewriting reports.
+evidence/** whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+rtl/rs485_master.v whitespace=-blank-at-eof,cr-at-eol

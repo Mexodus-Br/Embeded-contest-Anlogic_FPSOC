@@ -1,0 +1,48 @@
+{
+  "tool": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\bin\\td_commands_prompt.EXE",
+  "device": "DR1M90GEG400",
+  "speed": 2,
+  "clock_MHz": 100,
+  "source_sha256": {
+    "rtl\\record_fifo.v": "0c23cfbd5f37b5d045f510438b40804582ffb7e9968e9b1dcb77e79847257cb9",
+    "rtl\\rs485_master.v": "55d8b73fe0ce025409880b3d31355ab014d0ce60c9b7389b38dfbc2ed08b3ae6",
+    "rtl\\uart_rx.v": "79ff285c9ba87b7162d19de2baece671935318d8d0d19a25b60d74b60d3bc35b",
+    "rtl\\uart_tx.v": "efbd22465b111da66cd5dc5db84172fbcb17371143a57528473417955e17caf8",
+    "generated\\parameters.vh": "d2a825075de22549c649b8ecc83aee494e2041ee9053acde287acb092470c0d0",
+    "generated\\queries.md": "d53945b6e01ddefe7785c00e2a30e87efcb4f5cb28ddb141d7fbb8158341cb33",
+    "generated\\rs485_defs.h": "a93ae74b2698347fd7dbe514899d32da586c3b1edc948e0f590a7f51852a3bd2",
+    "generated\\rs485_defs.vh": "92f49fecc09d55ecbf52055c8c770a2bf54cc556846281e890cf25ad85e0b180"
+  },
+  "profile": {
+    "CLK_HZ": 100000000,
+    "BAUD": 115200,
+    "SLAVE_COUNT": 3,
+    "SLAVE_ADDRS": 14868960,
+    "QUERY_MASK": 31,
+    "POLL_CYCLES": 1000000,
+    "TIMEOUT_CYCLES": 1000000,
+    "INTERBYTE_CYCLES": 200000,
+    "RETRIES": 1,
+    "PRE_CYCLES": 1000,
+    "POST_CYCLES": 1000,
+    "TURN_CYCLES": 1000,
+    "QUIET_CYCLES": 1000000,
+    "FIFO_DEPTH": 8
+  },
+  "fixture": "OOC scan input/output wrapper; no board IO timing claim",
+  "gate": {
+    "setup_wns_ns": 3.374,
+    "hold_wns_ns": 0.0,
+    "pass": true
+  },
+  "place": {
+    "setup_wns_ns": 5.226,
+    "hold_wns_ns": 0.0,
+    "pass": true
+  },
+  "route": {
+    "setup_wns_ns": 3.575,
+    "hold_wns_ns": 0.03,
+    "pass": true
+  }
+}

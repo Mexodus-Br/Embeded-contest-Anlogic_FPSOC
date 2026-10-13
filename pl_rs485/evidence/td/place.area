@@ -1,0 +1,59 @@
+standard
+***Report Model: td_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         8   out of    126    6.35%
+  #input                    5
+  #output                   3
+  #inout                    0
+#lut6                    1180   out of  52480    2.25%
+#reg                     1383
+  #slice reg             1383   out of 104960    1.32%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                   1326   out of  52480    2.53%
+  #used ram               128
+    #dram lut             120
+    #shifter lut            8
+  #used logic            1198
+    #with luts            692
+    #with adder           360
+    #reg only             146
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of    240    0.00%
+#pad                        8   out of    126    6.35%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+Detailed IO Report
+
+    Name      Direction    Location    IOStandard    IOType    DriveStrength    PullType    PackReg    DiffResistor  
+    clk         INPUT         Y9        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+    load        INPUT        U20        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+   rst_n        INPUT        Y16        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+  rx_async      INPUT        J15        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+  scan_in       INPUT        J20        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+     de        OUTPUT        W18        LVCMOS33      HRIO           8            NONE       NONE          NONE      
+  scan_out     OUTPUT        J19        LVCMOS33      HRIO           8            NONE       NONE          NONE      
+     tx        OUTPUT        B19        LVCMOS33      HRIO           8            NONE       NONE          NONE      
+
+Report Hierarchy Area:
++-------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance   |Module       |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |adc    |soc     |
++-------------------------------------------------------------------------------------------------------------------------------------------+
+|top        |td_probe     |692       |360     |1383    |0       |0       |120      |8           |0       |0       |0       |0      |0       |
+|  dut      |rs485_master |488       |360     |925     |0       |0       |120      |0           |0       |0       |0       |0      |0       |
+|    u_fifo |record_fifo  |24        |32      |49      |0       |0       |120      |0           |0       |0       |0       |0      |0       |
+|    u_rx   |uart_rx      |53        |32      |63      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|    u_tx   |uart_tx      |20        |0       |25      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
++-------------------------------------------------------------------------------------------------------------------------------------------+

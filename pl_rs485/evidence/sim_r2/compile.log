@@ -1,0 +1,8 @@
+COMMAND ['D:\\iverilog\\bin\\iverilog.EXE', '-g2005', '-Wall', '-I', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\generated', '-s', 'tb_rs485', '-o', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\evidence\\sim_r2\\bench.vvp', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\record_fifo.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\rs485_master.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\uart_rx.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\rtl\\uart_tx.v', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\tests\\tb_rs485.v']
+EXIT 0
+warning: Some modules have no timescale. This may cause
+       : confusing timing results.	Affected modules are:
+       :   -- module record_fifo declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\record_fifo.v:1
+       :   -- module rs485_master declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\rs485_master.v:2
+       :   -- module uart_rx declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\uart_rx.v:3
+       :   -- module uart_tx declared here: D:\Works\Embedded_contest\dev\pl_rs485\rtl\uart_tx.v:2
