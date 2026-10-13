@@ -64,7 +64,11 @@ output wire hp_awlock,
 output wire hp_arlock,
 output wire [3:0] hp_awqos,
 output wire [3:0] hp_arqos,
-output wire hp0_aclk);
+output wire hp0_aclk,
+ output wire [3:0] motion_step,motion_dir,motion_en,
+ output wire motion_point_start,motion_point_done,motion_slot_event,
+ output wire [63:0] motion_slot_id
+);
 wire m_awvalid,m_awready,m_wvalid,m_wready,m_bvalid,m_bready;
 wire [11:0] owner_wid;
 gp_ps_write_adapter write_owner(.clk(clk_100m),
@@ -94,7 +98,14 @@ motion_gp_full_top #(.FIFO_DEPTH(FIFO_DEPTH),
 .EN_SETUP_CYCLES(EN_SETUP_CYCLES),
 .EN_DISABLE_CYCLES(EN_DISABLE_CYCLES),
 .MAX_STEP_HZ(MAX_STEP_HZ),
-.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL)) core(
+.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL)) core(.motion_step(motion_step),
+.motion_dir(motion_dir),
+.motion_en(motion_en),
+.motion_point_start(motion_point_start),
+.motion_point_done(motion_point_done),
+.motion_slot_event(motion_slot_event),
+.motion_slot_id(motion_slot_id),
+
 .clk_100m(clk_100m),
 .arst_n(arst_n),
 .gp0_aclk(gp0_aclk),

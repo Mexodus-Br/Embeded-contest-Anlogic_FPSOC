@@ -73,7 +73,10 @@ module motion_dma_lite_top #(
  output wire hp_awlock,
  output wire hp_arlock,
  output wire [3:0] hp_awqos,
- output wire [3:0] hp_arqos
+ output wire [3:0] hp_arqos,
+ output wire [3:0] motion_step,motion_dir,motion_en,
+ output wire motion_point_start,motion_point_done,motion_slot_event,
+ output wire [63:0] motion_slot_id
 );
 reg [1:0] reset_release; always @(posedge clk_100m or negedge arst_n) if(!arst_n) reset_release<=0; else reset_release<={reset_release[0],1'b1};
 assign control_rst_n=reset_release[1]; assign hp0_aclk=clk_100m;
@@ -451,14 +454,15 @@ motion_service #(.FIFO_DEPTH(FIFO_DEPTH),
 .session_id(),
 .fifo_level(),
 .prepared_level(),
- .point_start(),
-.point_done(),
+ .point_start(motion_point_start),
+.point_done(motion_point_done),
 .stopped(),
 .pulse_event(),
-.slot_event(),
-.slot_id());
+.slot_event(motion_slot_event),
+.slot_id(motion_slot_id));
 assign d_s_axis_s2mm_tdata=64'd0;assign d_s_axis_s2mm_tkeep=8'd0;assign d_s_axis_s2mm_tlast=1'b0;
 assign d_s_axis_s2mm_tvalid=1'b0;assign d_s_axis_s2mm_tuser=4'd0;assign d_s_axis_s2mm_tid=5'd0;assign d_s_axis_s2mm_tdest=5'd0;
+assign motion_step=observed_step;assign motion_dir=observed_dir;assign motion_en=observed_en;
 assign f2p_irq=(!arst_n || !control_rst_n) ? 16'd0 : ((d_mm2s_introut ? (16'd1<<`PLI_DMA_DMA_LOOPBACK_V1_IRQ_MM2S_LINE) : 16'd0) | (d_s2mm_introut ? (16'd1<<`PLI_DMA_DMA_LOOPBACK_V1_IRQ_S2MM_LINE) : 16'd0));
 wire [2:0] bridge_awsize,bridge_arsize;wire [1:0] bridge_awlock,bridge_arlock;
 assign hp_awsize=bridge_awsize[1:0]; assign hp_arsize=bridge_arsize[1:0];

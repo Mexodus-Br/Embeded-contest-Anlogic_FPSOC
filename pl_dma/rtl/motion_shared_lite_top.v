@@ -54,7 +54,10 @@ module motion_shared_lite_top #(
  output wire hp_awlock,
  output wire hp_arlock,
  output wire [3:0] hp_awqos,
- output wire [3:0] hp_arqos
+ output wire [3:0] hp_arqos,
+ output wire [3:0] motion_step,motion_dir,motion_en,
+ output wire motion_point_start,motion_point_done,motion_slot_event,
+ output wire [63:0] motion_slot_id
 );
 wire [98:0] m_awaddr;
 wire [98:0] m_araddr;
@@ -152,6 +155,13 @@ motion_dma_lite_top #(.FIFO_DEPTH(FIFO_DEPTH),
 .control_rst_n(control_rst_n),
 .f2p_irq(dma_irq),
 .loop_occupancy(loop_occupancy),
+.motion_step(motion_step),
+.motion_dir(motion_dir),
+.motion_en(motion_en),
+.motion_point_start(motion_point_start),
+.motion_point_done(motion_point_done),
+.motion_slot_event(motion_slot_event),
+.motion_slot_id(motion_slot_id),
 .motion_irq(motion_irq),
 .motion_awaddr(m_awaddr[66+: 33]),
 .motion_araddr(m_araddr[66+: 33]),

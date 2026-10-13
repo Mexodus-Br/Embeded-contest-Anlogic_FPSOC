@@ -12,6 +12,14 @@ PARAM='''#(
 )'''
 PN=['FIFO_DEPTH','PLAN_DEPTH','START_MIN_POINTS','STEP_HIGH_CYCLES','STEP_LOW_CYCLES','DIR_SETUP_CYCLES','DIR_HOLD_CYCLES','EN_SETUP_CYCLES','EN_DISABLE_CYCLES','MAX_STEP_HZ','EN_ACTIVE_LEVEL']
 BIND='#('+','.join('.'+n+'('+n+')' for n in PN)+')'
+OUTPUTS='''output wire [3:0] motion_step,motion_dir,motion_en,
+ output wire motion_point_start,motion_point_done,motion_slot_event,
+ output wire [63:0] motion_slot_id'''
+OUTPUT_BIND=','.join('.'+n+'('+n+')' for n in ['motion_step','motion_dir','motion_en','motion_point_start','motion_point_done','motion_slot_event','motion_slot_id'])
+def add_outputs(text):
+    # Append optional named ports; retain all existing input/output ordering.
+    at=text.index(');',text.index('module '))
+    return text[:at].rstrip()+',\n '+OUTPUTS+'\n'+text[at:]
 SIG=['awaddr','araddr','wdata','wstrb','awvalid','awready','wvalid','wready','bvalid','bready','bresp','arvalid','arready','rvalid','rready','rdata','rresp']
 WIDTH={'awaddr':33,'araddr':33,'wdata':32,'wstrb':4,'bresp':2,'rdata':32,'rresp':2}
 def render():
@@ -43,7 +51,10 @@ motion_service '''+BIND+''' motion(.clk(clk_100m),.rst_n(control_rst_n),.dma_res
 assign d_s_axis_s2mm_tdata=64'd0;assign d_s_axis_s2mm_tkeep=8'd0;assign d_s_axis_s2mm_tlast=1'b0;
 assign d_s_axis_s2mm_tvalid=1'b0;assign d_s_axis_s2mm_tuser=4'd0;assign d_s_axis_s2mm_tid=5'd0;assign d_s_axis_s2mm_tdest=5'd0;
 '''
-    dma=dma[:begin]+service+dma[end:];result['motion_dma_lite_top.v']=dma
+    service=service.replace('.point_start(),.point_done()', '.point_start(motion_point_start),.point_done(motion_point_done)')
+    service=service.replace('.slot_event(),.slot_id()', '.slot_event(motion_slot_event),.slot_id(motion_slot_id)')
+    service+='assign motion_step=observed_step;assign motion_dir=observed_dir;assign motion_en=observed_en;\n'
+    dma=add_outputs(dma[:begin]+service+dma[end:]);result['motion_dma_lite_top.v']=dma
     shared=(ROOT/'rtl/dma_shared_lite_top.v').read_text().replace('module dma_shared_lite_top(','module motion_shared_lite_top '+PARAM+'(')
     for n in SIG:
         w=WIDTH.get(n,1);shared=shared.replace(f'wire [{w*2-1}:0] m_{n};',f'wire [{w*3-1}:0] m_{n};')
@@ -51,11 +62,18 @@ assign d_s_axis_s2mm_tvalid=1'b0;assign d_s_axis_s2mm_tuser=4'd0;assign d_s_axis
     shared=shared.replace('dma_loopback_top dma_core(', 'motion_dma_lite_top '+BIND+' dma_core(')
     shared=shared.replace('.loop_occupancy(loop_occupancy),','.loop_occupancy(loop_occupancy),.motion_irq(motion_irq),'+','.join('.motion_'+n+f'(m_{n}[{2*WIDTH.get(n,1)}+: {WIDTH.get(n,1)}])' for n in SIG)+',')
     shared=shared.replace("(gp_irq ? 16'd1 : 16'd0)","(gp_irq ? 16'd1 : 16'd0) | (motion_irq ? (16'd1<<`PLI_MOTION_GP_MOTION_V1_IRQ_LINE):16'd0)")
+    shared=add_outputs(shared).replace('.loop_occupancy(loop_occupancy),','.loop_occupancy(loop_occupancy),'+OUTPUT_BIND+',')
     result['motion_shared_lite_top.v']=shared
     for old,new,childold,childnew in [('dma_gp_full_top','motion_gp_full_top','dma_shared_lite_top','motion_shared_lite_top'),('dma_gp_ps_top','motion_gp_ps_top','dma_gp_full_top','motion_gp_full_top')]:
         t=(ROOT/'rtl'/f'{old}.v').read_text().replace('module '+old+'(','module '+new+' '+PARAM+'(')
         if '`include "generated/interface_defs.vh"' not in t:t='`include "generated/interface_defs.vh"\n'+t
-        t=t.replace(childold+' ',childnew+' '+BIND+' ');result[new+'.v']=t
+        t=t.replace(childold+' ',childnew+' '+BIND+' ')
+        t=add_outputs(t)
+        # Forward only through explicit child ports, never hierarchy references.
+        at=t.index(childnew+' '+BIND+' ')
+        opening=t.index('(',at+len(childnew+' '+BIND+' '))
+        t=t[:opening+1]+OUTPUT_BIND+',\n'+t[opening+1:]
+        result[new+'.v']=t
     return {n:t.replace(',.',',\n.') for n,t in result.items()}
 if __name__=='__main__':
     ap=argparse.ArgumentParser();ap.add_argument('--check',action='store_true');a=ap.parse_args()

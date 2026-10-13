@@ -65,7 +65,11 @@ output wire hp_awlock,
 output wire hp_arlock,
 output wire [3:0] hp_awqos,
 output wire [3:0] hp_arqos,
-output wire hp0_aclk);
+output wire hp0_aclk,
+ output wire [3:0] motion_step,motion_dir,motion_en,
+ output wire motion_point_start,motion_point_done,motion_slot_event,
+ output wire [63:0] motion_slot_id
+);
     reg [1:0] reset_release;
     always @(posedge clk_100m or negedge arst_n)
         if (!arst_n) reset_release<=0;
@@ -193,7 +197,14 @@ motion_shared_lite_top #(.FIFO_DEPTH(FIFO_DEPTH),
 .EN_SETUP_CYCLES(EN_SETUP_CYCLES),
 .EN_DISABLE_CYCLES(EN_DISABLE_CYCLES),
 .MAX_STEP_HZ(MAX_STEP_HZ),
-.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL)) fabric(.clk_100m(clk_100m),
+.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL)) fabric(.motion_step(motion_step),
+.motion_dir(motion_dir),
+.motion_en(motion_en),
+.motion_point_start(motion_point_start),
+.motion_point_done(motion_point_done),
+.motion_slot_event(motion_slot_event),
+.motion_slot_id(motion_slot_id),
+.clk_100m(clk_100m),
 .arst_n(arst_n),
 .rst_n(control_rst_n),
 .control_rst_n(),
