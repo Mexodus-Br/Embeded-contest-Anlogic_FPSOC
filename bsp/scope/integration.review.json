@@ -1,0 +1,120 @@
+{
+  "status": "REVIEWED_FOR_ISOLATED_MOTION_BUILD",
+  "source_commit": "df17b4ebd6e358d6626a227b5c0c152c1f6cb9ed",
+  "handoff_commit": "1ae5ce1218e06ab8d2a9674d6fa760a1d98529a9",
+  "schema_sha256": "ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10",
+  "hpf_sha256": "609639dec28432912e7bcbddee90328edbeaca1a1ee46193d657e8cffa79103b",
+  "bitstream_sha256": "b597de9d2e453f47056e91b743c449bce79717aba6c0a79e7e4d84dcddbcda74",
+  "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1",
+  "stages": {
+    "gate": {
+      "setup_wns_ns": -2.588,
+      "hold_wns_ns": 0.0
+    },
+    "place": {
+      "setup_wns_ns": 2.546,
+      "hold_wns_ns": 0.0
+    },
+    "route": {
+      "setup_wns_ns": 0.031,
+      "hold_wns_ns": 0.021
+    }
+  },
+  "reference_speed": 2,
+  "routed_clock_mhz": 100,
+  "resources": {
+    "lut6": 13051,
+    "reg": 13616,
+    "slice": 15335,
+    "eram": 16,
+    "dsp": 4,
+    "gclk": 1,
+    "sclk": 6
+  },
+  "ps_property_values_unchanged": true,
+  "retained_ddr_storage_macros": {
+    "DDRC_DEBUG_LOG_EN": "1 // enable DDR Init Debug Log\r",
+    "CPU_CLOCK": "999900000\r",
+    "QSPI_2ND_DIVISOR": "2\r",
+    "QSPI_CLOCK": "99990000\r",
+    "MMC0_IO_FREQ": "49995000\r",
+    "MMC1_IO_FREQ": "49995000\r",
+    "UART_CLOCK": "400000000\r",
+    "QSPI_IO_FREQ": "(QSPI_CLOCK/QSPI_2ND_DIVISOR)\r",
+    "CPU_gm_cell": "1\r",
+    "CPU_icp": "10\r",
+    "CPU_kvco": "0\r",
+    "CPU_lpf_cap": "2\r",
+    "CPU_lpf_res": "4\r",
+    "CPU_CLOCK_RATIO": "421\r",
+    "CPU_FBK_DIV": "120\r",
+    "CPU_OUT_DIV": "2\r",
+    "CPU_REF_DIV": "2\r",
+    "DDRC_COMP_DENSITY": "4096\r",
+    "DDRC_SPEED_BIN": "_SPEED_BIN_DDR3_1333G\r",
+    "DDRC_COMP_TYPE": "DDR_COMP_WIDTH_x16\r",
+    "DDRC_ECC_EN": "ECC_NONE\r",
+    "DDRC_IO_VOL": "1.35\r",
+    "DDRC_PZQ_CONF": "0\r",
+    "DDRC_RDBI": "0\r",
+    "DDRC_DDR_SPEED": "1333\r",
+    "DDRC_TRAINING_EN": "1\r",
+    "DDRC_DDR_TYPE": "DDR3\r",
+    "DDRC_VREF": "Internal\r",
+    "DDRC_WDM_WDBI": "NONE\r",
+    "DDRC_DQ_WIDTH": "32\r"
+  },
+  "motor_outputs": "confirmed J12 nine GPIOs plus H16 input; scope only",
+  "test_parameters": "500-cycle guards 100kHz A0..A2, M4 disabled raw64/prepared8 START32; not driver/product freeze",
+  "reset": "startup p2f_rst0_n; same-domain synchronized release; DMA-only recovery does not reset epoch/position; final FSBL GP/HP soft reset release audited separately",
+  "diagnostics_sha256": "8755339e6b566fd76c3cba0dd1c3269d080eba24bea37b5e6410884a1effe616",
+  "remaining_high_classes": "vendor ERAM reset / planner unused mapped OFB; DRC SLATR-1036/1038 notes retained",
+  "board_verified": false,
+  "gpio_pins": [
+    {
+      "port": "a0_step",
+      "pin": 3,
+      "ball": "Y12"
+    },
+    {
+      "port": "a0_dir",
+      "pin": 4,
+      "ball": "Y13"
+    },
+    {
+      "port": "a0_en",
+      "pin": 5,
+      "ball": "T9"
+    },
+    {
+      "port": "a1_step",
+      "pin": 6,
+      "ball": "U10"
+    },
+    {
+      "port": "a1_dir",
+      "pin": 7,
+      "ball": "T5"
+    },
+    {
+      "port": "a1_en",
+      "pin": 8,
+      "ball": "U5"
+    },
+    {
+      "port": "a2_step",
+      "pin": 9,
+      "ball": "V6"
+    },
+    {
+      "port": "a2_dir",
+      "pin": 10,
+      "ball": "W6"
+    },
+    {
+      "port": "a2_en",
+      "pin": 11,
+      "ball": "U7"
+    }
+  ]
+}

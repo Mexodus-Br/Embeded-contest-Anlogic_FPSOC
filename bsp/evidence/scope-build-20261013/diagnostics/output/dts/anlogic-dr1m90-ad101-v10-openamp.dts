@@ -1,0 +1,48 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+
+/dts-v1/;
+#include "anlogic-dr1m90-ad101-v10.dts"
+
+/ {
+	chosen {
+		bootargs = "console=ttyS0,115200n8 earlycon=uart,mmio32,0xf8400000 loglevel=8 maxcpus=1";
+	};
+};
+
+&reserved_memory {
+	/* Reserved memory for loading remote firmware */
+	rproc_0_reserved: rproc@8000000 {
+		no-map;
+		/* 16MB in DDR */
+		reg = <0x0 0x8000000 0x0 0x1000000>;
+	};
+
+	/* Reserved memory for vring0 */
+	vdev0vring0: vdev0vring0@f030000 {
+		no-map;
+		/* 16KB in ddr */
+		reg = <0x0 0xf030000 0x0 0x4000>;
+	};
+
+	/* Reserved memory for vring1 */
+	vdev0vring1: vdev0vring1@f034000 {
+		no-map;
+		/* 16KB in ddr */
+		reg = <0x0 0xf034000 0x0 0x4000>;
+	};
+
+	/* Reserved memory for shared buffer */
+	vdev0buffer: vdev0buffer@9000000 {
+		no-map;
+		/* 32MB in DDR */
+		reg = <0x0 0x9000000 0x0 0x2000000>;
+	};
+};
+
+&soc {
+	remoteproc0: remoteproc@0 {
+		compatible = "anlogic,dragon_remoteproc";
+		memory-region = <&rproc_0_reserved>, <&vdev0vring0>, <&vdev0vring1>, <&vdev0buffer>;
+		/*anlogic,no-openamp;*/
+	};
+};

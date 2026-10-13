@@ -1,0 +1,207 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+
+&soc {
+	axi_uart0: serial@80020000 {
+		compatible = "anlogic,xps-uartlite-1.00.a";
+		reg = <0x0 0x80020000 0x0 0x1000>;
+		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>; /* BM 116 */
+		clock-frequency = <50000000>;
+		port-number = <0>;
+		anlogic,baudrate = <115200>;
+		current-speed = <115200>;
+		anlogic,use-parity = <0x0>;
+		anlogic,odd-parity = <0x0>;
+		anlogic,data-bits = <0x8>;
+		status = "disabled";
+	};
+
+	axi_uart1: serial@1f1020000 {
+		compatible = "anlogic,xps-uartlite-1.00.a";
+		reg = <0x1 0xf1020000 0x0 0x1000>;
+		interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>; /* BM 124 */
+		clock-frequency = <50000000>;
+		port-number = <1>;
+		anlogic,baudrate = <115200>;
+		current-speed = <115200>;
+		anlogic,use-parity = <0x0>;
+		anlogic,odd-parity = <0x0>;
+		anlogic,data-bits = <0x8>;
+		status = "disabled";
+	};
+
+	axi_gpio0: gpio@0x80010000 {
+		compatible = "anlogic,axi-gpio-1.00.a";
+		reg = <0x0 0x80010000 0x0 0x10000>;
+		interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;/* BM 115 */
+		#gpio-cells = <2>;
+		#interrupt-cells = <0x2>;
+		gpio-controller;
+		anlogic,all-inputs = <0x0>;
+		anlogic,all-inputs-2 = <0x0>;
+		anlogic,all-outputs = <0x0>;
+		anlogic,all-outputs-2 = <0x0>;
+		anlogic,dout-default = <0x0>;
+		anlogic,dout-default-2 = <0x0>;
+		anlogic,gpio-width = <0x20>;
+		anlogic,gpio2-width = <0x20>;
+		anlogic,interrupt-present = <0x1>;
+		anlogic,is-dual = <0x1>;
+		anlogic,tri-default = <0xFFFFFFFF>;
+		anlogic,tri-default-2 = <0xFFFFFFFF>;
+		status = "disabled";
+	};
+
+	axi_gpio1: gpio@1f1000000 {
+		compatible = "anlogic,axi-gpio-1.00.a";
+		reg = <0x1 0xf1000000 0x0 0x10000>;
+		interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;/* BM 123 */
+		#gpio-cells = <2>;
+		#interrupt-cells = <0x2>;
+		gpio-controller;
+		anlogic,all-inputs = <0x0>;
+		anlogic,all-inputs-2 = <0x0>;
+		anlogic,all-outputs = <0x0>;
+		anlogic,all-outputs-2 = <0x0>;
+		anlogic,dout-default = <0x0>;
+		anlogic,dout-default-2 = <0x0>;
+		anlogic,gpio-width = <0x20>;
+		anlogic,gpio2-width = <0x20>;
+		anlogic,interrupt-present = <0x1>;
+		anlogic,is-dual = <0x1>;
+		anlogic,tri-default = <0xFFFFFFFF>;
+		anlogic,tri-default-2 = <0xFFFFFFFF>;
+		status = "disabled";
+	};
+
+	axi_i2c0: axi_i2c@80030000 {
+		compatible = "anlogic-axi-i2c-controller";
+		reg = <0 0x80030000 0 0x10000>;
+		interrupt-parent = <&gic>;
+		interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+		input-frequency = <75000000>;
+		clock-frequency = <100000>;
+		i2c-filter-width-time-ns = <50>;
+		i2c-sda-setup-time-ns = <300>;
+		i2c-sda-hold-time-ns = <300>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "disabled";
+	};
+
+	axi_i2c1: axi_i2c@1f1030000 {
+		compatible = "anlogic-axi-i2c-controller";
+		reg = <0x1 0xf1030000 0 0x10000>;
+		interrupt-parent = <&gic>;
+		interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
+		input-frequency = <75000000>;
+		clock-frequency = <100000>;
+		i2c-filter-width-time-ns = <50>;
+		i2c-sda-setup-time-ns = <300>;
+		i2c-sda-hold-time-ns = <300>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "disabled";
+	};
+
+	axi_dma0: axidma@80000000 {
+		#dma-cells = <1>;
+		compatible = "anlogic,axi-dma";
+		interrupt-parent = <&gic>;
+		interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+		reg = <0x0 0x80000000 0x0 0x1000>;
+		anlogic,include-sg;
+		anlogic,addrwidth = <0x20>;
+		anlogic,sg-length-width = <26>;
+		status = "disabled";
+
+		dma-channel@80000000 {
+			compatible = "anlogic,axi-dma-mm2s-channel";
+			dma-channels = <0x1>;
+			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+			anlogic,datawidth = <0x20>;
+			anlogic,include-dre;
+		};
+
+		dma-channel@80000030 {
+			compatible = "anlogic,axi-dma-s2mm-channel";
+			dma-channels = <0x1>;
+			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+			anlogic,datawidth = <0x20>;
+			anlogic,include-dre;
+		};
+	};
+
+	axi_qspi0: spi@80000000 {
+		compatible = "anlogic-axi-qspi-controller";
+		interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+		clock-frequency = <25000000>;
+		reg = <0x0 0x80000000 0 0x10000>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "disabled";
+
+		al-sync-clk = <0>;
+		al-spi-mem-addr-bits = <24>;
+		al-axi4-type = <1>;
+		al-xip-mode = <0>;
+		al-xip-perf = <0>;
+		al-fifo-depth = <256>;
+		al-sck-ratio = <2>;
+		al-num-ss-bits = <1>;
+		al-num-trans-bits = <8>;
+		al-spi-mode = <0>;
+		al-spi-memory = <3>;
+	};
+
+	axi_vdma0: axivdma@80002000 {
+		compatible = "anlogic,axi-vdma";
+		#dma-cells = <1>;
+		reg = <0x0 0x80002000 0x0 0x10000 >;
+		interrupt-parent = <&gic>;
+		interrupts = <GIC_SPI 83 IRQ_TYPE_EDGE_RISING>, <GIC_SPI 82 IRQ_TYPE_EDGE_RISING>;
+		anlogic,num-fstores = <0x5>;
+		anlogic,flush-fsync = <0x1>;
+		anlogic,addrwidth = <0x20>;
+		status = "disabled";
+
+		dma-channel@80002000 {
+			compatible = "anlogic,axi-vdma-mm2s-channel";
+			interrupts = <GIC_SPI 83 IRQ_TYPE_EDGE_RISING>;
+			anlogic,datawidth = <0x20>;
+		} ;
+
+		dma-channel@80002030 {
+			compatible = "anlogic,axi-vdma-s2mm-channel";
+			interrupts = <GIC_SPI 82 IRQ_TYPE_EDGE_RISING>;
+			anlogic,datawidth = <0x20>;
+		} ;
+	} ;
+
+	axi_ethernet_lite0: axi_ethernet_lite@1C0000000 {
+		compatible = "anlogic,axi-ethernet-lite-1.00.a";
+		device_type = "network";
+		interrupt-parent = <&gic>;
+		interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+		local-mac-address = [E0 78 A3 01 02 05];
+		phy-handle = <&pl_eth_phy0>;
+		reg = <0x1 0xC0000000 0x0 0x10000>;
+		status = "disabled";
+
+		mdio {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+			pl_eth_phy0: phy@1 {
+					device_type = "ethernet-phy";
+					reg = <1>;
+			} ;
+		};
+	};
+
+	soft_npu0: soft_npu@1F0000000 {
+		compatible = "anlogic,soft_npu";
+		reg = <0x1 0xF0000000 0x0 0x00100000>;
+		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+	};
+};

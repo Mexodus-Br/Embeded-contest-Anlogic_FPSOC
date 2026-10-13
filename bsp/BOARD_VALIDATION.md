@@ -77,3 +77,12 @@ GP VERSION1/CAPSf/FEATURES7/TICK_HZ1MHz，41项检查通过。DMA simple/32bit m
 - 已在上电后进入控制台，未采集BootROM/FSBL/U-Boot阶段；用户报告SD启动和Linux SD根已确认，但首阶段来源/所用FSBL与PL bitstream尚缺完整冷启动日志。没有自动重启。
 - DDR1.35V供电、具体颗粒、控制器训练及长期稳定性仍待实测。当前结果只验证Linux可使用1GiB映射和128MiB CMA预留。
 - SD读写持久性、反复/冷启动、DDR/CMA压力、独立GP/IRQ/AXI DMA/HP0及CDC、运动100MHz时序验收仍未完成；HMI暂缓。
+
+
+## 2026-10-13：XYZ/Golden/GPIO 独立 BSP 候选
+
+本轮完整系统 GPIO 构建、同一 SD 全量写入/读回、新版 FSBL→U-Boot→Linux 冷启动、系统/模块/GP/profile 门禁及 ARM Golden 验证均通过。详情和固定哈希见 scope/BUILD_STATUS.md、scope/DELIVERY.json；原始串口及构建证据以 scope- 前缀独立保存，不替换以前的内部运动验收。ARM 1272 条冻结向量精确比较通过（826 有效、446 无效），固定起终点整数目标正确；Golden/冻结 PL/规范只读。
+
+用户明确选择完全自行操作 GPIO 实测，因此本轮没有 init/ENABLE/坐标 MM2S/START，动态运动、实体 GPIO 示波器及在途 STOP 未执行，不套用以前内部工程或仿真通过结论。操作与采集方法见 scope/SCOPE_MANUAL.md，实测模板保留未验证。
+
+检查结束执行空闲 STOP、DISABLE、RELEASE，运动 client 已卸载、buffer 释放、双方 DMA HALTED 且无所有者；GP/provider 加载引用0，无活动传输，COM4 关闭。eMMC/QSPI 未写。

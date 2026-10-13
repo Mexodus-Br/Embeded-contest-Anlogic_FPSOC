@@ -1,0 +1,58 @@
+/* Generated DMA hardware candidate. BSP must review its compiled driver
+ * binding, clock names, ranges and two IRQ mappings before enabling.
+ * Simple mode: deliberately NO anlogic,include-sg (TD template adds it).
+ */
+/ {
+    dma_loop_clock: dma-loop-clock {
+        compatible = "fixed-clock";
+        #clock-cells = <0>;
+        clock-frequency = <100000000>;
+    };
+};
+&soc {
+    pl_dma_loop: dma@80500000 {
+        compatible = "anlogic,axi-dma";
+        reg = <0x0 0x80500000 0x0 0x1000>;
+        #dma-cells = <1>;
+        #address-cells = <1>;
+        #size-cells = <0>;
+        anlogic,addrwidth = <32>;
+        anlogic,sg-length-width = <16>;
+        clocks = <&dma_loop_clock>, <&dma_loop_clock>, <&dma_loop_clock>, <&dma_loop_clock>;
+        clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk", "m_axi_s2mm_aclk", "m_axi_sg_aclk";
+        bsp,motion-exclusive-controller;
+        status = "okay";
+        dma-channel@0 {
+            compatible = "anlogic,axi-dma-mm2s-channel";
+            reg = <0>;
+            interrupt-parent = <&gic>;
+            interrupts = <0 83 4>;
+            dma-channels = <1>;
+            anlogic,datawidth = <64>;
+            anlogic,include-dre;
+        };
+        dma-channel@30 {
+            compatible = "anlogic,axi-dma-s2mm-channel";
+            reg = <0x30>;
+            interrupt-parent = <&gic>;
+            interrupts = <0 84 4>;
+            dma-channels = <1>;
+            anlogic,datawidth = <64>;
+            anlogic,include-dre;
+        };
+    };
+};
+
+
+&soc {
+    motion_control: motion-control@80600000 {
+        compatible = "bsp,motion-gp-v1";
+        bsp,isolated-motion-test;
+        reg = <0x0 0x80600000 0x0 0x1000>;
+        interrupt-parent = <&gic>;
+        interrupts = <0 85 4>;
+        dmas = <&pl_dma_loop 0>, <&pl_dma_loop 1>;
+        dma-names = "tx", "reset-peer";
+        status = "okay";
+    };
+};

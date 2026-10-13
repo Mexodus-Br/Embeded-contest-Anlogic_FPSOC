@@ -1,0 +1,43 @@
+
+# stty -echo
+P_REVIEWED_SCRIPT_EOF'
+#!/bin/sh
+# Only run measurement commands after the user's explicit star# > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > REQUEST stop
+SNAP STOP generation=1 status=0x40 error=0x0 validity=0x70 signals=0xf0 accepted=0 active=0 done=0 END=0 buffered=0 dma_owned=0 quarantine=0 pos0=0 pulse0=0 pos1=0 pulse1=0 pos2=0 pulse2=0 pos3=0 pulse3=0
+STOP_PASS (EN retained until explicit DISABLE; next move requires fresh session)
+REQUEST shutdown
+SHUTDOWN_PASS pulse-safe DISABLE RELEASE buffe[  349.106403] anlogic-dma 80500000.dma: BSP motion controller quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers
+r freed
+SCOPE_SERVER_READY no automatic REBASE/ENABLE/START; root-only socket
+REQUEST snapshot
+SNAP current generation=1 status=0x40 error=0x0 validity=0x70 signals=0xf0 accepted=0 active=0 done=0 END=0 buffered=0 dma_owned=0 quarantine=0 pos0=0 pulse0=0 pos1=0 pulse1=0 pos2=0 pulse2=0 pos3=0 pulse3=0
+REQUEST stop
+SNAP STOP generation=1 status=0x40 error=0x0 validity=0x70 signals=0xf0 accepted=0 active=0 done=0 END=0 buffered=0 dma_owned=0 quarantine=0 pos0=0 pulse0=0 pos1=0 pulse1=0 pos2=0 pulse2=0 pos3=0 pulse3=0
+STOP_PASS (EN retained until explicit DISABLE; next move requires fresh session)
+REQUEST shutdown
+SHUTDOWN_PASS pulse-safe DISABLE RELEASE buffer freed
+anlogic_dma_engine 24576 0 - Live 0xffffffc000986000 (O)
+bsp_gp 20480 0 - Live 0xffffffc000980000 (O)
+           CPU0       CPU1       
+ 11:       2599        769     GICv3  27 Level     arch_timer
+ 13:          0          0     GICv3  78 Level     dw:dmac-1
+ 18:      15772          0     GICv3 103 Level     ttyS0
+ 19:          0          0     GICv3  80 Level     f804e000.spi
+ 20:       1589          0     GICv3  94 Level     mmc0
+ 22:        727          0     GICv3  95 Level     mmc1
+ 23:          0          0  gpio-dwapb  15 Edge      f8049000.mmc cd
+ 24:          3          0     GICv3 114 Level     bsp-gp
+ 25:          0          0     GICv3 115 Level     anlogic-dma-controller
+ 26:          0          0     GICv3 116 Level     anlogic-dma-controller
+IPI0:        91        119       Rescheduling interrupts
+IPI1:       438       1466       Function call interrupts
+IPI2:         0          0       CPU stop interrupts
+IPI3:         0          0       CPU stop (for crash dump) interrupts
+IPI4:         0          0       Timer broadcast interrupts
+IPI5:         0          0       IRQ work interrupts
+IPI6:         0          0       CPU wake-up interrupts
+Err:          0
+SCOPE_FINAL_CLIENT_UNLOADED_BUFFER_RELEASED_NO_ACTIVE_TRANSFER
+# 
+BSP_SERIAL_EXIT=0
+# 

@@ -1,0 +1,93 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+
+/dts-v1/;
+#include "anlogic-dr1m90-ad101-v20.dts"
+
+&soc {
+	axi_dma_clk: axi_dma_clk {
+		#clock-cells = <0>;
+		compatible = "fixed-clock";
+		clock-frequency = <75000000>;
+		clock-output-names = "axi_dma_clk";
+	};
+
+	axi_hdmi_clk: axi_hdmi_clk {
+		#clock-cells = <0>;
+		compatible = "fixed-clock";
+		clock-frequency = <74250000>;
+		clock-output-names = "axi_hdmi_clk";
+	};
+
+	soft_adi_dma: dma@80400000 {
+		compatible = "adi,axi-dmac-1.00.a";
+		reg = <0x0 0x80400000 0x0 0x10000>;
+		interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+		clocks = <&axi_dma_clk>;
+		#dma-cells = <1>;
+		status = "okay";
+
+		adi,channels {
+			#size-cells = <0>;
+			#address-cells = <1>;
+
+			dma-channel@0 {
+				reg = <0>;
+				adi,source-bus-width = <32>;
+				adi,source-bus-type = <0>;
+				adi,destination-bus-width = <64>;
+				adi,destination-bus-type = <1>;
+			};
+		};
+	};
+
+	soft_adi_hdmi: axi_hdmi@80500000 {
+		compatible = "adi,axi-hdmi-tx-1.00.a";
+		reg = <0x0 0x80500000 0x0 0x10000>;
+		dmas = <&soft_adi_dma 0>;
+		dma-names = "video";
+		clocks = <&axi_hdmi_clk>, <&axi_hdmi_clk>;
+		status = "okay";
+
+		port {
+			axi_hdmi_out: endpoint {
+				remote-endpoint = <&adv7511_in>;
+			};
+		};
+	};
+};
+
+&i2c1 {
+	status = "okay";
+
+	adv7511: adv7511@39 {
+		compatible = "adi,adv7511";
+		reg = <0x39>, <0x3f>;
+		reg-names = "primary", "edid";
+
+		adi,input-depth = <8>;
+		adi,input-colorspace = "yuv422";
+		adi,input-clock = "1x";
+		adi,input-style = <3>;
+		adi,input-justification = "right";
+		adi,clock-delay = <0>;
+
+		#sound-dai-cells = <1>;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				adv7511_in: endpoint {
+					remote-endpoint = <&axi_hdmi_out>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+			};
+		};
+
+	};
+};

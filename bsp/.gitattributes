@@ -15,3 +15,8 @@ evidence/dma-* -text
 evidence/motion-* -text
 evidence/motion-*/** -text
 motion/** text eol=lf
+# Coordinate scope delivery records raw source/evidence byte identities.
+scope/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+scripts/board_scope_*.sh -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evidence/scope-* -text
+evidence/scope-*/** -text

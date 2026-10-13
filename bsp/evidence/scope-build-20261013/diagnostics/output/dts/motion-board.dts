@@ -1,0 +1,186 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+
+/dts-v1/;
+#include "anlogic-dr1m90.dts"
+//#include "anlogic-dr1m90-softip.dts"
+
+&cma {
+	alloc-ranges = <0x0 0x00000000 0x0 0x1fffffff>;
+	size = <0x0 0x8000000>;
+};
+
+&memory {
+	reg = <0 0x00000000 0 0x40000000>;
+};
+
+&soc {
+	leds {
+		compatible = "gpio-leds";
+		led1: led1 {
+			gpios = <&portb 19 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "heartbeat";
+			status = "disabled";
+		};
+	};
+
+	keys {
+		compatible = "gpio-keys";
+		sw1: sw1 {
+			gpios = <&portb 18 GPIO_ACTIVE_LOW>;
+			linux,code = <108>;
+			status = "disabled";
+		};
+	};
+
+	reset: reset-controller {
+		compatible = "anlogic,reset-controller";
+		#reset-cells = <1>;
+		reset-gpios = <&portb 14 GPIO_ACTIVE_LOW>, <&portb 19 GPIO_ACTIVE_LOW>;
+		reset-delays = <10>, <10>;
+		reset-post-delays = <0>, <100>;
+	};
+};
+
+&serial0 {
+	status = "disabled";
+};
+
+&serial1 {
+	status = "okay";
+};
+
+&i2c0 {
+	status = "disabled";
+
+};
+
+&i2c1 {
+	 status = "disabled";
+
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&gpio2 {
+	status = "okay";
+};
+
+&gpio3 {
+	status = "okay";
+};
+
+&eqos0 {
+	phy-handle = <&eth_phy1>;
+	resets = <&reset 1>;
+	reset-names = "stmmaceth";
+	status = "disabled";
+};
+
+&eth_phy0 {
+	/* Realtek RTL8211F (0x001cc916) */
+	status = "disabled";
+};
+
+&eth_phy1 {
+	/* Motorcomm YT8531 (0x4f51e91b) */
+	status = "okay";
+};
+
+&eqos1 {
+	phy-handle = <&eth_phy3>;
+	status = "disabled";
+};
+
+&eth_phy2 {
+	/* Realtek RTL8211F (0x001cc916) */
+	status = "disabled";
+};
+
+&eth_phy3 {
+	/* Motorcomm YT8531 (0x4f51e91b) */
+	status = "disabled";
+};
+
+&axidmac {
+	status = "disabled";
+};
+
+&watchdog0 {
+	status = "disabled";
+};
+
+&ipmscan0 {
+	status = "disabled";
+};
+
+&ipmscan1 {
+	status = "disabled";
+};
+
+&sdhci0 {
+	status = "okay";
+	cd-gpios=<&portb 15 GPIO_ACTIVE_LOW>;
+};
+
+&sdhci1 {
+	status = "okay";
+	//cd-gpios=<&porta 9 GPIO_ACTIVE_LOW>;
+};
+
+&ahb_dma {
+	status = "okay";
+};
+
+&qspi0 {
+	u-boot,dm-pre-reloc;
+	rx-sample-delay-ns = <1>;
+	status = "okay";
+
+	flash0: flash@0 {
+		compatible = "gd25lb256e","jedec,spi-nor";
+		label = "alspinor";
+		reg = <0x0>;
+		spi-tx-bus-width = <4>;
+		spi-rx-bus-width = <4>;
+		spi-max-frequency = <AL_QSPI_MAX_FREQUENCY>;
+	};
+};
+
+&spi0 {
+	status = "disabled";
+};
+
+&spi1 {
+	status = "disabled";
+};
+
+&ttc0 {
+	status = "disabled";
+};
+
+&ttc1 {
+	status = "disabled";
+};
+
+&usb_otg0 {
+	status = "disabled";
+	dr_mode = "host";
+	resets = <&reset 0>;
+	reset-names = "dwc2";
+};
+
+&adc {
+	status = "disabled";
+};
+
+&hard_npu { status = "disabled"; };
+&jpu { status = "disabled"; };
+
+#include "gp-control.dtsi"
+#include "motion-control.dtsi"

@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+
+/dts-v1/;
+#include "anlogic-dr1m90-ad101-v10.dts"
+
+&chosen {
+	#address-cells = <2>;
+	#size-cells = <2>;
+	ranges;
+
+	framebuffer@4000000 {
+		compatible = "simple-framebuffer";
+		reg = <0x0 0x4000000 0x0 (1200 * 1920 * 4)>;
+		width = <1200>;
+		height = <1920>;
+		stride = <(1200 * 4)>;
+		format = "x8r8g8b8";
+	};
+};
+
+&reserved_memory {
+	/* Reserved memory for frame buffer */
+	framebuffer0: framebuffer0@4000000 {
+		no-map;
+		/* 64MB in DDR */
+		reg = <0x0 0x4000000 0x0 0x4000000>;
+	};
+};

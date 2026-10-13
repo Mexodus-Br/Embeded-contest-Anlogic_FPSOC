@@ -1,0 +1,422 @@
+{
+  "status": "BUILT_DEPLOYED_COLD_BOOT_ARM_MODELS_PASS_GPIO_MEASUREMENT_BY_USER_NOT_EXECUTED",
+  "gpio_source_commit": "df17b4ebd6e358d6626a227b5c0c152c1f6cb9ed",
+  "gpio_handoff_commit": "1ae5ce1218e06ab8d2a9674d6fa760a1d98529a9",
+  "base_pl_commit": "22ea0a41daa974d24f16b72df7c31db212b7ab8f",
+  "base_seal_commit": "3a4ea5c8e56024bd2407916bafed48508e5a1e69",
+  "schema_sha256": "ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10",
+  "vendor_ip_sha256": {
+    "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma.v": "24d6d6d4b741b497baf3b10ba50010e2df830b2a0681e16eb49ce84471011ef1",
+    "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\AXI_MM\\RTL\\axi_protocol_converter_merge.v": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61",
+    "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma_func_pkg.vh": "07402a26ab19cb9a14c5990addd329df38713d4c57a75cbf2b19d47b7a0c4f66",
+    "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma_param_pkg.vh": "e756686e5426d92dd05c82df33557d8b2765e425a877e6b0db2b5931d0ee7664",
+    "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\Component.xml": "1f53521dce6a4bc791e7d93f2d7ea34d486d2bd2d011983ea2340cca5a97eeab",
+    "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\Component.xml": "681e8d50d5edbfb5444d1821157b54538e9344b8cec9211e2bc25a3cd8a9ca58"
+  },
+  "gpio_source_sha256_lf": {
+    "HARDWARE.md": "4b01448968f84a532024eb553221b5fce23a7ad0653c3b73368e7c1d13c09480",
+    "pl_dma/HP0_PORTS.json": "71d5f6b28f371848f8ae0157e974325f4f2505bcfa31f327f20ec350d017ab91",
+    "pl_dma/archive_evidence.py": "93cc5d7ea69d18e7af727c70ba06cdaada00f1938f8f5b5d3992e728ad984269",
+    "pl_dma/audit_address_map.py": "4ac5d7ec734a8d98a7d3e57c050b064ac5afeeab1ec998f18262246f2d73680d",
+    "pl_dma/audit_motion_address.py": "9420c4589092750e88310c5cc90891e964a432a402f4bcb20cc68343f59a2741",
+    "pl_dma/audit_ps.py": "77e51737f6d3ee1074b86cf881ba9595540614b9fc43019b8765f8e062092931",
+    "pl_dma/build_gpio_scope.py": "729303168ff0f5cd4a4d7affdd1b66f00123f09276be9542385aeb669e8b0474",
+    "pl_dma/build_motion_soc.py": "a6b790cf257cef482f6a072e2c90ea9206d77b105b9b883b29cd3c43c0effd36",
+    "pl_dma/build_soc_reference.py": "dcab13a1e1541478fe55b7c82c1caae17859c3302ab788a599e13a1e305ecbc1",
+    "pl_dma/build_td.py": "87dc8ec127533f2e9ef901cc9f791aee5ca7d1112afa3274eafd90f298b9b93c",
+    "pl_dma/generate_dts.py": "a096e789ef1ece9a3f024ebd8a11a554ed6194e69c67f7ff69050ab44283e49b",
+    "pl_dma/generate_motion.py": "e697a6ae3615dbd031e9c18d1b2b5e4dec2cbc02b5d57bdf09777a1ada2b0460",
+    "pl_dma/generate_shared.py": "289087d5ae08e42b77aae8ac65cb41a432792d4fa9384ab182fada468c3a9ab3",
+    "pl_dma/generate_top.py": "787e569f0564914d740b4bf8033fed49fc60e0b95e71bcadec88045d103873cf",
+    "pl_dma/prepare_ip.py": "62c4757fe7cc6825a47f39c1d43e34291f02754e9c0b3329e4052b24d70446dd",
+    "pl_dma/rtl/axi_lite_three_way.v": "6d8848c63504b1882afdb4fcef2484a4465908a2a67f2e293927b2607637dd72",
+    "pl_dma/rtl/axi_lite_two_way.v": "bc161e129d413b8b34499c468d163b5ec055c86d3e50044de5365d861e8c1a18",
+    "pl_dma/rtl/axis_loop_fifo.v": "2b91f01d0a6c8332885d5e79280443468a9b99d246d2c39e0a9d382bbdbfd9a7",
+    "pl_dma/rtl/dma_gp_full_top.v": "f97d371de8d2a0a135a5bc8c42cf05c2c7e3d0c786778a4a32364aacb6be5bfe",
+    "pl_dma/rtl/dma_gp_ps_top.v": "cea947f72b9eaab5e137196795424f13108ded2f9632ad9fec55ffdf1c88fa50",
+    "pl_dma/rtl/dma_lite_guard.v": "c1cfb74c21563fff7dbc13fd7492749a8d17f9172690da80e4890a9737ef0717",
+    "pl_dma/rtl/dma_loopback_top.v": "7e0705b5a55bb4fc19d5bfba074bccb868b9e6a956c78e09efb710f8675a736c",
+    "pl_dma/rtl/dma_shared_lite_top.v": "75142f0e4f2ce71f2dad0c94bbe24fb953e18b6f6234ebd50ba09f454c872b61",
+    "pl_dma/rtl/motion_dma_lite_top.v": "693d48c987a6bd4478f0f17b1af3202269f34b9d60905c58e5c6f1e8215f3a9e",
+    "pl_dma/rtl/motion_gp_full_top.v": "c19e77a91701edde29041d85b7e2ae42a36633c1ca9ee7a197db7af390da06bb",
+    "pl_dma/rtl/motion_gp_ps_top.v": "43bfe66b1b3c4f9f84bc461495d6667ae6c8b16d3273a5b9a38c6f6b291ba43b",
+    "pl_dma/rtl/motion_shared_lite_top.v": "c4cf8f39ae0e3e6ffd291b33532d9904aeccf22fad4eac54cf2ec217abd0d895",
+    "pl_dma/tb/motion_dma_scenarios.vh": "39c8ab4ace7c4c7af7a9a58b77ec8bf8e438a4bd48e4994d3834e516cc1b33cf",
+    "pl_dma/tb/tb_dma.v": "fed09e0cca06c06dae20b8869ca82a4f0918d7a3e6a8ea19baa216647c436544",
+    "pl_dma/tb/tb_fifo.v": "693abbce345a9c934a4bdf0c0c34516b7d907049eb746c3ba44b3fce270cb8eb",
+    "pl_dma/tests/run_components.py": "eb5b509ab9dccd0599bd7bf528044db6da778d093b7c4d383d30f28c0abbfd83",
+    "pl_dma/tests/run_motion.py": "02bcfd15daf1502ce03da58ba3cd274dced28cde3cfd45d1f3c012d01d90546b",
+    "pl_dma/tests/run_regressions.py": "21f76189a18b1c8a1222fede578d1632705076a9f4c14dbe837a0be278ee5ef9",
+    "pl_dma/tests/run_sim.py": "86efea9924a0fc59275961b5f6ef78fcb0b62ab845d9236633b57539c1ef6354",
+    "pl_dma/tests/test_contract.py": "af8556bc4e4f7a7753aa26a9b972dc27888b18935f5f4c1038e678ab957b8009",
+    "pl_dma/verify_delivery.py": "7a4c4f44bd4ed5dafb56f94c4594a1386e2b4a7e8a5b861da0f17dc134e439d0",
+    "pl_interface/codec.py": "3688aea941449951ca51c5e3b5e56658232d5d38b64858397f3796e8f72fb7bc",
+    "pl_interface/execution_math.py": "49dbb13f77dd8a02345e4dc92e2f90d6cb9732d3f75e13745a1a13775b6c8905",
+    "pl_interface/generate.py": "946545c926d1e8f1067aebec64166d0f64a8893c406b17764f57005301ac5de0",
+    "pl_interface/generated/interface_defs.h": "8710751a781a233b2d52d48d4a1c0a19e8d2afd31f0cc999bcd56e8100fb9f07",
+    "pl_interface/generated/interface_defs.vh": "e42745976e7d511dcfec7b95452f9a0b9b7f3ab93cce07091e42364e00e5656e",
+    "pl_interface/motion_v2.py": "52c2a8ebe747f88167de47d3c9e9d577d14fcf082875a44aec5f9537d6166344",
+    "pl_interface/reference_codec.h": "4fe963d284ae1b9d70ecab1c71315a8371255cde747f62db26cff54307d7f78a",
+    "pl_interface/schema.json": "ac407bcb2ef0798b6d2bcc2aa7feee7c331166efdbf61b37b4a51f00b7ef4b10",
+    "pl_interface/tests/check_verilog.py": "20d30049e9f72b7ad98a29f46f64424d0d7925188441757a3d5009d0b05b01fa",
+    "pl_interface/tests/codec_probe.c": "130bba05d8f477612df37da301f6a20075cc503f3628f400f85b1f00c50cf7e7",
+    "pl_interface/tests/test_interface.py": "f6b83efd637b9d382f8ff1ab377fa6ad7c0a390bb3e011eb256eb731d074f320",
+    "pl_interface/tests/test_motion_v2.py": "14e6c07e686200a9cfc8061a9905534cc17cac4341c5994fb9e1a22a79e93438",
+    "pl_interface/vendor_audit.py": "3c51c76851aca0b44218734ed2a812ce1ac006dd050b73aad93ec04bb04b6f60",
+    "pl_motion/.gitattributes": "d74905e0529ca1eacaafcda6bbab98b284a341e695abd525173f5585785e802f",
+    "pl_motion/archive_gpio_evidence.py": "22b8fdca3cd2c5b9191207d17a34d96b79d5931fe6c3cd80320ad3edc7d3c8ca",
+    "pl_motion/build_gp_td.py": "22457c16808775239eeaee0ea6ed8cf471a1c3fd059d41c7bbb9539c92972665",
+    "pl_motion/build_td.py": "d8452a6fafb277d760c2e36cb940ad171c4e2a9592952ba5f12fd60a5c858cdd",
+    "pl_motion/generate_scope.py": "3720593ef14939fdb06f336617b762b6bb812107a9f2cb858d9184e53a5c95a7",
+    "pl_motion/prepare_gp_ip.py": "4b027f7e6e2120f2a76c40d0de9212db782ec082c48e20f6cbc963716a90031e",
+    "pl_motion/rtl/axis_motion.v": "5b35bb2932256d5671cc67b0a0ca81ef6f1439bc34cf182458046c205323e813",
+    "pl_motion/rtl/continuous_motion.v": "a9a404c49d5d94e5241d405aeacf59deec4ad8fa2467d1bf1c764a024a77f17b",
+    "pl_motion/rtl/four_axis_motion.v": "bcebf3a1f2c67707bb98e901df0e90216b0d1587c31aac4be21818c7519c457b",
+    "pl_motion/rtl/gp_control_regs.v": "79096107a067b887b8ff98a09dee8ef2e278b129fd0b80f52987b2ba19870cf6",
+    "pl_motion/rtl/gp_control_top.v": "a17c46e7786fb1641080c2041c1fa6a8974530942f15861902fce251d4595984",
+    "pl_motion/rtl/gp_ps_control_top.v": "d8509187d04b80bdd9c37ea8ba45dee73ad7c2f1e4dacaff8d547ebf77c1f91a",
+    "pl_motion/rtl/gp_ps_write_adapter.v": "87d273c470a9a1e0405fa91ed40fa64fd778b9ae833710613d78a1a323bcb6c9",
+    "pl_motion/rtl/motion_executor.v": "882d21440340c879ffa573023a249d847d7259d8fd602efa6fabc679affab787",
+    "pl_motion/rtl/motion_fifo.v": "5dd9a75d20a66dcbde23be4754f688e1020d814f2a55318f2d5136557815e501",
+    "pl_motion/rtl/motion_planner.v": "b14d6dbad9fb651089ee60736d8d51fdccae412f1a1822580151de93e57cdc80",
+    "pl_motion/rtl/motion_service.v": "4ffddc5e33d0de517892a29cbe85ee6614c4202e7c31238f3415db19cee9240c",
+    "pl_motion/rtl/motion_stream_rx.v": "026c38e09c2b8dfca1d399ea398c7106ad12ad8324e51c34139510d4694af019",
+    "pl_motion/scope_test/CONFIG.json": "ff03320ad97f18e710eb14580f7fe4cc9f64d1dcdedbceacd7054385fea3123f",
+    "pl_motion/scope_test/analyze_edges.py": "fa95901cd7eb828036b3a9a2aa4fe4257e3eab04ae6470afecc0c90333df731f",
+    "pl_motion/scope_test/audit_gpio_sta.py": "711240d7c0767c938b5622c708f1cba163ed9d097fb32d0fb8bf03252422a1c0",
+    "pl_motion/scope_test/generated/outbound.bin": "7b34f3e57af634224863ebc9256204087798702de599e7d749fd87eb9c97feb6",
+    "pl_motion/scope_test/generated/outbound.hex": "fc0d73bb0a9323df0ce6fe69f0ed5ebe2514c78aa15d8c655f3a3b202ebe31fd",
+    "pl_motion/scope_test/generated/params.vh": "674bcebf416f0b434977975eadbe5c5ba2b7f1b111b62b5ca3145d2fd10b3665",
+    "pl_motion/scope_test/generated/pins.adc": "407403e2c086383b924c7ba8ce8fee5a783cf00a269f9cce2f1d7df501718384",
+    "pl_motion/scope_test/generated/return.bin": "3c2b4c15c51a239bdcb5f108ce310badcce584aec3987b36f5e9d4a1e53014d1",
+    "pl_motion/scope_test/generated/return.hex": "a1aee3c5e5b8a53001b0c53fbb01f60263848fcf10c6d7102dcb6feaba14fc09",
+    "pl_motion/scope_test/generated/stop.bin": "79ae68da0cec9a8990cdebc6d666feb0243f79dd72ca568ef7e7623f60b1ddcd",
+    "pl_motion/scope_test/generated/stop.hex": "3c8258f925beb8b299ea75445e6f7c873a3061d0642b4455e18b0dd7ddb2abb3",
+    "pl_motion/scope_test/generated/timing.sdc": "b4270ffa31affabdc07f410a0a3159933f38378377077600f544612c95352840",
+    "pl_motion/scope_test/plot_waveforms.py": "13b827fb603fab7e32a4eaf1cd3855e8b101f03708e195b7d40d735f3996ef85",
+    "pl_motion/seal_gpio_release.py": "a640de739aaf67c2878a387913ed0f9096e17a9ff23e6dd134d311cfbb2fe322",
+    "pl_motion/seal_motion_evidence.py": "5d3090597dc1dede38d0940f1823f2f460591693ba6728e5aa00638527e1f608",
+    "pl_motion/sim_tools.py": "cd35dc4279b7a37ddab132a79a358e96fc9139e2a967bf51b7d96497a85eb2db",
+    "pl_motion/tb/tb_gp_control_regs.v": "1eefed6cbe2c677eefc6a6bc752af3cbb11941fba0e3850586224c324a11895b",
+    "pl_motion/tb/tb_gp_control_top.v": "0c4b6cf01ead13cbd6949a3ed8fadb1320e5bf0f04a26d8883c778483874b1d4",
+    "pl_motion/tb/tb_gp_ps_control_top.v": "3ab97762d75aacbd39b39d05ff6c9c235ef94d23bf1b9151c2a07b166c598655",
+    "pl_motion/tb/tb_gp_ps_write_adapter.v": "e3d75ffcc886c4dd0fce502f7d4bd9b9f9e071c4134b434d6d5245b6b834d663",
+    "pl_motion/tests/run_continuous.py": "db03b7caa3cc90d0157ff791d2cac6eeea50be50ca23fb105980013267220077",
+    "pl_motion/tests/run_four_axis.py": "0796d42dfcbb268aa85c99ae40e7d73a5f3714246172a452a1de6a4ea5867b17",
+    "pl_motion/tests/run_gp.py": "f739d54d9c65dcf3e0d3e40ce203a1c01bb21f43dedf5b5023db7934a0a84433",
+    "pl_motion/tests/run_gpio_regressions.py": "411d916d253527c2f86c6fb2c9715eddec8dd0f960798f15a723a0b0c8bc1e37",
+    "pl_motion/tests/run_motion_integration.py": "e60ded647e3ad8aaced8a82f0c319ab05b588aef8b9626a195e95fa43009cc5e",
+    "pl_motion/tests/run_motion_regressions.py": "5787d05de47a5906c49fa8819a102fde84f03447c23bee06724900326584613a",
+    "pl_motion/tests/run_scope_default.py": "8cb867173fde0b8bb9588a051496df5d629b1185972b2aa29169d2ec997fa03a",
+    "pl_motion/tests/run_scope_dma.py": "cd404515e1c9bdd5200acda07994914f6d120de1eb4f722dae3db96730520a5a",
+    "pl_motion/tests/run_sim.py": "c6e4c4dace5ccad4b44c3f67fa2b152a6c88c54d42350f711380136c00c762b6",
+    "pl_motion/tests/scope_dma_scenarios.vh": "8a77cab4e5da70c258890d97fe4c4541aa04a3cbd96a6f1ff3d39f79059a9a62",
+    "pl_motion/tests/tb_axis_motion.v": "aca221fa75b37e42d81b0be1be2d2c02d59e7b730f850a9d07533f47a22032ce",
+    "pl_motion/tests/tb_continuous_motion.v": "b224096a3219b5e5a08242f4bf1260c8af6fbd3f90690dbc6499437f9006781f",
+    "pl_motion/tests/tb_contract.v": "fe5fb1a1221d2ab8b2ea8656e233d16003f127d951cc8902d79e6bbc4df82075",
+    "pl_motion/tests/tb_four_axis_motion.v": "4514cc05564a4c00da95e71c4592baddfad8de73e2d259a588214000574975dd",
+    "pl_motion/tests/tb_motion_executor.v": "d73a3171ce2605805029afa0b01e99f94eca12055295b74e83b4e9e3279548f1",
+    "pl_motion/tests/tb_motion_fifo.v": "99c781657aae267f24778ff47a0a1723bc11dbbcb3e9be5d05423f44db311d10",
+    "pl_motion/tests/tb_motion_planner.v": "3745eeab28b44c1c36cdc8672c65ca8cdcf9b8657566784f256781ec19794857",
+    "pl_motion/tests/tb_motion_service.v": "d394ae74d7c00d00d3c9fbcc039caa6a8e705fc66bfa7404b8ed270d0426d19a",
+    "pl_motion/tests/tb_motion_stream_rx.v": "45354d6381796702a3e190c211fb4373f23babf2cbd8979c195c3dd7a705d7d3",
+    "pl_motion/tests/tb_scope_default.v": "f1aefa33b33d0997a0897fd0df9b1783668bf4962afd9ff065c4cfdef0f17e99",
+    "pl_motion/verify_gpio_delivery.py": "b2070f99715b505af4f9c2cf515a90d0541770b5f01e999f742704f4eb66a766",
+    "pl_motion/verify_motion_delivery.py": "916a003d51a2f0e235b3d72613b2266d1e453d7f5e495c734b5f33da28caa42c"
+  },
+  "bsp_coordinate_source_sha256": {
+    "bsp/scope/audit_hardware.py": "465e5bb1ff06e1107ff92cdf9e129b995c3403a92fe585b5c351add980baf6f1",
+    "bsp/scope/build_arm.sh": "75092a79c875efc5fda14c6b23940c048585c7ea9b84e71feb0b132fc9a9f65d",
+    "bsp/scope/build_hardware.py": "bf7b30cb139a236c8fae212936f167ae24458eefbd56963c5c37b5a4b1ff75e4",
+    "bsp/scope/delta_scope.cpp": "c587f14b740b87cf0d0d147a8ab7076f981f6eade01e4642350a9692b0ce950a",
+    "bsp/scope/deploy_windows.ps1": "a05cc25e6ddb6e69cbda84fc76cfdae730b3d0a13fb8d55c89697d2ffb479770",
+    "bsp/scope/extract_model_capture.py": "bb33906c8a665b68f8c5779539ec3882185dffa65cb3f57e2c02bdf830b06dc2",
+    "bsp/scope/integrate_hardware.py": "9714f39f50a08488990393e105de51ae42944b41c8c649e5e266962312b74450",
+    "bsp/scope/model_vectors.py": "9c140468f60ad8b58450343559b6c11b412b7e8b14f172598bebd010fc93f27b",
+    "bsp/scope/package_vm.sh": "25454dc2b28b222b2384906ba9d78ea64de5e343e15537e36617baaea280ff8c",
+    "bsp/scope/prepare_project.py": "df21aa7e0dc179491f80bdb5269da304dd5869e0b1c6f4d5ffd3255a56220f22",
+    "bsp/scope/run_serial.py": "00c56c0a51d307daa00477fd1448691301a07d995aa4a3e4f62882e210cdf2ff",
+    "bsp/scope/unit_scope.cpp": "08b58d1bac43fd67e02bcf5cca701cd17423cf9897010ce5ae245d495765089b",
+    "bsp/scope/vectors/inputs.txt": "11a4f323cd1713bcf46e044f31c26a1c9fd893bd9af05b6d5cd4b13a07ba03e1",
+    "bsp/scope/verify_input.py": "1739df51458898581c16642d52bb2c55c12001687ee7c06d8fed87e3ec4dfba0",
+    "bsp/scope/vm.py": "d4be2ce01c8c4ef1ec0dafb7bb9f2b972a2c92edf9b8c802abdcb1c7bf57e675",
+    "bsp/scripts/board_scope_command.sh": "dbd28e8802eb05300bd08193a17f849d240696c470379218ff2218eef0497f1e",
+    "bsp/scripts/board_scope_model.sh": "b1aa8e89190562958e80a02b6bfef907f01d48eaefe5792198e5ec0eb15a3059",
+    "bsp/scripts/board_scope_ready.sh": "8d471a9ff190b6f6de057f537dffa191969102b21a342ff66bc52f04a09e6817"
+  },
+  "reference_config_sha256": "28690a0c442b9a8a6c8f59e680ca6e3d40936c4916b4d883aec26038958cec00",
+  "golden_manifest_sha256": "dbe7b95677ef1238268b54afd80e50181ec6dbd12298f05fb1a3ccf3566cfd95",
+  "image_manifest": {
+    "status": "BUILT_NOT_BOARD_BOOT_TESTED",
+    "ddr": {
+      "capacity_mib": 1024,
+      "dq_width": 32,
+      "rate_mts": 1333,
+      "io_voltage_v": 1.35,
+      "physical_voltage_measured": false
+    },
+    "root_partuuid": "8aea5f8d-02",
+    "partitions": [
+      {
+        "number": 1,
+        "start_sector": 2048,
+        "sectors": 131072,
+        "filesystem": "FAT32"
+      },
+      {
+        "number": 2,
+        "start_sector": 133120,
+        "sectors": 524288,
+        "filesystem": "EXT4"
+      }
+    ],
+    "versions": {
+      "linux": "6.1.111-rt42-bsp-sd1",
+      "uboot": "2021.01",
+      "buildroot": "2022.02.6",
+      "TD": "2026.1 SP2 6.2.2.200067",
+      "FD": "2026.1 SP1"
+    },
+    "files": {
+      "BOOT.bin": {
+        "bytes": 5160448,
+        "sha256": "5de16c4d487bf43624394ca070f9af818bb19ec10f20a98e13b839f9c9db2743"
+      },
+      "Design.xml": {
+        "bytes": 72971,
+        "sha256": "3de549542223ae25a7b3ed1de6cac44260c071d1fe1ea2bcea57f935dbe3bc75"
+      },
+      "boot/BOOT.bin": {
+        "bytes": 5160448,
+        "sha256": "5de16c4d487bf43624394ca070f9af818bb19ec10f20a98e13b839f9c9db2743"
+      },
+      "boot/boot.scr": {
+        "bytes": 779,
+        "sha256": "1919e732e3ba2824d4c14ab12e130242e01a893f6e4ea8ac317e30d7d306f6be"
+      },
+      "boot/system.dtb": {
+        "bytes": 15458,
+        "sha256": "fa8da409b0f93d687348ef8cc457abecef771ac77e2d3b4e3bb951eb4e7cb196"
+      },
+      "boot/uImage.lz4": {
+        "bytes": 8122647,
+        "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+      },
+      "boot.bif": {
+        "bytes": 365,
+        "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
+      },
+      "boot.cmd": {
+        "bytes": 707,
+        "sha256": "90582fe37b5c95912c337bd52726c8f76fa895efeb2a54f0ac5c9b7bf184820d"
+      },
+      "boot.scr": {
+        "bytes": 779,
+        "sha256": "1919e732e3ba2824d4c14ab12e130242e01a893f6e4ea8ac317e30d7d306f6be"
+      },
+      "boot.vfat": {
+        "bytes": 67108864,
+        "sha256": "32967c95fbec318744b795832c1462c8a59f4b8e962c5d94a7876ca5cc440b76"
+      },
+      "bootgen.log": {
+        "bytes": 3334,
+        "sha256": "44805535e2ca9b0e20ff81e4b74372459f9aad7f7a0b2c26b4033e67cab3d442"
+      },
+      "fsbl.elf": {
+        "bytes": 1507024,
+        "sha256": "002aa4a0bda2154174b756ea1f214b682ec24f31740a5bce91ec30c2ad7ba69d"
+      },
+      "hpf.info": {
+        "bytes": 118,
+        "sha256": "10735773fe083601b4e64712e339c77e0022ab83ade364b85ad3c06ad3d6b3d9"
+      },
+      "rootfs.ext4": {
+        "bytes": 268435456,
+        "sha256": "28d0fb199abb38598808f4339566c4ad249b726db1df60f2c5e21ec4b5788101"
+      },
+      "sdcard.img": {
+        "bytes": 536870912,
+        "sha256": "66d1b0cff5e56db5b8572eb879a3d9781e25c1028fa3168c2ec6142e6e3a6ff6"
+      },
+      "soc_plat.c": {
+        "bytes": 129854,
+        "sha256": "6dc252d86fa0d2417890215bf506207f9a06b7688af3c28bf821883c61ca8fbd"
+      },
+      "soc_plat.h": {
+        "bytes": 14296,
+        "sha256": "887ea7dc6e6172538ae9dadd9f17d0b83ffe15e2d33c2a704a636a2adb893441"
+      },
+      "soc_plat_dts.h": {
+        "bytes": 4132,
+        "sha256": "4658518f7a90d5f1fb8c92e52bd4a882559323bd04f1dd9e670aae5e31cdf1c0"
+      },
+      "system.bit": {
+        "bytes": 4052214,
+        "sha256": "b597de9d2e453f47056e91b743c449bce79717aba6c0a79e7e4d84dcddbcda74"
+      },
+      "system.dtb": {
+        "bytes": 15458,
+        "sha256": "fa8da409b0f93d687348ef8cc457abecef771ac77e2d3b4e3bb951eb4e7cb196"
+      },
+      "system.hpf": {
+        "bytes": 635477,
+        "sha256": "609639dec28432912e7bcbddee90328edbeaca1a1ee46193d657e8cffa79103b"
+      },
+      "u-boot.bin": {
+        "bytes": 920348,
+        "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+      },
+      "uImage.lz4": {
+        "bytes": 8122647,
+        "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+      }
+    }
+  },
+  "installed_module_program_config_sha256": {
+    "usr/bin/delta-scope": "99d43db6e924a4991a1bd6ab0711a806e61f10b092f2647535a017c0ac2a56b9",
+    "usr/bin/delta-model": "2677f8e16e19a65a631a8486e6242707a691520b5e97fdbd6e1043b9d27ac220",
+    "usr/bin/firmware-oracle": "984ce37ed1f4d4d8d80ebbd701e5fcf9ca19d1f9343465984c6d7b9804faeb04",
+    "usr/bin/scope-unit": "687f19681ce12a4714388fd08841f1d83b74d7a670b21bb0023c3f10ee806cda",
+    "etc/delta-scope/firmware_reference.cfg": "28690a0c442b9a8a6c8f59e680ca6e3d40936c4916b4d883aec26038958cec00",
+    "etc/delta-scope/model-inputs.txt": "11a4f323cd1713bcf46e044f31c26a1c9fd893bd9af05b6d5cd4b13a07ba03e1",
+    "etc/delta-scope/files.sha256": "cb6ba209767dc0c617866d793f30623af7a03acdb62b9005704c089e3450d5ec",
+    "usr/bin/gp-accept": "ce7a38c0c2e4f35fe1b73d0591fc9881476ce064fede2823a57d552840017136",
+    "usr/bin/bsp-readonly-check": "dc380b5a5f4bc86c32f605a03c4dbc4eabeb6e30344d0a9c3f757aa40965393a",
+    "lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_motion.ko": "f4c2e77f2c56a4a5b9630ecfc54dc2657912afec89706fe6998c3b6a61c96524",
+    "lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_gp.ko": "c0131bcdd4d18485e4392e16428778bf2aac5520bfa48a781ec86d1aede3040b",
+    "lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko": "4599dd232b102a14574b7315417e96b15fa89ff6a4b4c56eb122bed3836e4df8",
+    "lib/modules/6.1.111-rt42-bsp-sd1/modules.dep": "842c0fabfcc08e213c42022e4081917abcb31d980176efe37d1187b5ccfd632d"
+  },
+  "hpf_sha256": "609639dec28432912e7bcbddee90328edbeaca1a1ee46193d657e8cffa79103b",
+  "bitstream_sha256": "b597de9d2e453f47056e91b743c449bce79717aba6c0a79e7e4d84dcddbcda74",
+  "readback": {
+    "status": "SD_DEPLOYMENT_VERIFIED_NOT_BOARD_BOOT_TESTED",
+    "expected_sha256": "66d1b0cff5e56db5b8572eb879a3d9781e25c1028fa3168c2ec6142e6e3a6ff6",
+    "root_partuuid": "8aea5f8d-02",
+    "image": "D:\\Works\\Embedded_contest\\dev\\bsp\\artifacts\\scope-release-final\\output\\release\\sdcard.img",
+    "disk_number": 1,
+    "emmc": "NOT_MODIFIED",
+    "board_tests": "NOT_TESTED",
+    "started_local": "2026-10-13T19:58:50+0800",
+    "identity": {
+      "partitions": [
+        {
+          "PartitionNumber": 1,
+          "DriveLetter": "E",
+          "Offset": 1048576,
+          "Size": 67108864
+        },
+        {
+          "PartitionNumber": 2,
+          "DriveLetter": null,
+          "Offset": 68157440,
+          "Size": 268435456
+        }
+      ],
+      "disk": {
+        "Number": 1,
+        "FriendlyName": "Generic- SD/MMC/MS PRO",
+        "UniqueId": "USBSTOR\\DISK&VEN_RSUER&PROD_RTSUERLUN0&REV_1.00\\0000:LAPTOP-JS7E5LFJ",
+        "BusType": "USB",
+        "Size": 31299993600,
+        "LogicalSectorSize": 512,
+        "IsBoot": false,
+        "IsSystem": false,
+        "IsReadOnly": false
+      }
+    },
+    "written_bytes": 536870912,
+    "write_seconds": 24.625,
+    "readback_bytes": 536870912,
+    "readback_seconds": 18.328999999997905,
+    "actual_readback_sha256": "66d1b0cff5e56db5b8572eb879a3d9781e25c1028fa3168c2ec6142e6e3a6ff6",
+    "partition_and_filesystem_signatures": "PASS",
+    "fsck": "NOT_RUN_ON_WINDOWS; source FAT/EXT4 fsck passed before byte-identical deployment",
+    "finished_local": "2026-10-13T19:59:37+0800",
+    "exit_code": 0
+  },
+  "arm_model": {
+    "status": "PASS",
+    "numeric_profile": "ARM_AArch64_Linaro7.5_float32_double64_O0_no_fast_math_no_FMA",
+    "cases": 1272,
+    "valid": 826,
+    "invalid": 446,
+    "cross_host_differences": [],
+    "arm_extraction_differences": [],
+    "integer_comparison": "exact; no tolerance or baseline update",
+    "golden_read_only": true
+  },
+  "measurement": "not executed; user explicitly elected full manual control; no instrument evidence",
+  "final_state": {
+    "motion_client": "UNLOADED",
+    "buffer": "RELEASED",
+    "dma": "BOTH_HALTED_NO_OWNER",
+    "gp_and_provider": "LOADED_REFCOUNT_0",
+    "COM4": "CLOSED",
+    "coordinate_packets_submitted": 0,
+    "enable_start_executed": false
+  },
+  "evidence_sha256": {
+    "bsp/evidence/scope-arm-model-20261013/model-comparison.json": "22f5676aac3611b1408100b69b44500c7a3501df1b77bca2f29276cb47e31ce8",
+    "bsp/evidence/scope-arm-model-20261013/model.jsonl": "95d8544bc3146f172a3fec989d0c8f3037e80321d2032653b04ba5879138cb08",
+    "bsp/evidence/scope-arm-model-20261013/oracle.jsonl": "aa5871b16922954101338f03ddf5933b3f4ae3c44e91a495c13f40d96c1a754d",
+    "bsp/evidence/scope-arm-model-20261013-01.log": "457117a129c00b2701fe51800cd7a65c4fa817c85e656280b720a5bec4888851",
+    "bsp/evidence/scope-arm-model-20261013-01.log.json": "ce812968ce9fadbbe6af58a6b211177b4dfcbb7c2394da61684f9a782f31094b",
+    "bsp/evidence/scope-build-20261013/arm-build.log": "c2e0f0b3145ae7400a89c177c4ace5b6290273913a8e9a6c7f763dd9785abdd2",
+    "bsp/evidence/scope-build-20261013/boot-stage.log": "c2ee8a4828942fc56659a83ea6250453bd3aecae7200450f8fa5428908dd1ed5",
+    "bsp/evidence/scope-build-20261013/codec-comparison.json": "8533e4916e36d0c6052ed2a573461e7528b71b2fbd948e5a6a1bcb117756661f",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/debug/dma-provider.Module.symvers": "146e6c3b4a991db59bce60908c6bf2699528f086f0268ee82a66618c785192f2",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/debug/motion-board.expanded.dts": "f8e52974b2eb4663cbe05113ea22d90152e14e673fb97928cfab0aec32997f97",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1.dts": "8367e4ad8ee923a5006bf3f38104b7c828cd1294adab736b26aca3dcb41c4331",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-ad101-v10-mipi-dsi.dts": "46d2efaa6a9aa127936994afdc765ed9f80ffe33f5905137ba99be31cc4b99f1",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-ad101-v10-openamp.dts": "51e32fd7ceb1b1615ad48e963594ab55346f64a35a5d74bfbb31690923450006",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-ad101-v10-qt.dts": "6dacbd1b5d8cbe3a6174e802ace59fe20d96a94cece2cc018075994e1749bfc8",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-ad101-v10.dts": "e5a80d2e7d0a355eaa0fe330a6501989cf50f4c577bf6d5627dad60d69b7667c",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-ad101-v20-openamp.dts": "a8e21e36fe46c194dea8bbac449e882421b677b76ff4ded19434e1f59b4abf97",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-ad101-v20-qt.dts": "d1cad6d40ca6e40cc46f6e499e6c112792dcad8e9e3292de7ecb399f070094e9",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-ad101-v20-vdma-qt.dts": "9346003fc2b22c334ecf9c16d3bb2f22340b5d00dab95352f4963f7219a2360b",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-ad101-v20.dts": "f30d0989d874185c9236afbf334b0b5ed6eda6586ccb5d6f7727e8207f2632e1",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-emu-openamp.dts": "105a38cc725037dedd2288a803c67e4f88192a982b42b4f03b12df84bfbce461",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-emu.dts": "29a0f11041fb60eaa1464334795021d9ed2ff6eac8012d799002e476297dc81d",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-hpf.h": "71a862f2b77fabe8077d47602573ca767cbaf8aeffe4234d50aeb2cddeaef335",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-plat.h": "16c35e11c3dbd78070779436e3d6cdc4ccc3dabd48582cc6051123b5dd0692d1",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90-softip.dts": "e5dcff266cc7125897959713a6438d25c73670d90e9776f80e764f0aa1424aa1",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90.dts": "dff7386748ec2aa8e713a27cfc66c0a219d4c7efb04bfa72f98bb2374d4c52f9",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/anlogic-dr1m90.dtsi": "7bdac1b03c1956cf39373b11fc841f2b82f261dec0c6077a8011cd0fb4696feb",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/gp-control.dtsi": "5022c79ba365b8a1875e62769929a384c2f5dbbea75268df37f94a3ae591e294",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/motion-board.dts": "3ec7e3c4206d2f0137a6f92aa3f5829e471eba0b1a519c12751bd7d0745143a5",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/dts/motion-control.dtsi": "0d8605159b1c4e35b10de39dec8af41a7c259e48b6ef2d7297830ee253e438be",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/fsbl/disassembly.txt": "72c63f40857244750d9d462b8f9e3c79a9d913e31b888428cce0733312baccd1",
+    "bsp/evidence/scope-build-20261013/diagnostics/output/fsbl/symbols.txt": "a634c2ef8efe6995825ea30e5dcd245e87156fa8c9a829cb81984cd61421df47",
+    "bsp/evidence/scope-build-20261013/fsbl-build.log": "223bd2103ef9fa0c1107d7f4f2d37e8a8da845c007d7d034e7b3a6e9dc163c10",
+    "bsp/evidence/scope-build-20261013/image-verification.json": "f499c17e24281494a7cef43c1f3fc7f686b6ca9013a837eb8c1f7d18e19d3b34",
+    "bsp/evidence/scope-build-20261013/image-verify.log": "7bec2242ca3888947c444289cd0b6225b1cefa560e7edd7a0b552000043ea4d9",
+    "bsp/evidence/scope-build-20261013/image.log": "5b87c85100ed50822aa08e6c1ccc37ff60a2214416966c95b041cb00834eae6c",
+    "bsp/evidence/scope-build-20261013/manifest.json": "cd4b18b65b84f3fe9c5c54ffd4a5cc6a6f1f4dd9495665f238f83419633cb2d2",
+    "bsp/evidence/scope-build-20261013/modules-build.log": "3ad9440a692e74b6755023e122fbd94e9d8f773d65f70f258dd504e68f9623cf",
+    "bsp/evidence/scope-build-20261013/rootfs-stage.log": "63a7f346a5b52195e9eec84cfbc8d6ec518c1a69db58fd1475e3870d3a29b5c6",
+    "bsp/evidence/scope-build-20261013/SHA256SUMS": "5d0d11a8e37d672c5e2f0f567d0a603e1e861ffe818633d1a4399221e338c6b6",
+    "bsp/evidence/scope-build-20261013/unit-host.log": "c72d33bfb2205250b900661ffaf04b6c737e007c1a9467c87c8012c65ceb4a2d",
+    "bsp/evidence/scope-cold-20261013-01.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bsp/evidence/scope-cold-20261013-01.log.json": "38c0e964ca26e31ca4ccb93cea3efe7d36ea381026355eb78090939b98e4f3ec",
+    "bsp/evidence/scope-cold-20261013-02.log": "50c83b9d4679d24bcf81185bd5f28bbfd4762d593076ec97ce103a27cd1cb364",
+    "bsp/evidence/scope-cold-20261013-02.log.json": "d5d9069430309cb81dc175858a87a14d0d81ed783f41105c1772f470a9eb04d1",
+    "bsp/evidence/scope-hardware-20261013/actual-ps-ipgen.log": "fabce671dade17676dfb1027acd8b804238e5148c7dfc15f8a43a627d6c3b8a1",
+    "bsp/evidence/scope-hardware-20261013/build_gp.log": "2baf16048a82e7360c155b5bf7173300acf21e7d9f27abd1087f01506255b16b",
+    "bsp/evidence/scope-hardware-20261013/connections.json": "eb16598b86afb4bc124b5322985cb6818a3b8deea83b05df5dc6cd7273ceeaa4",
+    "bsp/evidence/scope-hardware-20261013/gp_gate.timing": "33a95c3e8fb2ff88c7ddfe7356cf723db905241797e32f55fa05c2dbf4bd7e81",
+    "bsp/evidence/scope-hardware-20261013/gp_place.timing": "c72a0289672160aa6ac9fa5be991bd8bf7ea0b4ef26f579c5f2d8c4163d350ed",
+    "bsp/evidence/scope-hardware-20261013/gp_route.area": "e604b0db8b52bc41e570080b1249bd139d8dfe1b7a403022e1a6b307d108a2dc",
+    "bsp/evidence/scope-hardware-20261013/gp_route.check": "8755339e6b566fd76c3cba0dd1c3269d080eba24bea37b5e6410884a1effe616",
+    "bsp/evidence/scope-hardware-20261013/gp_route.timing": "f5ccf6f18f4fdd580c22f65fc3e468fb2893e283d72e107d0814ad1004100594",
+    "bsp/evidence/scope-hardware-20261013/hpf-final.log": "e96a4648a2fd539a7be2b6276381717deaf8a1f9d8b3b02cfb3152a0ccb362c0",
+    "bsp/evidence/scope-hardware-20261013/index.json": "d6e5d00f570550117496d1e1f8e0b35da478313fbb1b0902cb94208b9f478288",
+    "bsp/evidence/scope-hardware-20261013/ps-gp-regenerate.log": "3e8fa1e90ff1e20db3fa3ea57ac82ecb58cf2e2d3e145d98840da2db9fbd5d5e",
+    "bsp/evidence/scope-ready-20261013-01.log": "3dcfb0ce976c87d1c64cec124333c39d98fd90508bcd50c21d57afc8e59be79d",
+    "bsp/evidence/scope-ready-20261013-01.log.json": "5aa5c789f91b4893f3a26e46ddf271346d4ed267c646696f29acdf0058ba2c83",
+    "bsp/evidence/scope-release-20261013-01.log": "f1523873f2111f07e1b1e30fac9f18b6c9f41709c101047a27d96121528ae2a1",
+    "bsp/evidence/scope-release-20261013-01.log.json": "4c67da0e35f1174d7f82a136dd1af202a61475faac8530ca6e0f851be29ad335",
+    "bsp/evidence/scope-sd-windows-write-20261013-01.log": "771634bdba083727a89353b91a6222b5784522e4d4cb8217113aaa2c37d741c0",
+    "bsp/evidence/scope-sd-windows-write-20261013-01.log.json": "1f21662ffd739ee5dc7bf6d0c644660cf40ce616d69515d63eddfba2472fbbf3"
+  }
+}

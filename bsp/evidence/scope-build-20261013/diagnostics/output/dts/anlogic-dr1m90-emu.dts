@@ -1,0 +1,146 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+
+/dts-v1/;
+#include "anlogic-dr1m90.dts"
+
+&cma {
+	alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+	size = <0x0 0x10000000>;
+};
+
+&memory {
+	reg = <0 0x00000000 0 0x50000000>;
+};
+
+&soc {
+	leds {
+		compatible = "gpio-leds";
+		led0 {
+			gpios = <&porta 19 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "timer";
+			status = "okay";
+		};
+
+		led1 {
+			gpios = <&porta 20 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "heartbeat";
+			status = "okay";
+		};
+	};
+};
+
+&serial0 {
+	status = "okay";
+};
+
+&serial1 {
+	status = "disabled";
+};
+
+&i2c0 {
+	status = "okay";
+
+	at24aa512: eeprom@50 {
+		compatible = "atmel,24c512"; /* 64K Bytes, at24AA512 */
+		reg = <0x50>;
+		pagesize = <8>;
+		address-width = <16>;
+		status = "okay";
+	};
+};
+
+&i2c1 {
+	status = "okay";
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&gpio2 {
+	status = "okay";
+};
+
+&gpio3 {
+	status = "okay";
+};
+
+&axidmac {
+	status = "okay";
+};
+
+&watchdog0 {
+	status = "disabled";
+};
+
+&ipmscan0 {
+	status = "disabled";
+};
+
+&ipmscan1 {
+	status = "disabled";
+};
+
+&sdhci0 {
+	status = "okay";
+};
+
+&ahb_dma {
+	status = "okay";
+};
+
+&qspi0 {
+	status = "okay";
+};
+
+&spi0 {
+	status = "okay";
+};
+
+&spi1 {
+	status = "okay";
+};
+
+&eqos0 {
+	phy-handle = <&eth_phy0>;
+	status = "disabled";
+};
+
+&eth_phy0 {
+	/* Realtek RTL8211F (0x001cc916) */
+	status = "disabled";
+};
+
+&eth_phy1 {
+	/* Motorcomm YT8531 (0x4f51e91b) */
+	status = "disabled";
+};
+
+&eqos1 {
+	phy-handle = <&eth_phy2>;
+	status = "okay";
+};
+
+&eth_phy2 {
+	/* Realtek RTL8211F (0x001cc916) */
+	status = "okay";
+};
+
+&eth_phy3 {
+	/* Motorcomm YT8531 (0x4f51e91b) */
+	status = "disabled";
+};
+
+&usb_otg0 {
+	status = "okay";
+};
+
+&qspi0 {
+	rx-sample-delay-ns = <1>;
+	status = "okay";
+};
+
