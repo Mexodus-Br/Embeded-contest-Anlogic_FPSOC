@@ -1,0 +1,88 @@
+standard
+***Report Model: td_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         8   out of    126    6.35%
+  #input                    5
+  #output                   3
+  #inout                    0
+#lut6                    5937   out of  52480   11.31%
+#reg                     7150
+  #slice reg             7150   out of 104960    6.81%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                   6778   out of  52480   12.92%
+  #used ram               128
+    #dram lut             120
+    #shifter lut            8
+  #used logic            6650
+    #with luts           4716
+    #with adder          1093
+    #reg only             841
+#feedthrough             4996
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        1   out of    240    0.42%
+#pad                        8   out of    126    6.35%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       2   out of     72    2.78%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+Detailed IO Report
+
+    Name      Direction    Location    IOStandard    IOType    DriveStrength    PullType    PackReg    DiffResistor  
+    clk         INPUT         Y9        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+    load        INPUT        U20        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+   rst_n        INPUT        Y16        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+  rx_async      INPUT        J15        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+  scan_in       INPUT        J20        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+     de        OUTPUT        W18        LVCMOS33      HRIO           8            NONE       NONE          NONE      
+  scan_out     OUTPUT        J19        LVCMOS33      HRIO           8            NONE       NONE          NONE      
+     tx        OUTPUT        B19        LVCMOS33      HRIO           8            NONE       NONE          NONE      
+
+Report Clock Domain Luts:
+
+----------------------------------------------------------------------------------------------------------------
+  Index   |  Name       |  Frequency   |  LUT As Logic   |  LUT As Shifter   |  LUT As Dram   |  BRAM   |  DSP
+----------------------------------------------------------------------------------------------------------------
+  #1      |  rs485_clk  |  100MHz      |  8274           |  13               |  231           |  0      |  1
+----------------------------------------------------------------------------------------------------------------
+
+Clock Resource Statistics
+Index     ClockNet     Type            DriverType         Driver          ClockFanout        GclkLocation
+#1        clk_dup_1    InferredGclk    io                 clk_syn_2.di    4205               x79y59z0
+
+Report Hierarchy Area:
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance    |Module            |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |adc    |soc     |
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+|top         |td_probe          |4716      |1093    |7150    |0       |1       |120      |8           |0       |0       |0       |0      |0       |
+|  dut       |rs485_multirate   |3667      |1093    |5900    |0       |1       |120      |0           |0       |0       |0       |0      |0       |
+|    divider |div_u64_u32       |138       |32      |238     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|    engine  |rs485_transaction |380       |296     |797     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|      u_rx  |uart_rx           |49        |32      |60      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|      u_tx  |uart_tx           |19        |0       |26      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|    fifo    |record_fifo       |18        |32      |56      |0       |0       |120      |0           |0       |0       |0       |0      |0       |
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+DataNet Average Fanout:
+
+   Index     Fanout     Nets  
+    #1          1       8996  
+    #2          2       3240  
+    #3          3       1054  
+    #4          4       130   
+    #5        5-10      375   
+    #6        11-50     486   
+    #7       51-100      49   
+    #8       101-500     1    
+  Average     2.44            

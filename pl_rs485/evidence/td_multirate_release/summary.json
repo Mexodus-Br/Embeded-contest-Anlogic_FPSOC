@@ -1,0 +1,59 @@
+{
+  "tool": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\bin\\td_commands_prompt.EXE",
+  "top": "rs485_multirate",
+  "fast_simulation_candidate": false,
+  "device": "DR1M90GEG400",
+  "speed": 2,
+  "clock_MHz": 100,
+  "source_sha256": {
+    "rtl\\div_u64_u32.v": "82bfeeb3935698ec2e6eccdebf1504f4b5224f79f60acd808323c3c53608f8b9",
+    "rtl\\record_fifo.v": "0c23cfbd5f37b5d045f510438b40804582ffb7e9968e9b1dcb77e79847257cb9",
+    "rtl\\rs485_master.v": "55d8b73fe0ce025409880b3d31355ab014d0ce60c9b7389b38dfbc2ed08b3ae6",
+    "rtl\\rs485_multirate.v": "e9627cea3fad4ab2abb7cb54ff68f38c6e41924b3ffd038c9b0bfebb4e6f413c",
+    "rtl\\rs485_transaction.v": "8a366e0fbcf470909bae9c9af3d08d19c0d0ce384ca3acfcbc1312c70f408a32",
+    "rtl\\uart_rx.v": "79ff285c9ba87b7162d19de2baece671935318d8d0d19a25b60d74b60d3bc35b",
+    "rtl\\uart_tx.v": "efbd22465b111da66cd5dc5db84172fbcb17371143a57528473417955e17caf8",
+    "generated\\parameters.vh": "d2a825075de22549c649b8ecc83aee494e2041ee9053acde287acb092470c0d0",
+    "generated\\queries.md": "d53945b6e01ddefe7785c00e2a30e87efcb4f5cb28ddb141d7fbb8158341cb33",
+    "generated\\rate_defs.h": "ce7307384b70c39455f48d23bd99c4f420a1238244f1b03d9da1f9ec95884e89",
+    "generated\\rate_defs.vh": "79b11e28b90127f712b4d9cd4c57ca29fcf7a44be2398400fb3efcb41188ba94",
+    "generated\\rate_parameters.vh": "517425b723cf3acbb13255bc0d9cb450c9b36c5bd22b32489426016e17e66e51",
+    "generated\\rs485_defs.h": "a93ae74b2698347fd7dbe514899d32da586c3b1edc948e0f590a7f51852a3bd2",
+    "generated\\rs485_defs.vh": "92f49fecc09d55ecbf52055c8c770a2bf54cc556846281e890cf25ad85e0b180"
+  },
+  "profile": {
+    "CLK_HZ": 100000000,
+    "BAUD": 115200,
+    "SLAVE_COUNT": 3,
+    "SLAVE_ADDRS": 14868960,
+    "QUERY_MASK": 31,
+    "POLL_CYCLES": 1000000,
+    "TIMEOUT_CYCLES": 1000000,
+    "INTERBYTE_CYCLES": 200000,
+    "RETRIES": 1,
+    "PRE_CYCLES": 1000,
+    "POST_CYCLES": 1000,
+    "TURN_CYCLES": 1000,
+    "QUIET_CYCLES": 1000000,
+    "FIFO_DEPTH": 8
+  },
+  "fixture": "OOC scan input/output wrapper; no board IO timing claim",
+  "constraint_sha256": "93ca34e8d1dc3291c7cfcfcb78ed7ab62eabea601b54e8e8640ad0eaf52ab7f1",
+  "fixture_sha256": "e43122fe8fd2c2cbe1e388c33e3d337b223b29195e4b9c1a993b2a7958be985b",
+  "rate_design_sha256": "05f8f0daa6da0a364c7ff6eb77159a5509a0cb3452fcacdc5e9ab6c1b2ef6d7b",
+  "gate": {
+    "setup_wns_ns": 2.005,
+    "hold_wns_ns": 0.0,
+    "pass": true
+  },
+  "place": {
+    "setup_wns_ns": 3.742,
+    "hold_wns_ns": 0.0,
+    "pass": true
+  },
+  "route": {
+    "setup_wns_ns": 0.803,
+    "hold_wns_ns": 0.029,
+    "pass": true
+  }
+}

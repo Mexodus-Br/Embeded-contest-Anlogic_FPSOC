@@ -1,0 +1,1505 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Tue Oct 13 23:43:08 2026
+
+Top Model           : td_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 92.13%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/clock.sdc;
+Confidence          : Routed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 3 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min     
+------------------------------------
+Slow     | yes      yes     
+Fast     | yes      yes     
+
+
+Timing Status
+--------------------
+	SWNS: 0.803ns, STNS: 0.000ns
+	HWNS: 0.029ns, HTNS: 0.000ns
+	Period Check WNS: 8.317ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000         4331   rs485_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0   Inferred GCLK            0.000      5.000                10.000         100.000                 9.197         108.731            0.803      0.000            0.029      0.000            0.215             4331                9             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     rs485_clk -> rs485_clk
+Type           :     Self
+From Clock     :     rs485_clk
+To Clock       :     rs485_clk
+Min Period     :     9.197ns
+Fmax           :     108.731MHz
+
+Statistics:
+Max            : SWNS      0.803ns, STNS      0.000ns,         0 Viol Endpoints,     13137 Total Endpoints,  55931826 Paths Analyzed
+Min            : HWNS      0.029ns, HTNS      0.000ns,         0 Viol Endpoints,     13137 Total Endpoints,  55931826 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.803ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/max_late_reg[197]_syn_2.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.985ns (cell 2.036ns (22%), net 6.949ns (78%))
+Clock Skew          : 0.084ns
+Logic Level         : 9 ( LUT6=3  LUT5=3  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 36
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             1.106          5.536          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_171.ic
+LUT6                x103y076z7          0.210    r     5.746       1  pin: dut/found_reg_syn_171.ofb
+net (fo=1)                              0.408          6.154          net: dut/sel41_syn_745,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(159)
+                                                                      pin: dut/found_reg_syn_187.ie
+LUT5                x104y075z6          0.097    f     6.251       2  pin: dut/found_reg_syn_187.ofb
+net (fo=2)                              0.630          6.881          net: dut/found_reg_syn_43,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.imf
+LUT4                x103y074z6          0.212    f     7.093       3  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.661          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.948       4  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.483          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.644       5  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.429          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.670       6  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355         10.025          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.190       7  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.948          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.190       8  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.138         11.328          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: inp_reg[103]_syn_2.ia
+LUT3                x102y065z4          0.240    r    11.568       9  pin: inp_reg[103]_syn_2.ofb
+net (fo=36)                             1.666         13.234          net: dut/sel20_syn_dup_254,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/max_late_reg[197]_syn_2.ceb
+reg                 x102y052z2          0.000    f    13.234               
+--------------------------------------------------------------------  ---------------
+Arrival                                               13.234               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.735          3.910          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/max_late_reg[197]_syn_2.clk
+capture edge                           10.000    r    13.910               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.842               
+clock uncertainty                      -0.060         13.782               
+clock pessimism                         0.255         14.037               
+--------------------------------------------------------------------  ---------------
+Required                                              14.037               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.803               
+
+Slack               : 0.968ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/max_late_reg[197]_syn_2.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.820ns (cell 2.098ns (23%), net 6.722ns (77%))
+Clock Skew          : 0.084ns
+Logic Level         : 9 ( LUT6=3  LUT5=3  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 36
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             0.883          5.313          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_170.id
+LUT6                x104y078z0          0.161    r     5.474       1  pin: dut/found_reg_syn_170.ofb
+net (fo=1)                              0.306          5.780          net: dut/sel41_syn_772,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(159)
+                                                                      pin: dut/found_reg_syn_185.ie
+LUT5                x104y075z2          0.097    f     5.877       2  pin: dut/found_reg_syn_185.ofb
+net (fo=2)                              0.728          6.605          net: dut/found_reg_syn_40,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.ia
+LUT4                x103y074z6          0.323    f     6.928       3  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.496          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.783       4  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.318          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.479       5  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.264          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.505       6  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355          9.860          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.025       7  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.783          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.025       8  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.138         11.163          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: inp_reg[103]_syn_2.ia
+LUT3                x102y065z4          0.240    r    11.403       9  pin: inp_reg[103]_syn_2.ofb
+net (fo=36)                             1.666         13.069          net: dut/sel20_syn_dup_254,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/max_late_reg[197]_syn_2.ceb
+reg                 x102y052z2          0.000    f    13.069               
+--------------------------------------------------------------------  ---------------
+Arrival                                               13.069               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.735          3.910          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/max_late_reg[197]_syn_2.clk
+capture edge                           10.000    r    13.910               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.842               
+clock uncertainty                      -0.060         13.782               
+clock pessimism                         0.255         14.037               
+--------------------------------------------------------------------  ---------------
+Required                                              14.037               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.968               
+
+Slack               : 0.991ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/max_late_reg[197]_syn_2.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.797ns (cell 2.080ns (23%), net 6.717ns (77%))
+Clock Skew          : 0.084ns
+Logic Level         : 8 ( LUT5=3  LUT6=2  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 36
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             1.184          5.614          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_185.ia
+LUT5                x104y075z2          0.240    r     5.854       1  pin: dut/found_reg_syn_185.ofb
+net (fo=2)                              0.728          6.582          net: dut/found_reg_syn_40,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.ia
+LUT4                x103y074z6          0.323    f     6.905       2  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.473          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.760       3  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.295          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.456       4  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.241          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.482       5  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355          9.837          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.002       6  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.760          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.002       7  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.138         11.140          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: inp_reg[103]_syn_2.ia
+LUT3                x102y065z4          0.240    r    11.380       8  pin: inp_reg[103]_syn_2.ofb
+net (fo=36)                             1.666         13.046          net: dut/sel20_syn_dup_254,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/max_late_reg[197]_syn_2.ceb
+reg                 x102y052z2          0.000    f    13.046               
+--------------------------------------------------------------------  ---------------
+Arrival                                               13.046               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.735          3.910          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/max_late_reg[197]_syn_2.clk
+capture edge                           10.000    r    13.910               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.842               
+clock uncertainty                      -0.060         13.782               
+clock pessimism                         0.255         14.037               
+--------------------------------------------------------------------  ---------------
+Required                                              14.037               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.991               
+
+Slack               : 0.988ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/missed_reg[280]_syn_2.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.803ns (cell 1.893ns (21%), net 6.910ns (79%))
+Clock Skew          : 0.081ns
+Logic Level         : 9 ( LUT6=3  LUT5=3  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             1.106          5.536          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_171.ic
+LUT6                x103y076z7          0.210    r     5.746       1  pin: dut/found_reg_syn_171.ofb
+net (fo=1)                              0.408          6.154          net: dut/sel41_syn_745,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(159)
+                                                                      pin: dut/found_reg_syn_187.ie
+LUT5                x104y075z6          0.097    f     6.251       2  pin: dut/found_reg_syn_187.ofb
+net (fo=2)                              0.630          6.881          net: dut/found_reg_syn_43,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.imf
+LUT4                x103y074z6          0.212    f     7.093       3  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.661          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.948       4  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.483          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.644       5  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.429          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.670       6  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355         10.025          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.190       7  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.948          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.190       8  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.499         11.689          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/engine/event_time_reg[14]_syn_3.ie
+LUT3                x101y074z0          0.097    f    11.786       9  pin: dut/engine/event_time_reg[14]_syn_3.ofb
+net (fo=7)                              1.266         13.052          net: dut/sel20_syn_dup_260,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/missed_reg[280]_syn_2.ceb
+reg                 x115y075z7          0.000    f    13.052               
+--------------------------------------------------------------------  ---------------
+Arrival                                               13.052               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.738          3.913          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/missed_reg[280]_syn_2.clk
+capture edge                           10.000    r    13.913               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.845               
+clock uncertainty                      -0.060         13.785               
+clock pessimism                         0.255         14.040               
+--------------------------------------------------------------------  ---------------
+Required                                              14.040               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.988               
+
+Slack               : 1.153ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/missed_reg[280]_syn_2.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.638ns (cell 1.955ns (22%), net 6.683ns (78%))
+Clock Skew          : 0.081ns
+Logic Level         : 9 ( LUT6=3  LUT5=3  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             0.883          5.313          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_170.id
+LUT6                x104y078z0          0.161    r     5.474       1  pin: dut/found_reg_syn_170.ofb
+net (fo=1)                              0.306          5.780          net: dut/sel41_syn_772,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(159)
+                                                                      pin: dut/found_reg_syn_185.ie
+LUT5                x104y075z2          0.097    f     5.877       2  pin: dut/found_reg_syn_185.ofb
+net (fo=2)                              0.728          6.605          net: dut/found_reg_syn_40,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.ia
+LUT4                x103y074z6          0.323    f     6.928       3  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.496          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.783       4  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.318          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.479       5  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.264          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.505       6  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355          9.860          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.025       7  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.783          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.025       8  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.499         11.524          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/engine/event_time_reg[14]_syn_3.ie
+LUT3                x101y074z0          0.097    f    11.621       9  pin: dut/engine/event_time_reg[14]_syn_3.ofb
+net (fo=7)                              1.266         12.887          net: dut/sel20_syn_dup_260,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/missed_reg[280]_syn_2.ceb
+reg                 x115y075z7          0.000    f    12.887               
+--------------------------------------------------------------------  ---------------
+Arrival                                               12.887               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.738          3.913          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/missed_reg[280]_syn_2.clk
+capture edge                           10.000    r    13.913               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.845               
+clock uncertainty                      -0.060         13.785               
+clock pessimism                         0.255         14.040               
+--------------------------------------------------------------------  ---------------
+Required                                              14.040               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.153               
+
+Slack               : 1.176ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/missed_reg[280]_syn_2.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.615ns (cell 1.937ns (22%), net 6.678ns (78%))
+Clock Skew          : 0.081ns
+Logic Level         : 8 ( LUT5=3  LUT6=2  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             1.184          5.614          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_185.ia
+LUT5                x104y075z2          0.240    r     5.854       1  pin: dut/found_reg_syn_185.ofb
+net (fo=2)                              0.728          6.582          net: dut/found_reg_syn_40,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.ia
+LUT4                x103y074z6          0.323    f     6.905       2  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.473          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.760       3  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.295          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.456       4  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.241          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.482       5  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355          9.837          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.002       6  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.760          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.002       7  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.499         11.501          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/engine/event_time_reg[14]_syn_3.ie
+LUT3                x101y074z0          0.097    f    11.598       8  pin: dut/engine/event_time_reg[14]_syn_3.ofb
+net (fo=7)                              1.266         12.864          net: dut/sel20_syn_dup_260,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/missed_reg[280]_syn_2.ceb
+reg                 x115y075z7          0.000    f    12.864               
+--------------------------------------------------------------------  ---------------
+Arrival                                               12.864               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.738          3.913          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/missed_reg[280]_syn_2.clk
+capture edge                           10.000    r    13.913               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.845               
+clock uncertainty                      -0.060         13.785               
+clock pessimism                         0.255         14.040               
+--------------------------------------------------------------------  ---------------
+Required                                              14.040               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.176               
+
+Slack               : 0.992ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/selected_reg[1]_syn_15.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.795ns (cell 2.036ns (23%), net 6.759ns (77%))
+Clock Skew          : 0.085ns
+Logic Level         : 9 ( LUT6=3  LUT5=3  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 36
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             1.106          5.536          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_171.ic
+LUT6                x103y076z7          0.210    r     5.746       1  pin: dut/found_reg_syn_171.ofb
+net (fo=1)                              0.408          6.154          net: dut/sel41_syn_745,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(159)
+                                                                      pin: dut/found_reg_syn_187.ie
+LUT5                x104y075z6          0.097    f     6.251       2  pin: dut/found_reg_syn_187.ofb
+net (fo=2)                              0.630          6.881          net: dut/found_reg_syn_43,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.imf
+LUT4                x103y074z6          0.212    f     7.093       3  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.661          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.948       4  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.483          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.644       5  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.429          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.670       6  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355         10.025          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.190       7  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.948          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.190       8  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.138         11.328          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: inp_reg[103]_syn_2.ia
+LUT3                x102y065z4          0.240    r    11.568       9  pin: inp_reg[103]_syn_2.ofb
+net (fo=36)                             1.476         13.044          net: dut/sel20_syn_dup_254,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/selected_reg[1]_syn_15.ceb
+reg                 x101y051z5          0.000    f    13.044               
+--------------------------------------------------------------------  ---------------
+Arrival                                               13.044               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.734          3.909          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/selected_reg[1]_syn_15.clk
+capture edge                           10.000    r    13.909               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.841               
+clock uncertainty                      -0.060         13.781               
+clock pessimism                         0.255         14.036               
+--------------------------------------------------------------------  ---------------
+Required                                              14.036               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.992               
+
+Slack               : 1.157ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/selected_reg[1]_syn_15.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.630ns (cell 2.098ns (24%), net 6.532ns (76%))
+Clock Skew          : 0.085ns
+Logic Level         : 9 ( LUT6=3  LUT5=3  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 36
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             0.883          5.313          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_170.id
+LUT6                x104y078z0          0.161    r     5.474       1  pin: dut/found_reg_syn_170.ofb
+net (fo=1)                              0.306          5.780          net: dut/sel41_syn_772,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(159)
+                                                                      pin: dut/found_reg_syn_185.ie
+LUT5                x104y075z2          0.097    f     5.877       2  pin: dut/found_reg_syn_185.ofb
+net (fo=2)                              0.728          6.605          net: dut/found_reg_syn_40,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.ia
+LUT4                x103y074z6          0.323    f     6.928       3  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.496          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.783       4  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.318          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.479       5  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.264          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.505       6  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355          9.860          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.025       7  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.783          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.025       8  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.138         11.163          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: inp_reg[103]_syn_2.ia
+LUT3                x102y065z4          0.240    r    11.403       9  pin: inp_reg[103]_syn_2.ofb
+net (fo=36)                             1.476         12.879          net: dut/sel20_syn_dup_254,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/selected_reg[1]_syn_15.ceb
+reg                 x101y051z5          0.000    f    12.879               
+--------------------------------------------------------------------  ---------------
+Arrival                                               12.879               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.734          3.909          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/selected_reg[1]_syn_15.clk
+capture edge                           10.000    r    13.909               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.841               
+clock uncertainty                      -0.060         13.781               
+clock pessimism                         0.255         14.036               
+--------------------------------------------------------------------  ---------------
+Required                                              14.036               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.157               
+
+Slack               : 1.180ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/selected_reg[1]_syn_15.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.607ns (cell 2.080ns (24%), net 6.527ns (76%))
+Clock Skew          : 0.085ns
+Logic Level         : 8 ( LUT5=3  LUT6=2  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 36
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             1.184          5.614          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_185.ia
+LUT5                x104y075z2          0.240    r     5.854       1  pin: dut/found_reg_syn_185.ofb
+net (fo=2)                              0.728          6.582          net: dut/found_reg_syn_40,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.ia
+LUT4                x103y074z6          0.323    f     6.905       2  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.473          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.760       3  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.295          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.456       4  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.241          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.482       5  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355          9.837          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.002       6  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.760          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.002       7  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.138         11.140          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: inp_reg[103]_syn_2.ia
+LUT3                x102y065z4          0.240    r    11.380       8  pin: inp_reg[103]_syn_2.ofb
+net (fo=36)                             1.476         12.856          net: dut/sel20_syn_dup_254,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/selected_reg[1]_syn_15.ceb
+reg                 x101y051z5          0.000    f    12.856               
+--------------------------------------------------------------------  ---------------
+Arrival                                               12.856               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.734          3.909          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/selected_reg[1]_syn_15.clk
+capture edge                           10.000    r    13.909               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.841               
+clock uncertainty                      -0.060         13.781               
+clock pessimism                         0.255         14.036               
+--------------------------------------------------------------------  ---------------
+Required                                              14.036               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.180               
+
+Slack               : 0.994ns
+Begin Point         : dut/active_period_us_reg[82]_syn_2.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/selected_reg[1]_syn_18.cea (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { rs485_clk rising@10.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 8.793ns (cell 2.036ns (23%), net 6.757ns (77%))
+Clock Skew          : 0.085ns
+Logic Level         : 9 ( LUT6=3  LUT5=3  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 36
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.961          0.961          pin: clk_syn_2.di
+net (fo=1)                              1.530          2.491          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.323          2.814          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.616          3.430          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.430          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.819          4.249          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/active_period_us_reg[82]_syn_2.clk
+launch edge                             0.000    r     4.249               
+--------------------------------------------------------------------  ---------------
+clk2q               x110y073z6          0.181    f     4.430          pin: dut/active_period_us_reg[82]_syn_2.oqb
+net (fo=32)                             1.106          5.536          net: dut/scan_q[0]_dup_7,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(144)
+                                                                      pin: dut/found_reg_syn_171.ic
+LUT6                x103y076z7          0.210    r     5.746       1  pin: dut/found_reg_syn_171.ofb
+net (fo=1)                              0.408          6.154          net: dut/sel41_syn_745,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(159)
+                                                                      pin: dut/found_reg_syn_187.ie
+LUT5                x104y075z6          0.097    f     6.251       2  pin: dut/found_reg_syn_187.ofb
+net (fo=2)                              0.630          6.881          net: dut/found_reg_syn_43,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[30]_syn_2.imf
+LUT4                x103y074z6          0.212    f     7.093       3  pin: dut/shortest_reg[30]_syn_2.ofa
+net (fo=1)                              0.568          7.661          net: dut/found_reg_syn_45,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[24]_syn_2.ic
+LUT5                x103y074z7          0.287    f     7.948       4  pin: dut/shortest_reg[24]_syn_2.ofa
+net (fo=1)                              0.535          8.483          net: dut/found_reg_syn_53,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/shortest_reg[28]_syn_2.id
+LUT6                x103y074z5          0.161    r     8.644       5  pin: dut/shortest_reg[28]_syn_2.ofb
+net (fo=1)                              0.785          9.429          net: dut/found_reg_syn_69,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/found_reg_syn_176.ib
+LUT6                x104y071z4          0.241    r     9.670       6  pin: dut/found_reg_syn_176.ofb
+net (fo=1)                              0.355         10.025          net: dut/best_due_b1_n5,  NOFILE(0)
+                                                                      pin: dut/divider/mux10_syn_272.imb
+LUT2                x102y065z0          0.165    r    10.190       7  pin: dut/divider/mux10_syn_272.ofb
+net (fo=2)                              0.758         10.948          net: dut/found_reg_syn_134,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(206)
+                                                                      pin: dut/sel20_syn_259.ib
+LUT5                x102y065z5          0.242    r    11.190       8  pin: dut/sel20_syn_259.ofb
+net (fo=3)                              0.138         11.328          net: dut/sel2_syn_9,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: inp_reg[103]_syn_2.ia
+LUT3                x102y065z4          0.240    r    11.568       9  pin: inp_reg[103]_syn_2.ofb
+net (fo=36)                             1.474         13.042          net: dut/sel20_syn_dup_254,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_multirate.v(234)
+                                                                      pin: dut/selected_reg[1]_syn_18.cea
+reg                 x117y051z7          0.000    f    13.042               
+--------------------------------------------------------------------  ---------------
+Arrival                                               13.042               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.957          0.957          pin: clk_syn_2.di
+net (fo=1)                              1.374          2.331          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.290          2.621          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.554          3.175          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.175          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.734          3.909          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/selected_reg[1]_syn_18.clk
+capture edge                           10.000    r    13.909               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         13.841               
+clock uncertainty                      -0.060         13.781               
+clock pessimism                         0.255         14.036               
+--------------------------------------------------------------------  ---------------
+Required                                              14.036               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.994               
+
+
+Period Check
+----------------------------------------------------------------------------------------------------
+    Type       Setting(ns)      Required(ns)         Slack(ns)   Point
+--------------------------------------------------------------------------------
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_97.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_117.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_137.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_157.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_177.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_197.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_217.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_237.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_257.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_317.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_37.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_57.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_77.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_277.wclk
+    DRAM            10.000             1.530             8.470   dut/fifo/ramread0_syn_297.wclk
+ SHIFTER            10.000             1.683             8.317   obs[267]_syn_40.sclk
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.029ns
+Begin Point         : dut/engine/state_reg[7]_syn_11.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/engine/push_data_reg[106]_syn_2.cea (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.187ns (cell 0.090ns (48%), net 0.097ns (52%))
+Clock Skew          : 0.066ns
+Logic Level         : 0
+Max Fanout          : 4
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.262          1.457          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.457          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.384          1.841          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/state_reg[7]_syn_11.clk
+launch edge                             0.000    r     1.841               
+--------------------------------------------------------------------  ---------------
+clk2q               x097y078z1          0.090    f     1.931          pin: dut/engine/state_reg[7]_syn_11.oqa
+net (fo=4)                              0.097          2.028          net: dut/engine/state_reg_syn_dup_17,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_transaction.v(113)
+                                                                      pin: dut/engine/push_data_reg[106]_syn_2.cea
+reg                 x098y078z4          0.000    f     2.028               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.028               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.312          1.655          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.655          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.450          2.105          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/push_data_reg[106]_syn_2.clk
+capture edge                            0.000    r     2.105               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.147               
+clock uncertainty                       0.050          2.197               
+clock pessimism                        -0.198          1.999               
+--------------------------------------------------------------------  ---------------
+Required                                               1.999               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.029               
+
+Slack               : 0.029ns
+Begin Point         : dut/engine/state_reg[7]_syn_11.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/engine/push_data_reg[106]_syn_2.ceb (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.187ns (cell 0.090ns (48%), net 0.097ns (52%))
+Clock Skew          : 0.066ns
+Logic Level         : 0
+Max Fanout          : 4
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.262          1.457          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.457          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.384          1.841          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/state_reg[7]_syn_11.clk
+launch edge                             0.000    r     1.841               
+--------------------------------------------------------------------  ---------------
+clk2q               x097y078z1          0.090    f     1.931          pin: dut/engine/state_reg[7]_syn_11.oqa
+net (fo=4)                              0.097          2.028          net: dut/engine/state_reg_syn_dup_17,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_transaction.v(113)
+                                                                      pin: dut/engine/push_data_reg[106]_syn_2.ceb
+reg                 x098y078z4          0.000    f     2.028               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.028               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.312          1.655          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.655          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.450          2.105          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/push_data_reg[106]_syn_2.clk
+capture edge                            0.000    r     2.105               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.147               
+clock uncertainty                       0.050          2.197               
+clock pessimism                        -0.198          1.999               
+--------------------------------------------------------------------  ---------------
+Required                                               1.999               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.029               
+
+Slack               : 0.034ns
+Begin Point         : dut/fifo/wr_reg[0]_syn_5.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/fifo/ramread0_syn_257.waddr[0] (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.291ns (cell 0.090ns (30%), net 0.201ns (70%))
+Clock Skew          : 0.157ns
+Logic Level         : 1 ( DRAM=1 )
+Max Fanout          : 18
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.221          1.416          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.416          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=1036)                           0.384          1.800          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/fifo/wr_reg[0]_syn_5.clk
+launch edge                             0.000    r     1.800               
+--------------------------------------------------------------------  ---------------
+clk2q               x107y083z4          0.090    f     1.890          pin: dut/fifo/wr_reg[0]_syn_5.oqa
+net (fo=18)                             0.201          2.091          net: dut/fifo/wr[0],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/record_fifo.v(7)
+                                                                      pin: dut/fifo/ramread0_syn_257.waddr[0]
+DRAM (reg)          x108y079            0.000    f     2.091       1       
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.091               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.312          1.655          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.655          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.450          2.105          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/fifo/ramread0_syn_257.wclk
+capture edge                            0.000    r     2.105               
+--------------------------------------------------------------------  ---------------
+hold                                    0.000          2.105               
+clock uncertainty                       0.100          2.205               
+clock pessimism                        -0.148          2.057               
+--------------------------------------------------------------------  ---------------
+Required                                               2.057               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.034               
+
+Slack               : 0.084ns
+Begin Point         : dut/fifo/wr_reg[1]_syn_5.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/fifo/ramread0_syn_257.waddr[1] (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.342ns (cell 0.090ns (26%), net 0.252ns (74%))
+Clock Skew          : 0.158ns
+Logic Level         : 1 ( DRAM=1 )
+Max Fanout          : 17
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.221          1.416          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.416          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=1036)                           0.383          1.799          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/fifo/wr_reg[1]_syn_5.clk
+launch edge                             0.000    r     1.799               
+--------------------------------------------------------------------  ---------------
+clk2q               x107y085z5          0.090    f     1.889          pin: dut/fifo/wr_reg[1]_syn_5.oqa
+net (fo=17)                             0.252          2.141          net: dut/fifo/wr[1],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/record_fifo.v(7)
+                                                                      pin: dut/fifo/ramread0_syn_257.waddr[1]
+DRAM (reg)          x108y079            0.000    f     2.141       1       
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.141               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.312          1.655          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.655          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.450          2.105          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/fifo/ramread0_syn_257.wclk
+capture edge                            0.000    r     2.105               
+--------------------------------------------------------------------  ---------------
+hold                                    0.000          2.105               
+clock uncertainty                       0.100          2.205               
+clock pessimism                        -0.148          2.057               
+--------------------------------------------------------------------  ---------------
+Required                                               2.057               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.084               
+
+Slack               : 0.232ns
+Begin Point         : dut/fifo/wr_reg[2]_syn_5.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/fifo/ramread0_syn_257.waddr[2] (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.490ns (cell 0.090ns (18%), net 0.400ns (82%))
+Clock Skew          : 0.158ns
+Logic Level         : 1 ( DRAM=1 )
+Max Fanout          : 16
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.221          1.416          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.416          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=1036)                           0.383          1.799          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/fifo/wr_reg[2]_syn_5.clk
+launch edge                             0.000    r     1.799               
+--------------------------------------------------------------------  ---------------
+clk2q               x107y085z4          0.090    f     1.889          pin: dut/fifo/wr_reg[2]_syn_5.oqa
+net (fo=16)                             0.400          2.289          net: dut/fifo/wr[2],  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/record_fifo.v(7)
+                                                                      pin: dut/fifo/ramread0_syn_257.waddr[2]
+DRAM (reg)          x108y079            0.000    f     2.289       1       
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.289               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.312          1.655          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.655          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.450          2.105          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/fifo/ramread0_syn_257.wclk
+capture edge                            0.000    r     2.105               
+--------------------------------------------------------------------  ---------------
+hold                                    0.000          2.105               
+clock uncertainty                       0.100          2.205               
+clock pessimism                        -0.148          2.057               
+--------------------------------------------------------------------  ---------------
+Required                                               2.057               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.232               
+
+Slack               : 0.034ns
+Begin Point         : dut/engine/state_reg[7]_syn_14.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/engine/push_data_reg[194]_syn_2.cea (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.244ns (cell 0.090ns (36%), net 0.154ns (64%))
+Clock Skew          : 0.068ns
+Logic Level         : 0
+Max Fanout          : 37
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.262          1.457          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.457          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.384          1.841          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/state_reg[7]_syn_14.clk
+launch edge                             0.000    r     1.841               
+--------------------------------------------------------------------  ---------------
+clk2q               x107y077z4          0.090    f     1.931          pin: dut/engine/state_reg[7]_syn_14.oqa
+net (fo=37)                             0.154          2.085          net: dut/engine/state_reg_syn_dup_21,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_transaction.v(113)
+                                                                      pin: dut/engine/push_data_reg[194]_syn_2.cea
+reg                 x108y080z5          0.000    f     2.085               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.085               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.263          1.606          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.606          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=1036)                           0.451          2.057          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/push_data_reg[194]_syn_2.clk
+capture edge                            0.000    r     2.057               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.099               
+clock uncertainty                       0.100          2.199               
+clock pessimism                        -0.148          2.051               
+--------------------------------------------------------------------  ---------------
+Required                                               2.051               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.034               
+
+Slack               : 0.034ns
+Begin Point         : dut/engine/state_reg[7]_syn_14.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/engine/push_data_reg[195]_syn_2.cea (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.244ns (cell 0.090ns (36%), net 0.154ns (64%))
+Clock Skew          : 0.068ns
+Logic Level         : 0
+Max Fanout          : 37
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.262          1.457          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.457          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.384          1.841          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/state_reg[7]_syn_14.clk
+launch edge                             0.000    r     1.841               
+--------------------------------------------------------------------  ---------------
+clk2q               x107y077z4          0.090    f     1.931          pin: dut/engine/state_reg[7]_syn_14.oqa
+net (fo=37)                             0.154          2.085          net: dut/engine/state_reg_syn_dup_21,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_transaction.v(113)
+                                                                      pin: dut/engine/push_data_reg[195]_syn_2.cea
+reg                 x108y080z7          0.000    f     2.085               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.085               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.263          1.606          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.606          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=1036)                           0.451          2.057          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/push_data_reg[195]_syn_2.clk
+capture edge                            0.000    r     2.057               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.099               
+clock uncertainty                       0.100          2.199               
+clock pessimism                        -0.148          2.051               
+--------------------------------------------------------------------  ---------------
+Required                                               2.051               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.034               
+
+Slack               : 0.034ns
+Begin Point         : dut/engine/state_reg[7]_syn_14.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/engine/push_data_reg[196]_syn_2.cea (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.244ns (cell 0.090ns (36%), net 0.154ns (64%))
+Clock Skew          : 0.068ns
+Logic Level         : 0
+Max Fanout          : 37
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.262          1.457          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.457          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.384          1.841          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/state_reg[7]_syn_14.clk
+launch edge                             0.000    r     1.841               
+--------------------------------------------------------------------  ---------------
+clk2q               x107y077z4          0.090    f     1.931          pin: dut/engine/state_reg[7]_syn_14.oqa
+net (fo=37)                             0.154          2.085          net: dut/engine/state_reg_syn_dup_21,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_transaction.v(113)
+                                                                      pin: dut/engine/push_data_reg[196]_syn_2.cea
+reg                 x108y080z6          0.000    f     2.085               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.085               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.263          1.606          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.606          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=1036)                           0.451          2.057          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/push_data_reg[196]_syn_2.clk
+capture edge                            0.000    r     2.057               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.099               
+clock uncertainty                       0.100          2.199               
+clock pessimism                        -0.148          2.051               
+--------------------------------------------------------------------  ---------------
+Required                                               2.051               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.034               
+
+Slack               : 0.044ns
+Begin Point         : dut/engine/state_reg[7]_syn_14.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/engine/push_data_reg[203]_syn_2.cea (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.253ns (cell 0.090ns (35%), net 0.163ns (65%))
+Clock Skew          : 0.067ns
+Logic Level         : 0
+Max Fanout          : 37
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.262          1.457          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.457          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.384          1.841          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/state_reg[7]_syn_14.clk
+launch edge                             0.000    r     1.841               
+--------------------------------------------------------------------  ---------------
+clk2q               x107y077z4          0.090    f     1.931          pin: dut/engine/state_reg[7]_syn_14.oqa
+net (fo=37)                             0.163          2.094          net: dut/engine/state_reg_syn_dup_21,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_transaction.v(113)
+                                                                      pin: dut/engine/push_data_reg[203]_syn_2.cea
+reg                 x107y081z3          0.000    f     2.094               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.094               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.263          1.606          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.606          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=1036)                           0.450          2.056          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/push_data_reg[203]_syn_2.clk
+capture edge                            0.000    r     2.056               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.098               
+clock uncertainty                       0.100          2.198               
+clock pessimism                        -0.148          2.050               
+--------------------------------------------------------------------  ---------------
+Required                                               2.050               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.044               
+
+Slack               : 0.044ns
+Begin Point         : dut/engine/state_reg[7]_syn_14.clk (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/engine/push_data_reg[197]_syn_2.cea (rising edge triggered by clock rs485_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { rs485_clk rising@0.000ns - rs485_clk rising@0.000ns }
+Data Path Delay     : 0.253ns (cell 0.090ns (35%), net 0.163ns (65%))
+Clock Skew          : 0.067ns
+Logic Level         : 0
+Max Fanout          : 37
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.405          0.405          pin: clk_syn_2.di
+net (fo=1)                              0.657          1.062          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.133          1.195          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.262          1.457          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.457          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=3167)                           0.384          1.841          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/state_reg[7]_syn_14.clk
+launch edge                             0.000    r     1.841               
+--------------------------------------------------------------------  ---------------
+clk2q               x107y077z4          0.090    f     1.931          pin: dut/engine/state_reg[7]_syn_14.oqa
+net (fo=37)                             0.163          2.094          net: dut/engine/state_reg_syn_dup_21,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/rs485_transaction.v(113)
+                                                                      pin: dut/engine/push_data_reg[197]_syn_2.cea
+reg                 x107y081z2          0.000    f     2.094               
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.094               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.406          0.406          pin: clk_syn_2.di
+net (fo=1)                              0.779          1.185          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.158          1.343          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.263          1.606          net: clk_syn_15,  D:/Works/Embedded_contest/dev/pl_rs485/build/td_multirate_release/probe.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkin
+SCLK                x079y099z12         0.000          1.606          pin: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1.clkout
+net (fo=1036)                           0.450          2.056          net: clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: dut/engine/push_data_reg[197]_syn_2.clk
+capture edge                            0.000    r     2.056               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.098               
+clock uncertainty                       0.100          2.198               
+clock pessimism                        -0.148          2.050               
+--------------------------------------------------------------------  ---------------
+Required                                               2.050               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.044               
+
+
+Inter clock domain timing
+--------------------------------------------------
+
+IP timing
+--------------------------------------------------

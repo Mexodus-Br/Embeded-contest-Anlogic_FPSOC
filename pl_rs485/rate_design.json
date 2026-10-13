@@ -1,6 +1,14 @@
 {
   "identity": "servo42c-multirate-design-v1",
-  "stage": "design only; existing RTL unchanged",
+  "stage": "RTL implementation; v1 master retained unchanged",
+  "implementation": {
+    "min_period_us": 1000,
+    "max_period_us": 2147483647,
+    "load_limit_ppm": 750000,
+    "cfg_error": {"NONE":0,"RANGE":1,"LOAD":2,"REVISION":3},
+    "stat_bits": 32,
+    "default_profile": "compatibility"
+  },
   "wire_schema": "schema.json",
   "confirmed_on": "2026-10-13",
   "confirmed": {

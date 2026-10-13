@@ -1,5 +1,7 @@
 # PL RS485 驱动器状态采集独立交付
 
+后续扩展：用户于2026-10-13确认多速率设计并要求完成RTL，新增独立rs485_multirate顶层。多速率接口、配置、退避、源码身份和新验证证据见[MULTIRATE_HANDOFF.md](MULTIRATE_HANDOFF.md)。下文是75a2080的原单速率交付基线，原master/UART/FIFO源码未修改；原identity.json与TD证据对应该历史交付，新的工具和多速率文件采用独立identity_multirate.json。
+
 交付日期2026-10-13，协议身份`servo42c-readonly-v1`。本目录与运动PL、BSP、Golden、GPIO和启动镜像独立。未下载板卡，未创建bitstream/启动镜像，未连接运动FIFO、GP或DMA。交付提交以Git中引入本文件及本目录的提交为准；固定文件SHA-256见`evidence/identity.json`，资料身份见`evidence/sources.json`。AGENT.md已有修改和无关日志不纳入提交。
 
 ## 已确认与待验证
