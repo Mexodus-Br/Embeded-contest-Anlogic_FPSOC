@@ -1,0 +1,211 @@
+{
+  "status": "PASS",
+  "fixed_vector": {
+    "configuration": "scope-test, no driver or motor",
+    "base_source_commit": "22ea0a41daa974d24f16b72df7c31db212b7ab8f",
+    "base_handoff_commit": "3a4ea5c8e56024bd2407916bafed48508e5a1e69",
+    "clock_hz": 100000000,
+    "timing_cycles": 500,
+    "max_step_hz": 100000,
+    "en_active_level": 15,
+    "enabled_axis_mask": 7,
+    "raw_depth": 64,
+    "prepared_depth": 8,
+    "start_min_points": 32,
+    "duration_tick": 500000,
+    "origin_xyz_mm": [
+      0,
+      0,
+      -140
+    ],
+    "origin_steps": [
+      -1090,
+      -1090,
+      -1090,
+      0
+    ],
+    "endpoint_xyz_mm": [
+      5,
+      0,
+      -140
+    ],
+    "endpoint_steps": [
+      -1089,
+      -966,
+      -1213,
+      0
+    ],
+    "package": "DR1M90GEG400",
+    "reference_speed": 2,
+    "physical_speed_confirmed": false,
+    "output_packreg": "ON",
+    "drive_strength_ma": 8,
+    "slew_rate": "SLOW",
+    "scope_output_datapath_max_ns": 20,
+    "external_clocked_receiver": false,
+    "connector": "J12, 2x13, 2.54mm, BANK11 fixed 3.3V",
+    "confirmed": "User accepted this test mapping, actual connector/pin orientation, no other occupants and oscilloscope-only/no-driver/no-motor conditions on 2026-10-13.",
+    "ground_pin": 2,
+    "power_pin_not_connected": 1,
+    "mechanical_mapping_frozen": false,
+    "pins": [
+      {
+        "port": "a0_step",
+        "pin": 3,
+        "ball": "Y12"
+      },
+      {
+        "port": "a0_dir",
+        "pin": 4,
+        "ball": "Y13"
+      },
+      {
+        "port": "a0_en",
+        "pin": 5,
+        "ball": "T9"
+      },
+      {
+        "port": "a1_step",
+        "pin": 6,
+        "ball": "U10"
+      },
+      {
+        "port": "a1_dir",
+        "pin": 7,
+        "ball": "T5"
+      },
+      {
+        "port": "a1_en",
+        "pin": 8,
+        "ball": "U5"
+      },
+      {
+        "port": "a2_step",
+        "pin": 9,
+        "ball": "V6"
+      },
+      {
+        "port": "a2_dir",
+        "pin": 10,
+        "ball": "W6"
+      },
+      {
+        "port": "a2_en",
+        "pin": 11,
+        "ball": "U7"
+      }
+    ]
+  },
+  "delta": [
+    1,
+    124,
+    -123,
+    0
+  ],
+  "step_counts": [
+    1,
+    124,
+    123,
+    0
+  ],
+  "outbound_dir": [
+    1,
+    1,
+    0
+  ],
+  "return_dir": [
+    0,
+    0,
+    1
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "step_counts": [
+        1,
+        124,
+        123,
+        0
+      ],
+      "edge_table_matches": true
+    },
+    {
+      "phase": 2,
+      "step_counts": [
+        1,
+        124,
+        123,
+        0
+      ],
+      "edge_table_matches": true
+    }
+  ],
+  "stop_counts": [
+    1,
+    1,
+    1,
+    0
+  ],
+  "stop_high_cycles": 500,
+  "first_corresponding_edges_skew_cycles": 0,
+  "duration_cycles": 50000000,
+  "guard_cycles": 1002,
+  "slot_period_quotient": 403217,
+  "slot_period_remainder": 90,
+  "gp_snapshot_counts_positions_end": {
+    "1": [
+      [
+        -1089,
+        -966,
+        -1213
+      ],
+      [
+        1,
+        124,
+        123
+      ],
+      1
+    ],
+    "2": [
+      [
+        -1090,
+        -1090,
+        -1090
+      ],
+      [
+        2,
+        248,
+        246
+      ],
+      2
+    ],
+    "3": [
+      [
+        -1089,
+        -1089,
+        -1091
+      ],
+      [
+        3,
+        249,
+        247
+      ],
+      2
+    ]
+  },
+  "minimum_observed_gpio_guards_cycles": {
+    "dir_setup_cycles": 1002,
+    "en_setup_cycles": 1996,
+    "dir_hold_cycles": 404524,
+    "en_disable_cycles": 1721
+  },
+  "final_en": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "reference": "RTL logical output only; GPIO/driver electrical waveform not measured",
+  "observed_csv_sha256": "1445589eaffba1673fd4562b88f231c864af1a35ce02394ceb2e78f75880dde6",
+  "vcd_sha256": "15ebef0a200ef36a68362a14a1b4a69f9b46b87841ee0c0edc392e2d66de6772"
+}

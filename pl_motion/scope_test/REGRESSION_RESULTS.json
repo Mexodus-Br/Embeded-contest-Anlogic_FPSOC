@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "command": "pl_interface/generate.py --check",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_interface_generate.py.log",
+      "sha256": "e3a10e14f924430b4f90e28e5bca1b5ab5e4d978450c970166808c1ada2ff1e5"
+    },
+    {
+      "command": "pl_dma/generate_motion.py --check",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_dma_generate_motion.py.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "pl_motion/generate_scope.py --check",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_motion_generate_scope.py.log",
+      "sha256": "f64298c5d7c8e2273f0224bfa3550ca902c8e28bb43f5f41f083fb89b8473ccc"
+    },
+    {
+      "command": "pl_interface/tests/test_interface.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_interface_tests_test_interface.py.log",
+      "sha256": "76a2e7fd27eb781b0a29e1906a44b86e78a50341a981369492d824e72c405f07"
+    },
+    {
+      "command": "pl_interface/tests/check_verilog.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_interface_tests_check_verilog.py.log",
+      "sha256": "4a1c98b62813fce1922c1b702e243f505f278909616b0798e50f5e3dd6a8f04e"
+    },
+    {
+      "command": "pl_interface/tests/test_motion_v2.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_interface_tests_test_motion_v2.py.log",
+      "sha256": "231723deef2a0b09547cb0e8428e065e8993964532323ce7413de74478073b6b"
+    },
+    {
+      "command": "pl_motion/tests/run_sim.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_motion_tests_run_sim.py.log",
+      "sha256": "f0482a35a475dbd713a3d0a94c5abd89214b99aa947f9c51e7cff8a424f06ce2"
+    },
+    {
+      "command": "pl_motion/tests/run_four_axis.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_motion_tests_run_four_axis.py.log",
+      "sha256": "1895413b68c0f11fcad3a5a46a95056e6abace3f4d0ad1254b070e850218bfd8"
+    },
+    {
+      "command": "pl_motion/tests/run_continuous.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_motion_tests_run_continuous.py.log",
+      "sha256": "7473df13805b983aa5f00329742cf8ea5e86b506c857d54f0e1659a44edd1878"
+    },
+    {
+      "command": "golden_model/tests/test_regression.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/golden_model_tests_test_regression.py.log",
+      "sha256": "93b8f77d397c3fdae0be0d4ffd00324fe76bda0cfdc9dec476547b6ca7984fb1"
+    },
+    {
+      "command": "pl_dma/tests/run_components.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_dma_tests_run_components.py.log",
+      "sha256": "eaee1712fc3a499a1ab26a9536992295d4396c59a2ca5de7335accb98253db1a"
+    },
+    {
+      "command": "pl_dma/tests/test_contract.py",
+      "status": "PASS",
+      "log": "pl_motion/build/gpio_regressions/pl_dma_tests_test_contract.py.log",
+      "sha256": "4c5494dbb822288ebb3c8105660ef48e34918e4e5671bfd3711f5eb2e50ddf32"
+    },
+    {
+      "command": "pl_motion/tests/run_gp.py",
+      "status": "PASS",
+      "log": "pl_motion\\build\\gpio_regressions\\pl_motion_tests_run_gp.py.log",
+      "sha256": "3723d49bd60b0771bc2c00c7d3dab12bb2030f4903f3f3b17bd2074e4de5d6cf"
+    },
+    {
+      "command": "pl_motion/tests/run_motion_integration.py",
+      "status": "PASS",
+      "log": "pl_motion\\build\\gpio_regressions\\pl_motion_tests_run_motion_integration.py.log",
+      "sha256": "5da9970c3fc69018d51fde3f79d72447c5e4a37d432a84a96b8a27136093ceed"
+    },
+    {
+      "command": "pl_dma/tests/run_sim.py",
+      "status": "PASS",
+      "log": "pl_motion\\build\\gpio_regressions\\pl_dma_tests_run_sim.py.log",
+      "sha256": "54f482a230adc0d703eb333ffbdc322d44a5afdf1c32df8453c8470629abf38c"
+    },
+    {
+      "command": "pl_dma/tests/run_sim.py --shared",
+      "status": "PASS",
+      "log": "pl_motion\\build\\gpio_regressions\\pl_dma_tests_run_sim.py.shared.log",
+      "sha256": "47d55b67e3292a7df0eb57ac978f712271c54fb08cc3a13695ad04586ff17988"
+    },
+    {
+      "command": "pl_dma/tests/run_motion.py",
+      "status": "PASS",
+      "log": "pl_motion\\build\\gpio_regressions\\pl_dma_tests_run_motion.py.log",
+      "sha256": "fab6bf1e5ce16b3d894b5bd7c40bd5e50b48e6700ae905b4bab752475e703b9d"
+    }
+  ],
+  "original_tracked_json_evidence_preserved": true
+}

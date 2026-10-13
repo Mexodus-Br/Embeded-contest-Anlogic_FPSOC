@@ -1,0 +1,111 @@
+{
+  "status": "PASS_WITH_REVIEWED_REMAINING_DIAGNOSTICS",
+  "package": "DR1M90GEG400",
+  "reference_speed": 2,
+  "physical_speed_confirmed": false,
+  "pads": {
+    "a0_step": {
+      "j12_pin": 3,
+      "ball": "Y12",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    },
+    "a0_dir": {
+      "j12_pin": 4,
+      "ball": "Y13",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    },
+    "a0_en": {
+      "j12_pin": 5,
+      "ball": "T9",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    },
+    "a1_step": {
+      "j12_pin": 6,
+      "ball": "U10",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    },
+    "a1_dir": {
+      "j12_pin": 7,
+      "ball": "T5",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    },
+    "a1_en": {
+      "j12_pin": 8,
+      "ball": "U5",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    },
+    "a2_step": {
+      "j12_pin": 9,
+      "ball": "V6",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    },
+    "a2_dir": {
+      "j12_pin": 10,
+      "ball": "W6",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    },
+    "a2_en": {
+      "j12_pin": 11,
+      "ball": "U7",
+      "standard": "LVCMOS33",
+      "drive_ma": 8,
+      "pull": "NONE",
+      "native_pack": "OREG"
+    }
+  },
+  "native_pad_count": 10,
+  "clock_mhz": {
+    "board_100m": 100,
+    "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0": 100,
+    "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S": 100
+  },
+  "coverage_percent": 99.99,
+  "route_setup_wns_ns": 0.031,
+  "route_hold_wns_ns": 0.021,
+  "output_constraint": "nine asynchronous scope outputs only: datapath-only max20ns; internal clock10ns; no clocked external receiver signoff",
+  "exceptions_total_dominated_shadowed_ignored": [
+    9,
+    9,
+    0,
+    0
+  ],
+  "remaining_dummy_categories": [
+    "vendor ERAM unused reset pins",
+    "motion planner unused mapped slice OFB"
+  ],
+  "native_drc_notes": "SLATR-1036/1038 on two mapped plan_fifo RAM slices retained in run.log; final route checker completed without error/critical warning",
+  "reset_review": "PS p2f_rst0_n to unchanged synchronized control reset; default/active RTL reset states checked by scope benches; physical configuration window unmeasured",
+  "reports_sha256": {
+    "route.area": "df62e84065c6a9e7bdba39dd694a9cd918f1c44b2b19d553fa6869db919382ab",
+    "route.timing": "d103f8017ab81895f1fb31b1658521b42fc6d390507a9a5ba7561fe7b3cd43f4",
+    "route.check": "5f958373c911eacacddec4047b7a005c215dd90478ddcce35ab04632acf6044e",
+    "run.log": "bbe15e757ab66d846b042120f8d47c11b13b97ee495b05e93b5d9cf8df85e47e",
+    "clock.adc": "407403e2c086383b924c7ba8ce8fee5a783cf00a269f9cce2f1d7df501718384",
+    "clock.sdc": "b4270ffa31affabdc07f410a0a3159933f38378377077600f544612c95352840",
+    "top.v": "cad66cb9aedf931b4e13df7bd07986a481f9bbce52560743aee80d143a9b372f"
+  }
+}

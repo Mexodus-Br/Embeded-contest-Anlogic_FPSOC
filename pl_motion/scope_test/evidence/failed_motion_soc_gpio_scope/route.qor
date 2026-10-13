@@ -1,0 +1,48 @@
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |        -1342                |
+|     Setup TNS             |        -8052                |
+|     Num of violated S-EP  |            9                |
+|     Hold WNS              |           20                |
+|     Hold TNS              |            0                |
+|     Num of violated H-EP  |            0                |
+-----------------------------------------------------------
+| Routing Resource          |                             |
+|     Wire length           |      4611120                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #slices               |        15296                |
+|     slices percentage     |       29.15%                |
+|     #RAMs                 |           16                |
+|     #DSPs                 |            4                |
+|     #DRAMHARDCON          |          108                |
+-----------------------------------------------------------
+Report route stage QoR done.
+
+QoR Evaluation
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ID        |  Priority  |  Description                                                     |  Suggestion
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+  QOR-1301  |  HIGH      |  - Route SWNS -1342ps smaller than 0, do not meet timing.        |  - Try following method to drive timing meet:
+            |            |                                                                  |      set_param route post_route_opt high
+            |            |                                                                  |      set_param route postrt_opt_extra_round 4
+            |            |                                                                  |  
+  QOR-2303  |  HIGH      |  - Critical path has large IP input delay 1.38ns on launch cloc  |  - To balance clock latency roughly at place, please add latenc
+            |            |    k ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0, which may blo  |    y for clock:
+            |            |    ck SWNS improvement.                                          |      set_clock_latency -clock [get_clocks {board_100m}] -min -m
+            |            |                                                                  |    ax 1
+            |            |                                                                  |  
+  QOR-2502  |  MEDIUM    |  - Large cell delay percentage 67% on critical path              |  - Routing delay is smaller enough, check following items:
+            |            |                                                                  |    Check design and try to reduce number of macro cell on criti
+            |            |                                                                  |    cal path.
+            |            |                                                                  |    Check design and try to reduce logic level on this clock gro
+            |            |                                                                  |    up.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Note* (*) means this parameter has been set already.
+      (+) means this parameter has been set, suggest to upgrade higher effort level.
+Note** plesae resolve priority MUST FIX and HIGH issues firstly
+       because these have highly possible to block the timing convergence even stop the flow.
+Note*** some suggested settings are not suitable to use together
+        take care of using them separately if suggestion mentioned.
