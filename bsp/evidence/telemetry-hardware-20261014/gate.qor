@@ -1,0 +1,86 @@
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |        -1739                |
+|     Setup TNS             |     -2440321                |
+|     Num of violated S-EP  |         3140                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #registers            |        48328                |
+|     #luts                 |        29089                |
+|     #lut1                 |           60                |
+|     #lut1(~A)             |           60                |
+|     #slices               |        10679                |
+|     slices percentage     |       20.35%                |
+|     #RAMs                 |           34                |
+|     #DSPs                 |           15                |
+|     #f7mux                |        0.97%                |
+|     #MACROs               |          687                |
+|     #insts in MACRO       |        11215                |
+-----------------------------------------------------------
+| kept_net                  |                             |
+|     #syn_keep             |            0                |
+|     #keep_hier            |         1130                |
+|     #dont_touch           |            0                |
+|     #mark_debug           |            0                |
+|     #max_fanout_keep      |            0                |
+|     #async_reg            |            0                |
+-----------------------------------------------------------
+| Top 1% datanet fanout#    |        74.61                |
+| dff(single fanout)->dff   |         9083                |
+| dff(single fanout)->dram  |          165                |
+-----------------------------------------------------------
+| Over-quota path num*      |                             |
+|     Total Number          |            0                |
+|     Total Level Slack     |            0                |
+|     Worst Level Slack     |            0                |
+-----------------------------------------------------------
+| Rent**                    |                             |
+-----------------------------------------------------------
+Note*: Over-quota path shows the over-path-level-threshold path number of each clock.
+       The clock will not be shown if no path is with path level over the threshold.
+       The threshold is defined as worst path_margin / 800ps.
+Note**: Rent shows the rent exponent value of the modules whose rent value exceeds the threshold.
+        Only modules under top are reported, and the threshold is defined as 0.7.
+
+Logic Level Distribution
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Clock                                                 |  Period             |  0      |  1     |  2      |  3     |  4      |  5     |  6      |  7     |  8     |  9    |  10    |  11    |  12
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  board_100m                                            |  10.000ns (100MHz)  |  28314  |  4812  |  10669  |  4091  |  14939  |  5027  |  13693  |  7996  |  3183  |  119  |  3855  |  2466  |  486
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S          |  10.000ns (100MHz)  |  63     |  3     |  0      |  0     |  0      |  0     |  0      |  0     |  0     |  0    |  0     |  0     |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0           |  10.000ns (100MHz)  |  84     |  77    |  0      |  2     |  0      |  1     |  0      |  0     |  0     |  0    |  0     |  0     |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1           |  10.000ns (100MHz)  |  78     |  40    |  0      |  2     |  0      |  0     |  0      |  0     |  0     |  0    |  0     |  0     |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_aclk  |  10.000ns (100MHz)  |  0      |  0     |  0      |  0     |  0      |  0     |  0      |  0     |  0     |  0    |  0     |  0     |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_aclk   |  10.000ns (100MHz)  |  0      |  0     |  0      |  0     |  0      |  0     |  0      |  0     |  0     |  0    |  0     |  0     |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_aclk   |  10.000ns (100MHz)  |  0      |  0     |  0      |  0     |  0      |  0     |  0      |  0     |  0     |  0    |  0     |  0     |  0
+  Total                                                 |  NA                 |  28539  |  4932  |  10669  |  4095  |  14939  |  5028  |  13693  |  7996  |  3183  |  119  |  3855  |  2466  |  486
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hierarchical Rent Exponent Report
++--------------------------------------------------------------------+
+|Inst      |Model             |Rent     |Cell     |Pin     |Term     |
++--------------------------------------------------------------------+
+|top       |system_wrapper    |0.08     |89810    |455177  |13       |
+|  control |rs485_gp_ps_top_1 |0.45     |89683    |453863  |866      |
++--------------------------------------------------------------------+
+Note: Cell represents total number of cells inside module; Pin represents total number of pins
+      which have net connection inside module; Term represents total number of PIs and POs of module.
+      Rent represents the relationship between number of terms and number of cells in module.
+      A module with higher rent corresponds to highly connected logic and strong connectivity with others.
+Report gate stage QoR done.
+
+QoR Evaluation
+-------------------------------------------------------------------------------------------------------------------------------------------
+  ID        |  Priority  |  Description                                                  |  Suggestion
+-------------------------------------------------------------------------------------------------------------------------------------------
+  QOR-1001  |  LOW       |  - Gate timing is too bad, SWNS -1739ps and STNS -2440321ps.  |  - Try following setting to improve timing:
+            |            |                                                               |      set_param gate map_mode logic_level_prior
+            |            |                                                               |      set_param gate map_strategy 2
+-------------------------------------------------------------------------------------------------------------------------------------------
+Note* (*) means this parameter has been set already.
+      (+) means this parameter has been set, suggest to upgrade higher effort level.
+Note** plesae resolve priority MUST FIX and HIGH issues firstly
+       because these have highly possible to block the timing convergence even stop the flow.
+Note*** some suggested settings are not suitable to use together
+        take care of using them separately if suggestion mentioned.

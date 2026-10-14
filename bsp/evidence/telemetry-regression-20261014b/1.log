@@ -1,0 +1,15 @@
+PASS pl_interface/generate.py --check
+PASS pl_interface/tests/test_interface.py
+PASS pl_interface/tests/check_verilog.py
+PASS pl_interface/tests/test_motion_v2.py
+PASS pl_motion/tests/run_sim.py
+PASS pl_motion/tests/run_four_axis.py
+PASS pl_motion/tests/run_continuous.py
+PASS golden_model/tests/test_regression.py
+PASS pl_dma/tests/test_contract.py
+PASS pl_motion/tests/run_gp.py
+PASS pl_motion/tests/run_motion_integration.py
+PASS pl_dma/tests/run_components.py
+PASS pl_dma/tests/run_sim.py
+PASS pl_dma/tests/run_sim.py --shared
+PASS pl_dma/tests/run_motion.py

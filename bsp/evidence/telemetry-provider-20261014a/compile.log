@@ -1,0 +1,100 @@
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:79:9: error: 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK' redefined [-Werror]
+   79 | #define ANLOGIC_DMA_DMASR_ALL_ERR_MASK  \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:25:9: note: this is the location of the previous definition
+   25 | #define ANLOGIC_DMA_DMASR_ALL_ERR_MASK 0x8ff0
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:82:1: error: expected identifier or '(' before '{' token
+   82 | {
+      | ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:80:1: error: stray '#' in program
+   80 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK      \
+      | ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:121:39: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK'
+  121 |                 u32 errors = status & ANLOGIC_DMA_DMASR_ALL_ERR_MASK;
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c: In function 'bsp_telem_dma_result':
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:43:28: error: initialization of 'struct anlogic_dma_chan *' from incompatible pointer type 'struct anlogic_dma_chan **' [-Wincompatible-pointer-types]
+   43 | #define to_anlogic_chan(p) (&c)
+      |                            ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:163:29: note: in expansion of macro 'to_anlogic_chan'
+  163 |  struct anlogic_dma_chan *c=to_anlogic_chan(rx);unsigned long flags;int ret=0;
+      |                             ^~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c: In function 'bsp_telem_dma_exact':
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:80:1: error: stray '#' in program
+   80 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK      \
+      | ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:176:21: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK'
+  176 |     (out->status & (ANLOGIC_DMA_DMASR_ALL_ERR_MASK|ANLOGIC_DMA_DMASR_ERR_IRQ)) ||
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:80:2: error: 'define' undeclared (first use in this function)
+   80 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK      \
+      |  ^~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:176:21: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK'
+  176 |     (out->status & (ANLOGIC_DMA_DMASR_ALL_ERR_MASK|ANLOGIC_DMA_DMASR_ERR_IRQ)) ||
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:80:2: note: each undeclared identifier is reported only once for each function it appears in
+   80 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK      \
+      |  ^~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:176:21: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK'
+  176 |     (out->status & (ANLOGIC_DMA_DMASR_ALL_ERR_MASK|ANLOGIC_DMA_DMASR_ERR_IRQ)) ||
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:26:44: error: expected ')' before numeric constant
+   26 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK 0x8900
+      |                                            ^~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:80:9: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK'
+   80 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK      \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:176:21: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK'
+  176 |     (out->status & (ANLOGIC_DMA_DMASR_ALL_ERR_MASK|ANLOGIC_DMA_DMASR_ERR_IRQ)) ||
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:176:20: note: to match this '('
+  176 |     (out->status & (ANLOGIC_DMA_DMASR_ALL_ERR_MASK|ANLOGIC_DMA_DMASR_ERR_IRQ)) ||
+      |                    ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c: In function 'bsp_telem_dma_retire':
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:43:28: error: initialization of 'struct anlogic_dma_chan *' from incompatible pointer type 'struct anlogic_dma_chan **' [-Wincompatible-pointer-types]
+   43 | #define to_anlogic_chan(p) (&c)
+      |                            ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:183:29: note: in expansion of macro 'to_anlogic_chan'
+  183 |  struct anlogic_dma_chan *c=to_anlogic_chan(rx);unsigned long flags;int ret=0;
+      |                             ^~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c: In function 'bsp_telem_dma_quiescent':
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:43:28: error: initialization of 'struct anlogic_dma_chan *' from incompatible pointer type 'struct anlogic_dma_chan **' [-Wincompatible-pointer-types]
+   43 | #define to_anlogic_chan(p) (&c)
+      |                            ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:194:29: note: in expansion of macro 'to_anlogic_chan'
+  194 |  struct anlogic_dma_chan *c=to_anlogic_chan(rx);unsigned long flags;u32 sr,cr;int i;
+      |                             ^~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:80:1: error: stray '#' in program
+   80 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK      \
+      | ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:199:48: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK'
+  199 |   if(!(sr & ANLOGIC_DMA_DMASR_HALTED) || (sr & ANLOGIC_DMA_DMASR_ALL_ERR_MASK) || (cr & (ANLOGIC_DMA_DMACR_RUNSTOP|ANLOGIC_DMA_DMACR_RESET))) return -EBUSY;
+      |                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:80:2: error: 'define' undeclared (first use in this function)
+   80 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK      \
+      |  ^~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:199:48: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK'
+  199 |   if(!(sr & ANLOGIC_DMA_DMASR_HALTED) || (sr & ANLOGIC_DMA_DMASR_ALL_ERR_MASK) || (cr & (ANLOGIC_DMA_DMACR_RUNSTOP|ANLOGIC_DMA_DMACR_RESET))) return -EBUSY;
+      |                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:26:44: error: expected ')' before numeric constant
+   26 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK 0x8900
+      |                                            ^~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:80:9: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK'
+   80 | #define ANLOGIC_DMA_DMASR_ERR_RECOVER_MASK      \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:199:48: note: in expansion of macro 'ANLOGIC_DMA_DMASR_ALL_ERR_MASK'
+  199 |   if(!(sr & ANLOGIC_DMA_DMASR_HALTED) || (sr & ANLOGIC_DMA_DMASR_ALL_ERR_MASK) || (cr & (ANLOGIC_DMA_DMACR_RUNSTOP|ANLOGIC_DMA_DMACR_RESET))) return -EBUSY;
+      |                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:199:42: note: to match this '('
+  199 |   if(!(sr & ANLOGIC_DMA_DMASR_HALTED) || (sr & ANLOGIC_DMA_DMASR_ALL_ERR_MASK) || (cr & (ANLOGIC_DMA_DMACR_RUNSTOP|ANLOGIC_DMA_DMACR_RESET))) return -EBUSY;
+      |                                          ^
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c: In function 'one':
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:222:2: error: implicit declaration of function 'anlogic_dma_irq_handler' [-Wimplicit-function-declaration]
+  222 |  anlogic_dma_irq_handler(1,&c);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c: At top level:
+D:\Works\Embedded_contest\dev\bsp\evidence\telemetry-provider-20261014a\harness.c:57:13: error: 'tasklet_schedule' defined but not used [-Werror=unused-function]
+   57 | static void tasklet_schedule(int *p){(void)p;}
+      |             ^~~~~~~~~~~~~~~~
+cc1.exe: all warnings being treated as errors

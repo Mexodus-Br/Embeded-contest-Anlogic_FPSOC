@@ -1,0 +1,25 @@
+SEED 20261013
+PASS multi-address all five queries, checksum and endian
+PASS all 31 masks, zero pause, in-flight query stable
+PASS fault mode 1
+PASS fault mode 2
+PASS fault mode 3
+PASS fault mode 4
+PASS fault mode 5
+PASS fault mode 6
+PASS fault mode 7
+PASS bounded dead-slave progress and TX echo
+PASS FIFO full whole-record drop and drain
+PASS reset interruption and continuously noisy bus bounded skip
+PASS seeded fault regression and independent continuous STP edges=71764
+PASS rs485
+D:\Works\Embedded_contest\dev\pl_rs485\tests\tb_rs485.v:191: $finish called at 12200020000 (1ps)
+PROFILE DE pre-to-release cycles=28046 stop-to-release=1002
+PROFILE request interval cycles=1099062 us=10990.62
+PROFILE DE pre-to-release cycles=28046 stop-to-release=1002
+PROFILE request interval cycles=1099062 us=10990.62
+PROFILE DE pre-to-release cycles=28046 stop-to-release=1002
+PASS profile 100MHz 115200 8N1, three nodes encoder, timestamps, DE full stop
+D:\Works\Embedded_contest\dev\pl_rs485\tests\tb_profile.v:49: $finish called at 32971935000 (1ps)
+PASS FIFO atomic full exchange, nonpower2 wrap, saturation
+D:\Works\Embedded_contest\dev\pl_rs485\tests\tb_fifo.v:23: $finish called at 130000 (1ps)

@@ -20,3 +20,7 @@ scope/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 scripts/board_scope_*.sh -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evidence/scope-* -text
 evidence/scope-*/** -text
+# Independent HP1 integration keeps its exact source/evidence identities.
+telemetry/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evidence/telemetry-* -text
+evidence/telemetry-*/** -text

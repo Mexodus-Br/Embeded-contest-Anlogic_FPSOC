@@ -86,3 +86,12 @@ GP VERSION1/CAPSf/FEATURES7/TICK_HZ1MHz，41项检查通过。DMA simple/32bit m
 用户明确选择完全自行操作 GPIO 实测，因此本轮没有 init/ENABLE/坐标 MM2S/START，动态运动、实体 GPIO 示波器及在途 STOP 未执行，不套用以前内部工程或仿真通过结论。操作与采集方法见 scope/SCOPE_MANUAL.md，实测模板保留未验证。
 
 检查结束执行空闲 STOP、DISABLE、RELEASE，运动 client 已卸载、buffer 释放、双方 DMA HALTED 且无所有者；GP/provider 加载引用0，无活动传输，COM4 关闭。eMMC/QSPI 未写。
+
+
+## 2026-10-14 完整 GPIO/RS485/独立 HP1 BSP 集成候选
+
+完整实际顶层综合/布局/布线完成：LUT6 32720（62.35%）、Slice44346（84.50%）、Slice寄存器48872（46.56%）+PAD9、ERAM34、DSP15、IO13；100MHz route setup +0.104ns/hold +0.021ns，参考speed2。资源/层级/时序、冻结身份、新软件、DT预览及失败原始证据见telemetry/RESOURCE_REPORT.md、BUILD_STATUS.md、DELIVERY.json。
+
+受保护S2MM-only IP的SYN-5066在实际GPIO顶层复现且未关闭；RS485 IO缺input_delay1/output_delay2，故硬件signoff=false。没有新bit/HPF/FSBL/BOOT/SD发布或烧录，本候选SD读回、冷启动、Linux IRQ/独立RX/取消/DDR静止、实体有效反馈、并发补给压力均NOT_EXECUTED。不能套用以前scope/内部运动板测作为该候选通过。
+
+用户确认板载RS485按硬件手册；从机型号/地址待定，菊花链末端120Ω，完整拓扑仍待核对。没有打开COM4或发GPIO REBASE/ENABLE/START，没有自动复位或接管用户板卡；新模块仅匹配ARM内核编译，实体DMA buffer未分配。当前用户板上旧状态没有读取，故不宣称当前整板静止。eMMC/QSPI未写。

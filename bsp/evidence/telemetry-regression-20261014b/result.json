@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "test": "same multirate vectors/markers",
+      "status": "PASS",
+      "host_timeout_seconds": 900
+    },
+    {
+      "test": "pl_rs485/tests/run_sim.py --tag bsp20261014b --seed 20261013",
+      "exit": 0
+    },
+    {
+      "test": "pl_dma/tests/run_telemetry_regressions.py --tag bsp20261014b",
+      "exit": 0
+    }
+  ],
+  "sealed_raw_evidence_restored": true,
+  "prior_180s_timeout": "retained; host runtime budget only changed"
+}

@@ -1,0 +1,39 @@
+make: Entering directory '/home/uisrc/embedded-bsp/output/kernel'
+  CC [M]  /home/uisrc/embedded-bsp-integrated/bsp/telemetry/provider/anlogic_dma.o
+  CC [M]  /home/uisrc/embedded-bsp-integrated/bsp/telemetry/provider/axi-dma.o
+  LD [M]  /home/uisrc/embedded-bsp-integrated/bsp/telemetry/provider/anlogic-dma-engine.o
+  MODPOST /home/uisrc/embedded-bsp-integrated/bsp/telemetry/provider/Module.symvers
+  CC [M]  /home/uisrc/embedded-bsp-integrated/bsp/telemetry/provider/anlogic-dma-engine.mod.o
+  LD [M]  /home/uisrc/embedded-bsp-integrated/bsp/telemetry/provider/anlogic-dma-engine.ko
+make: Leaving directory '/home/uisrc/embedded-bsp/output/kernel'
+make: Entering directory '/home/uisrc/embedded-bsp/output/kernel'
+  CC [M]  /home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.o
+/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.c: In function ‘close_owner’:
+/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.c:210:2: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+  if(!ret)m->opened=false;return ret;
+  ^~
+/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.c:210:26: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  if(!ret)m->opened=false;return ret;
+                          ^~~~~~
+In file included from /home/uisrc/embedded-bsp/vendor/sources/linux/include/linux/device.h:32:0,
+                 from /home/uisrc/embedded-bsp/vendor/sources/linux/include/linux/platform_device.h:13,
+                 from /home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.c:4:
+/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.c: At top level:
+/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.c:250:24: error: conflicting types for ‘driver_init’
+ module_platform_driver(driver);
+                        ^
+/home/uisrc/embedded-bsp/vendor/sources/linux/include/linux/device/driver.h:263:19: note: in definition of macro ‘module_driver’
+ static int __init __driver##_init(void) \
+                   ^~~~~~~~
+/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.c:250:1: note: in expansion of macro ‘module_platform_driver’
+ module_platform_driver(driver);
+ ^~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp/vendor/sources/linux/include/linux/device/driver.h:246:6: note: previous declaration of ‘driver_init’ was here
+ void driver_init(void);
+      ^~~~~~~~~~~
+cc1: all warnings being treated as errors
+/home/uisrc/embedded-bsp/vendor/sources/linux/scripts/Makefile.build:250: recipe for target '/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.o' failed
+make[1]: *** [/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client/bsp_rs485.o] Error 1
+/home/uisrc/embedded-bsp/vendor/sources/linux/Makefile:2009: recipe for target '/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client' failed
+make: *** [/home/uisrc/embedded-bsp-integrated/bsp/telemetry/client] Error 2
+make: Leaving directory '/home/uisrc/embedded-bsp/output/kernel'

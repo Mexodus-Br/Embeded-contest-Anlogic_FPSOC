@@ -13,10 +13,12 @@
 - Golden：宿主回归通过，ARM实板1272向量（826有效/446预期无效）与宿主/原源码oracle完全相等；见 bsp/scope/BUILD_STATUS.md。
 - 独立DMA：444场景含受控取消恢复通过；内部四轴运动上板通过，普通调度长轨迹负载复测欠流，FIFO50有限测试102432点通过，不能当Linux最坏调度界；见 bsp/BOARD_VALIDATION.md。
 - GPIO/坐标：源码 df17b4e、交接1ae5ce1、BSP/ARM程序db5f75c；镜像读回/冷启动通过，根8aea5f8d-02。用户选择手动操作；坐标实际下发、在途STOP和示波器证据尚未登记。不能以构建或模型通过代替GPIO实测。
-- RS485：多速率采集2792c66及GP访问桥7a0d479已独立验证；候选0x80700000/4KiB、IRQ4/SPI86，未系统集成/上板，GP第四路路由和Linux驱动仍需接入；见 pl_rs485/RS485_GP_HANDOFF.md。
-- 下一项RS485开发方向：采集出口轻量字段解析、每(节点,查询)最新值缓存，以及FIFO/AXI-Stream/S2MM直接写DDR的遥测通路。此处仅记录下一任务范围；DMA controller共享/独立、GP与DMA消费权、记录元数据、批量/TLAST/刷新/丢弃/复位契约须先确认。现有共享DMA复位可能取消运动会话，不能声称遥测恢复与运动天然隔离；已有32B采集记录和GP profile不能静默改版。
+- RS485：f447116 已交付多速率/GP、轻量解析、15组最新值cache、64B CRC封装、FIFO256/批量16/包槽空闲10ms形成包及独立S2MM-only/HP1；独立局部恢复与不影响运动契约已接受，不再把共享/独立controller列为待选择。冻结旧GP32B与MOT2数值保持；见RS485_DMA_HANDOFF.md及DMA_INDEPENDENT_ADDENDUM.md。
+- 实际BSP整合：本轮独立 telemetry_soc_prj 保留原GP/HP0运动、J12九根真实GPIO和手册RS485 L17/N16/N15，新增HP1和六窗口路由；554项原PS参数及DDR/存储/属性保持，只启用HP1/64bit。完整route LUT6 32720/52480（62.35%）、Slice44346/52480（84.50%）、Slice寄存器48872/104960（46.56%）+PAD9、ERAM34/280、DSP15/240，setup+0.104ns/hold+0.021ns，参考speed2。见bsp/telemetry/RESOURCE_REPORT.md。
+- 发布门禁：新受保护S2MM-only IP在实际GPIO顶层再次报SYN-5066内部多驱动优化，未修改/屏蔽IP；RS485外部IO delay仍未资格确认。timing_pass=true但signoff_pass=false，不生成/烧录候选bit/HPF/FSBL/BOOT/SD。新Linux owner/provider和ARM验收程序已匹配内核编译，长度IRQ锁存/软件65项、六路A33所有权391项、真实IP2251项、双controller约2304万项及受影响回归通过；Linux实板接收/取消/DDR静止与并发供给未执行，未取得在途RX静止保证时buffer保留/quarantine。见bsp/telemetry/BUILD_STATUS.md和IP_DIAGNOSTIC.md。
+- 实体条件：用户确认板载RS485按硬件手册；从机型号/地址待定，末端从机将带120Ω，控制板端点/完整电气拓扑仍待核对。GPIO由用户手动测量。本轮未打开COM4、自动复位或接管板卡，SD暂未接入；超时诊断运输不能当有效反馈。
 
-预算参考：四轴GP/DMA运动系统与RS485 GP独立工程相加约21038/52480 LUT6（40.1%）、25504/52480 slice（48.6%）、24615/104960寄存器（23.5%）、22/280 ERAM和5/240 DSP；不是整体集成报告。GPIO最终BSP setup余量+0.031ns，新增逻辑必须重跑全顶层时序。PL轻量解析保留原始量/有效性/时间戳，物理单位换算与机械标定由PS负责，驱动反馈不能当作命令位置。
+历史预算参考（非本轮实际完整资源）：四轴GP/DMA运动系统与RS485 GP独立工程相加约21038/52480 LUT6（40.1%）、25504/52480 slice（48.6%）、24615/104960寄存器（23.5%）、22/280 ERAM和5/240 DSP；不是整体集成报告。GPIO最终BSP setup余量+0.031ns，新增逻辑必须重跑全顶层时序。PL轻量解析保留原始量/有效性/时间戳，物理单位换算与机械标定由PS负责，驱动反馈不能当作命令位置。
 
 2026-10-12 GP实现补充：用户在BSP任务答复“授权PL任务继续实现”。冻结profile的GP寄存器与真实TD转换器独立/集成自检通过，实际PS端口A33/D32/ID12、无WID及SIZE2/LOCK1已核对，添加单笔AW–B/WLAST所有权适配并自检通过；最终PS封装参考speed2固定10ns OOC门级SWNS+3.013ns、route+3.533ns/hold+0.025ns；原单轴/四轴/连续与接口回归再次通过。完整结果及失败记录见 pl_motion/GP_VALIDATION.md，BSP接线/共同p2f_reset0建议见 GP_INTEGRATION.md；实际PS/HPF/DTS/FSBL、系统时序和板级仍待核验。冻结资源/行为不变、首轮无电机输出/DMA。
 

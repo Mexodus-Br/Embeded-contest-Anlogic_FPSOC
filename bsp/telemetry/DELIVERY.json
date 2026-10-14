@@ -1,0 +1,2136 @@
+{
+  "status": "BLOCKED_HARDWARE_SIGNOFF_NO_IMAGE_NO_DEPLOYMENT",
+  "frozen_source_commit": "f447116",
+  "gpio_source_commit": "df17b4ebd6e358d6626a227b5c0c152c1f6cb9ed",
+  "gpio_seal_commit": "1ae5ce1218e06ab8d2a9674d6fa760a1d98529a9",
+  "schema_sha256": "1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31",
+  "vendor_libraries": {
+    "dma": {
+      "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma.v",
+      "staged": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ip\\axi_dma.v",
+      "sha256": "24d6d6d4b741b497baf3b10ba50010e2df830b2a0681e16eb49ce84471011ef1"
+    },
+    "converter": {
+      "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\AXI_MM\\RTL\\axi_protocol_converter_merge.v",
+      "staged": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ip\\axi_protocol_converter_merge.v",
+      "sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61"
+    }
+  },
+  "ip_parameters": {
+    "AL_S_AXI_LITE_ADDR_WIDTH": 10,
+    "AL_S_AXI_LITE_DATA_WIDTH": 32,
+    "AL_DLYTMR_RESOLUTION": 125,
+    "AL_PRMRY_IS_ACLK_ASYNC": 0,
+    "AL_INCLUDE_SG": 0,
+    "AL_SG_INCLUDE_STSCNTRL_STRM": 0,
+    "AL_SG_USE_STSAPP_LENGTH": 0,
+    "AL_SG_LENGTH_WIDTH": 16,
+    "AL_M_AXI_SG_ADDR_WIDTH": 32,
+    "AL_M_AXI_SG_DATA_WIDTH": 32,
+    "AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH": 32,
+    "AL_S_AXIS_S2MM_STS_TDATA_WIDTH": 32,
+    "AL_INCLUDE_MM2S": 0,
+    "AL_INCLUDE_MM2S_SF": 1,
+    "AL_INCLUDE_MM2S_DRE": 1,
+    "AL_MM2S_BURST_SIZE": 16,
+    "AL_M_AXI_MM2S_ADDR_WIDTH": 32,
+    "AL_M_AXI_MM2S_DATA_WIDTH": 64,
+    "AL_M_AXIS_MM2S_TDATA_WIDTH": 64,
+    "AL_INCLUDE_S2MM": 1,
+    "AL_INCLUDE_S2MM_SF": 1,
+    "AL_INCLUDE_S2MM_DRE": 1,
+    "AL_S2MM_BURST_SIZE": 16,
+    "AL_M_AXI_S2MM_ADDR_WIDTH": 32,
+    "AL_M_AXI_S2MM_DATA_WIDTH": 64,
+    "AL_S_AXIS_S2MM_TDATA_WIDTH": 64,
+    "AL_MICRO_DMA": 0,
+    "AL_INCREASE_THROUGHPUT": 0,
+    "AL_S_AXI_LITE_ACLK_FREQ_HZ": 100000000,
+    "AL_M_AXI_MM2S_ACLK_FREQ_HZ": 100000000,
+    "AL_M_AXI_S2MM_ACLK_FREQ_HZ": 100000000,
+    "AL_M_AXI_SG_ACLK_FREQ_HZ": 100000000
+  },
+  "actual_hardware_review": {
+    "status": "FULL_ACTUAL_GPIO_TOP_RESOURCE_REVIEW",
+    "reference_speed": 2,
+    "real_device_speed": "UNCONFIRMED",
+    "clock_mhz": 100,
+    "stages": {
+      "gate": {
+        "setup_wns_ns": -1.739,
+        "hold_wns_ns": 0.0,
+        "coverage": "99.99%",
+        "corners": "Both (Slow and Fast)"
+      },
+      "place": {
+        "setup_wns_ns": 2.152,
+        "hold_wns_ns": 0.0,
+        "coverage": "99.99%",
+        "corners": "Both (Slow and Fast)"
+      },
+      "route": {
+        "setup_wns_ns": 0.104,
+        "hold_wns_ns": 0.021,
+        "coverage": "99.99%",
+        "corners": "Both (Slow and Fast)"
+      }
+    },
+    "resources": {
+      "lut6": {
+        "used": 32720,
+        "total": 52480,
+        "percent": 62.3476,
+        "remaining": 19760
+      },
+      "slice": {
+        "used": 44346,
+        "total": 52480,
+        "percent": 84.5008,
+        "remaining": 8134
+      },
+      "reg": {
+        "used": 48872,
+        "total": 104960,
+        "percent": 46.5625,
+        "remaining": 56088
+      },
+      "eram": {
+        "used": 34,
+        "total": 280,
+        "percent": 12.1429,
+        "remaining": 246
+      },
+      "dsp": {
+        "used": 15,
+        "total": 240,
+        "percent": 6.25,
+        "remaining": 225
+      },
+      "gclk": {
+        "used": 1,
+        "total": 32,
+        "percent": 3.125,
+        "remaining": 31
+      },
+      "sclk": {
+        "used": 6,
+        "total": 72,
+        "percent": 8.3333,
+        "remaining": 66
+      },
+      "pad": {
+        "used": 13,
+        "total": 126,
+        "percent": 10.3175,
+        "remaining": 113
+      }
+    },
+    "register_design_total_including_pad": 48881,
+    "pad_registers_separate": 9,
+    "hierarchy": [
+      {
+        "stage": "gate",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "dma_core",
+          "Module": "motion_dma_lite_top",
+          "logic lut": "6164",
+          "ripple": "4691",
+          "seq": "10569",
+          "eram": "16",
+          "dsp": "4",
+          "dram": "108",
+          "shifter": "0",
+          "f7mux": "50",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "gate",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "motion",
+          "Module": "motion_service",
+          "logic lut": "5150",
+          "ripple": "4462",
+          "seq": "8452",
+          "eram": "0",
+          "dsp": "4",
+          "dram": "108",
+          "shifter": "0",
+          "f7mux": "40",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "gate",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "registers",
+          "Module": "rs485_probe_time_regs",
+          "logic lut": "409",
+          "ripple": "34",
+          "seq": "552",
+          "eram": "0",
+          "dsp": "0",
+          "dram": "0",
+          "shifter": "0",
+          "f7mux": "0",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "gate",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "router",
+          "Module": "axi_lite_six_way",
+          "logic lut": "49",
+          "ripple": "0",
+          "seq": "113",
+          "eram": "0",
+          "dsp": "0",
+          "dram": "0",
+          "shifter": "0",
+          "f7mux": "0",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "gate",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "rs485",
+          "Module": "rs485_gp_bridge",
+          "logic lut": "5422",
+          "ripple": "1554",
+          "seq": "10144",
+          "eram": "6",
+          "dsp": "1",
+          "dram": "2",
+          "shifter": "0",
+          "f7mux": "0",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "gate",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "cache",
+          "Module": "rs485_latest_cache",
+          "logic lut": "1030",
+          "ripple": "1041",
+          "seq": "20834",
+          "eram": "0",
+          "dsp": "10",
+          "dram": "0",
+          "shifter": "0",
+          "f7mux": "0",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "gate",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "transport",
+          "Module": "rs485_telemetry",
+          "logic lut": "1338",
+          "ripple": "728",
+          "seq": "1185",
+          "eram": "0",
+          "dsp": "0",
+          "dram": "228",
+          "shifter": "0",
+          "f7mux": "7",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "gate",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "telemetry_dma",
+          "Module": "telemetry_dma_lite_top",
+          "logic lut": "992",
+          "ripple": "154",
+          "seq": "1685",
+          "eram": "12",
+          "dsp": "0",
+          "dram": "0",
+          "shifter": "0",
+          "f7mux": "10",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "route",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "dma_core",
+          "Module": "motion_dma_lite_top",
+          "logic lut": "6643",
+          "ripple": "3826",
+          "seq": "10669",
+          "eram": "16",
+          "dsp": "4",
+          "dram lut": "864",
+          "shifter lut": "0",
+          "f7mux": "50",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "route",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "motion",
+          "Module": "motion_service",
+          "logic lut": "5568",
+          "ripple": "3627",
+          "seq": "8512",
+          "eram": "0",
+          "dsp": "4",
+          "dram lut": "864",
+          "shifter lut": "0",
+          "f7mux": "40",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "route",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "registers",
+          "Module": "rs485_probe_time_regs",
+          "logic lut": "422",
+          "ripple": "0",
+          "seq": "588",
+          "eram": "0",
+          "dsp": "0",
+          "dram lut": "0",
+          "shifter lut": "0",
+          "f7mux": "0",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "route",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "router",
+          "Module": "axi_lite_six_way",
+          "logic lut": "129",
+          "ripple": "0",
+          "seq": "305",
+          "eram": "0",
+          "dsp": "0",
+          "dram lut": "0",
+          "shifter lut": "0",
+          "f7mux": "0",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "route",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "rs485",
+          "Module": "rs485_gp_bridge",
+          "logic lut": "5639",
+          "ripple": "1221",
+          "seq": "10186",
+          "eram": "6",
+          "dsp": "1",
+          "dram lut": "16",
+          "shifter lut": "0",
+          "f7mux": "0",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "route",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "cache",
+          "Module": "rs485_latest_cache",
+          "logic lut": "5392",
+          "ripple": "1024",
+          "seq": "21044",
+          "eram": "0",
+          "dsp": "10",
+          "dram lut": "0",
+          "shifter lut": "0",
+          "f7mux": "0",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "route",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "transport",
+          "Module": "rs485_telemetry",
+          "logic lut": "928",
+          "ripple": "573",
+          "seq": "1140",
+          "eram": "0",
+          "dsp": "0",
+          "dram lut": "1824",
+          "shifter lut": "0",
+          "f7mux": "7",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      },
+      {
+        "stage": "route",
+        "inclusive_child_resources_not_additive": {
+          "Instance": "telemetry_dma",
+          "Module": "telemetry_dma_lite_top",
+          "logic lut": "981",
+          "ripple": "135",
+          "seq": "1676",
+          "eram": "12",
+          "dsp": "0",
+          "dram lut": "0",
+          "shifter lut": "0",
+          "f7mux": "10",
+          "f8mux": "0",
+          "pll": "0",
+          "adc": "0",
+          "soc": "0"
+        }
+      }
+    ],
+    "critical_warnings": [
+      "SYN-5066 CRITICAL-WARNING: Disconnect the driver 'control/core/fabric/telemetry_dma/dma/vyjqtk/rucwti_i1' of the multi-driven net 'control/core/fabric/telemetry_dma/dma/vyjqtk/rucwti'"
+    ],
+    "check_timing": {
+      "no clock": [
+        0
+      ],
+      "clock definition": [
+        0
+      ],
+      "dummy node": [
+        2
+      ],
+      "no input delay": [
+        1
+      ],
+      "no output delay": [
+        2
+      ],
+      "invalid constraint": [
+        0
+      ],
+      "combinational loop": [
+        0
+      ]
+    },
+    "timing_pass": true,
+    "diagnostics_closed": false,
+    "signoff_pass": false,
+    "bitgen": "NOT_EXECUTED",
+    "hpf_boot_image": "NOT_GENERATED",
+    "clock_names": [
+      "board_100m",
+      "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S",
+      "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0",
+      "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1"
+    ],
+    "functional_retention": "nine real GPIO OREGs; complete cache hierarchy/snapshots; six live GP endpoints and both DMA controllers; source wiring + real-IP system differential tests",
+    "input_identity": {
+      "status": "SIX_WINDOW_GPIO_TELEMETRY_CONNECTED_NOT_YET_BUILT",
+      "source_commit": "f447116",
+      "schema_sha256": "1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31",
+      "ps_ports": {
+        "slave_hp0_axi_aclk": [
+          "input",
+          1
+        ],
+        "slave_hp0_axi_araddr": [
+          "input",
+          33
+        ],
+        "slave_hp0_axi_arburst": [
+          "input",
+          2
+        ],
+        "slave_hp0_axi_arcache": [
+          "input",
+          4
+        ],
+        "slave_hp0_axi_arid": [
+          "input",
+          6
+        ],
+        "slave_hp0_axi_arlen": [
+          "input",
+          4
+        ],
+        "slave_hp0_axi_arlock": [
+          "input",
+          1
+        ],
+        "slave_hp0_axi_arprot": [
+          "input",
+          3
+        ],
+        "slave_hp0_axi_arqos": [
+          "input",
+          4
+        ],
+        "slave_hp0_axi_arready": [
+          "output",
+          1
+        ],
+        "slave_hp0_axi_arsize": [
+          "input",
+          2
+        ],
+        "slave_hp0_axi_arvalid": [
+          "input",
+          1
+        ],
+        "slave_hp0_axi_awaddr": [
+          "input",
+          33
+        ],
+        "slave_hp0_axi_awburst": [
+          "input",
+          2
+        ],
+        "slave_hp0_axi_awcache": [
+          "input",
+          4
+        ],
+        "slave_hp0_axi_awid": [
+          "input",
+          6
+        ],
+        "slave_hp0_axi_awlen": [
+          "input",
+          4
+        ],
+        "slave_hp0_axi_awlock": [
+          "input",
+          1
+        ],
+        "slave_hp0_axi_awprot": [
+          "input",
+          3
+        ],
+        "slave_hp0_axi_awqos": [
+          "input",
+          4
+        ],
+        "slave_hp0_axi_awready": [
+          "output",
+          1
+        ],
+        "slave_hp0_axi_awsize": [
+          "input",
+          2
+        ],
+        "slave_hp0_axi_awvalid": [
+          "input",
+          1
+        ],
+        "slave_hp0_axi_bid": [
+          "output",
+          6
+        ],
+        "slave_hp0_axi_bready": [
+          "input",
+          1
+        ],
+        "slave_hp0_axi_bresp": [
+          "output",
+          2
+        ],
+        "slave_hp0_axi_bvalid": [
+          "output",
+          1
+        ],
+        "slave_hp0_axi_rdata": [
+          "output",
+          64
+        ],
+        "slave_hp0_axi_rid": [
+          "output",
+          6
+        ],
+        "slave_hp0_axi_rlast": [
+          "output",
+          1
+        ],
+        "slave_hp0_axi_rready": [
+          "input",
+          1
+        ],
+        "slave_hp0_axi_rresp": [
+          "output",
+          2
+        ],
+        "slave_hp0_axi_rvalid": [
+          "output",
+          1
+        ],
+        "slave_hp0_axi_wdata": [
+          "input",
+          64
+        ],
+        "slave_hp0_axi_wlast": [
+          "input",
+          1
+        ],
+        "slave_hp0_axi_wready": [
+          "output",
+          1
+        ],
+        "slave_hp0_axi_wstrb": [
+          "input",
+          8
+        ],
+        "slave_hp0_axi_wvalid": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_aclk": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_araddr": [
+          "input",
+          33
+        ],
+        "slave_hp1_axi_arburst": [
+          "input",
+          2
+        ],
+        "slave_hp1_axi_arcache": [
+          "input",
+          4
+        ],
+        "slave_hp1_axi_arid": [
+          "input",
+          6
+        ],
+        "slave_hp1_axi_arlen": [
+          "input",
+          4
+        ],
+        "slave_hp1_axi_arlock": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_arprot": [
+          "input",
+          3
+        ],
+        "slave_hp1_axi_arqos": [
+          "input",
+          4
+        ],
+        "slave_hp1_axi_arready": [
+          "output",
+          1
+        ],
+        "slave_hp1_axi_arsize": [
+          "input",
+          2
+        ],
+        "slave_hp1_axi_arvalid": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_awaddr": [
+          "input",
+          33
+        ],
+        "slave_hp1_axi_awburst": [
+          "input",
+          2
+        ],
+        "slave_hp1_axi_awcache": [
+          "input",
+          4
+        ],
+        "slave_hp1_axi_awid": [
+          "input",
+          6
+        ],
+        "slave_hp1_axi_awlen": [
+          "input",
+          4
+        ],
+        "slave_hp1_axi_awlock": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_awprot": [
+          "input",
+          3
+        ],
+        "slave_hp1_axi_awqos": [
+          "input",
+          4
+        ],
+        "slave_hp1_axi_awready": [
+          "output",
+          1
+        ],
+        "slave_hp1_axi_awsize": [
+          "input",
+          2
+        ],
+        "slave_hp1_axi_awvalid": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_bid": [
+          "output",
+          6
+        ],
+        "slave_hp1_axi_bready": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_bresp": [
+          "output",
+          2
+        ],
+        "slave_hp1_axi_bvalid": [
+          "output",
+          1
+        ],
+        "slave_hp1_axi_rdata": [
+          "output",
+          64
+        ],
+        "slave_hp1_axi_rid": [
+          "output",
+          6
+        ],
+        "slave_hp1_axi_rlast": [
+          "output",
+          1
+        ],
+        "slave_hp1_axi_rready": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_rresp": [
+          "output",
+          2
+        ],
+        "slave_hp1_axi_rvalid": [
+          "output",
+          1
+        ],
+        "slave_hp1_axi_wdata": [
+          "input",
+          64
+        ],
+        "slave_hp1_axi_wlast": [
+          "input",
+          1
+        ],
+        "slave_hp1_axi_wready": [
+          "output",
+          1
+        ],
+        "slave_hp1_axi_wstrb": [
+          "input",
+          8
+        ],
+        "slave_hp1_axi_wvalid": [
+          "input",
+          1
+        ],
+        "master_gp0_axi_aclk": [
+          "input",
+          1
+        ],
+        "master_gp0_axi_araddr": [
+          "output",
+          33
+        ],
+        "master_gp0_axi_arburst": [
+          "output",
+          2
+        ],
+        "master_gp0_axi_arcache": [
+          "output",
+          4
+        ],
+        "master_gp0_axi_arid": [
+          "output",
+          12
+        ],
+        "master_gp0_axi_arlen": [
+          "output",
+          4
+        ],
+        "master_gp0_axi_arlock": [
+          "output",
+          1
+        ],
+        "master_gp0_axi_arprot": [
+          "output",
+          3
+        ],
+        "master_gp0_axi_arready": [
+          "input",
+          1
+        ],
+        "master_gp0_axi_arsize": [
+          "output",
+          2
+        ],
+        "master_gp0_axi_arvalid": [
+          "output",
+          1
+        ],
+        "master_gp0_axi_awaddr": [
+          "output",
+          33
+        ],
+        "master_gp0_axi_awburst": [
+          "output",
+          2
+        ],
+        "master_gp0_axi_awcache": [
+          "output",
+          4
+        ],
+        "master_gp0_axi_awid": [
+          "output",
+          12
+        ],
+        "master_gp0_axi_awlen": [
+          "output",
+          4
+        ],
+        "master_gp0_axi_awlock": [
+          "output",
+          1
+        ],
+        "master_gp0_axi_awprot": [
+          "output",
+          3
+        ],
+        "master_gp0_axi_awready": [
+          "input",
+          1
+        ],
+        "master_gp0_axi_awsize": [
+          "output",
+          2
+        ],
+        "master_gp0_axi_awvalid": [
+          "output",
+          1
+        ],
+        "master_gp0_axi_bid": [
+          "input",
+          12
+        ],
+        "master_gp0_axi_bready": [
+          "output",
+          1
+        ],
+        "master_gp0_axi_bresp": [
+          "input",
+          2
+        ],
+        "master_gp0_axi_bvalid": [
+          "input",
+          1
+        ],
+        "master_gp0_axi_rdata": [
+          "input",
+          32
+        ],
+        "master_gp0_axi_rid": [
+          "input",
+          12
+        ],
+        "master_gp0_axi_rlast": [
+          "input",
+          1
+        ],
+        "master_gp0_axi_rready": [
+          "output",
+          1
+        ],
+        "master_gp0_axi_rresp": [
+          "input",
+          2
+        ],
+        "master_gp0_axi_rvalid": [
+          "input",
+          1
+        ],
+        "master_gp0_axi_wdata": [
+          "output",
+          32
+        ],
+        "master_gp0_axi_wlast": [
+          "output",
+          1
+        ],
+        "master_gp0_axi_wready": [
+          "input",
+          1
+        ],
+        "master_gp0_axi_wstrb": [
+          "output",
+          4
+        ],
+        "master_gp0_axi_wvalid": [
+          "output",
+          1
+        ],
+        "f2p_irq": [
+          "input",
+          16
+        ],
+        "p2f_rst0_n": [
+          "output",
+          1
+        ],
+        "p2f_clk0": [
+          "output",
+          1
+        ]
+      },
+      "raw_ps_sha256": "df5d61e903b47ce1e9db19e43e83bc179a18ceb5bcf5af6bb1eb37c4fa83b310",
+      "gp_window": "0x80400000/4KiB",
+      "dma_window": "0x80500000/4KiB",
+      "irq": "bit0..6 SPI82..88 level-high",
+      "clock": "H16 100MHz GP0/HP0/HP1/PL common; native PS properties mapped",
+      "reset": "startup p2f_rst0_n; DMA-only soft reset preserves GP epoch",
+      "ip": {
+        "td_root": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067",
+        "schema_sha256": "1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31",
+        "generation": "unmodified installed vendor RTL, directly parameterized; not copied example IP",
+        "parameters": {
+          "AL_S_AXI_LITE_ADDR_WIDTH": 10,
+          "AL_S_AXI_LITE_DATA_WIDTH": 32,
+          "AL_DLYTMR_RESOLUTION": 125,
+          "AL_PRMRY_IS_ACLK_ASYNC": 0,
+          "AL_INCLUDE_SG": 0,
+          "AL_SG_INCLUDE_STSCNTRL_STRM": 0,
+          "AL_SG_USE_STSAPP_LENGTH": 0,
+          "AL_SG_LENGTH_WIDTH": 16,
+          "AL_M_AXI_SG_ADDR_WIDTH": 32,
+          "AL_M_AXI_SG_DATA_WIDTH": 32,
+          "AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH": 32,
+          "AL_S_AXIS_S2MM_STS_TDATA_WIDTH": 32,
+          "AL_INCLUDE_MM2S": 1,
+          "AL_INCLUDE_MM2S_SF": 1,
+          "AL_INCLUDE_MM2S_DRE": 1,
+          "AL_MM2S_BURST_SIZE": 16,
+          "AL_M_AXI_MM2S_ADDR_WIDTH": 32,
+          "AL_M_AXI_MM2S_DATA_WIDTH": 64,
+          "AL_M_AXIS_MM2S_TDATA_WIDTH": 64,
+          "AL_INCLUDE_S2MM": 1,
+          "AL_INCLUDE_S2MM_SF": 1,
+          "AL_INCLUDE_S2MM_DRE": 1,
+          "AL_S2MM_BURST_SIZE": 16,
+          "AL_M_AXI_S2MM_ADDR_WIDTH": 32,
+          "AL_M_AXI_S2MM_DATA_WIDTH": 64,
+          "AL_S_AXIS_S2MM_TDATA_WIDTH": 64,
+          "AL_MICRO_DMA": 0,
+          "AL_INCREASE_THROUGHPUT": 0,
+          "AL_S_AXI_LITE_ACLK_FREQ_HZ": 100000000,
+          "AL_M_AXI_MM2S_ACLK_FREQ_HZ": 100000000,
+          "AL_M_AXI_S2MM_ACLK_FREQ_HZ": 100000000,
+          "AL_M_AXI_SG_ACLK_FREQ_HZ": 100000000
+        },
+        "dma_ports": {
+          "s_axi_lite_aclk": [
+            "input",
+            1
+          ],
+          "m_axi_sg_aclk": [
+            "input",
+            1
+          ],
+          "m_axi_mm2s_aclk": [
+            "input",
+            1
+          ],
+          "m_axi_s2mm_aclk": [
+            "input",
+            1
+          ],
+          "axi_resetn": [
+            "input",
+            1
+          ],
+          "s_axi_lite_awvalid": [
+            "input",
+            1
+          ],
+          "s_axi_lite_awready": [
+            "output",
+            1
+          ],
+          "s_axi_lite_awaddr": [
+            "input",
+            10
+          ],
+          "s_axi_lite_wvalid": [
+            "input",
+            1
+          ],
+          "s_axi_lite_wready": [
+            "output",
+            1
+          ],
+          "s_axi_lite_wdata": [
+            "input",
+            32
+          ],
+          "s_axi_lite_bresp": [
+            "output",
+            2
+          ],
+          "s_axi_lite_bvalid": [
+            "output",
+            1
+          ],
+          "s_axi_lite_bready": [
+            "input",
+            1
+          ],
+          "s_axi_lite_arvalid": [
+            "input",
+            1
+          ],
+          "s_axi_lite_arready": [
+            "output",
+            1
+          ],
+          "s_axi_lite_araddr": [
+            "input",
+            10
+          ],
+          "s_axi_lite_rvalid": [
+            "output",
+            1
+          ],
+          "s_axi_lite_rready": [
+            "input",
+            1
+          ],
+          "s_axi_lite_rdata": [
+            "output",
+            32
+          ],
+          "s_axi_lite_rresp": [
+            "output",
+            2
+          ],
+          "m_axi_sg_awaddr": [
+            "output",
+            32
+          ],
+          "m_axi_sg_awlen": [
+            "output",
+            8
+          ],
+          "m_axi_sg_awsize": [
+            "output",
+            3
+          ],
+          "m_axi_sg_awburst": [
+            "output",
+            2
+          ],
+          "m_axi_sg_awprot": [
+            "output",
+            3
+          ],
+          "m_axi_sg_awcache": [
+            "output",
+            4
+          ],
+          "m_axi_sg_awuser": [
+            "output",
+            4
+          ],
+          "m_axi_sg_awvalid": [
+            "output",
+            1
+          ],
+          "m_axi_sg_awready": [
+            "input",
+            1
+          ],
+          "m_axi_sg_wdata": [
+            "output",
+            32
+          ],
+          "m_axi_sg_wstrb": [
+            "output",
+            4
+          ],
+          "m_axi_sg_wlast": [
+            "output",
+            1
+          ],
+          "m_axi_sg_wvalid": [
+            "output",
+            1
+          ],
+          "m_axi_sg_wready": [
+            "input",
+            1
+          ],
+          "m_axi_sg_bresp": [
+            "input",
+            2
+          ],
+          "m_axi_sg_bvalid": [
+            "input",
+            1
+          ],
+          "m_axi_sg_bready": [
+            "output",
+            1
+          ],
+          "m_axi_sg_araddr": [
+            "output",
+            32
+          ],
+          "m_axi_sg_arlen": [
+            "output",
+            8
+          ],
+          "m_axi_sg_arsize": [
+            "output",
+            3
+          ],
+          "m_axi_sg_arburst": [
+            "output",
+            2
+          ],
+          "m_axi_sg_arprot": [
+            "output",
+            3
+          ],
+          "m_axi_sg_arcache": [
+            "output",
+            4
+          ],
+          "m_axi_sg_aruser": [
+            "output",
+            4
+          ],
+          "m_axi_sg_arvalid": [
+            "output",
+            1
+          ],
+          "m_axi_sg_arready": [
+            "input",
+            1
+          ],
+          "m_axi_sg_rdata": [
+            "input",
+            32
+          ],
+          "m_axi_sg_rresp": [
+            "input",
+            2
+          ],
+          "m_axi_sg_rlast": [
+            "input",
+            1
+          ],
+          "m_axi_sg_rvalid": [
+            "input",
+            1
+          ],
+          "m_axi_sg_rready": [
+            "output",
+            1
+          ],
+          "m_axi_mm2s_araddr": [
+            "output",
+            32
+          ],
+          "m_axi_mm2s_arlen": [
+            "output",
+            8
+          ],
+          "m_axi_mm2s_arsize": [
+            "output",
+            3
+          ],
+          "m_axi_mm2s_arburst": [
+            "output",
+            2
+          ],
+          "m_axi_mm2s_arprot": [
+            "output",
+            3
+          ],
+          "m_axi_mm2s_arcache": [
+            "output",
+            4
+          ],
+          "m_axi_mm2s_aruser": [
+            "output",
+            4
+          ],
+          "m_axi_mm2s_arvalid": [
+            "output",
+            1
+          ],
+          "m_axi_mm2s_arready": [
+            "input",
+            1
+          ],
+          "m_axi_mm2s_rdata": [
+            "input",
+            64
+          ],
+          "m_axi_mm2s_rresp": [
+            "input",
+            2
+          ],
+          "m_axi_mm2s_rlast": [
+            "input",
+            1
+          ],
+          "m_axi_mm2s_rvalid": [
+            "input",
+            1
+          ],
+          "m_axi_mm2s_rready": [
+            "output",
+            1
+          ],
+          "mm2s_prmry_reset_out_n": [
+            "output",
+            1
+          ],
+          "m_axis_mm2s_tdata": [
+            "output",
+            64
+          ],
+          "m_axis_mm2s_tkeep": [
+            "output",
+            8
+          ],
+          "m_axis_mm2s_tvalid": [
+            "output",
+            1
+          ],
+          "m_axis_mm2s_tready": [
+            "input",
+            1
+          ],
+          "m_axis_mm2s_tlast": [
+            "output",
+            1
+          ],
+          "m_axis_mm2s_tuser": [
+            "output",
+            4
+          ],
+          "m_axis_mm2s_tid": [
+            "output",
+            5
+          ],
+          "m_axis_mm2s_tdest": [
+            "output",
+            5
+          ],
+          "mm2s_cntrl_reset_out_n": [
+            "output",
+            1
+          ],
+          "m_axis_mm2s_cntrl_tdata": [
+            "output",
+            32
+          ],
+          "m_axis_mm2s_cntrl_tkeep": [
+            "output",
+            4
+          ],
+          "m_axis_mm2s_cntrl_tvalid": [
+            "output",
+            1
+          ],
+          "m_axis_mm2s_cntrl_tready": [
+            "input",
+            1
+          ],
+          "m_axis_mm2s_cntrl_tlast": [
+            "output",
+            1
+          ],
+          "m_axi_s2mm_awaddr": [
+            "output",
+            32
+          ],
+          "m_axi_s2mm_awlen": [
+            "output",
+            8
+          ],
+          "m_axi_s2mm_awsize": [
+            "output",
+            3
+          ],
+          "m_axi_s2mm_awburst": [
+            "output",
+            2
+          ],
+          "m_axi_s2mm_awprot": [
+            "output",
+            3
+          ],
+          "m_axi_s2mm_awcache": [
+            "output",
+            4
+          ],
+          "m_axi_s2mm_awuser": [
+            "output",
+            4
+          ],
+          "m_axi_s2mm_awvalid": [
+            "output",
+            1
+          ],
+          "m_axi_s2mm_awready": [
+            "input",
+            1
+          ],
+          "m_axi_s2mm_wdata": [
+            "output",
+            64
+          ],
+          "m_axi_s2mm_wstrb": [
+            "output",
+            8
+          ],
+          "m_axi_s2mm_wlast": [
+            "output",
+            1
+          ],
+          "m_axi_s2mm_wvalid": [
+            "output",
+            1
+          ],
+          "m_axi_s2mm_wready": [
+            "input",
+            1
+          ],
+          "m_axi_s2mm_bresp": [
+            "input",
+            2
+          ],
+          "m_axi_s2mm_bvalid": [
+            "input",
+            1
+          ],
+          "m_axi_s2mm_bready": [
+            "output",
+            1
+          ],
+          "s2mm_prmry_reset_out_n": [
+            "output",
+            1
+          ],
+          "s_axis_s2mm_tdata": [
+            "input",
+            64
+          ],
+          "s_axis_s2mm_tkeep": [
+            "input",
+            8
+          ],
+          "s_axis_s2mm_tvalid": [
+            "input",
+            1
+          ],
+          "s_axis_s2mm_tready": [
+            "output",
+            1
+          ],
+          "s_axis_s2mm_tlast": [
+            "input",
+            1
+          ],
+          "s_axis_s2mm_tuser": [
+            "input",
+            4
+          ],
+          "s_axis_s2mm_tid": [
+            "input",
+            5
+          ],
+          "s_axis_s2mm_tdest": [
+            "input",
+            5
+          ],
+          "s2mm_sts_reset_out_n": [
+            "output",
+            1
+          ],
+          "s_axis_s2mm_sts_tdata": [
+            "input",
+            32
+          ],
+          "s_axis_s2mm_sts_tkeep": [
+            "input",
+            4
+          ],
+          "s_axis_s2mm_sts_tvalid": [
+            "input",
+            1
+          ],
+          "s_axis_s2mm_sts_tready": [
+            "output",
+            1
+          ],
+          "s_axis_s2mm_sts_tlast": [
+            "input",
+            1
+          ],
+          "mm2s_introut": [
+            "output",
+            1
+          ],
+          "s2mm_introut": [
+            "output",
+            1
+          ]
+        },
+        "libraries": {
+          "dma": {
+            "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma.v",
+            "staged": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ip\\axi_dma.v",
+            "sha256": "24d6d6d4b741b497baf3b10ba50010e2df830b2a0681e16eb49ce84471011ef1"
+          },
+          "converter": {
+            "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\AXI_MM\\RTL\\axi_protocol_converter_merge.v",
+            "staged": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ip\\axi_protocol_converter_merge.v",
+            "sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61"
+          }
+        },
+        "AXI_DMA_1.0_component_sha256": "1f53521dce6a4bc791e7d93f2d7ea34d486d2bd2d011983ea2340cca5a97eeab",
+        "AXI_Protocol_Converter_1.0_component_sha256": "681e8d50d5edbfb5444d1821157b54538e9344b8cec9211e2bc25a3cd8a9ca58",
+        "headers": {
+          "axi_dma_func_pkg.vh": {
+            "sha256": "07402a26ab19cb9a14c5990addd329df38713d4c57a75cbf2b19d47b7a0c4f66",
+            "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma_func_pkg.vh"
+          },
+          "axi_dma_param_pkg.vh": {
+            "sha256": "e756686e5426d92dd05c82df33557d8b2765e425a877e6b0db2b5931d0ee7664",
+            "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma_param_pkg.vh"
+          }
+        }
+      },
+      "motor": "scope only; GPIO test 500-cycle guards 100kHz M4 disabled raw64/prepared8/START32; not product parameters",
+      "motion_window": "0x80600000/4KiB",
+      "rs485_window": "0x80700000/4KiB",
+      "cache_window": "0x80800000/4KiB",
+      "independent_s2mm_window": "0x80900000/4KiB",
+      "rs485_pins": "TX L17 / RX N16 / DE+RE_N N15, BANK33 LVCMOS33, hardware manual accepted 2026-10-14; slave/electrical timing pending",
+      "not_deployable": true
+    },
+    "constraints_sha256": {
+      "adc": "a9b1737acb76afee64c4440c1ec396d6f767cd0e036fa4c777f681dfe63cfe4c",
+      "sdc": "b4270ffa31affabdc07f410a0a3159933f38378377077600f544612c95352840",
+      "ps_properties": "325ab17d87cf7dd0d967de2b95aa090f9ecfa6d24ed4537b6aa75c5fd9cdaa29"
+    },
+    "congestion_lines": [
+      "RUN-1001 : Exported congestions",
+      "PHY-1001 : Updating congestion by RUDY ...",
+      "PHY-1001 : Congestion index:",
+      "PHY-1001 : top1  = 114.27 (V 73.79, H 115.75, I 124.11, O 129.24)",
+      "PHY-1001 : End update congestion by RUDY;  4.748222s wall, 4.937500s user + 0.109375s system = 5.046875s CPU (106.3%)",
+      "PHY-1001 : Updating congestion by RUDY ...",
+      "PHY-1001 : Congestion index:",
+      "PHY-1001 : top1  = 112.90 (V 73.23, H 104.99, I 110.98, O 95.73)",
+      "PHY-1001 : End update congestion by RUDY;  0.673342s wall, 1.671875s user + 0.031250s system = 1.703125s CPU (252.9%)",
+      "OPT-1001 : Total overflow 736.84 peak overflow 2.72",
+      "OPT-1001 : Total overflow 736.84 peak overflow 2.72",
+      "OPT-1001 : Total overflow 743.94 peak overflow 2.72",
+      "PHY-1001 : Updating congestion by RUDY ...",
+      "PHY-1001 : Congestion index:",
+      "PHY-1001 : top1  = 114.27 (V 73.79, H 115.75, I 124.11, O 129.24)",
+      "PHY-1001 : End update congestion by RUDY;  2.309649s wall, 2.843750s user + 0.093750s system = 2.937500s CPU (127.2%)",
+      "PHY-1001 : Updating congestion by RUDY ...",
+      "PHY-1001 : Congestion index:",
+      "PHY-1001 : top1  = 112.90 (V 73.23, H 104.99, I 110.98, O 95.73)",
+      "PHY-1001 : End update congestion by RUDY;  0.265288s wall, 1.000000s user + 0.000000s system = 1.000000s CPU (376.9%)",
+      "OPT-1001 : Total overflow 736.84 peak overflow 2.72",
+      "OPT-1001 : Total overflow 736.84 peak overflow 2.72",
+      "OPT-1001 : Total overflow 743.94 peak overflow 2.72",
+      "OPT-1001 : Total overflow 628.44 peak overflow 2.41",
+      "PHY-3001 : Iter 1, total overflow: 0",
+      "PHY-1001 : Congestion index:",
+      "PHY-1001 : top1  = 98.95 (S 68.03, N 73.29, E 96.53, W 95.12, I 64.66, O 84.65)",
+      "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+      "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+      "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+      "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+      "OPT-1001 : Start congestion update ...",
+      "PHY-1001 : Congestion index:",
+      "PHY-1001 : top1  = 99.98 (S 70.87, N 74.89, E 96.49, W 97.34, I 64.68, O 82.78)",
+      "OPT-1001 : End congestion update;  27.333112s wall, 43.656250s user + 0.937500s system = 44.593750s CPU (163.1%)",
+      "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+      "PHY-1001 : Congestion index:",
+      "PHY-1001 : top1  = 99.95 (S 71.33, N 75.14, E 98.01, W 97.60, I 65.74, O 85.52)",
+      "RUN-1001 :   Local congestion issue exists, and most congested 1% tile average routing util is 97.398649",
+      "OPT-1002 :   please consider adjusting placer strategy to avoid the congestion issue",
+      "PHY-3001 : Iter 1, total overflow: 0",
+      "| Congestion                |                             |",
+      "  QOR-4001  |  HIGH      |  - Design congestion is high, which may difficult to routing.  |  - Please adjust placement strategy to reduce high congestion:",
+      "            |            |                                                                |    Launch multi-seed runs to get better congestion.",
+      "            |            |    Top congestion region(s):                                   |  ",
+      "RUN-1001 : Exported congestions",
+      "PHY-1001 : Congestion index:",
+      "PHY-1001 : top1  = 99.49 (S 69.52, N 73.42, E 96.62, W 97.04, I 65.74, O 85.52)",
+      "PHY-1001 :   Iter. 1: runtime[  30.1s]; rr_path[ 225526]; Path[overflow =  177375, finished =   48151].",
+      "PHY-1001 :   Iter. 2: runtime[ 299.9s]; rr_path[ 161512]; Path[overflow =  143228, finished =   82298].",
+      "PHY-1001 :   Iter. 3: runtime[ 359.2s]; rr_path[ 132183]; Path[overflow =  109312, finished =  116214].",
+      "PHY-1001 :   Iter. 4: runtime[ 400.5s]; rr_path[  99943]; Path[overflow =   76587, finished =  148939].",
+      "PHY-1001 :   Iter. 5: runtime[ 446.8s]; rr_path[  69799]; Path[overflow =   43721, finished =  181805].",
+      "PHY-1001 :   Iter. 6: runtime[ 552.4s]; rr_path[  43373]; Path[overflow =   25471, finished =  200055].",
+      "PHY-1001 :   Iter. 7: runtime[ 573.3s]; rr_path[  23439]; Path[overflow =    9880, finished =  215646].",
+      "PHY-1001 :   Iter. 8: runtime[ 583.9s]; rr_path[  14734]; Path[overflow =    3912, finished =  221614].",
+      "PHY-1001 :   Iter. 9: runtime[ 598.2s]; rr_path[  10513]; Path[overflow =    1294, finished =  224232].",
+      "PHY-1001 :   Iter.10: runtime[ 639.3s]; rr_path[   7673]; Path[overflow =     588, finished =  224938].",
+      "PHY-1001 :   Iter.11: runtime[ 649.2s]; rr_path[   6731]; Path[overflow =     108, finished =  225418].",
+      "PHY-1001 :   Iter.12: runtime[ 658.4s]; rr_path[   6473]; Path[overflow =       4, finished =  225522].",
+      "PHY-1001 :   Iter.13: runtime[ 686.8s]; rr_path[   5065]; Path[overflow =       2, finished =  225524].",
+      "PHY-1001 :   Iter.14: runtime[ 694.1s]; rr_path[   5062]; Path[overflow =       0, finished =  225526].",
+      "PHY-1001 :   Iter.15: runtime[ 784.4s]; rr_path[   3955]; Path[overflow =       0, finished =  225526].",
+      "PHY-1001 :   Iter.16: runtime[ 834.0s]; rr_path[   3344]; Path[overflow =       0, finished =  225526].",
+      "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+      "RUN-1001 : Exported congestions"
+    ]
+  },
+  "module_program_identity": {
+    "status": "COMPILED_NOT_LOADED_OR_DEPLOYED",
+    "files": {
+      "bsp/telemetry/provider/anlogic-dma-engine.ko": {
+        "sha256": "8a1f88a1725bffacc6f1073abdb3e057dcc0cd4809b5dd328fafbf9d000425f5",
+        "bytes": 846608,
+        "vermagic": [
+          "6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64"
+        ]
+      },
+      "bsp/telemetry/client/bsp_rs485.ko": {
+        "sha256": "ccd33ed525455432b83375c4b17ca6baa264b5bfa4cfa8089e843ae8ae0321fa",
+        "bytes": 594120,
+        "vermagic": [
+          "6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64"
+        ]
+      },
+      "bsp/motion/client/bsp_motion.ko": {
+        "sha256": "e7084e477d36c7e6fc39c5ad58d1c4436a27c928d05db042c5817488f5aa6242",
+        "bytes": 530976,
+        "vermagic": [
+          "6.1.111-rt42-bsp-sd1 SMP preempt mod_unload modversions aarch64"
+        ]
+      },
+      "build/rs485-accept": {
+        "sha256": "e5fdcd54fece2105f67e4a2415efbf5e269b5b937f530371bdc0498fce123f79",
+        "bytes": 23528,
+        "vermagic": []
+      }
+    },
+    "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1",
+    "artifact_sha256": "e13c0fdaf9a73f9096e76ad550392f982bf9110ca0e8ee41e9c2fa348870640f"
+  },
+  "ps_config_audit": {
+    "status": "PASS_ACTUAL_PS_CONFIG_ONLY",
+    "changed": {
+      "Slave_AXI_HP1_Interface": {
+        "old": "0",
+        "new": "1"
+      }
+    },
+    "added_hp1_parameter": {
+      "Slave_AXI_HP1_DATA_WIDTH": "64"
+    },
+    "unchanged_parameter_count": 554,
+    "ddr_storage_other_ps_properties_unchanged": true,
+    "common_reset": "p2f_rst0_n; not a telemetry recovery reset",
+    "hpf_fsbl_hp0_hp1_soft_reset_release": "NOT_EXECUTED; matching release blocked by hardware diagnostic",
+    "new_xml_sha256": "fe2fadfebc742cd9e057cc70c6a5aed4fef6ad44072f6ff239f718ec6a41777f"
+  },
+  "dt_preview_audit": {
+    "status": "PASS_COMPILED_PREVIEW_NOT_FINAL_HPF_OR_BOOT",
+    "resources": [
+      {
+        "node": "/interrupt-controller@dd000000",
+        "base": 3707764736,
+        "size": 131072,
+        "status": "okay"
+      },
+      {
+        "node": "/interrupt-controller@dd000000",
+        "base": 3708026880,
+        "size": 262144,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/serial@F8400000",
+        "base": 4164943872,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/serial@F8401000",
+        "base": 4164947968,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/fpga-mgr@F8082000",
+        "base": 4169142272,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/i2c0@f8414000",
+        "base": 4165025792,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/i2c1@f8415000",
+        "base": 4165029888,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/gpio@f8411000",
+        "base": 4165013504,
+        "size": 256,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/gpio@f8411100",
+        "base": 4165013760,
+        "size": 256,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/gpio@f8411200",
+        "base": 4165014016,
+        "size": 256,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/gpio@f8411300",
+        "base": 4165014272,
+        "size": 256,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/dma-controller@f8419000",
+        "base": 4165046272,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/watchdog@f8410000",
+        "base": 4165009408,
+        "size": 256,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/watchdog@f8410000",
+        "base": 4169138536,
+        "size": 32,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/can@0xF8408000",
+        "base": 4164976640,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/can@0xF8409000",
+        "base": 4164980736,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/mmc@f8049000",
+        "base": 4161048576,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/mmc@f804a000",
+        "base": 4161052672,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/ahb_dma@F804D000",
+        "base": 4161064960,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/spi@f804e000",
+        "base": 4161069056,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/spi@f8404000",
+        "base": 4164960256,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/spi@f8405000",
+        "base": 4164964352,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/ttc0@f840c000",
+        "base": 4164993024,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/PWM1@f840d000",
+        "base": 4164997120,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/ethernet0@F8100000",
+        "base": 4161798144,
+        "size": 65536,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/ethernet1@F8110000",
+        "base": 4161863680,
+        "size": 65536,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/usb@F8180000",
+        "base": 4162322432,
+        "size": 262144,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/adc@f840b000",
+        "base": 4164988928,
+        "size": 32,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/memory-controller@f841a000",
+        "base": 4165050368,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/hard_npu@63F00000",
+        "base": 1676673024,
+        "size": 1048576,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/hard_npu@63F00000",
+        "base": 4169138176,
+        "size": 512,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/hard_npu@63F00000",
+        "base": 4169142272,
+        "size": 256,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/jpu@f8460000",
+        "base": 4165337088,
+        "size": 65536,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/gp-control@80400000",
+        "base": 2151677952,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/dma@80500000",
+        "base": 2152726528,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/motion-control@80600000",
+        "base": 2153775104,
+        "size": 4096,
+        "status": "okay"
+      },
+      {
+        "node": "/soc/dma@80900000",
+        "base": 2156920832,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/rs485-control@80700000",
+        "base": 2154823680,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/soc/rs485-control@80700000",
+        "base": 2155872256,
+        "size": 4096,
+        "status": "disabled"
+      },
+      {
+        "node": "/memory",
+        "base": 0,
+        "size": 1073741824,
+        "status": "okay"
+      }
+    ],
+    "non_cpu_reg_entries": [
+      {
+        "node": "/cpus/cpu@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/cpus/cpu@1",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/gpio@f8411000/gpio-controller@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/gpio@f8411100/gpio-controller@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/gpio@f8411200/gpio-controller@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/gpio@f8411300/gpio-controller@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/spi@f804e000/flash@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/spi@f8404000/spidev@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/spi@f8405000/spidev@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/ethernet0@F8100000/mdio/ethernet-phy@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/ethernet0@F8100000/mdio/ethernet-phy@1",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/ethernet1@F8110000/mdio/ethernet-phy@2",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/ethernet1@F8110000/mdio/ethernet-phy@3",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/adc@f840b000/anlogic,channels/channel@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/dma@80500000/dma-channel@0",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/dma@80500000/dma-channel@30",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      },
+      {
+        "node": "/soc/dma@80900000/dma-channel@30",
+        "reason": "size-cells=0, channel/device identifier, not memory window"
+      }
+    ],
+    "gic_phandle": [
+      1
+    ],
+    "irq_spi": [
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88
+    ],
+    "all_windows_4KiB": true,
+    "full_bus_ranges_walk": true,
+    "new_controller": "S2MM-only; own device; no motion-controller flag",
+    "hp_internal_reset_release": "await qualified HPF/FSBL; not tested"
+  },
+  "old_profile_numeric_leaves_equal": 596,
+  "source_sha256": {
+    "bsp/telemetry/audit_dtb.py": "86abaee737229abe97dda3781bbe827160f75759afd214cb1ba35115ec5acea9",
+    "bsp/telemetry/audit_hardware.py": "b1475210b4f9ca467a454100a7a61928f8f6c674c5c287b3e16b6c25e75b50b0",
+    "bsp/telemetry/audit_ps.py": "c934d25c748603767681b21d577da90a25839e1efc16a8be59e7d57e386dc905",
+    "bsp/telemetry/board.dtsi": "7de9b4416f4abd5d91cf15c69c99d2c58954c049643033540199f56e61065320",
+    "bsp/telemetry/build_hardware.py": "f952d6d658c0f34175702fc090b8a217cdb0172a885eda6561aa82ca4d5084d7",
+    "bsp/telemetry/build_preview_dts.sh": "1c54687f8df9cb2dbf2992c7b2f7d3d03c24048ff92160944ea3f3949feb73f3",
+    "bsp/telemetry/build_software.sh": "85419f8703e96ac7b8baab7e92afa0fb8e149ede0e5d2addaa90cac5b1f079c7",
+    "bsp/telemetry/BUILD_STATUS.md": "c72a4f456ae6aab7ee5b86c4b71aa0d0fe181ab6f6efa78184e4c0c18c908369",
+    "bsp/telemetry/client/bsp_rs485.c": "ee8b3a96e122dbae8e4a93da5549e0ae49fd7b4fc9290c8c3815fcb7b6647b5f",
+    "bsp/telemetry/client/Makefile": "5f6241b0b1cf9e7b52b2b72e87cf9fac8bbb3eafeb0f902970abefe4d1c385b5",
+    "bsp/telemetry/client/record_decode.h": "aee35d0b8e35fa748f8f9af85caa1282f32879521edb8da10fbaeb3a1129bcd2",
+    "bsp/telemetry/generate_dts.py": "aa153c152e4e95f264ca9c8b8a85e89839caf9a9fb924315f8a497a3fbbefab3",
+    "bsp/telemetry/generate_kernel.py": "d4d2f2deb604c2d0fed3ac3c016866d101c2a883dc1bf196c2cf77fdedec7249",
+    "bsp/telemetry/generated/dma_defs.h": "61351a10a64af73e4357c032b685be0e5a74338e7a5f7f169af6699336b871f1",
+    "bsp/telemetry/generated/gp_defs.h": "2155d580f09ba94775983f4d4b17d38b54d45516dd28f6171043e2054fabe693",
+    "bsp/telemetry/generated/rs485_defs.h": "87ff4d42a5a06539b4c03e0c43e955d9d09bfe7b3d04d4ac4b631f54a63d67ea",
+    "bsp/telemetry/generated/telem_defs.h": "884fed6568a97d7da7e1d7d4c44f65fb2bbd92bc0992df5e6314110431ac538b",
+    "bsp/telemetry/hardware-review.json": "c0430d012efcc67bf5e11ea2cc2f4b6ab1a0711996d47363abf45a584ccbf700",
+    "bsp/telemetry/integrate_hardware.py": "131478ecdfe54d17cc24a6f5db56d81dc4e71442d5001c2cac17c3d0db382696",
+    "bsp/telemetry/IP_DIAGNOSTIC.md": "f74feb42ac31eb11cceb2b74a48f61edbed3d164d991c9aa63a2eaa9a7b07df3",
+    "bsp/telemetry/prepare_project.py": "673fddd60f3731e352d7d5a399ff818f2f3a5a82bdbfb1ca9dcf2ed6d2533042",
+    "bsp/telemetry/provider/anlogic_dma.c": "13fd55f69e05d321e3abf04f3807e3114e6b4f60332a562b192ffc70a11831a9",
+    "bsp/telemetry/provider/axi-dma.c": "053c6c3682f6952bbf9939cc2ff97204f04aa972ac0cdaaadd52f7e1108a8eb5",
+    "bsp/telemetry/provider/dmaengine.h": "8ddac9c5ff009cf3b70c23d4b0e8e174f43eb2ea00d87454b17f32aedfda9d58",
+    "bsp/telemetry/provider/include/linux/dma/anlogic_dma.h": "dbdc74be858500a11ecd01d75c1389eb193506087d2d61cf1bcac29829780678",
+    "bsp/telemetry/provider/Makefile": "015aaa538961beeb62d787694746da0a1ad27389aadda508eb62157cc0c17ee0",
+    "bsp/telemetry/provider_api.h": "ff55316c90be6a5ba61b73d81fe53ceb5f7ea05c1572545307cc38b5426f21d6",
+    "bsp/telemetry/ps_regen.tcl": "3562846710d5b8950442cd65d022265f60f7dc0f306eb61d83079fed82898409",
+    "bsp/telemetry/README.md": "2dd14f076997cd98a5b7f2e7b2b12f28e31ab45d7f0de0f92341665b66762b8c",
+    "bsp/telemetry/regenerate_ps.py": "23c4ca23250ab7c708d1844c394cc8bf003999446ef57bcd4d8f96903db9e06a",
+    "bsp/telemetry/RESOURCE_REPORT.md": "a136817e6fd997752c0ca1862187a4e5fc4d71d022f296e183552a1edaef10cf",
+    "bsp/telemetry/rs485_accept.c": "ad4cfc40e5748f1025458160245e31e8c35869bf72c3c1852d53b98f261ef3b6",
+    "bsp/telemetry/rs485_uapi.h": "50ae8a504cdad4f8c17fbc66660c6bee078088e2d450527de0c6aa008504a58f",
+    "bsp/telemetry/run_regressions.py": "662051d69760c4bbc5b858004db48b1d63eff084f032d34af7458e0dd9b206bb",
+    "bsp/telemetry/run_remaining.py": "967188bb7e1ee9b5fa5c66b281ebef5e2d156ef590af8db598d928c4a58c7f90",
+    "bsp/telemetry/tb_router.v": "209f8d7a7a4064b5238b6be50ba4c36cf20022de0deac1cf3d32aee49a049f74",
+    "bsp/telemetry/test_provider.py": "14f185f454e8f3b59839bbc98dd1ab4769221fb2f5e75884a7b875bdfb8bf758",
+    "bsp/telemetry/test_router.py": "d240ce0a11ccb2d31e9b213b3aa5159defb39245dd268f882aa052cacaafef10",
+    "bsp/telemetry/verify_input.py": "bb3cba5b6a3cdd9c4b9ae41ad1f6f56af1cd80b7008085d540dd08af04473bf8"
+  },
+  "evidence_sha256": {
+    "bsp/evidence/telemetry-hardware-20261014/actual-ps-ipgen.log": "42acd21b046d665ab57567b21e8956d9cf377fbb2641eccc6abaebeac42c9023",
+    "bsp/evidence/telemetry-hardware-20261014/attempt_20261014_200843.log": "d0bd54d655f179b4719465d19b5cc2a557aaedf95bd0e1708165233a2e83928e",
+    "bsp/evidence/telemetry-hardware-20261014/attempt_20261014_204252.log": "4f7476c982bb58cba9f1534af38c1da598ab5251b4809f4aa069311836ce990a",
+    "bsp/evidence/telemetry-hardware-20261014/build_gp.log": "4f7476c982bb58cba9f1534af38c1da598ab5251b4809f4aa069311836ce990a",
+    "bsp/evidence/telemetry-hardware-20261014/build_gp.tcl": "dd196bd104f61ca83665bf72ed8547f9c594ba3eb5848b67f0f398b065c9781b",
+    "bsp/evidence/telemetry-hardware-20261014/connections.json": "7a309b4f5bff5f7483904874cf70f5ee648a2d1214458a5b9ff3d1fc49d8966e",
+    "bsp/evidence/telemetry-hardware-20261014/gate.qor": "0a866cc759949491caa8ce90ee78d1c238c8a62db33e0db390f85957baa05e5e",
+    "bsp/evidence/telemetry-hardware-20261014/generate_ps.tcl": "4b8efa1894a1717ec922557e37e30d9647198ab2fb94b3d88e7bddac80e63110",
+    "bsp/evidence/telemetry-hardware-20261014/gp.adc": "a9b1737acb76afee64c4440c1ec396d6f767cd0e036fa4c777f681dfe63cfe4c",
+    "bsp/evidence/telemetry-hardware-20261014/gp.sdc": "b4270ffa31affabdc07f410a0a3159933f38378377077600f544612c95352840",
+    "bsp/evidence/telemetry-hardware-20261014/gp_gate.area": "eabed0c4fb2cc5b98c6cb156e1ece32f0cc876c601e65c34737a4a16e56aa63c",
+    "bsp/evidence/telemetry-hardware-20261014/gp_gate.timing": "3bb933b541c6635497f8fd291ba4a65ed4827c85f0c030f162b32ba77133bf47",
+    "bsp/evidence/telemetry-hardware-20261014/gp_place.timing": "6a3322ac9cf7f31ad473af0dbd865485da72c2aaf8d57c8862a5e55f80682856",
+    "bsp/evidence/telemetry-hardware-20261014/gp_route.area": "b431a1c2cd989b1ebb556b56a6ff49ee510ad68ef9c0fe7e58b4ec7b9781e699",
+    "bsp/evidence/telemetry-hardware-20261014/gp_route.check": "1873af232a89d841ac196efcd18420f626716ff7a3e5a2024fa793ce623599db",
+    "bsp/evidence/telemetry-hardware-20261014/gp_route.timing": "bd31505a58af6c8d6a4130a9bd450c7e909b5fe478c6657d89aa469bb7b36a3d",
+    "bsp/evidence/telemetry-hardware-20261014/identity.json": "76e2f08be8bd850d9b148f0b52851733ccb6a0a1d4be91f3551d02f2d3619cb6",
+    "bsp/evidence/telemetry-hardware-20261014/initial-timeout.log": "4f7476c982bb58cba9f1534af38c1da598ab5251b4809f4aa069311836ce990a",
+    "bsp/evidence/telemetry-hardware-20261014/place.qor": "6b67eb2fb3ab6fae60ae84c4ae95329bf78f766a908fb5002f49aeec30501648",
+    "bsp/evidence/telemetry-hardware-20261014/place_qor_suggestion.tcl": "82cba20179e2201df25c4762057b4fbc393d852030375389644477b5eaac251c",
+    "bsp/evidence/telemetry-hardware-20261014/ps-generated-properties.tcl": "325ab17d87cf7dd0d967de2b95aa090f9ecfa6d24ed4537b6aa75c5fd9cdaa29",
+    "bsp/evidence/telemetry-hardware-20261014/ps-gp-regenerate.log": "45ece36d03e84df735e886140524c7b0f317791c6b6db1637e30e5c6152b47b2",
+    "bsp/evidence/telemetry-hardware-20261014/resume_gate.log": "2ce98e7bdebcc9b9046e1fd77268c4c68319066bf42d38627b556bcffba7ac99",
+    "bsp/evidence/telemetry-hardware-20261014/resume_gate.tcl": "6e493cf83fa6f872337d32cecc675ca7e000b7bcda5975b680f54979876ef8ae",
+    "bsp/evidence/telemetry-hardware-20261014/review.json": "c0430d012efcc67bf5e11ea2cc2f4b6ab1a0711996d47363abf45a584ccbf700",
+    "bsp/evidence/telemetry-hardware-20261014/route.qor": "a46b64ab065f1b13d32fe87d8e8ba4eeee6c60d127aeb00727727d4975aacc9e",
+    "bsp/evidence/telemetry-hardware-20261014/system_wrapper.v": "e8b9b8561033f51fce675bfd93889f69d2bbc98996b093b12ef1e14533f6da4d",
+    "bsp/evidence/telemetry-hardware-20261014/td_20261014_200604.log": "42acd21b046d665ab57567b21e8956d9cf377fbb2641eccc6abaebeac42c9023",
+    "bsp/evidence/telemetry-hardware-20261014/td_20261014_200758.log": "0ad287662b5da970821e3b80e23b9e9d9df4500f846f00afa97ceeb659a3c819",
+    "bsp/evidence/telemetry-hardware-20261014/td_20261014_200843.log": "4f7476c982bb58cba9f1534af38c1da598ab5251b4809f4aa069311836ce990a",
+    "bsp/evidence/telemetry-hardware-20261014/td_20261014_204253.log": "b340557a965586bf835f4d2009e641a6bde5425147cfa34c99bf1fe58d8456b7",
+    "bsp/evidence/telemetry-provider-20261014a/compile.log": "04b3ac9bafa419aa5d7b6abd0295bc5445dac70c38810a139b410be747fc81d2",
+    "bsp/evidence/telemetry-provider-20261014a/harness.c": "1eaba1c92bc2d7e96f2372e18a644bdb8be5d77b3f151f688fd902efdc5caab7",
+    "bsp/evidence/telemetry-provider-20261014b/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bsp/evidence/telemetry-provider-20261014b/harness.c": "2500027d81c551a17acd5fd69216b3ee795f6eb6fbe85bc8b83014b7fe3a10e5",
+    "bsp/evidence/telemetry-provider-20261014b/run.log": "12b78a7bab95399d3adba4f22d566f256610eced47ffb082612dcc5d7f8beb21",
+    "bsp/evidence/telemetry-provider-20261014c/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bsp/evidence/telemetry-provider-20261014c/harness.c": "5950e4ba455aa709938a59573012f5755fd99b3bf9560d66c12493a5fef16a99",
+    "bsp/evidence/telemetry-provider-20261014c/result.json": "2ae1d0b0789585339c338ecabad907f154fbec0aec2d93bad6c9737007cd70a2",
+    "bsp/evidence/telemetry-provider-20261014c/run.log": "e930be28aaa9de5dcfec4599280343fe60bfc249f390f4a000342ee69b83266f",
+    "bsp/evidence/telemetry-ps-20261014/actual-ps-ipgen.log": "42acd21b046d665ab57567b21e8956d9cf377fbb2641eccc6abaebeac42c9023",
+    "bsp/evidence/telemetry-ps-20261014/audit.json": "3c07349a4d7103642a484b9136bc66f5fb204f6443036f449e6d9d444bd04ce6",
+    "bsp/evidence/telemetry-ps-20261014/connections.json": "7a309b4f5bff5f7483904874cf70f5ee648a2d1214458a5b9ff3d1fc49d8966e",
+    "bsp/evidence/telemetry-ps-20261014/Design.xml": "fe2fadfebc742cd9e057cc70c6a5aed4fef6ad44072f6ff239f718ec6a41777f",
+    "bsp/evidence/telemetry-ps-20261014/generate_ps.tcl": "4b8efa1894a1717ec922557e37e30d9647198ab2fb94b3d88e7bddac80e63110",
+    "bsp/evidence/telemetry-ps-20261014/ps-gp-regenerate.log": "45ece36d03e84df735e886140524c7b0f317791c6b6db1637e30e5c6152b47b2",
+    "bsp/evidence/telemetry-regression-20261014a/0.log": "ef320c00bf7de8ced1e088acc034e5f32634b96f878dd029bd957741b3a6eab2",
+    "bsp/evidence/telemetry-regression-20261014a/1.log": "e1d30550d3538037bac2b7cf8ea0e924c6e66c773260e9dbffdbb295ae708edb",
+    "bsp/evidence/telemetry-regression-20261014a/2.log": "500010ac25b16ebe9d51fc19c0200f863b25a7c1cc6b5198e1373c1f7f287b2c",
+    "bsp/evidence/telemetry-regression-20261014a/3.log": "817a2f1ec6e2abc4f3eee545078d4a47f6f6a6b659c30cd9ef904734e052148d",
+    "bsp/evidence/telemetry-regression-20261014a/4.log": "7b9579f045655caaf6d698c537b669e72ab95f015dbdb7014ef0cb98a11efcfe",
+    "bsp/evidence/telemetry-regression-20261014a/5.log": "8cecbc159238160a4577ec57dfa6064dc70c3a8b57b393e2e1a239408bf0f910",
+    "bsp/evidence/telemetry-regression-20261014a/6.log": "a320b562dbeede00f80bc173f16e174d6c9cc63edcd4be1d7fd9aa3adc2fe829",
+    "bsp/evidence/telemetry-regression-20261014a/7.log": "343162c11155966cc2050f89ca6f494f41d87b400703784ff68fa5dcb6ddce73",
+    "bsp/evidence/telemetry-regression-20261014a/result.json": "bd346e432b85b3b6eb8a5bbbb962a7a4f4e9de6a1411b700ecdeef17e154455b",
+    "bsp/evidence/telemetry-regression-20261014b/0.log": "a1877b5433ff736b82cdac84ee1bab030a37bb7dd5df5459d2faf8a133ad71d0",
+    "bsp/evidence/telemetry-regression-20261014b/1.log": "584c8080b4a3dbbc3431f912987acaff54271a5849b8a14f425d14f33527afd9",
+    "bsp/evidence/telemetry-regression-20261014b/result.json": "586429ed13744a30002df1c61da2c03c4e90d0bc211a2a61208b2999fed1fc89",
+    "bsp/evidence/telemetry-router-20261014a/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bsp/evidence/telemetry-router-20261014a/run.log": "e7965889b32b40c12dfc80ff1002df0c9f7b780c67c985fed4520481b18d509d",
+    "bsp/evidence/telemetry-software-20261014/client-Module.symvers": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bsp/evidence/telemetry-software-20261014/modules.json": "f6012d1b119827ecd77c7d3a04985f65e74a528dc61f783709b652c834416de0",
+    "bsp/evidence/telemetry-software-20261014/preview-dts-20261014-124647.log": "bd31dc02e30b2967ed695c3b37d9b38286d8caadcfd2be2e04ef7eb36f8a5719",
+    "bsp/evidence/telemetry-software-20261014/preview-resource-audit.json": "b678073163cbd798331a3c22f914c73e64415e84148e0e437c28e4e97c9f1804",
+    "bsp/evidence/telemetry-software-20261014/preview.dtb": "d2114bd1680b4b217ea823fb6fee7fb3fd5d1b19695d1f4a0953212bc33af3be",
+    "bsp/evidence/telemetry-software-20261014/preview.expanded.dts": "f23681b995bd88a2c93aaf6e7fa70a6d2fc12f4ba352c8e759d69a85a1a94199",
+    "bsp/evidence/telemetry-software-20261014/provider-Module.symvers": "28a79ffbd043eae867c8687afed6d2f6e7a0451fffd89b3dafa373c2698a6938",
+    "bsp/evidence/telemetry-software-20261014/telemetry-software-20261014-122506.log": "82b92aa21112a633d4b691eae574b8b8eb3b1e8f6dcf227cf255eca00357e29c",
+    "bsp/evidence/telemetry-software-20261014/telemetry-software-20261014-124639.log": "852260fd791c0399a39febe0c34898a2f1b75ca6ed3597e47f3d0a86f5b5f2cc",
+    "bsp/evidence/telemetry-software-20261014/telemetry-software-20261014-130203.log": "dbcf278f4e3b35e73de21174ba5781fbe083e0be24fea64aa53fd2e7ed740383",
+    "bsp/evidence/telemetry-software-20261014/telemetry-software-20261014-132504.log": "11e0b74d4c2253059b9aac623350356c09dc34f4b08ad3a0bbd1dafdae5aa5c7",
+    "bsp/evidence/telemetry-software-20261014/telemetry-software.log": "053ae7896b6fb58bbe4cce1dc2046664b46e8222cec59881ad2ebcbf4868e4ff",
+    "pl_dma/reports/telemetry_bsp20261014a/compile.log": "44d8de930191cb46b68fb4cc561561f13176ee9553f788e8dcb5949f4e583c52",
+    "pl_dma/reports/telemetry_bsp20261014a/library.log": "efe634ff455fa060b2dcce0109034669b1f2a5bba469aecc4fc0b6bcc99ec4e6",
+    "pl_dma/reports/telemetry_bsp20261014a/result.json": "1919d897624eef44ee111662b29da0c9c3edb395b4c9ce0732c2212c3ccec936",
+    "pl_dma/reports/telemetry_bsp20261014a/simulation.log": "da818952259ddabcfe1dc66ad53ea98ee12a2663b729ea8ec80b34ba73df5b92",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/golden_model_tests_test_regression.py.log": "7d2518c668196275cfa208e535e9f85e9460f59484b2f8f30c5dcff6e53e764a",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_dma_tests_run_components.py.log": "c3d799705bfc77aadbc0b38684dd50951147487b204fc139795e2a82b7eda7f6",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_dma_tests_run_motion.py.log": "6e2ea4d945080dccb6473794f0c28abd755f889d83a5234ffedc413ed5c6308c",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_dma_tests_run_sim.py.log": "3df3969eeb768963f4cca3e6856320650441408ba6361eb5ec2bc6b0c9e7812f",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_dma_tests_run_sim.py_shared.log": "fa16ab0625ad84371d5afd74e15747ab98b2b105f4557360445a2792a780ae12",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_dma_tests_test_contract.py.log": "93cde942bd83c461d7f8f02498bf300f775b346f0979fd61cb3112af4e899fa5",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_interface_generate.py_check.log": "8261ae1a97bbd5d4fadcb20148b5bcf3a9752eee8dbad4c730e7650dd00d4974",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_interface_tests_check_verilog.py.log": "2376aa235636549e4c1742badda99a08a891af93c9b91135a6f1967be2f05c9d",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_interface_tests_test_interface.py.log": "cd3ea5cdbf57c2dbc408393e89bc39a3756710e9b00b3a13420436186beecdfa",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_interface_tests_test_motion_v2.py.log": "b8cd9fc049ca61e82b14a69bb05c5af4c7525ed6a0a7638ee85abca406fa4848",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_motion_tests_run_continuous.py.log": "a0ea7b3cb528306791876cb05fe618e815894f72d1d10080ca40a3baabd284b5",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_motion_tests_run_four_axis.py.log": "b0443168c20b5ddc9a62268f2a17defa1a0abe6040f0c060d4f616074e9bf2d1",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_motion_tests_run_gp.py.log": "9747938be9dcd42a25613efacca78ec112dd1b14533ca29f7548338b17303815",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_motion_tests_run_motion_integration.py.log": "bc9b3b2fb56961459959f71d2480822d6c72530f51a3a61a86d228e9f30a4e38",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/pl_motion_tests_run_sim.py.log": "c2fdf0e752fda21f8233f7321ae8eb3b7599f9081dddfa7e7ab2aff5dd0bdeb6",
+    "pl_dma/reports/telemetry_regression_bsp20261014b/result.json": "dc497db0009bed46a8a85bad87e030e064844f9ce25acd76fab26ce14f0956fd",
+    "pl_dma/reports/telemetry_system_bsp20261014a/compile.log": "f3a5f23341a50de33bc3d30f4de9d7ad9489bd34fa5caf8ab9776217d92ef772",
+    "pl_dma/reports/telemetry_system_bsp20261014a/library.log": "efe634ff455fa060b2dcce0109034669b1f2a5bba469aecc4fc0b6bcc99ec4e6",
+    "pl_dma/reports/telemetry_system_bsp20261014a/result.json": "b3d01db3dcbef76589e8b310b56df47c91d6de8e7f5c27e7eb88689dcc1da5e3",
+    "pl_dma/reports/telemetry_system_bsp20261014a/simulation.log": "27c28058f9654454cfbe6a18a32188cc653a6c0653993cc8f236bbcd23879a1a",
+    "pl_rs485/evidence/sim_bsp20261014a/manifest.json": "58eb0563bd0ebaacfbc8775a05b9bebea63bf8526b3fcae50b843fdfe3e5092f",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_divider_compile.log": "7d13203ca91ad216a65e9b64dcaac1c93812a3997f873acd32f501476befc433",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_divider_simulation.log": "744b136e0e66ba964e2c6d30b5934e63c0f2fae42a42d37e9076222d41348c89",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_gp_e2e_compile.log": "4937ce49a8b31ababe89bde84d901daa182f97bf93ce011708f0dce9ebd956c9",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_gp_e2e_simulation.log": "eca42e5df686b13b5891bcfcdd08ac7f3142395002e880819d6192ffc427eca7",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_gp_regs_compile.log": "c8ee9446f5ef9ce038fc73d96708726994f4eeaa55943df657ef3203a3b73b88",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_gp_regs_simulation.log": "26b016849b9fece10472d8cfed9a0cabbf52b760efda4420356e969500bd196a",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_gp_stress_compile.log": "ef5c41f0e28d88050e9ffff268d325eacadbed81b1d6925b2a1f9fd18c59818d",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_gp_stress_simulation.log": "754166c3aad1498857c3823c06d7f2b684f20120cfa03b372d0bd5cf49601db5",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_multirate_compile.log": "cfe2e8ac08a0b7d9c05f56982eb6906bfb96d17a8bdc079760db26490a582981",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_multirate_profile_compile.log": "afdfd28797f1b01efce2f24352c62d41698f93dcb5e4a5840adcc8ac4a91b286",
+    "pl_rs485/evidence/sim_bsp20261014a/tb_multirate_simulation.log": "30ba9de2a1374a1f7d5aaa71b8846bd31135ef98b61feab06d8c8ed20a3a4529",
+    "pl_rs485/evidence/sim_bsp20261014b/manifest.json": "bbbd6dacdaa4a7df611b8fec37738bcfb3219aa82628e294e530e0a6bc9737a9",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_divider_compile.log": "168be5bada82384e894e344cf82934afcf8f1118c63ae692bc948ce85d62619f",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_divider_simulation.log": "5eb3ebccc9a8597c94ee5460d55160e4819bcc2268276026d2d63fedffc64079",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_fifo_compile.log": "72b13a611966cd6338530e2fba6557300ecd9a8209ea314f4a5d4df216f07d99",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_fifo_simulation.log": "2c162e5df1ccbfb7022a15ced4848506ea442d46acd8eff2a8e7bd518a3ff27f",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_multirate_compile.log": "168be5bada82384e894e344cf82934afcf8f1118c63ae692bc948ce85d62619f",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_multirate_profile_compile.log": "168be5bada82384e894e344cf82934afcf8f1118c63ae692bc948ce85d62619f",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_multirate_profile_simulation.log": "6a9493ecf560382fc91588f4de0c91eeaf61e5294d58812586ebe06971683630",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_multirate_simulation.log": "e03425ca5259d0db81e693f48f48c82089c4b40dcc4a561098c09ff84aa1a20f",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_profile_compile.log": "f53ff18b390b4ce2dcc9eabb380e8d0e77d629b384698cfd94dbbca7d11b2bc3",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_profile_simulation.log": "4ff296822a3c62c045f7aa91afad7173dde9be74998106c4ea181da1ad499798",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_rs485_compile.log": "a465a6fa84cefd5d02eeb7171ee25bd24f905806f2820a8f83f2940bc5bdbe1b",
+    "pl_rs485/evidence/sim_bsp20261014b/tb_rs485_simulation.log": "ead7427c7dd0c98bd9412ef76e241ead783856a8c80f0dc8db99866ce3428e11",
+    "pl_rs485/evidence/software_bsp20261014a/compile.log": "4cd91a26605bf8cc591f64b6c1512f0a38fa414ba7eb5ef6f7a042d5eeb63cc0",
+    "pl_rs485/evidence/software_bsp20261014a/manifest.json": "ad41223b90eaa5ffe05cdf199cb34c1a8f1253bae7abba037ca2e99ddd8aa1b2",
+    "pl_rs485/evidence/software_bsp20261014a/test.log": "907fdd2e5c1d6f492edffd67bc1b4ffca7fb47c2ae3c3d2e39cce144d51e35c9",
+    "pl_rs485/evidence/telem_irq_bsp20261014a/compile.log": "0a5fc5026aa3c6c24611c08366e43196a25030c3ea14bb37d5d3fbc39b4084b0",
+    "pl_rs485/evidence/telem_irq_bsp20261014a/frames.hex": "4519678d08a2d28870b56e0a3a08d489132a129b8357ee4169b9ed36c9f5400e",
+    "pl_rs485/evidence/telem_irq_bsp20261014a/manifest.json": "29e9b4ec9fdba492bdda1a744dc9539bed7bff380214d5aaeeffc45163c3bbc8",
+    "pl_rs485/evidence/telem_irq_bsp20261014a/tb.v": "2b5a45680345cbbe180b0be625ff2d894afc35551b1ce0e2e33b3c3155aa2bc9",
+    "pl_rs485/evidence/telem_irq_bsp20261014a/test.log": "76cc4edf1236042bf290aefbde40f7d40bd68d8529d498efbca07a4553d710a9",
+    "pl_rs485/evidence/telem_parse_bsp20261014a/compile.log": "06e073ebfdae6d13a68bed5afe5ffd36236ea25e182ab7cbb75ff6aa9ed998a9",
+    "pl_rs485/evidence/telem_parse_bsp20261014a/manifest.json": "92457fd68decd5a5858456fde2b8b8d3358a0e909f54dc2a987bd2f248567716",
+    "pl_rs485/evidence/telem_parse_bsp20261014a/test.log": "6445026f981ed65d2fa2ac97a109dee92034384301f6d9bba054a9b4e3992c92",
+    "pl_rs485/evidence/telem_results_bsp20261014a/compile.log": "6c8170cf8e2665b61189da45edacebc9ae0d5a425a67c4cc4b2836ae053c8005",
+    "pl_rs485/evidence/telem_results_bsp20261014a/frames.hex": "4519678d08a2d28870b56e0a3a08d489132a129b8357ee4169b9ed36c9f5400e",
+    "pl_rs485/evidence/telem_results_bsp20261014a/manifest.json": "73005f4c67be89cf67e9e301d62a72481e0e93d836724e54d8ad54a05cf235f7",
+    "pl_rs485/evidence/telem_results_bsp20261014a/tb.v": "3c030147891f55779665fb3cf2e0d31591dcea4d40af93d18660103d73040975",
+    "pl_rs485/evidence/telem_results_bsp20261014a/test.log": "174b0ab923f1ba3fb7f15893f66ba3537388cd0a3f13f2495de4d3c415f7e4f6",
+    "pl_rs485/evidence/telem_software_bsp20261014a/compile.log": "0a89dcd8f908698410e36aed577603ae5d5dd5933934bd698e7afa6085b70a5f",
+    "pl_rs485/evidence/telem_software_bsp20261014a/manifest.json": "3ec373375fc73beb0def5ebbcc2f3e52ce23111eda1da8dc667bb1ceb635b238",
+    "pl_rs485/evidence/telem_software_bsp20261014a/test.log": "2f1245b947e82cef6d3297a4c43bd23fa7004b02ac3b10b44bd7aae7233f612c",
+    "pl_rs485/evidence/telemetry_bsp20261014a/compile.log": "97cadb65b5b7134eebcab523f0b33416fb0e28be73b2c5676456f83401880886",
+    "pl_rs485/evidence/telemetry_bsp20261014a/frames.hex": "4519678d08a2d28870b56e0a3a08d489132a129b8357ee4169b9ed36c9f5400e",
+    "pl_rs485/evidence/telemetry_bsp20261014a/manifest.json": "96bafbc2bd1ab37cea2caa10fb7ff07cd7ac38cad83cb746308a6cd620c219f7",
+    "pl_rs485/evidence/telemetry_bsp20261014a/simulation.log": "08c666a17918bcd341ed4cfa17ce77ef085fad131508d2720f8f3bc77e343d8a"
+  },
+  "new_bit_hpf_fsbl_boot_sd": "NOT_GENERATED; hardware gate closed",
+  "sd_readback_cold_boot_runtime": "NOT_EXECUTED",
+  "physical_rs485_feedback_gpio_pressure": "NOT_EXECUTED",
+  "board_serial": "NOT_OPENED; user control preserved",
+  "board_new_modules_buffers": "NOT_LOADED_OR_ALLOCATED",
+  "board_current_old_state": "NOT_READ_OR_TAKEN_OVER",
+  "rollback_image_sha256": "66d1b0cff5e56db5b8572eb879a3d9781e25c1028fa3168c2ec6142e6e3a6ff6",
+  "software_archive_sha256": "e13c0fdaf9a73f9096e76ad550392f982bf9110ca0e8ee41e9c2fa348870640f",
+  "inflight_rx_drain_qualification": "not granted; default in-flight uncertainty quarantines and retains buffer",
+  "documentation_sha256_lf": {
+    "PHASE0_CONSTRAINTS.md": "d29b37bc137276c38cf51e6ad64bbc837895a3adb134254b71ee85b1bf7c75b9",
+    "HARDWARE.md": "ffd19842ff9692d423f96dd01b2de3a412a98348c6d2a51164271929bf095c03",
+    "bsp/BOARD_VALIDATION.md": "d904efd983c0dd75f8b96e047b684beafc2cc1468b929f32b316e47a84e05031"
+  }
+}

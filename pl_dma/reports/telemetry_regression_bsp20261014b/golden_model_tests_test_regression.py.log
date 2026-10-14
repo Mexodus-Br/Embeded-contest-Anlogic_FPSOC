@@ -1,0 +1,78 @@
+EXIT 0
+g++.EXE (x86_64-posix-seh-rev0, Built by MinGW-Builds project) 15.1.0
+{
+  "reference_cases": 1272,
+  "numeric_profile": "host_float32_double64",
+  "avr_execution_verified": false,
+  "trajectory_points": 201,
+  "max_adjacent_angle_delta_rad": 0.007532183080911636,
+  "max_adjacent_step_delta": 18,
+  "valid_reference_cases": 826,
+  "invalid_reference_cases": 446,
+  "geometry_checks": 2388,
+  "max_rod_error_mm": 3.653296596439759e-05,
+  "provisional_rod_tolerance_mm": 0.0032806396484375,
+  "test_methods": 10,
+  "failures": 0,
+  "errors": 0,
+  "passed": true,
+  "build_info": {
+    "compiler": "g++.EXE (x86_64-posix-seh-rev0, Built by MinGW-Builds project) 15.1.0",
+    "compiler_path": "D:\\mingw64\\bin\\g++.EXE",
+    "commands": [
+      [
+        "D:\\mingw64\\bin\\g++.EXE",
+        "-std=c++17",
+        "-O0",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "D:\\Works\\Embedded_contest\\dev\\golden_model\\src\\model.cpp",
+        "D:\\Works\\Embedded_contest\\dev\\golden_model\\src\\main.cpp",
+        "-o",
+        "D:\\Works\\Embedded_contest\\dev\\golden_model\\build\\delta_model.exe"
+      ],
+      [
+        "D:\\mingw64\\bin\\g++.EXE",
+        "-std=c++17",
+        "-O0",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-ID:\\Works\\Embedded_contest\\dev\\golden_model\\tests",
+        "-ID:\\Works\\Embedded_contest\\dev\\golden_model\\baseline",
+        "D:\\Works\\Embedded_contest\\dev\\golden_model\\tests\\oracle.cpp",
+        "D:\\Works\\Embedded_contest\\dev\\golden_model\\baseline\\robotGeometry.cpp",
+        "D:\\Works\\Embedded_contest\\dev\\golden_model\\baseline\\RampsStepper.cpp",
+        "-o",
+        "D:\\Works\\Embedded_contest\\dev\\golden_model\\build\\firmware_oracle.exe"
+      ]
+    ],
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numeric_profile": "host_float32_double64",
+    "avr_execution_verified": false
+  }
+}
+D:\Works\Embedded_contest\dev\golden_model\baseline\RampsStepper.cpp: In constructor 'RampsStepper::RampsStepper(int, int, int, bool)':
+D:\Works\Embedded_contest\dev\golden_model\baseline\RampsStepper.cpp:13:3: warning: statement has no effect [-Wunused-value]
+   13 |   stepperStepTargetPosition;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~
+test_baseline_and_fixture_provenance (__main__.Regression) ... ok
+test_cli_exit_codes_and_malformed_batch (__main__.Regression) ... ok
+test_config_replacement_and_invalid_configs (__main__.Regression) ... ok
+test_continuous_trajectory (__main__.Regression) ... ok
+test_extraction_against_original (__main__.Regression) ... ok
+test_failures_and_legacy_box (__main__.Regression) ... ok
+test_frozen_vectors_against_live_original (__main__.Regression) ... ok
+test_independent_rod_lengths (__main__.Regression) ... ok
+test_steps_offsets_rounding_and_direction (__main__.Regression) ... ok
+test_symmetry_and_manual_center_example (__main__.Regression) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.453s
+
+OK

@@ -1,0 +1,46 @@
+{
+  "passed": false,
+  "tests": [
+    {
+      "command": "pl_rs485/tests/run_telemetry.py --tag bsp20261014a",
+      "exit": 0,
+      "log_sha256": "ef320c00bf7de8ced1e088acc034e5f32634b96f878dd029bd957741b3a6eab2"
+    },
+    {
+      "command": "pl_rs485/tests/run_telem_parse.py --tag bsp20261014a",
+      "exit": 0,
+      "log_sha256": "e1d30550d3538037bac2b7cf8ea0e924c6e66c773260e9dbffdbb295ae708edb"
+    },
+    {
+      "command": "pl_rs485/tests/run_telem_results.py --tag bsp20261014a",
+      "exit": 0,
+      "log_sha256": "500010ac25b16ebe9d51fc19c0200f863b25a7c1cc6b5198e1373c1f7f287b2c"
+    },
+    {
+      "command": "pl_rs485/tests/run_telem_irq.py --tag bsp20261014a",
+      "exit": 0,
+      "log_sha256": "817a2f1ec6e2abc4f3eee545078d4a47f6f6a6b659c30cd9ef904734e052148d"
+    },
+    {
+      "command": "pl_rs485/tests/run_telem_software.py --vectors pl_rs485/evidence/telemetry_bsp20261014a/frames.hex --tag bsp20261014a",
+      "exit": 0,
+      "log_sha256": "7b9579f045655caaf6d698c537b669e72ab95f015dbdb7014ef0cb98a11efcfe"
+    },
+    {
+      "command": "pl_rs485/tests/run_gp_software.py --tag bsp20261014a",
+      "exit": 0,
+      "log_sha256": "8cecbc159238160a4577ec57dfa6064dc70c3a8b57b393e2e1a239408bf0f910"
+    },
+    {
+      "command": "pl_rs485/tests/run_gp.py --tag bsp20261014a --seed 20261014",
+      "exit": 0,
+      "log_sha256": "a320b562dbeede00f80bc173f16e174d6c9cc63edcd4be1d7fd9aa3adc2fe829"
+    },
+    {
+      "command": "pl_rs485/tests/run_multirate.py --tag bsp20261014a --seed 20261013",
+      "exit": 1,
+      "log_sha256": "343162c11155966cc2050f89ca6f494f41d87b400703784ff68fa5dcb6ddce73"
+    }
+  ],
+  "sealed_raw_evidence_restored": true
+}
