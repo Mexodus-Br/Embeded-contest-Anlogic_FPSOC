@@ -16,7 +16,11 @@ module rs485_telemetry #(parameter integer DEPTH=256)(
  localparam [2:0] EMPTY=0,READY=1,LOAD=2,CRC=3,SEND=4,DONE=5;
  reg [2:0] state;reg opened,enabled,cancel_pending,exhausted,old_dma_ready;
  reg [PB-1:0] wr,rd;reg [PB:0] count;
- reg [543:0] memory[0:DEPTH-1];wire [543:0] head=memory[rd];
+ // A clocked read enables true ERAM mapping. Read the next queue head on the
+ // pop edge; explicit forwarding defines same-address read/write behavior.
+ (* ram_style="block" *) reg [543:0] memory[0:DEPTH-1];
+ reg [543:0] ram_head,forward_data;reg forward_valid;
+ wire [543:0] head=forward_valid ? forward_data:ram_head;
  reg [511:0] frame;reg [31:0] crc;reg [5:0] byte_index;reg [2:0] beat;
  reg [31:0] remaining,last_complete_id;reg [31:0] last_complete_generation,last_complete_result;
  reg [63:0] ready_us;reg [31:0] blocked_cycles;reg completion_event,in_flight;
@@ -24,6 +28,16 @@ module rs485_telemetry #(parameter integer DEPTH=256)(
  wire pop=state==SEND && m_valid && m_ready && beat==7;
  wire put=accept && ((count<DEPTH)||pop);
  wire reset_transport=old_dma_ready && !dma_ready;
+ wire [PB-1:0] read_address=pop ? ((rd==DEPTH-1) ? {PB{1'b0}}:rd+1'b1):rd;
+ wire [543:0] queue_record={time_us,event_raw,completion_serial,transport_generation,event_revision,event_generation,16'd64,16'd1,`RT_RECORD_MAGIC};
+ // Storage has no reset; count/state/generation fence every uninitialized word.
+ // For a first enqueue or a one-record pop/push, bypass the just-written data.
+ always @(posedge clk) begin
+  if(rst_n && put) memory[wr]<=queue_record;
+  ram_head<=memory[read_address];
+  forward_valid<=rst_n && put && wr==read_address;
+  if(rst_n && put && wr==read_address) forward_data<=queue_record;
+ end
  wire [63:0] oldest_age=time_us-head[543:480];
  wire [63:0] wait_age=time_us-ready_us;
  assign fifo_level=count;
@@ -58,7 +72,6 @@ module rs485_telemetry #(parameter integer DEPTH=256)(
     if(!accept) disabled_drop<=sat(disabled_drop,1);else if(!put) full_drop<=sat(full_drop,1);
    end
    if(put) begin
-    memory[wr]<={time_us,event_raw,completion_serial,transport_generation,event_revision,event_generation,16'd64,16'd1,`RT_RECORD_MAGIC};
     wr<=(wr==DEPTH-1) ? 0:wr+1'b1;
    end
    if(pop) rd<=(rd==DEPTH-1) ? 0:rd+1'b1;

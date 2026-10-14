@@ -4,11 +4,22 @@ from pathlib import Path
 R=Path(__file__).resolve().parents[2]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def load(p):return json.loads(p.read_text(encoding='utf-8-sig'))
-def main():
+def main(optimization_manifest=None):
  m=load(R/'pl_rs485/evidence/identity_telemetry.json')
+ candidate=load(Path(optimization_manifest)) if optimization_manifest else None
+ allowed={'pl_rs485/rtl/rs485_latest_cache.v','pl_rs485/rtl/rs485_telemetry.v'}
+ if candidate:
+  assert candidate['baseline_commit']=='7681c69'
+  assert set(candidate['changed_source_sha256'])<=allowed
+  for name,h in candidate['changed_source_sha256'].items():
+   assert sha(R/name)==h,('optimization candidate',name)
+   original=subprocess.check_output(['git','show','f447116:'+name],cwd=R)
+   assert hashlib.sha256(original).hexdigest()==m['source_sha256'][name],('frozen baseline',name)
  for field in ('source_sha256','evidence_sha256'):
   for name,h in m[field].items():
-   assert sha(R/name)==h,(field,name)
+   if field=='source_sha256' and candidate and name in candidate['changed_source_sha256']:
+    assert h!=candidate['changed_source_sha256'][name],('candidate must change identity',name)
+   else:assert sha(R/name)==h,(field,name)
  assert sha(R/'pl_interface/schema.json')==m['canonical_schema_sha256']
  for lib in m['vendor_libraries'].values():
   assert sha(Path(lib['source']))==lib['sha256']
@@ -34,5 +45,8 @@ def main():
  for name,h in gpio['vendor_ip_sha256'].items():assert sha(Path(name))==h,name
  for script in ('pl_interface/generate.py','pl_rs485/tools/generate_gp.py','pl_rs485/tools/generate_telem.py','pl_dma/generate_telemetry.py','pl_dma/generate_motion.py','pl_motion/generate_scope.py'):
   subprocess.run([sys.executable,str(R/script),'--check'],check=True,cwd=R)
- return {'status':'PASS','telemetry_identity':'f447116','schema_sha256':m['canonical_schema_sha256'],'old_leaf_values_equal':count,'old_whole_file_migrations':migrated,'vendor_ip_unchanged':True,'gpio_motion_core_unchanged':True}
-if __name__=='__main__':print(json.dumps(main(),indent=2))
+ return {'status':'PASS','telemetry_identity':'f447116','optimization_candidate':candidate,'schema_sha256':m['canonical_schema_sha256'],'old_leaf_values_equal':count,'old_whole_file_migrations':migrated,'vendor_ip_unchanged':True,'gpio_motion_core_unchanged':True}
+if __name__=='__main__':
+ import argparse
+ ap=argparse.ArgumentParser();ap.add_argument('--optimization-manifest');a=ap.parse_args()
+ print(json.dumps(main(a.optimization_manifest),indent=2))
