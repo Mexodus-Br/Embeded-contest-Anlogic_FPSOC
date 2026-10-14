@@ -1,5 +1,7 @@
 # 硬件资料核对记录
 
+2026-10-14当前规划：Wi-Fi STA连接路由器的局域网Web HMI为首版，HDMI/Qt暂缓，4G异地访问后续扩展；主线使用现有Buildroot核心BSP。无线资料、配置差异和验证边界见§13，早期图形系统和厂商镜像记录保留为历史事实。
+
 2026-10-11后续实板补充：用户确认SD启动与COM4可进入，只读核对确认Linux6.1.111-rt42-bsp-sd1、根为SD mmcblk0p2/PARTUUID=d0e414b9-02、1GiB物理映射及128MiB CMA预留；运行.config哈希与交付匹配。完整冷启动FSBL/U-Boot、实物DDR供电/颗粒及压力/DMA/运动验收仍未完成，详见[bsp/BOARD_VALIDATION.md](bsp/BOARD_VALIDATION.md)。
 
 2026-10-11 BSP构建补充：已在用户提供的Ubuntu18.04.4/x86_64虚拟机独立构建目录完成Buildroot最小SD文件镜像，详见[bsp/README.md](bsp/README.md)与[bsp/evidence/manifest.json](bsp/evidence/manifest.json)。后续经用户授权完成实体SD烧写，前512MiB直接读回哈希与镜像一致，FAT32/EXT4检查通过，详见[bsp/DEPLOYMENT.md](bsp/DEPLOYMENT.md)。未实板启动；本批未操作串口。厂商原始资料未改动。
@@ -17,7 +19,7 @@
 
 ## 1. 与 AGENT.md 的关系
 
-保持既有职责边界：PS 承担任务、轨迹、插补、Delta IK、CAN 服务及诊断管理；PL 承担四轴 STEP/DIR/EN、运动安全响应、RS485 Master、时间戳与遥测采集。RS485 是三线控制的半双工总线。NPU 不直接控制执行器。
+保持既有职责边界：PS 承担任务、轨迹、插补、Delta IK、统一网络命令/Web HMI服务及诊断管理；PL 承担四轴 STEP/DIR/EN、运动安全响应、RS485 Master、时间戳与遥测采集。RS485 是三线控制的半双工总线。NPU 不直接控制执行器。
 不生成 RTL、约束工程或冻结寄存器/报文格式。
 
 用户已确认使用双核 ARM 平台。指定两份手册均将此选项对应到 MLK-CZ02-DR1M90 / DR1M90GEG400，配 MLK-F3P 底板，作为当前资料型号基线。用户进一步确认DDR3为1GB、32bit、1.35V、速率1333，eMMC为8GB、QSPI Flash为32MB；存储容量已确认。完整实物丝印/速度等级、存储颗粒型号及BSP时序/训练配置仍待核对。
@@ -51,7 +53,7 @@
 | 接口 | 手册能力与连接 | 设计时需要核对 |
 | --- | --- | --- |
 | HDMI | 一路PL直接驱动输出，资料标称最高1080@60fps；p6、p19 | 显示时序、输出IP、DDR帧缓冲/带宽和实际显示器；不是本项目刷新率已冻结 |
-| CAN / RS485 | 各一路，PL BANK33、3.3V；管脚见§4 | PS CAN到PL IO路径与半双工换向、总线电阻 |
+| RS485 | 一路，PL BANK33、3.3V；管脚见§4 | 半双工换向、总线电阻及驱动器转换模块 |
 | 普通GPIO | J12，2×13、2.54mm，24根信号；p23 | 当前3.3V运动候选；2.00mm排线转接/输入数量见§5、§8 |
 | FEP | 48根IO/24对差分；p6、p22-23 | BANK32可调电压、子卡与连接器，不能默认与J12电平相同 |
 | 调试/启动 | UART+JTAG Type-C；TF卡与QSPI/eMMC启动资源；p6、p13、p16、p18-19 | PS/PL串口区分、当前启动介质与驱动；预留TF1与eMMC资源有关，不能当作独立已安装存储 |
@@ -79,21 +81,16 @@ HDMI高速输出对经手册p19和管脚表核对为D2=D19/D20、D1=F16/F17、D0
 | RS485_TX0 | L17 | PL 输出，3.3V |
 | RS485_RX0 | N16 | PL 输入，3.3V |
 | RS485_DE0 | N15 | PL 输出；0 接收、1 发送 |
-| CAN0_TX | F20 | 输出至收发器，3.3V |
-| CAN0_RX | F19 | 收发器输出至 PL，3.3V |
 | PL_UART_TX | J16 | PL 输出，3.3V |
 | PL_UART_RX | K16 | PL 输入，3.3V |
 | PS_UART_TX/RX | MIO48 / MIO49 | PS 调试串口；不可套用 PL 的 3.3V 约束 |
 
 - RS485 U21=SP3485EN-L/TR；DE 与低有效 /RE 共同接 N15。板上 R120=120Ω 跨 A/B，原理图未显示终端跳线或可切换控制，也未在 p14 显示独立外部偏置电阻。
-- CAN U22=SN65HVD232DR，板级标称最高 1Mbit/s；R121=120Ω 跨 CANH/CANL。芯片 PS 支持 CAN 功能不等于板载收发器已具备 CAN FD 的所需物理性能。
-- 用户确认项目采用 Classical CAN（经典 CAN）；波特率、标准/扩展帧格式、应用协议与节点ID待定。
-- J11 六针原理图定义：1=GND，2=CANL，3=CANH，4=GND，5=RS485 A，6=RS485 B。接线前核对实物针序和设备 A/B 定义。
+- J11 本项目使用的RS485接线：4=GND、5=RS485 A、6=RS485 B；接线前核对实物针序和设备 A/B 定义。其他针脚不作为本项目已分配接口。
 - 固定终端电阻影响共享总线拓扑；确认控制板是否处于总线端点、从机终端与线长。
-- UG1214 §2.4 表2-5（PDF p34）明确 CAN[0,1] 可路由到 PL IO。已核对18.plio_can的PS端口、DTS与F20/F19约束，资料中的“PS CAN控制器经PL IO”路径获得示例印证；项目版本匹配与实板收发仍待验证，不擅自改为PL CAN控制器。
 - N16、N15、F19、F20、J16、K16 是 ADC 复用 IO，见核心板原理图 p4。硬件手册要求避免将这类 IO 用作高速 IO；实际通信速率及 IO 性能需按器件工具配置验证。100MHz 输入 H16 不属 ADC 复用组。
 
-来源：开发板手册 p12、p16、p21；底板原理图 p3、p14；核心板原理图 p4；PL-RS485 管脚表 A3:C5；PL-CAN 管脚表 A3:C4；UG1214 PDF p34。
+来源：开发板手册 p12、p16、p21；底板原理图 p3、p14；核心板原理图 p4；PL-RS485 管脚表 A3:C5；UG1214 PDF p34。
 
 ## 5. 四轴输出及输入的候选扩展接口
 
@@ -194,7 +191,7 @@ U23 FEP：48 路 IO/24 对差分，DR1 BANK32，可调 VCC_ADJ；管脚表保留
 ## 9. 待用户确认
 
 完整器件/板卡版本、具体存储颗粒与BSP时序/训练配置（特别是示例DDR IO电压1.5V与当前记录1.35V的差异）；已有Linux BSP/设备树的项目适配与可用构建环境；外部接口板、2.00mm转接与实际针序；
-驱动器固件/转换模块、脉冲与串口并发兼容性、协议剩余字段与时序；CAN路径与协议；
+驱动器固件/转换模块、脉冲与串口并发兼容性、协议剩余字段与时序；无线接入与Web接口；
 对应STEP边沿的匹配规则及测量位置、脉冲分配算法、负载验收范围、回零/限位/报警/急停输入与停机/恢复策略；
 AXI/点/遥测/DDR格式；时间戳计数频率/单位、初始化完成条件、采样标记、回绕、软复位/PL重配置及跨域读取（64位无符号与上电初始化后从0累加已确认）；寄存器/错误码/配置管理、生成文件边界；竞赛时间。
 项目功能目标与用户确认状态统一见 PHASE0_CONSTRAINTS.md。
@@ -214,7 +211,6 @@ AXI/点/遥测/DDR格式；时间戳计数频率/单位、初始化完成条件�
 | `03_demo\3-4_ex_soc_linux\01_ex_linux_base_F3P_DR1M90G\Linux Base Appendix\Chapter 3` | `soc_prj/system.al`、`soc_hw/system.hpf`、FSBL源码/SDK、kernel/uboot两组DTS；`boot`内有BOOT.bin、boot.scr、system.dtb、uImage.lz4、uInitrd.lz4 | Linux启动和TD→HPF→FD/FSBL→系统打包参考；镜像存在，未证明能在当前实板启动 |
 | `03_demo\3-4_ex_soc_linux\02_ex_linux_drive_F3P_DR1M90G\Sourcecode` | 1–23章工程；包含设备树平台驱动、MISC、输入/中断、Timer/Watchdog、RTC/UART/I2C、文件读写、阻塞/非阻塞/异步IO | Linux驱动与日志/事件通知参考；章节示例互相独立，不能直接当作一套已集成系统 |
 | 上述Sourcecode下 `16.plint`、`17.axi_gpio` | PL中断platform_driver与request_irq；AXI GPIO驱动ioremap/ioread/iowrite；DTS及硬件工程 | GP寄存器和PL→PS事件通知参考；GPIO示例硬编码0x80000000/0x80100000等地址，不复制为机器人寄存器地址 |
-| 上述Sourcecode下 `18.plio_can` | PS模块can0端口经PL引脚；ADC约束RX=F19、TX=F20、LVCMOS33；kernel DTS启用ipmscan0/1 | 证实资料中存在PS CAN→PL IO→板载收发器的实现参考，符合PS负责CAN的边界；实板只接出的CAN0须按本工程启用 |
 | 上述Sourcecode下 `19.axi_uartlite` | 独立PL UART-Lite工程、DTS及Linux串口应用 | UART/IP接入参考，不替代PL RS485 Master的轮询、DE、CHECKSUM-8与时间戳逻辑 |
 | `03_demo\3-2_ex_fpsoc\3_2_01_sdk_base\17_axi_DMA` | `soc_sdk/axidma_s2mm_mm2s/main.c`中S2MM/MM2S及HP0↔DDR↔AXI-Stream；包含DMA IP和硬件工程 | 通用轨迹下发/遥测回传的优先研究候选；当前应用是裸机HAL，不直接作为Linux驱动 |
 | `03_demo\3-2_ex_fpsoc\3_2_02_sdk_adv` | 有03_pl_fdma、04_pl_fdma_video_1080P等工程目录 | FDMA与显示相关补充索引，未逐一验证所有工程 |
@@ -229,19 +225,17 @@ AXI/点/遥测/DDR格式；时间戳计数频率/单位、初始化完成条件�
 - `sources/linux/Makefile`：Linux **6.1.111**；`sources/u-boot/Makefile`：U-Boot **2021.01**；`sources/buildroot/Makefile`：Buildroot **2022.02.6**。这些是该包源码版本，不推定每个旧demo的预编译镜像或当前实板正在运行相同版本。
 - `scripts/drcfg.sh`默认选择DR1M与Buildroot。包含rootfs、U-Boot、kernel、镜像生成脚本；`boards/DR1M/configs/defconfigs`含三者的板级defconfig，另有TF FAT/EXT4、HDMI、Qt启动参数文件。
 - `tools/aarch64-linux/bin/aarch64-linux-gnu-gcc`存在，文件头为64bit x86-64 ELF，是Linux主机工具，不是Windows exe。Buildroot defconfig选择外部GCC 7、glibc、C++；尚未运行版本查询或编译。
-- `boards/DR1M/configs/defconfigs/anlogic_dr1_buildroot_defconfig`配置Qt5 GUI/Widgets、libsocketcan、can-utils及CPIO/LZ4根文件系统选项。Qt配置存在不等同HDMI HMI已经实现。
-- 内核有 `drivers/net/can/ipms_canfd.c`，匹配 `ipms,can` 与 `ipms,canfd`；DR1M kernel defconfig启用CAN/IPMS CANFD驱动。控制器驱动支持FD不改变用户已确认的Classical CAN。
+- `boards/DR1M/configs/defconfigs/anlogic_dr1_buildroot_defconfig`配置Qt5 GUI/Widgets及CPIO/LZ4根文件系统选项。Qt配置存在不等同HDMI HMI已经实现。
 - 内核有 `drivers/dma/anlogic/{anlogic_dma.c,axi-dma.c,axi-dma-test.c,axi-vdma.c,axi-vdma-test.c}`。测试代码使用dma_request_chan、dma_alloc_coherent和DMAengine；已有Linux DMA源码参考，不必从零编写整套DMA驱动。该目录Makefile使用CONFIG_ANLOGIC_DMA/AXI_DMA/AXI_DMA_TEST/AXI_VDMA等开关，检查的DR1M kernel defconfig未出现这些开关；集成时须核对Kconfig依赖、最终.config、DTS、IP版本和中断。
 - DR1M kernel defconfig已有CMA/DMA_CMA、UDMABUF、PL GPIO/UART-Lite及帧缓冲相关配置；项目DMA缓冲所有权、cache同步、映射和ring buffer仍待接口设计，不能只据功能开关认为一致性已解决。
 
-来源教程：Linux基础入门篇PDF p17–24说明HPF、FSBL、系统打包和TF启动；p17指定TD_6.2.1_Engineer_168116与FD_2025.1_SP1。Linux驱动开发篇PDF p285、p291给出PS CAN经PL端口及can-utils演示。教程Ubuntu 18.04是开发主机环境，板端系统参考为Buildroot，不将二者混写。
+来源教程：Linux基础入门篇PDF p17–24说明HPF、FSBL、系统打包和TF启动；p17指定TD_6.2.1_Engineer_168116与FD_2025.1_SP1。
 
 ### 10.3 适配前必须核对的差异
 
-1. **DDR电压**：Linux Chapter 3与18.plio_can的 `system.hpf`、培训fdma_test和fdma_vdma_tpg的 `soc_prj.hpf` 内 `HPFs/static/data/ddr.js` 均为DDR3、1333Mbps、32bit、x16/4096Mbit、DDR3_1333G、training=1，但 **DDRC_IO_VOL=1.5**，与当前用户/手册基线1.35V不一致。保留项目已确认配置并标注差异；核对实板颗粒、供电和当前工具对该参数的含义后，再生成匹配的PS初始化，不能原样烧写或未经核对只改显示值。
+1. **DDR电压**：Linux Chapter 3的 `system.hpf`、培训fdma_test和fdma_vdma_tpg的 `soc_prj.hpf` 内 `HPFs/static/data/ddr.js` 均为DDR3、1333Mbps、32bit、x16/4096Mbit、DDR3_1333G、training=1，但 **DDRC_IO_VOL=1.5**，与当前用户/手册基线1.35V不一致。保留项目已确认配置并标注差异；核对实板颗粒、供电和当前工具对该参数的含义后，再生成匹配的PS初始化，不能原样烧写或未经核对只改显示值。
 2. **工具版本**：Linux示例system.al记录6.2.168116，AXI DMA示例6.2.170161，培训工程6.2.175876，均早于本机TD2026.1 SP2。Linux HPF还标注version=202501、生成时间20250812。教程/工程/HPF不是严格同一时刻快照；迁移时需恢复/重生成IP、重新导出HPF并匹配FSBL/bitstream/DTS，而非只打开旧工程即宣称兼容。
 3. **时钟**：核对的Linux HPF报告p2f_clk0=49.995MHz；培训TPG HPF的VDMA输入133.32MHz、VTG输入49.995MHz。项目已确认100MHz PL基础时钟不变，AXI/显示域与100MHz运动域的CDC/复位另行设计，不把demo所有时钟直接替换为100MHz。
-4. **CAN演示**：教程p291含`fd on`的演示命令，不能照搬到本项目Classical CAN；示例500k或HPF速率不冻结项目波特率。GPIO约束和PS路由已获得相互印证，协议/波特率/帧格式仍待决定。
 5. **DMA与显示**：通用AXI DMA和厂商uifdma/视频VDMA属于不同候选；后者帧切换语义不直接成为运动点消费语义。训练TPG源代码写入地址与HPF摘要有差异，后续以重新生成的一致硬件/软件定义核对。具体IP选型和Linux应用API本次未冻结。
 
 建议下一步验证顺序：匹配板级配置与工具→可重复Linux启动→GP寄存器与PL中断→通用AXI DMA双向回环→在该基线上接入运动FIFO/遥测。HDMI、CAN和NPU另按各自接口验证；当前任务仅完成资料核对。
@@ -269,7 +263,7 @@ AXI/点/遥测/DDR格式；时间戳计数频率/单位、初始化完成条件�
 
 ## 11. 实板串口运行基线
 
-采集日期：2026-10-08（主机Asia/Taipei日期）。按用户授权通过COM4、115200、8N1连接；当前已有root shell，`id`确认uid=0。使用本机System.IO.Ports.SerialPort完成只读查询，DTR/RTS均保持false，无流控。未重启、烧写、挂载新分区、配置网络/CAN、操作MMIO或加载PL/模块；完成后关闭COM4。AGENT.md已有未提交修改未纳入本次记录变更。
+采集日期：2026-10-08（主机Asia/Taipei日期）。按用户授权通过COM4、115200、8N1连接；当前已有root shell，`id`确认uid=0。使用本机System.IO.Ports.SerialPort完成只读查询，DTR/RTS均保持false，无流控。未重启、烧写、挂载新分区、配置网络、操作MMIO或加载PL/模块；完成后关闭COM4。AGENT.md已有未提交修改未纳入本次记录变更。
 
 ### 11.1 系统、存储和启动
 
@@ -306,8 +300,6 @@ console=ttyS0,115200n8 earlycon=uart,mmio32,0xf8401000 loglevel=8 root=/dev/mmcb
 | Ethernet与DMA连接 | DT有axistream-connected/control-connected；axidma平台设备未单独显示driver绑定，而Ethernet同时占用DMA资源 | 当前DMA为网络路径服务，不视为已可由运动程序独占使用的通用DMAengine通道 |
 | DMA class | 当前只列DesignWare AHB DMA与PL330各8通道 | 没有观察到独立PL AXI DMA/VDMA通道注册；modules.builtin/dep未匹配Anlogic axi-dma/axi-vdma/anlogic_dma条目，编译配置仍需对应源码确认 |
 | UDMABUF / UIO | /dev/udmabuf（misc，10:126）存在；modules.builtin列udmabuf、uio/uio_pdrv_genirq/uio_dmem_genirq/uio_al_generic | 只证实支持入口/内置驱动存在；未见/dev/uio*或固定udmabuf0，不等于运动缓冲/设备映射已配置 |
-| CAN0 | f8408000.can，DT compatible=ipms,canfd、okay，SPI72；can0当前DOWN/STOPPED、MTU16、时钟报告80MHz | 驱动已绑定；没有设置波特率或发送帧，Classical CAN项目决策保持不变 |
-| CAN1 | DT f8409000，disabled，SPI73 | 不假定第二路接出或已可用 |
 | NPU | hard_npu@63F00000节点存在；未见driver绑定或/dev/npu* | 节点存在不等于NPU运行库/驱动已就绪 |
 
 DT中Ethernet clock-frequency为100MHz；dmesg网络驱动另报告assumed host clock 800000000。两者属于配置/驱动报告，未测实际PL时钟，不据此改变项目已确认的100MHz运动基础时钟。
@@ -332,7 +324,7 @@ DT中Ethernet clock-frequency为100MHz；dmesg网络驱动另报告assumed host 
 ### 11.4 联调环境与未解决事项
 
 - eth0为PL Ethernet，eth1为PS Ethernet；二者查询时均NO-CARRIER，只有lo有IPv4，route为空。尚不能通过已配置网络替代串口登录；未修改网络或探测外部主机。
-- can0存在但未启用；ttyS0/ttyS1存在，未观察到PL UART-Lite的ttySL实例。未执行CAN、RS485、电机或DMA数据传输测试。
+- ttyS0/ttyS1存在，未观察到PL UART-Lite的ttySL实例。未执行RS485、电机或DMA数据传输测试。
 - init目录有S50sshd和PTP相关脚本，但进程查询未见sshd/ptp4l，仅见phc2sys与dhcpcd。脚本存在不视为SSH或时间同步已工作。
 - dmesg有5次mmc0的“Got command interrupt ... no command operation”及SDHCI寄存器dump；当前未出现mmcblk0存储设备。未插拔/测试SD，不推定SD启动已验证或控制器已损坏。
 - 无线AIC模块日志报告缺少/vendor/etc/firmware/fw_patch_table_8800d80_u02.bin、加载失败；另有regulatory.db缺失。未修改固件或重载模块。
@@ -360,7 +352,7 @@ DT中Ethernet clock-frequency为100MHz；dmesg网络驱动另报告assumed host 
 | Qt | dpkg与/usr/lib、/opt、/usr/local查询未发现已安装Qt；qtbase5-dev和qt5-qmake均Installed:none | apt缓存候选为5.12.8，cmake候选3.16.3；缓存候选不证明当前网络可下载；版本选择尚未冻结 |
 | 软件源 / 网络 | 配置华为云ubuntu-ports的focal、updates、backports；SSH服务active；PS eth0配置192.168.137.100/24但DOWN | 未改变网络、更新apt或测试外网/SSH连接；不能视为已联网开发环境 |
 | 模块构建 | /lib/modules/6.1.111-rt42及/usr/src内容未具备配套构建资料，/boot为空；lsmod无条目 | 缺少匹配内核构建树、配置与符号信息；不能仅安装通用Ubuntu headers就匹配厂商内核；驱动绑定说明有内置驱动，空lsmod不代表无驱动 |
-| 外设 | can0/can1均存在且DOWN；NPU DT节点存在，无/dev/npu；FPGA Manager state=operating | 无CAN/NPU/运动功能验收；PL具体bitstream身份未独立核实 |
+| 外设 | NPU DT节点存在，无/dev/npu；FPGA Manager state=operating | 无NPU/运动功能验收；PL具体bitstream身份未独立核实 |
 
 ### 12.2 当前Ubuntu显示PL资源与本地资料差异
 
@@ -375,10 +367,32 @@ DT中Ethernet clock-frequency为100MHz；dmesg网络驱动另报告assumed host 
 
 该ZIP内`anlogic-dr1m90-softip.dts`却将VDMA放在0x80200000、vdmafb在0x80100000、dynclk在0x80101000，与当前Ubuntu运行DT不同；num-fstores为4而当前运行DT为3。其HPF也为DDRC_IO_VOL=1.5。它可作源码/实现参考，不能认定与当前Ubuntu预编译镜像完全配套或直接覆盖运行DT。后续项目仍遵循§10.3用户确认的1.35V开发基线。
 
-### 12.3 二次开发评估（建议，未代替用户选择）
+### 12.3 二次开发历史评估（当前方向见§13）
 
-- 当前阶段优先考虑Ubuntu作为Qt HMI、PS应用和联调基线：已有1080p显示链、原生编译器、Python、包管理与SSH入口，应用开发成本较低。Qt尚需部署，先验证二维Widgets/软件绘图原型与实际资源消耗；桌面存在不证明复杂3D或高帧率渲染性能。
-- 项目PL应在保留显示VDMA、时序、动态时钟、HDMI输出及所需复位/互连的基础上新增独立运动GP寄存器与AXI DMA/HP0链路。重新生成匹配的HPF、FSBL、bitstream、DT及必要内核驱动；显示VDMA不改作运动DMA。
+- 2026-10-09图形方案曾建议Ubuntu作为Qt HMI、PS应用和联调基线；当前采用Buildroot与Web HMI，以下保留历史比较：已有1080p显示链、原生编译器、Python、包管理与SSH入口，应用开发成本较低。Qt尚需部署，先验证二维Widgets/软件绘图原型与实际资源消耗；桌面存在不证明复杂3D或高帧率渲染性能。
+- 若以后恢复本地HDMI/Qt显示，须核对显示VDMA、时序、动态时钟、HDMI输出及所需复位/互连，避免与已分配的运动GP/DMA资源冲突。重新生成匹配的HPF、FSBL、bitstream、DT及必要内核驱动；显示VDMA不改作运动DMA。
 - Buildroot的优势是可裁剪、镜像较小且已有构建脚本/源码；目前实测基线未验证图形链和可用Qt运行环境。厂商Qt示例已提供补入显示驱动的路径，因此Buildroot也能继续做HMI，不需要先拥有桌面；需付出Qt交叉工具链、运行库和显示集成工作。
 - 两者都仍需配套厂商内核源码/配置/补丁、当前工具工程迁移和通用运动DMA验证。Ubuntu用户空间不解除BSP依赖；Buildroot的-rt42标签也不单独证明更适合或已满足运动实时性。STEP时序仍由PL保证，Linux侧需要实测轨迹预缓存/供给与桌面并发负载。
-- 若后续资源或部署目标需要精简，可评估Ubuntu停用完整桌面后运行全屏HMI，或转向Buildroot；本次不冻结最终发行版、Qt版本或部署方式。Ubuntu20.04标准支持已于2025-05-31结束，长期维护时应结合厂商BSP兼容性另行规划更新/支持路径（官方来源：https://ubuntu.com/20-04）。
+- 若后续资源或部署目标需要精简，可评估Ubuntu停用完整桌面后运行全屏HMI，或转向Buildroot；当时尚未冻结最终发行版、Qt版本或部署方式。Ubuntu20.04标准支持已于2025-05-31结束，长期维护时应结合厂商BSP兼容性另行规划更新/支持路径（官方来源：https://ubuntu.com/20-04）。
+
+## 13. 2026-10-14 Wi-Fi / Web HMI 与后续 4G
+
+用户要求将局域网无线与Web方案纳入当前规划。控制链路为浏览器→PS Web服务→统一命令/状态入口→现有坐标/运动后端→PL；串口复用执行后端。首版不需要图形桌面、HDMI或Qt，使用板卡连接路由器的Wi-Fi STA，手机/电脑在同一局域网访问板卡地址。网页资源本地提供，不依赖互联网；板卡AP功能未验证。
+
+厂商资料目录：`D:\Works\Embedded_contest\docs\Analogic\01_start\02_start_Linux\05_application_demo\05-4_无线通信方案`。已只读核对文件和ZIP条目；没有安装驱动、连接无线或修改板卡。
+
+| 资料 | 已核对内容 | 接入边界 |
+| --- | --- | --- |
+| `05-4_米联客-安路F3P-CZ02开发板无线通信方案.pdf` | 文件存在，作为后续教程参考，本轮未据PDF正文作新增硬件结论 | 开发时核对工具/内核版本及实物条件 |
+| `WIFI.zip` | AIC8800 USB驱动源码、AIC8800D80相关代码、固件及旧构建产物 | 按项目内核/config/Module.symvers重编，核对实际USB设备ID、固件加载路径和驱动依赖；不直接加载旧ko |
+| `4G.zip` | GobiNet源码、Quectel连接管理源码/quectel-CM、旧ko及工具产物 | 模块实物型号、USB组合接口、天线、SIM和网络条件待确认，后续才验证拨号/公网中转 |
+
+当前项目基线 `bsp/evidence/kernel.config` 已有 CONFIG_INET=y、CONFIG_USB=y、CONFIG_USB_DWC2=y、CONFIG_USB_DWC2_HOST=y；WLAN未启用、USB_SERIAL未启用。最新scope展开DTS的usb_otg0最终status=disabled、dr_mode=host。Buildroot配置未包含本项目专用无线认证/DHCP/网页服务部署配置。USB不是内核完全缺失：需审核设备树/供电/Host枚举，补齐实际驱动所需无线配置、固件和网络工具，再验证STA接入。内核或配置变化后相关树外GP/运动/DMA模块也需匹配重建及身份门禁。
+
+已有 delta-scope 常驻 Unix socket后端，单设备所有者，独立STOP/快照，不自动REBASE/ENABLE/START；目前仅接受root UID，输出为现有文本测试协议。Web需提供受控适配/授权入口，不能直接暴露root socket或拼接任意shell。具体权限分离、API、认证及服务依赖尚未冻结。
+
+首版页面范围：XYZ/时长、IK/目标步数预览、执行/停止、PL命令位置/脉冲计数、故障/命令结果。先用模拟后端开发页面与统一服务，再接无电机delta-scope；当前scope镜像读回/冷启动及ARM模型核对通过，但坐标下发、在途STOP及示波器实测尚未登记，详见bsp/scope/BUILD_STATUS.md和SCOPE_MANUAL.md。
+
+认证、唯一命令ID、重复执行防护、过期拒绝以及请求接收/PL接受/执行完成的区分是要求。命令期限、断线策略和重启后的身份空间须专项确认；不假定板端墙钟有效。网络STOP不替代本地急停，STOP不能被运动等待阻塞，重连不重放旧轨迹。4G阶段由板卡主动连接公网中转服务，复用命令/状态后端，不另建运动通路。
+
+组件分工：无线/BSP任务交付驱动/固件/配置和网络验收；Web任务交付页面、命令服务、模拟测试及受控后端适配；RS485任务独立交付采集/状态与DMA遥测契约。最终系统统一审核PS/PL资源、内核模块、复位/时间基准、网络负载和完整100MHz时序，再打包镜像。现有Wi-Fi/4G档案存在不代表实物连通、驱动兼容或远程执行已验收。
