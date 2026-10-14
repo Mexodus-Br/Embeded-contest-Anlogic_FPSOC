@@ -1,0 +1,71 @@
+standard
+***Report Model: telem_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         5   out of    126    3.97%
+  #input                    4
+  #output                   1
+  #inout                    0
+#lut6                    7218   out of  52480   13.75%
+#reg                    22646
+  #slice reg            22646   out of 104960   21.58%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                  15550   out of  52480   29.63%
+  #used ram                 0
+    #dram lut               0
+    #shifter lut            0
+  #used logic           15550
+    #with luts           6194
+    #with adder          1024
+    #reg only            8332
+#feedthrough            15962
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                       10   out of    240    4.17%
+#pad                        5   out of    126    3.97%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       6   out of     72    8.33%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+Report Clock Domain Luts:
+
+----------------------------------------------------------------------------------------------------------------
+  Index   |  Name       |  Frequency   |  LUT As Logic   |  LUT As Shifter   |  LUT As Dram   |  BRAM   |  DSP
+----------------------------------------------------------------------------------------------------------------
+  #1      |  telem_clk  |  100MHz      |  11455          |  0                |  0             |  0      |  10
+----------------------------------------------------------------------------------------------------------------
+
+Clock Resource Statistics
+Index     ClockNet     Type            DriverType         Driver          ClockFanout        GclkLocation
+#1        clk_dup_1    InferredGclk    io                 clk_syn_2.di    13215              x79y59z0
+
+Report Hierarchy Area:
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance   |Module             |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |adc    |soc     |
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+|top        |telem_probe        |6194      |1024    |22646   |0       |10      |0        |0           |0       |0       |0       |0      |0       |
+|  dut      |rs485_latest_cache |4592      |1024    |22125   |0       |10      |0        |0           |0       |0       |0       |0      |0       |
+|    parser |rs485_light_parse  |2         |0       |0       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+DataNet Average Fanout:
+
+   Index     Fanout     Nets   
+    #1          1       30417  
+    #2          2       2794   
+    #3          3        557   
+    #4          4        94    
+    #5        5-10       274   
+    #6        11-50      835   
+    #7       51-100      46    
+    #8       101-500      2    
+  Average     1.85             

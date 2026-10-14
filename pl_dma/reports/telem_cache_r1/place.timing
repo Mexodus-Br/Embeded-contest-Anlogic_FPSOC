@@ -1,0 +1,809 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Wed Oct 14 11:10:53 2026
+
+Top Model           : telem_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 92.81%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/clock.sdc;
+Confidence          : Placed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 3 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min     
+------------------------------------
+Slow     | yes      yes     
+Fast     | yes      yes     
+
+
+Timing Status
+--------------------
+	SWNS: 5.761ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 8.317ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000          203   telem_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0   Inferred GCLK            0.000      5.000                10.000         100.000                 4.239         235.905            5.761      0.000            0.000      0.000            0.000              203                7             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     telem_clk -> telem_clk
+Type           :     Self
+From Clock     :     telem_clk
+To Clock       :     telem_clk
+Min Period     :     4.239ns
+Fmax           :     235.905MHz
+
+Statistics:
+Max            : SWNS      5.761ns, STNS      0.000ns,         0 Viol Endpoints,       350 Total Endpoints,     20073 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 5.761ns
+Begin Point         : inp_reg[141]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_218.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.111ns (cell 1.725ns (41%), net 2.386ns (59%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT6=2  LUT4=2  LUT2=2  LUT5=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[141]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x103y065z0          0.175    r     0.175          pin: inp_reg[141]_syn_2.oqa
+net (fo=2)                              0.347          0.522          net: dut/event_raw[44],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(3)
+                                                                      pin: dut/mux193_syn_288.imb
+LUT2                x102y071z2          0.165    r     0.687       1  pin: dut/mux193_syn_288.ofb
+net (fo=3)                              0.369          1.056          net: dut/mux193_syn_170,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_280.imf
+LUT2                x101y064z0          0.212    f     1.268       2  pin: dut/mux193_syn_280.ofa
+net (fo=1)                              0.136          1.404          net: dut/mux193_syn_222,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_280.ib
+LUT4                x101y064z0          0.242    r     1.646       3  pin: dut/mux193_syn_280.ofb
+net (fo=1)                              0.215          1.861          net: dut/mux193_syn_224,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_293.ia
+LUT5                x101y063z0          0.240    r     2.101       4  pin: dut/mux193_syn_293.ofb
+net (fo=1)                              0.337          2.438          net: dut/mux193_syn_230,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_292.ia
+LUT4                x102y061z6          0.240    r     2.678       5  pin: dut/mux193_syn_292.ofb
+net (fo=1)                              0.224          2.902          net: dut/mux193_syn_252,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_301.ic
+LUT6                x102y063z6          0.210    r     3.112       6  pin: dut/mux193_syn_301.ofb
+net (fo=1)                              0.318          3.430          net: dut/mux193_syn_268,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ib
+LUT6                x104y064z0          0.241    r     3.671       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          4.111          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_218.ceb
+reg                 x108y069z0          0.000    f     4.111               
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.111               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_218.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.761               
+
+Slack               : 5.907ns
+Begin Point         : inp_reg[331]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_218.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.965ns (cell 1.774ns (44%), net 2.191ns (56%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=2  LUT4=1  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[331]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x102y062z2          0.175    r     0.175          pin: inp_reg[331]_syn_2.oqa
+net (fo=2)                              0.215          0.390          net: dut/event_raw[234],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(3)
+                                                                      pin: dut/mux193_syn_299.ia
+LUT5                x102y061z5          0.240    r     0.630       1  pin: dut/mux193_syn_299.ofb
+net (fo=1)                              0.212          0.842          net: dut/mux193_syn_164,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: inp_reg[332]_syn_2.id
+LUT4                x102y062z4          0.188    f     1.030       2  pin: inp_reg[332]_syn_2.ofa
+net (fo=12)                             0.318          1.348          net: dut/parser/mux8_syn_67,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_light_parse.v(76)
+                                                                      pin: inp_reg[377]_syn_2.ic
+LUT5                x104y063z6          0.287    f     1.635       3  pin: inp_reg[377]_syn_2.ofa
+net (fo=1)                              0.232          1.867          net: dut/mux193_syn_167,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_282.imb
+LUT3                x103y062z6          0.165    r     2.032       4  pin: dut/mux193_syn_282.ofb
+net (fo=1)                              0.224          2.256          net: dut/mux193_syn_174,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_284.ia
+LUT5                x101y062z3          0.240    r     2.496       5  pin: dut/mux193_syn_284.ofb
+net (fo=1)                              0.232          2.728          net: dut/mux193_syn_194,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_301.ia
+LUT6                x102y063z6          0.238    r     2.966       6  pin: dut/mux193_syn_301.ofb
+net (fo=1)                              0.318          3.284          net: dut/mux193_syn_268,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ib
+LUT6                x104y064z0          0.241    r     3.525       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          3.965          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_218.ceb
+reg                 x108y069z0          0.000    f     3.965               
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.965               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_218.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.907               
+
+Slack               : 5.914ns
+Begin Point         : inp_reg[327]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_218.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.958ns (cell 1.724ns (43%), net 2.234ns (57%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=2  LUT4=2 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[327]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x103y062z7          0.181    f     0.181          pin: inp_reg[327]_syn_2.oqb
+net (fo=6)                              0.434          0.615          net: dut/collector_generation[26],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(2)
+                                                                      pin: dut/mux193_syn_318.ic
+LUT4                x109y064z0          0.150    f     0.765       1  pin: dut/mux193_syn_318.ofb
+net (fo=1)                              0.218          0.983          net: dut/mux193_syn_84,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_319.ia
+LUT5                x110y064z6          0.240    r     1.223       2  pin: dut/mux193_syn_319.ofb
+net (fo=1)                              0.136          1.359          net: dut/mux193_syn_86,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_312.ia
+LUT6                x110y064z3          0.238    r     1.597       3  pin: dut/mux193_syn_312.ofb
+net (fo=1)                              0.136          1.733          net: dut/mux193_syn_90,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/generation_reg[18]_syn_2.ic
+LUT5                x110y064z5          0.287    f     2.020       4  pin: dut/generation_reg[18]_syn_2.ofa
+net (fo=1)                              0.224          2.244          net: dut/mux193_syn_96,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_332.ic
+LUT4                x110y066z0          0.150    f     2.394       5  pin: dut/mux193_syn_332.ofb
+net (fo=1)                              0.329          2.723          net: dut/mux193_syn_114,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_309.ia
+LUT5                x108y064z2          0.240    r     2.963       6  pin: dut/mux193_syn_309.ofb
+net (fo=1)                              0.317          3.280          net: dut/mux193_syn_162,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ia
+LUT6                x104y064z0          0.238    r     3.518       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          3.958          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_218.ceb
+reg                 x108y069z0          0.000    f     3.958               
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.958               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_218.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.914               
+
+Slack               : 5.761ns
+Begin Point         : inp_reg[141]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_219.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.111ns (cell 1.725ns (41%), net 2.386ns (59%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT6=2  LUT4=2  LUT2=2  LUT5=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[141]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x103y065z0          0.175    r     0.175          pin: inp_reg[141]_syn_2.oqa
+net (fo=2)                              0.347          0.522          net: dut/event_raw[44],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(3)
+                                                                      pin: dut/mux193_syn_288.imb
+LUT2                x102y071z2          0.165    r     0.687       1  pin: dut/mux193_syn_288.ofb
+net (fo=3)                              0.369          1.056          net: dut/mux193_syn_170,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_280.imf
+LUT2                x101y064z0          0.212    f     1.268       2  pin: dut/mux193_syn_280.ofa
+net (fo=1)                              0.136          1.404          net: dut/mux193_syn_222,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_280.ib
+LUT4                x101y064z0          0.242    r     1.646       3  pin: dut/mux193_syn_280.ofb
+net (fo=1)                              0.215          1.861          net: dut/mux193_syn_224,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_293.ia
+LUT5                x101y063z0          0.240    r     2.101       4  pin: dut/mux193_syn_293.ofb
+net (fo=1)                              0.337          2.438          net: dut/mux193_syn_230,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_292.ia
+LUT4                x102y061z6          0.240    r     2.678       5  pin: dut/mux193_syn_292.ofb
+net (fo=1)                              0.224          2.902          net: dut/mux193_syn_252,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_301.ic
+LUT6                x102y063z6          0.210    r     3.112       6  pin: dut/mux193_syn_301.ofb
+net (fo=1)                              0.318          3.430          net: dut/mux193_syn_268,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ib
+LUT6                x104y064z0          0.241    r     3.671       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          4.111          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_219.ceb
+reg                 x108y069z1          0.000    f     4.111               
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.111               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_219.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.761               
+
+Slack               : 5.907ns
+Begin Point         : inp_reg[331]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_219.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.965ns (cell 1.774ns (44%), net 2.191ns (56%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=2  LUT4=1  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[331]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x102y062z2          0.175    r     0.175          pin: inp_reg[331]_syn_2.oqa
+net (fo=2)                              0.215          0.390          net: dut/event_raw[234],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(3)
+                                                                      pin: dut/mux193_syn_299.ia
+LUT5                x102y061z5          0.240    r     0.630       1  pin: dut/mux193_syn_299.ofb
+net (fo=1)                              0.212          0.842          net: dut/mux193_syn_164,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: inp_reg[332]_syn_2.id
+LUT4                x102y062z4          0.188    f     1.030       2  pin: inp_reg[332]_syn_2.ofa
+net (fo=12)                             0.318          1.348          net: dut/parser/mux8_syn_67,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_light_parse.v(76)
+                                                                      pin: inp_reg[377]_syn_2.ic
+LUT5                x104y063z6          0.287    f     1.635       3  pin: inp_reg[377]_syn_2.ofa
+net (fo=1)                              0.232          1.867          net: dut/mux193_syn_167,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_282.imb
+LUT3                x103y062z6          0.165    r     2.032       4  pin: dut/mux193_syn_282.ofb
+net (fo=1)                              0.224          2.256          net: dut/mux193_syn_174,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_284.ia
+LUT5                x101y062z3          0.240    r     2.496       5  pin: dut/mux193_syn_284.ofb
+net (fo=1)                              0.232          2.728          net: dut/mux193_syn_194,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_301.ia
+LUT6                x102y063z6          0.238    r     2.966       6  pin: dut/mux193_syn_301.ofb
+net (fo=1)                              0.318          3.284          net: dut/mux193_syn_268,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ib
+LUT6                x104y064z0          0.241    r     3.525       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          3.965          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_219.ceb
+reg                 x108y069z1          0.000    f     3.965               
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.965               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_219.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.907               
+
+Slack               : 5.914ns
+Begin Point         : inp_reg[327]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_219.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.958ns (cell 1.724ns (43%), net 2.234ns (57%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=2  LUT4=2 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[327]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x103y062z7          0.181    f     0.181          pin: inp_reg[327]_syn_2.oqb
+net (fo=6)                              0.434          0.615          net: dut/collector_generation[26],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(2)
+                                                                      pin: dut/mux193_syn_318.ic
+LUT4                x109y064z0          0.150    f     0.765       1  pin: dut/mux193_syn_318.ofb
+net (fo=1)                              0.218          0.983          net: dut/mux193_syn_84,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_319.ia
+LUT5                x110y064z6          0.240    r     1.223       2  pin: dut/mux193_syn_319.ofb
+net (fo=1)                              0.136          1.359          net: dut/mux193_syn_86,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_312.ia
+LUT6                x110y064z3          0.238    r     1.597       3  pin: dut/mux193_syn_312.ofb
+net (fo=1)                              0.136          1.733          net: dut/mux193_syn_90,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/generation_reg[18]_syn_2.ic
+LUT5                x110y064z5          0.287    f     2.020       4  pin: dut/generation_reg[18]_syn_2.ofa
+net (fo=1)                              0.224          2.244          net: dut/mux193_syn_96,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_332.ic
+LUT4                x110y066z0          0.150    f     2.394       5  pin: dut/mux193_syn_332.ofb
+net (fo=1)                              0.329          2.723          net: dut/mux193_syn_114,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_309.ia
+LUT5                x108y064z2          0.240    r     2.963       6  pin: dut/mux193_syn_309.ofb
+net (fo=1)                              0.317          3.280          net: dut/mux193_syn_162,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ia
+LUT6                x104y064z0          0.238    r     3.518       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          3.958          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_219.ceb
+reg                 x108y069z1          0.000    f     3.958               
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.958               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_219.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.914               
+
+Slack               : 5.761ns
+Begin Point         : inp_reg[141]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_220.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.111ns (cell 1.725ns (41%), net 2.386ns (59%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT6=2  LUT4=2  LUT2=2  LUT5=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[141]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x103y065z0          0.175    r     0.175          pin: inp_reg[141]_syn_2.oqa
+net (fo=2)                              0.347          0.522          net: dut/event_raw[44],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(3)
+                                                                      pin: dut/mux193_syn_288.imb
+LUT2                x102y071z2          0.165    r     0.687       1  pin: dut/mux193_syn_288.ofb
+net (fo=3)                              0.369          1.056          net: dut/mux193_syn_170,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_280.imf
+LUT2                x101y064z0          0.212    f     1.268       2  pin: dut/mux193_syn_280.ofa
+net (fo=1)                              0.136          1.404          net: dut/mux193_syn_222,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_280.ib
+LUT4                x101y064z0          0.242    r     1.646       3  pin: dut/mux193_syn_280.ofb
+net (fo=1)                              0.215          1.861          net: dut/mux193_syn_224,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_293.ia
+LUT5                x101y063z0          0.240    r     2.101       4  pin: dut/mux193_syn_293.ofb
+net (fo=1)                              0.337          2.438          net: dut/mux193_syn_230,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_292.ia
+LUT4                x102y061z6          0.240    r     2.678       5  pin: dut/mux193_syn_292.ofb
+net (fo=1)                              0.224          2.902          net: dut/mux193_syn_252,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_301.ic
+LUT6                x102y063z6          0.210    r     3.112       6  pin: dut/mux193_syn_301.ofb
+net (fo=1)                              0.318          3.430          net: dut/mux193_syn_268,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ib
+LUT6                x104y064z0          0.241    r     3.671       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          4.111          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_220.ceb
+reg                 x108y069z2          0.000    f     4.111               
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.111               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_220.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.761               
+
+Slack               : 5.907ns
+Begin Point         : inp_reg[331]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_220.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.965ns (cell 1.774ns (44%), net 2.191ns (56%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=2  LUT4=1  LUT3=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[331]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x102y062z2          0.175    r     0.175          pin: inp_reg[331]_syn_2.oqa
+net (fo=2)                              0.215          0.390          net: dut/event_raw[234],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(3)
+                                                                      pin: dut/mux193_syn_299.ia
+LUT5                x102y061z5          0.240    r     0.630       1  pin: dut/mux193_syn_299.ofb
+net (fo=1)                              0.212          0.842          net: dut/mux193_syn_164,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: inp_reg[332]_syn_2.id
+LUT4                x102y062z4          0.188    f     1.030       2  pin: inp_reg[332]_syn_2.ofa
+net (fo=12)                             0.318          1.348          net: dut/parser/mux8_syn_67,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_light_parse.v(76)
+                                                                      pin: inp_reg[377]_syn_2.ic
+LUT5                x104y063z6          0.287    f     1.635       3  pin: inp_reg[377]_syn_2.ofa
+net (fo=1)                              0.232          1.867          net: dut/mux193_syn_167,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_282.imb
+LUT3                x103y062z6          0.165    r     2.032       4  pin: dut/mux193_syn_282.ofb
+net (fo=1)                              0.224          2.256          net: dut/mux193_syn_174,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_284.ia
+LUT5                x101y062z3          0.240    r     2.496       5  pin: dut/mux193_syn_284.ofb
+net (fo=1)                              0.232          2.728          net: dut/mux193_syn_194,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_301.ia
+LUT6                x102y063z6          0.238    r     2.966       6  pin: dut/mux193_syn_301.ofb
+net (fo=1)                              0.318          3.284          net: dut/mux193_syn_268,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ib
+LUT6                x104y064z0          0.241    r     3.525       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          3.965          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_220.ceb
+reg                 x108y069z2          0.000    f     3.965               
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.965               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_220.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.907               
+
+Slack               : 5.914ns
+Begin Point         : inp_reg[327]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_220.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.958ns (cell 1.724ns (43%), net 2.234ns (57%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=2  LUT4=2 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[327]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x103y062z7          0.181    f     0.181          pin: inp_reg[327]_syn_2.oqb
+net (fo=6)                              0.434          0.615          net: dut/collector_generation[26],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(2)
+                                                                      pin: dut/mux193_syn_318.ic
+LUT4                x109y064z0          0.150    f     0.765       1  pin: dut/mux193_syn_318.ofb
+net (fo=1)                              0.218          0.983          net: dut/mux193_syn_84,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_319.ia
+LUT5                x110y064z6          0.240    r     1.223       2  pin: dut/mux193_syn_319.ofb
+net (fo=1)                              0.136          1.359          net: dut/mux193_syn_86,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_312.ia
+LUT6                x110y064z3          0.238    r     1.597       3  pin: dut/mux193_syn_312.ofb
+net (fo=1)                              0.136          1.733          net: dut/mux193_syn_90,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/generation_reg[18]_syn_2.ic
+LUT5                x110y064z5          0.287    f     2.020       4  pin: dut/generation_reg[18]_syn_2.ofa
+net (fo=1)                              0.224          2.244          net: dut/mux193_syn_96,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_332.ic
+LUT4                x110y066z0          0.150    f     2.394       5  pin: dut/mux193_syn_332.ofb
+net (fo=1)                              0.329          2.723          net: dut/mux193_syn_114,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_309.ia
+LUT5                x108y064z2          0.240    r     2.963       6  pin: dut/mux193_syn_309.ofb
+net (fo=1)                              0.317          3.280          net: dut/mux193_syn_162,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ia
+LUT6                x104y064z0          0.238    r     3.518       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          3.958          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_220.ceb
+reg                 x108y069z2          0.000    f     3.958               
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.958               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_220.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.914               
+
+Slack               : 5.761ns
+Begin Point         : inp_reg[141]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/add0_syn_221.ceb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.111ns (cell 1.725ns (41%), net 2.386ns (59%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT6=2  LUT4=2  LUT2=2  LUT5=1 )
+Max Fanout          : 32
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: inp_reg[141]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x103y065z0          0.175    r     0.175          pin: inp_reg[141]_syn_2.oqa
+net (fo=2)                              0.347          0.522          net: dut/event_raw[44],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(3)
+                                                                      pin: dut/mux193_syn_288.imb
+LUT2                x102y071z2          0.165    r     0.687       1  pin: dut/mux193_syn_288.ofb
+net (fo=3)                              0.369          1.056          net: dut/mux193_syn_170,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_280.imf
+LUT2                x101y064z0          0.212    f     1.268       2  pin: dut/mux193_syn_280.ofa
+net (fo=1)                              0.136          1.404          net: dut/mux193_syn_222,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_280.ib
+LUT4                x101y064z0          0.242    r     1.646       3  pin: dut/mux193_syn_280.ofb
+net (fo=1)                              0.215          1.861          net: dut/mux193_syn_224,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_293.ia
+LUT5                x101y063z0          0.240    r     2.101       4  pin: dut/mux193_syn_293.ofb
+net (fo=1)                              0.337          2.438          net: dut/mux193_syn_230,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_292.ia
+LUT4                x102y061z6          0.240    r     2.678       5  pin: dut/mux193_syn_292.ofb
+net (fo=1)                              0.224          2.902          net: dut/mux193_syn_252,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_301.ic
+LUT6                x102y063z6          0.210    r     3.112       6  pin: dut/mux193_syn_301.ofb
+net (fo=1)                              0.318          3.430          net: dut/mux193_syn_268,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/mux193_syn_322.ib
+LUT6                x104y064z0          0.241    r     3.671       7  pin: dut/mux193_syn_322.ofb
+net (fo=32)                             0.440          4.111          net: dut/mux193_syn_2[0],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/rs485_latest_cache.v(221)
+                                                                      pin: dut/add0_syn_221.ceb
+reg                 x108y069z3          0.000    f     4.111               
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.111               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=196)                            0.000          0.000          net: clk_syn_5,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_r1/top.v(1)
+                                                                      pin: dut/add0_syn_221.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.761               
+
+
+Period Check
+----------------------------------------------------------------------------------------------------
+    Type       Setting(ns)      Required(ns)         Slack(ns)   Point
+--------------------------------------------------------------------------------
+ SHIFTER            10.000             1.683             8.317   dut/time_us[0]_syn_8.sclk
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+Inter clock domain timing
+--------------------------------------------------
+
+IP timing
+--------------------------------------------------

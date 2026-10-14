@@ -1,0 +1,49 @@
+standard
+***Report Model: telem_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         4   out of    126    3.17%
+  #input                    3
+  #output                   1
+  #inout                    0
+#lut                      218
+  #lut1                     0
+  #lut2                    11
+  #lut3                   122
+  #lut4                    11
+  #lut5                    39
+  #lut6                    35
+  #1-bit adder              0
+#reg                      234
+  #slice reg              234   out of 104960    0.22%
+  #pad reg                  0
+
+Utilization Statistics
+#unit lut*                122   out of  52480    0.23%
+  #logic lut*             122
+  #1-bit adder              0
+#reg                      234   out of 104960    0.22%
+  #dff                    234
+  #latch                    0
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of    240    0.00%
+#pad                        4   out of    126    3.17%
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+Report Hierarchy Area:
++------------------------------------------------------------------------------------------------------------------------------------+
+|Instance |Module      |logic lut |ripple  |seq     |eram    |dsp     |dram     |shifter |f7mux   |f8mux   |pll     |adc    |soc     |
++------------------------------------------------------------------------------------------------------------------------------------+
+|top      |telem_probe |122       |0       |234     |0       |0       |0        |0       |0       |0       |0       |0      |0       |
++------------------------------------------------------------------------------------------------------------------------------------+

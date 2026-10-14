@@ -1,0 +1,894 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Wed Oct 14 11:17:07 2026
+
+Top Model           : telem_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 91.52%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/clock.sdc;
+Confidence          : Synthesized
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 3 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min     
+------------------------------------
+Slow     | yes      yes     
+Fast     | yes      yes     
+
+
+Timing Status
+--------------------
+	SWNS: 0.909ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 0.000ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000        22340   telem_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0           local            0.000      5.000                10.000         100.000                 9.091         109.999            0.909      0.000            0.000      0.000            0.000            22340                9             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     telem_clk -> telem_clk
+Type           :     Self
+From Clock     :     telem_clk
+To Clock       :     telem_clk
+Min Period     :     9.091ns
+Fmax           :     109.999MHz
+
+Statistics:
+Max            : SWNS      0.909ns, STNS      0.000ns,         0 Viol Endpoints,     44071 Total Endpoints,  15550669 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.909ns
+Begin Point         : dut/mult1_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[6148].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 9.021ns (cell 4.342ns (48%), net 4.679ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=2  LUT5=2  LUT3=2  LUT2=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 27
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult1_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult1_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult1_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_168.x[1]
+DSPMULT                                 1.101    f     1.515       1  pin: dut/mult1_syn_168.p[27]
+net (fo=1)                              0.000          1.515          net: dut/mult1_syn_215[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_167.mult_p[27]
+DSPSIOU                                 0.212    r     1.727          pin: dut/mult1_syn_167.cpo[27]
+net (fo=1)                              0.000          1.727          net: dut/mult1_syn_587[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.cpi[27]
+DSPSIOU                                 0.021    r     1.748          pin: dut/mult1_syn_260.tadd_c[10]
+net (fo=1)                              0.000          1.748          net: dut/mult1_syn_462[10],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_353.c[10]
+DSPTADD                                 0.636    r     2.384       2  pin: dut/mult1_syn_353.sum[13]
+net (fo=1)                              0.000          2.384          net: dut/mult1_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.590          pin: dut/mult1_syn_260.p[13]
+net (fo=8)                              0.659          3.249          net: dut/mult1_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b129[4]_syn_25.a
+LUT6                                    0.238    r     3.487       3  pin: dut/snapshot_b129[4]_syn_25.o
+net (fo=27)                             0.846          4.333          net: dut/snapshot_b129[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_2.c
+LUT3                                    0.240    r     4.573       4  pin: dut/snapshot_b289[4]_syn_2.o
+net (fo=10)                             0.693          5.266          net: dut/snapshot_b289[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_4.a
+LUT2                                    0.240    r     5.506       5  pin: dut/snapshot_b289[4]_syn_4.o
+net (fo=8)                              0.659          6.165          net: dut/snapshot_b289[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_12.a
+LUT6                                    0.238    r     6.403       6  pin: dut/snapshot_b289[4]_syn_12.o
+net (fo=2)                              0.478          6.881          net: dut/snapshot_b289[4]_syn_13,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_48.a
+LUT3                                    0.240    r     7.121       7  pin: dut/snapshot_b289[4]_syn_48.o
+net (fo=1)                              0.448          7.569          net: dut/snapshot_b289[4]_syn_49,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_68.a
+LUT5                                    0.240    r     7.809       8  pin: dut/snapshot_b289[4]_syn_68.o
+net (fo=1)                              0.448          8.257          net: dut/snapshot_b289[4]_syn_69,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_108.c
+LUT5                                    0.240    r     8.497       9  pin: dut/snapshot_b289[4]_syn_108.o
+net (fo=1)                              0.448          8.945          net: dut/snapshot_b289[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[6148].d
+SEQ (reg)                               0.076    f     9.021               
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.021               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[6148].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.909               
+
+Slack               : 0.909ns
+Begin Point         : dut/mult1_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[6148].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 9.021ns (cell 4.342ns (48%), net 4.679ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=2  LUT5=2  LUT3=2  LUT2=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 27
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult1_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult1_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult1_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_168.x[1]
+DSPMULT                                 1.101    f     1.515       1  pin: dut/mult1_syn_168.p[27]
+net (fo=1)                              0.000          1.515          net: dut/mult1_syn_215[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_167.mult_p[27]
+DSPSIOU                                 0.212    r     1.727          pin: dut/mult1_syn_167.cpo[27]
+net (fo=1)                              0.000          1.727          net: dut/mult1_syn_587[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.cpi[27]
+DSPSIOU                                 0.021    r     1.748          pin: dut/mult1_syn_260.tadd_c[10]
+net (fo=1)                              0.000          1.748          net: dut/mult1_syn_462[10],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_353.c[10]
+DSPTADD                                 0.636    r     2.384       2  pin: dut/mult1_syn_353.sum[13]
+net (fo=1)                              0.000          2.384          net: dut/mult1_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.590          pin: dut/mult1_syn_260.p[13]
+net (fo=8)                              0.659          3.249          net: dut/mult1_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b129[4]_syn_25.a
+LUT6                                    0.238    r     3.487       3  pin: dut/snapshot_b129[4]_syn_25.o
+net (fo=27)                             0.846          4.333          net: dut/snapshot_b129[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_2.c
+LUT3                                    0.240    r     4.573       4  pin: dut/snapshot_b289[4]_syn_2.o
+net (fo=10)                             0.693          5.266          net: dut/snapshot_b289[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_4.a
+LUT2                                    0.240    r     5.506       5  pin: dut/snapshot_b289[4]_syn_4.o
+net (fo=8)                              0.659          6.165          net: dut/snapshot_b289[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_14.a
+LUT6                                    0.238    r     6.403       6  pin: dut/snapshot_b289[4]_syn_14.o
+net (fo=2)                              0.478          6.881          net: dut/snapshot_b289[4]_syn_15,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_48.b
+LUT3                                    0.240    r     7.121       7  pin: dut/snapshot_b289[4]_syn_48.o
+net (fo=1)                              0.448          7.569          net: dut/snapshot_b289[4]_syn_49,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_68.a
+LUT5                                    0.240    r     7.809       8  pin: dut/snapshot_b289[4]_syn_68.o
+net (fo=1)                              0.448          8.257          net: dut/snapshot_b289[4]_syn_69,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_108.c
+LUT5                                    0.240    r     8.497       9  pin: dut/snapshot_b289[4]_syn_108.o
+net (fo=1)                              0.448          8.945          net: dut/snapshot_b289[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[6148].d
+SEQ (reg)                               0.076    f     9.021               
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.021               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[6148].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.909               
+
+Slack               : 0.909ns
+Begin Point         : dut/mult1_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[6148].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 9.021ns (cell 4.342ns (48%), net 4.679ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=2  LUT5=2  LUT3=2  LUT2=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 27
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult1_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult1_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult1_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_168.x[1]
+DSPMULT                                 1.101    f     1.515       1  pin: dut/mult1_syn_168.p[27]
+net (fo=1)                              0.000          1.515          net: dut/mult1_syn_215[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_167.mult_p[27]
+DSPSIOU                                 0.212    r     1.727          pin: dut/mult1_syn_167.cpo[27]
+net (fo=1)                              0.000          1.727          net: dut/mult1_syn_587[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.cpi[27]
+DSPSIOU                                 0.021    r     1.748          pin: dut/mult1_syn_260.tadd_c[10]
+net (fo=1)                              0.000          1.748          net: dut/mult1_syn_462[10],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_353.c[10]
+DSPTADD                                 0.636    r     2.384       2  pin: dut/mult1_syn_353.sum[13]
+net (fo=1)                              0.000          2.384          net: dut/mult1_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.590          pin: dut/mult1_syn_260.p[13]
+net (fo=8)                              0.659          3.249          net: dut/mult1_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b129[4]_syn_25.a
+LUT6                                    0.238    r     3.487       3  pin: dut/snapshot_b129[4]_syn_25.o
+net (fo=27)                             0.846          4.333          net: dut/snapshot_b129[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_2.c
+LUT3                                    0.240    r     4.573       4  pin: dut/snapshot_b289[4]_syn_2.o
+net (fo=10)                             0.693          5.266          net: dut/snapshot_b289[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_4.a
+LUT2                                    0.240    r     5.506       5  pin: dut/snapshot_b289[4]_syn_4.o
+net (fo=8)                              0.659          6.165          net: dut/snapshot_b289[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_16.a
+LUT6                                    0.238    r     6.403       6  pin: dut/snapshot_b289[4]_syn_16.o
+net (fo=2)                              0.478          6.881          net: dut/snapshot_b289[4]_syn_17,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_48.c
+LUT3                                    0.240    r     7.121       7  pin: dut/snapshot_b289[4]_syn_48.o
+net (fo=1)                              0.448          7.569          net: dut/snapshot_b289[4]_syn_49,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_68.a
+LUT5                                    0.240    r     7.809       8  pin: dut/snapshot_b289[4]_syn_68.o
+net (fo=1)                              0.448          8.257          net: dut/snapshot_b289[4]_syn_69,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_108.c
+LUT5                                    0.240    r     8.497       9  pin: dut/snapshot_b289[4]_syn_108.o
+net (fo=1)                              0.448          8.945          net: dut/snapshot_b289[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[6148].d
+SEQ (reg)                               0.076    f     9.021               
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.021               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[6148].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.909               
+
+Slack               : 0.913ns
+Begin Point         : dut/mult1_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[1028].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 9.017ns (cell 4.338ns (48%), net 4.679ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=4  LUT3=2  LUT2=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 27
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult1_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult1_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult1_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_168.x[1]
+DSPMULT                                 1.101    f     1.515       1  pin: dut/mult1_syn_168.p[27]
+net (fo=1)                              0.000          1.515          net: dut/mult1_syn_215[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_167.mult_p[27]
+DSPSIOU                                 0.212    r     1.727          pin: dut/mult1_syn_167.cpo[27]
+net (fo=1)                              0.000          1.727          net: dut/mult1_syn_587[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.cpi[27]
+DSPSIOU                                 0.021    r     1.748          pin: dut/mult1_syn_260.tadd_c[10]
+net (fo=1)                              0.000          1.748          net: dut/mult1_syn_462[10],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_353.c[10]
+DSPTADD                                 0.636    r     2.384       2  pin: dut/mult1_syn_353.sum[13]
+net (fo=1)                              0.000          2.384          net: dut/mult1_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.590          pin: dut/mult1_syn_260.p[13]
+net (fo=8)                              0.659          3.249          net: dut/mult1_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b129[4]_syn_25.a
+LUT6                                    0.238    r     3.487       3  pin: dut/snapshot_b129[4]_syn_25.o
+net (fo=27)                             0.846          4.333          net: dut/snapshot_b129[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_2.c
+LUT3                                    0.240    r     4.573       4  pin: dut/snapshot_b289[4]_syn_2.o
+net (fo=10)                             0.693          5.266          net: dut/snapshot_b289[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_4.a
+LUT2                                    0.240    r     5.506       5  pin: dut/snapshot_b289[4]_syn_4.o
+net (fo=8)                              0.659          6.165          net: dut/snapshot_b289[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_8.a
+LUT3                                    0.240    r     6.405       6  pin: dut/snapshot_b289[4]_syn_8.o
+net (fo=2)                              0.478          6.883          net: dut/snapshot_b289[4]_syn_9,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_14.a
+LUT6                                    0.238    r     7.121       7  pin: dut/snapshot_b449[4]_syn_14.o
+net (fo=1)                              0.448          7.569          net: dut/snapshot_b449[4]_syn_15,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_22.a
+LUT6                                    0.238    r     7.807       8  pin: dut/snapshot_b449[4]_syn_22.o
+net (fo=1)                              0.448          8.255          net: dut/snapshot_b449[4]_syn_23,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_86.b
+LUT6                                    0.238    r     8.493       9  pin: dut/snapshot_b449[4]_syn_86.o
+net (fo=1)                              0.448          8.941          net: dut/snapshot_b449[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[1028].d
+SEQ (reg)                               0.076    f     9.017               
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.017               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[1028].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.913               
+
+Slack               : 0.922ns
+Begin Point         : dut/mult1_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[1028].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 9.008ns (cell 4.329ns (48%), net 4.679ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=4  LUT3=2  LUT2=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 27
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult1_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult1_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult1_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_168.x[1]
+DSPMULT                                 1.071    f     1.485       1  pin: dut/mult1_syn_168.p[25]
+net (fo=1)                              0.000          1.485          net: dut/mult1_syn_215[25],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_167.mult_p[25]
+DSPSIOU                                 0.232    r     1.717          pin: dut/mult1_syn_167.cpo[25]
+net (fo=1)                              0.000          1.717          net: dut/mult1_syn_587[25],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.cpi[25]
+DSPSIOU                                 0.017    r     1.734          pin: dut/mult1_syn_260.tadd_c[8]
+net (fo=1)                              0.000          1.734          net: dut/mult1_syn_462[8],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_353.c[8]
+DSPTADD                                 0.641    r     2.375       2  pin: dut/mult1_syn_353.sum[13]
+net (fo=1)                              0.000          2.375          net: dut/mult1_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.581          pin: dut/mult1_syn_260.p[13]
+net (fo=8)                              0.659          3.240          net: dut/mult1_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b129[4]_syn_25.a
+LUT6                                    0.238    r     3.478       3  pin: dut/snapshot_b129[4]_syn_25.o
+net (fo=27)                             0.846          4.324          net: dut/snapshot_b129[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_2.c
+LUT3                                    0.240    r     4.564       4  pin: dut/snapshot_b289[4]_syn_2.o
+net (fo=10)                             0.693          5.257          net: dut/snapshot_b289[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_4.a
+LUT2                                    0.240    r     5.497       5  pin: dut/snapshot_b289[4]_syn_4.o
+net (fo=8)                              0.659          6.156          net: dut/snapshot_b289[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_8.a
+LUT3                                    0.240    r     6.396       6  pin: dut/snapshot_b289[4]_syn_8.o
+net (fo=2)                              0.478          6.874          net: dut/snapshot_b289[4]_syn_9,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_14.a
+LUT6                                    0.238    r     7.112       7  pin: dut/snapshot_b449[4]_syn_14.o
+net (fo=1)                              0.448          7.560          net: dut/snapshot_b449[4]_syn_15,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_22.a
+LUT6                                    0.238    r     7.798       8  pin: dut/snapshot_b449[4]_syn_22.o
+net (fo=1)                              0.448          8.246          net: dut/snapshot_b449[4]_syn_23,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_86.b
+LUT6                                    0.238    r     8.484       9  pin: dut/snapshot_b449[4]_syn_86.o
+net (fo=1)                              0.448          8.932          net: dut/snapshot_b449[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[1028].d
+SEQ (reg)                               0.076    f     9.008               
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.008               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[1028].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.922               
+
+Slack               : 0.935ns
+Begin Point         : dut/mult1_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[1028].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 8.995ns (cell 4.316ns (47%), net 4.679ns (53%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=4  LUT3=2  LUT2=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 27
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult1_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult1_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult1_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_168.x[1]
+DSPMULT                                 1.071    f     1.485       1  pin: dut/mult1_syn_168.p[25]
+net (fo=1)                              0.000          1.485          net: dut/mult1_syn_215[25],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_167.mult_p[25]
+DSPSIOU                                 0.232    r     1.717          pin: dut/mult1_syn_167.cpo[25]
+net (fo=1)                              0.000          1.717          net: dut/mult1_syn_587[25],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.cpi[25]
+DSPSIOU                                 0.017    r     1.734          pin: dut/mult1_syn_260.tadd_c[8]
+net (fo=1)                              0.000          1.734          net: dut/mult1_syn_462[8],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_353.c[8]
+DSPTADD                                 0.648    f     2.382       2  pin: dut/mult1_syn_353.sum[15]
+net (fo=1)                              0.000          2.382          net: dut/mult1_syn_530[15],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult1_syn_260.tadd_sum[15]
+DSPSIOU                                 0.186    f     2.568          pin: dut/mult1_syn_260.p[15]
+net (fo=8)                              0.659          3.227          net: dut/mult1_syn_113[15],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b129[4]_syn_25.b
+LUT6                                    0.238    r     3.465       3  pin: dut/snapshot_b129[4]_syn_25.o
+net (fo=27)                             0.846          4.311          net: dut/snapshot_b129[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_2.c
+LUT3                                    0.240    r     4.551       4  pin: dut/snapshot_b289[4]_syn_2.o
+net (fo=10)                             0.693          5.244          net: dut/snapshot_b289[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_4.a
+LUT2                                    0.240    r     5.484       5  pin: dut/snapshot_b289[4]_syn_4.o
+net (fo=8)                              0.659          6.143          net: dut/snapshot_b289[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b289[4]_syn_8.a
+LUT3                                    0.240    r     6.383       6  pin: dut/snapshot_b289[4]_syn_8.o
+net (fo=2)                              0.478          6.861          net: dut/snapshot_b289[4]_syn_9,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_14.a
+LUT6                                    0.238    r     7.099       7  pin: dut/snapshot_b449[4]_syn_14.o
+net (fo=1)                              0.448          7.547          net: dut/snapshot_b449[4]_syn_15,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_22.a
+LUT6                                    0.238    r     7.785       8  pin: dut/snapshot_b449[4]_syn_22.o
+net (fo=1)                              0.448          8.233          net: dut/snapshot_b449[4]_syn_23,  NOFILE(0)
+                                                                      pin: dut/snapshot_b449[4]_syn_86.b
+LUT6                                    0.238    r     8.471       9  pin: dut/snapshot_b449[4]_syn_86.o
+net (fo=1)                              0.448          8.919          net: dut/snapshot_b449[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[1028].d
+SEQ (reg)                               0.076    f     8.995               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.995               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[1028].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.935               
+
+Slack               : 0.927ns
+Begin Point         : dut/mult3_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[3076].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 9.003ns (cell 4.340ns (48%), net 4.663ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=3  LUT2=2  LUT5=1  LUT3=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 24
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult3_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult3_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult3_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_168.x[1]
+DSPMULT                                 1.101    f     1.515       1  pin: dut/mult3_syn_168.p[27]
+net (fo=1)                              0.000          1.515          net: dut/mult3_syn_215[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_167.mult_p[27]
+DSPSIOU                                 0.212    r     1.727          pin: dut/mult3_syn_167.cpo[27]
+net (fo=1)                              0.000          1.727          net: dut/mult3_syn_587[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_260.cpi[27]
+DSPSIOU                                 0.021    r     1.748          pin: dut/mult3_syn_260.tadd_c[10]
+net (fo=1)                              0.000          1.748          net: dut/mult3_syn_462[10],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_353.c[10]
+DSPTADD                                 0.636    r     2.384       2  pin: dut/mult3_syn_353.sum[13]
+net (fo=1)                              0.000          2.384          net: dut/mult3_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.590          pin: dut/mult3_syn_260.p[13]
+net (fo=8)                              0.659          3.249          net: dut/mult3_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b65[4]_syn_25.a
+LUT6                                    0.238    r     3.487       3  pin: dut/snapshot_b65[4]_syn_25.o
+net (fo=24)                             0.828          4.315          net: dut/snapshot_b65[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_2.c
+LUT3                                    0.240    r     4.555       4  pin: dut/snapshot_b225[4]_syn_2.o
+net (fo=7)                              0.638          5.193          net: dut/snapshot_b225[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_4.a
+LUT2                                    0.240    r     5.433       5  pin: dut/snapshot_b225[4]_syn_4.o
+net (fo=7)                              0.638          6.071          net: dut/snapshot_b225[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_10.a
+LUT2                                    0.240    r     6.311       6  pin: dut/snapshot_b225[4]_syn_10.o
+net (fo=4)                              0.556          6.867          net: dut/snapshot_b225[4]_syn_11,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_24.a
+LUT5                                    0.240    r     7.107       7  pin: dut/snapshot_b385[4]_syn_24.o
+net (fo=1)                              0.448          7.555          net: dut/snapshot_b385[4]_syn_25,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_28.a
+LUT6                                    0.238    r     7.793       8  pin: dut/snapshot_b385[4]_syn_28.o
+net (fo=1)                              0.448          8.241          net: dut/snapshot_b385[4]_syn_29,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_90.c
+LUT6                                    0.238    r     8.479       9  pin: dut/snapshot_b385[4]_syn_90.o
+net (fo=1)                              0.448          8.927          net: dut/snapshot_b385[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[3076].d
+SEQ (reg)                               0.076    f     9.003               
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.003               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[3076].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.927               
+
+Slack               : 0.927ns
+Begin Point         : dut/mult3_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[3076].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 9.003ns (cell 4.340ns (48%), net 4.663ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=3  LUT3=2  LUT2=2  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 24
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult3_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult3_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult3_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_168.x[1]
+DSPMULT                                 1.101    f     1.515       1  pin: dut/mult3_syn_168.p[27]
+net (fo=1)                              0.000          1.515          net: dut/mult3_syn_215[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_167.mult_p[27]
+DSPSIOU                                 0.212    r     1.727          pin: dut/mult3_syn_167.cpo[27]
+net (fo=1)                              0.000          1.727          net: dut/mult3_syn_587[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_260.cpi[27]
+DSPSIOU                                 0.021    r     1.748          pin: dut/mult3_syn_260.tadd_c[10]
+net (fo=1)                              0.000          1.748          net: dut/mult3_syn_462[10],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_353.c[10]
+DSPTADD                                 0.636    r     2.384       2  pin: dut/mult3_syn_353.sum[13]
+net (fo=1)                              0.000          2.384          net: dut/mult3_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.590          pin: dut/mult3_syn_260.p[13]
+net (fo=8)                              0.659          3.249          net: dut/mult3_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b65[4]_syn_25.a
+LUT6                                    0.238    r     3.487       3  pin: dut/snapshot_b65[4]_syn_25.o
+net (fo=24)                             0.828          4.315          net: dut/snapshot_b65[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_2.c
+LUT3                                    0.240    r     4.555       4  pin: dut/snapshot_b225[4]_syn_2.o
+net (fo=7)                              0.638          5.193          net: dut/snapshot_b225[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_4.a
+LUT2                                    0.240    r     5.433       5  pin: dut/snapshot_b225[4]_syn_4.o
+net (fo=7)                              0.638          6.071          net: dut/snapshot_b225[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_10.a
+LUT2                                    0.240    r     6.311       6  pin: dut/snapshot_b225[4]_syn_10.o
+net (fo=4)                              0.556          6.867          net: dut/snapshot_b225[4]_syn_11,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_30.a
+LUT3                                    0.240    r     7.107       7  pin: dut/snapshot_b385[4]_syn_30.o
+net (fo=1)                              0.448          7.555          net: dut/snapshot_b385[4]_syn_31,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_50.a
+LUT6                                    0.238    r     7.793       8  pin: dut/snapshot_b385[4]_syn_50.o
+net (fo=1)                              0.448          8.241          net: dut/snapshot_b385[4]_syn_51,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_90.d
+LUT6                                    0.238    r     8.479       9  pin: dut/snapshot_b385[4]_syn_90.o
+net (fo=1)                              0.448          8.927          net: dut/snapshot_b385[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[3076].d
+SEQ (reg)                               0.076    f     9.003               
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.003               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[3076].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.927               
+
+Slack               : 0.936ns
+Begin Point         : dut/mult3_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[3076].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 8.994ns (cell 4.331ns (48%), net 4.663ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=3  LUT2=2  LUT5=1  LUT3=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 24
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult3_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult3_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult3_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_168.x[1]
+DSPMULT                                 1.071    f     1.485       1  pin: dut/mult3_syn_168.p[25]
+net (fo=1)                              0.000          1.485          net: dut/mult3_syn_215[25],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_167.mult_p[25]
+DSPSIOU                                 0.232    r     1.717          pin: dut/mult3_syn_167.cpo[25]
+net (fo=1)                              0.000          1.717          net: dut/mult3_syn_587[25],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_260.cpi[25]
+DSPSIOU                                 0.017    r     1.734          pin: dut/mult3_syn_260.tadd_c[8]
+net (fo=1)                              0.000          1.734          net: dut/mult3_syn_462[8],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_353.c[8]
+DSPTADD                                 0.641    r     2.375       2  pin: dut/mult3_syn_353.sum[13]
+net (fo=1)                              0.000          2.375          net: dut/mult3_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.581          pin: dut/mult3_syn_260.p[13]
+net (fo=8)                              0.659          3.240          net: dut/mult3_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b65[4]_syn_25.a
+LUT6                                    0.238    r     3.478       3  pin: dut/snapshot_b65[4]_syn_25.o
+net (fo=24)                             0.828          4.306          net: dut/snapshot_b65[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_2.c
+LUT3                                    0.240    r     4.546       4  pin: dut/snapshot_b225[4]_syn_2.o
+net (fo=7)                              0.638          5.184          net: dut/snapshot_b225[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_4.a
+LUT2                                    0.240    r     5.424       5  pin: dut/snapshot_b225[4]_syn_4.o
+net (fo=7)                              0.638          6.062          net: dut/snapshot_b225[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_10.a
+LUT2                                    0.240    r     6.302       6  pin: dut/snapshot_b225[4]_syn_10.o
+net (fo=4)                              0.556          6.858          net: dut/snapshot_b225[4]_syn_11,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_24.a
+LUT5                                    0.240    r     7.098       7  pin: dut/snapshot_b385[4]_syn_24.o
+net (fo=1)                              0.448          7.546          net: dut/snapshot_b385[4]_syn_25,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_28.a
+LUT6                                    0.238    r     7.784       8  pin: dut/snapshot_b385[4]_syn_28.o
+net (fo=1)                              0.448          8.232          net: dut/snapshot_b385[4]_syn_29,  NOFILE(0)
+                                                                      pin: dut/snapshot_b385[4]_syn_90.c
+LUT6                                    0.238    r     8.470       9  pin: dut/snapshot_b385[4]_syn_90.o
+net (fo=1)                              0.448          8.918          net: dut/snapshot_b385[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[3076].d
+SEQ (reg)                               0.076    f     8.994               
+--------------------------------------------------------------------  ---------------
+Arrival                                                8.994               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[3076].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.936               
+
+Slack               : 0.927ns
+Begin Point         : dut/mult3_syn_167.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/snapshot_reg[8196].d (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 9.003ns (cell 4.340ns (48%), net 4.663ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 9 ( LUT6=3  LUT2=2  LUT5=1  LUT3=1  DSPTADD=1  DSPMULT=1 )
+Max Fanout          : 24
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/mult3_syn_167.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+DSPSIOU (clk2q)                         0.414    f     0.414          pin: dut/mult3_syn_167.mult_x[1]
+net (fo=1)                              0.000          0.414          net: dut/mult3_syn_169[1],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_168.x[1]
+DSPMULT                                 1.101    f     1.515       1  pin: dut/mult3_syn_168.p[27]
+net (fo=1)                              0.000          1.515          net: dut/mult3_syn_215[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_167.mult_p[27]
+DSPSIOU                                 0.212    r     1.727          pin: dut/mult3_syn_167.cpo[27]
+net (fo=1)                              0.000          1.727          net: dut/mult3_syn_587[27],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_260.cpi[27]
+DSPSIOU                                 0.021    r     1.748          pin: dut/mult3_syn_260.tadd_c[10]
+net (fo=1)                              0.000          1.748          net: dut/mult3_syn_462[10],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_353.c[10]
+DSPTADD                                 0.636    r     2.384       2  pin: dut/mult3_syn_353.sum[13]
+net (fo=1)                              0.000          2.384          net: dut/mult3_syn_530[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/mult3_syn_260.tadd_sum[13]
+DSPSIOU                                 0.206    r     2.590          pin: dut/mult3_syn_260.p[13]
+net (fo=8)                              0.659          3.249          net: dut/mult3_syn_113[13],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/rs485_latest_cache.v(237)
+                                                                      pin: dut/snapshot_b65[4]_syn_25.a
+LUT6                                    0.238    r     3.487       3  pin: dut/snapshot_b65[4]_syn_25.o
+net (fo=24)                             0.828          4.315          net: dut/snapshot_b65[4]_syn_26,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_2.c
+LUT3                                    0.240    r     4.555       4  pin: dut/snapshot_b225[4]_syn_2.o
+net (fo=7)                              0.638          5.193          net: dut/snapshot_b225[4]_syn_3,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_4.a
+LUT2                                    0.240    r     5.433       5  pin: dut/snapshot_b225[4]_syn_4.o
+net (fo=7)                              0.638          6.071          net: dut/snapshot_b225[4]_syn_5,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_10.a
+LUT2                                    0.240    r     6.311       6  pin: dut/snapshot_b225[4]_syn_10.o
+net (fo=4)                              0.556          6.867          net: dut/snapshot_b225[4]_syn_11,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_36.a
+LUT5                                    0.240    r     7.107       7  pin: dut/snapshot_b225[4]_syn_36.o
+net (fo=1)                              0.448          7.555          net: dut/snapshot_b225[4]_syn_37,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_40.a
+LUT6                                    0.238    r     7.793       8  pin: dut/snapshot_b225[4]_syn_40.o
+net (fo=1)                              0.448          8.241          net: dut/snapshot_b225[4]_syn_41,  NOFILE(0)
+                                                                      pin: dut/snapshot_b225[4]_syn_99.c
+LUT6                                    0.238    r     8.479       9  pin: dut/snapshot_b225[4]_syn_99.o
+net (fo=1)                              0.448          8.927          net: dut/snapshot_b225[4],  NOFILE(0)
+                                                                      pin: dut/snapshot_reg[8196].d
+SEQ (reg)                               0.076    f     9.003               
+--------------------------------------------------------------------  ---------------
+Arrival                                                9.003               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                                     0.000          0.000          pin: clk_syn_2.di
+net (fo=22340)                          0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_cache_packed/top.v(1)
+                                                                      pin: dut/snapshot_reg[8196].clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.070          9.930               
+clock uncertainty                       0.000          9.930               
+clock pessimism                         0.000          9.930               
+--------------------------------------------------------------------  ---------------
+Required                                               9.930               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.927               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+Inter clock domain timing
+--------------------------------------------------
+
+IP timing
+--------------------------------------------------

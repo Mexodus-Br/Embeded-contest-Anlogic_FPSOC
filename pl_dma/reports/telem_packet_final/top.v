@@ -1,0 +1,31 @@
+module telem_probe(input clk,rst_n,scan_in,load,output scan_out);
+reg [617:0] inp;reg [719:0] obs;
+wire [31:0] o_command_error;
+wire [0:0] o_command_result;
+wire [31:0] o_status;
+wire [31:0] o_transport_generation;
+wire [31:0] o_packet_id;
+wire [31:0] o_packet_generation;
+wire [31:0] o_packet_count;
+wire [31:0] o_packet_bytes;
+wire [31:0] o_full_drop;
+wire [31:0] o_disabled_drop;
+wire [31:0] o_cancel_drop;
+wire [31:0] o_stream_records;
+wire [31:0] o_stream_packets;
+wire [31:0] o_dma_ok;
+wire [31:0] o_dma_failed;
+wire [63:0] o_completion_serial;
+wire [31:0] o_fifo_level;
+wire [31:0] o_wait_arm_max_us;
+wire [31:0] o_backpressure_max_cycles;
+wire [31:0] o_ready_lateness_max_us;
+wire [63:0] o_m_data;
+wire [7:0] o_m_keep;
+wire [0:0] o_m_last;
+wire [0:0] o_m_valid;
+wire [4:0] o_events;
+always @(posedge clk) begin inp<={inp[616:0],scan_in};if(load) obs<={o_command_error,o_command_result,o_status,o_transport_generation,o_packet_id,o_packet_generation,o_packet_count,o_packet_bytes,o_full_drop,o_disabled_drop,o_cancel_drop,o_stream_records,o_stream_packets,o_dma_ok,o_dma_failed,o_completion_serial,o_fifo_level,o_wait_arm_max_us,o_backpressure_max_cycles,o_ready_lateness_max_us,o_m_data,o_m_keep,o_m_last,o_m_valid,o_events};else obs<={obs[718:0],1'b0};end
+assign scan_out=obs[719];
+rs485_telemetry dut(.clk(clk),.rst_n(rst_n),.dma_ready(inp[0+: 1]),.dma_quiescent(inp[1+: 1]),.time_us(inp[2+: 64]),.event_valid(inp[66+: 1]),.event_raw(inp[67+: 256]),.event_generation(inp[323+: 32]),.event_revision(inp[355+: 32]),.enable_write(inp[387+: 1]),.enable_value(inp[388+: 1]),.recover(inp[389+: 1]),.cancel(inp[390+: 1]),.arm(inp[391+: 1]),.complete(inp[392+: 1]),.recover_generation(inp[393+: 32]),.arm_id(inp[425+: 32]),.arm_generation(inp[457+: 32]),.arm_bytes(inp[489+: 32]),.complete_id(inp[521+: 32]),.complete_generation(inp[553+: 32]),.complete_result(inp[585+: 32]),.command_error(o_command_error),.command_result(o_command_result),.status(o_status),.transport_generation(o_transport_generation),.packet_id(o_packet_id),.packet_generation(o_packet_generation),.packet_count(o_packet_count),.packet_bytes(o_packet_bytes),.full_drop(o_full_drop),.disabled_drop(o_disabled_drop),.cancel_drop(o_cancel_drop),.stream_records(o_stream_records),.stream_packets(o_stream_packets),.dma_ok(o_dma_ok),.dma_failed(o_dma_failed),.completion_serial(o_completion_serial),.fifo_level(o_fifo_level),.wait_arm_max_us(o_wait_arm_max_us),.backpressure_max_cycles(o_backpressure_max_cycles),.ready_lateness_max_us(o_ready_lateness_max_us),.m_data(o_m_data),.m_keep(o_m_keep),.m_last(o_m_last),.m_valid(o_m_valid),.m_ready(inp[617+: 1]),.events(o_events));
+endmodule

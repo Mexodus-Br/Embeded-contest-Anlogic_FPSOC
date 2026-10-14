@@ -1,4 +1,4 @@
-/* Generated from pl_interface/schema.json SHA256 fc3172823b78ad5da25ac0261ec7a29c20723e81583593b01a9c7e54f4130f82 */
+/* Generated from pl_interface/schema.json SHA256 1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31 */
 #ifndef RS485_GP_DEFS_H
 #define RS485_GP_DEFS_H
 #include <stdint.h>

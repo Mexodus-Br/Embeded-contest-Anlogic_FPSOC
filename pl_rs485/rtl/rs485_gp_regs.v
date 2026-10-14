@@ -13,7 +13,8 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3)(
  input wire busy,record_valid,input wire [255:0] record_data,output wire record_ready,
  input wire [31:0] fifo_level,dropped,accepted,errors,ignored_rx,bus_busy_events,
  input wire [9:0] node_offline,input wire observe_push,input wire [255:0] observe_data,
- input wire [7999:0] observe_tasks,input wire [1279:0] observe_nodes);
+ input wire [7999:0] observe_tasks,input wire [1279:0] observe_nodes,
+ output wire [31:0] observe_generation);
  `include "gp_defs.vh"
  `include "rs485_defs.vh"
  localparam [32:0] BASE={1'b0,`RG_BASE};
@@ -44,6 +45,7 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3)(
  assign s_wready=rst_n && !wh && !s_bvalid;
  assign s_arready=rst_n && !s_rvalid;
  assign irq=|(irq_pending & irq_mask);
+ assign observe_generation=generation;
  function [31:0] merge;input [31:0] oldv,newv;input [3:0] st;integer b;
   begin merge=oldv;for(b=0;b<4;b=b+1) if(st[b]) merge[b*8+:8]=newv[b*8+:8];end
  endfunction

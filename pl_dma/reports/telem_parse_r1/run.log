@@ -1,0 +1,2083 @@
+============================================================
+   TD Release_2026.1_SP2
+   Copyright (c) 2012-2026 Anlogic Inc.
+   Executable = D:/Anlogic/TD_Release_2026.1_SP2.200.067/bin/td_commands_prompt.exe
+   Build number = 6.2.2.200067
+   Built at =   16:15:53 Apr 23 2026
+   Run by =     boru
+   Run Date =   Wed Oct 14 11:08:01 2026
+
+   Run on =     LAPTOP-JS7E5LFJ
+============================================================
+RUN-1002 : start command "import_device dr1_90.db -package DR1M90GEG400 -speed 2"
+ARC-1001 : Device Initialization.
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :           OPTION          |      IO       |   SETTING   
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |    35 IOs     |    gpio    
+ARC-1001 :            jtag           |  F9/J6/G6/F6  |  dedicate  
+ARC-1001 : --------------------------------------------------------
+RUN-1003 : finish command "import_device dr1_90.db -package DR1M90GEG400 -speed 2" in  2.919390s wall, 2.265625s user + 0.234375s system = 2.500000s CPU (85.6%)
+
+RUN-1004 : used memory is 430 MB, reserved memory is 409 MB, peak memory is 464 MB
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/div_u64_u32.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/div_u64_u32.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/record_fifo.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/record_fifo.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_gp_bridge.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_gp_bridge.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_gp_regs.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_gp_regs.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_latest_cache.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_latest_cache.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_master.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_master.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_multirate.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_multirate.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_telemetry.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_telemetry.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_telem_regs.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_telem_regs.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_telem_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_telem_top.v
+HDL-5007 WARNING: column 1027 exceeds maximum value 1023 in D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_telem_top.v(46)
+HDL-5007 WARNING: column 1037 exceeds maximum value 1023 in D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_telem_top.v(47)
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_transaction.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_transaction.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/uart_rx.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/uart_rx.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/uart_tx.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/uart_tx.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axis_loop_fifo.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axis_loop_fifo.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axi_lite_six_way.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axi_lite_six_way.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axi_lite_three_way.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axi_lite_three_way.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axi_lite_two_way.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axi_lite_two_way.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_gp_full_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_gp_full_top.v
+HDL-5007 WARNING: column 1025 exceeds maximum value 1023 in D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_gp_full_top.v(1598)
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_gp_ps_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_gp_ps_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_lite_guard.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_lite_guard.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_loopback_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_loopback_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_shared_lite_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_shared_lite_top.v
+HDL-5007 WARNING: column 1026 exceeds maximum value 1023 in D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/dma_shared_lite_top.v(1562)
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_dma_lite_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_dma_lite_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_gp_full_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_gp_full_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_gp_ps_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_gp_ps_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_shared_lite_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_shared_lite_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_gp_full_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_gp_full_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_gp_ps_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_gp_ps_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_probe_time_regs.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_probe_time_regs.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_shared_lite_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_shared_lite_top.v
+HDL-5007 WARNING: column 1025 exceeds maximum value 1023 in D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_shared_lite_top.v(1769)
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/telemetry_dma_guard.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/telemetry_dma_guard.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/telemetry_dma_lite_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/telemetry_dma_lite_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axis_motion.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/axis_motion.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/continuous_motion.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/continuous_motion.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/four_axis_motion.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/four_axis_motion.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/gp_control_regs.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/gp_control_regs.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/gp_control_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/gp_control_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/gp_ps_control_top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/gp_ps_control_top.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/gp_ps_write_adapter.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/gp_ps_write_adapter.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_executor.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_executor.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_fifo.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_fifo.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_planner.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_planner.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_service.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_service.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_stream_rx.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/motion_stream_rx.v
+RUN-1002 : start command "analyze -file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v
+RUN-1002 : start command "elaborate -top telem_probe"
+HDL-1007 : elaborate module telem_probe in D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+HDL-1007 : elaborate module rs485_light_parse in D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(2)
+HDL-1200 : Current top model is telem_probe
+HDL-1100 : Inferred 0 RAMs.
+RUN-1002 : start command "optimize_rtl"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+SYN-1001 : Stage 1 | Optimize RTL
+SYN-1001 : Stage 1.1 | Check Design Sanity
+SYN-1001 : End Stage 1.1 | Check Design Sanity; Time: 0.000362s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 447, reserved = 427, peak = 464;
+
+SYN-1079 : finish stage Check Design Sanity. Total instances: 882, Total nets: 2376.
+
+SYN-1001 : Stage 1.2 | Initialize Design
+SYN-1001 : End Stage 1.2 | Initialize Design; Time: 0.004510s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 447, reserved = 427, peak = 464;
+
+SYN-1079 : finish stage Initialize Design. Total instances: 128, Total nets: 1329.
+
+SYN-1001 : Stage 1.3 | Flatten Module
+SYN-1011 : Flatten model telem_probe
+SYN-1001 : End Stage 1.3 | Flatten Module; Time: 0.003105s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 447, reserved = 427, peak = 464;
+
+SYN-1079 : finish stage Flatten Module. Total instances: 127, Total nets: 1112.
+
+SYN-1001 : Stage 1.4 | Uniform Instance
+SYN-1001 : End Stage 1.4 | Uniform Instance; Time: 0.001037s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 447, reserved = 427, peak = 464;
+
+SYN-1079 : finish stage Uniform Instance. Total instances: 71, Total nets: 1056.
+
+SYN-1001 : Stage 1.5 | Optimize Design
+SYN-1021 : Optimized 1 onehot mux instances.
+SYN-1016 : Merged 4 instances.
+SYN-1016 : Merged 1 instances.
+SYN-1001 : End Stage 1.5 | Optimize Design; Time: 0.347828s wall, 0.343750s user + 0.000000s system = 0.343750s CPU (98.8%); Memory(MB): used = 448, reserved = 428, peak = 464;
+
+SYN-1079 : finish stage Optimize Design. Total instances: 898, Total nets: 911.
+
+SYN-1001 : Stage 1.6 | Optimize Iteratively
+SYN-1021 : Optimized 2 onehot mux instances.
+SYN-1014 : Optimize round 1
+SYN-1019 : Optimized 32 mux instances.
+SYN-1020 : Optimized 1 distributor mux.
+SYN-1016 : Merged 201 instances.
+SYN-1015 : Optimize round 1, 302 better
+SYN-1014 : Optimize round 2
+SYN-1015 : Optimize round 2, 0 better
+SYN-1014 : Optimize round 1
+SYN-1015 : Optimize round 1, 0 better
+SYN-1001 : End Stage 1.6 | Optimize Iteratively; Time: 0.756307s wall, 0.531250s user + 0.203125s system = 0.734375s CPU (97.1%); Memory(MB): used = 454, reserved = 433, peak = 464;
+
+SYN-1079 : finish stage Optimize Iteratively. Total instances: 858, Total nets: 871.
+
+SYN-1001 : Stage 1.7 | Check Design
+SYN-1001 : End Stage 1.7 | Check Design; Time: 0.004910s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 454, reserved = 433, peak = 464;
+
+SYN-1079 : finish stage Check Design. Total instances: 858, Total nets: 871.
+
+SYN-1001 : End Stage 1 | Optimize RTL; Time: 1.118491s wall, 0.875000s user + 0.203125s system = 1.078125s CPU (96.4%); Memory(MB): used = 454, reserved = 433, peak = 464;
+
+SYN-1079 : finish stage Optimize RTL. Total instances: 858, Total nets: 871.
+
+RUN-1003 : finish command "optimize_rtl" in  1.128639s wall, 0.890625s user + 0.203125s system = 1.093750s CPU (96.9%)
+
+RUN-1004 : used memory is 454 MB, reserved memory is 433 MB, peak memory is 464 MB
+RUN-1002 : start command "read_sdc clock.sdc"
+RUN-1002 : start command "optimize_gate -maparea gate.area"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+SYN-1001 : Stage 2 | Optimize Gate
+SYN-1001 : Stage 2.1 | Map Reg
+SYN-1001 : End Stage 2.1 | Map Reg; Time: 0.029290s wall, 0.015625s user + 0.015625s system = 0.031250s CPU (106.7%); Memory(MB): used = 454, reserved = 433, peak = 464;
+
+SYN-1079 : finish stage Map Reg. Total instances: 858, Total nets: 871.
+
+SYN-1001 : Stage 2.2 | Map IO
+SYN-2001 : Map 5 IOs to PADs of model 'telem_probe'
+SYN-6021 CRITICAL-WARNING: 4 out of 4 logical ports has no user assigned specific location constraint.
+                           This may affect performance or in some cases cause damage to the device!
+                           Bitgen will abort. If insist on bitgen with risk, please 'set_param bitgen unconstr_io on' to avoid bitgen error.
+                           No ADC ports: clk, load, scan_in, scan_out.
+                           No ADC ports will be assigned to random location as below:
+                           clk:Y9, load:P20, scan_in:M14, scan_out:M18.
+SYN-1001 : End Stage 2.2 | Map IO; Time: 0.005373s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 454, reserved = 433, peak = 464;
+
+SYN-1001 : Stage 2.3 | Map Macro
+RUN-1002 : start command "update_pll_param -module telem_probe"
+SYN-2501 : Processed 0 LOGIC_BUF instances.
+SYN-2571 : Map 1 macro multiplier
+SYN-2571 : Optimize after map_dsp, round 1
+SYN-2571 : Optimize after map_dsp, round 1, 0 better
+SYN-1001 : Throwback 1 control mux instances
+SYN-1001 : Generate 1 bigger adders
+SYN-1001 : Optimize 1 adders
+SYN-2501 : Optimize round 1
+SYN-1016 : Merged 50 instances.
+SYN-2501 : Optimize round 1, 255 better
+SYN-2501 : Optimize round 2
+SYN-2501 : Optimize round 2, 0 better
+SYN-2501 : Optimize round 1
+SYN-2501 : Optimize round 1, 0 better
+SYN-2501 : Map 2 macro adder(s)
+SYN-1016 : Merged 4 instances.
+SYN-1001 : End Stage 2.3 | Map Macro; Time: 0.242547s wall, 0.187500s user + 0.046875s system = 0.234375s CPU (96.6%); Memory(MB): used = 455, reserved = 433, peak = 465;
+
+SYN-1079 : finish stage Map Macro. Total instances: 916, Total nets: 939.
+
+SYN-1001 : Stage 2.4 | Map Gate
+SYN-3001 : Collect 217 PI 131 PO (2 timing unconstrained) for mapping
+SYN-2581 : Mapping with K=6, #lut = 231 (4.11), #lev = 7 (3.88), #crit_level = 0, #edge = 950
+SYN-2551 : Post LUT mapping optimization.
+SYN-2581 : Mapping with K=6, #lut = 210 (3.76), #lev = 7 (4.12), #crit_level = 0, #edge = 789
+SYN-3001 : Logic optimization opt = 0.27 sec, map = 0.04 sec, post map opt = 0.26 sec.
+SYN-1001 : End Stage 2.4 | Map Gate; Time: 0.692471s wall, 0.671875s user + 0.015625s system = 0.687500s CPU (99.3%); Memory(MB): used = 460, reserved = 437, peak = 470;
+
+RUN-1002 : start command "report_area -file gate.area"
+RUN-1001 : standard
+***Report Model: telem_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         4   out of    126    3.17%
+  #input                    3
+  #output                   1
+  #inout                    0
+#lut                      218
+  #lut1                     0
+  #lut2                    11
+  #lut3                   122
+  #lut4                    11
+  #lut5                    39
+  #lut6                    35
+  #1-bit adder              0
+#reg                      234
+  #slice reg              234   out of 104960    0.22%
+  #pad reg                  0
+
+Utilization Statistics
+#unit lut*                122   out of  52480    0.23%
+  #logic lut*             122
+  #1-bit adder              0
+#reg                      234   out of 104960    0.22%
+  #dff                    234
+  #latch                    0
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of    240    0.00%
+#pad                        4   out of    126    3.17%
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+SYN-1001 : Packing model "telem_probe" ...
+SYN-1001 : Stage 2.5 | Pack Gate
+SYN-4010 : Pack lib has 78 rtl pack models with 50 top pack blocks
+SYN-1014 : Optimize round 1
+SYN-1015 : Optimize round 1, 0 better
+SYN-4002 : Packing 226 DFF/LATCH to SEQ ...
+RUN-1002 : start command "start_timer"
+TMR-2502 : Net delay update with mode: Synthesized
+RUN-1002 : start command "end_timer"
+SYN-4009 : Pack 0 carry chain into lslice
+SYN-1001 : End Stage 2.5 | Pack Gate; Time: 0.057686s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (81.3%); Memory(MB): used = 461, reserved = 437, peak = 470;
+
+RUN-1002 : start command "report_qor -step gate -file gate.qor"
+RUN-1002 : start command "start_timer"
+TMR-2502 : Net delay update with mode: Synthesized
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |         3191                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #registers            |          226                |
+|     #luts                 |          210                |
+|     #lut1                 |            0                |
+|     #lut1(~A)             |            0                |
+|     #slices               |            8                |
+|     slices percentage     |        0.02%                |
+|     #RAMs                 |            0                |
+|     #DSPs                 |            0                |
+|     #f7mux                |        0.00%                |
+|     #MACROs               |            1                |
+|     #insts in MACRO       |            9                |
+-----------------------------------------------------------
+| kept_net                  |                             |
+|     #syn_keep             |            0                |
+|     #keep_hier            |            0                |
+|     #dont_touch           |            0                |
+|     #mark_debug           |            0                |
+|     #max_fanout_keep      |            0                |
+|     #async_reg            |            0                |
+-----------------------------------------------------------
+| Top 1% datanet fanout#    |        55.25                |
+| dff(single fanout)->dff   |            8                |
+| dff(single fanout)->dram  |            0                |
+-----------------------------------------------------------
+| Over-quota path num*      |                             |
+|     Total Number          |            0                |
+|     Total Level Slack     |            0                |
+|     Worst Level Slack     |            5                |
+-----------------------------------------------------------
+| Rent**                    |                             |
+-----------------------------------------------------------
+Note*: Over-quota path shows the over-path-level-threshold path number of each clock.
+       The clock will not be shown if no path is with path level over the threshold.
+       The threshold is defined as worst path_margin / 800ps.
+Note**: Rent shows the rent exponent value of the modules whose rent value exceeds the threshold.
+        Only modules under top are reported, and the threshold is defined as 0.7.
+
+Logic Level Distribution
+---------------------------------------------------------------------------------
+  Clock      |  Period             |  0   |  1   |  2  |  4  |  5  |  6   |  7
+---------------------------------------------------------------------------------
+  telem_clk  |  10.000ns (100MHz)  |  95  |  68  |  2  |  3  |  2  |  10  |  56
+---------------------------------------------------------------------------------
+Note: The table count the worst 100000 paths, each endpoint count only one time.(236 paths analyzed)
+
+Hierarchical Rent Exponent Report
++--------------------------------------------------------+
+|Inst     |Model  |Rent     |Cell     |Pin     |Term     |
++--------------------------------------------------------+
++--------------------------------------------------------+
+Note: Cell represents total number of cells inside module; Pin represents total number of pins
+      which have net connection inside module; Term represents total number of PIs and POs of module.
+      Rent represents the relationship between number of terms and number of cells in module.
+      A module with higher rent corresponds to highly connected logic and strong connectivity with others.
+Report gate stage QoR done.
+
+RUN-0008 : Do critical warning check and 0 issue(s) found.
+RUN-0008 : Do timing check and 0 issue(s) found.
+RUN-0008 : Do area check and 0 issue(s) found.
+SYN-1001 : End Stage 2 | Optimize Gate; Time: 1.390729s wall, 1.281250s user + 0.078125s system = 1.359375s CPU (97.7%); Memory(MB): used = 461, reserved = 437, peak = 470;
+
+RUN-1003 : finish command "optimize_gate -maparea gate.area" in  1.400258s wall, 1.281250s user + 0.078125s system = 1.359375s CPU (97.1%)
+
+RUN-1004 : used memory is 461 MB, reserved memory is 437 MB, peak memory is 470 MB
+RUN-1002 : start command "update_timing"
+RUN-1002 : start command "start_timer"
+RUN-1002 : start command "report_timing_summary -file gate.timing -path_num 3"
+RUN-1002 : start command "legalize_phy_inst"
+SYN-1001 : Stage 3 | Legalize Phy Inst
+SYN-1011 : Flatten model telem_probe
+SYN-1001 : End Stage 3 | Legalize Phy Inst; Time: 0.002806s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 461, reserved = 437, peak = 470;
+
+RUN-1002 : start command "place"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+PHY-3001 : Placer runs in 22 thread(s).
+PHY-1001 : Stage 1 | Initialize Design
+PHY-1001 : Stage 1.1 | Build Design
+PHY-1001 : 211 luts, 226 seqs, 8 mslices, 0 lslices, 4 pads, 0 brams, 0 dsps
+RUN-1002 : start command "legalize_phy_inst"
+SYN-1011 : Flatten model telem_probe
+PHY-1001 : Remove keep and sweep redundant instances ...
+PHY-1001 : 211 luts, 226 seqs, 8 mslices, 0 lslices, 4 pads, 0 brams, 0 dsps
+PHY-1001 : End Stage 1.1 | Build Design; Time: 0.002452s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 461, reserved = 437, peak = 470;
+
+PHY-1001 : Stage 1.2 | PrePlace Optimize Design
+OPT-1001 : Stage 1.2.1 | Simplify Lut
+OPT-1001 : End Stage 1.2.1 | Simplify Lut; Time: 0.001374s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 462, reserved = 437, peak = 470;
+
+OPT-1001 : Stage 1.2.2 | Sweep
+OPT-1001 : End Stage 1.2.2 | Sweep; Time: 0.000239s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 462, reserved = 437, peak = 470;
+
+OPT-1001 : Stage 1.2.3 | Merge Lut
+OPT-1001 : Start remap optimization ...
+RUN-1001 :   Added 0 lut1 for undup drivers
+OPT-1001 : skip lut merge since lut number 211 is similar to or less than reg number 226
+OPT-1001 : End Stage 1.2.3 | Merge Lut; Time: 0.001108s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (1410.7%); Memory(MB): used = 462, reserved = 437, peak = 470;
+
+OPT-1001 : Stage 1.2.4 | Synthesize High-fanout Net
+OPT-1001 : Start high-fanout net optimization in pre-place flow with medium effort ...
+OPT-1001 : Separate data sinks from clock nets
+RUN-1001 : HFN opt statistic
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :   DriverCell type  |  HFN count  |  Duplicated count  
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :       LSLICE       |      0      |         0          
+RUN-1001 :       MSLICE       |      0      |         0          
+RUN-1001 :        TOTAL       |      0      |         0          
+RUN-1001 : ------------------------------------------------------
+OPT-1001 : End high-fanout net optimization;  0.001923s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%)
+
+OPT-1001 : Current memory(MB): used = 462, reserved = 437, peak = 470.
+OPT-1001 : End Stage 1.2.4 | Synthesize High-fanout Net; Time: 0.002491s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 462, reserved = 437, peak = 470;
+
+OPT-1001 : End physical optimization;  0.006217s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (251.3%)
+
+PHY-1001 : End Stage 1.2 | PrePlace Optimize Design; Time: 0.007016s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (222.7%); Memory(MB): used = 462, reserved = 437, peak = 470;
+
+PHY-1001 : Stage 1.3 | Initialize Clock
+PHY-1001 : Start to synthesize physical clock networks.
+RUN-1002 : start command "start_timer"
+PHY-1001 : Populate physical database on model telem_probe.
+RUN-1001 : There are total 454 instances
+RUN-0007 : 211 luts, 226 seqs, 8 mslices, 0 lslices, 4 pads, 0 brams, 0 dsps
+RUN-1001 : There are total 467 nets
+RUN-1001 : 336 nets have 2 pins
+RUN-1001 : 58 nets have [3 - 5] pins
+RUN-1001 : 63 nets have [6 - 10] pins
+RUN-1001 : 3 nets have [11 - 20] pins
+RUN-1001 : 5 nets have [21 - 99] pins
+RUN-1001 : 2 nets have 100+ pins
+PHY-1001 : End Stage 1.3 | Initialize Clock; Time: 0.028088s wall, 0.031250s user + 0.000000s system = 0.031250s CPU (111.3%); Memory(MB): used = 462, reserved = 437, peak = 470;
+
+PHY-1001 : End Stage 1 | Initialize Design; Time: 0.040415s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (116.0%); Memory(MB): used = 462, reserved = 437, peak = 470;
+
+PHY-1001 : Stage 2 | Global Placement
+RUN-1001 : Report Control nets information:
+RUN-1001 : DFF Distribution
+RUN-1001 : -------------------------------------
+RUN-1001 :   CE   |  SSR  |  ASR  |  DFF Count  
+RUN-1001 : -------------------------------------
+RUN-1001 :   No   |  No   |  No   |     242     
+RUN-1001 :   No   |  No   |  Yes  |      0      
+RUN-1001 :   No   |  Yes  |  No   |      0      
+RUN-1001 :   Yes  |  No   |  No   |      0      
+RUN-1001 :   Yes  |  No   |  Yes  |      0      
+RUN-1001 :   Yes  |  Yes  |  No   |      0      
+RUN-1001 : -------------------------------------
+RUN-1001 : Control Group Statistic
+RUN-1001 : -----------------------------
+RUN-1001 :   #CLK  |  #CE  |  #SSR/ASR  
+RUN-1001 : -----------------------------
+RUN-1001 :    1    |   1   |     1      
+RUN-1001 : -----------------------------
+RUN-0007 : Control Set = 2
+PHY-1001 : Stage 2.1 | Place Fixed Instances
+PHY-1001 : Stage 2.1.1 | Pre-Place DRC Check
+PHY-1001 : End Stage 2.1.1 | Pre-Place DRC Check; Time: 0.000665s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 478, reserved = 453, peak = 478;
+
+PHY-1001 : End Stage 2.1 | Place Fixed Instances; Time: 0.005681s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 479, reserved = 454, peak = 479;
+
+PHY-1001 : Stage 2.2 | Init-Place DRC Check
+RUN-1001 : Stage 2.2.1 | Run Bound Checker
+RUN-1001 : End Stage 2.2.1 | Run Bound Checker; Time: 0.000018s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 479, reserved = 454, peak = 479;
+
+RUN-1001 : Stage 2.2.2 | Run Force Route Checker
+RUN-1001 : End Stage 2.2.2 | Run Force Route Checker; Time: 0.000110s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 479, reserved = 454, peak = 479;
+
+RUN-1001 : Stage 2.2.3 | Run Sigmap Checker
+RUN-1001 : End Stage 2.2.3 | Run Sigmap Checker; Time: 0.016373s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (95.4%); Memory(MB): used = 479, reserved = 454, peak = 480;
+
+PHY-1001 : End Stage 2.2 | Init-Place DRC Check; Time: 0.016691s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (93.6%); Memory(MB): used = 479, reserved = 454, peak = 480;
+
+PHY-1001 : Clock GCLK Statistics:
+RUN-1001 : GCLK Index: 
+RUN-1001 : -----------------------------------------------------
+RUN-1001 :   Index  |          Clock GCLK          |  Location  
+RUN-1001 : -----------------------------------------------------
+RUN-1001 :     1    |  clk_dup_1_created_gclkinst  |  x79y59z0  
+RUN-1001 : -----------------------------------------------------
+RUN-1001 : Clock Nets Connect To GCLK Statistics: 
+RUN-1001 : ---------------------------------------------------------------------------------------------------
+RUN-1001 :   Index  |  Leading Net  |  CLK/DATA/IO/PLL Sink(s)  |  Following Net  |  CLK/DATA/IO/PLL Sink(s)  
+RUN-1001 : ---------------------------------------------------------------------------------------------------
+RUN-1001 :     1    |   clk_dup_1   |          1/0/0/0          |    clk_syn_3    |         235/0/0/0         
+RUN-1001 : ---------------------------------------------------------------------------------------------------
+PHY-1001 : Stage 2.3 | GP Phase 1
+PHY-3001 : There are total 0 huge nets that have been set as skipped
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.01  |  0.01  |  0.01  |  0.00   |  0.00  |  0.00  |  0.00  |    0.00    |  0.00   |  0.00   
+RUN-1001 :   Target Density  |  0.90  |  1.00  |  0.90  |  0.90   |  1.00  |  1.00  |  1.00  |    1.00    |  0.90   |  0.90   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.10  |  0.10  |  0.10  |  0.00   |  0.00  |  0.00  |  0.00  |    0.00    |  0.00   |  0.00   
+RUN-1001 :   Target Density  |  0.40  |  1.00  |  0.40  |  0.40   |  1.00  |  1.00  |  1.00  |    1.00    |  0.40   |  0.40   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+PHY-3001 : HPWL 6.915E+03 (1*3.539E+03 + 1*3.376E+03), Overflow {1.483E-01, 3.583E-01, 1.488E-01, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00}, normalized-grad(wirelength/density): 1.000E+00/1.768E+00
+PHY-1001 : End Stage 2.3 | GP Phase 1; Time: 13.694848s wall, 71.906250s user + 5.515625s system = 77.421875s CPU (565.3%); Memory(MB): used = 602, reserved = 579, peak = 618;
+
+RUN-1002 : start command "start_timer"
+PHY-3001 : Global placement completed: Len = 110641, Over = 0 with grid_size = 480
+PHY-1001 : End Stage 2 | Global Placement; Time: 13.785897s wall, 72.218750s user + 5.531250s system = 77.750000s CPU (564.0%); Memory(MB): used = 607, reserved = 583, peak = 618;
+
+PHY-1001 : Stage 3 | PrePack Optimize Design
+OPT-1001 : Start physical optimization ...
+OPT-1001 : Total overflow 4.53 peak overflow 0.94
+OPT-1001 : Stage 3.1 | Global Optimization
+OPT-1001 : Start global optimization ...
+OPT-1001 : Update timing in Manhattan mode
+OPT-1001 : End timing update;  0.019387s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (80.6%)
+
+OPT-0007 : Start: SWNS 2483 STNS 0 NUM_FEPS 0
+OPT-0007 : Iter 1: improved SWNS 2907 STNS 0 NUM_FEPS 0 with 1 cells processed and 534 slack improved
+OPT-0007 : Iter 2: improved SWNS 3017 STNS 0 NUM_FEPS 0 with 1 cells processed and 138 slack improved
+OPT-1001 : Overall commit ratio 1.00
+OPT-1001 : End global optimization;  0.028769s wall, 0.031250s user + 0.000000s system = 0.031250s CPU (108.6%)
+
+OPT-1001 : Current memory(MB): used = 607, reserved = 583, peak = 618.
+OPT-1001 : End Stage 3.1 | Global Optimization; Time: 0.040019s wall, 0.031250s user + 0.000000s system = 0.031250s CPU (78.1%); Memory(MB): used = 607, reserved = 583, peak = 618;
+
+OPT-0007 : End flow prepack: SWNS 3017 STNS 0 NUM_FEPS 0
+OPT-1001 : End physical optimization;  0.077684s wall, 0.500000s user + 0.046875s system = 0.546875s CPU (704.0%)
+
+PHY-1001 : End Stage 3 | PrePack Optimize Design; Time: 0.077831s wall, 0.500000s user + 0.046875s system = 0.546875s CPU (702.6%); Memory(MB): used = 607, reserved = 583, peak = 618;
+
+PHY-1001 : Stage 4 | Pack and Legalization
+PHY-1001 : Stage 4.1 | Direct Legalization
+PHY-3001 : Start Direct Legalization ...
+PHY-3001 : Get top1 grid util = 0.024081, top1_avg = 0.024081.
+PHY-1001 : Populate physical database on model telem_probe.
+PHY-3001 : Before Legalization for Slice Macros, Len = 110050.
+RUN-1001 : Legalization top10 inst displacement:
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Index  |  Bounded  |  Height  |        Location        |  Disp. (slots)  |  Disp. (grids)  |      Name       
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------
+RUN-1001 :     1    |     N     |    8     |  x85y44z2 to x84y44z0  |       10        |        1        |  inp[48]_syn_9  
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------
+PHY-3001 : After Legalization for Slice Macros, Len = 110068.
+PHY-3001 : Total Iter 99, legal = 404 / 437 (92.45%), avg_move = 95.65, max_move = 310.
+PHY-3001 : Post-LG, Legalize 33 illegal instances, avg_move = 173.97, max_move = 316.
+PHY-1001 : Populate physical database on model telem_probe.
+PHY-3001 : End Direct Legalization;  4.350182s wall, 29.750000s user + 0.296875s system = 30.046875s CPU (690.7%)
+
+RUN-1001 : Summary of LUT-FF Pairs
+RUN-1001 : --------------------------------------------------------------
+RUN-1001 :   Num of Fanout Seqs  |  1x   |  2x  |  3~5  |  6~10  |  >10  
+RUN-1001 : --------------------------------------------------------------
+RUN-1001 :         Total         |  129  |  0   |   0   |   0    |   0   
+RUN-1001 :          Grid         |  123  |  0   |   0   |   0    |   0   
+RUN-1001 :          Bank         |  123  |  0   |   0   |   0    |   0   
+RUN-1001 :         Paired        |  123  |  0   |   0   |   0    |   0   
+RUN-1001 : --------------------------------------------------------------
+RUN-1001 : Summary of LUT Pairs
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+RUN-1001 :            |           |           |           |           |           |  O5 + O6  |  Only O5  |  Only O6  |  Total  
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   5 Share  |  4 Share  |  3 Share  |  2 Share  |  1 Share  |  0 Share  |           |           |           |         
+RUN-1001 :      0     |     0     |     5     |    18     |    47     |     7     |    77     |    30     |    27     |   134   
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 4.1 | Direct Legalization; Time: 4.352483s wall, 29.750000s user + 0.296875s system = 30.046875s CPU (690.3%); Memory(MB): used = 635, reserved = 621, peak = 677;
+
+PHY-3001 : After Direct Legalization, Len = 63803.
+PHY-1001 : End Stage 4 | Pack and Legalization; Time: 4.364827s wall, 29.937500s user + 0.312500s system = 30.250000s CPU (693.0%); Memory(MB): used = 638, reserved = 625, peak = 677;
+
+RUN-1002 : start command "start_timer"
+PHY-1001 : Stage 5 | Detailed Placement
+PHY-1001 : Stage 5.1 | SLICE Detailed Placement
+PHY-1001 : Stage 5.1.1 | Spreading
+PHY-3001 : Design contains 0 ce signals.
+PHY-3001 : Spreading for sector grids.
+PHY-3001 : Iter 1, total overflow: 0
+PHY-3001 : tot_capacity: 12, usage_cnt: 1, movable_cnt: 12
+PHY-3001 : Spreading for clock grids.
+PHY-3001 : clock grid count for 62 x 6 grids
+PHY-3001 : Spreading for plb grids.
+PHY-3001 : total displace: 0, max displace: 0.
+PHY-3001 : End spreading;  0.056625s wall, 0.031250s user + 0.031250s system = 0.062500s CPU (110.4%)
+
+PHY-1001 : End Stage 5.1.1 | Spreading; Time: 0.056752s wall, 0.031250s user + 0.031250s system = 0.062500s CPU (110.1%); Memory(MB): used = 525, reserved = 518, peak = 677;
+
+PHY-1001 : Stage 5.1.2 | Simulated Annealing Based DP
+RUN-1001 : Generating global routing grids ...
+RUN-1001 : Building simple global routing graph ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 0/274.
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 72336, over cnt = 11(0%), over = 12, worst = 2
+PHY-1002 : len = 72352, over cnt = 1(0%), over = 1, worst = 1
+PHY-1002 : len = 72368, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  0.070283s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (111.2%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 22.48 (S 10.16, N 9.98, E 17.26, W 18.65, I 9.79, O 11.22)
+PHY-1001 : top5  =  8.00 (S  2.66, N 2.56, E  4.61, W  5.24, I 1.95, O  2.23)
+PHY-1001 : top10 =  4.00 (S  1.33, N 1.28, E  2.31, W  2.62, I 0.97, O  1.12)
+PHY-1001 : top15 =  2.67 (S  0.89, N 0.85, E  1.54, W  1.75, I 0.65, O  0.74)
+PHY-0007 : Initial: WL Cost = 4759.3, TD Cost = 5385.21, SWNS = 2882, STNS = 0, Nums per T = 1950, Range Limit = 4x8
+PHY-0007 : Finally: WL Cost = 1116.19, TD Cost = 320.087, WL Ratio = 0.234528, TD Ratio = 0.0594381, SWNS = 5555, STNS = 0
+RUN-1001 : Print Detailed placement's Summary information
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :           |  Total  |  Accept  |  Reject by overFlow  |  Reject by worseCost  |  Failed by noTarget  |  Failed by gridCheck  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Slices  |  21450  |   1836   |          0           |         19614         |          0           |           0           
+RUN-1001 :   Macros  |   105   |    9     |          0           |          96           |          0           |           0           
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 5.1.2 | Simulated Annealing Based DP; Time: 1.181368s wall, 1.171875s user + 0.015625s system = 1.187500s CPU (100.5%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+PHY-3001 : End Detailed Place; 
+PHY-3001 : Final: Len = 14824, Over = 0
+PHY-1001 : End Stage 5.1 | SLICE Detailed Placement; Time: 1.244445s wall, 1.203125s user + 0.046875s system = 1.250000s CPU (100.4%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+PHY-3001 : End Detailed Place; 
+PHY-1001 : Stage 5.2 | PostPack Optimize Design
+OPT-1001 : Start physical optimization ...
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 : Stage 5.2.1 | Optimize Duplicated Nets
+OPT-1001 : Start high-fanout net optimization in optimize equivalent flow with medium effort ...
+OPT-1001 : Clean unloaded insts before merging registers
+PHY-1001 : Populate physical database on model telem_probe.
+PHY-1001 : Populate physical database on model telem_probe.
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 : End optimize duplicated nets. Total 0 instances are merged and 0 sinks are reconnected,  0.090951s wall, 0.515625s user + 0.000000s system = 0.515625s CPU (566.9%)
+
+OPT-1001 : End high-fanout net optimization;  0.091152s wall, 0.515625s user + 0.000000s system = 0.515625s CPU (565.7%)
+
+OPT-1001 : Update timing in Manhattan mode
+RUN-1002 : start command "start_timer"
+OPT-1001 : End timing update;  0.049780s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (94.2%)
+
+OPT-1001 : Current memory(MB): used = 642, reserved = 623, peak = 677.
+OPT-1001 : End Stage 5.2.1 | Optimize Duplicated Nets; Time: 0.142327s wall, 0.578125s user + 0.000000s system = 0.578125s CPU (406.2%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+OPT-1001 : Stage 5.2.2 | Synthesize High-fanout Net
+OPT-1001 : Start high-fanout net optimization in post-pack flow with medium effort ...
+OPT-1001 : Start: SWNS 5555 STNS 0 NUM_FEPS 0
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 :  select 0 high fanout candidates
+OPT-1001 :  crit level 1 net count 0 (fanout thres 50)
+OPT-1001 :  crit level 2 net count 0 (fanout thres 50)
+OPT-1001 :  crit level 3 net count 0 (fanout thres 40)
+OPT-1001 :  crit level 4 net count 0 (fanout thres 30)
+OPT-1001 :  crit level 5 net count 0 (fanout thres 30)
+OPT-1001 :  crit level 6 net count 0 (fanout thres 30)
+PHY-1001 : Populate physical database on model telem_probe.
+OPT-1001 : 0 high-fanout net processed.
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+RUN-1001 : HFN opt statistic
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :   DriverCell type  |  HFN count  |  Duplicated count  
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :       LSLICE       |      0      |         0          
+RUN-1001 :       MSLICE       |      0      |         0          
+RUN-1001 :        TOTAL       |      0      |         0          
+RUN-1001 : ------------------------------------------------------
+OPT-1001 : End high-fanout net optimization;  0.077573s wall, 0.968750s user + 0.093750s system = 1.062500s CPU (1369.7%)
+
+OPT-1001 : Current memory(MB): used = 642, reserved = 623, peak = 677.
+OPT-1001 : End Stage 5.2.2 | Synthesize High-fanout Net; Time: 0.078592s wall, 0.984375s user + 0.093750s system = 1.078125s CPU (1371.8%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+OPT-1001 : Stage 5.2.3 | Setup Timing Optimization
+OPT-1001 : Start Setup Timing Optimization with mode 4 ...
+OPT-0007 : Start: SWNS 5555 STNS 0 NUM_FEPS 0
+OPT-1001 : Start congestion update ...
+RUN-1001 : Generating global routing grids ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 1/224.
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 17520, over cnt = 31(0%), over = 46, worst = 3
+PHY-1002 : len = 17872, over cnt = 16(0%), over = 16, worst = 1
+PHY-1002 : len = 18320, over cnt = 1(0%), over = 1, worst = 1
+PHY-1002 : len = 18384, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  0.039788s wall, 0.062500s user + 0.015625s system = 0.078125s CPU (196.4%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 14.63 (S 5.35, N 5.61, E 8.47, W 12.86, I 9.79, O 11.22)
+PHY-1001 : top5  =  2.91 (S 1.07, N 1.12, E 1.69, W  2.56, I 1.95, O  2.23)
+PHY-1001 : top10 =  1.46 (S 0.53, N 0.56, E 0.84, W  1.28, I 0.97, O  1.12)
+PHY-1001 : top15 =  0.97 (S 0.36, N 0.37, E 0.56, W  0.85, I 0.65, O  0.74)
+OPT-1001 : End congestion update;  0.161221s wall, 0.171875s user + 0.015625s system = 0.187500s CPU (116.3%)
+
+OPT-1001 : Unpack Path Based Optimization:
+OPT-0007 : Skip optimization due to slack greater than threshold 3000
+OPT-1001 : End Stage 5.2.3 | Setup Timing Optimization; Time: 0.163316s wall, 0.171875s user + 0.015625s system = 0.187500s CPU (114.8%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+OPT-1001 : Stage 5.2.4 | Optimize Duplicated Nets
+OPT-1001 : Start: WNS 5555 TNS 0 NUM_FEPS 0
+OPT-1001 : Clean unloaded insts before merging registers
+PHY-1001 : Populate physical database on model telem_probe.
+PHY-1001 : Populate physical database on model telem_probe.
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 : End optimize duplicated nets. Total 0 instances are merged and 0 sinks are reconnected,  0.076544s wall, 0.484375s user + 0.031250s system = 0.515625s CPU (673.6%)
+
+OPT-1001 : Update timing in Manhattan mode
+RUN-1002 : start command "start_timer"
+OPT-1001 : End timing update;  0.044867s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (104.5%)
+
+OPT-1001 : Current memory(MB): used = 642, reserved = 623, peak = 677.
+OPT-1001 : End Stage 5.2.4 | Optimize Duplicated Nets; Time: 0.123000s wall, 0.531250s user + 0.031250s system = 0.562500s CPU (457.3%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+OPT-1001 : Stage 5.2.5 | Optimize Beeline
+OPT-1001 : Start beeline optimization...
+OPT-1001 : Start: SWNS 5555 STNS 0 NUM_FEPS 0
+OPT-0007 : Skip optimization due to slack greater than threshold 3000
+OPT-1001 : End Stage 5.2.5 | Optimize Beeline; Time: 0.052262s wall, 0.468750s user + 0.078125s system = 0.546875s CPU (1046.4%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+OPT-0007 : End flow postpack: SWNS 5555 STNS 0 NUM_FEPS 0
+OPT-1001 : End physical optimization;  0.597408s wall, 3.250000s user + 0.250000s system = 3.500000s CPU (585.9%)
+
+PHY-1001 : End Stage 5.2 | PostPack Optimize Design; Time: 0.597487s wall, 3.250000s user + 0.250000s system = 3.500000s CPU (585.8%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+RUN-1001 : Report Control nets information:
+RUN-1001 : DFF Distribution
+RUN-1001 : -------------------------------------
+RUN-1001 :   CE   |  SSR  |  ASR  |  DFF Count  
+RUN-1001 : -------------------------------------
+RUN-1001 :   No   |  No   |  No   |     16      
+RUN-1001 :   No   |  No   |  Yes  |      0      
+RUN-1001 :   No   |  Yes  |  No   |      0      
+RUN-1001 :   Yes  |  No   |  No   |     226     
+RUN-1001 :   Yes  |  No   |  Yes  |      0      
+RUN-1001 :   Yes  |  Yes  |  No   |      0      
+RUN-1001 : -------------------------------------
+RUN-1001 : Control Group Statistic
+RUN-1001 : -----------------------------
+RUN-1001 :   #CLK  |  #CE  |  #SSR/ASR  
+RUN-1001 : -----------------------------
+RUN-1001 :    1    |   3   |     2      
+RUN-1001 : -----------------------------
+RUN-0007 : Control Set = 3
+PHY-1001 : End Stage 5 | Detailed Placement; Time: 1.843577s wall, 4.453125s user + 0.296875s system = 4.750000s CPU (257.7%); Memory(MB): used = 642, reserved = 623, peak = 677;
+
+PHY-1001 : Stage 6 | PostFlow Optimize Design
+RUN-1001 : Generating global routing grids ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 224/224.
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 18384, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  0.003760s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 14.63 (S 5.35, N 5.61, E 8.47, W 12.86, I 9.79, O 11.22)
+PHY-1001 : top5  =  2.91 (S 1.07, N 1.12, E 1.69, W  2.56, I 1.95, O  2.23)
+PHY-1001 : top10 =  1.46 (S 0.53, N 0.56, E 0.84, W  1.28, I 0.97, O  1.12)
+PHY-1001 : top15 =  0.97 (S 0.36, N 0.37, E 0.56, W  0.85, I 0.65, O  0.74)
+OPT-1001 : Update timing in Manhattan mode
+OPT-1001 : End timing update;  0.000731s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%)
+
+RUN-1001 : QoR Analysis:
+OPT-0007 :   SWNS 5555 STNS 0 NUM_FEPS 0
+RUN-1001 :   No local congestion issue, and most congested 1% tile average routing util is 8.682432
+RUN-1001 :   Top critical paths
+RUN-1001 :       #1 path slack 5555ps with logic level 8 
+OPT-1001 : Stage 6.1 | Swap Pins
+OPT-1001 : Start pin optimization...
+OPT-1001 : Start: SWNS 5555 STNS 0 NUM_FEPS 0
+OPT-1001 : Successfully optimized 0 instances
+OPT-1001 : End pin optimization;  0.003027s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%)
+
+OPT-1001 : Current memory(MB): used = 687, reserved = 667, peak = 687.
+OPT-1001 : End Stage 6.1 | Swap Pins; Time: 0.004295s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 687, reserved = 667, peak = 687;
+
+OPT-1001 : Stage 6.2 | Optimize Critical-path
+OPT-1001 : Start critical path based optimization ...
+OPT-0007 : Start: SWNS 5555 STNS 0 NUM_FEPS 0
+OPT-0007 : Skip optimization due to slack greater than threshold 3000
+OPT-1001 : Current memory(MB): used = 687, reserved = 667, peak = 687.
+OPT-1001 : End Stage 6.2 | Optimize Critical-path; Time: 0.000863s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 687, reserved = 667, peak = 687;
+
+PHY-1001 : End Stage 6 | PostFlow Optimize Design; Time: 0.282423s wall, 0.234375s user + 0.015625s system = 0.250000s CPU (88.5%); Memory(MB): used = 622, reserved = 599, peak = 687;
+
+PHY-3001 : Start incremental legalization ...
+PHY-1001 : Populate physical database on model telem_probe.
+PHY-3001 : Initial: Len = 14824, Over = 0
+PHY-1001 : Stage 7 | Spreading
+PHY-3001 : Design contains 0 ce signals.
+PHY-3001 : Spreading for sector grids.
+PHY-3001 : Iter 1, total overflow: 0
+PHY-3001 : tot_capacity: 24, usage_cnt: 2, movable_cnt: 24
+PHY-3001 : Spreading for clock grids.
+PHY-3001 : clock grid count for 62 x 6 grids
+PHY-3001 : Spreading for plb grids.
+PHY-3001 : total displace: 0, max displace: 0.
+PHY-3001 : End spreading;  0.065601s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (119.1%)
+
+PHY-1001 : End Stage 7 | Spreading; Time: 0.065675s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (119.0%); Memory(MB): used = 641, reserved = 620, peak = 687;
+
+PHY-3001 : Final: Len = 14824, Over = 0
+PHY-3001 : End incremental legalization;  0.097095s wall, 0.093750s user + 0.000000s system = 0.093750s CPU (96.6%)
+
+RUN-1002 : start command "report_qor -step place -file place.qor"
+TMR-2502 : Net delay update with mode: Placed
+RUN-1001 : Generating global routing grids ...
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |         5555                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+|     FMAX                  |   224.972MHz                |
+|     SWNS path clock period|      10000ps                |
+-----------------------------------------------------------
+| Routing Resource          |                             |
+|     Wire length           |        14759                |
+|     Route Net Num         |          327                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #slices               |          202                |
+|     slices percentage     |        0.38%                |
+|     #RAMs                 |            0                |
+|     #DSPs                 |            0                |
+|     #DRAMHARDCON          |            0                |
+-----------------------------------------------------------
+| Congestion                |                             |
+|     Top 1% tile util      |            0                |
+|     Top 1% tile avg util  |        8.68%                |
+|     Over 100% util #tile  |            0                |
+-----------------------------------------------------------
+Report place stage QoR done.
+
+RUN-0008 : Do critical warning check and 0 issue(s) found.
+RUN-0008 : Do timing check and 0 issue(s) found.
+RUN-0008 : Do routing resoruce check and 0 issue(s) found.
+RUN-0008 : Do clock related check and 0 issue(s) found.
+PHY-1001 : Stage 8 | DRC Check
+RUN-1001 : Stage 8.1 | Run Slice Attr Checker
+RUN-1001 : End Stage 8.1 | Run Slice Attr Checker; Time: 0.006993s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.2 | Run Clock Bound Checker
+RUN-1001 : End Stage 8.2 | Run Clock Bound Checker; Time: 0.000024s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.3 | Run Force Route Checker
+RUN-1001 : End Stage 8.3 | Run Force Route Checker; Time: 0.000063s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.4 | Run Bound Checker
+RUN-1001 : End Stage 8.4 | Run Bound Checker; Time: 0.000010s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.5 | Run Dup Self-Driven Checker
+RUN-1001 : End Stage 8.5 | Run Dup Self-Driven Checker; Time: 0.015204s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (102.8%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.6 | Run Parallel Loop Checker
+RUN-1001 : End Stage 8.6 | Run Parallel Loop Checker; Time: 0.000216s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.7 | Run Clock Net Checker
+RUN-1001 : End Stage 8.7 | Run Clock Net Checker; Time: 0.000024s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.8 | Run Clock Status Checker
+RUN-1001 : End Stage 8.8 | Run Clock Status Checker; Time: 0.000012s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.9 | Run Sigmap Checker
+RUN-1001 : End Stage 8.9 | Run Sigmap Checker; Time: 0.017079s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (91.5%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+RUN-1001 : Stage 8.10 | Report DRC
+DRC SLATR-1038 : Found mslice inp[48]_syn_9 getting reg attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_9 getting ce attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_10 getting reg attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_10 getting ce attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_11 getting reg attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_11 getting ce attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_12 getting reg attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_12 getting ce attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_13 getting reg attributes.
+DRC SLATR-1038 : Found mslice inp[48]_syn_13 getting ce attributes.
+SLATR-1038 Similar messages will be suppressed.
+RUN-1001 : End Stage 8.10 | Report DRC; Time: 0.000117s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 627, reserved = 606, peak = 713;
+
+PHY-1001 : End Stage 8 | DRC Check; Time: 0.142596s wall, 0.125000s user + 0.000000s system = 0.125000s CPU (87.7%); Memory(MB): used = 626, reserved = 605, peak = 713;
+
+OPT-1001 : QoR tracer report on placement steps:
+    SWNS [   incr ]    STNS [   incr ]    FEPS [   incr ]    CRIT [   incr ]      CELL [     incr ]        WL [     incr ]    CONG [   incr ]    PDES [   incr ]   RT(s) [   incr ]   MEM(mb) [     incr ]
+       0 [      0 ]       0 [      0 ]       0 [      0 ]       0 [      0 ]       452 [      452 ]         0 [        0 ]    0.00 [   0.00 ]       0 [      0 ]       0 [      0 ]       470 [      470 ] : preplace:simplify_lut
+       0 [      0 ]       0 [      0 ]       0 [      0 ]       0 [      0 ]       452 [        0 ]         0 [        0 ]    0.00 [   0.00 ]       0 [      0 ]       0 [      0 ]       470 [        0 ] : preplace:sweep
+       0 [      0 ]       0 [      0 ]       0 [      0 ]       0 [      0 ]       452 [        0 ]         0 [        0 ]    0.00 [   0.00 ]       0 [      0 ]       0 [      0 ]       470 [        0 ] : preplace:lut_merge
+       0 [      0 ]       0 [      0 ]       0 [      0 ]       0 [      0 ]       452 [        0 ]         0 [        0 ]    0.00 [   0.00 ]       0 [      0 ]       0 [      0 ]       470 [        0 ] : preplace:hfn_opt
+    2483 [   2483 ]       0 [      0 ]       0 [      0 ]    2864 [   2864 ]       454 [        2 ]    110551 [   110551 ]    0.00 [   0.00 ]       0 [      0 ]      13 [     13 ]       618 [      148 ] : gp_phase_1
+    3017 [    534 ]       0 [      0 ]       0 [      0 ]    3269 [    405 ]       454 [        0 ]    109960 [     -591 ]    0.00 [   0.00 ]       0 [      0 ]      14 [      1 ]       618 [        0 ] : prepack:global_opt
+    2882 [   -135 ]       0 [      0 ]       0 [      0 ]    3466 [    197 ]       211 [     -243 ]     63738 [   -46222 ]    0.00 [   0.00 ]       0 [      0 ]      18 [      4 ]       677 [       59 ] : direct_legalization
+    2882 [      0 ]       0 [      0 ]       0 [      0 ]    3466 [      0 ]       211 [        0 ]     63738 [        0 ]    0.00 [   0.00 ]       0 [      0 ]      18 [      0 ]       677 [        0 ] : post_pack_spreading
+    5555 [   2673 ]       0 [      0 ]       0 [      0 ]    5921 [   2455 ]       211 [        0 ]     14759 [   -48979 ]   17.25 [  17.25 ]       0 [      0 ]      19 [      1 ]       677 [        0 ] : post_pack_dp
+    5555 [      0 ]       0 [      0 ]       0 [      0 ]    5921 [      0 ]       211 [        0 ]     14759 [        0 ]   17.25 [   0.00 ]       0 [      0 ]      19 [      0 ]       677 [        0 ] : postpack:optimize_equivalent_quick
+    5555 [      0 ]       0 [      0 ]       0 [      0 ]    5921 [      0 ]       211 [        0 ]     14759 [        0 ]   17.25 [   0.00 ]       0 [      0 ]      20 [      1 ]       677 [        0 ] : postpack:hfn_opt
+    5555 [      0 ]       0 [      0 ]       0 [      0 ]    5921 [      0 ]       211 [        0 ]     14759 [        0 ]    8.68 [  -8.57 ]       0 [      0 ]      20 [      0 ]       677 [        0 ] : postpack:timing_opt
+    5555 [      0 ]       0 [      0 ]       0 [      0 ]    5921 [      0 ]       211 [        0 ]     14759 [        0 ]    8.68 [   0.00 ]       0 [      0 ]      20 [      0 ]       677 [        0 ] : postpack:optimize_equivalent
+    5555 [      0 ]       0 [      0 ]       0 [      0 ]    5921 [      0 ]       211 [        0 ]     14759 [        0 ]    8.68 [   0.00 ]       0 [      0 ]      20 [      0 ]       677 [        0 ] : postpack:beeline_opt
+    5555 [      0 ]       0 [      0 ]       0 [      0 ]    5921 [      0 ]       214 [        3 ]     14759 [        0 ]    8.68 [   0.00 ]       0 [      0 ]      20 [      0 ]       687 [       10 ] : endplace:pin_opt
+    5555 [      0 ]       0 [      0 ]       0 [      0 ]    5921 [      0 ]       214 [        0 ]     14759 [        0 ]    8.68 [   0.00 ]       0 [      0 ]      20 [      0 ]       687 [        0 ] : endplace:crit_path_opt
+
+RUN-1003 : finish command "place" in  21.412976s wall, 109.171875s user + 6.343750s system = 115.515625s CPU (539.5%)
+
+RUN-1004 : used memory is 626 MB, reserved memory is 605 MB, peak memory is 713 MB
+RUN-1002 : start command "update_timing -mode manhattan"
+RUN-1002 : start command "start_timer"
+RUN-1002 : start command "report_timing_summary -file place.timing -path_num 3"
+RUN-1002 : start command "route"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+PHY-1001 : Populate physical database on model telem_probe.
+PHY-1001 : Working orders of clock nets being processed in bank assignment:
+PHY-1001 : clk_syn_3;
+PHY-1001 : Internal bound Intnl_81_40_43_40 is being created by clock telem_clk through SCLK.
+PHY-1001 : Internal bound Intnl_81_80_43_40 is being created by clock telem_clk through SCLK.
+RUN-1001 : Clock region assignment statistics:
+RUN-1001 : Clock Region s_1_r [80,40][123,79]; Utilization: 1 out of 12
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |  Leading Clock  |       Type        |                          Buffer                          |  Regional Clock Fanouts  
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |    clk_syn_3    |  (infered sclk)   |  clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1  |           142            
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_r [80,80][123,119]; Utilization: 1 out of 12
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |  Leading Clock  |       Type        |                          Buffer                          |  Regional Clock Fanouts  
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |    clk_syn_3    |  (infered sclk)   |  clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1  |            1             
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : Populate physical database on model telem_probe.
+PHY-1001 : Route runs in 22 thread(s)
+RUN-1001 : There are total 219 instances
+RUN-1001 : 8 mslices, 194 lslices, 4 pads, 0 brams, 0 dsps
+RUN-1001 : There are total 348 nets
+RUN-1001 : 216 nets have 2 pins
+RUN-1001 : 61 nets have [3 - 5] pins
+RUN-1001 : 63 nets have [6 - 10] pins
+RUN-1001 : 1 nets have [11 - 20] pins
+RUN-1001 : 6 nets have [21 - 99] pins
+RUN-1001 : 1 nets have 100+ pins
+RUN-1002 : start command "start_timer"
+PHY-1001 : 8 mslices, 194 lslices, 4 pads, 0 brams, 0 dsps
+
+PHY-1001 : Stage 1 | Global Routing
+PHY-1001 : Start global routing, caller is route ...
+RUN-1001 : Generating global routing grids ...
+PHY-1001 : Generate routing nets ...
+RUN-1001 : Generate nets statistics:
+RUN-1001 : ---------------------------
+RUN-1001 :        Type       |  Nets  
+RUN-1001 : ---------------------------
+RUN-1001 :   TotalRouteNets  |  329   
+RUN-1001 :   DontRouteNets   |  105   
+RUN-1001 :     RouteNets     |  224   
+RUN-1001 :     RouteSinks    |  494   
+RUN-1001 : ---------------------------
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 17120, over cnt = 31(0%), over = 57, worst = 3
+PHY-1002 : len = 17712, over cnt = 8(0%), over = 8, worst = 1
+PHY-1002 : len = 17984, over cnt = 0(0%), over = 0, worst = 0
+PHY-1001 : End global iterations;  0.038214s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (122.7%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 14.27 (S 5.18, N 5.33, E 8.68, W 12.37, I 9.79, O 11.22)
+PHY-1001 : top5  =  2.84 (S 1.03, N 1.06, E 1.73, W  2.46, I 1.95, O  2.23)
+PHY-1001 : top10 =  1.42 (S 0.52, N 0.53, E 0.86, W  1.23, I 0.97, O  1.12)
+PHY-1001 : top15 =  0.95 (S 0.34, N 0.35, E 0.58, W  0.82, I 0.65, O  0.74)
+PHY-1001 : End global routing;  0.164742s wall, 0.171875s user + 0.000000s system = 0.171875s CPU (104.3%)
+
+PHY-1001 : End Stage 1 | Global Routing; Time: 0.164816s wall, 0.171875s user + 0.000000s system = 0.171875s CPU (104.3%); Memory(MB): used = 714, reserved = 694, peak = 714;
+
+PHY-1001 : Stage 2 | Detail Routing
+PHY-1001 : Stage 2.1 | Build Routing Design
+PHY-1001 : Routing in high effort: false
+PHY-1001 : Routing Mode: normal
+PHY-1001 : Generate detailed routing grids ...
+RUN-1001 : Constructing routing connections ...
+PHY-1001 : End build routing graph; 7.804949s wall, 53.015625s user + 0.312500s system = 53.328125s CPU (683.3%)
+
+PHY-1001 : Generate nets ...
+RUN-1001 : Generate nets statistics:
+RUN-1001 : -----------------------------
+RUN-1001 :         Type        |  Nets  
+RUN-1001 : -----------------------------
+RUN-1001 :        Route        |  332   
+RUN-1001 :      DontRoute      |   16   
+RUN-1001 :      RouteSinks     |  1004  
+RUN-1001 :   RouteEntitySinks  |   0    
+RUN-1001 :       Lut2Dff       |   0    
+RUN-1001 :       Ram2Dff       |   0    
+RUN-1001 :      Carry2Dff      |   0    
+RUN-1001 : -----------------------------
+RUN-1001 : DR clock net summary:
+RUN-1001 : ----------------------------------------
+RUN-1001 :   Net Idx  |  Net Name   |  Clock Type  
+RUN-1001 : ----------------------------------------
+RUN-1001 :      1     |  clk_dup_1  |    Normal    
+RUN-1001 :      2     |  clk_syn_3  |    Normal    
+RUN-1001 : ----------------------------------------
+RUN-1001 : DR clock buffer summary:
+RUN-1001 : ------------------------------------------------------------------
+RUN-1001 :   Idx  |                           Name                           
+RUN-1001 : ------------------------------------------------------------------
+RUN-1001 :    1   |  clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1  
+RUN-1001 :    2   |  clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1  
+RUN-1001 : ------------------------------------------------------------------
+RUN-1002 : start command "start_timer"
+RUN-1001 : Top Percentage Crit. Net Stat.
+RUN-1001 : -------------------------------------------------------
+RUN-1001 :   Top %  |  Net Count  |  Avg. Fanout  |  Avg. Slack   
+RUN-1001 : -------------------------------------------------------
+RUN-1001 :     1    |      3      |   2.666667    |  5555.000000  
+RUN-1001 :     2    |      6      |   9.500000    |  5555.000000  
+RUN-1001 :     3    |     10      |   6.200000    |  5609.400000  
+RUN-1001 :     4    |     13      |   5.000000    |  5666.538462  
+RUN-1001 :     5    |     17      |   4.058824    |  5721.705882  
+RUN-1001 :     6    |     20      |   3.700000    |  5753.550000  
+RUN-1001 :     7    |     24      |   3.250000    |  5788.416667  
+RUN-1001 :     8    |     27      |   3.037037    |  5812.333333  
+RUN-1001 :     9    |     31      |   2.806452    |  5842.516129  
+RUN-1001 :    10    |     34      |   2.676471    |  5862.235294  
+RUN-1001 : -------------------------------------------------------
+PHY-1001 : End Stage 2.1 | Build Routing Design; Time: 7.857443s wall, 53.062500s user + 0.312500s system = 53.375000s CPU (679.3%); Memory(MB): used = 1698, reserved = 1685, peak = 1698;
+
+PHY-1001 : Stage 2.2 | Tile Base Routing
+PHY-1001 : 2 nets need to preroute.
+PHY-1001 : len = 0, over cnt = 0(0%), over = 0, worst = 0, crit = 0
+PHY-1001 : End Stage 2.2 | Tile Base Routing; Time: 0.065092s wall, 0.046875s user + 0.015625s system = 0.062500s CPU (96.0%); Memory(MB): used = 1700, reserved = 1686, peak = 1700;
+
+PHY-1001 : Stage 2.3 | Clock Nets Routing
+PHY-1001 : Routed 1% nets.
+PHY-1001 : len = 9024, over cnt = 0(0%), over = 0, worst = 0, crit = 0
+PHY-1001 : End Stage 2.3 | Clock Nets Routing; Time: 0.057297s wall, 0.312500s user + 0.015625s system = 0.328125s CPU (572.7%); Memory(MB): used = 1704, reserved = 1691, peak = 1704;
+
+RUN-1001 : Perform detailed routing kernel under the defined configuration
+RUN-1001 : ---------------------------------
+RUN-1001 :      Parameter      |  Setting   
+RUN-1001 : ---------------------------------
+RUN-1001 :       strategy      |  balanced  
+RUN-1001 :   multi-threading   |  by level  
+RUN-1001 :   LUT pin swapping  |     on     
+RUN-1001 :   LUT feedthrough   |     on     
+RUN-1001 :     congo factor    |    1.5     
+RUN-1001 : ---------------------------------
+PHY-1001 : Stage 2.4 | Path based DR route
+PHY-1001 : Stage 2.4.1 | Design preparation
+PHY-1001 : Path generation: total path = 858
+PHY-1001 : Generate equivalent LUT input pin mapping
+PHY-1001 : Path fanout statistic: total 858, multi-sinks 582(67.83%) avg. sink = 3.52, blocked multi-sink 0(0%)
+PHY-1001 : Marked 1712 pre-route search node.
+PHY-1001 : Exclusive sink check marked 0 extra paths; pre-route search node = 0, drc = 0
+PHY-1001 : Generate LUT feedthroughs
+PHY-1001 : Build lut bridge;  0.185448s wall, 0.109375s user + 0.062500s system = 0.171875s CPU (92.7%)
+
+PHY-1001 : End Stage 2.4.1 | Design preparation; Time: 0.258466s wall, 0.187500s user + 0.062500s system = 0.250000s CPU (96.7%); Memory(MB): used = 1740, reserved = 1729, peak = 1740;
+
+PHY-1001 : Stage 2.4.2 | Launching routing kernel
+PHY-1001 : Stage 2.4.2.1 | Detailed Routing
+PHY-1001 : Kernel to route 858 paths with scheme = by level reroute_crit = 0.9.
+PHY-1001 :   Iter. 1: runtime[   0.1s]; rr_path[    858]; Path[overflow =     484, finished =     374].
+PHY-1001 : Setup: WNS(ns) = 4.982, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = 0.098, TNS(ns) = 0.000, FEP = 0.
+PHY-1001 :   Iter. 2: runtime[   0.3s]; rr_path[    402]; Path[overflow =     321, finished =     537].
+PHY-1001 :   Iter. 3: runtime[   0.4s]; rr_path[    265]; Path[overflow =     174, finished =     684].
+PHY-1001 :   Iter. 4: runtime[   0.4s]; rr_path[     97]; Path[overflow =      34, finished =     824].
+PHY-1001 : Setup: WNS(ns) = 3.843, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = 0.098, TNS(ns) = 0.000, FEP = 0.
+PHY-1001 :   Iter. 5: runtime[   0.5s]; rr_path[     18]; Path[overflow =       0, finished =     858].
+PHY-1001 : Commit pin-swaps (committed paths = 360, total paths = 858, ratio = 41.96%)
+PHY-1001 : Setup: WNS(ns) = 4.059, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = 0.098, TNS(ns) = 0.000, FEP = 0.
+PHY-1001 : Commit better result to database ...
+PHY-1001 : Kernel finished in 5 iterations
+PHY-1001 : End Stage 2.4.2.1 | Detailed Routing; Time: 0.641153s wall, 0.578125s user + 0.000000s system = 0.578125s CPU (90.2%); Memory(MB): used = 1753, reserved = 1741, peak = 1753;
+
+PHY-1001 : Setup: WNS(ns) = 4.059, TNS(ns) = 0.000, FEP = 0 | Hold: WNS(ns) = 0.098, TNS(ns) = 0.000, FEP = 0.
+PHY-1001 : End Stage 2.4.2 | Launching routing kernel; Time: 0.641204s wall, 0.578125s user + 0.000000s system = 0.578125s CPU (90.2%); Memory(MB): used = 1753, reserved = 1741, peak = 1753;
+
+PHY-1001 : End Stage 2.4 | Path based DR route; Time: 0.899728s wall, 0.765625s user + 0.062500s system = 0.828125s CPU (92.0%); Memory(MB): used = 1753, reserved = 1741, peak = 1753;
+
+RUN-1001 : Clock region assignment statistics:
+RUN-1001 : Clock Region s_1_r [80,40][123,79]; Utilization: 1 out of 12
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |  Assigned Clock  |  Route Clock  |  Marking  |                          Buffer                          |  Regional Clock Fanouts  
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |    clk_syn_3     |   clk_syn_3   |           |  clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk1  |           142            
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Region s_2_r [80,80][123,119]; Utilization: 1 out of 12
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Bank  |  Assigned Clock  |  Route Clock  |  Marking  |                          Buffer                          |  Regional Clock Fanouts  
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :    1    |    clk_syn_3     |   clk_syn_3   |           |  clk_dup_1_created_gclkinst_auto_created_sclk_s_2_r_bk1  |            1             
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : Current memory(MB): used = 1753, reserved = 1741, peak = 1753.
+PHY-1001 : End export database. 0.020432s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (76.5%)
+
+PHY-1001 : End detail routing;  9.050690s wall, 54.328125s user + 0.406250s system = 54.734375s CPU (604.8%)
+
+PHY-1001 : End Stage 2 | Detail Routing; Time: 9.053052s wall, 54.328125s user + 0.406250s system = 54.734375s CPU (604.6%); Memory(MB): used = 1753, reserved = 1741, peak = 1753;
+
+RUN-1002 : start command "fix_hold"
+
+PHY-1001 : Stage 3 | Hold Fix
+PHY-1001 : Stage 3.1 | Load Design Data
+PHY-1034 : Refresh detailed routing grids ...
+PHY-1001 : Generate nets ...
+PHY-1001 : eco open net = 0
+PHY-1001 : End Stage 3.1 | Load Design Data; Time: 0.235535s wall, 0.312500s user + 0.000000s system = 0.312500s CPU (132.7%); Memory(MB): used = 1758, reserved = 1746, peak = 1758;
+
+PHY-1001 : Stage 3.2 | Hold Fix Optimization
+RUN-1002 : start command "start_timer"
+PHY-1001 : Timing info: SWNS 4.059ns | STNS 0.000ns | HWNS 0.098ns | HTNS 0.000ns.
+PHY-1001 : End timing refresh.  0.121995s wall, 0.125000s user + 0.000000s system = 0.125000s CPU (102.5%)
+
+PHY-1001 : End Stage 3.2 | Hold Fix Optimization; Time: 0.138976s wall, 0.125000s user + 0.000000s system = 0.125000s CPU (89.9%); Memory(MB): used = 1758, reserved = 1746, peak = 1758;
+
+PHY-1001 : End Stage 3 | Hold Fix; Time: 0.441759s wall, 0.500000s user + 0.000000s system = 0.500000s CPU (113.2%); Memory(MB): used = 1758, reserved = 1746, peak = 1758;
+
+PHY-1001 : Stage 4 | Report Route Qor
+RUN-1002 : start command "report_qor -step route -file route.qor"
+RUN-1002 : start command "start_timer"
+TMR-2502 : Net delay update with mode: Routed
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |         4059                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+|     Hold WNS              |           98                |
+|     Hold TNS              |            0                |
+|     Num of violated H-EP  |            0                |
+-----------------------------------------------------------
+| Routing Resource          |                             |
+|     Wire length           |        41344                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #slices               |          202                |
+|     slices percentage     |        0.38%                |
+|     #RAMs                 |            0                |
+|     #DSPs                 |            0                |
+|     #DRAMHARDCON          |            0                |
+-----------------------------------------------------------
+Report route stage QoR done.
+
+PHY-1034 : Refresh detailed routing grids ...
+RUN-0008 : Do timing check and 0 issue(s) found.
+RUN-0008 : Do routing resoruce check and 0 issue(s) found.
+RUN-1002 : start command "update_timing -mode final"
+RUN-1002 : start command "start_timer"
+RUN-1002 : start command "report_timing_summary -file final_timing.rpt"
+OPT-1001 : QoR tracer report on route step:
+    SWNS [   incr ]    STNS [   incr ]  S-FEPS [   incr ]    HWNS [   incr ]      HTNS [     incr ]    H-FEPS [     incr ]    CELL [   incr ]      WL [   incr ]   RT(s) [   incr ]   MEM(mb) [     incr ]
+    4059 [   4059 ]       0 [      0 ]       0 [      0 ]      98 [     98 ]         0 [        0 ]         0 [        0 ]     219 [    219 ]   41344 [  41344 ]      10 [     10 ]      1758 [     1758 ] : fix_hold_opt
+
+PHY-1001 : End Stage 4 | Report Route Qor; Time: 0.734395s wall, 0.828125s user + 0.000000s system = 0.828125s CPU (112.8%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+PHY-1001 : Stage 5 | Design Rule Check
+PHY-1001 : Stage 5.1 | Check And Add Lut-bridge
+PHY-1001 : End Stage 5.1 | Check And Add Lut-bridge; Time: 0.014613s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1001 : Stage 5.2 | Run Pin Swap Checker
+RUN-1001 : End Stage 5.2 | Run Pin Swap Checker; Time: 0.000608s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1001 : Stage 5.3 | Run Net Connection Checker
+RUN-1001 : End Stage 5.3 | Run Net Connection Checker; Time: 0.000571s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1001 : Stage 5.4 | Run Lut Bridge Checker
+RUN-1001 : End Stage 5.4 | Run Lut Bridge Checker; Time: 0.003485s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1001 : Stage 5.5 | Run Multi Drive Checker
+RUN-1001 : End Stage 5.5 | Run Multi Drive Checker; Time: 0.000141s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1001 : Stage 5.6 | Run Clock Status Checker
+RUN-1001 : End Stage 5.6 | Run Clock Status Checker; Time: 0.000351s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1001 : Stage 5.7 | Run Abnormal Path Checker
+RUN-1001 : End Stage 5.7 | Run Abnormal Path Checker; Time: 0.001554s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1001 : Stage 5.8 | Run Route Region Checker
+RUN-1001 : End Stage 5.8 | Run Route Region Checker; Time: 0.000016s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1001 : Stage 5.9 | Run Bound Checker
+RUN-1001 : End Stage 5.9 | Run Bound Checker; Time: 0.000036s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+PHY-1001 : End Stage 5 | Design Rule Check; Time: 0.058833s wall, 0.062500s user + 0.000000s system = 0.062500s CPU (106.2%); Memory(MB): used = 1761, reserved = 1748, peak = 1761;
+
+RUN-1003 : finish command "route" in  10.835328s wall, 56.250000s user + 0.421875s system = 56.671875s CPU (523.0%)
+
+RUN-1004 : used memory is 1672 MB, reserved memory is 1661 MB, peak memory is 1761 MB
+RUN-1002 : start command "update_timing -mode final"
+RUN-1002 : start command "start_timer"
+RUN-1002 : start command "report_timing_summary -file route.timing -path_num 3"
+RUN-1002 : start command "report_area -file route.area"
+SYN-4034 : The count of slices with lut is 134.
+SYN-4035 : The count of slices with lut+ripple is 0.
+RUN-1001 : standard
+***Report Model: telem_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         4   out of    126    3.17%
+  #input                    3
+  #output                   1
+  #inout                    0
+#lut6                     142   out of  52480    0.27%
+#reg                      234
+  #slice reg              234   out of 104960    0.22%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                    202   out of  52480    0.38%
+  #used ram                 8
+    #dram lut               0
+    #shifter lut            8
+  #used logic             194
+    #with luts            134
+    #with adder             0
+    #reg only              60
+#feedthrough              135
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of    240    0.00%
+#pad                        4   out of    126    3.17%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       2   out of     72    2.78%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+DataNet Average Fanout:
+
+   Index     Fanout    Nets  
+    #1         1       209   
+    #2         2        40   
+    #3         3        5    
+    #4         4        12   
+    #5        5-10      63   
+    #6       11-50      6    
+    #7       51-100     1    
+  Average     2.79           
+
+RUN-1002 : start command "check_timing -verbose -file route.check"
+RUN-1002 : start command "report_route_status -drc"
+RUN-1001 : Stage 6 | Run Pin Swap Checker
+RUN-1001 : End Stage 6 | Run Pin Swap Checker; Time: 0.000423s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1672, reserved = 1662, peak = 1761;
+
+RUN-1001 : Stage 7 | Run Net Connection Checker
+RUN-1001 : End Stage 7 | Run Net Connection Checker; Time: 0.000362s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1672, reserved = 1662, peak = 1761;
+
+RUN-1001 : Stage 8 | Run Lut Bridge Checker
+RUN-1001 : End Stage 8 | Run Lut Bridge Checker; Time: 0.003244s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1672, reserved = 1662, peak = 1761;
+
+RUN-1001 : Stage 9 | Run Multi Drive Checker
+RUN-1001 : End Stage 9 | Run Multi Drive Checker; Time: 0.000102s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1672, reserved = 1662, peak = 1761;
+
+RUN-1001 : Stage 10 | Run Clock Status Checker
+RUN-1001 : End Stage 10 | Run Clock Status Checker; Time: 0.000130s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1672, reserved = 1662, peak = 1761;
+
+RUN-1001 : Stage 11 | Run Abnormal Path Checker
+RUN-1001 : End Stage 11 | Run Abnormal Path Checker; Time: 0.001801s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1672, reserved = 1662, peak = 1761;
+
+TELEMETRY_COMPONENT_COMPLETE

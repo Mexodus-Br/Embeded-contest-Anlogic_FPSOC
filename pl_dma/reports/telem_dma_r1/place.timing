@@ -1,0 +1,1005 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Wed Oct 14 11:11:23 2026
+
+Top Model           : telem_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 98.60%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_dma/build/telem_dma_r1/clock.sdc;
+Confidence          : Placed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 3 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min     
+------------------------------------
+Slow     | yes      yes     
+Fast     | yes      yes     
+
+
+Timing Status
+--------------------
+	SWNS: 5.089ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 8.317ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000         1369   telem_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0   Inferred GCLK            0.000      5.000                10.000         100.000                 4.911         203.625            5.089      0.000            0.000      0.000            0.000             1369                8             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     telem_clk -> telem_clk
+Type           :     Self
+From Clock     :     telem_clk
+To Clock       :     telem_clk
+Min Period     :     4.911ns
+Fmax           :     203.625MHz
+
+Statistics:
+Max            : SWNS      5.089ns, STNS      0.000ns,         0 Viol Endpoints,      4290 Total Endpoints,     98897 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 5.089ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.783ns (cell 3.057ns (63%), net 1.726ns (37%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[8]
+net (fo=9)                              0.412          2.112          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[6],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ib
+LUT6                x091y055z7          0.241    r     2.353       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ofb
+net (fo=1)                              0.212          2.565          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_14,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ima
+LUT5                x091y056z5          0.286    f     2.851       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ofa
+net (fo=4)                              0.343          3.194          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_20,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ic
+LUT4                x091y063z6          0.150    f     3.344       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.705          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.904       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.000    f     3.986          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco_f
+net (fo=1)                              0.000          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_119,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci_f
+ADDER               x091y070z5          0.000    f     3.986          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco_f
+net (fo=1)                              0.000          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_120,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci_f
+ADDER               x091y070z6          0.000    f     3.986          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fco_f
+net (fo=1)                              0.000          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_121,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fci_f
+ADDER               x091y070z7          0.000    f     3.986          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fco_f
+net (fo=1)                              0.082          4.068          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_122,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fci_f
+ADDER               x091y071z0          0.045    f     4.113          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fco
+net (fo=1)                              0.000          4.113          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_91,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fci
+ADDER               x091y071z1          0.203    r     4.316       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.ofb
+net (fo=1)                              0.234          4.550          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[13],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.imf
+LUT2 (reg)          x092y070z2          0.233    f     4.783       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[13],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.783               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.089               
+
+Slack               : 5.092ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.780ns (cell 3.054ns (63%), net 1.726ns (37%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[9]
+net (fo=9)                              0.412          2.112          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[7],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ia
+LUT6                x091y055z7          0.238    r     2.350       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ofb
+net (fo=1)                              0.212          2.562          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_14,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ima
+LUT5                x091y056z5          0.286    f     2.848       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ofa
+net (fo=4)                              0.343          3.191          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_20,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ic
+LUT4                x091y063z6          0.150    f     3.341       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.702          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.901       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.000    f     3.983          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco_f
+net (fo=1)                              0.000          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_119,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci_f
+ADDER               x091y070z5          0.000    f     3.983          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco_f
+net (fo=1)                              0.000          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_120,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci_f
+ADDER               x091y070z6          0.000    f     3.983          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fco_f
+net (fo=1)                              0.000          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_121,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fci_f
+ADDER               x091y070z7          0.000    f     3.983          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fco_f
+net (fo=1)                              0.082          4.065          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_122,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fci_f
+ADDER               x091y071z0          0.045    f     4.110          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fco
+net (fo=1)                              0.000          4.110          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_91,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fci
+ADDER               x091y071z1          0.203    r     4.313       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.ofb
+net (fo=1)                              0.234          4.547          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[13],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.imf
+LUT2 (reg)          x092y070z2          0.233    f     4.780       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[13],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.780               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.092               
+
+Slack               : 5.098ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.774ns (cell 3.184ns (66%), net 1.590ns (34%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[8]
+net (fo=9)                              0.471          2.171          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[6],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[3]_syn_5.ib
+LUT5                x091y061z5          0.324    f     2.495       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[3]_syn_5.ofa
+net (fo=1)                              0.136          2.631          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_9,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_30.ia
+LUT6                x091y061z6          0.238    r     2.869       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_30.ofb
+net (fo=6)                              0.224          3.093          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[3]_syn_98,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ib
+LUT4                x091y063z6          0.242    r     3.335       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.696          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.895       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.000    f     3.977          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco_f
+net (fo=1)                              0.000          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_119,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci_f
+ADDER               x091y070z5          0.000    f     3.977          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco_f
+net (fo=1)                              0.000          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_120,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci_f
+ADDER               x091y070z6          0.000    f     3.977          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fco_f
+net (fo=1)                              0.000          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_121,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fci_f
+ADDER               x091y070z7          0.000    f     3.977          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fco_f
+net (fo=1)                              0.082          4.059          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_122,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fci_f
+ADDER               x091y071z0          0.045    f     4.104          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fco
+net (fo=1)                              0.000          4.104          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_91,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fci
+ADDER               x091y071z1          0.203    r     4.307       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.ofb
+net (fo=1)                              0.234          4.541          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[13],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.imf
+LUT2 (reg)          x092y070z2          0.233    f     4.774       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[13],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.774               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[13]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.098               
+
+Slack               : 5.097ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.775ns (cell 3.147ns (65%), net 1.628ns (35%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[8]
+net (fo=9)                              0.412          2.112          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[6],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ib
+LUT6                x091y055z7          0.241    r     2.353       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ofb
+net (fo=1)                              0.212          2.565          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_14,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ima
+LUT5                x091y056z5          0.286    f     2.851       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ofa
+net (fo=4)                              0.343          3.194          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_20,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ic
+LUT4                x091y063z6          0.150    f     3.344       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.705          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.904       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.000    f     3.986          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco_f
+net (fo=1)                              0.000          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_119,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci_f
+ADDER               x091y070z5          0.000    f     3.986          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco_f
+net (fo=1)                              0.000          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_120,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci_f
+ADDER               x091y070z6          0.000    f     3.986          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fco_f
+net (fo=1)                              0.000          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_121,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fci_f
+ADDER               x091y070z7          0.000    f     3.986          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fco_f
+net (fo=1)                              0.082          4.068          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_122,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fci_f
+ADDER               x091y071z0          0.045    f     4.113          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fco
+net (fo=1)                              0.000          4.113          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_91,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fci
+ADDER               x091y071z1          0.045    f     4.158          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fco
+net (fo=1)                              0.000          4.158          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_92,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_109.fci
+ADDER               x091y071z2          0.045    f     4.203          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_109.fco
+net (fo=1)                              0.000          4.203          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_93,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_110.fci
+ADDER               x091y071z3          0.203    r     4.406       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_110.ofb
+net (fo=1)                              0.136          4.542          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[15],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.imf
+LUT2 (reg)          x091y071z5          0.233    f     4.775       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[15],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.775               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.097               
+
+Slack               : 5.100ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.772ns (cell 3.144ns (65%), net 1.628ns (35%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[9]
+net (fo=9)                              0.412          2.112          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[7],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ia
+LUT6                x091y055z7          0.238    r     2.350       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ofb
+net (fo=1)                              0.212          2.562          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_14,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ima
+LUT5                x091y056z5          0.286    f     2.848       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ofa
+net (fo=4)                              0.343          3.191          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_20,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ic
+LUT4                x091y063z6          0.150    f     3.341       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.702          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.901       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.000    f     3.983          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco_f
+net (fo=1)                              0.000          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_119,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci_f
+ADDER               x091y070z5          0.000    f     3.983          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco_f
+net (fo=1)                              0.000          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_120,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci_f
+ADDER               x091y070z6          0.000    f     3.983          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fco_f
+net (fo=1)                              0.000          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_121,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fci_f
+ADDER               x091y070z7          0.000    f     3.983          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fco_f
+net (fo=1)                              0.082          4.065          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_122,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fci_f
+ADDER               x091y071z0          0.045    f     4.110          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fco
+net (fo=1)                              0.000          4.110          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_91,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fci
+ADDER               x091y071z1          0.045    f     4.155          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fco
+net (fo=1)                              0.000          4.155          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_92,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_109.fci
+ADDER               x091y071z2          0.045    f     4.200          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_109.fco
+net (fo=1)                              0.000          4.200          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_93,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_110.fci
+ADDER               x091y071z3          0.203    r     4.403       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_110.ofb
+net (fo=1)                              0.136          4.539          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[15],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.imf
+LUT2 (reg)          x091y071z5          0.233    f     4.772       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[15],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.772               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.100               
+
+Slack               : 5.106ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.766ns (cell 3.274ns (68%), net 1.492ns (32%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[8]
+net (fo=9)                              0.471          2.171          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[6],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[3]_syn_5.ib
+LUT5                x091y061z5          0.324    f     2.495       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[3]_syn_5.ofa
+net (fo=1)                              0.136          2.631          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_9,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_30.ia
+LUT6                x091y061z6          0.238    r     2.869       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_30.ofb
+net (fo=6)                              0.224          3.093          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[3]_syn_98,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ib
+LUT4                x091y063z6          0.242    r     3.335       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.696          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.895       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.000    f     3.977          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco_f
+net (fo=1)                              0.000          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_119,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci_f
+ADDER               x091y070z5          0.000    f     3.977          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco_f
+net (fo=1)                              0.000          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_120,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci_f
+ADDER               x091y070z6          0.000    f     3.977          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fco_f
+net (fo=1)                              0.000          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_121,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fci_f
+ADDER               x091y070z7          0.000    f     3.977          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fco_f
+net (fo=1)                              0.082          4.059          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_122,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fci_f
+ADDER               x091y071z0          0.045    f     4.104          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_107.fco
+net (fo=1)                              0.000          4.104          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_91,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fci
+ADDER               x091y071z1          0.045    f     4.149          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_108.fco
+net (fo=1)                              0.000          4.149          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_92,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_109.fci
+ADDER               x091y071z2          0.045    f     4.194          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_109.fco
+net (fo=1)                              0.000          4.194          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_93,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_110.fci
+ADDER               x091y071z3          0.203    r     4.397       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_110.ofb
+net (fo=1)                              0.136          4.533          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[15],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.imf
+LUT2 (reg)          x091y071z5          0.233    f     4.766       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[15],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.766               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[15]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.106               
+
+Slack               : 5.148ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.724ns (cell 3.102ns (65%), net 1.622ns (35%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[8]
+net (fo=9)                              0.412          2.112          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[6],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ib
+LUT6                x091y055z7          0.241    r     2.353       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ofb
+net (fo=1)                              0.212          2.565          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_14,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ima
+LUT5                x091y056z5          0.286    f     2.851       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ofa
+net (fo=4)                              0.343          3.194          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_20,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ic
+LUT4                x091y063z6          0.150    f     3.344       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.705          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.904       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.045    f     4.031          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco
+net (fo=1)                              0.000          4.031          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_87,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci
+ADDER               x091y070z5          0.045    f     4.076          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco
+net (fo=1)                              0.000          4.076          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_88,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci
+ADDER               x091y070z6          0.203    r     4.279       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.ofb
+net (fo=1)                              0.212          4.491          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[10],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.imf
+LUT2 (reg)          x091y071z4          0.233    f     4.724       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[10],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.724               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.148               
+
+Slack               : 5.151ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.721ns (cell 3.099ns (65%), net 1.622ns (35%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[9]
+net (fo=9)                              0.412          2.112          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[7],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ia
+LUT6                x091y055z7          0.238    r     2.350       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ofb
+net (fo=1)                              0.212          2.562          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_14,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ima
+LUT5                x091y056z5          0.286    f     2.848       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ofa
+net (fo=4)                              0.343          3.191          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_20,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ic
+LUT4                x091y063z6          0.150    f     3.341       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.702          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.901       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.901          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.901          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.983          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.045    f     4.028          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco
+net (fo=1)                              0.000          4.028          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_87,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci
+ADDER               x091y070z5          0.045    f     4.073          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco
+net (fo=1)                              0.000          4.073          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_88,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci
+ADDER               x091y070z6          0.203    r     4.276       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.ofb
+net (fo=1)                              0.212          4.488          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[10],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.imf
+LUT2 (reg)          x091y071z4          0.233    f     4.721       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[10],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.721               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.151               
+
+Slack               : 5.157ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.imf (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.715ns (cell 3.229ns (68%), net 1.486ns (32%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[8]
+net (fo=9)                              0.471          2.171          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[6],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[3]_syn_5.ib
+LUT5                x091y061z5          0.324    f     2.495       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[3]_syn_5.ofa
+net (fo=1)                              0.136          2.631          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_9,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_30.ia
+LUT6                x091y061z6          0.238    r     2.869       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_30.ofb
+net (fo=6)                              0.224          3.093          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[3]_syn_98,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ib
+LUT4                x091y063z6          0.242    r     3.335       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.696          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.895       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.895          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.895          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.977          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.045    f     4.022          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco
+net (fo=1)                              0.000          4.022          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_87,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci
+ADDER               x091y070z5          0.045    f     4.067          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco
+net (fo=1)                              0.000          4.067          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_88,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci
+ADDER               x091y070z6          0.203    r     4.270       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.ofb
+net (fo=1)                              0.212          4.482          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[10],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.imf
+LUT2 (reg)          x091y071z4          0.233    f     4.715       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[10],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.715               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.157               
+
+Slack               : 5.163ns
+Begin Point         : dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.ie (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.709ns (cell 3.087ns (65%), net 1.622ns (35%))
+Clock Skew          : 0.000ns
+Logic Level         : 6 ( ADDER=2  LUT6=1  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 9
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.clkb
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+ERAM (clk2q)        x089y052            1.700    f     1.700          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_52.dob[8]
+net (fo=9)                              0.412          2.112          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/bhdxpx[6],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ib
+LUT6                x091y055z7          0.241    r     2.353       1  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_36.ofb
+net (fo=1)                              0.212          2.565          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_14,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ima
+LUT5                x091y056z5          0.286    f     2.851       2  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_34.ofa
+net (fo=4)                              0.343          3.194          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b1[2]_syn_20,  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ic
+LUT4                x091y063z6          0.150    f     3.344       3  pin: dut/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/add0_syn_127.ofb
+net (fo=2)                              0.361          3.705          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/sgqmmd$wygqaq/sel0_syn_37[3],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.ic
+ADDER               x091y069z7          0.199    f     3.904       4  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_98.fco
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_82,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fci
+ADDER               x091y070z0          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_99.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_115,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fci_f
+ADDER               x091y070z1          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_100.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_116,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fci_f
+ADDER               x091y070z2          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_101.fco_f
+net (fo=1)                              0.000          3.904          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_117,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fci_f
+ADDER               x091y070z3          0.000    f     3.904          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_102.fco_f
+net (fo=1)                              0.082          3.986          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_118,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fci_f
+ADDER               x091y070z4          0.045    f     4.031          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_103.fco
+net (fo=1)                              0.000          4.031          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_87,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fci
+ADDER               x091y070z5          0.045    f     4.076          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_104.fco
+net (fo=1)                              0.000          4.076          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_88,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fci
+ADDER               x091y070z6          0.045    f     4.121          pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_105.fco
+net (fo=1)                              0.000          4.121          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_89,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.fci
+ADDER               x091y070z7          0.203    r     4.324       5  pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/add0_syn_106.ofb
+net (fo=1)                              0.212          4.536          net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_b5[11],  NOFILE(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.ie
+LUT2 (reg)          x091y071z4          0.173    f     4.709       6  net: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/qfyvvt[11],  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.709               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_39.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_39.di
+net (fo=1)                              0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=1360)                           0.000          0.000          net: dut/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  D:/Works/Embedded_contest/dev/pl_dma/build/ip/axi_dma.v(0)
+                                                                      pin: dut/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$cslwzo_reg[10]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.163               
+
+
+Period Check
+----------------------------------------------------------------------------------------------------
+    Type       Setting(ns)      Required(ns)         Slack(ns)   Point
+--------------------------------------------------------------------------------
+ SHIFTER            10.000             1.683             8.317   inp[181]_syn_8.sclk
+ SHIFTER            10.000             1.683             8.317   obs[100]_syn_42.sclk
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+Inter clock domain timing
+--------------------------------------------------
+
+IP timing
+--------------------------------------------------

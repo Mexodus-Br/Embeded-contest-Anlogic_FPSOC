@@ -20,9 +20,9 @@ module rs485_multirate #(
  output wire observe_push,output wire [255:0] observe_data,
  output wire [7999:0] observe_tasks,output wire [1279:0] observe_nodes);
  `include "rs485_defs.vh"
- `include "rate_defs.vh"
  localparam integer TASKS=SLAVE_COUNT*5;
  localparam integer BIT_CYCLES=(CLK_HZ+BAUD/2)/BAUD;
+ `include "rate_defs.vh"
  localparam [3:0] IDLE=0,SCAN=1,DISPATCH=2,ADVANCE_WAIT=3,
   CFG_CHECK=4,CFG_DIV=5,CFG_WAIT=6;
  reg [3:0] state;

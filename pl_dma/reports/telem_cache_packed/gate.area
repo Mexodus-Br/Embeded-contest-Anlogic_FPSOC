@@ -1,0 +1,51 @@
+standard
+***Report Model: telem_probe Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         5   out of    126    3.97%
+  #input                    4
+  #output                   1
+  #inout                    0
+#lut                     7850
+  #lut1                     1
+  #lut2                   186
+  #lut3                   213
+  #lut4                   523
+  #lut5                  2004
+  #lut6                  3882
+  #1-bit adder           1041
+#reg                    22330
+  #slice reg            22330   out of 104960   21.27%
+  #pad reg                  0
+
+Utilization Statistics
+#unit lut*               6490   out of  52480   12.37%
+  #logic lut*            5449
+  #1-bit adder           1041
+#reg                    22330   out of 104960   21.27%
+  #dff                  22330
+  #latch                    0
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                       0   out of    280    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                       10   out of    240    4.17%
+#pad                        5   out of    126    3.97%
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+Report Hierarchy Area:
++---------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance   |Module             |logic lut |ripple  |seq     |eram    |dsp     |dram     |shifter |f7mux   |f8mux   |pll     |adc    |soc     |
++---------------------------------------------------------------------------------------------------------------------------------------------+
+|top        |telem_probe        |5449      |1041    |22330   |0       |10      |0        |0       |0       |0       |0       |0      |0       |
+|  dut      |rs485_latest_cache |1085      |1041    |21674   |0       |10      |0        |0       |0       |0       |0       |0      |0       |
+|    parser |rs485_light_parse  |12        |0       |0       |0       |0       |0        |0       |0       |0       |0       |0      |0       |
++---------------------------------------------------------------------------------------------------------------------------------------------+

@@ -1,0 +1,788 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Wed Oct 14 11:08:29 2026
+
+Top Model           : telem_probe
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 90.55%
+Constraint File     : D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/clock.sdc;
+Confidence          : Placed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 3 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min     
+------------------------------------
+Slow     | yes      yes     
+Fast     | yes      yes     
+
+
+Timing Status
+--------------------
+	SWNS: 5.555ns, STNS: 0.000ns
+	HWNS: 0.000ns, HTNS: 0.000ns
+	Period Check WNS: 8.317ns
+
+
+Clock Summary
+--------------------
+
+       Clock-Id:       C-Freq       Fanout   Clock-Name
+--------------------------------------------------------------------------------
+           clk0:      100.000          146   telem_clk
+--------------------------------------------------------------------------------
+
+       Name            Type         Rise(ns)   Fall(ns)          C-Period(ns)     C-Freq(MHz)          R-Period(ns)     R-Freq(MHz)         SWNS(ns)   STNS(ns)         HWNS(ns)   HTNS(ns)         Skew(ns)           Fanout        Max-Level        CC-From    CC-To
+       clk0   Inferred GCLK            0.000      5.000                10.000         100.000                 4.445         224.972            5.555      0.000            0.000      0.000            0.000              146                7             no       no
+
+Notes
+----------
+C-Period  :  constraint period
+C-Freq    :  constraint freq
+R-Period  :  report min period
+R-Freq    :  report fmax
+CC-From   :  has path(s) from cross-domain clock
+CC-To     :  has path(s) to cross-domain clock
+
+
+*   Clock R-Period data only takes intra-clock timing. SWNS/STNS/HWNS/HTNS take both intra-clock and inter-clock timing.
+*   If there is mismatch between R-Period and SWNS, check inter-clock timing of this clock as capture clock.
+*   SWNS/STNS/HWNS/HTNS of timing exception (SMCP/SMD) only counted in global Timing Status, not counted in Clock Summary.
+
+Intra clock domain timing
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     telem_clk -> telem_clk
+Type           :     Self
+From Clock     :     telem_clk
+To Clock       :     telem_clk
+Min Period     :     4.445ns
+Fmax           :     224.972MHz
+
+Statistics:
+Max            : SWNS      5.555ns, STNS      0.000ns,         0 Viol Endpoints,       236 Total Endpoints,      3399 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 5.555ns
+Begin Point         : inp_reg[236]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[1]_syn_2.imb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.317ns (cell 1.986ns (46%), net 2.331ns (54%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: inp_reg[236]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x111y063z1          0.175    r     0.175          pin: inp_reg[236]_syn_2.oqa
+net (fo=2)                              0.440          0.615          net: dut/raw[236],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.ib
+LUT4                x121y063z1          0.242    r     0.857       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.395          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.635       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.847          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.997       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          2.223          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.463       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.679          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     3.003       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          3.239          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.477       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.327          3.804          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[99]_syn_2.ib
+LUT3                x112y060z3          0.242    r     4.046       7  pin: obs_reg[99]_syn_2.ofb
+net (fo=1)                              0.136          4.182          net: obs_b[104],  NOFILE(0)
+                                                                      pin: obs_reg[1]_syn_2.imb
+reg                 x112y060z1          0.135    r     4.317          net: obs[104],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.317               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[1]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.555               
+
+Slack               : 5.936ns
+Begin Point         : inp_reg[238]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[1]_syn_2.imb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.936ns (cell 1.909ns (48%), net 2.027ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: inp_reg[238]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x121y063z2          0.175    r     0.175          pin: inp_reg[238]_syn_2.oqa
+net (fo=2)                              0.136          0.311          net: dut/raw[238],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.imb
+LUT4                x121y063z1          0.165    r     0.476       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.014          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.254       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.466          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.616       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          1.842          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.082       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.298          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     2.622       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          2.858          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.096       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.327          3.423          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[99]_syn_2.ib
+LUT3                x112y060z3          0.242    r     3.665       7  pin: obs_reg[99]_syn_2.ofb
+net (fo=1)                              0.136          3.801          net: obs_b[104],  NOFILE(0)
+                                                                      pin: obs_reg[1]_syn_2.imb
+reg                 x112y060z1          0.135    r     3.936          net: obs[104],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.936               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[1]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.936               
+
+Slack               : 5.945ns
+Begin Point         : obs_reg[127]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[1]_syn_2.imb (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.927ns (cell 1.900ns (48%), net 2.027ns (52%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[127]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x121y063z0          0.181    f     0.181          pin: obs_reg[127]_syn_2.oqb
+net (fo=2)                              0.136          0.317          net: dut/raw[237],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.ic
+LUT4                x121y063z1          0.150    f     0.467       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.005          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.245       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.457          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.607       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          1.833          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.073       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.289          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     2.613       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          2.849          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.087       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.327          3.414          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[99]_syn_2.ib
+LUT3                x112y060z3          0.242    r     3.656       7  pin: obs_reg[99]_syn_2.ofb
+net (fo=1)                              0.136          3.792          net: obs_b[104],  NOFILE(0)
+                                                                      pin: obs_reg[1]_syn_2.imb
+reg                 x112y060z1          0.135    r     3.927          net: obs[104],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.927               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[1]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.945               
+
+Slack               : 5.705ns
+Begin Point         : inp_reg[236]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[101]_syn_2.ib (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.167ns (cell 1.954ns (46%), net 2.213ns (54%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: inp_reg[236]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x111y063z1          0.175    r     0.175          pin: inp_reg[236]_syn_2.oqa
+net (fo=2)                              0.440          0.615          net: dut/raw[236],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.ib
+LUT4                x121y063z1          0.242    r     0.857       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.395          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.635       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.847          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.997       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          2.223          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.463       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.679          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     3.003       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          3.239          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.477       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.345          3.822          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[101]_syn_2.ib
+LUT3 (reg)          x113y061z2          0.345    f     4.167       7  net: obs[101],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.167               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[101]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.705               
+
+Slack               : 6.086ns
+Begin Point         : inp_reg[238]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[101]_syn_2.ib (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.786ns (cell 1.877ns (49%), net 1.909ns (51%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: inp_reg[238]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x121y063z2          0.175    r     0.175          pin: inp_reg[238]_syn_2.oqa
+net (fo=2)                              0.136          0.311          net: dut/raw[238],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.imb
+LUT4                x121y063z1          0.165    r     0.476       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.014          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.254       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.466          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.616       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          1.842          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.082       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.298          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     2.622       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          2.858          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.096       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.345          3.441          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[101]_syn_2.ib
+LUT3 (reg)          x113y061z2          0.345    f     3.786       7  net: obs[101],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.786               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[101]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  6.086               
+
+Slack               : 6.095ns
+Begin Point         : obs_reg[127]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[101]_syn_2.ib (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.777ns (cell 1.868ns (49%), net 1.909ns (51%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[127]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x121y063z0          0.181    f     0.181          pin: obs_reg[127]_syn_2.oqb
+net (fo=2)                              0.136          0.317          net: dut/raw[237],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.ic
+LUT4                x121y063z1          0.150    f     0.467       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.005          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.245       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.457          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.607       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          1.833          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.073       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.289          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     2.613       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          2.849          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.087       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.345          3.432          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[101]_syn_2.ib
+LUT3 (reg)          x113y061z2          0.345    f     3.777       7  net: obs[101],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.777               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[101]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  6.095               
+
+Slack               : 5.705ns
+Begin Point         : inp_reg[236]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[108]_syn_2.ib (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.167ns (cell 1.954ns (46%), net 2.213ns (54%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: inp_reg[236]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x111y063z1          0.175    r     0.175          pin: inp_reg[236]_syn_2.oqa
+net (fo=2)                              0.440          0.615          net: dut/raw[236],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.ib
+LUT4                x121y063z1          0.242    r     0.857       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.395          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.635       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.847          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.997       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          2.223          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.463       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.679          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     3.003       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          3.239          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.477       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.345          3.822          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[108]_syn_2.ib
+LUT3 (reg)          x113y061z1          0.345    f     4.167       7  net: obs[108],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.167               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[108]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.705               
+
+Slack               : 6.086ns
+Begin Point         : inp_reg[238]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[108]_syn_2.ib (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.786ns (cell 1.877ns (49%), net 1.909ns (51%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: inp_reg[238]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x121y063z2          0.175    r     0.175          pin: inp_reg[238]_syn_2.oqa
+net (fo=2)                              0.136          0.311          net: dut/raw[238],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.imb
+LUT4                x121y063z1          0.165    r     0.476       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.014          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.254       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.466          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.616       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          1.842          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.082       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.298          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     2.622       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          2.858          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.096       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.345          3.441          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[108]_syn_2.ib
+LUT3 (reg)          x113y061z1          0.345    f     3.786       7  net: obs[108],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.786               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[108]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  6.086               
+
+Slack               : 6.095ns
+Begin Point         : obs_reg[127]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[108]_syn_2.ib (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 3.777ns (cell 1.868ns (49%), net 1.909ns (51%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[127]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x121y063z0          0.181    f     0.181          pin: obs_reg[127]_syn_2.oqb
+net (fo=2)                              0.136          0.317          net: dut/raw[237],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.ic
+LUT4                x121y063z1          0.150    f     0.467       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.005          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.245       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.457          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.607       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          1.833          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.073       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.289          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     2.613       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          2.849          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.087       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.345          3.432          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[108]_syn_2.ib
+LUT3 (reg)          x113y061z1          0.345    f     3.777       7  net: obs[108],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.777               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[108]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  6.095               
+
+Slack               : 5.705ns
+Begin Point         : inp_reg[236]_syn_2.clk (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : obs_reg[109]_syn_2.ib (rising edge triggered by clock telem_clk  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { telem_clk rising@10.000ns - telem_clk rising@0.000ns }
+Data Path Delay     : 4.167ns (cell 1.954ns (46%), net 2.213ns (54%))
+Clock Skew          : 0.000ns
+Logic Level         : 7 ( LUT5=3  LUT6=1  LUT4=1  LUT3=1  LUT2=1 )
+Max Fanout          : 22
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: inp_reg[236]_syn_2.clk
+launch edge                             0.000    r     0.000               
+--------------------------------------------------------------------  ---------------
+clk2q               x111y063z1          0.175    r     0.175          pin: inp_reg[236]_syn_2.oqa
+net (fo=2)                              0.440          0.615          net: dut/raw[236],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/rs485_light_parse.v(3)
+                                                                      pin: obs_b[122]_syn_117.ib
+LUT4                x121y063z1          0.242    r     0.857       1  pin: obs_b[122]_syn_117.ofb
+net (fo=1)                              0.538          1.395          net: obs_b[122]_syn_2,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_113.ia
+LUT5                x110y060z4          0.240    r     1.635       2  pin: obs_b[122]_syn_113.ofb
+net (fo=1)                              0.212          1.847          net: obs_b[122]_syn_4,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_108.ic
+LUT5                x110y061z2          0.150    f     1.997       3  pin: obs_b[122]_syn_108.ofb
+net (fo=6)                              0.226          2.223          net: obs_b[122]_syn_12,  NOFILE(0)
+                                                                      pin: obs_b[122]_syn_88.ia
+LUT5                x110y059z3          0.240    r     2.463       4  pin: obs_b[122]_syn_88.ofb
+net (fo=7)                              0.216          2.679          net: obs_b[122]_syn_22,  NOFILE(0)
+                                                                      pin: inp_reg[228]_syn_2.ib
+LUT2                x109y059z3          0.324    f     3.003       5  pin: inp_reg[228]_syn_2.ofa
+net (fo=22)                             0.236          3.239          net: obs_b[119]_syn_2,  NOFILE(0)
+                                                                      pin: inp_reg[45]_syn_2.ia
+LUT6                x108y060z2          0.238    r     3.477       6  pin: inp_reg[45]_syn_2.ofb
+net (fo=20)                             0.345          3.822          net: obs_b[119]_syn_4,  NOFILE(0)
+                                                                      pin: obs_reg[109]_syn_2.ib
+LUT3 (reg)          x113y061z3          0.345    f     4.167       7  net: obs[109],  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(2)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.167               
+
+source latency                          0.000          0.000               
+port                                    0.000          0.000          pin: clk
+hierarchy                               0.000          0.000          pin: clk_syn_2.ipad
+PAD                 x000y017            0.000          0.000          pin: clk_syn_2.di
+net (fo=1)                              0.000          0.000          net: clk_dup_1,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: clk_dup_1_created_gclkinst.clkin[0]
+GCLK                x079y059z0          0.000          0.000          pin: clk_dup_1_created_gclkinst.clkout
+net (fo=143)                            0.000          0.000          net: clk_syn_3,  D:/Works/Embedded_contest/dev/pl_dma/build/telem_parse_r1/top.v(1)
+                                                                      pin: obs_reg[109]_syn_2.clk
+capture edge                           10.000    r    10.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068          9.932               
+clock uncertainty                      -0.060          9.872               
+clock pessimism                         0.000          9.872               
+--------------------------------------------------------------------  ---------------
+Required                                               9.872               
+--------------------------------------------------------------------  ---------------
+Slack                                                  5.705               
+
+
+Period Check
+----------------------------------------------------------------------------------------------------
+    Type       Setting(ns)      Required(ns)         Slack(ns)   Point
+--------------------------------------------------------------------------------
+ SHIFTER            10.000             1.683             8.317   inp[48]_syn_8.sclk
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+Inter clock domain timing
+--------------------------------------------------
+
+IP timing
+--------------------------------------------------

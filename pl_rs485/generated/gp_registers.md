@@ -1,6 +1,6 @@
 # Confirmed RS485 GP registers
 
-Generated from sole shared schema; fc3172823b78ad5da25ac0261ec7a29c20723e81583593b01a9c7e54f4130f82
+Generated from sole shared schema; 1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31
 
 |Offset|Register|Access|
 |---|---|---|

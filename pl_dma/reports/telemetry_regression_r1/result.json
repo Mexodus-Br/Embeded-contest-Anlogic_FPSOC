@@ -1,0 +1,51 @@
+{
+  "passed": false,
+  "tests": [
+    {
+      "command": "pl_interface/generate.py --check",
+      "status": "PASS",
+      "log_sha256": "8261ae1a97bbd5d4fadcb20148b5bcf3a9752eee8dbad4c730e7650dd00d4974"
+    },
+    {
+      "command": "pl_interface/tests/test_interface.py",
+      "status": "PASS",
+      "log_sha256": "f92bbf31c10c66ca272f63fdb379ab0f127ac17a1f75c7b5404f42148c441d1f"
+    },
+    {
+      "command": "pl_interface/tests/check_verilog.py",
+      "status": "PASS",
+      "log_sha256": "2376aa235636549e4c1742badda99a08a891af93c9b91135a6f1967be2f05c9d"
+    },
+    {
+      "command": "pl_interface/tests/test_motion_v2.py",
+      "status": "PASS",
+      "log_sha256": "907172428d3a62c663d8756cdbde4c15cdfb525e0bd2210d58efa5cbae2d95fc"
+    },
+    {
+      "command": "pl_motion/tests/run_sim.py",
+      "status": "PASS",
+      "log_sha256": "c2fdf0e752fda21f8233f7321ae8eb3b7599f9081dddfa7e7ab2aff5dd0bdeb6"
+    },
+    {
+      "command": "pl_motion/tests/run_four_axis.py",
+      "status": "PASS",
+      "log_sha256": "cb2848a3350b46ebc652015474e720e4013a08cf8fb948fa2d9fb6419db145c6"
+    },
+    {
+      "command": "pl_motion/tests/run_continuous.py",
+      "status": "PASS",
+      "log_sha256": "c432efbac2b7e25d5184c540f86359cfde7e69a73277992a0e16153d91892e76"
+    },
+    {
+      "command": "golden_model/tests/test_regression.py",
+      "status": "PASS",
+      "log_sha256": "99dfb0a5863cffb14f4ef1b4c7b822689a195299d1e00c945bebadb08dcde1a7"
+    },
+    {
+      "command": "pl_dma/tests/test_contract.py",
+      "status": "PASS",
+      "log_sha256": "08d652f545c10b27b1be29113ea0e06848fee22d6e6ab4003878bd2269f271e5"
+    }
+  ],
+  "baseline_metadata_restored": true
+}

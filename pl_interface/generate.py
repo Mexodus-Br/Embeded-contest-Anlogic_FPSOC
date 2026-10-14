@@ -103,8 +103,30 @@ def validate(s):
         if set(p['registers'])!=set(p['register_access']):raise ValueError('RS485 access set')
         if p['snapshot_words']*4+p['snapshot_base']>4096:raise ValueError('RS485 snapshot span')
 
+
+    if 'rs485_telemetry' in s:
+        p=s['rs485_telemetry'];d=p['dma'];resources=[]
+        resources += [(q['address']['base'],q['address']['size'],[q['irq']['pl_line']]) for q in s['gp_control_profiles'].values()]
+        resources += [(q['address']['base'],q['address']['size'],[q['irq']['mm2s_line'],q['irq']['s2mm_line']]) for q in s['dma_loopback_profiles'].values()]
+        resources += [(q['base'],q['size'],[q['irq_line']]) for group in ['motion_integration_profiles','rs485_gp_profiles'] for q in s[group].values()]
+        resources.append((p['base'],p['size'],[p['irq_line']]))
+        for i,(b,n,irqs) in enumerate(resources):
+            if b%4096 or max(b,d['base'])<min(b+n,d['base']+d['size']) or d['irq_line'] in irqs:raise ValueError('telemetry DMA resource collision')
+            if i<len(resources)-1 and (max(b,p['base'])<min(b+n,p['base']+p['size']) or p['irq_line'] in irqs):raise ValueError('telemetry GP resource collision')
+        offsets=list(p['registers'].values())
+        if len(offsets)!=len(set(offsets)) or any(x%4 or x>=p['snapshot_base'] for x in offsets):raise ValueError('telemetry registers')
+        if p['row_base']+p['rows']*p['row_stride']>4096 or p['record_bytes']!=64 or p['crc_bytes']!=60:raise ValueError('telemetry layout')
+        if d['parameters']['AL_INCLUDE_MM2S'] or not d['parameters']['AL_INCLUDE_S2MM'] or d['parameters']['AL_INCLUDE_SG']:raise ValueError('telemetry IP mode')
+
+def telemetry_constants(p):
+    import importlib.util
+    spec=importlib.util.spec_from_file_location('telem_generator',ROOT.parent/'pl_rs485/tools/generate_telem.py')
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module.constants(p)
+
 def constants(s):
     out={'ABI_VERSION':s['version']}
+    if 'rs485_telemetry' in s:out.update({'TELEM_'+k:v for k,v in telemetry_constants(s['rs485_telemetry']).items()})
     for r in s['registers']:
         pre='REG_'+r['name']; out[pre]=r['offset']; out[pre+'_RESET']=r['reset']
         for f in r['fields']:

@@ -1,0 +1,29 @@
+COMMAND ['D:\\iverilog\\bin\\vvp.EXE', 'D:\\Works\\Embedded_contest\\dev\\pl_rs485\\evidence\\sim_dma_multirate_release\\tb_multirate.vvp', '+seed=20261013']
+EXIT 0
+SEED 20261013
+RATE task=0 samples=20 over 60ms
+RATE task=1 samples=6 over 60ms
+RATE task=2 samples=9 over 60ms
+RATE task=3 samples=5 over 60ms
+RATE task=4 samples=4 over 60ms
+RATE task=5 samples=20 over 60ms
+RATE task=6 samples=6 over 60ms
+RATE task=7 samples=9 over 60ms
+RATE task=8 samples=5 over 60ms
+RATE task=9 samples=4 over 60ms
+RATE task=10 samples=21 over 60ms
+RATE task=11 samples=6 over 60ms
+RATE task=12 samples=9 over 60ms
+RATE task=13 samples=5 over 60ms
+RATE task=14 samples=4 over 60ms
+PASS mixed periods and healthy per-node frequency
+PASS masks, zero periods, fairness, range and budget rejection
+PASS atomic in-flight commit, bounded retry association and revision boundary
+PASS checksum, UART, timeout, wrong/late/duplicate/truncated frames, echo and protection
+PASS three logical failures, cooldown, healthy progress, failed/successful enabled-query probe
+PASS whole-record FIFO overflow continues polling without node failure
+PASS large lateness coalesces releases, preserves phase and reports skipped samples
+PASS modular unified-time wrap
+PASS seeded faults and independent STP edges=623146
+PASS multirate
+D:\Works\Embedded_contest\dev\pl_rs485\tests\tb_multirate.v:240: $finish called at 105934835000 (1ps)
