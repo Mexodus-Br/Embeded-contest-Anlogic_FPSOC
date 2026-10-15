@@ -1,0 +1,196 @@
+----------------------------------------------------------------------------------------------------
+Slack               : 0.080ns
+Begin Point         : control/core/fabric/rs485/collector/sent_reg[387]_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/collector/missed_reg[296]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 9.702ns (cell 1.996ns (20%), net 7.706ns (80%))
+Clock Skew          : 0.090ns
+Logic Level         : 7 ( LUT6=5  ADDER=2 )
+Max Fanout          : 201
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1.clkin
+SCLK                x079y019z0          0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1.clkout
+net (fo=8919)                           0.927          4.810          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/collector/sent_reg[387]_syn_3.clk
+launch edge                             0.000    r     4.810               
+--------------------------------------------------------------------  ---------------
+clk2q               x054y009z4          0.181    f     4.991          pin: control/core/fabric/rs485/collector/sent_reg[387]_syn_3.oqb
+net (fo=201)                            1.991          6.982          net: control/core/fabric/rs485/collector/inflight[0]_dup_3,  gp/rs485_multirate.v(144)
+                                                                      pin: control/core/fabric/rs485/collector/scheduled_reg[449]_syn_2.ic
+LUT6                x082y009z2          0.210    r     7.192       1  pin: control/core/fabric/rs485/collector/scheduled_reg[449]_syn_2.ofb
+net (fo=1)                              0.440          7.632          net: control/core/fabric/rs485/collector/missed[0]_b23[0]_syn_4,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/collector/missed_reg[224]_syn_2.ic
+LUT6                x083y001z2          0.210    r     7.842       2  pin: control/core/fabric/rs485/collector/missed_reg[224]_syn_2.ofb
+net (fo=1)                              0.783          8.625          net: control/core/fabric/rs485/collector/missed[0]_b23[0]_syn_10,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_358.ic
+ADDER               x094y008z0          0.354    f     8.979       3  pin: control/core/fabric/rs485/collector/add2_syn_358.fco
+net (fo=1)                              0.000          8.979          net: control/core/fabric/rs485/collector/add2_syn_293,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_359.fci
+ADDER               x094y008z1          0.045    f     9.024          pin: control/core/fabric/rs485/collector/add2_syn_359.fco
+net (fo=1)                              0.000          9.024          net: control/core/fabric/rs485/collector/add2_syn_294,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_360.fci
+ADDER               x094y008z2          0.045    f     9.069          pin: control/core/fabric/rs485/collector/add2_syn_360.fco
+net (fo=1)                              0.000          9.069          net: control/core/fabric/rs485/collector/add2_syn_295,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_361.fci
+ADDER               x094y008z3          0.045    f     9.114          pin: control/core/fabric/rs485/collector/add2_syn_361.fco
+net (fo=1)                              0.000          9.114          net: control/core/fabric/rs485/collector/add2_syn_296,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_362.fci
+ADDER               x094y008z4          0.000    f     9.114          pin: control/core/fabric/rs485/collector/add2_syn_362.fco_f
+net (fo=1)                              0.000          9.114          net: control/core/fabric/rs485/collector/add2_syn_426,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_363.fci_f
+ADDER               x094y008z5          0.000    f     9.114          pin: control/core/fabric/rs485/collector/add2_syn_363.fco_f
+net (fo=1)                              0.000          9.114          net: control/core/fabric/rs485/collector/add2_syn_427,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_364.fci_f
+ADDER               x094y008z6          0.000    f     9.114          pin: control/core/fabric/rs485/collector/add2_syn_364.fco_f
+net (fo=1)                              0.000          9.114          net: control/core/fabric/rs485/collector/add2_syn_428,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_365.fci_f
+ADDER               x094y008z7          0.000    f     9.114          pin: control/core/fabric/rs485/collector/add2_syn_365.fco_f
+net (fo=1)                              0.082          9.196          net: control/core/fabric/rs485/collector/add2_syn_429,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_366.fci_f
+ADDER               x094y009z0          0.000    f     9.196          pin: control/core/fabric/rs485/collector/add2_syn_366.fco_f
+net (fo=1)                              0.000          9.196          net: control/core/fabric/rs485/collector/add2_syn_430,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_367.fci_f
+ADDER               x094y009z1          0.000    f     9.196          pin: control/core/fabric/rs485/collector/add2_syn_367.fco_f
+net (fo=1)                              0.000          9.196          net: control/core/fabric/rs485/collector/add2_syn_431,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_368.fci_f
+ADDER               x094y009z2          0.000    f     9.196          pin: control/core/fabric/rs485/collector/add2_syn_368.fco_f
+net (fo=1)                              0.000          9.196          net: control/core/fabric/rs485/collector/add2_syn_432,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_369.fci_f
+ADDER               x094y009z3          0.000    f     9.196          pin: control/core/fabric/rs485/collector/add2_syn_369.fco_f
+net (fo=1)                              0.082          9.278          net: control/core/fabric/rs485/collector/add2_syn_433,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_370.fci_f
+ADDER               x094y009z4          0.000    f     9.278          pin: control/core/fabric/rs485/collector/add2_syn_370.fco_f
+net (fo=1)                              0.000          9.278          net: control/core/fabric/rs485/collector/add2_syn_434,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_371.fci_f
+ADDER               x094y009z5          0.000    f     9.278          pin: control/core/fabric/rs485/collector/add2_syn_371.fco_f
+net (fo=1)                              0.000          9.278          net: control/core/fabric/rs485/collector/add2_syn_435,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_372.fci_f
+ADDER               x094y009z6          0.000    f     9.278          pin: control/core/fabric/rs485/collector/add2_syn_372.fco_f
+net (fo=1)                              0.000          9.278          net: control/core/fabric/rs485/collector/add2_syn_436,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_373.fci_f
+ADDER               x094y009z7          0.000    f     9.278          pin: control/core/fabric/rs485/collector/add2_syn_373.fco_f
+net (fo=1)                              0.082          9.360          net: control/core/fabric/rs485/collector/add2_syn_437,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_374.fci_f
+ADDER               x094y010z0          0.000    f     9.360          pin: control/core/fabric/rs485/collector/add2_syn_374.fco_f
+net (fo=1)                              0.000          9.360          net: control/core/fabric/rs485/collector/add2_syn_438,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_375.fci_f
+ADDER               x094y010z1          0.000    f     9.360          pin: control/core/fabric/rs485/collector/add2_syn_375.fco_f
+net (fo=1)                              0.000          9.360          net: control/core/fabric/rs485/collector/add2_syn_439,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_376.fci_f
+ADDER               x094y010z2          0.000    f     9.360          pin: control/core/fabric/rs485/collector/add2_syn_376.fco_f
+net (fo=1)                              0.000          9.360          net: control/core/fabric/rs485/collector/add2_syn_440,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_377.fci_f
+ADDER               x094y010z3          0.000    f     9.360          pin: control/core/fabric/rs485/collector/add2_syn_377.fco_f
+net (fo=1)                              0.082          9.442          net: control/core/fabric/rs485/collector/add2_syn_441,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_378.fci_f
+ADDER               x094y010z4          0.000    f     9.442          pin: control/core/fabric/rs485/collector/add2_syn_378.fco_f
+net (fo=1)                              0.000          9.442          net: control/core/fabric/rs485/collector/add2_syn_442,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_379.fci_f
+ADDER               x094y010z5          0.000    f     9.442          pin: control/core/fabric/rs485/collector/add2_syn_379.fco_f
+net (fo=1)                              0.000          9.442          net: control/core/fabric/rs485/collector/add2_syn_443,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_380.fci_f
+ADDER               x094y010z6          0.000    f     9.442          pin: control/core/fabric/rs485/collector/add2_syn_380.fco_f
+net (fo=1)                              0.000          9.442          net: control/core/fabric/rs485/collector/add2_syn_444,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_381.fci_f
+ADDER               x094y010z7          0.000    f     9.442          pin: control/core/fabric/rs485/collector/add2_syn_381.fco_f
+net (fo=1)                              0.082          9.524          net: control/core/fabric/rs485/collector/add2_syn_445,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_382.fci_f
+ADDER               x094y011z0          0.000    f     9.524          pin: control/core/fabric/rs485/collector/add2_syn_382.fco_f
+net (fo=1)                              0.000          9.524          net: control/core/fabric/rs485/collector/add2_syn_446,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_383.fci_f
+ADDER               x094y011z1          0.000    f     9.524          pin: control/core/fabric/rs485/collector/add2_syn_383.fco_f
+net (fo=1)                              0.000          9.524          net: control/core/fabric/rs485/collector/add2_syn_447,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_384.fci_f
+ADDER               x094y011z2          0.000    f     9.524          pin: control/core/fabric/rs485/collector/add2_syn_384.fco_f
+net (fo=1)                              0.000          9.524          net: control/core/fabric/rs485/collector/add2_syn_448,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_385.fci_f
+ADDER               x094y011z3          0.000    f     9.524          pin: control/core/fabric/rs485/collector/add2_syn_385.fco_f
+net (fo=1)                              0.082          9.606          net: control/core/fabric/rs485/collector/add2_syn_449,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_386.fci_f
+ADDER               x094y011z4          0.000    f     9.606          pin: control/core/fabric/rs485/collector/add2_syn_386.fco_f
+net (fo=1)                              0.000          9.606          net: control/core/fabric/rs485/collector/add2_syn_450,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_387.fci_f
+ADDER               x094y011z5          0.000    f     9.606          pin: control/core/fabric/rs485/collector/add2_syn_387.fco_f
+net (fo=1)                              0.000          9.606          net: control/core/fabric/rs485/collector/add2_syn_451,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_388.fci_f
+ADDER               x094y011z6          0.000    f     9.606          pin: control/core/fabric/rs485/collector/add2_syn_388.fco_f
+net (fo=1)                              0.000          9.606          net: control/core/fabric/rs485/collector/add2_syn_452,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_389.fci_f
+ADDER               x094y011z7          0.000    f     9.606          pin: control/core/fabric/rs485/collector/add2_syn_389.fco_f
+net (fo=1)                              0.082          9.688          net: control/core/fabric/rs485/collector/add2_syn_453,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_390.fci_f
+ADDER               x094y012z0          0.000    f     9.688          pin: control/core/fabric/rs485/collector/add2_syn_390.fco_f
+net (fo=1)                              0.000          9.688          net: control/core/fabric/rs485/collector/add2_syn_454,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_391.fci_f
+ADDER               x094y012z1          0.000    f     9.688          pin: control/core/fabric/rs485/collector/add2_syn_391.fco_f
+net (fo=1)                              0.000          9.688          net: control/core/fabric/rs485/collector/add2_syn_455,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_392.fci_f
+ADDER               x094y012z2          0.000    f     9.688          pin: control/core/fabric/rs485/collector/add2_syn_392.fco_f
+net (fo=1)                              0.000          9.688          net: control/core/fabric/rs485/collector/add2_syn_456,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_393.fci_f
+ADDER               x094y012z3          0.000    f     9.688          pin: control/core/fabric/rs485/collector/add2_syn_393.fco_f
+net (fo=1)                              0.082          9.770          net: control/core/fabric/rs485/collector/add2_syn_457,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_394.fci_f
+ADDER               x094y012z4          0.000    f     9.770          pin: control/core/fabric/rs485/collector/add2_syn_394.fco_f
+net (fo=1)                              0.000          9.770          net: control/core/fabric/rs485/collector/add2_syn_458,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_395.fci_f
+ADDER               x094y012z5          0.000    f     9.770          pin: control/core/fabric/rs485/collector/add2_syn_395.fco_f
+net (fo=1)                              0.000          9.770          net: control/core/fabric/rs485/collector/add2_syn_459,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_396.fci_f
+ADDER               x094y012z6          0.000    f     9.770          pin: control/core/fabric/rs485/collector/add2_syn_396.fco_f
+net (fo=1)                              0.000          9.770          net: control/core/fabric/rs485/collector/add2_syn_460,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_397.fci_f
+ADDER               x094y012z7          0.000    f     9.770          pin: control/core/fabric/rs485/collector/add2_syn_397.fco_f
+net (fo=1)                              0.082          9.852          net: control/core/fabric/rs485/collector/add2_syn_461,  gp/rs485_multirate.v(173)
+                                                                      pin: control/core/fabric/rs485/collector/add2_syn_398.fci_f
+ADDER               x094y013z0          0.203    r    10.055       4  pin: control/core/fabric/rs485/collector/add2_syn_398.ofb
+net (fo=1)                              0.401         10.456          net: control/core/fabric/rs485/collector/missed[0]_b21[40],  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/collector/missed[0]_b17[30]_syn_24.ib
+LUT6                x097y013z4          0.241    r    10.697       5  pin: control/core/fabric/rs485/collector/missed[0]_b17[30]_syn_24.ofb
+net (fo=1)                              0.393         11.090          net: control/core/fabric/rs485/collector/missed[0]_b17[30]_syn_4,  NOFILE(0)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[7428]_syn_2.ia
+LUT6                x098y013z3          0.238    r    11.328       6  pin: control/core/fabric/telemetry/cache/frozen_reg[7428]_syn_2.ofb
+net (fo=32)                             0.836         12.164          net: control/core/fabric/rs485/collector/missed[0]_b17[30]_syn_6,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/collector/missed[0]_b17[8]_syn_7.imf
+LUT6                x091y006z2          0.089    r    12.253       7  pin: control/core/fabric/rs485/collector/missed[0]_b17[8]_syn_7.ofb
+net (fo=15)                             2.124         14.377          net: control/core/fabric/rs485/collector/missed[0]_b17[8],  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/collector/missed_reg[296]_syn_2.ima
+reg                 x051y004z6          0.135    r    14.512          net: control/core/fabric/rs485/collector/observe_tasks[904],  gp/rs485_multirate.v(45)
+--------------------------------------------------------------------  ---------------
+Arrival                                               14.512               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1.clkin
+SCLK                x079y019z0          0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1.clkout
+net (fo=8919)                           0.837          4.419          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/collector/missed_reg[296]_syn_2.clk
+capture edge                           10.000    r    14.419               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.351               
+clock uncertainty                      -0.060         14.291               
+clock pessimism                         0.301         14.592               
+--------------------------------------------------------------------  ---------------
+Required                                              14.592               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.080               
+

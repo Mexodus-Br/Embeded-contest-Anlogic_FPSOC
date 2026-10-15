@@ -1,0 +1,140 @@
+{
+  "source_commit": "49e8ac6",
+  "evidence_commit": "5f88d0f",
+  "identities": {
+    "baseline": {
+      "checkpoint_sha256": "8499d49cb7d047d386bc296b1281d027a966f82f9a5455532d74fdd3fa960677",
+      "gp_route.area": "b431a1c2cd989b1ebb556b56a6ff49ee510ad68ef9c0fe7e58b4ec7b9781e699",
+      "gp_route.timing": "bd31505a58af6c8d6a4130a9bd450c7e909b5fe478c6657d89aa469bb7b36a3d"
+    },
+    "optimized": {
+      "checkpoint_sha256": "3509c93ebbb61abbc18d0b96ca34b1b9fad18e1a484a4e1720b2f5239052e7df",
+      "gp_route.area": "1aa140f5a220a897bbb76d4a2302a25e600e0474a60fdf72b19419013e4dcb13",
+      "gp_route.timing": "525acf8e3feba56ede7e62656033fa2a3325e6b3d75a7892e8e3a55c77dd0193"
+    }
+  },
+  "path": {
+    "begin": "control/core/fabric/rs485/collector/sent_reg[387]_syn_3.clk",
+    "end": "control/core/fabric/rs485/collector/missed_reg[296]_syn_2.ima",
+    "clock": "board_100m",
+    "corner": "slow",
+    "setup_slack_ns": 0.08,
+    "budget_ns": 10.0,
+    "data_delay_ns": 9.702,
+    "cell_delay_ns": 1.996,
+    "net_delay_ns": 7.706,
+    "logic_level": 7,
+    "max_fanout": 201,
+    "clock_skew_ns": 0.09,
+    "default_clock_uncertainty_ns": 0.06,
+    "launch_clock_arrival_ns": 4.81,
+    "capture_clock_arrival_ns": 4.419,
+    "setup_ns": 0.068,
+    "crpr_ns": 0.301,
+    "data_arrival_ns": 14.512,
+    "required_ns": 14.592,
+    "notable_nets": [
+      {
+        "name": "collector/inflight[0]_dup_3",
+        "fanout": 201,
+        "delay_ns": 1.991
+      },
+      {
+        "name": "collector/missed[0]_b17[8]",
+        "fanout": 15,
+        "delay_ns": 2.124
+      }
+    ]
+  },
+  "dsp_hierarchy": {
+    "baseline": {
+      "top": 15,
+      "rs485_latest_cache": 10,
+      "motion_planner": 4,
+      "rs485_multirate": 1
+    },
+    "optimized": {
+      "top": 5,
+      "rs485_latest_cache": 0,
+      "motion_planner": 4,
+      "rs485_multirate": 1
+    }
+  },
+  "baseline_dsp.rpt": "31a7bae067c73a956a44568a1a2529a186356ec6223caa08235b214552208b9f",
+  "optimized_dsp.rpt": "9ee27305943e742acbf8e9e69bd6473f1bc0f3703a9fdb6244d26a1d6c682bbf",
+  "removed_dsp_instances": [
+    {
+      "name": "control/core/fabric/telemetry/cache/mult0_syn_167",
+      "location": [
+        99,
+        36
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult0_syn_260",
+      "location": [
+        99,
+        40
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult1_syn_167",
+      "location": [
+        99,
+        52
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult1_syn_260",
+      "location": [
+        99,
+        52
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult2_syn_167",
+      "location": [
+        99,
+        64
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult2_syn_260",
+      "location": [
+        99,
+        68
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult3_syn_167",
+      "location": [
+        99,
+        60
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult3_syn_260",
+      "location": [
+        99,
+        64
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult4_syn_167",
+      "location": [
+        99,
+        40
+      ]
+    },
+    {
+      "name": "control/core/fabric/telemetry/cache/mult4_syn_260",
+      "location": [
+        99,
+        44
+      ]
+    }
+  ],
+  "baseline_dsp_final.log": "af3a8ed61030f0f7bd9fedd16ed7df55046e1097b9ebf32dab887c7f32f2c917",
+  "optimized_dsp_final.log": "3cab9a25d2967d719c5aaf3a0951c44f609fb9207c7d38f57224ea3b872f2d57",
+  "baseline_connections.log": "70360ce62ce3f071e18ee96feca170dacafbef1a312b80cd56c8c7ed8bd686af"
+}
