@@ -13,6 +13,7 @@ module rs485_telem_regs(
  `include "telem_defs.vh"
  localparam [32:0] BASE={1'b0,`RT_BASE};
  reg ah,wh,waiting;reg [32:0] wa;reg [31:0] wd;reg [3:0] ws;
+ reg cache_pending;
  reg [31:0] pending,mask,access_error,snap_req,snap_id,snap_watermark,observed_gen;reg snap_valid;
  reg [31:0] snapshot[0:`RT_SNAPSHOT_WORDS-1];
  wire wf=ah && wh && !s_bvalid && !waiting;
@@ -32,7 +33,7 @@ module rs485_telem_regs(
  assign cache_word=(s_araddr[11:0]-`RT_ROW_BASE)>>2;
  assign s_awready=rst_n && !ah && !s_bvalid && !waiting;
  assign s_wready=rst_n && !wh && !s_bvalid && !waiting;
- assign s_arready=rst_n && !s_rvalid;
+ assign s_arready=rst_n && !s_rvalid && !cache_pending;
  assign irq=|(pending & mask);
  reg [31:0] err,v,clear,combined;reg [1:0] response;integer i;
  wire [4:0] extra_events={(full_drop!=0), (parse_errors!=0),1'b0,1'b0,1'b0};
@@ -40,7 +41,7 @@ module rs485_telem_regs(
  reg [31:0] old_drop,old_parse;
  always @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
-   ah<=0;wh<=0;waiting<=0;wa<=0;wd<=0;ws<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
+   ah<=0;wh<=0;waiting<=0;cache_pending<=0;wa<=0;wd<=0;ws<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
    pending<=0;mask<=0;access_error<=0;snap_req<=0;snap_id<=0;snap_watermark<=0;snap_valid<=0;observed_gen<=0;old_drop<=0;old_parse<=0;
    recover_generation<=0;arm_id<=0;arm_generation<=0;arm_bytes<=0;complete_id<=0;complete_generation<=0;complete_result<=0;
   end else begin
@@ -48,6 +49,9 @@ module rs485_telem_regs(
    if(observed_gen!=collector_generation) snap_valid<=0;
    if(s_bvalid && s_bready) s_bvalid<=0;
    if(s_rvalid && s_rready) s_rvalid<=0;
+   // The RAM and frozen metadata were sampled at the accepted AR edge. Keep
+   // the response registered, including across snapshot replacement and reset.
+   if(cache_pending) begin cache_pending<=0;s_rdata<=cache_data;s_rresp<=0;s_rvalid<=1;end
    if(s_awvalid && s_awready) begin ah<=1;wa<=s_awaddr;end
    if(s_wvalid && s_wready) begin wh<=1;wd<=s_wdata;ws<=s_wstrb;end
    if(waiting && command_result) begin
@@ -117,6 +121,10 @@ module rs485_telem_regs(
     endcase
     if(err!=0 && response==0) response=2;
     s_rdata<=v;s_rresp<=response;s_rvalid<=1;if(err!=0) access_error<=err;
+    if(s_araddr[32:12]==BASE[32:12] && s_araddr[1:0]==0 &&
+       s_araddr[11:0]>=`RT_ROW_BASE && s_araddr[11:0]<`RT_ROW_BASE+`RT_ROWS*`RT_ROW_STRIDE && snap_valid) begin
+     cache_pending<=1;s_rvalid<=0;
+    end
    end
    pending<=(pending & ~clear)|{27'd0,events}|(full_drop!=old_drop?`RT_IRQ_FIFO_DROP:0)|(parse_errors!=old_parse?`RT_IRQ_PARSE_ERROR:0);
   end

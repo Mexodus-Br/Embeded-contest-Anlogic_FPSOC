@@ -20,6 +20,7 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3)(
  localparam [32:0] BASE={1'b0,`RG_BASE};
  localparam integer PTR_BITS=(FIFO_DEPTH<=2)?1:$clog2(FIFO_DEPTH);
  reg ah,wh;reg [32:0] wa;reg [31:0] wd;reg [3:0] ws;
+ reg aw_snapshot;
  reg [1:0] reset_count;
  reg [31:0] generation,irq_pending,irq_mask,access_error;
  reg [159:0] shadow_period;reg [4:0] shadow_mask;reg [31:0] shadow_id;
@@ -35,6 +36,10 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3)(
  reg r_record;reg [2:0] r_word;reg [31:0] r_cap_id,r_generation;
  wire write_fire=ah && wh && !s_bvalid;
  wire write_window=wa[32:12]==BASE[32:12];
+ // Address-only decode occurs at the existing AW registration edge. Payload,
+ // ID, reset and write-strobe checks still use the original commit-time state.
+ wire snapshot_fire=write_fire && aw_snapshot && ws==4'hf && wd==1 &&
+   reset_count==0 && snap_req!=0 && snap_req>snap_watermark;
  // Base is aligned; compare full A33 window, never truncate incoming address.
  wire pop=write_fire && write_window && wa[1:0]==0 && ws==4'hf &&
    wa[11:0]==`RG_REG_CONSUME_ID && cap_valid && wd==cap_id && read_bitmap==8'hff && reset_count==0;
@@ -65,7 +70,7 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3)(
  integer i,j,index;
  always @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
-   ah<=0;wh<=0;wa<=0;wd<=0;ws<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
+   ah<=0;wh<=0;wa<=0;wd<=0;ws<=0;aw_snapshot<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
    run<=0;reset_count<=0;generation<=0;irq_pending<=0;irq_mask<=0;access_error<=0;
    shadow_period<=0;shadow_mask<=0;shadow_id<=0;cfg_period_us<=0;cfg_mask<=0;cfg_valid<=0;
    result_state<=0;result_id<=0;result_error<=0;result_revision<=0;result_sequence<=0;result_time<=0;result_generation<=0;
@@ -81,7 +86,9 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3)(
     if(r_record && cap_valid && r_cap_id==cap_id && r_generation==generation)
       read_bitmap<=read_bitmap | (8'b1<<r_word);
    end
-   if(s_awvalid && s_awready) begin ah<=1;wa<=s_awaddr;end
+   if(s_awvalid && s_awready) begin ah<=1;wa<=s_awaddr;
+    aw_snapshot<=s_awaddr[32:12]==BASE[32:12] && s_awaddr[1:0]==0 && s_awaddr[11:0]==`RG_REG_SNAP_SUBMIT;
+   end
    if(s_wvalid && s_wready) begin wh<=1;wd<=s_wdata;ws<=s_wstrb;end
    if(cfg_valid && cfg_ready) cfg_valid<=0;
    if(cfg_applied || cfg_rejected) begin
@@ -231,7 +238,7 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3)(
     s_rdata<=value;s_rresp<=response;s_rvalid<=1;
     if(errcode!=0) access_error<=errcode;
    end
-   if(snap_action) begin
+   if(snapshot_fire) begin
     for(i=0;i<`RG_SNAPSHOT_WORDS;i=i+1) snapshot[i]<=0;
     snapshot[`RG_SNAP_TIME_LO]<=time_us[31:0];snapshot[`RG_SNAP_TIME_HI]<=time_us[63:32];
     snapshot[`RG_SNAP_GENERATION]<=generation;snapshot[`RG_SNAP_REVISION]<=cfg_revision;

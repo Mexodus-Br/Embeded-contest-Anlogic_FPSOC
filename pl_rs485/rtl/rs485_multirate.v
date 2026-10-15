@@ -44,6 +44,10 @@ module rs485_multirate #(
  reg found,selected_probe,inflight_probe;
  reg [63:0] best_due,scan_now,dispatch_time;
  reg [31:0] dispatch_period,next_sequence;
+ // Read selected statistics during the existing 64-cycle divider window.
+ // Neither counter changes in ADVANCE_WAIT before its original commit edge.
+ reg [31:0] missed_operand,scheduled_operand;
+ reg operands_ready;
  reg [63:0] numerator;
  reg [31:0] denominator;
  wire div_busy,div_done;
@@ -66,8 +70,8 @@ module rs485_multirate #(
  function older;input [63:0] a,b;reg [63:0] diff;
   begin diff=a-b;older=diff[63];end
  endfunction
- function [31:0] sat_add;input [31:0] a;input [63:0] b;reg [64:0] total;
-  begin total={33'd0,a}+{1'b0,b};sat_add=(total>65'hffffffff)?32'hffffffff:total[31:0];end
+ function [31:0] sat_add;input [31:0] a;input [63:0] b;reg [32:0] total;
+  begin total={1'b0,a}+{1'b0,b[31:0]};sat_add=((|b[63:32]) || total[32])?32'hffffffff:total[31:0];end
  endfunction
  function [31:0] service_cost;input [2:0] q;reg [63:0] c,gap;
   begin c=query_wire_us(q)+RESPONSE_BUDGET_US;
@@ -121,6 +125,7 @@ module rs485_multirate #(
    cursor<=0;scan_index<=0;scanned<=0;selected<=0;inflight<=0;scan_node<=0;selected_node<=0;inflight_node<=0;
    scan_q<=0;selected_q<=0;found<=0;selected_probe<=0;inflight_probe<=0;best_due<=0;scan_now<=0;
    dispatch_time<=0;dispatch_period<=0;next_sequence<=0;numerator<=0;denominator<=1;bus_busy_events<=0;
+   missed_operand<=0;scheduled_operand<=0;operands_ready<=0;
    for(i=0;i<TASKS;i=i+1) begin next_due[i]<=0;scheduled[i]<=0;sent[i]<=0;valid_count[i]<=0;missed[i]<=0;max_late[i]<=0;end
    for(i=0;i<SLAVE_COUNT;i=i+1) begin offline[i]<=0;failures[i]<=0;cooldown[i]<=0;backoffs[i]<=0;end
   end else begin
@@ -165,6 +170,7 @@ module rs485_multirate #(
      if(pending || !found || !enable || (cfg_valid && cfg_ready)) state<=IDLE;
      else if(engine_ready) begin
       inflight<=selected;inflight_node<=selected_node;inflight_probe<=selected_probe;
+      operands_ready<=0;
       next_sequence<=next_sequence+1'b1;cursor<=(selected==TASKS-1)?0:selected+1'b1;
       sent[selected]<=sat_add(sent[selected],1);
       dispatch_time<=time_us;dispatch_period<=active_period_us[selected_q*32 +:32];
@@ -176,11 +182,16 @@ module rs485_multirate #(
       end
      end
     end
-    ADVANCE_WAIT: if(div_done) begin
+    ADVANCE_WAIT: begin
+     if(!operands_ready) begin
+      missed_operand<=missed[inflight];scheduled_operand<=scheduled[inflight];operands_ready<=1;
+     end
+     if(div_done) begin
      // Modulo arithmetic preserves ideal phase across 64-bit time wrap.
      next_due[inflight]<=dispatch_time-remainder+dispatch_period;
-     missed[inflight]<=sat_add(missed[inflight],quotient);
-     scheduled[inflight]<=sat_add(scheduled[inflight],quotient+1'b1);state<=IDLE;
+     missed[inflight]<=sat_add(missed_operand,quotient);
+     scheduled[inflight]<=sat_add(scheduled_operand,quotient+1'b1);state<=IDLE;
+     end
     end
     CFG_CHECK: begin
      if(cfg_period!=0 && (cfg_period<MIN_PERIOD_US || cfg_period>MAX_PERIOD_US)) begin

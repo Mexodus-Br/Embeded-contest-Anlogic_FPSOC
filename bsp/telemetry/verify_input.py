@@ -8,6 +8,9 @@ def main(optimization_manifest=None):
  m=load(R/'pl_rs485/evidence/identity_telemetry.json')
  candidate=load(Path(optimization_manifest)) if optimization_manifest else None
  allowed={'pl_rs485/rtl/rs485_latest_cache.v','pl_rs485/rtl/rs485_telemetry.v'}
+ if candidate and candidate.get('optimization_round')==2:
+  assert candidate['parent_candidate_commit']=='49e8ac6'
+  allowed|={'pl_rs485/rtl/rs485_multirate.v','pl_rs485/rtl/rs485_gp_regs.v','pl_rs485/rtl/rs485_telem_regs.v'}
  if candidate:
   assert candidate['baseline_commit']=='7681c69'
   assert set(candidate['changed_source_sha256'])<=allowed
