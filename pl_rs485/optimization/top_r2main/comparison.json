@@ -1,0 +1,595 @@
+{
+  "baseline_commit": "7681c69",
+  "actual_top": "system_wrapper",
+  "before": {
+    "lut6": {
+      "used": 32720,
+      "total": 52480,
+      "percent": 62.3476,
+      "remaining": 19760
+    },
+    "slice": {
+      "used": 44346,
+      "total": 52480,
+      "percent": 84.5008,
+      "remaining": 8134
+    },
+    "reg": {
+      "used": 48872,
+      "total": 104960,
+      "percent": 46.5625,
+      "remaining": 56088
+    },
+    "eram": {
+      "used": 34,
+      "total": 280,
+      "percent": 12.1429,
+      "remaining": 246
+    },
+    "dsp": {
+      "used": 15,
+      "total": 240,
+      "percent": 6.25,
+      "remaining": 225
+    },
+    "gclk": {
+      "used": 1,
+      "total": 32,
+      "percent": 3.125,
+      "remaining": 31
+    },
+    "sclk": {
+      "used": 6,
+      "total": 72,
+      "percent": 8.3333,
+      "remaining": 66
+    },
+    "pad": {
+      "used": 13,
+      "total": 126,
+      "percent": 10.3175,
+      "remaining": 113
+    }
+  },
+  "after": {
+    "lut6": {
+      "used": 26090,
+      "total": 52480,
+      "percent": 49.7142,
+      "remaining": 26390
+    },
+    "slice": {
+      "used": 33222,
+      "total": 52480,
+      "percent": 63.3041,
+      "remaining": 19258
+    },
+    "reg": {
+      "used": 34381,
+      "total": 104960,
+      "percent": 32.7563,
+      "remaining": 70579
+    },
+    "eram": {
+      "used": 58,
+      "total": 280,
+      "percent": 20.7143,
+      "remaining": 222
+    },
+    "dsp": {
+      "used": 6,
+      "total": 240,
+      "percent": 2.5,
+      "remaining": 234
+    },
+    "gclk": {
+      "used": 1,
+      "total": 32,
+      "percent": 3.125,
+      "remaining": 31
+    },
+    "sclk": {
+      "used": 6,
+      "total": 72,
+      "percent": 8.3333,
+      "remaining": 66
+    },
+    "pad": {
+      "used": 13,
+      "total": 126,
+      "percent": 10.3175,
+      "remaining": 113
+    }
+  },
+  "delta_after_minus_before": {
+    "lut6": -6630,
+    "slice": -11124,
+    "reg": -14491,
+    "eram": 24,
+    "dsp": -9,
+    "gclk": 0,
+    "sclk": 0,
+    "pad": 0
+  },
+  "slice_saved": 11124,
+  "slice_percentage_points_saved": 21.1966,
+  "before_stages": {
+    "gate": {
+      "setup_wns_ns": -1.739,
+      "hold_wns_ns": 0.0,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    },
+    "place": {
+      "setup_wns_ns": 2.152,
+      "hold_wns_ns": 0.0,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    },
+    "route": {
+      "setup_wns_ns": 0.104,
+      "hold_wns_ns": 0.021,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    }
+  },
+  "after_stages": {
+    "gate": {
+      "setup_wns_ns": -1.772,
+      "hold_wns_ns": 0.0,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    },
+    "place": {
+      "setup_wns_ns": 2.868,
+      "hold_wns_ns": 0.0,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    },
+    "route": {
+      "setup_wns_ns": 0.305,
+      "hold_wns_ns": 0.02,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    }
+  },
+  "constraints_unchanged": true,
+  "wrapper_unchanged": true,
+  "timing_pass": true,
+  "signoff_pass": false,
+  "candidate": {
+    "baseline_commit": "7681c69",
+    "optimization_round": 2,
+    "parent_candidate_commit": "49e8ac6",
+    "tag": "r2main",
+    "mode": "optimized",
+    "changed_source_sha256": {
+      "pl_rs485/rtl/rs485_latest_cache.v": "f0598a8b18f1ea300a6db4a1822483217611ca068cc02019e9007e4b47383cac",
+      "pl_rs485/rtl/rs485_telemetry.v": "67fb033375d8db76bcfde8881708ca3ece63374385e089fd20a314513995dfb8",
+      "pl_rs485/rtl/rs485_multirate.v": "b1bd92bed5b7c92633ea1e298c699b6e5880b033c6c4eada5b6732d0a59191d7",
+      "pl_rs485/rtl/rs485_gp_regs.v": "9519400c2a8d60e51a3f828efadf158efd2d4fa4afb344c44dd8b88238840913",
+      "pl_rs485/rtl/rs485_telem_regs.v": "76ca679e717f740b7d2894c1ba3f73f7981be6cf4e2ab67323c8fb2b6aa35363"
+    }
+  },
+  "hierarchy": [
+    {
+      "stage": "gate",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "dma_core",
+        "Module": "motion_dma_lite_top",
+        "logic lut": "6273",
+        "ripple": "4691",
+        "seq": "10569",
+        "eram": "16",
+        "dsp": "4",
+        "dram": "108",
+        "shifter": "0",
+        "f7mux": "50",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "gate",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "motion",
+        "Module": "motion_service",
+        "logic lut": "5250",
+        "ripple": "4462",
+        "seq": "8452",
+        "eram": "0",
+        "dsp": "4",
+        "dram": "108",
+        "shifter": "0",
+        "f7mux": "40",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "gate",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "registers",
+        "Module": "rs485_probe_time_regs",
+        "logic lut": "412",
+        "ripple": "34",
+        "seq": "552",
+        "eram": "0",
+        "dsp": "0",
+        "dram": "0",
+        "shifter": "0",
+        "f7mux": "0",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "gate",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "router",
+        "Module": "axi_lite_six_way",
+        "logic lut": "49",
+        "ripple": "0",
+        "seq": "113",
+        "eram": "0",
+        "dsp": "0",
+        "dram": "0",
+        "shifter": "0",
+        "f7mux": "0",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "gate",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "rs485",
+        "Module": "rs485_gp_bridge",
+        "logic lut": "5412",
+        "ripple": "1524",
+        "seq": "10210",
+        "eram": "6",
+        "dsp": "1",
+        "dram": "2",
+        "shifter": "0",
+        "f7mux": "0",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "gate",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "cache",
+        "Module": "rs485_latest_cache",
+        "logic lut": "1494",
+        "ripple": "367",
+        "seq": "5677",
+        "eram": "12",
+        "dsp": "1",
+        "dram": "0",
+        "shifter": "0",
+        "f7mux": "24",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "gate",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "transport",
+        "Module": "rs485_telemetry",
+        "logic lut": "1099",
+        "ripple": "728",
+        "seq": "1641",
+        "eram": "12",
+        "dsp": "0",
+        "dram": "0",
+        "shifter": "0",
+        "f7mux": "7",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "gate",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "telemetry_dma",
+        "Module": "telemetry_dma_lite_top",
+        "logic lut": "990",
+        "ripple": "154",
+        "seq": "1685",
+        "eram": "12",
+        "dsp": "0",
+        "dram": "0",
+        "shifter": "0",
+        "f7mux": "10",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "route",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "dma_core",
+        "Module": "motion_dma_lite_top",
+        "logic lut": "7094",
+        "ripple": "3826",
+        "seq": "10810",
+        "eram": "16",
+        "dsp": "4",
+        "dram lut": "864",
+        "shifter lut": "0",
+        "f7mux": "50",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "route",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "motion",
+        "Module": "motion_service",
+        "logic lut": "6018",
+        "ripple": "3627",
+        "seq": "8651",
+        "eram": "0",
+        "dsp": "4",
+        "dram lut": "864",
+        "shifter lut": "0",
+        "f7mux": "40",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "route",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "registers",
+        "Module": "rs485_probe_time_regs",
+        "logic lut": "428",
+        "ripple": "0",
+        "seq": "567",
+        "eram": "0",
+        "dsp": "0",
+        "dram lut": "0",
+        "shifter lut": "0",
+        "f7mux": "0",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "route",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "router",
+        "Module": "axi_lite_six_way",
+        "logic lut": "136",
+        "ripple": "0",
+        "seq": "388",
+        "eram": "0",
+        "dsp": "0",
+        "dram lut": "0",
+        "shifter lut": "0",
+        "f7mux": "0",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "route",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "rs485",
+        "Module": "rs485_gp_bridge",
+        "logic lut": "5578",
+        "ripple": "1157",
+        "seq": "10386",
+        "eram": "6",
+        "dsp": "1",
+        "dram lut": "16",
+        "shifter lut": "0",
+        "f7mux": "0",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "route",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "cache",
+        "Module": "rs485_latest_cache",
+        "logic lut": "1926",
+        "ripple": "289",
+        "seq": "5578",
+        "eram": "12",
+        "dsp": "1",
+        "dram lut": "0",
+        "shifter lut": "0",
+        "f7mux": "24",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "route",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "transport",
+        "Module": "rs485_telemetry",
+        "logic lut": "1086",
+        "ripple": "573",
+        "seq": "1704",
+        "eram": "12",
+        "dsp": "0",
+        "dram lut": "0",
+        "shifter lut": "0",
+        "f7mux": "7",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    },
+    {
+      "stage": "route",
+      "inclusive_child_resources_not_additive": {
+        "Instance": "telemetry_dma",
+        "Module": "telemetry_dma_lite_top",
+        "logic lut": "1086",
+        "ripple": "135",
+        "seq": "1719",
+        "eram": "12",
+        "dsp": "0",
+        "dram lut": "0",
+        "shifter lut": "0",
+        "f7mux": "10",
+        "f8mux": "0",
+        "pll": "0",
+        "adc": "0",
+        "soc": "0"
+      }
+    }
+  ],
+  "congestion_before": [
+    "RUN-1001 : Exported congestions",
+    "PHY-1001 : Updating congestion by RUDY ...",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 114.27 (V 73.79, H 115.75, I 124.11, O 129.24)",
+    "PHY-1001 : End update congestion by RUDY;  4.748222s wall, 4.937500s user + 0.109375s system = 5.046875s CPU (106.3%)",
+    "PHY-1001 : Updating congestion by RUDY ...",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 112.90 (V 73.23, H 104.99, I 110.98, O 95.73)",
+    "PHY-1001 : End update congestion by RUDY;  0.673342s wall, 1.671875s user + 0.031250s system = 1.703125s CPU (252.9%)",
+    "OPT-1001 : Total overflow 736.84 peak overflow 2.72",
+    "OPT-1001 : Total overflow 736.84 peak overflow 2.72",
+    "OPT-1001 : Total overflow 743.94 peak overflow 2.72",
+    "PHY-1001 : Updating congestion by RUDY ...",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 114.27 (V 73.79, H 115.75, I 124.11, O 129.24)",
+    "PHY-1001 : End update congestion by RUDY;  2.309649s wall, 2.843750s user + 0.093750s system = 2.937500s CPU (127.2%)",
+    "PHY-1001 : Updating congestion by RUDY ...",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 112.90 (V 73.23, H 104.99, I 110.98, O 95.73)",
+    "PHY-1001 : End update congestion by RUDY;  0.265288s wall, 1.000000s user + 0.000000s system = 1.000000s CPU (376.9%)",
+    "OPT-1001 : Total overflow 736.84 peak overflow 2.72",
+    "OPT-1001 : Total overflow 736.84 peak overflow 2.72",
+    "OPT-1001 : Total overflow 743.94 peak overflow 2.72",
+    "OPT-1001 : Total overflow 628.44 peak overflow 2.41",
+    "PHY-3001 : Iter 1, total overflow: 0",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 98.95 (S 68.03, N 73.29, E 96.53, W 95.12, I 64.66, O 84.65)",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "OPT-1001 : Start congestion update ...",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 99.98 (S 70.87, N 74.89, E 96.49, W 97.34, I 64.68, O 82.78)",
+    "OPT-1001 : End congestion update;  27.333112s wall, 43.656250s user + 0.937500s system = 44.593750s CPU (163.1%)",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 99.95 (S 71.33, N 75.14, E 98.01, W 97.60, I 65.74, O 85.52)",
+    "RUN-1001 :   Local congestion issue exists, and most congested 1% tile average routing util is 97.398649",
+    "OPT-1002 :   please consider adjusting placer strategy to avoid the congestion issue",
+    "PHY-3001 : Iter 1, total overflow: 0",
+    "| Congestion                |                             |",
+    "  QOR-4001  |  HIGH      |  - Design congestion is high, which may difficult to routing.  |  - Please adjust placement strategy to reduce high congestion:",
+    "            |            |                                                                |    Launch multi-seed runs to get better congestion.",
+    "            |            |    Top congestion region(s):                                   |  ",
+    "RUN-1001 : Exported congestions",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 99.49 (S 69.52, N 73.42, E 96.62, W 97.04, I 65.74, O 85.52)",
+    "PHY-1001 :   Iter. 1: runtime[  30.1s]; rr_path[ 225526]; Path[overflow =  177375, finished =   48151].",
+    "PHY-1001 :   Iter. 2: runtime[ 299.9s]; rr_path[ 161512]; Path[overflow =  143228, finished =   82298].",
+    "PHY-1001 :   Iter. 3: runtime[ 359.2s]; rr_path[ 132183]; Path[overflow =  109312, finished =  116214].",
+    "PHY-1001 :   Iter. 4: runtime[ 400.5s]; rr_path[  99943]; Path[overflow =   76587, finished =  148939].",
+    "PHY-1001 :   Iter. 5: runtime[ 446.8s]; rr_path[  69799]; Path[overflow =   43721, finished =  181805].",
+    "PHY-1001 :   Iter. 6: runtime[ 552.4s]; rr_path[  43373]; Path[overflow =   25471, finished =  200055].",
+    "PHY-1001 :   Iter. 7: runtime[ 573.3s]; rr_path[  23439]; Path[overflow =    9880, finished =  215646].",
+    "PHY-1001 :   Iter. 8: runtime[ 583.9s]; rr_path[  14734]; Path[overflow =    3912, finished =  221614].",
+    "PHY-1001 :   Iter. 9: runtime[ 598.2s]; rr_path[  10513]; Path[overflow =    1294, finished =  224232].",
+    "PHY-1001 :   Iter.10: runtime[ 639.3s]; rr_path[   7673]; Path[overflow =     588, finished =  224938].",
+    "PHY-1001 :   Iter.11: runtime[ 649.2s]; rr_path[   6731]; Path[overflow =     108, finished =  225418].",
+    "PHY-1001 :   Iter.12: runtime[ 658.4s]; rr_path[   6473]; Path[overflow =       4, finished =  225522].",
+    "PHY-1001 :   Iter.13: runtime[ 686.8s]; rr_path[   5065]; Path[overflow =       2, finished =  225524].",
+    "PHY-1001 :   Iter.14: runtime[ 694.1s]; rr_path[   5062]; Path[overflow =       0, finished =  225526].",
+    "PHY-1001 :   Iter.15: runtime[ 784.4s]; rr_path[   3955]; Path[overflow =       0, finished =  225526].",
+    "PHY-1001 :   Iter.16: runtime[ 834.0s]; rr_path[   3344]; Path[overflow =       0, finished =  225526].",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "RUN-1001 : Exported congestions"
+  ],
+  "congestion_after": [
+    "RUN-1001 : Exported congestions",
+    "PHY-1001 : Updating congestion by RUDY ...",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 112.99 (V 69.10, H 105.83, I 109.78, O 135.07)",
+    "PHY-1001 : End update congestion by RUDY;  1.133377s wall, 1.421875s user + 0.015625s system = 1.437500s CPU (126.8%)",
+    "PHY-1001 : Updating congestion by RUDY ...",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 110.08 (V 62.90, H 105.87, I 80.79, O 95.24)",
+    "PHY-1001 : End update congestion by RUDY;  0.185765s wall, 0.531250s user + 0.000000s system = 0.531250s CPU (286.0%)",
+    "OPT-1001 : Total overflow 512.75 peak overflow 2.34",
+    "OPT-1001 : Total overflow 512.75 peak overflow 2.34",
+    "OPT-1001 : Total overflow 521.62 peak overflow 2.44",
+    "OPT-1001 : Total overflow 394.34 peak overflow 1.88",
+    "PHY-3001 : Iter 1, total overflow: 0",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 92.68 (S 63.34, N 66.73, E 78.66, W 91.52, I 62.62, O 84.93)",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "OPT-1001 : Start congestion update ...",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 87.82 (S 64.79, N 67.34, E 76.04, W 86.68, I 62.49, O 82.60)",
+    "OPT-1001 : End congestion update;  5.180849s wall, 9.609375s user + 0.062500s system = 9.671875s CPU (186.7%)",
+    "OPT-1001 : Total overflow 0.00 peak overflow 0.00",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 87.97 (S 63.77, N 67.37, E 76.40, W 86.59, I 63.65, O 85.14)",
+    "RUN-1001 :   No local congestion issue, and most congested 1% tile average routing util is 83.594595",
+    "PHY-3001 : Iter 1, total overflow: 0",
+    "| Congestion                |                             |",
+    "RUN-1001 : Exported congestions",
+    "PHY-1001 : Congestion index:",
+    "PHY-1001 : top1  = 86.50 (S 63.57, N 67.29, E 75.99, W 84.88, I 63.65, O 85.10)",
+    "PHY-1001 :   Iter. 1: runtime[   4.8s]; rr_path[ 165985]; Path[overflow =  121362, finished =   44623].",
+    "PHY-1001 :   Iter. 2: runtime[  54.0s]; rr_path[ 105177]; Path[overflow =   87400, finished =   78585].",
+    "PHY-1001 :   Iter. 3: runtime[  60.1s]; rr_path[  74184]; Path[overflow =   56108, finished =  109877].",
+    "PHY-1001 :   Iter. 4: runtime[  64.9s]; rr_path[  46549]; Path[overflow =   30773, finished =  135212].",
+    "PHY-1001 :   Iter. 5: runtime[  80.5s]; rr_path[  23930]; Path[overflow =   11951, finished =  154034].",
+    "PHY-1001 :   Iter. 6: runtime[  82.5s]; rr_path[   8888]; Path[overflow =    3541, finished =  162444].",
+    "PHY-1001 :   Iter. 7: runtime[  83.7s]; rr_path[   3334]; Path[overflow =     594, finished =  165391].",
+    "PHY-1001 :   Iter. 8: runtime[  85.4s]; rr_path[   1400]; Path[overflow =      50, finished =  165935].",
+    "PHY-1001 :   Iter. 9: runtime[  86.8s]; rr_path[   1020]; Path[overflow =      16, finished =  165969].",
+    "PHY-1001 :   Iter.10: runtime[ 102.1s]; rr_path[    807]; Path[overflow =       0, finished =  165985].",
+    "PHY-1001 :   Iter.11: runtime[ 133.4s]; rr_path[    597]; Path[overflow =       0, finished =  165985].",
+    "RUN-1001 : Exported congestions"
+  ]
+}

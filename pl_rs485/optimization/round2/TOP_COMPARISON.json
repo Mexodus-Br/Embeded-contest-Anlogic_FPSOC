@@ -1,0 +1,2085 @@
+{
+  "tag": "r2main",
+  "user_acceptance": "CANDIDATE_PENDING_REVIEW",
+  "baseline_7681c69": {
+    "lut6": {
+      "used": 32720,
+      "total": 52480,
+      "percent": 62.3476,
+      "remaining": 19760
+    },
+    "slice": {
+      "used": 44346,
+      "total": 52480,
+      "percent": 84.5008,
+      "remaining": 8134
+    },
+    "reg": {
+      "used": 48872,
+      "total": 104960,
+      "percent": 46.5625,
+      "remaining": 56088
+    },
+    "eram": {
+      "used": 34,
+      "total": 280,
+      "percent": 12.1429,
+      "remaining": 246
+    },
+    "dsp": {
+      "used": 15,
+      "total": 240,
+      "percent": 6.25,
+      "remaining": 225
+    },
+    "gclk": {
+      "used": 1,
+      "total": 32,
+      "percent": 3.125,
+      "remaining": 31
+    },
+    "sclk": {
+      "used": 6,
+      "total": 72,
+      "percent": 8.3333,
+      "remaining": 66
+    },
+    "pad": {
+      "used": 13,
+      "total": 126,
+      "percent": 10.3175,
+      "remaining": 113
+    }
+  },
+  "parent_49e8ac6": {
+    "lut6": {
+      "used": 28644,
+      "total": 52480,
+      "percent": 54.5808,
+      "remaining": 23836
+    },
+    "slice": {
+      "used": 41049,
+      "total": 52480,
+      "percent": 78.2184,
+      "remaining": 11431
+    },
+    "reg": {
+      "used": 47328,
+      "total": 104960,
+      "percent": 45.0915,
+      "remaining": 57632
+    },
+    "eram": {
+      "used": 46,
+      "total": 280,
+      "percent": 16.4286,
+      "remaining": 234
+    },
+    "dsp": {
+      "used": 5,
+      "total": 240,
+      "percent": 2.0833,
+      "remaining": 235
+    },
+    "gclk": {
+      "used": 1,
+      "total": 32,
+      "percent": 3.125,
+      "remaining": 31
+    },
+    "sclk": {
+      "used": 6,
+      "total": 72,
+      "percent": 8.3333,
+      "remaining": 66
+    },
+    "pad": {
+      "used": 13,
+      "total": 126,
+      "percent": 10.3175,
+      "remaining": 113
+    }
+  },
+  "round2": {
+    "lut6": {
+      "used": 26090,
+      "total": 52480,
+      "percent": 49.7142,
+      "remaining": 26390
+    },
+    "slice": {
+      "used": 33222,
+      "total": 52480,
+      "percent": 63.3041,
+      "remaining": 19258
+    },
+    "reg": {
+      "used": 34381,
+      "total": 104960,
+      "percent": 32.7563,
+      "remaining": 70579
+    },
+    "eram": {
+      "used": 58,
+      "total": 280,
+      "percent": 20.7143,
+      "remaining": 222
+    },
+    "dsp": {
+      "used": 6,
+      "total": 240,
+      "percent": 2.5,
+      "remaining": 234
+    },
+    "gclk": {
+      "used": 1,
+      "total": 32,
+      "percent": 3.125,
+      "remaining": 31
+    },
+    "sclk": {
+      "used": 6,
+      "total": 72,
+      "percent": 8.3333,
+      "remaining": 66
+    },
+    "pad": {
+      "used": 13,
+      "total": 126,
+      "percent": 10.3175,
+      "remaining": 113
+    }
+  },
+  "delta_vs_parent": {
+    "lut6": -2554,
+    "slice": -7827,
+    "reg": -12947,
+    "eram": 12,
+    "dsp": 1,
+    "gclk": 0,
+    "sclk": 0,
+    "pad": 0
+  },
+  "delta_vs_baseline": {
+    "lut6": -6630,
+    "slice": -11124,
+    "reg": -14491,
+    "eram": 24,
+    "dsp": -9,
+    "gclk": 0,
+    "sclk": 0,
+    "pad": 0
+  },
+  "stages": {
+    "gate": {
+      "setup_wns_ns": -1.772,
+      "hold_wns_ns": 0.0,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    },
+    "place": {
+      "setup_wns_ns": 2.868,
+      "hold_wns_ns": 0.0,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    },
+    "route": {
+      "setup_wns_ns": 0.305,
+      "hold_wns_ns": 0.02,
+      "coverage": "99.99%",
+      "corners": "Both (Slow and Fast)"
+    }
+  },
+  "timing_pass": true,
+  "signoff_pass": false,
+  "parent_setup_hold_ns": [
+    0.08,
+    0.022
+  ],
+  "check_timing": {
+    "no clock": [
+      0
+    ],
+    "clock definition": [
+      0
+    ],
+    "dummy node": [
+      2
+    ],
+    "no input delay": [
+      1
+    ],
+    "no output delay": [
+      2
+    ],
+    "invalid constraint": [
+      0
+    ],
+    "combinational loop": [
+      0
+    ]
+  },
+  "critical_warnings": [
+    "SYN-5066 CRITICAL-WARNING: Disconnect the driver 'control/core/fabric/telemetry_dma/dma/vyjqtk/rucwti_i1' of the multi-driven net 'control/core/fabric/telemetry_dma/dma/vyjqtk/rucwti'"
+  ],
+  "reported_paths": [
+    {
+      "Slack": "0.497ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/kernel/executor/disabling_reg[3]_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_en_syn_4.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "9.237ns (cell 1.501ns (16%), net 7.736ns (84%))",
+      "Logic Level": "7 ( LUT5=2  LUT2=2  LUT6=1  LUT4=1  LUT3=1 )",
+      "Max Fanout": "31"
+    },
+    {
+      "Slack": "0.828ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/rebase_shadow_reg[246]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_en_syn_4.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.905ns (cell 1.413ns (15%), net 7.492ns (85%))",
+      "Logic Level": "7 ( LUT2=3  LUT3=2  LUT5=1  LUT4=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "0.879ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/kernel/executor/disabling_reg[0]_syn_7.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_en_syn_4.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.854ns (cell 1.358ns (15%), net 7.496ns (85%))",
+      "Logic Level": "7 ( LUT5=2  LUT2=2  LUT6=1  LUT4=1  LUT3=1 )",
+      "Max Fanout": "31"
+    },
+    {
+      "Slack": "0.889ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/kernel/raw_fifo/count_reg[3]_syn_9.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_en_syn_4.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.843ns (cell 1.332ns (15%), net 7.511ns (85%))",
+      "Logic Level": "6 ( LUT3=2  LUT2=2  LUT5=1  LUT4=1 )",
+      "Max Fanout": "7"
+    },
+    {
+      "Slack": "0.977ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/kernel/raw_fifo/count_reg[1]_syn_7.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_en_syn_4.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.756ns (cell 1.360ns (15%), net 7.396ns (85%))",
+      "Logic Level": "7 ( LUT2=3  LUT3=2  LUT5=1  LUT4=1 )",
+      "Max Fanout": "7"
+    },
+    {
+      "Slack": "0.507ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/receiver/record_data_reg[406]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/kernel/planning_base_reg[208]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "9.273ns (cell 2.173ns (23%), net 7.100ns (77%))",
+      "Logic Level": "10 ( LUT6=7  LUT5=2  LUT4=1 )",
+      "Max Fanout": "41"
+    },
+    {
+      "Slack": "0.589ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/receiver/record_data_reg[394]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/kernel/planning_base_reg[208]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "9.191ns (cell 2.013ns (21%), net 7.178ns (79%))",
+      "Logic Level": "9 ( LUT6=7  LUT5=1  LUT4=1 )",
+      "Max Fanout": "41"
+    },
+    {
+      "Slack": "0.606ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/receiver/record_data_reg[220]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/kernel/planning_base_reg[208]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "9.173ns (cell 2.067ns (22%), net 7.106ns (78%))",
+      "Logic Level": "10 ( LUT6=6  LUT5=3  LUT4=1 )",
+      "Max Fanout": "41"
+    },
+    {
+      "Slack": "0.608ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/kernel/session_id_reg[40]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/kernel/planning_base_reg[208]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "9.169ns (cell 2.121ns (23%), net 7.048ns (77%))",
+      "Logic Level": "9 ( LUT6=4  LUT5=2  LUT4=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "43"
+    },
+    {
+      "Slack": "0.634ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/receiver/record_data_reg[201]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/kernel/planning_base_reg[208]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "9.146ns (cell 2.049ns (22%), net 7.097ns (78%))",
+      "Logic Level": "10 ( LUT6=6  LUT5=3  LUT4=1 )",
+      "Max Fanout": "41"
+    },
+    {
+      "Slack": "0.020ns",
+      "Begin Point": "control/core/fabric/dma_core/motion/wd_reg[21]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/txn_reg[21]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.334ns (cell 0.158ns (47%), net 0.176ns (53%))",
+      "Logic Level": "0",
+      "Max Fanout": "18"
+    },
+    {
+      "Slack": "0.020ns",
+      "Begin Point": "control/core/fabric/dma_core/reset_release_reg[1]_syn_7.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/opcode_reg[9]_syn_2.asr (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "removal",
+      "Process": "fast",
+      "Data Path Delay": "0.235ns (cell 0.090ns (38%), net 0.145ns (62%))",
+      "Logic Level": "0",
+      "Max Fanout": "1243"
+    },
+    {
+      "Slack": "0.020ns",
+      "Begin Point": "control/core/fabric/dma_core/reset_release_reg[1]_syn_7.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/opcode_reg[6]_syn_2.asr (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "removal",
+      "Process": "fast",
+      "Data Path Delay": "0.235ns (cell 0.090ns (38%), net 0.145ns (62%))",
+      "Logic Level": "0",
+      "Max Fanout": "1243"
+    },
+    {
+      "Slack": "0.020ns",
+      "Begin Point": "control/core/fabric/dma_core/reset_release_reg[1]_syn_7.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/motion/opcode_reg[0]_syn_2.asr (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "removal",
+      "Process": "fast",
+      "Data Path Delay": "0.235ns (cell 0.090ns (38%), net 0.145ns (62%))",
+      "Logic Level": "0",
+      "Max Fanout": "1243"
+    },
+    {
+      "Slack": "0.020ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/hnyuow_reg[14]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/tupcbj_reg[14]_syn_2.ie (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.318ns (cell 0.179ns (56%), net 0.139ns (44%))",
+      "Logic Level": "1 ( LUT3=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.395ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/pmdkrg_reg[1]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/tupcbj_reg[14]_syn_2.ia (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.696ns (cell 0.249ns (35%), net 0.447ns (65%))",
+      "Logic Level": "1 ( LUT3=1 )",
+      "Max Fanout": "21"
+    },
+    {
+      "Slack": "0.582ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/bduulj_reg[12]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/tupcbj_reg[14]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.880ns (cell 0.402ns (45%), net 0.478ns (55%))",
+      "Logic Level": "3 ( ADDER=2  LUT3=1 )",
+      "Max Fanout": "2"
+    },
+    {
+      "Slack": "1.301ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ramread0_syn_13.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/tupcbj_reg[14]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.551ns (cell 0.950ns (61%), net 0.601ns (39%))",
+      "Logic Level": "3 ( ADDER=2  LUT3=1 )",
+      "Max Fanout": "3"
+    },
+    {
+      "Slack": "1.421ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ramread0_syn_13.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/yiwjax$edahir/tupcbj_reg[14]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.671ns (cell 0.975ns (58%), net 0.696ns (42%))",
+      "Logic Level": "3 ( ADDER=2  LUT3=1 )",
+      "Max Fanout": "2"
+    },
+    {
+      "Slack": "0.023ns",
+      "Begin Point": "control/core/fabric/dma_core/reset_release_reg[1]_syn_13.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/ra_reg[4]_syn_60.asr (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "removal",
+      "Process": "fast",
+      "Data Path Delay": "0.201ns (cell 0.090ns (44%), net 0.111ns (56%))",
+      "Logic Level": "0",
+      "Max Fanout": "2367"
+    },
+    {
+      "Slack": "3.924ns",
+      "Begin Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "6.315ns (cell 4.696ns (74%), net 1.619ns (26%))",
+      "Logic Level": "3 ( LUT6=2  LUT5=1 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "3.977ns",
+      "Begin Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "6.262ns (cell 4.619ns (73%), net 1.643ns (27%))",
+      "Logic Level": "3 ( LUT6=2  LUT5=1 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "4.344ns",
+      "Begin Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.895ns (cell 4.457ns (75%), net 1.438ns (25%))",
+      "Logic Level": "2 ( LUT6=2 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "4.533ns",
+      "Begin Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.706ns (cell 4.305ns (75%), net 1.401ns (25%))",
+      "Logic Level": "2 ( LUT6=2 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "5.841ns",
+      "Begin Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[1]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.494ns (cell 3.169ns (70%), net 1.325ns (30%))",
+      "Logic Level": "3 ( LUT6=2  LUT5=1 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "4.257ns",
+      "Begin Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/B_Channel$cmd_b_queue/soft_fifo_al0/ram_inst/ramread0_syn_13.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.985ns (cell 4.117ns (68%), net 1.868ns (32%))",
+      "Logic Level": "2 ( LUT6=1  LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "5.534ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/ybadvw/bapppk/soswev$siumvh/zxxjjs_reg[2]_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.798ns (cell 2.727ns (56%), net 2.071ns (44%))",
+      "Logic Level": "2 ( LUT6=1  LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "5.671ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/ybadvw/bapppk/soswev$siumvh/zxxjjs_reg[2]_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.661ns (cell 2.805ns (60%), net 1.856ns (40%))",
+      "Logic Level": "2 ( LUT6=1  LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "5.738ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/ybadvw/bapppk/soswev$siumvh/zxxjjs_reg[0]_syn_7.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.594ns (cell 2.879ns (62%), net 1.715ns (38%))",
+      "Logic Level": "2 ( LUT6=1  LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "5.761ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/ybadvw/bapppk/soswev$siumvh/pexoai_reg[0]_syn_4.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.571ns (cell 2.779ns (60%), net 1.792ns (40%))",
+      "Logic Level": "2 ( LUT6=1  LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "0.058ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[44]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[44] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.477ns (cell 0.284ns (59%), net 0.193ns (41%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.063ns",
+      "Begin Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_READ$ar_inst/first_step_q_reg[10]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_arsize[0] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.480ns (cell 0.299ns (62%), net 0.181ns (38%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.081ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[31]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[31] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.500ns (cell 0.271ns (54%), net 0.229ns (46%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.084ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[30]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[30] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.503ns (cell 0.276ns (54%), net 0.227ns (46%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.086ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[18]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[17] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.476ns (cell 0.295ns (61%), net 0.181ns (39%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.087ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[35]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[35] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.506ns (cell 0.276ns (54%), net 0.230ns (46%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.095ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[54]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[54] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.514ns (cell 0.296ns (57%), net 0.218ns (43%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.096ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[36]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[36] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.515ns (cell 0.322ns (62%), net 0.193ns (38%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.096ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[2]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[1] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.515ns (cell 0.287ns (55%), net 0.228ns (45%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.097ns",
+      "Begin Point": "control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[0]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wdata[0] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.487ns (cell 0.305ns (62%), net 0.182ns (38%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "4.349ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.758ns (cell 3.944ns (68%), net 1.814ns (32%))",
+      "Logic Level": "3 ( LUT6=2  LUT5=1 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "4.440ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.667ns (cell 3.866ns (68%), net 1.801ns (32%))",
+      "Logic Level": "3 ( LUT6=2  LUT5=1 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "4.621ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.486ns (cell 3.853ns (70%), net 1.633ns (30%))",
+      "Logic Level": "2 ( LUT6=2 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "4.651ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wlast (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.456ns (cell 3.776ns (69%), net 1.680ns (31%))",
+      "Logic Level": "2 ( LUT6=2 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "4.661ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/B_Channel$cmd_b_queue/soft_fifo_al0/ram_inst/ramread0_syn_13.clkb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.451ns (cell 3.700ns (67%), net 1.751ns (33%))",
+      "Logic Level": "2 ( LUT5=2 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "6.397ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$b_inst/repeat_cnt_reg[0]_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.811ns (cell 2.245ns (58%), net 1.566ns (42%))",
+      "Logic Level": "3 ( LUT5=2  LUT2=1 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "6.500ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/ybadvw/bapppk/soswev$siumvh/pexoai_reg[2]_syn_4.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.710ns (cell 2.010ns (54%), net 1.700ns (46%))",
+      "Logic Level": "2 ( LUT6=1  LUT5=1 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "6.542ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$b_inst/repeat_cnt_reg[1]_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.666ns (cell 2.192ns (59%), net 1.474ns (41%))",
+      "Logic Level": "3 ( LUT5=2  LUT2=1 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "6.549ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/ybadvw/bapppk/soswev$siumvh/pexoai_reg[2]_syn_4.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.661ns (cell 2.068ns (56%), net 1.593ns (44%))",
+      "Logic Level": "2 ( LUT6=1  LUT5=1 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "5.892ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/access_is_incr_q_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_awaddr[2] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.214ns (cell 2.378ns (56%), net 1.836ns (44%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "20"
+    },
+    {
+      "Slack": "0.305ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[53]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wdata[51] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.700ns (cell 0.483ns (68%), net 0.217ns (32%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.322ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/first_step_q_reg[6]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_awsize[1] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.667ns (cell 0.479ns (71%), net 0.188ns (29%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.331ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/codtvl/xlxyfr_reg[1]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wstrb[6] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.726ns (cell 0.489ns (67%), net 0.237ns (33%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.352ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/codtvl/xlxyfr_reg[3]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wstrb[7] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.747ns (cell 0.512ns (68%), net 0.235ns (32%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.364ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[32]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wdata[31] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.759ns (cell 0.477ns (62%), net 0.282ns (38%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.364ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[8]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wdata[8] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.759ns (cell 0.473ns (62%), net 0.286ns (38%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.365ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[41]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wdata[40] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.760ns (cell 0.467ns (61%), net 0.293ns (39%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.368ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/codtvl/bczkcw_reg[5]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wdata[5] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.763ns (cell 0.471ns (61%), net 0.292ns (39%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.371ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/S_READY_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_awvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.715ns (cell 0.335ns (46%), net 0.380ns (54%))",
+      "Logic Level": "1 ( LUT4=1 )",
+      "Max Fanout": "5"
+    },
+    {
+      "Slack": "0.408ns",
+      "Begin Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/B_Channel$cmd_b_queue/S_READY_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_awvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.752ns (cell 0.372ns (49%), net 0.380ns (51%))",
+      "Logic Level": "1 ( LUT4=1 )",
+      "Max Fanout": "5"
+    },
+    {
+      "Slack": "5.951ns",
+      "Begin Point": "control/core/fabric/dma_core/reset_release_reg[1]_syn_11.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_awready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.093ns (cell 2.063ns (50%), net 2.030ns (50%))",
+      "Logic Level": "1 ( LUT3=1 )",
+      "Max Fanout": "332"
+    },
+    {
+      "Slack": "6.305ns",
+      "Begin Point": "control/core/fabric/dma_core/reset_release_reg[1]_syn_11.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.739ns (cell 1.830ns (48%), net 1.909ns (52%))",
+      "Logic Level": "1 ( LUT4=1 )",
+      "Max Fanout": "332"
+    },
+    {
+      "Slack": "6.432ns",
+      "Begin Point": "control/core/fabric/dma_core/reset_release_reg[1]_syn_11.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.612ns (cell 1.943ns (53%), net 1.669ns (47%))",
+      "Logic Level": "1 ( LUT3=1 )",
+      "Max Fanout": "332"
+    },
+    {
+      "Slack": "7.096ns",
+      "Begin Point": "control/core/fabric/router/wh_reg_syn_9.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.051ns (cell 1.794ns (58%), net 1.257ns (42%))",
+      "Logic Level": "1 ( LUT4=1 )",
+      "Max Fanout": "4"
+    },
+    {
+      "Slack": "7.141ns",
+      "Begin Point": "control/write_owner/data_done_reg_syn_10.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.037ns (cell 1.719ns (56%), net 1.318ns (44%))",
+      "Logic Level": "1 ( LUT4=1 )",
+      "Max Fanout": "2"
+    },
+    {
+      "Slack": "7.508ns",
+      "Begin Point": "control/write_owner/owned_reg_syn_6.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "2.670ns (cell 1.831ns (68%), net 0.839ns (32%))",
+      "Logic Level": "1 ( LUT4=1 )",
+      "Max Fanout": "6"
+    },
+    {
+      "Slack": "7.153ns",
+      "Begin Point": "control/write_owner/owned_reg_syn_6.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_awready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.025ns (cell 2.065ns (68%), net 0.960ns (32%))",
+      "Logic Level": "1 ( LUT3=1 )",
+      "Max Fanout": "6"
+    },
+    {
+      "Slack": "7.184ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/ar_slice/m_payload_i_reg[6]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_awready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "2.990ns (cell 1.926ns (64%), net 1.064ns (36%))",
+      "Logic Level": "1 ( LUT3=1 )",
+      "Max Fanout": "38"
+    },
+    {
+      "Slack": "7.373ns",
+      "Begin Point": "control/write_owner/owned_reg_syn_6.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "2.805ns (cell 1.967ns (70%), net 0.838ns (30%))",
+      "Logic Level": "1 ( LUT3=1 )",
+      "Max Fanout": "6"
+    },
+    {
+      "Slack": "7.396ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/b_slice/m_valid_i_reg_syn_7.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "2.782ns (cell 2.078ns (74%), net 0.704ns (26%))",
+      "Logic Level": "1 ( LUT3=1 )",
+      "Max Fanout": "3"
+    },
+    {
+      "Slack": "0.237ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/b_slice/m_payload_i_reg[0]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bid[0] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.582ns (cell 0.394ns (67%), net 0.188ns (33%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.257ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/aw_slice/s_ready_i_reg_syn_8.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bid[4] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.573ns (cell 0.390ns (68%), net 0.183ns (32%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.270ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/b_slice/m_payload_i_reg[1]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bid[9] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.615ns (cell 0.427ns (69%), net 0.188ns (31%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.273ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/b_slice/m_payload_i_reg[0]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bresp[0] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.618ns (cell 0.425ns (68%), net 0.193ns (32%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.292ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/aw_slice/s_ready_i_reg_syn_9.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bid[10] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.608ns (cell 0.379ns (62%), net 0.229ns (38%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.303ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/b_slice/m_payload_i_reg[9]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bid[7] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.648ns (cell 0.325ns (50%), net 0.323ns (50%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.310ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/b_slice/m_payload_i_reg[5]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bid[3] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.655ns (cell 0.389ns (59%), net 0.266ns (41%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.315ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[7]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rdata[24] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.659ns (cell 0.423ns (64%), net 0.236ns (36%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.324ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[26]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rdata[23] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.640ns (cell 0.411ns (64%), net 0.229ns (36%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.325ns",
+      "Begin Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/b_slice/m_payload_i_reg[10]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_bid[2] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.670ns (cell 0.442ns (65%), net 0.228ns (35%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "4.321ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.679ns (cell 3.745ns (65%), net 1.934ns (35%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "4.619ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.381ns (cell 3.862ns (71%), net 1.519ns (29%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "2"
+    },
+    {
+      "Slack": "1.717ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.717ns (cell 1.058ns (61%), net 0.659ns (39%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "2"
+    },
+    {
+      "Slack": "1.994ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.994ns (cell 1.110ns (55%), net 0.884ns (45%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "5.195ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.805ns (cell 3.201ns (66%), net 1.604ns (34%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "5.322ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.678ns (cell 3.560ns (76%), net 1.118ns (24%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "1.592ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.592ns (cell 0.907ns (56%), net 0.685ns (44%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "1.623ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.623ns (cell 1.121ns (69%), net 0.502ns (31%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.305ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.910ns (cell 2.407ns (27%), net 6.503ns (73%))",
+      "Logic Level": "6 ( LUT6=2  LUT3=2  LUT2=2 )",
+      "Max Fanout": "40"
+    },
+    {
+      "Slack": "0.413ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.802ns (cell 2.358ns (26%), net 6.444ns (74%))",
+      "Logic Level": "6 ( LUT6=2  LUT3=2  LUT2=2 )",
+      "Max Fanout": "40"
+    },
+    {
+      "Slack": "0.670ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rresp[0] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.545ns (cell 2.337ns (27%), net 6.208ns (73%))",
+      "Logic Level": "5 ( LUT6=2  LUT3=2  LUT2=1 )",
+      "Max Fanout": "40"
+    },
+    {
+      "Slack": "0.727ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rresp[1] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.488ns (cell 2.298ns (27%), net 6.190ns (73%))",
+      "Logic Level": "5 ( LUT6=2  LUT3=2  LUT2=1 )",
+      "Max Fanout": "40"
+    },
+    {
+      "Slack": "0.732ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rresp[0] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a2_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.483ns (cell 2.288ns (26%), net 6.195ns (74%))",
+      "Logic Level": "5 ( LUT6=2  LUT3=2  LUT2=1 )",
+      "Max Fanout": "40"
+    },
+    {
+      "Slack": "0.524ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a0_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.689ns (cell 2.407ns (27%), net 6.282ns (73%))",
+      "Logic Level": "6 ( LUT6=2  LUT3=2  LUT2=2 )",
+      "Max Fanout": "40"
+    },
+    {
+      "Slack": "0.632ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a0_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.581ns (cell 2.358ns (27%), net 6.223ns (73%))",
+      "Logic Level": "6 ( LUT6=2  LUT3=2  LUT2=2 )",
+      "Max Fanout": "40"
+    },
+    {
+      "Slack": "0.826ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a0_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.387ns (cell 2.255ns (26%), net 6.132ns (74%))",
+      "Logic Level": "6 ( LUT6=3  LUT2=2  LUT3=1 )",
+      "Max Fanout": "43"
+    },
+    {
+      "Slack": "0.866ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a0_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.347ns (cell 2.382ns (28%), net 5.965ns (72%))",
+      "Logic Level": "6 ( LUT6=2  LUT2=2  LUT4=1  LUT3=1 )",
+      "Max Fanout": "36"
+    },
+    {
+      "Slack": "0.889ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rresp[0] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "a0_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "8.324ns (cell 2.337ns (28%), net 5.987ns (72%))",
+      "Logic Level": "5 ( LUT6=2  LUT3=2  LUT2=1 )",
+      "Max Fanout": "40"
+    },
+    {
+      "Slack": "1.329ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rdata[25] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_13.dib[4] (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.188ns (cell 0.672ns (56%), net 0.516ns (44%))",
+      "Logic Level": "1 ( ERAM=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "1.448ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rdata[21] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_13.dib[1] (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.307ns (cell 0.739ns (56%), net 0.568ns (44%))",
+      "Logic Level": "1 ( ERAM=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "1.474ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rdata[38] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_13.dib[15] (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.333ns (cell 0.721ns (54%), net 0.612ns (46%))",
+      "Logic Level": "1 ( ERAM=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "1.488ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rdata[28] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_13.dib[7] (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.347ns (cell 0.813ns (60%), net 0.534ns (40%))",
+      "Logic Level": "1 ( ERAM=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "1.500ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rdata[26] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_13.dib[5] (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.359ns (cell 0.819ns (60%), net 0.540ns (40%))",
+      "Logic Level": "1 ( ERAM=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "1.336ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_awready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/cmd_push_block_reg_syn_8.ia (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.137ns (cell 0.963ns (84%), net 0.174ns (16%))",
+      "Logic Level": "1 ( LUT4=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "1.391ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[0]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.193ns (cell 0.793ns (66%), net 0.400ns (34%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "13"
+    },
+    {
+      "Slack": "1.391ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[0]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.193ns (cell 0.793ns (66%), net 0.400ns (34%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "13"
+    },
+    {
+      "Slack": "1.391ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[1]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.193ns (cell 0.793ns (66%), net 0.400ns (34%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "13"
+    },
+    {
+      "Slack": "1.391ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[3]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.193ns (cell 0.793ns (66%), net 0.400ns (34%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "13"
+    },
+    {
+      "Slack": "6.047ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[45]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.367ns (cell 1.483ns (44%), net 1.884ns (56%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.107ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[34]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.341ns (cell 1.483ns (44%), net 1.858ns (56%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.107ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[43]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.341ns (cell 1.483ns (44%), net 1.858ns (56%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.107ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[41]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.341ns (cell 1.483ns (44%), net 1.858ns (56%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.141ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/skid_buffer_reg[25]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.273ns (cell 1.483ns (45%), net 1.790ns (55%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.181ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/s_ready_i_reg_syn_7.ib (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.230ns (cell 1.828ns (56%), net 1.402ns (44%))",
+      "Logic Level": "2 ( LUT4=1  LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.211ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/s_ready_i_reg_syn_7.ib (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.200ns (cell 1.798ns (56%), net 1.402ns (44%))",
+      "Logic Level": "2 ( LUT4=1  LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.224ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/dma/voxztl/cjkpgq$meedsf/codtvl/ugfotx_reg[42]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.191ns (cell 1.483ns (46%), net 1.708ns (54%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.238ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[35]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.212ns (cell 1.483ns (46%), net 1.729ns (54%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "6.238ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/r_slice/m_payload_i_reg[36]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "3.212ns (cell 1.483ns (46%), net 1.729ns (54%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "48"
+    },
+    {
+      "Slack": "0.721ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wdata[6] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/wd_reg[11]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.652ns (cell 0.522ns (80%), net 0.130ns (20%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.758ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wdata[31] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/st_reg[1]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.718ns (cell 0.551ns (76%), net 0.167ns (24%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.759ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_awid[9] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/aw_slice/m_payload_i_reg[60]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.718ns (cell 0.585ns (81%), net 0.133ns (19%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.760ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wdata[8] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/wd_reg[8]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.691ns (cell 0.561ns (81%), net 0.130ns (19%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.761ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wdata[14] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/wd_reg[15]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.692ns (cell 0.522ns (75%), net 0.170ns (25%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.762ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wdata[13] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/wd_reg[13]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.693ns (cell 0.562ns (81%), net 0.131ns (19%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.768ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wdata[22] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/wd_reg[16]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.698ns (cell 0.523ns (74%), net 0.175ns (26%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.772ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wdata[9] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/wd_reg[13]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.703ns (cell 0.536ns (76%), net 0.167ns (24%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.781ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_wstrb[0] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/router/wd_reg[30]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.712ns (cell 0.532ns (74%), net 0.180ns (26%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.784ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_awid[1] (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/converter/conversion_to_lite$axi_axilite/SI_REG/aw_slice/m_payload_i_reg[52]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.714ns (cell 0.584ns (81%), net 0.130ns (19%))",
+      "Logic Level": "0",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "3.192ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/rd_reg[0]_syn_2.id (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "6.102ns (cell 2.159ns (35%), net 3.943ns (65%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.206ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/rd_reg[4]_syn_2.id (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "6.087ns (cell 2.159ns (35%), net 3.928ns (65%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.359ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/wr_reg[0]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.930ns (cell 2.047ns (34%), net 3.883ns (66%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.359ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/wr_reg[4]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.930ns (cell 2.047ns (34%), net 3.883ns (66%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.359ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/wr_reg[6]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.930ns (cell 2.047ns (34%), net 3.883ns (66%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.359ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/wr_reg[6]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.930ns (cell 2.047ns (34%), net 3.883ns (66%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.359ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/wr_reg[1]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.930ns (cell 2.047ns (34%), net 3.883ns (66%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.359ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/wr_reg[1]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.930ns (cell 2.047ns (34%), net 3.883ns (66%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.359ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/wr_reg[3]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.930ns (cell 2.047ns (34%), net 3.883ns (66%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "3.359ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry/transport/wr_reg[3]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.930ns (cell 2.047ns (34%), net 3.883ns (66%))",
+      "Logic Level": "4 ( LUT6=1  LUT5=1  LUT3=1  LUT2=1 )",
+      "Max Fanout": "67"
+    },
+    {
+      "Slack": "0.910ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_awready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/cmd_push_block_reg_syn_8.id (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.874ns (cell 0.623ns (71%), net 0.251ns (29%))",
+      "Logic Level": "1 ( LUT4=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "0.992ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_awready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/access_is_incr_q_reg_syn_3.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "0.956ns (cell 0.608ns (63%), net 0.348ns (37%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "45"
+    },
+    {
+      "Slack": "1.037ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[4]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.001ns (cell 0.542ns (54%), net 0.459ns (46%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "12"
+    },
+    {
+      "Slack": "1.037ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[5]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.001ns (cell 0.542ns (54%), net 0.459ns (46%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "12"
+    },
+    {
+      "Slack": "1.037ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[5]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.001ns (cell 0.542ns (54%), net 0.459ns (46%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "12"
+    },
+    {
+      "Slack": "1.037ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[7]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.001ns (cell 0.542ns (54%), net 0.459ns (46%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "12"
+    },
+    {
+      "Slack": "1.041ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[2]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.005ns (cell 0.542ns (53%), net 0.463ns (47%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "12"
+    },
+    {
+      "Slack": "1.041ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[1]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.005ns (cell 0.542ns (53%), net 0.463ns (47%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "12"
+    },
+    {
+      "Slack": "1.041ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[3]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.005ns (cell 0.542ns (53%), net 0.463ns (47%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "12"
+    },
+    {
+      "Slack": "1.041ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_wready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "control/core/fabric/telemetry_dma/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$w_inst/length_counter_1_reg[0]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.005ns (cell 0.542ns (53%), net 0.463ns (47%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "12"
+    },
+    {
+      "Slack": "4.321ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.679ns (cell 3.745ns (65%), net 1.934ns (35%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "4.619ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "5.381ns (cell 3.862ns (71%), net 1.519ns (29%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "2"
+    },
+    {
+      "Slack": "1.717ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.717ns (cell 1.058ns (61%), net 0.659ns (39%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "2"
+    },
+    {
+      "Slack": "1.994ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.994ns (cell 1.110ns (55%), net 0.884ns (45%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "8"
+    },
+    {
+      "Slack": "5.195ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.805ns (cell 3.201ns (66%), net 1.604ns (34%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "5.322ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "setup",
+      "Process": "slow",
+      "Data Path Delay": "4.678ns (cell 3.560ns (76%), net 1.118ns (24%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "1"
+    },
+    {
+      "Slack": "1.592ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_bready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.592ns (cell 0.907ns (56%), net 0.685ns (44%))",
+      "Logic Level": "1 ( LUT5=1 )",
+      "Max Fanout": "15"
+    },
+    {
+      "Slack": "1.623ns",
+      "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp1_axi_rready (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Check Type": "hold",
+      "Process": "fast",
+      "Data Path Delay": "1.623ns (cell 1.121ns (69%), net 0.502ns (31%))",
+      "Logic Level": "1 ( LUT2=1 )",
+      "Max Fanout": "1"
+    }
+  ],
+  "congestion": [
+    "PHY-1001 : top1  = 112.99 (V 69.10, H 105.83, I 109.78, O 135.07)",
+    "PHY-1001 : top1  = 110.08 (V 62.90, H 105.87, I 80.79, O 95.24)",
+    "PHY-1001 : top1  = 92.68 (S 63.34, N 66.73, E 78.66, W 91.52, I 62.62, O 84.93)",
+    "PHY-1001 : top1  = 87.82 (S 64.79, N 67.34, E 76.04, W 86.68, I 62.49, O 82.60)",
+    "PHY-1001 : top1  = 87.97 (S 63.77, N 67.37, E 76.40, W 86.59, I 63.65, O 85.14)",
+    "RUN-1001 :   No local congestion issue, and most congested 1% tile average routing util is 83.594595",
+    "PHY-1001 : top1  = 86.50 (S 63.57, N 67.29, E 75.99, W 84.88, I 63.65, O 85.10)",
+    "PHY-1001 :   Iter. 1: runtime[   4.8s]; rr_path[ 165985]; Path[overflow =  121362, finished =   44623].",
+    "PHY-1001 :   Iter. 2: runtime[  54.0s]; rr_path[ 105177]; Path[overflow =   87400, finished =   78585].",
+    "PHY-1001 :   Iter. 3: runtime[  60.1s]; rr_path[  74184]; Path[overflow =   56108, finished =  109877].",
+    "PHY-1001 :   Iter. 4: runtime[  64.9s]; rr_path[  46549]; Path[overflow =   30773, finished =  135212].",
+    "PHY-1001 :   Iter. 5: runtime[  80.5s]; rr_path[  23930]; Path[overflow =   11951, finished =  154034].",
+    "PHY-1001 :   Iter. 6: runtime[  82.5s]; rr_path[   8888]; Path[overflow =    3541, finished =  162444].",
+    "PHY-1001 :   Iter. 7: runtime[  83.7s]; rr_path[   3334]; Path[overflow =     594, finished =  165391].",
+    "PHY-1001 :   Iter. 8: runtime[  85.4s]; rr_path[   1400]; Path[overflow =      50, finished =  165935].",
+    "PHY-1001 :   Iter. 9: runtime[  86.8s]; rr_path[   1020]; Path[overflow =      16, finished =  165969].",
+    "PHY-1001 :   Iter.10: runtime[ 102.1s]; rr_path[    807]; Path[overflow =       0, finished =  165985].",
+    "PHY-1001 :   Iter.11: runtime[ 133.4s]; rr_path[    597]; Path[overflow =       0, finished =  165985]."
+  ],
+  "routing_comparison": {
+    "parent": {
+      "local_congestion_diagnostic": "RUN-1001 :   Local congestion issue exists, and most congested 1% tile average routing util is 94.925676",
+      "most_congested_1pct_avg_util": 94.925676,
+      "detail_routes": 198878,
+      "initial_detail_overflow": 152155,
+      "final_wire_length": 17009600
+    },
+    "round2": {
+      "local_congestion_diagnostic": "RUN-1001 :   No local congestion issue, and most congested 1% tile average routing util is 83.594595",
+      "most_congested_1pct_avg_util": 83.594595,
+      "detail_routes": 165985,
+      "initial_detail_overflow": 121362,
+      "final_wire_length": 11810720
+    }
+  },
+  "targeted_route_paths": {
+    "collector_missed": [
+      {
+        "Slack": "2.140ns",
+        "Begin Point": "control/core/fabric/rs485/collector/divider/remainder_reg[3]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/missed_reg[267]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.566ns (cell 1.591ns (21%), net 5.975ns (79%))",
+        "Logic Level": "5 ( ADDER=2  LUT6=1  LUT5=1  LUT2=1 )",
+        "Max Fanout": "32"
+      },
+      {
+        "Slack": "2.272ns",
+        "Begin Point": "control/core/fabric/rs485/collector/divider/quotient_reg[7]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/missed_reg[267]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.427ns (cell 1.727ns (23%), net 5.700ns (77%))",
+        "Logic Level": "5 ( ADDER=2  LUT6=1  LUT5=1  LUT2=1 )",
+        "Max Fanout": "32"
+      },
+      {
+        "Slack": "2.644ns",
+        "Begin Point": "control/core/fabric/rs485/collector/divider/quotient_reg[18]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/missed_reg[267]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.055ns (cell 1.578ns (22%), net 5.477ns (78%))",
+        "Logic Level": "5 ( ADDER=2  LUT6=1  LUT5=1  LUT2=1 )",
+        "Max Fanout": "32"
+      }
+    ],
+    "collector_prefetch_pins": [
+      {
+        "Slack": "1.739ns",
+        "Begin Point": "control/core/fabric/rs485/collector/selected_reg[0]_syn_22.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/max_late_reg[96]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "8.050ns (cell 1.346ns (16%), net 6.704ns (84%))",
+        "Logic Level": "5 ( LUT6=2  ADDER=2  LUT2=1 )",
+        "Max Fanout": "52"
+      },
+      {
+        "Slack": "2.053ns",
+        "Begin Point": "control/core/fabric/rs485/collector/selected_reg[0]_syn_22.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/max_late_reg[96]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.736ns (cell 1.298ns (16%), net 6.438ns (84%))",
+        "Logic Level": "5 ( LUT6=2  ADDER=2  LUT2=1 )",
+        "Max Fanout": "52"
+      },
+      {
+        "Slack": "2.151ns",
+        "Begin Point": "control/core/fabric/rs485/collector/selected_reg[1]_syn_15.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/max_late_reg[96]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.636ns (cell 1.435ns (18%), net 6.201ns (82%))",
+        "Logic Level": "5 ( LUT6=2  ADDER=2  LUT2=1 )",
+        "Max Fanout": "78"
+      }
+    ],
+    "collector_scheduled": [
+      {
+        "Slack": "1.219ns",
+        "Begin Point": "control/core/fabric/rs485/collector/engine/poll_timer_reg[6]_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/scheduled_reg[422]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "8.568ns (cell 1.304ns (15%), net 7.264ns (85%))",
+        "Logic Level": "6 ( LUT4=3  LUT6=1  LUT3=1  LUT2=1 )",
+        "Max Fanout": "34"
+      },
+      {
+        "Slack": "1.331ns",
+        "Begin Point": "control/core/fabric/rs485/collector/engine/poll_timer_reg[2]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/scheduled_reg[422]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "8.457ns (cell 1.385ns (16%), net 7.072ns (84%))",
+        "Logic Level": "6 ( LUT4=3  LUT6=1  LUT3=1  LUT2=1 )",
+        "Max Fanout": "34"
+      },
+      {
+        "Slack": "1.399ns",
+        "Begin Point": "control/core/fabric/rs485/collector/engine/poll_timer_reg[2]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/scheduled_reg[422]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "8.389ns (cell 1.097ns (13%), net 7.292ns (87%))",
+        "Logic Level": "6 ( LUT4=3  LUT6=1  LUT3=1  LUT2=1 )",
+        "Max Fanout": "34"
+      }
+    ],
+    "gp_snapshot_decode": [
+      {
+        "Slack": "2.552ns",
+        "Begin Point": "control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.238ns (cell 2.008ns (27%), net 5.230ns (73%))",
+        "Logic Level": "8 ( LUT6=4  LUT5=2  LUT3=2 )",
+        "Max Fanout": "13"
+      },
+      {
+        "Slack": "2.590ns",
+        "Begin Point": "control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.200ns (cell 2.297ns (31%), net 4.903ns (69%))",
+        "Logic Level": "9 ( LUT3=4  LUT6=2  LUT4=2  LUT5=1 )",
+        "Max Fanout": "13"
+      },
+      {
+        "Slack": "2.791ns",
+        "Begin Point": "control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "6.999ns (cell 1.818ns (25%), net 5.181ns (75%))",
+        "Logic Level": "8 ( LUT6=3  LUT5=2  LUT3=2  LUT4=1 )",
+        "Max Fanout": "13"
+      }
+    ],
+    "gp_snapshot_capture": [
+      {
+        "Slack": "1.139ns",
+        "Begin Point": "control/core/fabric/rs485/collector/selected_reg[0]_syn_22.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/max_late_reg[262]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "8.650ns (cell 1.572ns (18%), net 7.078ns (82%))",
+        "Logic Level": "5 ( LUT6=2  ADDER=2  LUT2=1 )",
+        "Max Fanout": "52"
+      },
+      {
+        "Slack": "1.252ns",
+        "Begin Point": "control/core/fabric/rs485/collector/engine/poll_timer_reg[6]_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/max_late_reg[262]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "8.536ns (cell 1.465ns (17%), net 7.071ns (83%))",
+        "Logic Level": "6 ( LUT4=2  LUT2=2  LUT6=1  LUT5=1 )",
+        "Max Fanout": "34"
+      },
+      {
+        "Slack": "1.364ns",
+        "Begin Point": "control/core/fabric/rs485/collector/engine/poll_timer_reg[2]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/collector/max_late_reg[262]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "8.425ns (cell 1.546ns (18%), net 6.879ns (82%))",
+        "Logic Level": "6 ( LUT4=2  LUT2=2  LUT6=1  LUT5=1 )",
+        "Max Fanout": "34"
+      }
+    ],
+    "gp_snapshot_capture_pins": [
+      {
+        "Slack": "2.472ns",
+        "Begin Point": "control/core/fabric/telemetry/regs/wd_reg[20]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/regs/snapshot_reg[14841]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.302ns (cell 1.045ns (14%), net 6.257ns (86%))",
+        "Logic Level": "4 ( LUT6=1  LUT5=1  LUT4=1  LUT2=1 )",
+        "Max Fanout": "3392"
+      },
+      {
+        "Slack": "2.643ns",
+        "Begin Point": "control/core/fabric/telemetry/regs/wd_reg[11]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/regs/snapshot_reg[14841]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "7.130ns (cell 0.974ns (13%), net 6.156ns (87%))",
+        "Logic Level": "4 ( LUT6=1  LUT5=1  LUT4=1  LUT2=1 )",
+        "Max Fanout": "3392"
+      },
+      {
+        "Slack": "2.982ns",
+        "Begin Point": "control/core/fabric/telemetry/regs/waiting_reg_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/rs485/regs/snapshot_reg[14841]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "6.787ns (cell 0.715ns (10%), net 6.072ns (90%))",
+        "Logic Level": "4 ( LUT6=2  LUT3=1  LUT2=1 )",
+        "Max Fanout": "3392"
+      }
+    ],
+    "replay": [
+      {
+        "Slack": "0.305ns",
+        "Begin Point": "ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_rvalid (rising edge triggered by clock ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "a2_dir_syn_6.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "8.910ns (cell 2.407ns (27%), net 6.503ns (73%))",
+        "Logic Level": "6 ( LUT6=2  LUT3=2  LUT2=2 )",
+        "Max Fanout": "40"
+      },
+      {
+        "Slack": "0.497ns",
+        "Begin Point": "control/core/fabric/dma_core/motion/kernel/executor/disabling_reg[3]_syn_5.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "a2_en_syn_4.ce (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "9.237ns (cell 1.501ns (16%), net 7.736ns (84%))",
+        "Logic Level": "7 ( LUT5=2  LUT2=2  LUT6=1  LUT4=1  LUT3=1 )",
+        "Max Fanout": "31"
+      },
+      {
+        "Slack": "0.507ns",
+        "Begin Point": "control/core/fabric/dma_core/motion/receiver/record_data_reg[406]_syn_2.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "End Point": "control/core/fabric/dma_core/motion/kernel/planning_base_reg[208]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+        "Check Type": "setup",
+        "Process": "slow",
+        "Data Path Delay": "9.273ns (cell 2.173ns (23%), net 7.100ns (77%))",
+        "Logic Level": "10 ( LUT6=7  LUT5=2  LUT4=1 )",
+        "Max Fanout": "41"
+      }
+    ]
+  },
+  "data_net_fanout": {
+    "parent": {
+      "bins": {
+        "1": 66305,
+        "2": 10998,
+        "3": 4632,
+        "4": 1355,
+        "5-10": 3216,
+        "11-50": 1494,
+        "51-100": 178,
+        "101-500": 49,
+        ">500": 1
+      },
+      "average": 2.15
+    },
+    "round2": {
+      "bins": {
+        "1": 50948,
+        "2": 11036,
+        "3": 4648,
+        "4": 1344,
+        "5-10": 3485,
+        "11-50": 1572,
+        "51-100": 136,
+        "101-500": 8,
+        ">500": 0
+      },
+      "average": 2.24
+    }
+  },
+  "retained_storage": [
+    "|            fifo                       |record_fifo                                |14        |32      |44      |6       |0       |0        |0           |0       |0       |0       |0      |0       |",
+    "|          cache                        |rs485_latest_cache                         |1926      |289     |5578    |12      |1       |0        |0           |24      |0       |0       |0      |0       |",
+    "|          transport                    |rs485_telemetry                            |1086      |573     |1704    |12      |0       |0        |0           |7       |0       |0       |0      |0       |"
+  ]
+}

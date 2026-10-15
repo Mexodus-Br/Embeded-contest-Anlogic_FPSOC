@@ -1,0 +1,16 @@
+# Confirmed J12 scope-only mapping; not M1-M3 mechanical mapping.
+set_pin_assignment { clk_100m } { LOCATION = H16; IOSTANDARD = LVCMOS33; }
+set_pin_assignment { a0_step } { LOCATION = Y12; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+set_pin_assignment { a0_dir } { LOCATION = Y13; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+set_pin_assignment { a0_en } { LOCATION = T9; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+set_pin_assignment { a1_step } { LOCATION = U10; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+set_pin_assignment { a1_dir } { LOCATION = T5; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+set_pin_assignment { a1_en } { LOCATION = U5; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+set_pin_assignment { a2_step } { LOCATION = V6; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+set_pin_assignment { a2_dir } { LOCATION = W6; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+set_pin_assignment { a2_en } { LOCATION = U7; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; }
+
+# Board RS485 pins: hardware manual, explicitly accepted 2026-10-14.
+set_pin_assignment { rs485_tx } { LOCATION = L17; IOSTANDARD = LVCMOS33; }
+set_pin_assignment { rs485_rx } { LOCATION = N16; IOSTANDARD = LVCMOS33; }
+set_pin_assignment { rs485_de } { LOCATION = N15; IOSTANDARD = LVCMOS33; }

@@ -1,0 +1,1426 @@
+Created by          : Tang Dynasty Release_2026.1_SP2
+                    : Copyright (c) 2012-2026 Anlogic Inc.
+Generated           : Thu Oct 15 15:05:06 2026
+
+Top Model           : system_wrapper
+Device              : DR1M90GEG400
+Speed               : 2
+STA coverage        : 99.99%
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     board_100m -> board_100m
+Type           :     Self
+From Clock     :     board_100m
+To Clock       :     board_100m
+Min Period     :     7.448ns
+Fmax           :     134.264MHz
+
+Statistics:
+Max            : SWNS      2.552ns, STNS      0.000ns,         0 Viol Endpoints,        10 Total Endpoints,        42 Paths Analyzed
+Min            : HWNS      0.391ns, HTNS      0.000ns,         0 Viol Endpoints,        10 Total Endpoints,        13 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 2.552ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 7.238ns (cell 2.008ns (27%), net 5.230ns (73%))
+Clock Skew          : 0.082ns
+Logic Level         : 8 ( LUT6=4  LUT5=2  LUT3=2 )
+Max Fanout          : 13
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.805          5.687          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/router/ra_reg[6]_syn_32.ic
+LUT3                x094y066z1          0.287    f     5.974       1  pin: control/core/fabric/router/ra_reg[6]_syn_32.ofa
+net (fo=1)                              0.621          6.595          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_36,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ic
+LUT5                x094y066z7          0.150    f     6.745       2  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ofb
+net (fo=3)                              0.207          6.952          net: control/core/fabric/rs485/regs/access_error_b18_n3_syn_2,  NOFILE(0)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.id
+LUT3                x095y066z7          0.188    f     7.140       3  pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.ofa
+net (fo=13)                             0.988          8.128          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_45,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_31.id
+LUT6                x108y068z4          0.161    r     8.289       4  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_31.ofb
+net (fo=1)                              0.812          9.101          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_6,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.imb
+LUT5                x097y067z4          0.165    r     9.266       5  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ofb
+net (fo=3)                              0.652          9.918          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_10,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_28.ia
+LUT6                x094y067z7          0.238    r    10.156       6  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_28.ofb
+net (fo=1)                              0.334         10.490          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_18,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ic
+LUT6                x092y067z4          0.210    r    10.700       7  pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ofb
+net (fo=1)                              0.811         11.511          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_24,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic
+LUT6 (reg)          x092y067z0          0.428    r    11.939       8  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.939               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  2.552               
+
+Slack               : 2.590ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 7.200ns (cell 2.297ns (31%), net 4.903ns (69%))
+Clock Skew          : 0.082ns
+Logic Level         : 9 ( LUT3=4  LUT6=2  LUT4=2  LUT5=1 )
+Max Fanout          : 13
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.805          5.687          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/router/ra_reg[6]_syn_32.ic
+LUT3                x094y066z1          0.287    f     5.974       1  pin: control/core/fabric/router/ra_reg[6]_syn_32.ofa
+net (fo=1)                              0.621          6.595          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_36,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ic
+LUT5                x094y066z7          0.150    f     6.745       2  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ofb
+net (fo=3)                              0.207          6.952          net: control/core/fabric/rs485/regs/access_error_b18_n3_syn_2,  NOFILE(0)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.id
+LUT3                x095y066z7          0.188    f     7.140       3  pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.ofa
+net (fo=13)                             1.088          8.228          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_45,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_713.ib
+LUT4                x110y068z6          0.242    r     8.470       4  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_713.ofb
+net (fo=6)                              0.225          8.695          net: control/core/fabric/rs485/regs/sel4_syn_70,  gp/rs485_gp_regs.v(363)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[2045]_syn_2.ib
+LUT3                x108y068z7          0.324    f     9.019       5  pin: control/core/fabric/telemetry/cache/frozen_reg[2045]_syn_2.ofa
+net (fo=1)                              0.469          9.488          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_637,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/cache/good_rev_reg[8]_syn_2.imf
+LUT6                x101y067z0          0.089    r     9.577       6  pin: control/core/fabric/telemetry/cache/good_rev_reg[8]_syn_2.ofb
+net (fo=2)                              0.871         10.448          net: control/core/fabric/rs485/regs/access_error_b15[3],  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/wd_reg[31]_syn_2.imf
+LUT3                x093y067z7          0.212    f    10.660       7  pin: control/core/fabric/rs485/regs/wd_reg[31]_syn_2.ofa
+net (fo=4)                              0.301         10.961          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_643,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/wd_reg[30]_syn_2.imb
+LUT4                x093y067z4          0.165    r    11.126       8  pin: control/core/fabric/rs485/regs/wd_reg[30]_syn_2.ofb
+net (fo=2)                              0.316         11.442          net: control/core/fabric/rs485/regs/access_error_reg[1]_syn_4,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib
+LUT6 (reg)          x092y067z0          0.459    r    11.901       9  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.901               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  2.590               
+
+Slack               : 2.791ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 6.999ns (cell 1.818ns (25%), net 5.181ns (75%))
+Clock Skew          : 0.082ns
+Logic Level         : 8 ( LUT6=3  LUT5=2  LUT3=2  LUT4=1 )
+Max Fanout          : 13
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.805          5.687          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/router/ra_reg[6]_syn_32.ic
+LUT3                x094y066z1          0.287    f     5.974       1  pin: control/core/fabric/router/ra_reg[6]_syn_32.ofa
+net (fo=1)                              0.621          6.595          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_36,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ic
+LUT5                x094y066z7          0.150    f     6.745       2  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ofb
+net (fo=3)                              0.207          6.952          net: control/core/fabric/rs485/regs/access_error_b18_n3_syn_2,  NOFILE(0)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.id
+LUT3                x095y066z7          0.188    f     7.140       3  pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.ofa
+net (fo=13)                             0.988          8.128          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_45,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_31.id
+LUT6                x108y068z4          0.161    r     8.289       4  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_31.ofb
+net (fo=1)                              0.812          9.101          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_6,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.imb
+LUT5                x097y067z4          0.165    r     9.266       5  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ofb
+net (fo=3)                              0.514          9.780          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_10,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/cache/last_rev_reg[349]_syn_2.ie
+LUT4                x095y068z5          0.097    f     9.877       6  pin: control/core/fabric/telemetry/cache/last_rev_reg[349]_syn_2.ofb
+net (fo=1)                              0.423         10.300          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_14,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.id
+LUT6                x092y067z4          0.161    r    10.461       7  pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ofb
+net (fo=1)                              0.811         11.272          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_24,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic
+LUT6 (reg)          x092y067z0          0.428    r    11.700       8  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.700               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  2.791               
+
+Slack               : 2.956ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 6.834ns (cell 2.056ns (30%), net 4.778ns (70%))
+Clock Skew          : 0.082ns
+Logic Level         : 8 ( LUT6=4  LUT5=2  LUT4=2 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              1.123          6.005          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_698.ie
+LUT4                x103y064z3          0.097    f     6.102       1  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_698.ofb
+net (fo=1)                              0.419          6.521          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_266,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/mux312_syn_150.ia
+LUT4                x103y067z1          0.240    r     6.761       2  pin: control/core/fabric/rs485/regs/mux312_syn_150.ofb
+net (fo=1)                              0.534          7.295          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_274,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/router/ra_reg[4]_syn_69.ib
+LUT5                x098y067z5          0.324    f     7.619       3  pin: control/core/fabric/router/ra_reg[4]_syn_69.ofa
+net (fo=4)                              0.423          8.042          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_316,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_683.ib
+LUT6                x101y067z3          0.241    r     8.283       4  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_683.ofb
+net (fo=2)                              0.482          8.765          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_445,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ie
+LUT5                x097y067z4          0.097    f     8.862       5  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ofb
+net (fo=3)                              0.652          9.514          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_10,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_28.ia
+LUT6                x094y067z7          0.238    r     9.752       6  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_28.ofb
+net (fo=1)                              0.334         10.086          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_18,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ic
+LUT6                x092y067z4          0.210    r    10.296       7  pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ofb
+net (fo=1)                              0.811         11.107          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_24,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic
+LUT6 (reg)          x092y067z0          0.428    r    11.535       8  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.535               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  2.956               
+
+Slack               : 2.957ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 6.833ns (cell 2.305ns (33%), net 4.528ns (67%))
+Clock Skew          : 0.082ns
+Logic Level         : 9 ( LUT6=3  LUT3=3  LUT5=1  LUT4=1  LUT2=1 )
+Max Fanout          : 16
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.805          5.687          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/router/ra_reg[6]_syn_32.ic
+LUT3                x094y066z1          0.287    f     5.974       1  pin: control/core/fabric/router/ra_reg[6]_syn_32.ofa
+net (fo=1)                              0.621          6.595          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_36,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ic
+LUT5                x094y066z7          0.150    f     6.745       2  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ofb
+net (fo=3)                              0.207          6.952          net: control/core/fabric/rs485/regs/access_error_b18_n3_syn_2,  NOFILE(0)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.id
+LUT3                x095y066z7          0.188    f     7.140       3  pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.ofa
+net (fo=13)                             0.946          8.086          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_45,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_685.imf
+LUT2                x101y065z6          0.212    f     8.298       4  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_685.ofa
+net (fo=16)                             0.344          8.642          net: control/core/fabric/rs485/regs/cap_generation_b_i6_syn_4,  gp/rs485_gp_regs.v(363)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_687.ic
+LUT6                x101y067z2          0.210    r     8.852       5  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_687.ofb
+net (fo=1)                              0.117          8.969          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_635,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/cache/good_rev_reg[8]_syn_2.ib
+LUT6                x101y067z0          0.241    r     9.210       6  pin: control/core/fabric/telemetry/cache/good_rev_reg[8]_syn_2.ofb
+net (fo=2)                              0.871         10.081          net: control/core/fabric/rs485/regs/access_error_b15[3],  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/wd_reg[31]_syn_2.imf
+LUT3                x093y067z7          0.212    f    10.293       7  pin: control/core/fabric/rs485/regs/wd_reg[31]_syn_2.ofa
+net (fo=4)                              0.301         10.594          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_643,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/wd_reg[30]_syn_2.imb
+LUT4                x093y067z4          0.165    r    10.759       8  pin: control/core/fabric/rs485/regs/wd_reg[30]_syn_2.ofb
+net (fo=2)                              0.316         11.075          net: control/core/fabric/rs485/regs/access_error_reg[1]_syn_4,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib
+LUT6 (reg)          x092y067z0          0.459    r    11.534       9  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.534               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  2.957               
+
+Slack               : 2.969ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 6.821ns (cell 2.139ns (31%), net 4.682ns (69%))
+Clock Skew          : 0.082ns
+Logic Level         : 9 ( LUT4=4  LUT5=3  LUT6=2 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              1.123          6.005          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_698.ie
+LUT4                x103y064z3          0.097    f     6.102       1  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_698.ofb
+net (fo=1)                              0.419          6.521          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_266,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/mux312_syn_150.ia
+LUT4                x103y067z1          0.240    r     6.761       2  pin: control/core/fabric/rs485/regs/mux312_syn_150.ofb
+net (fo=1)                              0.534          7.295          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_274,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/router/ra_reg[4]_syn_69.ib
+LUT5                x098y067z5          0.324    f     7.619       3  pin: control/core/fabric/router/ra_reg[4]_syn_69.ofa
+net (fo=4)                              0.669          8.288          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_316,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_684.ic
+LUT5                x102y068z5          0.150    f     8.438       4  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_684.ofb
+net (fo=1)                              0.747          9.185          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_421,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/cache/last_gen_reg[242]_syn_2.ie
+LUT4                x098y069z4          0.097    f     9.282       5  pin: control/core/fabric/telemetry/cache/last_gen_reg[242]_syn_2.ofb
+net (fo=1)                              0.326          9.608          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_427,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/cache/last_rev_reg[349]_syn_2.id
+LUT5                x095y068z5          0.188    f     9.796       6  pin: control/core/fabric/telemetry/cache/last_rev_reg[349]_syn_2.ofa
+net (fo=1)                              0.192          9.988          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_429,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_669.id
+LUT6                x095y068z4          0.161    r    10.149       7  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_669.ofb
+net (fo=5)                              0.356         10.505          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_437,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/wd_reg[30]_syn_2.ib
+LUT4                x093y067z4          0.242    r    10.747       8  pin: control/core/fabric/rs485/regs/wd_reg[30]_syn_2.ofb
+net (fo=2)                              0.316         11.063          net: control/core/fabric/rs485/regs/access_error_reg[1]_syn_4,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib
+LUT6 (reg)          x092y067z0          0.459    r    11.522       9  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.522               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  2.969               
+
+Slack               : 3.086ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 6.704ns (cell 2.147ns (32%), net 4.557ns (68%))
+Clock Skew          : 0.082ns
+Logic Level         : 9 ( LUT4=4  LUT5=3  LUT6=2 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              1.123          6.005          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_698.ie
+LUT4                x103y064z3          0.097    f     6.102       1  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_698.ofb
+net (fo=1)                              0.419          6.521          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_266,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/mux312_syn_150.ia
+LUT4                x103y067z1          0.240    r     6.761       2  pin: control/core/fabric/rs485/regs/mux312_syn_150.ofb
+net (fo=1)                              0.534          7.295          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_274,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/router/ra_reg[4]_syn_69.ib
+LUT5                x098y067z5          0.242    r     7.537       3  pin: control/core/fabric/router/ra_reg[4]_syn_69.ofb
+net (fo=4)                              0.544          8.081          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_310,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_684.ia
+LUT5                x102y068z5          0.240    r     8.321       4  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_684.ofb
+net (fo=1)                              0.747          9.068          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_421,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/cache/last_gen_reg[242]_syn_2.ie
+LUT4                x098y069z4          0.097    f     9.165       5  pin: control/core/fabric/telemetry/cache/last_gen_reg[242]_syn_2.ofb
+net (fo=1)                              0.326          9.491          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_427,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/cache/last_rev_reg[349]_syn_2.id
+LUT5                x095y068z5          0.188    f     9.679       6  pin: control/core/fabric/telemetry/cache/last_rev_reg[349]_syn_2.ofa
+net (fo=1)                              0.192          9.871          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_429,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_669.id
+LUT6                x095y068z4          0.161    r    10.032       7  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_669.ofb
+net (fo=5)                              0.356         10.388          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_437,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/wd_reg[30]_syn_2.ib
+LUT4                x093y067z4          0.242    r    10.630       8  pin: control/core/fabric/rs485/regs/wd_reg[30]_syn_2.ofb
+net (fo=2)                              0.316         10.946          net: control/core/fabric/rs485/regs/access_error_reg[1]_syn_4,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ib
+LUT6 (reg)          x092y067z0          0.459    r    11.405       9  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.405               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.086               
+
+Slack               : 3.195ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 6.595ns (cell 1.866ns (28%), net 4.729ns (72%))
+Clock Skew          : 0.082ns
+Logic Level         : 8 ( LUT6=3  LUT4=3  LUT5=2 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              1.123          6.005          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_698.ie
+LUT4                x103y064z3          0.097    f     6.102       1  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_698.ofb
+net (fo=1)                              0.419          6.521          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_266,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/mux312_syn_150.ia
+LUT4                x103y067z1          0.240    r     6.761       2  pin: control/core/fabric/rs485/regs/mux312_syn_150.ofb
+net (fo=1)                              0.534          7.295          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_274,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/router/ra_reg[4]_syn_69.ib
+LUT5                x098y067z5          0.324    f     7.619       3  pin: control/core/fabric/router/ra_reg[4]_syn_69.ofa
+net (fo=4)                              0.423          8.042          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_316,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_683.ib
+LUT6                x101y067z3          0.241    r     8.283       4  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_683.ofb
+net (fo=2)                              0.482          8.765          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_445,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ie
+LUT5                x097y067z4          0.097    f     8.862       5  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ofb
+net (fo=3)                              0.514          9.376          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_10,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/cache/last_rev_reg[349]_syn_2.ie
+LUT4                x095y068z5          0.097    f     9.473       6  pin: control/core/fabric/telemetry/cache/last_rev_reg[349]_syn_2.ofb
+net (fo=1)                              0.423          9.896          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_14,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.id
+LUT6                x092y067z4          0.161    r    10.057       7  pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ofb
+net (fo=1)                              0.811         10.868          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_24,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic
+LUT6 (reg)          x092y067z0          0.428    r    11.296       8  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.296               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.195               
+
+Slack               : 3.196ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 6.594ns (cell 1.814ns (27%), net 4.780ns (73%))
+Clock Skew          : 0.082ns
+Logic Level         : 8 ( LUT6=3  LUT5=2  LUT3=2  LUT4=1 )
+Max Fanout          : 13
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.805          5.687          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/router/ra_reg[6]_syn_32.ic
+LUT3                x094y066z1          0.287    f     5.974       1  pin: control/core/fabric/router/ra_reg[6]_syn_32.ofa
+net (fo=1)                              0.621          6.595          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_36,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ic
+LUT5                x094y066z7          0.150    f     6.745       2  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ofb
+net (fo=3)                              0.207          6.952          net: control/core/fabric/rs485/regs/access_error_b18_n3_syn_2,  NOFILE(0)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.id
+LUT3                x095y066z7          0.188    f     7.140       3  pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.ofa
+net (fo=13)                             0.988          8.128          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_45,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_31.id
+LUT6                x108y068z4          0.161    r     8.289       4  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_31.ofb
+net (fo=1)                              0.812          9.101          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_6,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.imb
+LUT5                x097y067z4          0.165    r     9.266       5  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ofb
+net (fo=3)                              0.325          9.591          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_10,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_29.imb
+LUT4                x094y067z1          0.165    r     9.756       6  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_29.ofb
+net (fo=1)                              0.211          9.967          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_12,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.imf
+LUT6                x092y067z4          0.089    r    10.056       7  pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ofb
+net (fo=1)                              0.811         10.867          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_24,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic
+LUT6 (reg)          x092y067z0          0.428    r    11.295       8  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.295               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.196               
+
+Slack               : 3.296ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow
+Budget              : 10.000ns { board_100m rising@10.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 6.494ns (cell 2.110ns (32%), net 4.384ns (68%))
+Clock Skew          : 0.082ns
+Logic Level         : 8 ( LUT6=3  LUT5=2  LUT3=2  LUT4=1 )
+Max Fanout          : 13
+Clock Uncertainty   : 0.060ns (sdc uncertainty: 0.000ns, default uncertainty: 0.060ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.961          0.961          pin: clk_100m_syn_91.di
+net (fo=1)                              1.983          2.944          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.323          3.267          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.616          3.883          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.883          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.818          4.701          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     4.701               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.181    f     4.882          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.805          5.687          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/router/ra_reg[6]_syn_32.ic
+LUT3                x094y066z1          0.287    f     5.974       1  pin: control/core/fabric/router/ra_reg[6]_syn_32.ofa
+net (fo=1)                              0.621          6.595          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_36,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ic
+LUT5                x094y066z7          0.150    f     6.745       2  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ofb
+net (fo=3)                              0.207          6.952          net: control/core/fabric/rs485/regs/access_error_b18_n3_syn_2,  NOFILE(0)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.id
+LUT3                x095y066z7          0.188    f     7.140       3  pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.ofa
+net (fo=13)                             0.446          7.586          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_45,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/snap_req_reg[26]_syn_2.id
+LUT4                x097y067z2          0.188    f     7.774       4  pin: control/core/fabric/rs485/regs/snap_req_reg[26]_syn_2.ofa
+net (fo=1)                              0.508          8.282          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_8,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ia
+LUT5                x097y067z4          0.240    r     8.522       5  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_30.ofb
+net (fo=3)                              0.652          9.174          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_10,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_28.ia
+LUT6                x094y067z7          0.238    r     9.412       6  pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_28.ofb
+net (fo=1)                              0.334          9.746          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_18,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ic
+LUT6                x092y067z4          0.210    r     9.956       7  pin: control/core/fabric/telemetry/transport/forward_data_reg[442]_syn_2.ofb
+net (fo=1)                              0.811         10.767          net: control/core/fabric/rs485/regs/access_error_reg[0]_syn_24,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.ic
+LUT6 (reg)          x092y067z0          0.428    r    11.195       8  net: control/core/fabric/rs485/regs/access_error[0],  gp/rs485_gp_regs.v(262)
+--------------------------------------------------------------------  ---------------
+Arrival                                               11.195               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.957          0.957          pin: clk_100m_syn_91.di
+net (fo=1)                              1.781          2.738          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.290          3.028          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.554          3.582          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          3.582          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.736          4.318          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[0]_syn_27.clk
+capture edge                           10.000    r    14.318               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.068         14.250               
+clock uncertainty                      -0.060         14.190               
+clock pessimism                         0.301         14.491               
+--------------------------------------------------------------------  ---------------
+Required                                              14.491               
+--------------------------------------------------------------------  ---------------
+Slack                                                  3.296               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.391ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/snap_req_reg[24]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 0.550ns (cell 0.162ns (29%), net 0.388ns (71%))
+Clock Skew          : 0.067ns
+Logic Level         : 0
+Max Fanout          : 7
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.096    f     2.070          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.388          2.458          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/snap_req_reg[24]_syn_2.ima
+reg                 x097y066z3          0.066    f     2.524          net: control/core/fabric/rs485/regs/snap_req[24],  gp/rs485_gp_regs.v(271)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.524               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.449          2.263          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/snap_req_reg[24]_syn_2.clk
+capture edge                            0.000    r     2.263               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.305               
+clock uncertainty                       0.050          2.355               
+clock pessimism                        -0.222          2.133               
+--------------------------------------------------------------------  ---------------
+Required                                               2.133               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.391               
+
+Slack               : 0.646ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/last_consumed_reg[24]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 0.804ns (cell 0.162ns (20%), net 0.642ns (80%))
+Clock Skew          : 0.066ns
+Logic Level         : 0
+Max Fanout          : 7
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.096    f     2.070          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.642          2.712          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/last_consumed_reg[24]_syn_2.ima
+reg                 x110y068z0          0.066    f     2.778          net: control/core/fabric/rs485/regs/last_consumed[24],  gp/rs485_gp_regs.v(269)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.778               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.448          2.262          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/last_consumed_reg[24]_syn_2.clk
+capture edge                            0.000    r     2.262               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.304               
+clock uncertainty                       0.050          2.354               
+clock pessimism                        -0.222          2.132               
+--------------------------------------------------------------------  ---------------
+Required                                               2.132               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.646               
+
+Slack               : 0.706ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/result_id_reg[25]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 0.864ns (cell 0.164ns (18%), net 0.700ns (82%))
+Clock Skew          : 0.066ns
+Logic Level         : 0
+Max Fanout          : 7
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.096    f     2.070          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.700          2.770          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/result_id_reg[25]_syn_2.imb
+reg                 x113y067z2          0.068    f     2.838          net: control/core/fabric/rs485/regs/shadow_id[24],  gp/rs485_gp_regs.v(263)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.838               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.448          2.262          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/result_id_reg[25]_syn_2.clk
+capture edge                            0.000    r     2.262               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.304               
+clock uncertainty                       0.050          2.354               
+clock pessimism                        -0.222          2.132               
+--------------------------------------------------------------------  ---------------
+Required                                               2.132               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.706               
+
+Slack               : 0.765ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.imb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 0.923ns (cell 0.218ns (23%), net 0.705ns (77%))
+Clock Skew          : 0.066ns
+Logic Level         : 1 ( LUT3=1 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.096    f     2.070          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.705          2.775          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.imb
+LUT3 (reg)          x117y068z5          0.122    f     2.897       1  net: control/core/fabric/rs485/regs/shadow_period[88],  gp/rs485_gp_regs.v(263)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.897               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.448          2.262          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.clk
+capture edge                            0.000    r     2.262               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.304               
+clock uncertainty                       0.050          2.354               
+clock pessimism                        -0.222          2.132               
+--------------------------------------------------------------------  ---------------
+Required                                               2.132               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.765               
+
+Slack               : 0.879ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 1.037ns (cell 0.245ns (23%), net 0.792ns (77%))
+Clock Skew          : 0.066ns
+Logic Level         : 1 ( LUT3=1 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.096    f     2.070          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.705          2.775          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.imb
+LUT3                x117y068z5          0.083    f     2.858       1  pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.ofb
+net (fo=4)                              0.087          2.945          net: control/core/fabric/rs485/regs/shadow_period_b9[24],  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.ima
+reg                 x117y068z5          0.066    f     3.011          net: control/core/fabric/rs485/regs/shadow_period[24],  gp/rs485_gp_regs.v(263)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.011               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.448          2.262          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.clk
+capture edge                            0.000    r     2.262               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.304               
+clock uncertainty                       0.050          2.354               
+clock pessimism                        -0.222          2.132               
+--------------------------------------------------------------------  ---------------
+Required                                               2.132               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.879               
+
+Slack               : 0.879ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/shadow_period_reg[152]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 1.037ns (cell 0.245ns (23%), net 0.792ns (77%))
+Clock Skew          : 0.066ns
+Logic Level         : 1 ( LUT3=1 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.096    f     2.070          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.705          2.775          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.imb
+LUT3                x117y068z5          0.083    f     2.858       1  pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.ofb
+net (fo=4)                              0.087          2.945          net: control/core/fabric/rs485/regs/shadow_period_b9[24],  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[152]_syn_2.ima
+reg                 x117y068z3          0.066    f     3.011          net: control/core/fabric/rs485/regs/shadow_period[152],  gp/rs485_gp_regs.v(263)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.011               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.448          2.262          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[152]_syn_2.clk
+capture edge                            0.000    r     2.262               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.304               
+clock uncertainty                       0.050          2.354               
+clock pessimism                        -0.222          2.132               
+--------------------------------------------------------------------  ---------------
+Required                                               2.132               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.879               
+
+Slack               : 0.965ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/shadow_period_reg[56]_syn_2.ima (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 1.123ns (cell 0.245ns (21%), net 0.878ns (79%))
+Clock Skew          : 0.066ns
+Logic Level         : 1 ( LUT3=1 )
+Max Fanout          : 7
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.096    f     2.070          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.705          2.775          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.imb
+LUT3                x117y068z5          0.083    f     2.858       1  pin: control/core/fabric/rs485/regs/shadow_period_reg[24]_syn_2.ofb
+net (fo=4)                              0.173          3.031          net: control/core/fabric/rs485/regs/shadow_period_b9[24],  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[56]_syn_2.ima
+reg                 x117y067z7          0.066    f     3.097          net: control/core/fabric/rs485/regs/shadow_period[56],  gp/rs485_gp_regs.v(263)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.097               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.448          2.262          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/shadow_period_reg[56]_syn_2.clk
+capture edge                            0.000    r     2.262               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.304               
+clock uncertainty                       0.050          2.354               
+clock pessimism                        -0.222          2.132               
+--------------------------------------------------------------------  ---------------
+Required                                               2.132               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.965               
+
+Slack               : 1.025ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 1.285ns (cell 0.284ns (22%), net 1.001ns (78%))
+Clock Skew          : 0.118ns
+Logic Level         : 2 ( LUT5=1  LUT3=1 )
+Max Fanout          : 1996
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.090    f     2.064          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqa
+net (fo=1)                              0.331          2.395          net: control/core/fabric/rs485/regs/aw_snapshot,  gp/rs485_gp_regs.v(260)
+                                                                      pin: control/core/fabric/rs485/regs/s_bresp_reg[1]_syn_5.id
+LUT3                x092y068z0          0.088    r     2.483       1  pin: control/core/fabric/rs485/regs/s_bresp_reg[1]_syn_5.ofa
+net (fo=3)                              0.519          3.002          net: control/core/fabric/rs485/regs/mux335_syn_30728,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/snap_req_reg[22]_syn_3.ie
+LUT5                x098y038z7          0.106    r     3.108       2  pin: control/core/fabric/rs485/regs/snap_req_reg[22]_syn_3.ofa
+net (fo=1996)                           0.151          3.259          net: control/core/fabric/rs485/regs/mux335_syn_dup_30737,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.cea
+reg                 x097y039z6          0.000    f     3.259               
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.259               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1.clkin
+SCLK                x079y019z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1.clkout
+net (fo=3181)                           0.450          2.264          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.clk
+capture edge                            0.000    r     2.264               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.306               
+clock uncertainty                       0.100          2.406               
+clock pessimism                        -0.172          2.234               
+--------------------------------------------------------------------  ---------------
+Required                                               2.234               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.025               
+
+Slack               : 1.775ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.cea (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 2.035ns (cell 0.550ns (27%), net 1.485ns (73%))
+Clock Skew          : 0.118ns
+Logic Level         : 4 ( LUT5=2  LUT3=2 )
+Max Fanout          : 1996
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.096    f     2.070          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqb
+net (fo=7)                              0.388          2.458          net: control/core/fabric/rs485/regs/wd[24],  gp/rs485_gp_regs.v(259)
+                                                                      pin: control/core/fabric/router/ra_reg[6]_syn_32.ic
+LUT3                x094y066z1          0.139    r     2.597       1  pin: control/core/fabric/router/ra_reg[6]_syn_32.ofa
+net (fo=1)                              0.298          2.895          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_36,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ic
+LUT5                x094y066z7          0.075    r     2.970       2  pin: control/core/fabric/rs485/regs/access_error_reg[2]_syn_660.ofb
+net (fo=3)                              0.092          3.062          net: control/core/fabric/rs485/regs/access_error_b18_n3_syn_2,  NOFILE(0)
+                                                                      pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.id
+LUT3                x095y066z7          0.088    r     3.150       3  pin: control/core/fabric/telemetry/cache/frozen_reg[2498]_syn_2.ofa
+net (fo=13)                             0.556          3.706          net: control/core/fabric/rs485/regs/access_error_reg[2]_syn_45,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/snap_req_reg[22]_syn_3.ib
+LUT5                x098y038z7          0.152    r     3.858       4  pin: control/core/fabric/rs485/regs/snap_req_reg[22]_syn_3.ofa
+net (fo=1996)                           0.151          4.009          net: control/core/fabric/rs485/regs/mux335_syn_dup_30737,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.cea
+reg                 x097y039z6          0.000    f     4.009               
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.009               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1.clkin
+SCLK                x079y019z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1.clkout
+net (fo=3181)                           0.450          2.264          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.clk
+capture edge                            0.000    r     2.264               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.306               
+clock uncertainty                       0.100          2.406               
+clock pessimism                        -0.172          2.234               
+--------------------------------------------------------------------  ---------------
+Required                                               2.234               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.775               
+
+Slack               : 1.025ns
+Begin Point         : control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.ceb (rising edge triggered by clock board_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast
+Budget              : 0.000ns { board_100m rising@0.000ns - board_100m rising@0.000ns }
+Data Path Delay     : 1.285ns (cell 0.284ns (22%), net 1.001ns (78%))
+Clock Skew          : 0.118ns
+Logic Level         : 2 ( LUT5=1  LUT3=1 )
+Max Fanout          : 1996
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.405          0.405          pin: clk_100m_syn_91.di
+net (fo=1)                              0.792          1.197          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.133          1.330          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.262          1.592          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x079y059z12         0.000          1.592          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=5823)                           0.382          1.974          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.clk
+launch edge                             0.000    r     1.974               
+--------------------------------------------------------------------  ---------------
+clk2q               x091y068z3          0.090    f     2.064          pin: control/core/fabric/rs485/regs/aw_snapshot_reg_syn_3.oqa
+net (fo=1)                              0.331          2.395          net: control/core/fabric/rs485/regs/aw_snapshot,  gp/rs485_gp_regs.v(260)
+                                                                      pin: control/core/fabric/rs485/regs/s_bresp_reg[1]_syn_5.id
+LUT3                x092y068z0          0.088    r     2.483       1  pin: control/core/fabric/rs485/regs/s_bresp_reg[1]_syn_5.ofa
+net (fo=3)                              0.519          3.002          net: control/core/fabric/rs485/regs/mux335_syn_30728,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/snap_req_reg[22]_syn_3.ie
+LUT5                x098y038z7          0.106    r     3.108       2  pin: control/core/fabric/rs485/regs/snap_req_reg[22]_syn_3.ofa
+net (fo=1996)                           0.151          3.259          net: control/core/fabric/rs485/regs/mux335_syn_dup_30737,  gp/rs485_gp_regs.v(309)
+                                                                      pin: control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.ceb
+reg                 x097y039z6          0.000    f     3.259               
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.259               
+
+source latency                          0.000          0.000               
+port                H16                 0.000          0.000          pin: clk_100m
+hierarchy                               0.000          0.000          pin: clk_100m_syn_91.ipad
+PAD                 x123y097            0.406          0.406          pin: clk_100m_syn_91.di
+net (fo=1)                              0.938          1.344          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkin[0]
+GCLK                x079y059z16         0.158          1.502          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst.clkout
+net (fo=6)                              0.312          1.814          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_syn_1,  gp/axi_dma.v(0)
+                                                                      pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1.clkin
+SCLK                x079y019z12         0.000          1.814          pin: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1.clkout
+net (fo=3181)                           0.450          2.264          net: control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst_auto_created_sclk_s_0_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: control/core/fabric/rs485/regs/snapshot_reg[10615]_syn_2.clk
+capture edge                            0.000    r     2.264               
+--------------------------------------------------------------------  ---------------
+hold                                    0.042          2.306               
+clock uncertainty                       0.100          2.406               
+clock pessimism                        -0.172          2.234               
+--------------------------------------------------------------------  ---------------
+Required                                               2.234               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.025               
+
+
+
+

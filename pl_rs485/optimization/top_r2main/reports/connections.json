@@ -1,0 +1,1005 @@
+{
+  "status": "SIX_WINDOW_GPIO_TELEMETRY_CONNECTED_NOT_YET_BUILT",
+  "source_commit": "f447116",
+  "schema_sha256": "1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31",
+  "ps_ports": {
+    "slave_hp0_axi_aclk": [
+      "input",
+      1
+    ],
+    "slave_hp0_axi_araddr": [
+      "input",
+      33
+    ],
+    "slave_hp0_axi_arburst": [
+      "input",
+      2
+    ],
+    "slave_hp0_axi_arcache": [
+      "input",
+      4
+    ],
+    "slave_hp0_axi_arid": [
+      "input",
+      6
+    ],
+    "slave_hp0_axi_arlen": [
+      "input",
+      4
+    ],
+    "slave_hp0_axi_arlock": [
+      "input",
+      1
+    ],
+    "slave_hp0_axi_arprot": [
+      "input",
+      3
+    ],
+    "slave_hp0_axi_arqos": [
+      "input",
+      4
+    ],
+    "slave_hp0_axi_arready": [
+      "output",
+      1
+    ],
+    "slave_hp0_axi_arsize": [
+      "input",
+      2
+    ],
+    "slave_hp0_axi_arvalid": [
+      "input",
+      1
+    ],
+    "slave_hp0_axi_awaddr": [
+      "input",
+      33
+    ],
+    "slave_hp0_axi_awburst": [
+      "input",
+      2
+    ],
+    "slave_hp0_axi_awcache": [
+      "input",
+      4
+    ],
+    "slave_hp0_axi_awid": [
+      "input",
+      6
+    ],
+    "slave_hp0_axi_awlen": [
+      "input",
+      4
+    ],
+    "slave_hp0_axi_awlock": [
+      "input",
+      1
+    ],
+    "slave_hp0_axi_awprot": [
+      "input",
+      3
+    ],
+    "slave_hp0_axi_awqos": [
+      "input",
+      4
+    ],
+    "slave_hp0_axi_awready": [
+      "output",
+      1
+    ],
+    "slave_hp0_axi_awsize": [
+      "input",
+      2
+    ],
+    "slave_hp0_axi_awvalid": [
+      "input",
+      1
+    ],
+    "slave_hp0_axi_bid": [
+      "output",
+      6
+    ],
+    "slave_hp0_axi_bready": [
+      "input",
+      1
+    ],
+    "slave_hp0_axi_bresp": [
+      "output",
+      2
+    ],
+    "slave_hp0_axi_bvalid": [
+      "output",
+      1
+    ],
+    "slave_hp0_axi_rdata": [
+      "output",
+      64
+    ],
+    "slave_hp0_axi_rid": [
+      "output",
+      6
+    ],
+    "slave_hp0_axi_rlast": [
+      "output",
+      1
+    ],
+    "slave_hp0_axi_rready": [
+      "input",
+      1
+    ],
+    "slave_hp0_axi_rresp": [
+      "output",
+      2
+    ],
+    "slave_hp0_axi_rvalid": [
+      "output",
+      1
+    ],
+    "slave_hp0_axi_wdata": [
+      "input",
+      64
+    ],
+    "slave_hp0_axi_wlast": [
+      "input",
+      1
+    ],
+    "slave_hp0_axi_wready": [
+      "output",
+      1
+    ],
+    "slave_hp0_axi_wstrb": [
+      "input",
+      8
+    ],
+    "slave_hp0_axi_wvalid": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_aclk": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_araddr": [
+      "input",
+      33
+    ],
+    "slave_hp1_axi_arburst": [
+      "input",
+      2
+    ],
+    "slave_hp1_axi_arcache": [
+      "input",
+      4
+    ],
+    "slave_hp1_axi_arid": [
+      "input",
+      6
+    ],
+    "slave_hp1_axi_arlen": [
+      "input",
+      4
+    ],
+    "slave_hp1_axi_arlock": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_arprot": [
+      "input",
+      3
+    ],
+    "slave_hp1_axi_arqos": [
+      "input",
+      4
+    ],
+    "slave_hp1_axi_arready": [
+      "output",
+      1
+    ],
+    "slave_hp1_axi_arsize": [
+      "input",
+      2
+    ],
+    "slave_hp1_axi_arvalid": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_awaddr": [
+      "input",
+      33
+    ],
+    "slave_hp1_axi_awburst": [
+      "input",
+      2
+    ],
+    "slave_hp1_axi_awcache": [
+      "input",
+      4
+    ],
+    "slave_hp1_axi_awid": [
+      "input",
+      6
+    ],
+    "slave_hp1_axi_awlen": [
+      "input",
+      4
+    ],
+    "slave_hp1_axi_awlock": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_awprot": [
+      "input",
+      3
+    ],
+    "slave_hp1_axi_awqos": [
+      "input",
+      4
+    ],
+    "slave_hp1_axi_awready": [
+      "output",
+      1
+    ],
+    "slave_hp1_axi_awsize": [
+      "input",
+      2
+    ],
+    "slave_hp1_axi_awvalid": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_bid": [
+      "output",
+      6
+    ],
+    "slave_hp1_axi_bready": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_bresp": [
+      "output",
+      2
+    ],
+    "slave_hp1_axi_bvalid": [
+      "output",
+      1
+    ],
+    "slave_hp1_axi_rdata": [
+      "output",
+      64
+    ],
+    "slave_hp1_axi_rid": [
+      "output",
+      6
+    ],
+    "slave_hp1_axi_rlast": [
+      "output",
+      1
+    ],
+    "slave_hp1_axi_rready": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_rresp": [
+      "output",
+      2
+    ],
+    "slave_hp1_axi_rvalid": [
+      "output",
+      1
+    ],
+    "slave_hp1_axi_wdata": [
+      "input",
+      64
+    ],
+    "slave_hp1_axi_wlast": [
+      "input",
+      1
+    ],
+    "slave_hp1_axi_wready": [
+      "output",
+      1
+    ],
+    "slave_hp1_axi_wstrb": [
+      "input",
+      8
+    ],
+    "slave_hp1_axi_wvalid": [
+      "input",
+      1
+    ],
+    "master_gp0_axi_aclk": [
+      "input",
+      1
+    ],
+    "master_gp0_axi_araddr": [
+      "output",
+      33
+    ],
+    "master_gp0_axi_arburst": [
+      "output",
+      2
+    ],
+    "master_gp0_axi_arcache": [
+      "output",
+      4
+    ],
+    "master_gp0_axi_arid": [
+      "output",
+      12
+    ],
+    "master_gp0_axi_arlen": [
+      "output",
+      4
+    ],
+    "master_gp0_axi_arlock": [
+      "output",
+      1
+    ],
+    "master_gp0_axi_arprot": [
+      "output",
+      3
+    ],
+    "master_gp0_axi_arready": [
+      "input",
+      1
+    ],
+    "master_gp0_axi_arsize": [
+      "output",
+      2
+    ],
+    "master_gp0_axi_arvalid": [
+      "output",
+      1
+    ],
+    "master_gp0_axi_awaddr": [
+      "output",
+      33
+    ],
+    "master_gp0_axi_awburst": [
+      "output",
+      2
+    ],
+    "master_gp0_axi_awcache": [
+      "output",
+      4
+    ],
+    "master_gp0_axi_awid": [
+      "output",
+      12
+    ],
+    "master_gp0_axi_awlen": [
+      "output",
+      4
+    ],
+    "master_gp0_axi_awlock": [
+      "output",
+      1
+    ],
+    "master_gp0_axi_awprot": [
+      "output",
+      3
+    ],
+    "master_gp0_axi_awready": [
+      "input",
+      1
+    ],
+    "master_gp0_axi_awsize": [
+      "output",
+      2
+    ],
+    "master_gp0_axi_awvalid": [
+      "output",
+      1
+    ],
+    "master_gp0_axi_bid": [
+      "input",
+      12
+    ],
+    "master_gp0_axi_bready": [
+      "output",
+      1
+    ],
+    "master_gp0_axi_bresp": [
+      "input",
+      2
+    ],
+    "master_gp0_axi_bvalid": [
+      "input",
+      1
+    ],
+    "master_gp0_axi_rdata": [
+      "input",
+      32
+    ],
+    "master_gp0_axi_rid": [
+      "input",
+      12
+    ],
+    "master_gp0_axi_rlast": [
+      "input",
+      1
+    ],
+    "master_gp0_axi_rready": [
+      "output",
+      1
+    ],
+    "master_gp0_axi_rresp": [
+      "input",
+      2
+    ],
+    "master_gp0_axi_rvalid": [
+      "input",
+      1
+    ],
+    "master_gp0_axi_wdata": [
+      "output",
+      32
+    ],
+    "master_gp0_axi_wlast": [
+      "output",
+      1
+    ],
+    "master_gp0_axi_wready": [
+      "input",
+      1
+    ],
+    "master_gp0_axi_wstrb": [
+      "output",
+      4
+    ],
+    "master_gp0_axi_wvalid": [
+      "output",
+      1
+    ],
+    "f2p_irq": [
+      "input",
+      16
+    ],
+    "p2f_rst0_n": [
+      "output",
+      1
+    ],
+    "p2f_clk0": [
+      "output",
+      1
+    ]
+  },
+  "raw_ps_sha256": "df5d61e903b47ce1e9db19e43e83bc179a18ceb5bcf5af6bb1eb37c4fa83b310",
+  "gp_window": "0x80400000/4KiB",
+  "dma_window": "0x80500000/4KiB",
+  "irq": "bit0..6 SPI82..88 level-high",
+  "clock": "H16 100MHz GP0/HP0/HP1/PL common; native PS properties mapped",
+  "reset": "startup p2f_rst0_n; DMA-only soft reset preserves GP epoch",
+  "ip": {
+    "td_root": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067",
+    "schema_sha256": "1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31",
+    "generation": "unmodified installed vendor RTL, directly parameterized; not copied example IP",
+    "parameters": {
+      "AL_S_AXI_LITE_ADDR_WIDTH": 10,
+      "AL_S_AXI_LITE_DATA_WIDTH": 32,
+      "AL_DLYTMR_RESOLUTION": 125,
+      "AL_PRMRY_IS_ACLK_ASYNC": 0,
+      "AL_INCLUDE_SG": 0,
+      "AL_SG_INCLUDE_STSCNTRL_STRM": 0,
+      "AL_SG_USE_STSAPP_LENGTH": 0,
+      "AL_SG_LENGTH_WIDTH": 16,
+      "AL_M_AXI_SG_ADDR_WIDTH": 32,
+      "AL_M_AXI_SG_DATA_WIDTH": 32,
+      "AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH": 32,
+      "AL_S_AXIS_S2MM_STS_TDATA_WIDTH": 32,
+      "AL_INCLUDE_MM2S": 1,
+      "AL_INCLUDE_MM2S_SF": 1,
+      "AL_INCLUDE_MM2S_DRE": 1,
+      "AL_MM2S_BURST_SIZE": 16,
+      "AL_M_AXI_MM2S_ADDR_WIDTH": 32,
+      "AL_M_AXI_MM2S_DATA_WIDTH": 64,
+      "AL_M_AXIS_MM2S_TDATA_WIDTH": 64,
+      "AL_INCLUDE_S2MM": 1,
+      "AL_INCLUDE_S2MM_SF": 1,
+      "AL_INCLUDE_S2MM_DRE": 1,
+      "AL_S2MM_BURST_SIZE": 16,
+      "AL_M_AXI_S2MM_ADDR_WIDTH": 32,
+      "AL_M_AXI_S2MM_DATA_WIDTH": 64,
+      "AL_S_AXIS_S2MM_TDATA_WIDTH": 64,
+      "AL_MICRO_DMA": 0,
+      "AL_INCREASE_THROUGHPUT": 0,
+      "AL_S_AXI_LITE_ACLK_FREQ_HZ": 100000000,
+      "AL_M_AXI_MM2S_ACLK_FREQ_HZ": 100000000,
+      "AL_M_AXI_S2MM_ACLK_FREQ_HZ": 100000000,
+      "AL_M_AXI_SG_ACLK_FREQ_HZ": 100000000
+    },
+    "dma_ports": {
+      "s_axi_lite_aclk": [
+        "input",
+        1
+      ],
+      "m_axi_sg_aclk": [
+        "input",
+        1
+      ],
+      "m_axi_mm2s_aclk": [
+        "input",
+        1
+      ],
+      "m_axi_s2mm_aclk": [
+        "input",
+        1
+      ],
+      "axi_resetn": [
+        "input",
+        1
+      ],
+      "s_axi_lite_awvalid": [
+        "input",
+        1
+      ],
+      "s_axi_lite_awready": [
+        "output",
+        1
+      ],
+      "s_axi_lite_awaddr": [
+        "input",
+        10
+      ],
+      "s_axi_lite_wvalid": [
+        "input",
+        1
+      ],
+      "s_axi_lite_wready": [
+        "output",
+        1
+      ],
+      "s_axi_lite_wdata": [
+        "input",
+        32
+      ],
+      "s_axi_lite_bresp": [
+        "output",
+        2
+      ],
+      "s_axi_lite_bvalid": [
+        "output",
+        1
+      ],
+      "s_axi_lite_bready": [
+        "input",
+        1
+      ],
+      "s_axi_lite_arvalid": [
+        "input",
+        1
+      ],
+      "s_axi_lite_arready": [
+        "output",
+        1
+      ],
+      "s_axi_lite_araddr": [
+        "input",
+        10
+      ],
+      "s_axi_lite_rvalid": [
+        "output",
+        1
+      ],
+      "s_axi_lite_rready": [
+        "input",
+        1
+      ],
+      "s_axi_lite_rdata": [
+        "output",
+        32
+      ],
+      "s_axi_lite_rresp": [
+        "output",
+        2
+      ],
+      "m_axi_sg_awaddr": [
+        "output",
+        32
+      ],
+      "m_axi_sg_awlen": [
+        "output",
+        8
+      ],
+      "m_axi_sg_awsize": [
+        "output",
+        3
+      ],
+      "m_axi_sg_awburst": [
+        "output",
+        2
+      ],
+      "m_axi_sg_awprot": [
+        "output",
+        3
+      ],
+      "m_axi_sg_awcache": [
+        "output",
+        4
+      ],
+      "m_axi_sg_awuser": [
+        "output",
+        4
+      ],
+      "m_axi_sg_awvalid": [
+        "output",
+        1
+      ],
+      "m_axi_sg_awready": [
+        "input",
+        1
+      ],
+      "m_axi_sg_wdata": [
+        "output",
+        32
+      ],
+      "m_axi_sg_wstrb": [
+        "output",
+        4
+      ],
+      "m_axi_sg_wlast": [
+        "output",
+        1
+      ],
+      "m_axi_sg_wvalid": [
+        "output",
+        1
+      ],
+      "m_axi_sg_wready": [
+        "input",
+        1
+      ],
+      "m_axi_sg_bresp": [
+        "input",
+        2
+      ],
+      "m_axi_sg_bvalid": [
+        "input",
+        1
+      ],
+      "m_axi_sg_bready": [
+        "output",
+        1
+      ],
+      "m_axi_sg_araddr": [
+        "output",
+        32
+      ],
+      "m_axi_sg_arlen": [
+        "output",
+        8
+      ],
+      "m_axi_sg_arsize": [
+        "output",
+        3
+      ],
+      "m_axi_sg_arburst": [
+        "output",
+        2
+      ],
+      "m_axi_sg_arprot": [
+        "output",
+        3
+      ],
+      "m_axi_sg_arcache": [
+        "output",
+        4
+      ],
+      "m_axi_sg_aruser": [
+        "output",
+        4
+      ],
+      "m_axi_sg_arvalid": [
+        "output",
+        1
+      ],
+      "m_axi_sg_arready": [
+        "input",
+        1
+      ],
+      "m_axi_sg_rdata": [
+        "input",
+        32
+      ],
+      "m_axi_sg_rresp": [
+        "input",
+        2
+      ],
+      "m_axi_sg_rlast": [
+        "input",
+        1
+      ],
+      "m_axi_sg_rvalid": [
+        "input",
+        1
+      ],
+      "m_axi_sg_rready": [
+        "output",
+        1
+      ],
+      "m_axi_mm2s_araddr": [
+        "output",
+        32
+      ],
+      "m_axi_mm2s_arlen": [
+        "output",
+        8
+      ],
+      "m_axi_mm2s_arsize": [
+        "output",
+        3
+      ],
+      "m_axi_mm2s_arburst": [
+        "output",
+        2
+      ],
+      "m_axi_mm2s_arprot": [
+        "output",
+        3
+      ],
+      "m_axi_mm2s_arcache": [
+        "output",
+        4
+      ],
+      "m_axi_mm2s_aruser": [
+        "output",
+        4
+      ],
+      "m_axi_mm2s_arvalid": [
+        "output",
+        1
+      ],
+      "m_axi_mm2s_arready": [
+        "input",
+        1
+      ],
+      "m_axi_mm2s_rdata": [
+        "input",
+        64
+      ],
+      "m_axi_mm2s_rresp": [
+        "input",
+        2
+      ],
+      "m_axi_mm2s_rlast": [
+        "input",
+        1
+      ],
+      "m_axi_mm2s_rvalid": [
+        "input",
+        1
+      ],
+      "m_axi_mm2s_rready": [
+        "output",
+        1
+      ],
+      "mm2s_prmry_reset_out_n": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_tdata": [
+        "output",
+        64
+      ],
+      "m_axis_mm2s_tkeep": [
+        "output",
+        8
+      ],
+      "m_axis_mm2s_tvalid": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_tready": [
+        "input",
+        1
+      ],
+      "m_axis_mm2s_tlast": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_tuser": [
+        "output",
+        4
+      ],
+      "m_axis_mm2s_tid": [
+        "output",
+        5
+      ],
+      "m_axis_mm2s_tdest": [
+        "output",
+        5
+      ],
+      "mm2s_cntrl_reset_out_n": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_cntrl_tdata": [
+        "output",
+        32
+      ],
+      "m_axis_mm2s_cntrl_tkeep": [
+        "output",
+        4
+      ],
+      "m_axis_mm2s_cntrl_tvalid": [
+        "output",
+        1
+      ],
+      "m_axis_mm2s_cntrl_tready": [
+        "input",
+        1
+      ],
+      "m_axis_mm2s_cntrl_tlast": [
+        "output",
+        1
+      ],
+      "m_axi_s2mm_awaddr": [
+        "output",
+        32
+      ],
+      "m_axi_s2mm_awlen": [
+        "output",
+        8
+      ],
+      "m_axi_s2mm_awsize": [
+        "output",
+        3
+      ],
+      "m_axi_s2mm_awburst": [
+        "output",
+        2
+      ],
+      "m_axi_s2mm_awprot": [
+        "output",
+        3
+      ],
+      "m_axi_s2mm_awcache": [
+        "output",
+        4
+      ],
+      "m_axi_s2mm_awuser": [
+        "output",
+        4
+      ],
+      "m_axi_s2mm_awvalid": [
+        "output",
+        1
+      ],
+      "m_axi_s2mm_awready": [
+        "input",
+        1
+      ],
+      "m_axi_s2mm_wdata": [
+        "output",
+        64
+      ],
+      "m_axi_s2mm_wstrb": [
+        "output",
+        8
+      ],
+      "m_axi_s2mm_wlast": [
+        "output",
+        1
+      ],
+      "m_axi_s2mm_wvalid": [
+        "output",
+        1
+      ],
+      "m_axi_s2mm_wready": [
+        "input",
+        1
+      ],
+      "m_axi_s2mm_bresp": [
+        "input",
+        2
+      ],
+      "m_axi_s2mm_bvalid": [
+        "input",
+        1
+      ],
+      "m_axi_s2mm_bready": [
+        "output",
+        1
+      ],
+      "s2mm_prmry_reset_out_n": [
+        "output",
+        1
+      ],
+      "s_axis_s2mm_tdata": [
+        "input",
+        64
+      ],
+      "s_axis_s2mm_tkeep": [
+        "input",
+        8
+      ],
+      "s_axis_s2mm_tvalid": [
+        "input",
+        1
+      ],
+      "s_axis_s2mm_tready": [
+        "output",
+        1
+      ],
+      "s_axis_s2mm_tlast": [
+        "input",
+        1
+      ],
+      "s_axis_s2mm_tuser": [
+        "input",
+        4
+      ],
+      "s_axis_s2mm_tid": [
+        "input",
+        5
+      ],
+      "s_axis_s2mm_tdest": [
+        "input",
+        5
+      ],
+      "s2mm_sts_reset_out_n": [
+        "output",
+        1
+      ],
+      "s_axis_s2mm_sts_tdata": [
+        "input",
+        32
+      ],
+      "s_axis_s2mm_sts_tkeep": [
+        "input",
+        4
+      ],
+      "s_axis_s2mm_sts_tvalid": [
+        "input",
+        1
+      ],
+      "s_axis_s2mm_sts_tready": [
+        "output",
+        1
+      ],
+      "s_axis_s2mm_sts_tlast": [
+        "input",
+        1
+      ],
+      "mm2s_introut": [
+        "output",
+        1
+      ],
+      "s2mm_introut": [
+        "output",
+        1
+      ]
+    },
+    "libraries": {
+      "dma": {
+        "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma.v",
+        "staged": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ip\\axi_dma.v",
+        "sha256": "24d6d6d4b741b497baf3b10ba50010e2df830b2a0681e16eb49ce84471011ef1"
+      },
+      "converter": {
+        "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_Protocol_Converter_1.0\\AXI_MM\\RTL\\axi_protocol_converter_merge.v",
+        "staged": "D:\\Works\\Embedded_contest\\dev\\pl_dma\\build\\ip\\axi_protocol_converter_merge.v",
+        "sha256": "a3f0a2b50a42ad693f30cff450b9cec2dfe4bb76ab6b52cfc18f9a441e6f2f61"
+      }
+    },
+    "AXI_DMA_1.0_component_sha256": "1f53521dce6a4bc791e7d93f2d7ea34d486d2bd2d011983ea2340cca5a97eeab",
+    "AXI_Protocol_Converter_1.0_component_sha256": "681e8d50d5edbfb5444d1821157b54538e9344b8cec9211e2bc25a3cd8a9ca58",
+    "headers": {
+      "axi_dma_func_pkg.vh": {
+        "sha256": "07402a26ab19cb9a14c5990addd329df38713d4c57a75cbf2b19d47b7a0c4f66",
+        "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma_func_pkg.vh"
+      },
+      "axi_dma_param_pkg.vh": {
+        "sha256": "e756686e5426d92dd05c82df33557d8b2765e425a877e6b0db2b5931d0ee7664",
+        "source": "D:\\Anlogic\\TD_Release_2026.1_SP2.200.067\\ip\\depot\\AXI_DMA_1.0\\AXI_DMA\\RTL\\axi_dma_param_pkg.vh"
+      }
+    }
+  },
+  "motor": "scope only; GPIO test 500-cycle guards 100kHz M4 disabled raw64/prepared8/START32; not product parameters",
+  "motion_window": "0x80600000/4KiB",
+  "rs485_window": "0x80700000/4KiB",
+  "cache_window": "0x80800000/4KiB",
+  "independent_s2mm_window": "0x80900000/4KiB",
+  "rs485_pins": "TX L17 / RX N16 / DE+RE_N N15, BANK33 LVCMOS33, hardware manual accepted 2026-10-14; slave/electrical timing pending",
+  "not_deployable": true
+}
