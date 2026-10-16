@@ -38,6 +38,8 @@ HOME 候选边沿先做整组时序/溢出预检，任一候选轴将溢出则�
 
 RX 数据错误仍在原检测当拍停止正常执行；只将发给 HOME 的错误通知寄存一拍，断开 error→abort→error 组合反馈。HOME 入口要求 transport 空闲，且执行期间不接收普通 session。持续安全源保持禁止和 transport 取消，只首次断言触发执行器排空，不反复制造 stopped。
 
+HOME内部上限/失败当拍直接清除home_run并撤销valid；仅进入原宽队列/执行状态的取消通知寄存一拍，切断阶段时间比较到大范围CE的长链。限位/急停及新安全窗口STOP走独立直接快停，旧运动窗口STOP和原DMA/reset/fault路径保持原直接停止；因此输入至禁止STEP、排空和急停EN关闭的预算不增加。
+
 ## 软件可见接口
 
 唯一机器源：pl_interface/schema.json 的 safety_profiles.gp_safety_home_v1；由 pl_safety/generate.py 生成 C/Verilog 定义。旧 ABI/数值、72B MOT2、32B 采集和64B遥测记录不变。

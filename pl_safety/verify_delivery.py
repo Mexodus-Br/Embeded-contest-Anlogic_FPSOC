@@ -30,15 +30,18 @@ def baseline():
  for c in [['pl_interface/generate.py','--check'],['pl_safety/generate.py','--check'],['pl_safety/generate_top.py','--check']]:subprocess.run([sys.executable,*c],cwd=R,check=True)
  return n
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--seal',action='store_true');ap.add_argument('--source-commit');ap.add_argument('--build',default='timing_top2');a=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--seal',action='store_true');ap.add_argument('--source-commit');ap.add_argument('--build',default='split_top3');a=ap.parse_args()
  n=baseline();manifest=D/'SAFETY_RELEASE.json'
  if a.seal:
   assert not manifest.exists(),'Never overwrite sealed evidence'
-  names=['timing_units1','timing_phases1','inputs_freeze1','overflow_frozen1','router_final1','timing_real1','frozen_regress1','timing_resource1','cdc_final1']
+  names=['split_units2','split_phases2','inputs_freeze1','overflow_frozen1','router_final1','split_real2','frozen_regress1','split_resource2','cdc_final1']
   for name in names:
    test=json.loads((D/'evidence'/name/'result.json').read_text())
    assert test['passed'],name
    for p,h in test.get('source_sha256',{}).items():assert sha(R/p)==h,('tested source changed',name,p)
+  legacy=json.loads((D/'evidence/real_freeze1/result.json').read_text())
+  for p,h in legacy['source_sha256'].items():
+   if not p.replace('\\','/').startswith('pl_safety/'):assert sha(R/p)==h,('legacy source changed since original regression',p)
   b=D/'build'/a.build;summary=json.loads((b/'summary.json').read_text())
   assert summary['stages']['route']['setup_ns']>=0 and summary['stages']['route']['hold_ns']>=0,'100MHz route timing not closed'
   assert 'checking invalid constraint(0)' in (b/'route.check').read_text(),'Invalid timing constraint'

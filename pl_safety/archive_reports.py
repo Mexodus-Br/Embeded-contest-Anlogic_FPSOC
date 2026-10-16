@@ -2,7 +2,7 @@
 import argparse,hashlib,json,re,shutil
 from pathlib import Path
 R=Path(__file__).resolve().parents[1];D=R/'pl_safety'
-TESTS=['timing_units1','timing_phases1','inputs_freeze1','overflow_frozen1','router_final1','timing_real1','frozen_regress1','timing_resource1']
+TESTS=['split_units2','split_phases2','inputs_freeze1','overflow_frozen1','router_final1','split_real2','frozen_regress1','split_resource2']
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--build',required=True);ap.add_argument('--tag');a=ap.parse_args()
@@ -35,7 +35,7 @@ def main():
  for result in sorted((D/'evidence').glob('*/result.json')):
   t=json.loads(result.read_text())
   if not t.get('passed'):prior_tests.append({'tag':result.parent.name,'result_sha256':sha(result),'failure':t.get('failure','see original logs')})
- logs='\n'.join(p.read_text(errors='replace') for p in (D/'evidence/timing_phases1').glob('mode*.log'))
+ logs='\n'.join(p.read_text(errors='replace') for p in (D/'evidence/split_phases2').glob('mode*.log'))
  latency={}
  for key in ['pad_qualified','executor_inhibit_bound','qualified_drain','qualified_en_off']:
   values=[int(v) for v in re.findall(key+r'=(\d+)',logs)]

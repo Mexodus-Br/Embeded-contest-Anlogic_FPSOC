@@ -8,7 +8,9 @@
 
 部分完整工程试验在后续源码修正或会话中断前停止，缺少 route.timing/完成标记的目录不代表资源或时序通过；尤其 frozen_top1 在打包后中断，未生成时序结论。首轮完整sealed_top1最终setup=-1.355ns、hold=+0.021ns，未通过100MHz；最差是edge_age→pulse_safe→request_ok→HOME授权→原执行控制链。仅将已接受的HOME专用EN授权寄存一拍，立即失效/输入快停不延迟，重新通过32/168/真实IP/500周期夹具后在timing_top2重建。首轮.d引脚例外未命中也已记录，改为只约束四个raw pad起点，源码只驱动meta，meta→sync不被例外。
 
-sealed_top1首轮归档因工具没有产生独立route.drc文件而中断，该部分目录保留；修正归档器后使用sealed_top1_complete完整归档，DRC原文从run.log的report_route_status段提取，没有制造通过结果。cdc_first1/2的查询未正确匹配打包后寄存器，cdc_replay3证明4+4逻辑集合和内部时序路径，但仍带旧数据库的无效约束，不是最终约束通过证据。build/ 中的大型数据库未纳入Git，输入身份、脚本、约束和最终报告独立归档。
+timing_top2综合setup=-3.878ns，暴露阶段时间比较到宽执行控制的长路径；保留gate.db/gate.timing及中间布局日志后停止该自有进程。继续将HOME内部失败的宽队列取消通知寄存一拍，HOME当拍禁止边沿/撤销valid，限位、急停及两个STOP窗口仍直接快停；split_top3使用该实现。split_real1还发现Questa不接受stop_request使用在声明之前，移动声明后split_units2/split_phases2/split_real2/split_resource2全部重新通过，不依赖Icarus允许的前向引用。
+
+sealed_top1首轮归档因工具没有产生独立route.drc文件而中断，该部分目录保留；修正归档器后使用sealed_top1_complete完整归档，DRC原文从run.log的report_route_status段提取，没有制造通过结果。cdc_first1、cdc_replay2的查询未正确匹配打包后寄存器，cdc_replay3证明4+4逻辑集合和内部时序路径，但仍带旧数据库的无效约束，不是最终约束通过证据。build/ 中的大型数据库未纳入Git，输入身份、脚本、约束和最终报告独立归档。
 
 Windows 受限进程环境曾阻止 Python/仿真工具正常启动；普通本地工具进程下执行自检。仿真编译及厂商模型的原始 warning 保留，未通过忽略失败或自动重试得到 PASS。
 

@@ -31,7 +31,7 @@ module safety_motion_service #(
 wire [3:0] active,released;wire qualified,sampled;
 safety_inputs #(.RELEASE_CYCLES(C_RELEASE_CYCLES)) inputs(.clk(clk),.rst_n(rst_n),
  .contact_n({estop_n,limit_n}),.active(active),.released(released),.qualified(qualified),.sampled(sampled));
-wire normal_inhibit,owner,hen,href,hcomplete,ctrl_stop,ctrl_disable,ctrl_clear;
+wire normal_inhibit,owner,hen,href,hcomplete,ctrl_stop,ctrl_disable,ctrl_clear,stop_request;
 // The accepted HOME request revokes position/normal ownership immediately.
 // Its executor EN authorization follows one clock later, when HOME already
 // owns the idle kernel. This breaks pulse_safe -> request_ok -> home_enable
@@ -39,12 +39,21 @@ wire normal_inhibit,owner,hen,href,hcomplete,ctrl_stop,ctrl_disable,ctrl_clear;
 reg hen_execute;
 always @(posedge clk or negedge rst_n)
  if(!rst_n)hen_execute<=0;else hen_execute<=hen;
+// HOME failure already removes home_run/invalidate on its detecting edge.
+// Register only its notification into the wide normal queue/state controls.
+// Physical contacts and either explicit STOP retain the direct stop path;
+// native DMA/reset/driver faults also retain motion_service's existing path.
+reg stop_notify;
+always @(posedge clk or negedge rst_n)
+ if(!rst_n)stop_notify<=0;else stop_notify<=ctrl_stop;
+wire fast_stop=stop_request || (sampled &&
+ (active[3] || (!owner && (|position_valid[2:0]) && (|active[2:0]))));
 wire [2:0] run,hdirection,hfault;wire [191:0] period,reference_position,travel;
 wire [3:0] invalid,state;wire [31:0] causes,first_cause;
 wire [63:0] first_time,event_sequence,start_time,done_time;
 wire [2:0] hit_mask,released_mask,done_mask;
 wire config_ok,request_ok,clear_ok,accepted,rejected,hdone,hcancel;
-wire idle,pulse_safe,abort_service;wire hrequest,clear_request,stop_request;
+wire idle,pulse_safe,abort_service;wire hrequest,clear_request;
 wire [3:0] cfg_native,cfg,executor_faults;
 assign cfg[3]=cfg_native[3];
 genvar g;generate for(g=0;g<3;g=g+1)begin: home_config
@@ -125,7 +134,7 @@ safety_regs registers(.clk(clk),.rst_n(rst_n),
  .clear_request(clear_request),.stop_request(stop_request),.irq(safety_irq));
 motion_service #(.FIFO_DEPTH(FIFO_DEPTH),.PLAN_DEPTH(PLAN_DEPTH),.START_MIN_POINTS(START_MIN_POINTS),.STEP_HIGH_CYCLES(STEP_HIGH_CYCLES),.STEP_LOW_CYCLES(STEP_LOW_CYCLES),.DIR_SETUP_CYCLES(DIR_SETUP_CYCLES),.DIR_HOLD_CYCLES(DIR_HOLD_CYCLES),.EN_SETUP_CYCLES(EN_SETUP_CYCLES),.EN_DISABLE_CYCLES(EN_DISABLE_CYCLES),.MAX_STEP_HZ(MAX_STEP_HZ),.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL),.HOME_SUPPORT(1)) motion(
 .clk(clk),.rst_n(rst_n),.dma_reset_released(dma_reset_released),.dma_error(dma_error),.fault(fault),.s_awaddr(s_awaddr),.s_araddr(s_araddr),.s_wdata(s_wdata),.s_wstrb(s_wstrb),.s_awvalid(s_awvalid),.s_wvalid(s_wvalid),.s_bready(s_bready),.s_arvalid(s_arvalid),.s_rready(s_rready),.s_awready(s_awready),.s_wready(s_wready),.s_arready(s_arready),.s_bvalid(s_bvalid),.s_rvalid(s_rvalid),.s_bresp(s_bresp),.s_rresp(s_rresp),.s_rdata(s_rdata),.stream_data(stream_data),.stream_keep(stream_keep),.stream_last(stream_last),.stream_valid(stream_valid),.stream_ready(stream_ready),.irq(irq),.step(step),.dir(dir),.en(en),.position_valid(position_valid),.position(position),.pulses(pulses),.running(running),.paused(paused),.core_busy(core_busy),.session_valid(session_valid),.session_id(session_id),.fifo_level(fifo_level),.prepared_level(prepared_level),.buffered_points(buffered_points),.point_start(point_start),.point_done(point_done),.stopped(stopped),.pulse_event(pulse_event),.slot_event(slot_event),.slot_id(slot_id),
- .safety_inhibit(normal_inhibit),.safety_stop(ctrl_stop),.safety_disable(ctrl_disable),.safety_clear(ctrl_clear),
+ .safety_inhibit(normal_inhibit),.safety_stop(fast_stop || stop_notify),.safety_disable(ctrl_disable),.safety_clear(ctrl_clear),
  .home_owner(owner),.home_enable(hen_execute),.home_reference(href),.home_complete(hcomplete),.home_run(run),
  .home_direction(hdirection),.home_period(period),.home_reference_position(reference_position),
  .safety_invalidate(invalid),.safety_pulse_safe(pulse_safe),.safety_idle(idle),.safety_abort(abort_service),.home_fault(hfault),.safety_config_valid(cfg_native),.safety_fault_latched(executor_faults));
