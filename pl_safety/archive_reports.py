@@ -2,16 +2,21 @@
 import argparse,hashlib,json,re,shutil
 from pathlib import Path
 R=Path(__file__).resolve().parents[1];D=R/'pl_safety'
-TESTS=['frozen_units1','frozen_phases1','inputs_freeze1','overflow_frozen1','router_final1','real_freeze1','frozen_regress1','resource_fixture3']
+TESTS=['timing_units1','timing_phases1','inputs_freeze1','overflow_frozen1','router_final1','timing_real1','frozen_regress1','timing_resource1']
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--build',required=True);a=ap.parse_args()
- b=D/'build'/a.build;summary=json.loads((b/'summary.json').read_text());out=D/'evidence'/a.build
+ ap=argparse.ArgumentParser();ap.add_argument('--build',required=True);ap.add_argument('--tag');a=ap.parse_args()
+ b=D/'build'/a.build;summary=json.loads((b/'summary.json').read_text());out=D/'evidence'/(a.tag or a.build)
  out.mkdir(exist_ok=False)
- paths=['inputs.json','summary.json','run.tcl','run.log','system.al','system/hdl/system_wrapper.v','gp/gp.adc','gp/gp.sdc','gp/ps-generated-properties.tcl','gate.area','gate.timing','place.timing','route.timing','route.area','route.check','route.drc']
+ paths=['inputs.json','summary.json','run.tcl','run.log','system.al','system/hdl/system_wrapper.v','gp/gp.adc','gp/gp.sdc','gp/ps-generated-properties.tcl','gate.area','gate.timing','place.timing','route.timing','route.area','route.check']
  paths+=sorted(p.name for p in b.iterdir() if p.is_file() and (p.name.startswith('td_') and p.suffix in ['.log','.logw'] or p.suffix=='.qor'))
  for n in paths:
   p=out/n;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(b/n,p)
+ # This TD version prints route status to stdout even with -file.
+ log=(b/'run.log').read_text(errors='replace')
+ match=re.search(r'RUN-1002 : start command "report_route_status.*?RUN-1003 : finish command "report_route_status[^\n]*',log,re.S)
+ assert match,'Missing original route status output'
+ (out/'route_status.log').write_text(match[0]+'\n')
  trials=[]
  for trial in sorted((D/'build').iterdir()):
   if not trial.is_dir() or trial==b or not (trial/'run.tcl').exists():continue
@@ -30,7 +35,7 @@ def main():
  for result in sorted((D/'evidence').glob('*/result.json')):
   t=json.loads(result.read_text())
   if not t.get('passed'):prior_tests.append({'tag':result.parent.name,'result_sha256':sha(result),'failure':t.get('failure','see original logs')})
- logs='\n'.join(p.read_text(errors='replace') for p in (D/'evidence/frozen_phases1').glob('mode*.log'))
+ logs='\n'.join(p.read_text(errors='replace') for p in (D/'evidence/timing_phases1').glob('mode*.log'))
  latency={}
  for key in ['pad_qualified','executor_inhibit_bound','qualified_drain','qualified_en_off']:
   values=[int(v) for v in re.findall(key+r'=(\d+)',logs)]

@@ -24,16 +24,16 @@
 
 | 证据tag | 覆盖与结果 |
 |---|---|
-| frozen_units1 | 32组功能/负面场景通过：正常/闭合启动、每种触发顺序、超时/上限、重闭合、STOP、急停、旧任务取消、恢复及正常轨迹衔接 |
-| frozen_phases1 | 7种停止场景×24相位=168组通过；在执行器采样边沿断言不产生新STEP |
+| timing_units1 | 32组功能/负面场景通过：正常/闭合启动、每种触发顺序、超时/上限、重闭合、STOP、急停、旧任务取消、恢复及正常轨迹衔接 |
+| timing_phases1 | 7种停止场景×24相位=168组通过；在执行器采样边沿断言不产生新STEP |
 | inputs_freeze1 | 两级同步、极性、独立释放资格和10种亚周期相位，1532检查通过 |
 | overflow_frozen1 | signed64候选位置溢出同拍整组禁止边沿通过 |
 | router_final1 | 七窗口A33译码/响应所有权与背压，460检查通过 |
-| real_freeze1 | 真实厂商GP转换器/DMA、HP0/HP1模型、共享时间/IRQ7、HOME和真实MOT2后触限位取消；3612检查，HP0读取18beats，HP1写0 |
+| timing_real1 | 真实厂商GP转换器/DMA、HP0/HP1模型、共享时间/IRQ7、HOME和真实MOT2后触限位取消；3612检查，HP0读取18beats，HP1写0 |
 | frozen_regress1 | 18项原单轴/四轴/连续/Golden/服务/GP/DMA/RS485回归通过；旧结果文件原样恢复 |
-| resource_fixture3 | 与完整工程相同500周期驱动定时，直接HOME与闭合启动两组通过，205282/321322检查 |
+| timing_resource1 | 与完整工程相同500周期驱动定时，直接HOME与闭合启动两组通过，205282/321322检查 |
 
-上述结果中的source_sha256与当前源码逐项核对。16/17/18模式向阶段时间接口注入加速时间，只验证超时优先，不作为1MHz物理时间证明。真实IP测试使用原共享1MHz基准。仿真warning、失败与中断均保留，说明见 FAILURES.md；完整工程报告见 VALIDATION.md 与 evidence/sealed_top1/。
+上述结果中的source_sha256与当前源码逐项核对。旧输入/overflow/router与18项回归涉及的源码未因HOME授权寄存修正改变，故保留原通过证据；完整安全服务/真实IP/500周期夹具和全部停止相位已重新运行。16/17/18模式向阶段时间接口注入加速时间，只验证超时优先，不作为1MHz物理时间证明。真实IP测试使用原共享1MHz基准。仿真warning、失败与中断均保留，说明见 FAILURES.md；完整工程报告见 VALIDATION.md 与 evidence/timing_top2/。
 
 ## 接续与发布门禁
 

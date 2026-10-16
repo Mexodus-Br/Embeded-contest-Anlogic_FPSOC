@@ -10,7 +10,7 @@
 - 普通 STOP 保留 EN/位置有效性；HOME 中 STOP/失败必须完整重做。急停反馈撤销三轴 valid，取消任务/HOME，禁止新 STEP，脉冲安全排空后按已有 EN_DISABLE_CYCLES 失能。
 - 急停释放后需人工确认、显式 CLEAR_FAULT，再显式 HOME。清 IRQ/清错/供电恢复不会重新使能、重开 session 或自动启动。PS 任务生命周期须由后续 BSP/服务消费取消状态与 IRQ；本批不实现 BSP/HMI。
 
-现有 motion_executor 是唯一 STEP/DIR/EN 和 position 所有者，HOME 使用其私有端口、原 H/L/S/Q/E/OFF 年龄计数与脉冲排空。无第二套脉冲源、无 STEP 与门、无公共复位停止、无假 REBASE。
+现有 motion_executor 是唯一 STEP/DIR/EN 和 position 所有者，HOME 使用其私有端口、原 H/L/S/Q/E/OFF 年龄计数与脉冲排空。HOME接受当拍撤销valid和普通所有权；其专用EN授权寄存一拍后进入已由HOME持有的空闲执行器，断开pulse-safe经启动许可回到普通执行控制的长组合链。输入快停、STOP和立即失效仍直接生效，优先于延迟的EN授权。无第二套脉冲源、无 STEP 与门、无公共复位停止、无假 REBASE。
 
 ## HOME 状态机
 

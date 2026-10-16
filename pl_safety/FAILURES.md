@@ -4,9 +4,11 @@
 
 已发现并修正的问题包括：输入测试在采样边沿同时改变信号导致仿真竞争（改为独立相位与同步参考模型）；HOME 脉冲事件观测晚一拍导致固定距离误差；旧 STOP 与私有所有权的排空；持续急停重复产生完成事件；清错对执行器故障的延迟；HOME 候选轴位置溢出时同拍其他轴仍可能发出 STEP（改为整组预检）；生产 RELEASE_CYCLES=0 时误屏蔽急停断言（将已采样与释放资格分离）。冻结版增加了相应负面测试。
 
-完整工程首次接入还发现：派生 include 目录缺失；原 .al 含非 XML 的 UsedInP&R 字段，不能直接交给 XML parser；RX 错误通知与取消形成组合反馈（仅寄存 HOME 通知，保留原 RX 检测当拍停止）；厂商异步寄存器属性要求小写 async_reg。上述问题均修复后才冻结当前 RTL。综合试验日志不删除，归档见最终完整工程 evidence/ 的 prior_build_attempts/。
+完整工程首次接入还发现：派生 include 目录缺失；原 .al 含非 XML 的 UsedInP&R 字段，不能直接交给 XML parser；RX 错误通知与取消形成组合反馈（仅寄存 HOME 通知，保留原 RX 检测当拍停止）；异步寄存器属性改用厂商既有源码中的小写 async_reg。上述问题处理后才冻结当前 RTL；但当前综合QoR的#async_reg仍为0，不能声称属性已正确识别。实际寄存器/例外命中另作审计，物理CDC/MTBF与同步器放置保持未核验。综合试验日志不删除，归档见最终完整工程 evidence/ 的 prior_build_attempts/。
 
-部分完整工程试验在后续源码修正或会话中断前停止，缺少 route.timing/完成标记的目录不代表资源或时序通过；尤其 frozen_top1 在打包后中断，未生成时序结论。最终完整运行使用独立 sealed_top1 tag。build/ 中的大型工具数据库未纳入 Git，输入身份、脚本、约束和最终报告独立归档。
+部分完整工程试验在后续源码修正或会话中断前停止，缺少 route.timing/完成标记的目录不代表资源或时序通过；尤其 frozen_top1 在打包后中断，未生成时序结论。首轮完整sealed_top1最终setup=-1.355ns、hold=+0.021ns，未通过100MHz；最差是edge_age→pulse_safe→request_ok→HOME授权→原执行控制链。仅将已接受的HOME专用EN授权寄存一拍，立即失效/输入快停不延迟，重新通过32/168/真实IP/500周期夹具后在timing_top2重建。首轮.d引脚例外未命中也已记录，改为只约束四个raw pad起点，源码只驱动meta，meta→sync不被例外。
+
+sealed_top1首轮归档因工具没有产生独立route.drc文件而中断，该部分目录保留；修正归档器后使用sealed_top1_complete完整归档，DRC原文从run.log的report_route_status段提取，没有制造通过结果。cdc_first1/2的查询未正确匹配打包后寄存器，cdc_replay3证明4+4逻辑集合和内部时序路径，但仍带旧数据库的无效约束，不是最终约束通过证据。build/ 中的大型数据库未纳入Git，输入身份、脚本、约束和最终报告独立归档。
 
 Windows 受限进程环境曾阻止 Python/仿真工具正常启动；普通本地工具进程下执行自检。仿真编译及厂商模型的原始 warning 保留，未通过忽略失败或自动重试得到 PASS。
 

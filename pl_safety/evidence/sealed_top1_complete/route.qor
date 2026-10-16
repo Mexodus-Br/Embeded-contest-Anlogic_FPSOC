@@ -1,0 +1,47 @@
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |        -1355                |
+|     Setup TNS             |     -1300163                |
+|     Num of violated S-EP  |         3421                |
+|     Hold WNS              |           21                |
+|     Hold TNS              |            0                |
+|     Num of violated H-EP  |            0                |
+-----------------------------------------------------------
+| Routing Resource          |                             |
+|     Wire length           |     12594336                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #slices               |        35286                |
+|     slices percentage     |       67.24%                |
+|     #RAMs                 |           58                |
+|     #DSPs                 |            6                |
+|     #DRAMHARDCON          |          110                |
+-----------------------------------------------------------
+Report route stage QoR done.
+
+QoR Evaluation
+---------------------------------------------------------------------------------------------------------------------------------------------------
+  ID        |  Priority  |  Description                                                   |  Suggestion
+---------------------------------------------------------------------------------------------------------------------------------------------------
+  QOR-1301  |  HIGH      |  - Route SWNS -1355ps smaller than 0, do not meet timing.      |  - Try following method to drive timing meet:
+            |            |                                                                |      set_param route post_route_opt high
+            |            |                                                                |      set_param route postrt_opt_extra_round 4
+            |            |                                                                |  
+  QOR-2601  |  HIGH      |  - There are total 1 routing detour net(s) on critical path    |  - Try following method to resolve net detour:
+            |            |                                                                |    Perform extra round of post-route optimization:
+            |            |                                                                |      phys_opt -post_route -effort high
+            |            |                                                                |  
+  QOR-2604  |  MEDIUM    |  - There are total 4 large delay nets have much number fanout  |  - Try following method to improve fanout net timing:
+            |            |                                                                |      set_param place opt_timing high
+            |            |                                                                |      set_param place hfn_opt_effort high
+            |            |                                                                |      set_param place non_crit_opt on
+            |            |                                                                |      set_param place cn_opt_effort min
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Note* (*) means this parameter has been set already.
+      (+) means this parameter has been set, suggest to upgrade higher effort level.
+Note** plesae resolve priority MUST FIX and HIGH issues firstly
+       because these have highly possible to block the timing convergence even stop the flow.
+Note*** some suggested settings are not suitable to use together
+        take care of using them separately if suggestion mentioned.

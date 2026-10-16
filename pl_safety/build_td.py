@@ -34,7 +34,10 @@ def main():
   # Unassigned new pads are engineering-only. No fabricated physical mapping.
   with (b/'gp/gp.sdc').open('a') as f:
    f.write('\n# Four new asynchronous safety inputs: only pad -> first synchronizer stage is excepted.\n')
-   f.write('set_false_path -from [get_ports {safety_limit_n[*] safety_estop_n}] -to [get_pins {control/core/fabric/dma_core/motion/inputs/meta_reg[*].d}]\n')
+   # These four pads feed only the first meta DFFs. A startpoint-only
+   # exception survives packing; the next meta->sync paths start at DFFs
+   # and remain timed. Do not select nonexistent post-pack logical .d pins.
+   f.write('set_false_path -from [get_ports {safety_limit_n[*] safety_estop_n}]\n')
   inputs={str(p.relative_to(b)):sha(p) for p in b.rglob('*') if p.is_file()}
   (b/'inputs.json').write_text(json.dumps({'baseline_project_sha256':hashes,'candidate_inputs_sha256':inputs,'profile':'RESOURCE_FIXTURE_ONLY','reference_speed':2,'no_bitgen':True,'new_input_pins':'UNASSIGNED_UNQUALIFIED'},indent=2)+'\n')
  else:
