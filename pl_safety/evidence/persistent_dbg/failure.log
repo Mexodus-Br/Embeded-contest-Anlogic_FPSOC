@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\Works\Embedded_contest\dev\pl_safety\tests\run.py", line 19, in main
+    log=sim.simulate(target,timeout=60);(out/f'mode{m}_offset{o}.log').write_text(log,encoding='utf-8')
+  File "D:\Works\Embedded_contest\dev\pl_motion\sim_tools.py", line 48, in simulate
+    return self.run([self.runtime, str(output)], timeout=timeout)
+  File "D:\Works\Embedded_contest\dev\pl_motion\sim_tools.py", line 38, in run
+    raise RuntimeError(f'{args[0]} failed {p.returncode}:\n{p.stdout}{p.stderr}{hint}')
+RuntimeError: D:\iverilog\bin\vvp.EXE failed 1:
+DBG stop_events=2
+FAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion
+FATAL: D:\Works\Embedded_contest\dev\pl_safety\tests\tb_safety.v:40: 
+       Time: 1090000  Scope: tb_safety.check
+FAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion
+

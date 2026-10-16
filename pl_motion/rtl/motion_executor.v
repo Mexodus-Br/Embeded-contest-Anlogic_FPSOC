@@ -5,7 +5,8 @@ module motion_executor #(
     parameter [255:0] DIR_SETUP_CYCLES=0, DIR_HOLD_CYCLES=0,
     parameter [255:0] EN_SETUP_CYCLES=0, EN_DISABLE_CYCLES=0,
     parameter [255:0] MAX_STEP_HZ=0,
-    parameter [3:0] EN_ACTIVE_LEVEL=4'b1111
+    parameter [3:0] EN_ACTIVE_LEVEL=4'b1111,
+    parameter HOME_SUPPORT=0
 )(
  input wire clk,rst_n,
  input wire rebase_req,input wire [3:0] rebase_mask,input wire [255:0] rebase_position,
@@ -18,7 +19,12 @@ module motion_executor #(
  output reg [3:0] fault_latched,output wire [3:0] config_valid,enabled_state,enable_ready_state,
  output wire busy,boundary,pulse_safe,
  output reg point_start,done,stopped,plan_rejected,rebase_accepted,
- output reg [3:0] pulse_event,output reg slot_event,output reg [63:0] slot_id
+ output reg [3:0] pulse_event,output reg slot_event,output reg [63:0] slot_id,
+ // Private safety owner; ignored at elaboration when HOME_SUPPORT=0.
+ input wire home_owner,home_enable,home_reference,home_complete,
+ input wire [2:0] home_run,home_direction,input wire [191:0] home_period,home_reference_position,
+ input wire [3:0] safety_invalidate,
+ output wire [2:0] home_fault
 );
     localparam IDLE=0,RUN=3,DRAIN=4;
     reg [2:0] state;
@@ -49,10 +55,15 @@ module motion_executor #(
             ({2'b0,q[g]}+{2'b0,s[g]}+66'd2)<=66'h0ffffffffffffffff &&
             e[g]<=64'hfffffffffffffffd && l[g]<=64'hfffffffffffffffd;
     end endgenerate
+    wire own=HOME_SUPPORT ? home_owner : 1'b0;
+    wire [3:0] invalid=HOME_SUPPORT ? safety_invalidate : 4'd0;
+    wire [2:0] hr=HOME_SUPPORT ? home_run : 3'd0;
+    reg [2:0] home_fault_reg;
+    assign home_fault=HOME_SUPPORT ? home_fault_reg : 3'd0;
     wire safety=stop_req || (|fault) || disable_req;
-    assign busy=state!=IDLE || (|disabling);
+    assign busy=state!=IDLE || (|disabling) || own;
     assign enabled_state=enabled;
-    assign plan_ready=(state==IDLE || boundary) && !(|disabling) && !(|fault_latched) && !safety;
+    assign plan_ready=(state==IDLE || boundary) && !(|disabling) && !(|fault_latched) && !safety && !own;
     function [63:0] age_next;
         input [63:0] age;
         begin age_next=(&age) ? age : age+64'd1; end
@@ -104,11 +115,29 @@ reg [63:0] cycles,master,quotient,remainder;
             end
         end
     end
+// HOME shares the normal executor's all-candidate preflight rule: one
+// overflowing axis inhibits every candidate STEP on that detecting edge.
+reg [2:0] home_candidate,home_bad;
+integer u;
+always @*begin
+ home_candidate=0;home_bad=0;
+ for(u=0;u<3;u=u+1)if(own && hr[u] && state==IDLE && !(|disabling) && !(|fault_latched))begin
+  if(home_period[u*64+:64]==0 ||
+     {1'b0,home_period[u*64+:64]}<({1'b0,h[u]}+{1'b0,l[u]}) ||
+     home_period[u*64+:64]<min_period[u] || !config_valid[u])home_bad[u]=1;
+  else if(enabled[u] && !step[u] && dir[u]==home_direction[u] &&
+     reached(dir_age[u],s[u]) && reached(en_age[u],e[u]) && reached(low_age[u],l[u]) &&
+     reached(edge_age[u],home_period[u*64+:64]))begin
+   home_candidate[u]=1;
+   if(home_direction[u] ? pos[u]==64'sh7fffffffffffffff : pos[u]==64'sh8000000000000000)home_bad[u]=1;
+  end
+ end
+end
 reg [64:0] sum_time,sum_axis;
 integer i;
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
-  state<=IDLE;enabled<=0;disabling<=0;step<=0;dir<=15;position_valid<=0;fault_latched<=0;
+  home_fault_reg<=0;state<=IDLE;enabled<=0;disabling<=0;step<=0;dir<=15;position_valid<=0;fault_latched<=0;
   moving<=0;positive<=15;cycles<=0;master<=0;quotient<=0;remainder<=0;elapsed<=0;
   next_slot<=0;slot_index<=0;time_remainder<=0;slot_id<=0;
   point_start<=0;done<=0;stopped<=0;plan_rejected<=0;rebase_accepted<=0;pulse_event<=0;slot_event<=0;
@@ -116,7 +145,7 @@ always @(posedge clk or negedge rst_n)begin
  end else begin
   point_start<=0;done<=0;stopped<=0;plan_rejected<=0;rebase_accepted<=0;pulse_event<=0;slot_event<=0;
   fault_latched<=fault_latched|fault;
-  if(clear_fault && !busy && !safety)fault_latched<=0;
+  if(clear_fault && !busy && !safety)begin fault_latched<=0;home_fault_reg<=0;end
   for(i=0;i<4;i=i+1)begin
    edge_age[i]<=age_next(edge_age[i]);dir_age[i]<=age_next(dir_age[i]);
    if(!step[i])low_age[i]<=age_next(low_age[i]);if(enabled[i])en_age[i]<=age_next(en_age[i]);
@@ -130,7 +159,31 @@ always @(posedge clk or negedge rst_n)begin
    if(disable_req)begin position_valid<=position_valid & ~disable_mask;disabling<=disabling|disable_mask;
     for(i=0;i<4;i=i+1)if(disable_mask[i])off_left[i]<=off[i];end
   end else begin
-   if(rebase_req && enable_req)plan_rejected<=1;
+   if(own || (HOME_SUPPORT && home_enable))begin
+    // The existing pulse shaper and position registers remain the sole owners.
+    // No public REBASE is used to authorize movement with unknown coordinates.
+    if(HOME_SUPPORT && home_enable && state==IDLE && all_safe && !(|disabling) &&
+       !(|fault_latched) && (&config_valid[2:0]))begin
+     enabled<=enabled|4'b0111;
+     for(i=0;i<3;i=i+1)if(!enabled[i])en_age[i]<=0;
+    end
+    if(HOME_SUPPORT && home_reference && state==IDLE && all_safe)begin
+     for(i=0;i<3;i=i+1)pos[i]<=home_reference_position[i*64+:64];
+    end
+    if(HOME_SUPPORT && home_complete && state==IDLE && all_safe && !(|home_fault_reg))
+     position_valid<=position_valid|4'b0111;
+    if(|home_bad)begin home_fault_reg<=home_fault_reg|home_bad;fault_latched<=15;end
+    else for(i=0;i<3;i=i+1)if(hr[i] && state==IDLE && !(|disabling) && !(|fault_latched))begin
+     if(enabled[i] && !step[i])begin
+      if(dir[i]!=home_direction[i] && reached(edge_age[i],q[i]))begin
+       dir[i]<=home_direction[i];dir_age[i]<=0;
+      end else if(home_candidate[i])begin
+       step[i]<=1;pulse_event[i]<=1;high_left[i]<=h[i];edge_age[i]<=0;
+       pos[i]<=pos[i]+(home_direction[i] ? 64'sd1 : -64'sd1);
+      end
+     end
+    end
+   end else if(rebase_req && enable_req)plan_rejected<=1;
    else if(rebase_req)begin
     if(!busy && !(|fault_latched) && rebase_mask!=0 && (rebase_mask & enabled)==0)begin
      for(i=0;i<4;i=i+1)if(rebase_mask[i])pos[i]<=$signed(rebase_position[i*64+:64]);
@@ -175,6 +228,8 @@ always @(posedge clk or negedge rst_n)begin
    end
   end
   if(state==DRAIN && all_safe)begin state<=IDLE;stopped<=1;end
+  // Revocation always wins over ordinary maintenance and HOME completion.
+  if(|invalid)position_valid<=position_valid & ~invalid;
  end
 end
 endmodule

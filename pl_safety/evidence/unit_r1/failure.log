@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "D:\Works\Embedded_contest\dev\pl_safety\tests\run.py", line 19, in main
+    log=sim.simulate(target,timeout=60);(out/f'mode{m}.log').write_text(log,encoding='utf-8')
+  File "D:\Works\Embedded_contest\dev\pl_motion\sim_tools.py", line 48, in simulate
+    return self.run([self.runtime, str(output)], timeout=timeout)
+  File "D:\Works\Embedded_contest\dev\pl_motion\sim_tools.py", line 38, in run
+    raise RuntimeError(f'{args[0]} failed {p.returncode}:\n{p.stdout}{p.stderr}{hint}')
+RuntimeError: D:\iverilog\bin\vvp.EXE failed 1:
+FAIL mode=4 offset=0 cycle=1514 state=9 causes=00000020 missing switch search limit
+FATAL: D:\Works\Embedded_contest\dev\pl_safety\tests\tb_safety.v:39: 
+       Time: 15140000  Scope: tb_safety.check
+FAIL mode=4 offset=0 cycle=1514 state=9 causes=00000020 missing switch search limit
+

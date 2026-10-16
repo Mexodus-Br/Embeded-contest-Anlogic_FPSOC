@@ -1,4 +1,4 @@
-<!-- Generated from schema.json SHA256 1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
+<!-- Generated from schema.json SHA256 28ae6aec8a4dfaead98314874be3afa7a2501c9485dcac215e0b99c33b736386; GP and DMA profiles explicitly confirmed; other layouts/semantics DRAFT. -->
 # Register table (global Draft, confirmed GP subsets below)
 
 | Offset | Name | Width | Reset | Access | Fields | Unit | Side effect |

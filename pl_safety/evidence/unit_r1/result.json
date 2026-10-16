@@ -1,0 +1,40 @@
+{
+  "passed": false,
+  "cases": [
+    {
+      "mode": 0,
+      "offset": 0,
+      "output": "PASS safety mode=0 offset=0 checks=1760 cycles=483\nD:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:170: $finish called at 4830000 (1ps)\n"
+    },
+    {
+      "mode": 1,
+      "offset": 0,
+      "output": "PASS safety mode=1 offset=0 checks=2548 cycles=670\nD:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:170: $finish called at 6700000 (1ps)\n"
+    },
+    {
+      "mode": 2,
+      "offset": 0,
+      "output": "PASS safety mode=2 offset=0 checks=287 cycles=117\nD:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:170: $finish called at 1170000 (1ps)\n"
+    },
+    {
+      "mode": 3,
+      "offset": 0,
+      "output": "PASS safety mode=3 offset=0 checks=340 cycles=119\nD:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:170: $finish called at 1190000 (1ps)\n"
+    }
+  ],
+  "source_sha256": {
+    "pl_safety\\rtl\\safety_controller.v": "aea53c4a74c03f496e36fa860b58604fa33fae79929da00bce50cab94c494d5a",
+    "pl_safety\\rtl\\safety_inputs.v": "0db244fdb7b49abcba5f82d3b4d40528123038218045f57e796de53ebbd95bc3",
+    "pl_safety\\rtl\\safety_motion_service.v": "bbab182bf0282f7de1979dc274373eb003647b14b8c49958c580dd09fb18d9ce",
+    "pl_safety\\rtl\\safety_regs.v": "b07c003700ad1801c120f45683961e8f4c76a6d177e2abcd33551e49aaf3221a",
+    "pl_motion\\rtl\\motion_service.v": "552b6d5b6410f0918097396ade317fe3833bbe88666fb7f1025eba7dc55d57ac",
+    "pl_motion\\rtl\\continuous_motion.v": "42cb29b9c043919447a62083542b7306d37c1af062c80a2e4c20dbf7d97cf9b2",
+    "pl_motion\\rtl\\motion_executor.v": "615f3f611f30e10c6cf5d9bd60e073d1fa854fc86c0140041db9fdc307094464",
+    "pl_motion\\rtl\\motion_planner.v": "dd8a903339066a5b01f6435d53c3e302948c8d7426ff0621a4bfd0c7e18a18b4",
+    "pl_motion\\rtl\\motion_fifo.v": "5dd9a75d20a66dcbde23be4754f688e1020d814f2a55318f2d5136557815e501",
+    "pl_motion\\rtl\\motion_stream_rx.v": "026c38e09c2b8dfca1d399ea398c7106ad12ad8324e51c34139510d4694af019",
+    "pl_safety\\tests\\tb_safety.v": "7b72613ebd820823b6be9e3b863e9504cd94c6334c2bd06c2b5855ed592a7608"
+  },
+  "fixture_only": true,
+  "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\run.py\", line 19, in main\n    log=sim.simulate(target,timeout=60);(out/f'mode{m}.log').write_text(log,encoding='utf-8')\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFAIL mode=4 offset=0 cycle=1514 state=9 causes=00000020 missing switch search limit\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:39: \n       Time: 15140000  Scope: tb_safety.check\nFAIL mode=4 offset=0 cycle=1514 state=9 causes=00000020 missing switch search limit\n\n"
+}

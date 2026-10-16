@@ -5,7 +5,7 @@ module continuous_motion #(
  parameter [255:0] STEP_HIGH_CYCLES=0,STEP_LOW_CYCLES=0,
  parameter [255:0] DIR_SETUP_CYCLES=0,DIR_HOLD_CYCLES=0,
  parameter [255:0] EN_SETUP_CYCLES=0,EN_DISABLE_CYCLES=0,MAX_STEP_HZ=0,
- parameter [3:0] EN_ACTIVE_LEVEL=15
+ parameter [3:0] EN_ACTIVE_LEVEL=15,parameter HOME_SUPPORT=0
 )(
  input wire clk,rst_n,
  input wire rebase_req,input wire [3:0] rebase_mask,input wire [255:0] rebase_position,
@@ -24,14 +24,20 @@ module continuous_motion #(
  output reg accepted,stale,rejected,cancelled,underflow_event,session_done,
  output wire point_start,point_done,stopped,
  output reg [31:0] active_sequence,done_sequence,
- output wire [3:0] pulse_event,output wire slot_event,output wire [63:0] slot_id
+ output wire [3:0] pulse_event,output wire slot_event,output wire [63:0] slot_id,
+ input wire home_owner,home_enable,home_reference,home_complete,
+ input wire [2:0] home_run,home_direction,input wire [191:0] home_period,home_reference_position,
+ input wire [3:0] safety_invalidate,output wire safety_pulse_safe,
+ output wire [2:0] home_fault
 );
+ wire own=HOME_SUPPORT ? home_owner : 1'b0;
  wire raw_ready,raw_valid,raw_pop;
  wire [420:0] raw_data;
  wire prepared_valid,prepared_push_ready,prepared_pop;
  wire [1196:0] prepared_data,planner_data;
  wire planner_ready,planner_busy,planner_valid,planner_error,executor_error;
  wire executor_ready,executor_busy,boundary,pulse_safe;
+ assign safety_pulse_safe=pulse_safe;
  wire [3:0] enabled,enable_ready;
  reg [255:0] planning_base;
  reg [32:0] next_sequence;
@@ -81,7 +87,7 @@ module continuous_motion #(
  assign resume_ready=session_valid && paused && prepared_valid && gates_ok && pulse_safe && executor_ready && !cancel_now;
  wire request_launch=(start_req && start_ready) || (resume_req && resume_ready);
  wire boundary_launch=at_boundary && !active_end && !want_pause && prepared_valid;
- wire launch=(request_launch || boundary_launch) && session_valid && prepared_session==session_id && !cancel_now;
+ wire launch=!own && (request_launch || boundary_launch) && session_valid && prepared_session==session_id && !cancel_now;
  assign prepared_pop=launch && executor_ready;
  wire maintenance_ok=!session_valid && !running && !paused && buffered_points==0 &&
   !planner_busy && prepared_level==0 && fifo_level==0 && !executor_busy;
@@ -89,7 +95,7 @@ module continuous_motion #(
  motion_executor #(.STEP_HIGH_CYCLES(STEP_HIGH_CYCLES),.STEP_LOW_CYCLES(STEP_LOW_CYCLES),
   .DIR_SETUP_CYCLES(DIR_SETUP_CYCLES),.DIR_HOLD_CYCLES(DIR_HOLD_CYCLES),
   .EN_SETUP_CYCLES(EN_SETUP_CYCLES),.EN_DISABLE_CYCLES(EN_DISABLE_CYCLES),
-  .MAX_STEP_HZ(MAX_STEP_HZ),.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL)) executor(
+  .MAX_STEP_HZ(MAX_STEP_HZ),.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL),.HOME_SUPPORT(HOME_SUPPORT)) executor(
   .clk(clk),.rst_n(rst_n),.rebase_req(rebase_req && maintenance_ok),.rebase_mask(rebase_mask),
   .rebase_position(rebase_position),.enable_req(enable_req && maintenance_ok),.enable_mask(enable_mask),
   .disable_req(disable_req),.disable_mask(disable_mask),
@@ -99,7 +105,10 @@ module continuous_motion #(
   .fault_latched(fault_latched),.config_valid(config_valid),.enabled_state(enabled),.enable_ready_state(enable_ready),
   .busy(executor_busy),.boundary(boundary),.pulse_safe(pulse_safe),.point_start(point_start),
   .done(point_done),.stopped(stopped),.plan_rejected(executor_error),.rebase_accepted(),
-  .pulse_event(pulse_event),.slot_event(slot_event),.slot_id(slot_id));
+  .pulse_event(pulse_event),.slot_event(slot_event),.slot_id(slot_id),.home_owner(home_owner),.home_enable(home_enable),
+  .home_reference(home_reference),.home_complete(home_complete),.home_run(home_run),
+  .home_direction(home_direction),.home_period(home_period),.home_reference_position(home_reference_position),
+  .safety_invalidate(safety_invalidate),.home_fault(home_fault));
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
    session_valid<=0;session_id<=0;running<=0;paused<=0;planning_base<=0;

@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "source_sha256": {
+    "pl_motion\\rtl\\motion_executor.v": "615f3f611f30e10c6cf5d9bd60e073d1fa854fc86c0140041db9fdc307094464",
+    "pl_safety\\tests\\tb_home_overflow.v": "c8c32bea73d16cced353226f84fea4bf23b171fd7f1c1427d8a96d112f72223d"
+  },
+  "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\overflow.py\", line 10, in <module>\n    log=s.simulate(b/'test.vvp');(b/'run.log').write_text(log);assert 'PASS home overflow' in log;r['passed']=True;print(log)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_home_overflow.v:17: HOME overflow must suppress all simultaneous candidates step=0110\n       Time: 230000  Scope: tb_home_overflow\n\n"
+}

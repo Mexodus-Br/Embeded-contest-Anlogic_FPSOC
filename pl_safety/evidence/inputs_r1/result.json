@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "source_sha256": {
+    "pl_safety\\rtl\\safety_inputs.v": "0db244fdb7b49abcba5f82d3b4d40528123038218045f57e796de53ebbd95bc3",
+    "pl_safety\\tests\\tb_inputs.v": "a2dfa0e3a4da155c8821e8e27b214fb4ad062a6996c1b7700aaf6f05fac49631"
+  },
+  "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\inputs.py\", line 10, in <module>\n    log=s.simulate(b/'test.vvp');(b/'run.log').write_text(log);assert 'PASS safety_inputs' in log;result['passed']=True;print(log)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_inputs.v:11: inputs explicit polarity normalization phase=5\n       Time: 1176000  Scope: tb_inputs.check\n\n"
+}

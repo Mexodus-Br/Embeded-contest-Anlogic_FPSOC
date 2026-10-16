@@ -6,7 +6,7 @@ module motion_service #(
  parameter START_MIN_POINTS=`PLI_MOTION_GP_MOTION_V1_START_MIN_POINTS,
  parameter [255:0] STEP_HIGH_CYCLES=0,STEP_LOW_CYCLES=0,DIR_SETUP_CYCLES=0,DIR_HOLD_CYCLES=0,
  parameter [255:0] EN_SETUP_CYCLES=0,EN_DISABLE_CYCLES=0,MAX_STEP_HZ=0,
- parameter [3:0] EN_ACTIVE_LEVEL=15
+ parameter [3:0] EN_ACTIVE_LEVEL=15,parameter HOME_SUPPORT=0
 )(
  input wire clk,rst_n,dma_reset_released,dma_error,input wire [3:0] fault,
  input wire [32:0] s_awaddr,s_araddr,input wire [31:0] s_wdata,input wire [3:0] s_wstrb,
@@ -19,8 +19,18 @@ module motion_service #(
  output wire [255:0] pulses,output wire running,paused,core_busy,session_valid,
  output wire [63:0] session_id,output wire [31:0] fifo_level,prepared_level,buffered_points,
  output wire point_start,point_done,stopped,output wire [3:0] pulse_event,
- output wire slot_event,output wire [63:0] slot_id
+ output wire slot_event,output wire [63:0] slot_id,
+ input wire safety_inhibit,safety_stop,safety_disable,safety_clear,
+ input wire home_owner,home_enable,home_reference,home_complete,
+ input wire [2:0] home_run,home_direction,input wire [191:0] home_period,home_reference_position,
+ input wire [3:0] safety_invalidate,
+ output wire safety_pulse_safe,safety_idle,safety_abort,output wire [2:0] home_fault,
+ output wire [3:0] safety_config_valid,safety_fault_latched
 );
+ wire normal_ok=HOME_SUPPORT ? !safety_inhibit : 1'b1;
+ wire private_stop=HOME_SUPPORT ? safety_stop : 1'b0;
+ wire private_disable=HOME_SUPPORT ? safety_disable : 1'b0;
+ wire private_clear=HOME_SUPPORT ? safety_clear : 1'b0;
  localparam [32:0] BASE={1'b0,`PLI_MOTION_GP_MOTION_V1_BASE};
  reg ah,wh,aw_hit,stop_address,stop_data;reg [11:0] offset;reg [31:0] wd;reg [3:0] ws;
  wire write_fire=ah && wh && !s_bvalid;
@@ -49,6 +59,7 @@ module motion_service #(
  wire reset_ok=dma_reset_released && primary_release[1];
  wire start_ready,resume_ready,accepted,stale,rejected,cancelled,underflow,session_done;
  wire [3:0] fault_latched,config_valid;
+ assign safety_config_valid=config_valid;assign safety_fault_latched=fault_latched;
  wire [31:0] active_sequence,done_sequence;
  reg [31:0] accepted_sequence;reg accepted_valid,done_valid,user_cancel;reg [31:0] ingress_sequence;
  reg [31:0] accept_count,done_count,stale_count,reject_count,cancel_count,stop_count,end_count;
@@ -85,6 +96,10 @@ module motion_service #(
    default:command_ok=0;
   endcase
  end
+ wire guarded_command_ok=command_ok && (!HOME_SUPPORT ||
+  (captured_opcode!=`PLI_CMD_REBASE &&
+   (normal_ok || captured_opcode==`PLI_CMD_NOP || captured_opcode==`PLI_CMD_DISABLE ||
+    captured_opcode==`PLI_CMD_CLEAR_FAULT || captured_opcode==`PLI_CMD_LINK_RECOVER)));
  reg [1:0] write_response;
  always @*begin
   write_response=0;
@@ -106,12 +121,20 @@ module motion_service #(
  // STOP decode must not pass through the general response mux: ARM ready
  // itself observes abort, so sharing that mux creates a structural loop.
  wire stop_write=write_fire && stop_address && stop_data;
+ assign safety_idle=maintenance_ok && !command_busy && !ah && !wh && !packet_busy;
+ // RX error already stops the normal kernel on its detecting edge. Register
+ // only its notification to HOME to avoid error -> abort -> error feedback.
+ reg safety_rx_error;
+ always @(posedge clk or negedge rst_n)if(!rst_n)safety_rx_error<=0;else safety_rx_error<=rx_error;
+ assign safety_abort=stop_write || req_disable || dma_error || !reset_ok || safety_rx_error || (|fault);
  wire arm_write=good_write && offset==`PLI_MOTION_GP_MOTION_V1_REG_PACKET_ARM;
- wire external_cancel=stop_write || (|fault) || dma_error || !reset_ok || req_disable;
+ wire external_cancel=private_stop || private_disable || (HOME_SUPPORT && home_enable) || stop_write || (|fault) || dma_error || !reset_ok || req_disable;
  wire cancel_transport=external_cancel || rx_error || cancelled || session_done;
  // Held reset/fault sources must suppress execution without repeatedly
  // manufacturing idle STOP completions after the first safe drain.
- wire stop_kernel=stop_write || rx_error || ((|fault || dma_error || !reset_ok || req_disable) && (session_valid || core_busy));
+ reg safety_stop_seen;
+ always @(posedge clk or negedge rst_n)if(!rst_n)safety_stop_seen<=0;else safety_stop_seen<=private_stop;
+ wire stop_kernel=(private_stop && !safety_stop_seen && (core_busy || session_valid)) || stop_write || rx_error || ((|fault || dma_error || !reset_ok || req_disable) && (session_valid || core_busy));
  wire sequence_violation=rx_valid && rx_ready && session_valid && rx_session==session_id &&
   (observed_end || {1'b0,rx_sequence}!=observed_sequence);
  motion_stream_rx receiver(.clk(clk),.rst_n(rst_n),.abort(external_cancel || cancelled || session_done),.link_ready(link_ready),
@@ -123,11 +146,11 @@ module motion_service #(
  continuous_motion #(.FIFO_DEPTH(FIFO_DEPTH),.PLAN_DEPTH(PLAN_DEPTH),.START_MIN_POINTS(START_MIN_POINTS),
   .STEP_HIGH_CYCLES(STEP_HIGH_CYCLES),.STEP_LOW_CYCLES(STEP_LOW_CYCLES),.DIR_SETUP_CYCLES(DIR_SETUP_CYCLES),
   .DIR_HOLD_CYCLES(DIR_HOLD_CYCLES),.EN_SETUP_CYCLES(EN_SETUP_CYCLES),.EN_DISABLE_CYCLES(EN_DISABLE_CYCLES),
-  .MAX_STEP_HZ(MAX_STEP_HZ),.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL)) kernel(
-  .clk(clk),.rst_n(rst_n),.rebase_req(req_rebase),.rebase_mask(captured_arg[3:0]),.rebase_position(captured_rebase),
-  .enable_req(req_enable),.enable_mask(captured_arg[3:0]),.disable_req(req_disable),.disable_mask(captured_arg[3:0]),
-  .open_req(req_open),.open_session_id(captured_session),.start_req(req_start),
-  .pause_req(req_pause),.resume_req(req_resume),.stop_req(stop_kernel),.clear_fault(req_clear),.fault(fault | {4{dma_error}}),
+  .MAX_STEP_HZ(MAX_STEP_HZ),.EN_ACTIVE_LEVEL(EN_ACTIVE_LEVEL),.HOME_SUPPORT(HOME_SUPPORT)) kernel(
+  .clk(clk),.rst_n(rst_n),.rebase_req(req_rebase && !HOME_SUPPORT),.rebase_mask(captured_arg[3:0]),.rebase_position(captured_rebase),
+  .enable_req(req_enable && normal_ok),.enable_mask(captured_arg[3:0]),.disable_req(req_disable || private_disable),.disable_mask(private_disable ? 4'b0111 : captured_arg[3:0]),
+  .open_req(req_open && normal_ok),.open_session_id(captured_session),.start_req(req_start && normal_ok),
+  .pause_req(req_pause),.resume_req(req_resume && normal_ok),.stop_req(stop_kernel),.clear_fault(req_clear || private_clear),.fault(fault | {4{dma_error}}),
   .point_valid(rx_valid),.point_ready(rx_ready),.point_session(rx_session),.duration_tick(rx_duration),.point_sequence(rx_sequence),
   .point_end(rx_end),.point_mask(rx_mask),.point_target(rx_target),.step(step),.dir(dir),.en(en),.position_valid(position_valid),
   .fault_latched(fault_latched),.config_valid(config_valid),.position(position),.session_valid(session_valid),.session_id(session_id),
@@ -135,7 +158,10 @@ module motion_service #(
   .fifo_level(fifo_level),.prepared_level(prepared_level),.buffered_points(buffered_points),.accepted(accepted),.stale(stale),
   .rejected(rejected),.cancelled(cancelled),.underflow_event(underflow),.session_done(session_done),
   .point_start(point_start),.point_done(point_done),.stopped(stopped),.active_sequence(active_sequence),.done_sequence(done_sequence),
-  .pulse_event(pulse_event),.slot_event(slot_event),.slot_id(slot_id));
+  .pulse_event(pulse_event),.slot_event(slot_event),.slot_id(slot_id),.home_owner(home_owner),.home_enable(home_enable),
+  .home_reference(home_reference),.home_complete(home_complete),.home_run(home_run),
+  .home_direction(home_direction),.home_period(home_period),.home_reference_position(home_reference_position),
+  .safety_invalidate(safety_invalidate),.safety_pulse_safe(safety_pulse_safe),.home_fault(home_fault));
  wire [31:0] status=(core_busy ? `PLI_MOTION_GP_MOTION_V1_STATUS_BITS_BUSY_MASK:0) |
   (session_valid ? `PLI_MOTION_GP_MOTION_V1_STATUS_BITS_SESSION_MASK:0) |
   (running ? `PLI_MOTION_GP_MOTION_V1_STATUS_BITS_RUNNING_MASK:0) |
@@ -304,9 +330,9 @@ module motion_service #(
    end
    if(snapshot_write)begin for(i=0;i<64;i=i+1)snapshot[i]<=snap_live[i];snap_id<=wd;snap_valid<=1;end
    if(execute)begin
-    ack_id<=captured_id;ack_valid<=1;ack_accepted<=command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error);ack_completed<=1;ack_error<=command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error) ? 0:`PLI_ERR_BAD_COMMAND;
+    ack_id<=captured_id;ack_valid<=1;ack_accepted<=guarded_command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error);ack_completed<=1;ack_error<=guarded_command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error) ? 0:`PLI_ERR_BAD_COMMAND;
     command_busy<=0;ack_event<=1;
-    if(command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error))begin
+    if(guarded_command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error))begin
      req_open<=cmd_open;req_enable<=cmd_enable;req_start<=cmd_start;req_pause<=cmd_pause;
      req_resume<=cmd_resume;req_disable<=cmd_disable;req_rebase<=cmd_rebase;req_clear<=cmd_clear;
      dispatch_pending<=1;command_busy<=1;ack_valid<=0;ack_completed<=0;ack_event<=0;

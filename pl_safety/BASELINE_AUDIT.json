@@ -1,0 +1,38 @@
+{
+  "stage": "contract_draft_only",
+  "head": "c9f2e05786fc6392f271487411bc1d66319fde7e",
+  "tracked_diff_at_start": "empty",
+  "round2_verify": {
+    "command": "python pl_rs485/optimization/round2/seal.py --source-commit f7b570bc59b117a7f902cbdb81c8bad866954d4d --verify",
+    "exit_code": 0,
+    "output": "PASS round2 source/Git/evidence/IP/schema/constraints identity; user acceptance and signoff remain pending"
+  },
+  "sha256_raw": {
+    "AGENT.md": "2b83feca42943023dbdba1f04e46f0edc1191dfa459e5ca083ab96fcbcc79147",
+    "PHASE0_CONSTRAINTS.md": "1fb9d6e4a36021cba2eed1be2534072e01f71410b22e7e1fcb0b215f0feca57b",
+    "HARDWARE.md": "e418d36e3982402ae95d74be2e197ea28c6391e7f862af813ebbf68274601a70",
+    "PS_REQUIREMENTS_V1.md": "9757f0eaaf61b0e64f86889505dc80990dcf4ad79d648ef826808fadf84c0722",
+    "pl_motion/README.md": "c6ed5ff6e150e34169982db30125c5359d5618cefc27134b4b8421ec64d0c5f6",
+    "pl_motion/FOUR_AXIS.md": "8ce64b5ab5fd908f8bc53fdc81f0024d699d778accf3b69ffef08cb0fd71e02e",
+    "pl_motion/CONTINUOUS.md": "ce7d80d7c3c6f2103144bce27e4a4d9fc445265ba379bb9ebc4cc77444f21454",
+    "pl_motion/MOTION_HANDOFF.md": "03bd9879249f076c6e7f18abd72e2d091c178babe880365d4e83a4ef9383fe67",
+    "pl_motion/GPIO_HANDOFF.md": "42f07b4d54cfd9aa05417418fc3411c7f42c9afef5504bfb87eafb51559f2ad0",
+    "pl_motion/rtl/axis_motion.v": "5b35bb2932256d5671cc67b0a0ca81ef6f1439bc34cf182458046c205323e813",
+    "pl_motion/rtl/motion_executor.v": "9791d81ae4d530f2afa459c06821fbd653077d3e776075b075b003bdd05c89b3",
+    "pl_motion/rtl/continuous_motion.v": "a9a404c49d5d94e5241d405aeacf59deec4ad8fa2467d1bf1c764a024a77f17b",
+    "pl_motion/rtl/motion_service.v": "1d102db3468b815a80d16583383f4c4218e925f56362167c529f667ce7dabcf3",
+    "pl_dma/rtl/motion_dma_lite_top.v": "c5e35602762badf6e6f9aa095fe8e84d1f43f347c9b8d57585e5395edcffdbe8",
+    "pl_dma/rtl/rs485_shared_lite_top.v": "8a70315d84094d60ef84dc850125227898bf3cd732290d189da40d6a1f4f87a4",
+    "pl_dma/rtl/rs485_gp_full_top.v": "d9a89aa569cff18fa3d447ddc9454ee573bb033d3140635201d1c25bfa23a503",
+    "pl_dma/rtl/rs485_gp_ps_top.v": "a07ca0742b66af1ad352f6d0e546b9b6f77f7562a5e2101316164957f8c3ed37",
+    "pl_interface/schema.json": "1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31",
+    "pl_rs485/optimization/round2/ROUND2_HANDOFF.md": "d979ee6a1422acd446dd87974ee5c8a6b23307dadbab06b6550adc3076b8d7e9",
+    "pl_rs485/optimization/round2/ROUND2_RELEASE.json": "143a950bfb2260808e314d805b47fe27596bcad1b636976aad9bfca4f9b5e4cc",
+    "bsp/telemetry/BUILD_STATUS.md": "c72a4f456ae6aab7ee5b86c4b71aa0d0fe181ab6f6efa78184e4c0c18c908369",
+    "bsp/telemetry/IP_DIAGNOSTIC.md": "f74feb42ac31eb11cceb2b74a48f61edbed3d164d991c9aa63a2eaa9a7b07df3",
+    "bsp/work/telemetry_opt_r2main/system/hdl/system_wrapper.v": "e8b9b8561033f51fce675bfd93889f69d2bbc98996b093b12ef1e14533f6da4d"
+  },
+  "no_rtl_changes": true,
+  "no_board_operations": true,
+  "open_decisions": "CONTRACT_DRAFT.md section 7"
+}

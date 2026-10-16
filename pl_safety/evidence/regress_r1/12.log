@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "D:\Works\Embedded_contest\dev\pl_motion\tests\run_motion_integration.py", line 28, in <module>
+    if __name__=='__main__':main()
+  File "D:\Works\Embedded_contest\dev\pl_motion\tests\run_motion_integration.py", line 18, in main
+    run([vlog,'-work','work','+incdir+'+str(ROOT/'pl_interface'),*rtl,tb,rxtb],'compile')
+  File "D:\Works\Embedded_contest\dev\pl_motion\tests\run_motion_integration.py", line 9, in run
+    if p.returncode or re.search(r'\*\* (Error|Fatal)',log):raise RuntimeError(name+' failed\n'+log[-4000:])
+RuntimeError: compile failed
+-220) 'D:/altera_lite/25.1std/questa_fse/win64/../modelsim.ini' is used as the ini file.
+-- Compiling module motion_fifo
+-- Compiling module motion_planner
+-- Compiling module motion_executor
+-- Compiling module continuous_motion
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\continuous_motion.v(34): (vlog-2730) Undefined variable: 'pulse_safe'.
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\continuous_motion.v(40): (vlog-2388) 'pulse_safe' already declared in this scope (continuous_motion) at D:\Works\Embedded_contest\dev\pl_motion\rtl\continuous_motion.v(34).
+-- Compiling module motion_stream_rx
+-- Compiling module motion_service
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34): (vlog-2730) Undefined variable: 'maintenance_ok'.
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34): (vlog-2730) Undefined variable: 'command_busy'.
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34): (vlog-2730) Undefined variable: 'ah'.
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34): (vlog-2730) Undefined variable: 'wh'.
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34): (vlog-2730) Undefined variable: 'packet_busy'.
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(38): (vlog-2730) Undefined variable: 'rx_error'.
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(39): (vlog-2730) Undefined variable: 'stop_write'.
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(39): (vlog-2730) Undefined variable: 'req_disable'.
+** Error: D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(39): (vlog-2730) Undefined variable: 'reset_ok'.
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(41): (vlog-2388) 'ah' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34).
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(41): (vlog-2388) 'wh' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34).
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(53): (vlog-2388) 'command_busy' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34).
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(58): (vlog-2388) 'req_disable' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(39).
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(65): (vlog-2388) 'reset_ok' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(39).
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(73): (vlog-2388) 'rx_error' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(38).
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(73): (vlog-2388) 'packet_busy' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34).
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(78): (vlog-2388) 'maintenance_ok' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(34).
+** Error (suppressible): D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(129): (vlog-2388) 'stop_write' already declared in this scope (motion_service) at D:\Works\Embedded_contest\dev\pl_motion\rtl\motion_service.v(39).
+-- Compiling module tb_motion_service
+-- Compiling module tb_motion_stream_rx
+End time: 15:58:48 on Oct 16,2026, Elapsed time: 0:00:00
+Errors: 20, Warnings: 0
+
