@@ -1,2 +1,5 @@
 # Keep schema hashes and generated-byte checks reproducible on Windows/Linux.
 * text eol=lf
+# The generator hashes SOURCE.read_bytes(); preserve the committed schema
+# byte identity instead of silently converting its line endings at checkout.
+schema.json -text

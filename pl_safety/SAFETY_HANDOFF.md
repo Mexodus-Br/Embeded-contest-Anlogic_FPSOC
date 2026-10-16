@@ -18,7 +18,7 @@
 
 唯一机器源为 pl_interface/schema.json 的 safety_profiles.gp_safety_home_v1。新生成定义见 generated/safety_defs.h/vh；候选0x80A00000/4KiB、IRQ7/SPI89/INTID121高有效level，BSP最终核验。A33译码、AW/W独立捕获、B/R背压保持、独立STOP、接受/完成分离、原因/首时锁存、逐轴进度和64word原子快照均有自检。CONFIG_ID_0..7读回规范化配置JSON的SHA256；完整驱动参数/原厂IP/约束身份见完整工程inputs.json。
 
-旧接口3068个值保持，旧schema仅增加独立根节点；旧四份生成文件仅schema hash banner改变。72B MOT2和原采集记录未变。既有修改仅motion_executor、continuous_motion、motion_service增加HOME_SUPPORT（缺省0）及私有接口；原生成顶层不改，旧行为经18项回归验证。原入口的.fault(4'd0)不是本轮安全入口，不能沿用旧入口声称已接入安全。
+旧接口3068个值保持，旧schema仅增加独立根节点；旧四份生成文件仅schema hash banner改变。pl_interface/.gitattributes新增schema.json -text：生成器散列原始字节，Git须保留当前schema字节，避免检出时改变哈希；其他原生成定义仍固定LF，无寄存器/数值变化。pl_safety生成物固定LF，evidence保留原字节。72B MOT2和原采集记录未变。运动RTL修改仅motion_executor、continuous_motion、motion_service增加HOME_SUPPORT（缺省0）及私有接口；原生成顶层不改，旧行为经18项回归验证。原入口的.fault(4'd0)不是本轮安全入口，不能沿用旧入口声称已接入安全。
 
 ## 冻结版自检
 

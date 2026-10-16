@@ -20,7 +20,7 @@ def baseline():
  for f in ['interface_defs.h','interface_defs.vh','registers.md','errors.md']:
   p='pl_interface/generated/'+f
   assert gitbytes(p).splitlines()[1:]==(R/p).read_bytes().splitlines()[1:],p
- allowed={'pl_motion/rtl/motion_executor.v','pl_motion/rtl/continuous_motion.v','pl_motion/rtl/motion_service.v','pl_interface/schema.json'}
+ allowed={'pl_motion/rtl/motion_executor.v','pl_motion/rtl/continuous_motion.v','pl_motion/rtl/motion_service.v','pl_interface/schema.json','pl_interface/.gitattributes'}
  allowed|={'pl_interface/generated/'+n for n in ['interface_defs.h','interface_defs.vh','registers.md','errors.md']}
  changes=subprocess.check_output(['git','diff','--name-only','c9f2e05','--'],cwd=R,text=True).splitlines()
  for p in changes:assert p.startswith('pl_safety/') or p in allowed,('unrelated tracked mutation',p)
@@ -52,7 +52,7 @@ def main():
   sources=list((D/'rtl').glob('*.v'))+list((D/'generated').glob('*.v*'))+[R/'pl_motion/rtl'/x for x in ['motion_executor.v','continuous_motion.v','motion_service.v']]
   for p in sources:assert p.read_bytes()==(b/'gp'/p.name).read_bytes(),p
   files=[p for p in D.rglob('*') if p.is_file() and 'build' not in p.relative_to(D).parts and '__pycache__' not in p.parts and p.suffix not in ['.vvp','.exe','.pyc'] and p.name!='SAFETY_RELEASE.json']
-  files += [R/'pl_interface/schema.json']+[R/'pl_interface/generated'/x for x in ['interface_defs.h','interface_defs.vh','registers.md','errors.md']]+[R/'pl_motion/rtl'/x for x in ['motion_executor.v','continuous_motion.v','motion_service.v']]
+  files += [R/'pl_interface/schema.json',R/'pl_interface/.gitattributes']+[R/'pl_interface/generated'/x for x in ['interface_defs.h','interface_defs.vh','registers.md','errors.md']]+[R/'pl_motion/rtl'/x for x in ['motion_executor.v','continuous_motion.v','motion_service.v']]
   assert a.source_commit and subprocess.check_output(['git','rev-parse',a.source_commit],cwd=R,text=True).strip()==a.source_commit
   blob_hashes={}
   for p in files:
