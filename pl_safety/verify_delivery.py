@@ -44,11 +44,11 @@ def baseline():
  for c in [['pl_interface/generate.py','--check'],['pl_safety/generate.py','--check'],['pl_safety/generate_top.py','--check']]:subprocess.run([sys.executable,*c],cwd=R,check=True)
  return n
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--seal',action='store_true');ap.add_argument('--source-commit');ap.add_argument('--build',default='rxcarry_top6');a=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--seal',action='store_true');ap.add_argument('--source-commit');ap.add_argument('--build',default='predecode_top7');a=ap.parse_args()
  n=baseline();manifest=D/'SAFETY_RELEASE.json'
  if a.seal:
   assert not manifest.exists(),'Never overwrite sealed evidence'
-  names=['rxcarry_units1','rxcarry_phases1','inputs_freeze1','overflow_frozen1','router_final1','rxcarry_real1','timing_regress1','rxcarry_resource1','rxcarry_equivalence1','cdc_final1']
+  names=['predecode_units1','predecode_phases1','inputs_freeze1','overflow_frozen1','router_final1','predecode_real1','timing_regress1','predecode_resource1','rxcarry_equivalence1','predecode_equivalence1','cdc_final1']
   for name in names:
    test=json.loads((D/'evidence'/name/'result.json').read_text())
    assert test['passed'],name
@@ -57,6 +57,8 @@ def main():
   assert len(legacy['tests'])==18 and all(x['exit']==0 for x in legacy['tests']),'Incomplete legacy regressions'
   assert 'pl_motion/rtl/motion_stream_rx.v' in legacy['source_sha256'],'Missing changed receiver identity'
   b=D/'build'/a.build;summary=json.loads((b/'summary.json').read_text())
+  cdc=json.loads((D/'evidence/cdc_final1/result.json').read_text())
+  assert cdc['build']==a.build and cdc['route_db_sha256']==sha(b/'route.db') and cdc['threads']==16,'CDC audit must match the exact final routed database and required threads'
   assert summary['stages']['route']['setup_ns']>1.0 and summary['stages']['route']['hold_ns']>=0,'Final 100MHz route WNS must exceed 1ns and hold must pass'
   assert summary['threads']==16 and summary['timing_target_pass'],'Missing required threads/timing target'
   run=(b/'run.log').read_text(errors='replace')

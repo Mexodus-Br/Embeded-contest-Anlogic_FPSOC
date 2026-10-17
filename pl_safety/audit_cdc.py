@@ -40,6 +40,6 @@ with (out/'audit.log').open('w') as f:r=subprocess.run([shutil.which('td_command
 log=(out/'audit.log').read_text(errors='replace');report=out/'synchronizer_internal.timing'
 clean=(out/'replay.check').exists() and 'checking invalid constraint(0)' in (out/'replay.check').read_text(errors='replace')
 passed=r.returncode==0 and 'SAFETY_TD_THREADS 16' in log and 'Number of Thread = 16' in log and 'SAFETY_CDC_SELECTION_AUDIT_COMPLETE' in log and report.exists() and 'Slack' in report.read_text(errors='replace') and clean
-(out/'result.json').write_text(json.dumps({'passed':passed,'build':a.build,'route_db_sha256':hashlib.sha256((b/'route.db').read_bytes()).hexdigest(),'replay_sdc_sha256':hashlib.sha256((out/'replay.sdc').read_bytes()).hexdigest(),'purpose':'Only asynchronous pad->meta path excepted; meta->sync remains clocked','physical_cdc_signoff':False},indent=2)+'\n')
+(out/'result.json').write_text(json.dumps({'passed':passed,'build':a.build,'threads':16,'route_db_sha256':hashlib.sha256((b/'route.db').read_bytes()).hexdigest(),'replay_sdc_sha256':hashlib.sha256((out/'replay.sdc').read_bytes()).hexdigest(),'purpose':'Only asynchronous pad->meta path excepted; meta->sync remains clocked','physical_cdc_signoff':False},indent=2)+'\n')
 assert passed,log[-4000:]
 print('PASS routed synchronizer pin selections; physical CDC/MTBF not qualified')

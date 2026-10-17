@@ -13,6 +13,7 @@ module safety_regs(
 );
  localparam [32:0] BASE={1'b0,`SAF_BASE};
  reg ah,wh;reg [32:0] address;reg [31:0] data;reg [3:0] strobe;
+ reg submit_address,stop_address,command_data;
  reg [31:0] opcode,arg,txn,last_id,last_opcode,last_arg;
  reg [31:0] ack_id,ack_error;reg ack_valid,ack_accepted,ack_complete,busy,cancel_pending;
  reg [31:0] pending,mask,snap_id;reg [2047:0] snapshot;reg snap_valid,ack_event;
@@ -21,8 +22,9 @@ module safety_regs(
  wire full=address[1:0]==0 && strobe==15;
  wire [11:0] offset=address[11:0];
  wire same_payload=opcode==last_opcode && arg==last_arg;
- wire submit_valid=data==1 && txn!=0 && txn>=last_id &&
+ wire txn_valid=txn!=0 && txn>=last_id &&
    (txn!=last_id || same_payload) && (!busy || txn==last_id);
+ wire submit_valid=data==1 && txn_valid;
  reg [1:0] response;
  always @*begin
   response=0;
@@ -38,11 +40,14 @@ module safety_regs(
   endcase
  end
  wire good=fire && response==0;
- wire submit=good && offset==`SAF_REGISTERS_SUBMIT && txn!=last_id;
+ // Decode address/data on their independent capture edges, before fire.
+ // These are exactly the aligned full-strobe SUBMIT/STOP predicates; no
+ // command latency is added and mailbox validation is never bypassed.
+ wire submit=fire && submit_address && command_data && txn_valid && txn!=last_id;
  assign home_request=submit && opcode==`SAF_COMMANDS_HOME_START && arg==0;
  assign clear_request=submit && opcode==`SAF_COMMANDS_CLEAR_FAULT && arg==0;
  // Independent STOP does not depend on mailbox readiness or response mux.
- assign stop_request=fire && address==BASE+`SAF_REGISTERS_STOP && strobe==15 && data==1;
+ assign stop_request=fire && stop_address && command_data;
  assign s_awready=rst_n && !ah && !s_bvalid;
  assign s_wready=rst_n && !wh && !s_bvalid;
  assign s_arready=rst_n && !s_rvalid;
@@ -79,14 +84,21 @@ module safety_regs(
  end
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
-   ah<=0;wh<=0;address<=0;data<=0;strobe<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
+   ah<=0;wh<=0;address<=0;data<=0;strobe<=0;submit_address<=0;stop_address<=0;command_data<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
    opcode<=0;arg<=0;txn<=0;last_id<=0;last_opcode<=0;last_arg<=0;
    ack_id<=0;ack_error<=0;ack_valid<=0;ack_accepted<=0;ack_complete<=0;busy<=0;cancel_pending<=0;
    pending<=0;mask<=0;snap_id<=0;snapshot<=0;snap_valid<=0;ack_event<=0;
   end else begin
    ack_event<=0;pending<=(pending & ~w1c)|events;
-   if(s_awvalid && s_awready)begin ah<=1;address<=s_awaddr;end
-   if(s_wvalid && s_wready)begin wh<=1;data<=s_wdata;strobe<=s_wstrb;end
+   if(s_awvalid && s_awready)begin
+    ah<=1;address<=s_awaddr;
+    submit_address<=s_awaddr==BASE+`SAF_REGISTERS_SUBMIT;
+    stop_address<=s_awaddr==BASE+`SAF_REGISTERS_STOP;
+   end
+   if(s_wvalid && s_wready)begin
+    wh<=1;data<=s_wdata;strobe<=s_wstrb;
+    command_data<=s_wdata==1 && s_wstrb==15;
+   end
    if(s_bvalid && s_bready)s_bvalid<=0;
    if(fire)begin
     ah<=0;wh<=0;s_bvalid<=1;s_bresp<=response;

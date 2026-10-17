@@ -10,7 +10,7 @@ get_num_thread
 '''
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--tag',required=True);ap.add_argument('--prepare-only',action='store_true');ap.add_argument('--resume',action='store_true');a=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--tag',required=True);ap.add_argument('--prepare-only',action='store_true');ap.add_argument('--resume',action='store_true');ap.add_argument('--optimize-physical',action='store_true');a=ap.parse_args()
  assert re.fullmatch(r'[A-Za-z0-9_-]+',a.tag)
  b=D/'build'/a.tag;baseline=R/'bsp/work/telemetry_opt_r2main'
  if not a.resume:
@@ -50,6 +50,13 @@ def main():
   m=json.loads((b/'inputs.json').read_text())
   for n,h in m['candidate_inputs_sha256'].items():assert sha(b/n)==h,n
  if a.prepare_only:print('PASS authenticated independent full project prepared',b);return
+ physical_tcl='''# Explicit high-fanout/logic-depth closure profile; clocks unchanged.
+set_param place hfn_opt_effort high
+set_param place max_fanout 128
+set_param place opt_timing high
+set_param place logic_level_opt on
+report_param -all -file effective_parameters.tcl
+''' if a.optimize_physical else ''
  script=f'''cd {b.as_posix()}
 import_device dr1_90.db -package DR1M90GEG400 -speed 2
 open_project -single_run system.al
@@ -58,6 +65,7 @@ elaborate -top system_wrapper
 read_adc -file gp/gp.adc
 read_sdc gp/gp.sdc
 read_sdc gp/ps-generated-properties.tcl
+{physical_tcl}
 optimize_rtl
 optimize_gate -maparea gate.area
 report_timing_summary -file gate.timing -path_num 10
@@ -81,6 +89,7 @@ exit
   assert (b/'gate.db').is_file()
   script=f'cd {b.as_posix()}\nimport_device dr1_90.db -package DR1M90GEG400 -speed 2\nimport_db gate.db\nread_adc -file gp/gp.adc\nread_sdc gp/gp.sdc\nread_sdc gp/ps-generated-properties.tcl\n'+script.split('export_db gate.db\n')[1]
   script=script.replace('import_db gate.db\n','import_db gate.db\n'+THREADS_TCL)
+  script=script.replace('legalize_phy_inst\n',physical_tcl+'legalize_phy_inst\n',1)
  name='resume' if a.resume else 'run';assert not (b/(name+'.log')).exists()
  (b/(name+'.tcl')).write_text(script)
  td=shutil.which('td_commands_prompt');assert td
@@ -93,6 +102,6 @@ exit
  stages={}
  for n in ['gate','place','route']:
   t=(b/(n+'.timing')).read_text();stages[n]={k:float(re.search(v,t)[1]) for k,v in [('setup_ns',r'SWNS:\s*([-\d.]+)ns'),('hold_ns',r'HWNS:\s*([-\d.]+)ns')]}
- (b/'summary.json').write_text(json.dumps({'stages':stages,'threads':16,'wns_target_ns_exclusive':1.0,'timing_target_pass':stages['route']['setup_ns']>1.0 and stages['route']['hold_ns']>=0,'critical_warnings':[x for x in log.splitlines() if 'CRITICAL-WARNING' in x],'signoff_pass':False,'board_validated':False,'bitgen':False},indent=2)+'\n')
+ (b/'summary.json').write_text(json.dumps({'stages':stages,'threads':16,'physical_optimization':'high_hfn128_logic_on' if a.optimize_physical else 'baseline_default','wns_target_ns_exclusive':1.0,'timing_target_pass':stages['route']['setup_ns']>1.0 and stages['route']['hold_ns']>=0,'critical_warnings':[x for x in log.splitlines() if 'CRITICAL-WARNING' in x],'signoff_pass':False,'board_validated':False,'bitgen':False},indent=2)+'\n')
  print(json.dumps(stages))
 if __name__=='__main__':main()

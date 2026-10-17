@@ -2,13 +2,16 @@
 import argparse,hashlib,json,re,shutil
 from pathlib import Path
 R=Path(__file__).resolve().parents[1];D=R/'pl_safety'
-TESTS=['rxcarry_units1','rxcarry_phases1','inputs_freeze1','overflow_frozen1','router_final1','rxcarry_real1','timing_regress1','rxcarry_resource1','rxcarry_equivalence1']
+TESTS=['predecode_units1','predecode_phases1','inputs_freeze1','overflow_frozen1','router_final1','predecode_real1','timing_regress1','predecode_resource1','rxcarry_equivalence1','predecode_equivalence1']
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--build',required=True);ap.add_argument('--tag');a=ap.parse_args()
  b=D/'build'/a.build;summary=json.loads((b/'summary.json').read_text());out=D/'evidence'/(a.tag or a.build)
+ for folder in ['pl_motion/rtl','pl_safety/rtl','pl_safety/generated']:
+  for p in (R/folder).glob('*.v*'):assert p.read_bytes()==(b/'gp'/p.name).read_bytes(),('archiving stale RTL',p)
  out.mkdir(exist_ok=False)
  paths=['inputs.json','summary.json','run.tcl','run.log','system.al','system/hdl/system_wrapper.v','gp/gp.adc','gp/gp.sdc','gp/ps-generated-properties.tcl','gate.area','gate.timing','place.timing','route.timing','route.area','route.check']
+ if (b/'effective_parameters.tcl').exists():paths.append('effective_parameters.tcl')
  paths+=sorted(p.name for p in b.iterdir() if p.is_file() and (p.name.startswith('td_') and p.suffix in ['.log','.logw'] or p.suffix=='.qor'))
  for n in paths:
   p=out/n;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(b/n,p)
@@ -24,7 +27,7 @@ def main():
   if entry['completed']:
    previous=json.loads((trial/'summary.json').read_text())
    entry['route_timing_pass']=all(previous['stages']['route'][k]>=0 for k in ['setup_ns','hold_ns'])
-  for n in ['run.tcl','run.log','inputs.json','summary.json','gate.area','gate.timing','place.timing','route.timing']:
+  for n in ['run.tcl','run.log','inputs.json','summary.json','gate.area','gate.timing','place.timing','route.timing','route.area','route.check','effective_parameters.tcl']:
    if (trial/n).exists():
     p=out/'prior_build_attempts'/trial.name/n;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(trial/n,p)
   trials.append(entry)
@@ -38,7 +41,7 @@ def main():
  for result in sorted((D/'evidence').glob('*/result.json')):
   t=json.loads(result.read_text())
   if not t.get('passed'):prior_tests.append({'tag':result.parent.name,'result_sha256':sha(result),'failure':t.get('failure','see original logs')})
- logs='\n'.join(p.read_text(errors='replace') for p in (D/'evidence/rxcarry_phases1').glob('mode*.log'))
+ logs='\n'.join(p.read_text(errors='replace') for p in (D/'evidence/predecode_phases1').glob('mode*.log'))
  latency={}
  for key in ['pad_qualified','executor_inhibit_bound','qualified_drain','qualified_en_off']:
   values=[int(v) for v in re.findall(key+r'=(\d+)',logs)]
