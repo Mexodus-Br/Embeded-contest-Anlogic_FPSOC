@@ -2,7 +2,7 @@
 import argparse,hashlib,json,re,shutil
 from pathlib import Path
 R=Path(__file__).resolve().parents[1];D=R/'pl_safety'
-TESTS=['split_units2','split_phases2','inputs_freeze1','overflow_frozen1','router_final1','split_real2','frozen_regress1','split_resource2']
+TESTS=['rxcarry_units1','rxcarry_phases1','inputs_freeze1','overflow_frozen1','router_final1','rxcarry_real1','timing_regress1','rxcarry_resource1','rxcarry_equivalence1']
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--build',required=True);ap.add_argument('--tag');a=ap.parse_args()
@@ -21,7 +21,10 @@ def main():
  for trial in sorted((D/'build').iterdir()):
   if not trial.is_dir() or trial==b or not (trial/'run.tcl').exists():continue
   entry={'tag':trial.name,'completed':(trial/'summary.json').exists()}
-  for n in ['run.tcl','run.log','inputs.json']:
+  if entry['completed']:
+   previous=json.loads((trial/'summary.json').read_text())
+   entry['route_timing_pass']=all(previous['stages']['route'][k]>=0 for k in ['setup_ns','hold_ns'])
+  for n in ['run.tcl','run.log','inputs.json','summary.json','gate.area','gate.timing','place.timing','route.timing']:
    if (trial/n).exists():
     p=out/'prior_build_attempts'/trial.name/n;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(trial/n,p)
   trials.append(entry)
@@ -35,12 +38,19 @@ def main():
  for result in sorted((D/'evidence').glob('*/result.json')):
   t=json.loads(result.read_text())
   if not t.get('passed'):prior_tests.append({'tag':result.parent.name,'result_sha256':sha(result),'failure':t.get('failure','see original logs')})
- logs='\n'.join(p.read_text(errors='replace') for p in (D/'evidence/split_phases2').glob('mode*.log'))
+ logs='\n'.join(p.read_text(errors='replace') for p in (D/'evidence/rxcarry_phases1').glob('mode*.log'))
  latency={}
  for key in ['pad_qualified','executor_inhibit_bound','qualified_drain','qualified_en_off']:
   values=[int(v) for v in re.findall(key+r'=(\d+)',logs)]
   latency[key]={'min_cycles':min(values),'max_cycles':max(values)}
- data={'passed':True,'meaning':'RTL self-checks and complete resource/STA run; NOT hardware release signoff','tests':checks,'full_top':summary,'fixture_latency':latency,'prior_build_attempts':trials,'prior_failed_tests':prior_tests,'reports_sha256':{p.relative_to(out).as_posix():sha(p) for p in out.rglob('*') if p.is_file()}}
+ area=(b/'route.area').read_text()
+ resources={k:int(re.search(pattern,area,re.M)[1]) for k,pattern in {
+  'lut6_equivalent':r'^#lut6\s+(\d+)', 'slices':r'^#slice\s+(\d+)',
+  'registers_total':r'^#reg\s+(\d+)', 'slice_registers':r'^  #slice reg\s+(\d+)',
+  'pad_registers':r'^  #pad reg\s+(\d+)', 'eram':r'^#eram\s+(\d+)',
+  'dsp':r'^#dsp\s+(\d+)', 'io':r'^#IO\s+(\d+)'}.items()}
+ timing_pass=all(summary['stages']['route'][k]>=0 for k in ['setup_ns','hold_ns'])
+ data={'passed':True,'meaning':'RTL self-checks and complete resource/STA run; NOT hardware release signoff','timing_100mhz_pass':timing_pass,'wns_target_ns_exclusive':1.0,'timing_target_pass':summary['stages']['route']['setup_ns']>1.0 and summary['stages']['route']['hold_ns']>=0,'threads':summary.get('threads','historical_default'),'resources':resources,'tests':checks,'full_top':summary,'fixture_latency':latency,'prior_build_attempts':trials,'prior_failed_tests':prior_tests,'reports_sha256':{p.relative_to(out).as_posix():sha(p) for p in out.rglob('*') if p.is_file()}}
  (out/'result.json').write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
  print(json.dumps({'archived':str(out),'latency':latency,'full_top':summary},indent=2))
 if __name__=='__main__':main()

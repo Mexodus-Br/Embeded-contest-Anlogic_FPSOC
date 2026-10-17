@@ -23,6 +23,8 @@ split_phases2覆盖7场景各24相位，其中两类HOME急停共48个案例输�
 
 ## 完整工程身份与门禁
 
+2026-10-17目标收紧为最终布线setup WNS>1ns且hold≥0；布局估计通过或setup仅非负均不能封存。所有后续TD操作明确threads=16。TD 6.2的有效Tcl属性名为`flow thread`，由`get_num_thread`核验实际16线程；`flow threads`会成为不生效的wild参数，不能使用。完整工程采用`open_project -single_run`，参数在打开工程/导入数据库后设置。完整构建与独立CDC审计均记录设置和读回。
+
 独立工程由原round2实际PS/GP/HP0/HP1/DMA/RS485工程按封存输入哈希复制，安装工具TD Release_2026.1_SP2、DR1M90GEG400参考speed2、100MHz/10ns。CONFIG_PROFILE=2资源夹具与500周期底座匹配；生产默认PROFILE=0禁止启动。原厂受保护IP未修改。实际运行脚本、输入哈希、原约束与报告归档在evidence/split_top3/；大型数据库留在忽略的build/split_top3/，没有bitgen。首轮sealed_top1完整报告保留于evidence/sealed_top1_complete/，其setup=-1.355ns、hold=+0.021ns，不能称100MHz通过；timing_top2仅保留综合和中间布局，不代表完整顶层通过。
 
 原九路J12观察输出/RS485约束保留；新增四个安全输入尚无核验针脚，工具自动pad不是接线方案。只有四个异步pad作为例外起点，源码中它们只驱动第一级meta；meta→sync路径起点是寄存器，仍参与时序。首轮按打包前.d名称选择终点未命中，不能使用该无效约束。新工程使用仅指定pad起点的有效约束，CDC逻辑集合与约束门禁另由audit_cdc.py复核；工具报告的属性识别和实物MTBF须单独解释，不能只看RTL有两级就宣称板级CDC通过。

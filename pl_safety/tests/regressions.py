@@ -10,7 +10,9 @@ COMMANDS=['pl_interface/generate.py --check','pl_safety/generate.py --check','pl
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--tag',required=True);a=ap.parse_args();out=D/'evidence'/a.tag;out.mkdir(exist_ok=False)
  paths=subprocess.check_output(['git','ls-files','pl_motion/*.json','pl_dma/*.json','pl_rs485/evidence/*.json'],cwd=R,text=True).splitlines()
- saved={R/n:(R/n).read_bytes() for n in paths};result={'passed':False,'tests':[]}
+ saved={R/n:(R/n).read_bytes() for n in paths}
+ sources=[p for folder in ['pl_motion/rtl','pl_dma/rtl','pl_rs485/rtl'] for p in (R/folder).glob('*.v')]
+ result={'passed':False,'tests':[],'source_sha256':{p.relative_to(R).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}}
  try:
   for i,c in enumerate(COMMANDS):
    p=subprocess.run([sys.executable,*c.split()],cwd=R,capture_output=True,text=True,timeout=900)

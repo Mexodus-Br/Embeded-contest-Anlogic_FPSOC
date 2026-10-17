@@ -16,7 +16,7 @@ module motion_stream_rx(
 );
  localparam IDLE=0,RX=1,CRC=2,CHECK=3,PENDING=4;
  reg [2:0] state;reg [3:0] beat;reg [3:0] byte_index,byte_limit;
- reg [63:0] held;reg [575:0] record_data;reg [31:0] crc,expected,completed;
+ reg [63:0] held;reg [575:0] record_data;reg [31:0] crc,last_index,completed;
  reg final_record;
  function [31:0] crc_byte;
   input [31:0] c;input [7:0] b;integer k;reg [31:0] x;
@@ -42,20 +42,24 @@ module motion_stream_rx(
  assign partial_empty=state==IDLE;
  assign arm_ready=rst_n && link_ready && !abort && state==IDLE;
  assign s_ready=rst_n && link_ready && !abort && state==RX;
- wire bad_beat=s_valid && s_ready && (s_keep!=8'hff || s_last!=(beat==8 && completed+1==expected));
+ // Precompute the terminal index at ARM. The modulo-32 identity
+ // completed+1==count <=> completed==count-1 also preserves count==0.
+ // Keep the detecting-edge error path free of a 32-bit carry chain.
+ wire is_final_record=completed==last_index;
+ wire bad_beat=s_valid && s_ready && (s_keep!=8'hff || s_last!=(beat==8 && is_final_record));
  // Error is visible on the detecting edge, so the kernel cannot launch STEP.
  assign error=rst_n && !abort && (bad_beat || (state==CHECK && bad_record));
  assign point_valid=rst_n && link_ready && !abort && state==PENDING;
  always @(posedge clk or negedge rst_n)begin
-  if(!rst_n)begin state<=IDLE;beat<=0;byte_index<=0;byte_limit<=0;held<=0;record_data<=0;crc<=32'hffffffff;expected<=0;completed<=0;final_record<=0;packet_closed<=0;packet_count<=0;end
+  if(!rst_n)begin state<=IDLE;beat<=0;byte_index<=0;byte_limit<=0;held<=0;record_data<=0;crc<=32'hffffffff;last_index<=0;completed<=0;final_record<=0;packet_closed<=0;packet_count<=0;end
   else begin
    packet_closed<=0;
-   if(abort || error || !link_ready)begin state<=IDLE;beat<=0;record_data<=0;crc<=32'hffffffff;completed<=0;expected<=0;end
+   if(abort || error || !link_ready)begin state<=IDLE;beat<=0;record_data<=0;crc<=32'hffffffff;completed<=0;last_index<=0;end
    else case(state)
-    IDLE:if(arm && arm_ready)begin expected<=arm_count;completed<=0;beat<=0;crc<=32'hffffffff;state<=RX;end
+    IDLE:if(arm && arm_ready)begin last_index<=arm_count-32'd1;completed<=0;beat<=0;crc<=32'hffffffff;state<=RX;end
     RX:if(s_valid && s_ready)begin
      record_data[beat*64+:64]<=s_data;held<=s_data;byte_index<=0;byte_limit<=beat==8 ? 4:8;
-     final_record<=completed+1==expected;state<=CRC;
+     final_record<=is_final_record;state<=CRC;
     end
     CRC:begin
      crc<=crc_byte(crc,held[byte_index*8+:8]);byte_index<=byte_index+1'b1;

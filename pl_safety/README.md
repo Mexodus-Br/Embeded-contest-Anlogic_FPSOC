@@ -28,6 +28,8 @@ tests/run.py 的模式 16/17/18 向时间接口注入加速时间，专门验证
 
 build_td.py 校验 round2 封存的完整实际工程输入，然后在本目录 build/ 新 tag 建立独立候选，保留原厂 IP/PS/DDR和原九输出/RS485约束。完整顶层参考 speed2、10ns，CONFIG_PROFILE=2 为匹配500cycle脉冲参数的资源夹具；不生成 bit/HPF/FSBL/启动镜像。四个新安全输入未分配经核验针脚；工具自动 pad 不可用作接线。全顶层 STA 与实体输入/板级资格分开。
 
+2026-10-17起启动脚本固定threads=16：TD Tcl实际属性为`set_param flow thread 16`，并用`get_num_thread`记录实际值。最终封存要求布线setup WNS严格>1ns、hold≥0和有效约束；默认线程数的历史试验不满足本次要求。`audit_cdc.py --build TAG --tag NEW_TAG`也显式16线程。
+
 原发布、日志及 verifier 保留；原身份门禁会拒绝本轮新源码/新 schema，这是预期保护，不应放宽旧门禁。新交付用本目录独立身份核验。PL 队列清空不证明 DMA/DDR 静止；BSP 按原生命周期处理在途 buffer/quarantine。
 
 原 SYN-5066、RS485 IO 时序资格、实物 speed 和驱动复电行为等问题继续保留。该交付不增加 Watchdog/RS485自动停机策略，不包含 BSP驱动/设备树/镜像/实体接线，不操作COM4或板卡。

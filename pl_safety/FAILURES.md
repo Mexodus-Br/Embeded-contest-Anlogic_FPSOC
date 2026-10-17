@@ -17,3 +17,9 @@ Windows 受限进程环境曾阻止 Python/仿真工具正常启动；普通本�
 resource_fixture1/2 为追加的500周期驱动夹具测试：沿用快速夹具的启动等待导致 HOME 正确被资格/停稳门拒绝。只调整测试台等待到650周期；resource_fixture3 两组均通过，未变更冻结 RTL。该测试按引脚逐拍核验500周期H/L/DIR/EN与固定距离，保留前两次失败。
 
 既有受保护 S2MM IP 的 SYN-5066 多驱动诊断仍是发布阻塞项。本轮没有修改或掩盖 IP 内部问题，也不将一般资源/时序运行完成视为硬件发布许可。
+
+2026-10-17追加16线程要求后检查发现split_top3已中断，停在布局Stage6.1，无最终route报告；默认22线程，不能用于本次最终门禁。线程探针确认`flow threads`是wild参数、实际仍22，正确属性为`flow thread`。threads16_top4在默认multi-run工程作用域的读回仍auto，启动保护立即拒绝，未进入elaborate/综合/布局；改为官方single_run模式后参数及实际线程数均16，threads16_top5从完整输入重新运行。上述失败与中断日志均保留。
+
+随后按用户新增授权重构motion_stream_rx的包尾比较：将completed+1==count等价替换为completed==预存(count-1)，通过独立逐周期原版对照后，停止尚在综合中的threads16_top5旧源码候选，保留日志并启动rxcarry_top6当前源码完整工程。threads16_top5不是完整时序通过证据。选择timing_units1/timing_resource1旧目录时脚本正确拒绝覆盖；改用全新rxcarry_*目录，历史结果未改写。
+
+串行18项timing_regress1全部通过后，原排队命令尝试使用已存在的timing_real1目录而被拒绝；没有运行或覆盖其旧结果。随后用新rxcarry_real1目录独立执行真实IP测试。所有测试目录都禁止覆写。

@@ -2,6 +2,12 @@
 import argparse,hashlib,json,re,shutil,subprocess,xml.etree.ElementTree as ET
 from pathlib import Path
 R=Path(__file__).resolve().parents[1];D=R/'pl_safety'
+THREADS_TCL='''# threads=16; TD 6.2 uses the singular property name "thread".
+set_param flow thread 16
+if {[get_param flow thread] != 16} {error "Expected threads=16"}
+puts "SAFETY_TD_THREADS [get_param flow thread]"
+get_num_thread
+'''
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--tag',required=True);ap.add_argument('--prepare-only',action='store_true');ap.add_argument('--resume',action='store_true');a=ap.parse_args()
@@ -46,7 +52,8 @@ def main():
  if a.prepare_only:print('PASS authenticated independent full project prepared',b);return
  script=f'''cd {b.as_posix()}
 import_device dr1_90.db -package DR1M90GEG400 -speed 2
-open_project system.al
+open_project -single_run system.al
+{THREADS_TCL}
 elaborate -top system_wrapper
 read_adc -file gp/gp.adc
 read_sdc gp/gp.sdc
@@ -73,6 +80,7 @@ exit
  if a.resume:
   assert (b/'gate.db').is_file()
   script=f'cd {b.as_posix()}\nimport_device dr1_90.db -package DR1M90GEG400 -speed 2\nimport_db gate.db\nread_adc -file gp/gp.adc\nread_sdc gp/gp.sdc\nread_sdc gp/ps-generated-properties.tcl\n'+script.split('export_db gate.db\n')[1]
+  script=script.replace('import_db gate.db\n','import_db gate.db\n'+THREADS_TCL)
  name='resume' if a.resume else 'run';assert not (b/(name+'.log')).exists()
  (b/(name+'.tcl')).write_text(script)
  td=shutil.which('td_commands_prompt');assert td
@@ -80,9 +88,11 @@ exit
   result=subprocess.run([td,(b/(name+'.tcl')).as_posix()],cwd=b,stdout=f,stderr=subprocess.STDOUT,timeout=7200)
  log=(b/(name+'.log')).read_text(encoding='utf-8',errors='replace')
  if result.returncode or 'SAFETY_RESOURCE_BUILD_COMPLETE' not in log or re.search(r'\bERROR:',log):raise RuntimeError('TD failed; logs/checkpoints retained: '+str(b))
+ assert 'SAFETY_TD_THREADS 16' in log and 'Number of Thread = 16' in log,'Missing actual threads=16 proof'
+ assert not re.search(r'Global iterations in (?!16\b)\d+ thread',log),'Unexpected worker thread count'
  stages={}
  for n in ['gate','place','route']:
   t=(b/(n+'.timing')).read_text();stages[n]={k:float(re.search(v,t)[1]) for k,v in [('setup_ns',r'SWNS:\s*([-\d.]+)ns'),('hold_ns',r'HWNS:\s*([-\d.]+)ns')]}
- (b/'summary.json').write_text(json.dumps({'stages':stages,'critical_warnings':[x for x in log.splitlines() if 'CRITICAL-WARNING' in x],'signoff_pass':False,'board_validated':False,'bitgen':False},indent=2)+'\n')
+ (b/'summary.json').write_text(json.dumps({'stages':stages,'threads':16,'wns_target_ns_exclusive':1.0,'timing_target_pass':stages['route']['setup_ns']>1.0 and stages['route']['hold_ns']>=0,'critical_warnings':[x for x in log.splitlines() if 'CRITICAL-WARNING' in x],'signoff_pass':False,'board_validated':False,'bitgen':False},indent=2)+'\n')
  print(json.dumps(stages))
 if __name__=='__main__':main()
