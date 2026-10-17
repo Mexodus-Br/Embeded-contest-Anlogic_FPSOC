@@ -64,7 +64,7 @@ module motion_service #(
  reg [31:0] accepted_sequence;reg accepted_valid,done_valid,user_cancel;reg [31:0] ingress_sequence;
  reg [31:0] accept_count,done_count,stale_count,reject_count,cancel_count,stop_count,end_count;
  reg [32:0] observed_sequence;reg observed_end;
- wire rx_error,rx_arm_ready,packet_busy,partial_empty,packet_closed;
+ wire rx_error,rx_error_candidate,rx_arm_ready,packet_busy,partial_empty,packet_closed;
  wire [31:0] packet_count;
  wire [63:0] rx_session,rx_duration;wire [31:0] rx_sequence;wire rx_end,rx_valid,rx_ready;
  wire [3:0] rx_mask;wire [255:0] rx_target;
@@ -134,7 +134,16 @@ module motion_service #(
  // manufacturing idle STOP completions after the first safe drain.
  reg safety_stop_seen;
  always @(posedge clk or negedge rst_n)if(!rst_n)safety_stop_seen<=0;else safety_stop_seen<=private_stop;
- wire stop_kernel=(private_stop && !safety_stop_seen && (core_busy || session_valid)) || stop_write || rx_error || ((|fault || dma_error || !reset_ok || req_disable) && (session_valid || core_busy));
+ // Shannon expansion on DMA error removes its serial trip through the
+ // receiver abort mask before the same-edge execution STOP qualification.
+ // When DMA error is 1, receiver.error is necessarily 0; otherwise the
+ // private raw predicate receives exactly the original non-DMA abort mask.
+ wire occupied=core_busy || session_valid;
+ wire non_dma_abort=private_stop || private_disable || (HOME_SUPPORT && home_enable) || stop_write || (|fault) || !reset_ok || req_disable || cancelled || session_done;
+ wire rx_without_dma=rst_n && !non_dma_abort && rx_error_candidate;
+ wire stop_kernel=(private_stop && !safety_stop_seen && occupied) || stop_write ||
+  ((|fault || !reset_ok || req_disable) && occupied) ||
+  (dma_error ? occupied : rx_without_dma);
  wire sequence_violation=rx_valid && rx_ready && session_valid && rx_session==session_id &&
   (observed_end || {1'b0,rx_sequence}!=observed_sequence);
  motion_stream_rx receiver(.clk(clk),.rst_n(rst_n),.abort(external_cancel || cancelled || session_done),.link_ready(link_ready),
@@ -142,7 +151,7 @@ module motion_service #(
   .s_data(stream_data),.s_keep(stream_keep),.s_last(stream_last),.s_valid(stream_valid),.s_ready(stream_ready),
   .point_valid(rx_valid),.point_ready(rx_ready),.point_session(rx_session),.duration_tick(rx_duration),
   .point_sequence(rx_sequence),.point_end(rx_end),.point_mask(rx_mask),.point_target(rx_target),
-  .error(rx_error),.packet_closed(packet_closed),.packet_count(packet_count));
+  .error(rx_error),.error_candidate(rx_error_candidate),.packet_closed(packet_closed),.packet_count(packet_count));
  continuous_motion #(.FIFO_DEPTH(FIFO_DEPTH),.PLAN_DEPTH(PLAN_DEPTH),.START_MIN_POINTS(START_MIN_POINTS),
   .STEP_HIGH_CYCLES(STEP_HIGH_CYCLES),.STEP_LOW_CYCLES(STEP_LOW_CYCLES),.DIR_SETUP_CYCLES(DIR_SETUP_CYCLES),
   .DIR_HOLD_CYCLES(DIR_HOLD_CYCLES),.EN_SETUP_CYCLES(EN_SETUP_CYCLES),.EN_DISABLE_CYCLES(EN_DISABLE_CYCLES),
