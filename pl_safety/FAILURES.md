@@ -23,3 +23,9 @@ resource_fixture1/2 为追加的500周期驱动夹具测试：沿用快速夹具
 随后按用户新增授权重构motion_stream_rx的包尾比较：将completed+1==count等价替换为completed==预存(count-1)，通过独立逐周期原版对照后，停止尚在综合中的threads16_top5旧源码候选，保留日志并启动rxcarry_top6当前源码完整工程。threads16_top5不是完整时序通过证据。选择timing_units1/timing_resource1旧目录时脚本正确拒绝覆盖；改用全新rxcarry_*目录，历史结果未改写。
 
 串行18项timing_regress1全部通过后，原排队命令尝试使用已存在的timing_real1目录而被拒绝；没有运行或覆盖其旧结果。随后用新rxcarry_real1目录独立执行真实IP测试。所有测试目录都禁止覆写。
+
+rxcarry_top6完成16线程完整流程，最终setup +0.240ns、hold +0.020ns，未达到追加的>1ns目标，继续保留全部结果。predecode_top7使用前移AW/W译码及high/128/high/on布局配置。为令布线阶段主动追求余量，另核验额外setup预算：margin_semantics1的Tcl all_clocks返回空、预算未生效，被实际slack差值检查拒绝；margin_semantics2/3的Tcl get_clocks也返回空，由集合保护拒绝。第二次初版解析器因后续报告不存在而异常，其失败索引补记但原日志未覆盖；第三次起缺失报告同样写入失败结果。
+
+margin_semantics4改用独立SDC经read_sdc解析board_100m约束，实际setup由+0.240降至-1.010ns，恢复后精确回+0.240ns，hold始终+0.020ns、默认uncertainty 0.060ns保留，invalid constraint(0)。该tag仅证明工具语义，不是新RTL或布局通过证据。route_closure.py据此从身份核验后的完整predecode_top7布局独立建立closure_top8，布线额外setup预算1.25ns，最终恢复原SDC uncertainty=0并保留两份报告；不覆盖父工程或放宽原10ns/IO/异步例外。当前仍须以最终原约束下全局WNS>1ns及hold非负判定。
+
+2026-10-17用户要求“先到这，以后进行专门优化”。predecode_top7已完成，最终setup +0.016ns、hold +0.020ns，严格>1ns目标未通过。closure_top8自有TD进程10864在post-route phys_opt阶段停止；父脚本因缺少完成标记退出并保留断言信息，这是用户暂停导致的未完成运行，不是最终原约束时序通过或工具崩溃。中间数据库、日志、脚本及预算试验均保留，不继续优化；当前RTL仍为5ccd875。独立最终CDC审计与正式发布封存尚未执行。

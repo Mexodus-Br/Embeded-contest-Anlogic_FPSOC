@@ -12,6 +12,8 @@ def main():
  out.mkdir(exist_ok=False)
  paths=['inputs.json','summary.json','run.tcl','run.log','system.al','system/hdl/system_wrapper.v','gp/gp.adc','gp/gp.sdc','gp/ps-generated-properties.tcl','gate.area','gate.timing','place.timing','route.timing','route.area','route.check']
  if (b/'effective_parameters.tcl').exists():paths.append('effective_parameters.tcl')
+ for name in ['parent_place_run.log','parent_full_run.tcl','parent_inputs.json','closure_margin.sdc','restore_nominal.sdc','route_closure_margin.timing']:
+  if (b/name).exists():paths.append(name)
  paths+=sorted(p.name for p in b.iterdir() if p.is_file() and (p.name.startswith('td_') and p.suffix in ['.log','.logw'] or p.suffix=='.qor'))
  for n in paths:
   p=out/n;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(b/n,p)
@@ -27,6 +29,8 @@ def main():
   if entry['completed']:
    previous=json.loads((trial/'summary.json').read_text())
    entry['route_timing_pass']=all(previous['stages']['route'][k]>=0 for k in ['setup_ns','hold_ns'])
+   entry['strict_target_pass']=previous['stages']['route']['setup_ns']>1.0 and previous['stages']['route']['hold_ns']>=0
+   entry['threads']=previous.get('threads','historical_default')
   for n in ['run.tcl','run.log','inputs.json','summary.json','gate.area','gate.timing','place.timing','route.timing','route.area','route.check','effective_parameters.tcl']:
    if (trial/n).exists():
     p=out/'prior_build_attempts'/trial.name/n;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(trial/n,p)

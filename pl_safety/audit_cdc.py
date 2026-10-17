@@ -17,6 +17,7 @@ import_db {(b/'route.db').as_posix()}
 read_adc -file {(b/'gp/gp.adc').as_posix()}
 read_sdc {(out/'replay.sdc').as_posix()}
 read_sdc {(b/'gp/ps-generated-properties.tcl').as_posix()}
+report_route_status -fanout_stat -file routed_fanout.rpt
 update_timing -mode final
 set pads [get_ports {{safety_limit_n[*] safety_estop_n}}]
 set all [get_regs -hier -quiet *inputs*]

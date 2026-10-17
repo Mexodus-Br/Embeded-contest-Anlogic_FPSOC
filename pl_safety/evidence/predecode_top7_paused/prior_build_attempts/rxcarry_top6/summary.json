@@ -1,0 +1,26 @@
+{
+  "stages": {
+    "gate": {
+      "setup_ns": -1.63,
+      "hold_ns": 0.0
+    },
+    "place": {
+      "setup_ns": 2.392,
+      "hold_ns": 0.0
+    },
+    "route": {
+      "setup_ns": 0.24,
+      "hold_ns": 0.02
+    }
+  },
+  "threads": 16,
+  "wns_target_ns_exclusive": 1.0,
+  "timing_target_pass": false,
+  "critical_warnings": [
+    "SYN-5066 CRITICAL-WARNING: Disconnect the driver 'control/core/fabric/telemetry_dma/dma/vyjqtk/rucwti_i1' of the multi-driven net 'control/core/fabric/telemetry_dma/dma/vyjqtk/rucwti'",
+    "SYN-6021 CRITICAL-WARNING: 4 out of 17 logical ports has no user assigned specific location constraint."
+  ],
+  "signoff_pass": false,
+  "board_validated": false,
+  "bitgen": false
+}

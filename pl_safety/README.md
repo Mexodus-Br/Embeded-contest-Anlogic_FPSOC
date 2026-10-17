@@ -24,6 +24,9 @@ python pl_safety/tests/regressions.py --tag new_regression_tag
 python pl_safety/build_td.py --tag new_full_top_tag
 # 严格余量目标候选：高扇出/逻辑级数优化，时钟仍10ns。
 python pl_safety/build_td.py --tag new_closure_tag --optimize-physical
+# 可选：先核验工具预算语义，再从同一RTL的已完成布局独立再布线。
+python pl_safety/probe_margin.py --build completed_full_tag --tag new_margin_proof
+python pl_safety/route_closure.py --build placed_full_tag --tag new_route_tag --margin-proof new_margin_proof
 ```
 
 tests/run.py 的模式 16/17/18 向时间接口注入加速时间，专门验证三阶段超时先到；不用于证明1MHz时间基准。其他集成模式及真实 IP 系统使用共同100MHz/1MHz。testbench 依据实际引脚边沿核对 signed64位置、脉冲总数、H/L/DIR/EN时序和固定退离，不以控制器内部计数作参考答案。

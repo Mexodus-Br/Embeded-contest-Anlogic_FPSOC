@@ -1,8 +1,14 @@
 # PL 安全链路 / 并行 HOME 独立交接
 
+## 2026-10-17 暂停检查点
+
+用户要求“先到这，以后进行专门优化”，本轮优化已停止。当前RTL冻结在5ccd875，未追加其他RTL改动；十组功能/等价性证据见下表。当前源码的完整16线程综合、布局、布线predecode_top7已结束：100MHz最终setup WNS为+0.016ns、hold为+0.020ns，**未达到WNS>1ns目标**。报告归档于evidence/predecode_top7_paused/，生产配置继续禁启，未上板。
+
+closure_top8在布线后物理优化阶段按用户要求停止，未生成恢复原约束后的最终报告，不作为时序通过证据。大型数据库与中间日志保留在build/；失败和中断见FAILURES.md。最终CDC审计cdc_final1尚未执行，SAFETY_RELEASE.json尚未封存。本组件以可接续的开发检查点交接，不代表安全链路发布门禁全部完成。
+
 本交付实现用户于2026-10-16确认的三限位、并行 HOME、启动前受控退离、固定距离退离、急停动作反馈、故障锁存和独立控制/快照接口。生产配置禁止启动。**RTL仿真、完整工程资源/STA、实板验证为三种不同结论；未进行实板验证，不能带电机使用。**
 
-源码基线为核验后的 c9f2e05；最初状态/交接输入身份见 BASELINE_AUDIT.json。本轮源码提交与证据的精确身份见 SAFETY_RELEASE.json 的 source_commit、source_git_blob_sha256、files_sha256。raw哈希保留实际测试字节；files_lf_sha256只允许Windows/Git的CRLF/LF检出差异，任何其他内容变化拒绝，Git blob也逐项核对。不要将原 round2 身份清单套用到修改后的源码，也不要放宽旧 verifier。
+源码基线为核验后的 c9f2e05；最初状态/交接输入身份见 BASELINE_AUDIT.json。当前测试源码身份见各result.json的source_sha256与完整工程inputs.json；尚无SAFETY_RELEASE.json。后续封存时由verify_delivery.py记录source_commit、source_git_blob_sha256、files_sha256；raw哈希保留实际测试字节，files_lf_sha256只允许Windows/Git的CRLF/LF检出差异，Git blob也逐项核对。不要将原 round2 身份清单套用到修改后的源码，也不要放宽旧 verifier。
 
 ## 入口与行为
 
@@ -30,12 +36,12 @@
 | overflow_frozen1 | signed64候选位置溢出同拍整组禁止边沿通过 |
 | router_final1 | 七窗口A33译码/响应所有权与背压，460检查通过 |
 | predecode_real1 | 真实厂商GP转换器/DMA、HP0/HP1模型、共享时间/IRQ7、HOME和真实MOT2后触限位取消；3612检查，HP0读取18beats，HP1写0 |
-| timing_regress1 | 接收器重构后18项原单轴/四轴/连续/Golden/服务/GP/DMA/RS485回归通过；旧结果文件原样恢复 |
+| timing_regress1 | 接收器重构后18项接口/单轴/四轴/连续/Golden/服务/GP/DMA回归通过；旧结果文件原样恢复 |
 | predecode_resource1 | 与完整工程相同500周期驱动定时，直接HOME与闭合启动两组通过，205282/321322检查 |
 | rxcarry_equivalence1 | 对原接收器所有公开输出10498周期逐拍等价通过，包含30组计数边界 |
 | predecode_equivalence1 | 新控制窗口对优化前所有输出62048次等价检查通过，含3036写/750读及背压/非法访问 |
 
-上述结果中的source_sha256与当前源码逐项核对。旧输入/overflow/router涉及的源码未改变，保留其原通过证据；接收器性能重构后18项旧回归重新通过，安全寄存器预译码后完整安全服务/真实IP/500周期夹具和全部停止相位再次重新运行。16/17/18模式向阶段时间接口注入加速时间，只验证超时优先，不作为1MHz物理时间证明。真实IP测试使用原共享1MHz基准。仿真warning、失败与中断均保留，说明见 FAILURES.md；完整工程结果须以 VALIDATION.md 的最终布线报告为准，当前predecode_top7仍在运行。
+上述结果中的source_sha256与当前源码逐项核对。旧输入/overflow/router涉及的源码未改变，保留其原通过证据；接收器性能重构后18项旧回归重新通过，安全寄存器预译码后完整安全服务/真实IP/500周期夹具和全部停止相位再次重新运行。16/17/18模式向阶段时间接口注入加速时间，只验证超时优先，不作为1MHz物理时间证明。真实IP测试使用原共享1MHz基准。仿真warning、失败与中断均保留，说明见 FAILURES.md；完整工程结果须以 VALIDATION.md 的最终布线报告为准，predecode_top7已完成但WNS>1ns目标未达成，现按用户要求暂停。
 
 ## 接续与发布门禁
 

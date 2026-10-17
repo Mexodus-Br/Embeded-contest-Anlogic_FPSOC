@@ -1,0 +1,602 @@
+============================================================
+   TD Release_2026.1_SP2
+   Copyright (c) 2012-2026 Anlogic Inc.
+   Executable = D:/Anlogic/TD_Release_2026.1_SP2.200.067/bin/td_commands_prompt.EXE
+   Build number = 6.2.2.200067
+   Built at =   16:15:53 Apr 23 2026
+   Run by =     boru
+   Run Date =   Sat Oct 17 10:31:13 2026
+
+   Run on =     LAPTOP-JS7E5LFJ
+============================================================
+RUN-1002 : start command "import_device dr1_90.db -package DR1M90GEG400 -speed 2"
+ARC-1001 : Device Initialization.
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :           OPTION          |      IO       |   SETTING   
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |    35 IOs     |    gpio    
+ARC-1001 :            jtag           |  F9/J6/G6/F6  |  dedicate  
+ARC-1001 : --------------------------------------------------------
+RUN-1003 : finish command "import_device dr1_90.db -package DR1M90GEG400 -speed 2" in  2.643171s wall, 2.046875s user + 0.203125s system = 2.250000s CPU (85.1%)
+
+RUN-1004 : used memory is 419 MB, reserved memory is 410 MB, peak memory is 452 MB
+RUN-1002 : start command "open_project system.al"
+PRJ-5611 WARNING: gp/axi_lite_three_way.v and gp/axi_lite_six_way.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/axi_lite_two_way.v and gp/axi_lite_three_way.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/axis_loop_fifo.v and gp/axi_lite_two_way.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_gp_full_top.v and gp/axis_loop_fifo.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_gp_ps_top.v and gp/dma_gp_full_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_lite_guard.v and gp/dma_gp_ps_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_loopback_top.v and gp/dma_lite_guard.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_shared_lite_top.v and gp/dma_loopback_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/motion_dma_lite_top.v and gp/dma_shared_lite_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/motion_gp_full_top.v and gp/motion_dma_lite_top.v have the same CompileOrder value.
+PRJ-5611 Similar messages will be suppressed.
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/system_ARM_Processor_System_0.v
+HDL-1007 : analyze verilog file system/hdl/system.v
+HDL-1007 : analyze verilog file system/hdl/system_wrapper.v
+HDL-1007 : analyze verilog file gp/safety_rs485_shared_lite_top.v
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/safety_rs485_shared_lite_top.v(3)
+HDL-1007 : back to file 'gp/safety_rs485_shared_lite_top.v' in gp/safety_rs485_shared_lite_top.v(3)
+HDL-5007 WARNING: column 1025 exceeds maximum value 1023 in gp/safety_rs485_shared_lite_top.v(282)
+HDL-1007 : analyze verilog file gp/safety_rs485_gp_ps_top.v
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/safety_rs485_gp_ps_top.v(2)
+HDL-1007 : back to file 'gp/safety_rs485_gp_ps_top.v' in gp/safety_rs485_gp_ps_top.v(2)
+HDL-5007 WARNING: column 1024 exceeds maximum value 1023 in gp/safety_rs485_gp_ps_top.v(141)
+HDL-1007 : analyze verilog file gp/safety_rs485_gp_full_top.v
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/safety_rs485_gp_full_top.v(3)
+HDL-1007 : back to file 'gp/safety_rs485_gp_full_top.v' in gp/safety_rs485_gp_full_top.v(3)
+HDL-5007 WARNING: column 1025 exceeds maximum value 1023 in gp/safety_rs485_gp_full_top.v(240)
+HDL-1007 : analyze verilog file gp/safety_motion_dma_lite_top.v
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/safety_motion_dma_lite_top.v(4)
+HDL-1007 : back to file 'gp/safety_motion_dma_lite_top.v' in gp/safety_motion_dma_lite_top.v(4)
+HDL-1007 : analyze verilog file gp/safety_axi_lite_seven_way.v
+HDL-1007 : analyze included file gp/safety_defs.vh in gp/safety_axi_lite_seven_way.v(1)
+HDL-1007 : back to file 'gp/safety_axi_lite_seven_way.v' in gp/safety_axi_lite_seven_way.v(1)
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/safety_axi_lite_seven_way.v(3)
+HDL-1007 : back to file 'gp/safety_axi_lite_seven_way.v' in gp/safety_axi_lite_seven_way.v(3)
+HDL-1007 : analyze verilog file gp/safety_regs.v
+HDL-1007 : analyze included file gp/safety_defs.vh in gp/safety_regs.v(2)
+HDL-1007 : back to file 'gp/safety_regs.v' in gp/safety_regs.v(2)
+HDL-1007 : analyze verilog file gp/safety_motion_service.v
+HDL-1007 : analyze included file gp/safety_defs.vh in gp/safety_motion_service.v(1)
+HDL-1007 : back to file 'gp/safety_motion_service.v' in gp/safety_motion_service.v(1)
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/safety_motion_service.v(3)
+HDL-1007 : back to file 'gp/safety_motion_service.v' in gp/safety_motion_service.v(3)
+HDL-1007 : analyze included file gp/safety_parameters.vh in gp/safety_motion_service.v(30)
+HDL-1007 : back to file 'gp/safety_motion_service.v' in gp/safety_motion_service.v(30)
+HDL-1007 : analyze verilog file gp/safety_inputs.v
+HDL-1007 : analyze verilog file gp/safety_controller.v
+HDL-1007 : analyze included file gp/safety_defs.vh in gp/safety_controller.v(2)
+HDL-1007 : back to file 'gp/safety_controller.v' in gp/safety_controller.v(2)
+HDL-1007 : analyze verilog file gp/axi_protocol_converter_merge.v
+Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit (http://www.openssl.org/)
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+All rights reserved.
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(138)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(589)
+HDL-1007 : analyze verilog file gp/axi_dma.v
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2)
+HDL-1007 : back to file 'gp/axi_dma_func_pkg.vh' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(1902)
+HDL-1007 : back to file 'gp/axi_dma_param_pkg.vh' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(1902)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(1943)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(1943)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2308)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2308)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2629)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2629)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3563)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3563)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3583)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3583)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3676)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3676)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3798)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3798)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4139)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4139)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4160)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4160)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4488)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4488)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4548)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4548)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4993)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4993)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5058)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5058)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5344)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5344)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5378)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5378)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5584)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5656)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5656)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6272)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6272)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6365)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6365)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6840)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6840)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6881)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6881)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7063)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7063)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7074)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7074)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7820)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7820)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7831)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7831)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8568)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8568)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8625)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8625)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8741)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8741)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8773)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8773)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8925)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8925)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8940)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8940)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9225)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9225)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9246)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9246)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9412)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9412)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9441)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9441)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9630)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9630)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9667)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9667)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10608)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10652)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10652)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10881)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10881)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10923)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10923)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11394)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11394)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11425)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11425)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11608)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11674)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11674)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12095)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12095)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12136)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12136)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12486)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12486)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12608)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(13746)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(13746)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(13868)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(13868)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16267)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16267)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16322)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16322)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16793)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16793)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16826)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16826)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(17792)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(17792)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(17862)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(17862)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18389)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18389)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18442)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18442)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18737)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18737)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18798)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18798)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19043)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19043)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19069)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19069)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19175)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19175)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19212)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19212)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19544)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19544)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19604)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19604)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20247)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20247)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20268)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20268)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20432)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20432)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20452)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20452)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20547)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20547)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20574)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20574)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(20636)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20758)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20758)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20777)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20777)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20968)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20968)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20989)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20989)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(21277)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(21277)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(21352)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(21352)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22057)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22057)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22081)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22081)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22177)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22177)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22286)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22286)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22809)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22809)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22838)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22838)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23076)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23076)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23116)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23116)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23366)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23366)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23427)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23427)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24023)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24023)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24049)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24049)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24584)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24620)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24620)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24809)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24809)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24837)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24837)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25282)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25282)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(25584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25600)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25600)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25626)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25626)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25716)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25716)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25740)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25740)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25886)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25886)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25961)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25961)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26176)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26176)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26238)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26238)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26628)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26628)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26654)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26654)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27178)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27178)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27244)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27244)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27859)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27859)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27880)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27880)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(28129)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(28129)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(28205)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(28205)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29095)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29095)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29114)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29114)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29306)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29306)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29367)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29367)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29924)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29925)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29927)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30030)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30031)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30033)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30085)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30086)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30088)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29625)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29741)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29743)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29744)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29745)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29747)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29749)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29751)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29753)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29755)
+HDL-5370 Similar messages will be suppressed.
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30458)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30459)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30558)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30559)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30176)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30177)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30276)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30277)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30278)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30279)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30281)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30283)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30284)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30285)
+HDL-5370 Similar messages will be suppressed.
+HDL-5007 WARNING: block identifier is required on this block in gp/axi_dma.v(36931)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36885)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36886)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36887)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36888)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36889)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36890)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36891)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36892)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36893)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(41154)
+HDL-5370 Similar messages will be suppressed.
+HDL-5007 WARNING: block identifier is required on this block in gp/axi_dma.v(47218)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47173)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47174)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47175)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47176)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47177)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47178)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47179)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47180)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47181)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(51280)
+HDL-5370 Similar messages will be suppressed.
+HDL-1007 : back to file 'gp/axi_dma.v' in gp/axi_dma.v(182)
+HDL-1007 : analyze verilog file gp/uart_tx.v
+HDL-1007 : analyze verilog file gp/uart_rx.v
+HDL-1007 : analyze verilog file gp/rs485_transaction.v
+HDL-1007 : analyze verilog file gp/rs485_telemetry.v
+HDL-1007 : analyze verilog file gp/rs485_telem_top.v
+HDL-5007 WARNING: column 1027 exceeds maximum value 1023 in gp/rs485_telem_top.v(46)
+HDL-5007 WARNING: column 1037 exceeds maximum value 1023 in gp/rs485_telem_top.v(47)
+HDL-1007 : analyze verilog file gp/rs485_telem_regs.v
+HDL-1007 : analyze verilog file gp/rs485_multirate.v
+HDL-1007 : analyze verilog file gp/rs485_master.v
+HDL-1007 : analyze verilog file gp/rs485_light_parse.v
+HDL-1007 : analyze verilog file gp/rs485_latest_cache.v
+HDL-1007 : analyze verilog file gp/rs485_gp_regs.v
+HDL-1007 : analyze verilog file gp/rs485_gp_bridge.v
+HDL-1007 : analyze verilog file gp/record_fifo.v
+HDL-1007 : analyze verilog file gp/div_u64_u32.v
+HDL-1007 : analyze verilog file gp/motion_stream_rx.v
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/motion_stream_rx.v(2)
+HDL-1007 : back to file 'gp/motion_stream_rx.v' in gp/motion_stream_rx.v(2)
+HDL-1007 : analyze verilog file gp/motion_service.v
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/motion_service.v(2)
+HDL-1007 : back to file 'gp/motion_service.v' in gp/motion_service.v(2)
+HDL-1007 : analyze verilog file gp/motion_planner.v
+HDL-1007 : analyze verilog file gp/motion_fifo.v
+HDL-1007 : analyze verilog file gp/motion_executor.v
+HDL-1007 : analyze verilog file gp/gp_ps_write_adapter.v
+HDL-1007 : analyze verilog file gp/gp_ps_control_top.v
+HDL-1007 : analyze verilog file gp/gp_control_top.v
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/gp_control_top.v(2)
+HDL-1007 : back to file 'gp/gp_control_top.v' in gp/gp_control_top.v(2)
+HDL-1007 : analyze verilog file gp/gp_control_regs.v
+HDL-1007 : analyze included file gp/generated/interface_defs.vh in gp/gp_control_regs.v(2)
+HDL-1007 : back to file 'gp/gp_control_regs.v' in gp/gp_control_regs.v(2)
+HDL-1007 : analyze verilog file gp/four_axis_motion.v
+HDL-1007 : analyze verilog file gp/continuous_motion.v
+HDL-1007 : analyze verilog file gp/axis_motion.v
+HDL-1007 : analyze verilog file gp/telemetry_dma_lite_top.v
+HDL-1007 : analyze verilog file gp/telemetry_dma_guard.v
+HDL-1007 : analyze verilog file gp/rs485_shared_lite_top.v
+HDL-5007 WARNING: column 1025 exceeds maximum value 1023 in gp/rs485_shared_lite_top.v(1769)
+HDL-1007 : analyze verilog file gp/rs485_probe_time_regs.v
+HDL-1007 : analyze verilog file gp/rs485_gp_ps_top.v
+HDL-1007 : analyze verilog file gp/rs485_gp_full_top.v
+HDL-1007 : analyze verilog file gp/motion_shared_lite_top.v
+HDL-1007 : analyze verilog file gp/motion_gp_ps_top.v
+HDL-1007 : analyze verilog file gp/motion_gp_full_top.v
+HDL-1007 : analyze verilog file gp/motion_dma_lite_top.v
+HDL-1007 : analyze verilog file gp/dma_shared_lite_top.v
+HDL-5007 WARNING: column 1026 exceeds maximum value 1023 in gp/dma_shared_lite_top.v(1562)
+HDL-1007 : analyze verilog file gp/dma_loopback_top.v
+HDL-1007 : analyze verilog file gp/dma_lite_guard.v
+HDL-1007 : analyze verilog file gp/dma_gp_ps_top.v
+HDL-1007 : analyze verilog file gp/dma_gp_full_top.v
+HDL-5007 WARNING: column 1025 exceeds maximum value 1023 in gp/dma_gp_full_top.v(1598)
+HDL-1007 : analyze verilog file gp/axis_loop_fifo.v
+HDL-1007 : analyze verilog file gp/axi_lite_two_way.v
+HDL-1007 : analyze verilog file gp/axi_lite_three_way.v
+HDL-1007 : analyze verilog file gp/axi_lite_six_way.v
+PRJ-1401 : Successfully analyzed 60 source files.
+RUN-1003 : finish command "open_project system.al" in  1.367310s wall, 1.125000s user + 0.078125s system = 1.203125s CPU (88.0%)
+
+RUN-1004 : used memory is 485 MB, reserved memory is 474 MB, peak memory is 485 MB
+RUN-1002 : start command "set_param flow thread 16"
+RUN-1002 : start command "get_param flow thread"
+PRJ-1006 : Option run_name will be set as syn_1 automatically.
+PRJ-1104 : Get run syn_1 param value: flow::thread::auto.
+Expected threads=16
+td > 

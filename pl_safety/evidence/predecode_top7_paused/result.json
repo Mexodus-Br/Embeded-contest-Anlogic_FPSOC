@@ -1,0 +1,349 @@
+{
+  "passed": true,
+  "meaning": "RTL self-checks and complete resource/STA run; NOT hardware release signoff",
+  "timing_100mhz_pass": true,
+  "wns_target_ns_exclusive": 1.0,
+  "timing_target_pass": false,
+  "threads": 16,
+  "resources": {
+    "lut6_equivalent": 27866,
+    "slices": 35605,
+    "registers_total": 36272,
+    "slice_registers": 36263,
+    "pad_registers": 9,
+    "eram": 58,
+    "dsp": 6,
+    "io": 17
+  },
+  "tests": {
+    "predecode_units1": {
+      "passed": true,
+      "result_sha256": "4ac1bdbcbba3c1e14538e9c35e05c6ebf19c34c1926708ad5d8fbc48a7692cce"
+    },
+    "predecode_phases1": {
+      "passed": true,
+      "result_sha256": "bd1e8da03ea80f0333dba996752ea46e3ab4f842ccc4e626bf5af50b114a9c51"
+    },
+    "inputs_freeze1": {
+      "passed": true,
+      "result_sha256": "804430d2054251b83dd41dcf924454c39525822dd38f7167346c2d13f5015af2"
+    },
+    "overflow_frozen1": {
+      "passed": true,
+      "result_sha256": "2c84b4235e239073a04e502bd666b80c16be5118e399d4cadec7e426e49918d1"
+    },
+    "router_final1": {
+      "passed": true,
+      "result_sha256": "885ebfda34c4fd420f8cda41712f8948c4dfb96b694cc0878142ce6fe9120d55"
+    },
+    "predecode_real1": {
+      "passed": true,
+      "result_sha256": "bdf741f096541392c08ef67dd275b093f4662459ffa763b54aa523143564a990"
+    },
+    "timing_regress1": {
+      "passed": true,
+      "result_sha256": "1a2a95c068634ef0c1c3ee5f5bc079cc92dcb63e43817dd691a8cc7e577e8b21"
+    },
+    "predecode_resource1": {
+      "passed": true,
+      "result_sha256": "f3393f04de1e4d79954b3cbcfb4efb0168ff0aba9936350190e522c4b9b0bb3d"
+    },
+    "rxcarry_equivalence1": {
+      "passed": true,
+      "result_sha256": "3515ed3876a8d86833f3a74f4209bb159e01afded818040a705327dd2cf35cad"
+    },
+    "predecode_equivalence1": {
+      "passed": true,
+      "result_sha256": "ea8d639ec119a2dbe88963b6c528c1c40d39bf6267274e93a182869ad20f1750"
+    }
+  },
+  "full_top": {
+    "stages": {
+      "gate": {
+        "setup_ns": -1.306,
+        "hold_ns": 0.0
+      },
+      "place": {
+        "setup_ns": 2.332,
+        "hold_ns": 0.0
+      },
+      "route": {
+        "setup_ns": 0.016,
+        "hold_ns": 0.02
+      }
+    },
+    "threads": 16,
+    "physical_optimization": "high_hfn128_logic_on",
+    "wns_target_ns_exclusive": 1.0,
+    "timing_target_pass": false,
+    "critical_warnings": [
+      "SYN-5066 CRITICAL-WARNING: Disconnect the driver 'control/core/fabric/telemetry_dma/dma/vyjqtk/rucwti_i1' of the multi-driven net 'control/core/fabric/telemetry_dma/dma/vyjqtk/rucwti'",
+      "SYN-6021 CRITICAL-WARNING: 4 out of 17 logical ports has no user assigned specific location constraint."
+    ],
+    "signoff_pass": false,
+    "board_validated": false,
+    "bitgen": false
+  },
+  "fixture_latency": {
+    "pad_qualified": {
+      "min_cycles": 2,
+      "max_cycles": 2
+    },
+    "executor_inhibit_bound": {
+      "min_cycles": 3,
+      "max_cycles": 3
+    },
+    "qualified_drain": {
+      "min_cycles": 0,
+      "max_cycles": 6
+    },
+    "qualified_en_off": {
+      "min_cycles": 6,
+      "max_cycles": 11
+    }
+  },
+  "prior_build_attempts": [
+    {
+      "tag": "closure_top8",
+      "completed": false
+    },
+    {
+      "tag": "frozen_top1",
+      "completed": false
+    },
+    {
+      "tag": "full_final1",
+      "completed": false
+    },
+    {
+      "tag": "full_final2",
+      "completed": false
+    },
+    {
+      "tag": "full_r3",
+      "completed": false
+    },
+    {
+      "tag": "full_r4",
+      "completed": false
+    },
+    {
+      "tag": "full_r5",
+      "completed": false
+    },
+    {
+      "tag": "rxcarry_top6",
+      "completed": true,
+      "route_timing_pass": true,
+      "strict_target_pass": false,
+      "threads": 16
+    },
+    {
+      "tag": "sealed_top1",
+      "completed": true,
+      "route_timing_pass": false,
+      "strict_target_pass": false,
+      "threads": "historical_default"
+    },
+    {
+      "tag": "split_top3",
+      "completed": false
+    },
+    {
+      "tag": "threads16_top4",
+      "completed": false
+    },
+    {
+      "tag": "threads16_top5",
+      "completed": false
+    },
+    {
+      "tag": "timing_top2",
+      "completed": false
+    }
+  ],
+  "prior_failed_tests": [
+    {
+      "tag": "cdc_first1",
+      "result_sha256": "a0355baa15c75c3f3849cf1b98dd0387dd147702ff9249295699ed6251dbb236",
+      "failure": "see original logs"
+    },
+    {
+      "tag": "cdc_replay2",
+      "result_sha256": "3970bf0dee98b7b7c2622db54003c267f7234bd6b671fed956f56b8ba1380a4a",
+      "failure": "see original logs"
+    },
+    {
+      "tag": "inputs_r1",
+      "result_sha256": "7584b5a84fb3033b7e2ba7692a01b5f31a5abca12e03c012fe0a27df9e53eed4",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\inputs.py\", line 10, in <module>\n    log=s.simulate(b/'test.vvp');(b/'run.log').write_text(log);assert 'PASS safety_inputs' in log;result['passed']=True;print(log)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_inputs.v:11: inputs explicit polarity normalization phase=5\n       Time: 1176000  Scope: tb_inputs.check\n\n"
+    },
+    {
+      "tag": "limits_r1",
+      "result_sha256": "1685703b5080840b4e94174d0d34975b83a0a0a40d51c44e732ac4c8f2792681",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\run.py\", line 19, in main\n    log=sim.simulate(target,timeout=60);(out/f'mode{m}_offset{o}.log').write_text(log,encoding='utf-8')\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:12: watchdog mode=18 state=7 causes=00000000\n       Time: 300005000  Scope: tb_safety\n\n"
+    },
+    {
+      "tag": "limits_r2",
+      "result_sha256": "cfe382b6d6c6427d90e97d3bd27f0766cfb3523ba6bd129890a0fec1d04ed703",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\run.py\", line 19, in main\n    log=sim.simulate(target,timeout=60);(out/f'mode{m}_offset{o}.log').write_text(log,encoding='utf-8')\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFAIL mode=18 offset=0 cycle=140 state=9 causes=00000020 fixed endpoint does not extend for stuck contact\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:39: \n       Time: 1400000  Scope: tb_safety.check\nFAIL mode=18 offset=0 cycle=140 state=9 causes=00000020 fixed endpoint does not extend for stuck contact\n\n"
+    },
+    {
+      "tag": "margin_semantics1",
+      "result_sha256": "99a78b27f52e708e1779f77232944a7f14f36edb7e9c31c05cc0c874fa066449",
+      "failure": "see original logs"
+    },
+    {
+      "tag": "margin_semantics2",
+      "result_sha256": "fd86247722bbb9ce0cb65ad2ba243ef2acfa6efe07c93acc65067c8715d83d0c",
+      "failure": "Empty clock selection after import_db without reloading original SDC; guard rejected before setting any margin. Initial parser then encountered absent reports."
+    },
+    {
+      "tag": "margin_semantics3",
+      "result_sha256": "ac05a79f3c54cf49da28ed76a319fbee8bde96b83dc68f5676a9e5d102696732",
+      "failure": "see original logs"
+    },
+    {
+      "tag": "overflow_r1",
+      "result_sha256": "3766386653aa351bd30cb07472dbffa2017e39d0b7b7266fcae46dd2ebf73ab1",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\overflow.py\", line 10, in <module>\n    log=s.simulate(b/'test.vvp');(b/'run.log').write_text(log);assert 'PASS home overflow' in log;r['passed']=True;print(log)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_home_overflow.v:17: HOME overflow must suppress all simultaneous candidates step=0110\n       Time: 230000  Scope: tb_home_overflow\n\n"
+    },
+    {
+      "tag": "persistent_dbg",
+      "result_sha256": "2c00f56bd07b1f31b61c7e16224e158ce17aea90673ec987a7e8e72a479c7de3",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\run.py\", line 19, in main\n    log=sim.simulate(target,timeout=60);(out/f'mode{m}_offset{o}.log').write_text(log,encoding='utf-8')\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nDBG stop_events=2\nFAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:40: \n       Time: 1090000  Scope: tb_safety.check\nFAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion\n\n"
+    },
+    {
+      "tag": "persistent_r1",
+      "result_sha256": "4017f741db42e9bbdb1789544a5412af957046b3dca5caea0692c68ece2503ba",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\run.py\", line 19, in main\n    log=sim.simulate(target,timeout=60);(out/f'mode{m}_offset{o}.log').write_text(log,encoding='utf-8')\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:40: \n       Time: 1090000  Scope: tb_safety.check\nFAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion\n\n"
+    },
+    {
+      "tag": "persistent_r2",
+      "result_sha256": "9444493c81fb8b109a41d82ac1731e22efb30a056d9f778d275c6f6d7591a194",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\run.py\", line 19, in main\n    log=sim.simulate(target,timeout=60);(out/f'mode{m}_offset{o}.log').write_text(log,encoding='utf-8')\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:40: \n       Time: 1090000  Scope: tb_safety.check\nFAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion\n\n"
+    },
+    {
+      "tag": "persistent_r3",
+      "result_sha256": "ca859f0d331a5ca5ed994de1dad2b034a9c0a6ae084916481cb8a5e3f7759c6b",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\run.py\", line 19, in main\n    log=sim.simulate(target,timeout=60);(out/f'mode{m}_offset{o}.log').write_text(log,encoding='utf-8')\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:40: \n       Time: 1090000  Scope: tb_safety.check\nFAIL mode=23 offset=0 cycle=109 state=9 causes=00000008 persistent ESTOP publishes one safe completion\n\n"
+    },
+    {
+      "tag": "real_r1",
+      "result_sha256": "b4aeff65211daaa78b82eb62e7ec3c6e92584196afa4f5d2fcba653938190312",
+      "failure": "see original logs"
+    },
+    {
+      "tag": "regress_r1",
+      "result_sha256": "e65e913c14383cb1af1102e9ad574a5dcef8392a7e64c4236865e4287c9601d4",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\regressions.py\", line 19, in main\n    if p.returncode:raise RuntimeError('FAIL '+c+' '+(p.stdout+p.stderr)[-1500:])\nRuntimeError: FAIL pl_motion/tests/run_motion_integration.py ion\\rtl\\motion_service.v(58): (vlog-2388) 'req_disable' already declared in this scope (motion_service) at D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(39).\n** Error (suppressible): D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(65): (vlog-2388) 'reset_ok' already declared in this scope (motion_service) at D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(39).\n** Error (suppressible): D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(73): (vlog-2388) 'rx_error' already declared in this scope (motion_service) at D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(38).\n** Error (suppressible): D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(73): (vlog-2388) 'packet_busy' already declared in this scope (motion_service) at D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(34).\n** Error (suppressible): D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(78): (vlog-2388) 'maintenance_ok' already declared in this scope (motion_service) at D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(34).\n** Error (suppressible): D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(129): (vlog-2388) 'stop_write' already declared in this scope (motion_service) at D:\\Works\\Embedded_contest\\dev\\pl_motion\\rtl\\motion_service.v(39).\n-- Compiling module tb_motion_service\n-- Compiling module tb_motion_stream_rx\nEnd time: 15:58:48 on Oct 16,2026, Elapsed time: 0:00:00\nErrors: 20, Warnings: 0\n\n\n"
+    },
+    {
+      "tag": "resource_fixture1",
+      "result_sha256": "00c896a4b8ca1014c16d0d2da3555b8cdb3bc01180de3e89bb5931df4b5ebfd8",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\resource_fixture.py\", line 24, in <module>\n    (out/f'compile{mode}.log').write_text(log);log=sim.simulate(exe,timeout=120);(out/f'mode{mode}.log').write_text(log);assert 'PASS safety' in log;print(log)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFAIL mode=0 offset=0 cycle=82 state=0 causes=00000000 HOME accepted with unknown position\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\evidence\\resource_fixture1\\tb.v:40: \n       Time: 820000  Scope: tb_safety.check\nFAIL mode=0 offset=0 cycle=82 state=0 causes=00000000 HOME accepted with unknown position\n\n"
+    },
+    {
+      "tag": "resource_fixture2",
+      "result_sha256": "06da468da995871a95d0ec543aafddff34794fb46a40c229cbc0835d3d06c941",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\resource_fixture.py\", line 24, in <module>\n    (out/f'compile{mode}.log').write_text(log);log=sim.simulate(exe,timeout=120);(out/f'mode{mode}.log').write_text(log);assert 'PASS safety' in log;print(log)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFAIL mode=0 offset=0 cycle=467 state=0 causes=00000000 HOME accepted with unknown position\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\evidence\\resource_fixture2\\tb.v:40: \n       Time: 4670000  Scope: tb_safety.check\nFAIL mode=0 offset=0 cycle=467 state=0 causes=00000000 HOME accepted with unknown position\n\n"
+    },
+    {
+      "tag": "split_real1",
+      "result_sha256": "2b24b05ffbb8139435d49fedccc8dd109c8811859843ef8b1083081e201a2e0e",
+      "failure": "see original logs"
+    },
+    {
+      "tag": "unit_r1",
+      "result_sha256": "3db50f1327b6d5b48497a8da97b2ebe57344fbfdc8f83cd9898b15688098e814",
+      "failure": "Traceback (most recent call last):\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\run.py\", line 19, in main\n    log=sim.simulate(target,timeout=60);(out/f'mode{m}.log').write_text(log,encoding='utf-8')\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 48, in simulate\n    return self.run([self.runtime, str(output)], timeout=timeout)\n  File \"D:\\Works\\Embedded_contest\\dev\\pl_motion\\sim_tools.py\", line 38, in run\n    raise RuntimeError(f'{args[0]} failed {p.returncode}:\\n{p.stdout}{p.stderr}{hint}')\nRuntimeError: D:\\iverilog\\bin\\vvp.EXE failed 1:\nFAIL mode=4 offset=0 cycle=1514 state=9 causes=00000020 missing switch search limit\nFATAL: D:\\Works\\Embedded_contest\\dev\\pl_safety\\tests\\tb_safety.v:39: \n       Time: 15140000  Scope: tb_safety.check\nFAIL mode=4 offset=0 cycle=1514 state=9 causes=00000020 missing switch search limit\n\n"
+    }
+  ],
+  "reports_sha256": {
+    "effective_parameters.tcl": "260babd2de0764a1050c79137c532b214b7a4b752683af13bb3135d2898926a9",
+    "gate.area": "da3315ecf19a18d725587dd675b5f1ca0ab39a2cd9c36ce90612ea3fe29657d9",
+    "gate.qor": "51050189a2f1c98a53591696082c00e646d226c047026ce898538e3a72d57190",
+    "gate.timing": "bdfceb97a0ca0d765ff18378eb10b648a64168e07536eab18ef0b6edc94db966",
+    "inputs.json": "401fa64fc3d590bb2eced309d1e6ba247c35e421a2f11ab7471c7fefb3841753",
+    "place.qor": "4f7a6aee59cd211bcf2a933a67f1828c924589c1a5c871eee1aebbeb716f6f4d",
+    "place.timing": "d86283582ce5894f76778b270906102ab13b6f2c847446a0a23b98cf0475c10b",
+    "route.area": "b1138d9518a5ebeb73e131e92590af854a29bb812dfe645de85b0784fd0d5b9c",
+    "route.check": "3fec299e4091a353d1d5c334ec11fda1a5371183a8ef3959dd38ce3abe896abf",
+    "route.qor": "ad324388dcad98407f8b93270ee3ddbb09082f036dba9fc91d189492dad89712",
+    "route.timing": "307b58d3222a732475e59f212d1a103fe718c4777157a369b858d63567796e81",
+    "route_status.log": "5015d6d9630a20b54ec458d5ebb258b74f82d002f1ec4a1b07084d5e7a39f947",
+    "run.log": "9a3dc6b2ff274d44194ee30feae20835cecc097528ff62dab75143babe0b20cb",
+    "run.tcl": "5939cf904380e096dc72d7c54e99768b7de5152e273ba836fe1a5705c31fd5b9",
+    "summary.json": "1df85dbbd95cbe47c9d9e75086cd78cf6cd3ddcb0fa39b4fb2f243fe7f775014",
+    "system.al": "449e01753fe223d3656f0b5789d3a5313b7ae21c59f52c9549e9b97a5e248b4a",
+    "td_20261017_105540.log": "264f6d749533c713ac407cc71cd3b1094d13b263cdc63e6d499ba0515d7aebac",
+    "td_20261017_105540.logw": "8704ff00794a8fb73cb234099865a5ba8ed19b6dd32aefd7969c59dbce41000a",
+    "gp/gp.adc": "a9b1737acb76afee64c4440c1ec396d6f767cd0e036fa4c777f681dfe63cfe4c",
+    "gp/gp.sdc": "3e043d0a3af807f13d6efc7a06bb0fff777ffaa2263d7b890176deca6a18d881",
+    "gp/ps-generated-properties.tcl": "325ab17d87cf7dd0d967de2b95aa090f9ecfa6d24ed4537b6aa75c5fd9cdaa29",
+    "prior_build_attempts/closure_top8/effective_parameters.tcl": "260babd2de0764a1050c79137c532b214b7a4b752683af13bb3135d2898926a9",
+    "prior_build_attempts/closure_top8/gate.area": "da3315ecf19a18d725587dd675b5f1ca0ab39a2cd9c36ce90612ea3fe29657d9",
+    "prior_build_attempts/closure_top8/gate.timing": "bdfceb97a0ca0d765ff18378eb10b648a64168e07536eab18ef0b6edc94db966",
+    "prior_build_attempts/closure_top8/inputs.json": "0a049a8c18d67b2e10cb2b3ba83accb340a076d71c21b07d5b0f975539528d0f",
+    "prior_build_attempts/closure_top8/place.timing": "d86283582ce5894f76778b270906102ab13b6f2c847446a0a23b98cf0475c10b",
+    "prior_build_attempts/closure_top8/run.log": "ef10296c9d39f5d6d0998f2adbd113f3143bc455d1ecb9f2e2c46d21fd506c37",
+    "prior_build_attempts/closure_top8/run.tcl": "1fe28c304d395b13ef905c59d61aba96434e2a413138c4fd363bb8a22f8ea403",
+    "prior_build_attempts/frozen_top1/gate.area": "790e8d600a875373d7d255a599024bd1cff0b8c7151fe16a3530c7b15bae809f",
+    "prior_build_attempts/frozen_top1/inputs.json": "e8bab0ec5b806db578eaa618e074f6ac7ded14383a947c7b947806e5a37f1d3b",
+    "prior_build_attempts/frozen_top1/run.log": "f1dee254024815f6ca1bfaf5663abf23bdc63bf71e2c29b9e2c10b420af1c0af",
+    "prior_build_attempts/frozen_top1/run.tcl": "1224d84b3a6b36960bcc39e0a38aba651a69443eb9ee5d56281ffea2d8393f1a",
+    "prior_build_attempts/full_final1/gate.area": "d24e2245649cca98fd07569f50a7384315c15a74f30fd70d16c67d09ff48bb00",
+    "prior_build_attempts/full_final1/inputs.json": "b94b7832e4bfebb05cf813f926ed0d0bf9f0cbad99f40968962b87e52df3e681",
+    "prior_build_attempts/full_final1/run.log": "f26d80c88d3f4edfd1bddcdd2a6ce48aba682149b7f8a92db7ffd3548c716d37",
+    "prior_build_attempts/full_final1/run.tcl": "ed2dc4a0aa661c6d0e8ca61a4a5cba91d48a9e5b9427757c62a5b4f8332519b8",
+    "prior_build_attempts/full_final2/inputs.json": "130884a2abfe88c514c21a6e353effc50265467f1dd76912669fcc7dca1651b8",
+    "prior_build_attempts/full_final2/run.log": "290f17676802c081659ddb3c97ba282a7ade0a097b434386c1c466a55e5838d3",
+    "prior_build_attempts/full_final2/run.tcl": "d6d971b3504c1d041e642d089f10dda78d8df685ae3a15ab59c35eb839caae64",
+    "prior_build_attempts/full_r3/inputs.json": "25098fe4fb7e3e32c20121a2853e33daf4987533ba8eeac2e0672af0e6ccfa7c",
+    "prior_build_attempts/full_r3/run.log": "2e12f51694a5d965293dab1b3a460cee6e7879fede91643e378d7e0c46a1f916",
+    "prior_build_attempts/full_r3/run.tcl": "c1bd367512d72b0cebb6cac8e11bbdb81eff606fcdcbd11495a05d5e44e7b845",
+    "prior_build_attempts/full_r4/inputs.json": "8d50eb645df00cc84e23da7cb85e2e7e3ad33eddc0afa041e9afa2b04b69862b",
+    "prior_build_attempts/full_r4/run.log": "2762171910e793459f93d591637e59d18a0f57a8c018325143145d7a1a6d255f",
+    "prior_build_attempts/full_r4/run.tcl": "037f0d19f039bee5d4aa40e0c31cc5c50c6b441b50022dd3e499a5e5f33c9606",
+    "prior_build_attempts/full_r5/inputs.json": "367d3d8d073fcc39106ebbc76b8564c12728f28b7c5b414d54008c7e6acc9a96",
+    "prior_build_attempts/full_r5/run.log": "0ff63efbc756b0d50d1b79538e1965e4db4cafe2bf7f072aad8734c52f8c969b",
+    "prior_build_attempts/full_r5/run.tcl": "e828160abf1760ac94b6a6c351b5a48b952935c7f6c0caa8a0b44b65daeaa707",
+    "prior_build_attempts/rxcarry_top6/gate.area": "654d4fb806e4b0edfe2a1855e3a74114823bb07a4927c104c8507a9c0c590cc9",
+    "prior_build_attempts/rxcarry_top6/gate.timing": "adc1d6d5dacef4fa3b99d624a2a7215cf3f12221365cd0b03424b069647d71f5",
+    "prior_build_attempts/rxcarry_top6/inputs.json": "0a10d84ef9052d08be6f6c29b85ca2ebd29e116cb4c50692b23c76eefbb189c4",
+    "prior_build_attempts/rxcarry_top6/place.timing": "a8c1034f44d74cb4995d9bd4e673e28138836eae6487e4dc3bfc7de47d72dfc2",
+    "prior_build_attempts/rxcarry_top6/route.area": "7b01eee3b648d1de45ab4b4cf225fb74d0d651c9eaa737c7639f3471e2797727",
+    "prior_build_attempts/rxcarry_top6/route.check": "396399861cd780c6e4097375f44b21578c4ddea4b386a3186d31b394e1481179",
+    "prior_build_attempts/rxcarry_top6/route.timing": "b22057eb829ffd246439c094c9e73a2002f93e472c29ab63e7b9ea1c2839f92d",
+    "prior_build_attempts/rxcarry_top6/run.log": "d447658adff80c6ec5078510e4ce273bf46b3850bfa79ed72075f5d527c1d631",
+    "prior_build_attempts/rxcarry_top6/run.tcl": "92a1a5c808a69ebd3122ff213ab04f419fbfb656300fe384d461d19517370701",
+    "prior_build_attempts/rxcarry_top6/summary.json": "3d2dd34ddd63f9169f948a6715b611d3b8dafaa60adb8854ce573235c7f77501",
+    "prior_build_attempts/sealed_top1/gate.area": "790e8d600a875373d7d255a599024bd1cff0b8c7151fe16a3530c7b15bae809f",
+    "prior_build_attempts/sealed_top1/gate.timing": "7298b0511797c5f74d15e6e23bf9af41de3f8baf29e8f17a55450fe29cb4a7b4",
+    "prior_build_attempts/sealed_top1/inputs.json": "a88de2365e889c1111631d2b8848956de8b02be8197b0151261b0587120e343b",
+    "prior_build_attempts/sealed_top1/place.timing": "1ca1fe8fa406a823220dc1e64e135fcecb128d96af24e2a4bc34d1eb6b68ca0f",
+    "prior_build_attempts/sealed_top1/route.area": "d0004f5aead9b779ab6d1fd22e29303ec02359e6b75501a48c5f638e671929ad",
+    "prior_build_attempts/sealed_top1/route.check": "40bfb692051f9bb90d322bcc84d26545b95b8272fa12d3283dab78fbe45e12aa",
+    "prior_build_attempts/sealed_top1/route.timing": "8bb01d9190f0bfb17f4a6f603d516500038bc57e24ce01d7150e222ce82933cb",
+    "prior_build_attempts/sealed_top1/run.log": "ee3ea3b62061df3f9b98bd1bdc2666b8c06341c9c62d2284bfe6df0bdac0292d",
+    "prior_build_attempts/sealed_top1/run.tcl": "0d24c475084de0ac9aaa1eae1f05c5c18ec3ab7654617e5762e1207a00bdbe59",
+    "prior_build_attempts/sealed_top1/summary.json": "5a2d7e38cf5afb107eec0635b33fe2393ecbe3652fe611470b45924982fbfbd0",
+    "prior_build_attempts/split_top3/gate.area": "a3963475428358662a0db3487f5d8e0f4c7cceb21fbaa699f682feef1260814a",
+    "prior_build_attempts/split_top3/gate.timing": "0b7d31be143ece64f6fd33a47d7db3cc0faaf4e1e9154bf7cb7f9e87293f983e",
+    "prior_build_attempts/split_top3/inputs.json": "9b54e731d2e503ad3e039ce2e6de90f58e35fc9a8fff822c186ef85f19defe71",
+    "prior_build_attempts/split_top3/run.log": "59c5b8d16225e156742b405eb7dc0d49c1c5d87eb411c52b1254052ad749f102",
+    "prior_build_attempts/split_top3/run.tcl": "eac9d545bde8530640858cef10f0bdfc002b470b99a8ebd2b770393585813f01",
+    "prior_build_attempts/threads16_top4/inputs.json": "492b8a3430c88c5705d418d25bd4a831e128e0dcfd8e26c3ba5051698aa61a44",
+    "prior_build_attempts/threads16_top4/run.log": "d2385cde198f45e40471385ad54cb35690c8abfdf98e2dbd6f1aea234875eb27",
+    "prior_build_attempts/threads16_top4/run.tcl": "1317f4e595d4903c6be49ad3530ecb91f71499e4cc6bfa32f70704e1abfcc5e1",
+    "prior_build_attempts/threads16_top5/inputs.json": "807867debb938f557bd1f309e0901b1a7f10c8f28ad4e0841c0adcd007c813d1",
+    "prior_build_attempts/threads16_top5/run.log": "1495bc0bc933a312ee509362ec57f1bb898d063a1498aa58c5f3a8f5123aa07a",
+    "prior_build_attempts/threads16_top5/run.tcl": "fead0a6fbbd1e2df4aecdc9cff88571da6b795b87bfac6b3bef8421a10baa29a",
+    "prior_build_attempts/timing_top2/gate.area": "de4ea704b80b2c52b6ee6e30f2e311f41a4183caddccf9bd3dd95a7895762084",
+    "prior_build_attempts/timing_top2/gate.timing": "e54ab1f483b72c31c34bca9a5c04ec021c543522fed4a42ca20c594018c7e48b",
+    "prior_build_attempts/timing_top2/inputs.json": "8dd265b51071d959c6131425927b48d28639500d30010e433068d4644fc4ee5b",
+    "prior_build_attempts/timing_top2/run.log": "fcd1a2a3c3d3e0a1e3280dcb2df4c8d23506484ec5751fa1c4254c485c93082d",
+    "prior_build_attempts/timing_top2/run.tcl": "1588a392d11854e04bb9c000307d051516e300ed135a7c0dcf2f52b6820ed413",
+    "system/hdl/system_wrapper.v": "414a6c39d79ade37c17b3214b83d9d36f3db4c893abb065b71ec5e5673fa9a89"
+  }
+}

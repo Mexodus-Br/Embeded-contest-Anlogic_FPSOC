@@ -1,0 +1,54 @@
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |         2332                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+|     FMAX                  |   130.412MHz                |
+|     SWNS path clock period|      10000ps                |
+-----------------------------------------------------------
+| Routing Resource          |                             |
+|     Wire length           |      5947156                |
+|     Route Net Num         |        61271                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #slices               |        35605                |
+|     slices percentage     |       67.84%                |
+|     #RAMs                 |           58                |
+|     #DSPs                 |            6                |
+|     #DRAMHARDCON          |          110                |
+-----------------------------------------------------------
+| Congestion                |                             |
+|     Top 1% tile util      |           84                |
+|     Top 1% tile avg util  |       90.40%                |
+|     Over 100% util #tile  |           14                |
+|     Max level             |            2                |
+|     Total Congo Region    |            2                |
+|     Window                |  [ 20  12] - [ 25  19]      |
+-----------------------------------------------------------
+Report place stage QoR done.
+
+QoR Evaluation
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ID        |  Priority  |  Description                                                   |  Suggestion
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  QOR-4001  |  HIGH      |  - Design congestion is high, which may difficult to routing.  |  - Please adjust placement strategy to reduce high congestion:
+            |            |                                                                |      set_param place ofv 70
+            |            |                                                                |      set_param place target_density_newgp {0.87,1.0,0.87}
+            |            |                                                                |      set_param place opt_max_density 50
+            |            |                                                                |    Launch multi-seed runs to get better congestion.
+            |            |                                                                |  
+  QOR-4004  |  MEDIUM    |  - There are 2 regions with high congo greater than level 2.   |  - Please reduce utilization or pin density in congested region
+            |            |    Region level distribution:                                  |  
+            |            |    Number of level 2 region: 2                                 |  
+            |            |    Top congestion region(s):                                   |  
+            |            |    Level: 2 Region: [20 12] - [25 19] Util: 90.9505%           |  
+            |            |    Level: 2 Region: [21 7] - [24 20] Util: 90.0112%            |  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Note* (*) means this parameter has been set already.
+      (+) means this parameter has been set, suggest to upgrade higher effort level.
+Note** plesae resolve priority MUST FIX and HIGH issues firstly
+       because these have highly possible to block the timing convergence even stop the flow.
+Note*** some suggested settings are not suitable to use together
+        take care of using them separately if suggestion mentioned.
