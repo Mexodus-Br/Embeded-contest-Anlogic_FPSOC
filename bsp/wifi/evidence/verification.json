@@ -1,0 +1,50 @@
+{
+  "status": "OFFLINE_VERIFIED_NOT_DEPLOYED_NOT_BOARD_ACCEPTED",
+  "kernelrelease": "6.1.111-rt42-bsp-wifi1",
+  "root_partuuid": "4fa65f13-02",
+  "image_sha256": "4f82a98fb6bd970bbe2a8d51265c173221afee338fdf73f24c597a2c362af943",
+  "scope_boot_unchanged": true,
+  "dt_change": "USB0 status only",
+  "modules": {
+    "lib/modules/6.1.111-rt42-bsp-wifi1/extra/bsp_gp.ko": {
+      "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+      "sha256": "0cea545cd9132607ef61848bb596de68155ea337635ac3866a4a3c229ae6ffa0",
+      "depends": "",
+      "import_crc_count": 31
+    },
+    "lib/modules/6.1.111-rt42-bsp-wifi1/extra/bsp_motion.ko": {
+      "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+      "sha256": "c0d96d197346f95362ca3f7ddcd92f929844a0a088fc7adb19d7d0c4bdb95752",
+      "depends": "anlogic-dma-engine",
+      "import_crc_count": 42
+    },
+    "lib/modules/6.1.111-rt42-bsp-wifi1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko": {
+      "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+      "sha256": "99f12e3098423599558576ce42a35ac9791e3c0deda819df5cf592c8a8003d45",
+      "depends": "",
+      "import_crc_count": 48
+    },
+    "opt/wifi-candidates/aic_load_fw.ko": {
+      "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+      "sha256": "900f0f54d86444d3d948a371467676a5c05bb329f64a6f82e13454ed62eaf4fd",
+      "depends": "",
+      "import_crc_count": 69
+    },
+    "opt/wifi-candidates/aic8800_fdrv.ko": {
+      "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+      "sha256": "f99e530ddb8fe09320af7f8ec4bad66c59c64f189ed07fa0dd2996c769020dec",
+      "depends": "aic_load_fw",
+      "import_crc_count": 222
+    }
+  },
+  "credentials_in_image": false,
+  "autostart_enabled": false,
+  "hardware_acceptance": {
+    "A": "NOT_EXECUTED_BOARD_AND_SD_UNAVAILABLE",
+    "B": "NOT_EXECUTED_BOARD_AND_SD_UNAVAILABLE",
+    "C": "NOT_EXECUTED_BOARD_AND_SD_UNAVAILABLE",
+    "D": "NOT_EXECUTED_BOARD_AND_SD_UNAVAILABLE",
+    "E": "NOT_EXECUTED_BOARD_AND_SD_UNAVAILABLE",
+    "F": "NOT_EXECUTED_BOARD_AND_SD_UNAVAILABLE"
+  }
+}

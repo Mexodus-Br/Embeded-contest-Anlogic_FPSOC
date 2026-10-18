@@ -134,6 +134,12 @@ with image.open('wb') as dst:
         dst.seek(sector*512)
         with path.open('rb') as src:
             shutil.copyfileobj(src,dst)
+# Final delivery artifacts only. Never recurse over release: historical callers
+# may leave logs, intermediate FAT images or evidence files in that directory.
+identity_names = ['sdcard.img', 'BOOT.bin', 'system.hpf', 'system.bit',
+                  'fsbl.elf', 'u-boot.bin', 'system.dtb', 'uImage.lz4',
+                  'rootfs.ext4', 'boot.cmd', 'boot.scr', 'boot.bif']
+identity_files = [release / name for name in identity_names]
 manifest = {
     'status':'BUILT_NOT_BOARD_BOOT_TESTED',
     'ddr':{'capacity_mib':1024,'dq_width':32,'rate_mts':1333,'io_voltage_v':1.35,'physical_voltage_measured':False},
@@ -142,9 +148,9 @@ manifest = {
                   {'number':2,'start_sector':root_start,'sectors':root_sectors,'filesystem':'EXT4'}],
     'versions':{'linux':(out/'kernel/include/config/kernel.release').read_text().strip(),'uboot':'2021.01','buildroot':'2022.02.6','TD':'2026.1 SP2 6.2.2.200067','FD':'2026.1 SP1'},
     'files':{str(x.relative_to(release)):{'bytes':x.stat().st_size,'sha256':sha(x)}
-             for x in sorted(release.rglob('*')) if x.is_file() and x.name not in ['manifest.json','SHA256SUMS']}
+             for x in identity_files}
 }
 (release/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 (release/'SHA256SUMS').write_text(''.join(sha(x)+'  '+str(x.relative_to(release))+'\n'
-                                      for x in sorted(release.rglob('*')) if x.is_file() and x.name!='SHA256SUMS'))
+                                      for x in identity_files))
 print(json.dumps({'image':str(image),'partuuid':partuuid,'sha256':sha(image)},indent=2))

@@ -1,0 +1,23 @@
+#!/bin/sh
+# No automatic driver loading, no blocking authentication during init.
+case "$1" in
+ start)
+  [ -f /etc/wifi/autostart ] || exit 0
+  [ -f /etc/wifi/interface ] || exit 0
+  WIFI_INTERFACE=$(cat /etc/wifi/interface)
+  export WIFI_INTERFACE
+  (
+   /usr/sbin/wifi-driver load || exit 0
+   for attempt in $(seq 1 30); do
+    if [ -d "/sys/class/net/$WIFI_INTERFACE/wireless" ]; then
+     /usr/sbin/wifi-sta start
+     exit 0
+    fi
+    sleep 1
+   done
+   echo 'Wi-Fi interface pending; boot continues'
+  ) >/dev/null 2>&1 &
+  ;;
+ stop) /usr/sbin/wifi-sta stop;;
+ restart) "$0" stop; "$0" start;;
+esac
