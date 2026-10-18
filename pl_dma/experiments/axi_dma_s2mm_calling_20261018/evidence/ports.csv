@@ -1,0 +1,116 @@
+port,direction,bottom_range,A_connection,B_IP_connection,B_peripheral_adapter
+s_axi_lite_aclk,input,,d_s_axi_lite_aclk; clk_100m,d_s_axi_lite_aclk,same peripheral
+m_axi_sg_aclk,input,,d_m_axi_sg_aclk; clk_100m,OMITTED (unconnected at bottom),same peripheral
+m_axi_mm2s_aclk,input,,d_m_axi_mm2s_aclk; clk_100m,OMITTED (unconnected at bottom),same peripheral
+m_axi_s2mm_aclk,input,,d_m_axi_s2mm_aclk; clk_100m,d_m_axi_s2mm_aclk,same peripheral
+axi_resetn,input,,d_axi_resetn; control_rst_n,d_axi_resetn,same peripheral
+s_axi_lite_awvalid,input,,d_s_axi_lite_awvalid; peripheral/bus or unused output,d_s_axi_lite_awvalid,same peripheral
+s_axi_lite_awready,output,,d_s_axi_lite_awready; peripheral/bus or unused output,d_s_axi_lite_awready,same peripheral
+s_axi_lite_awaddr,input,AL_S_AXI_LITE_ADDR_WIDTH-1:0,d_s_axi_lite_awaddr; peripheral/bus or unused output,d_s_axi_lite_awaddr,same peripheral
+s_axi_lite_wvalid,input,,d_s_axi_lite_wvalid; peripheral/bus or unused output,d_s_axi_lite_wvalid,same peripheral
+s_axi_lite_wready,output,,d_s_axi_lite_wready; peripheral/bus or unused output,d_s_axi_lite_wready,same peripheral
+s_axi_lite_wdata,input,AL_S_AXI_LITE_DATA_WIDTH-1:0,d_s_axi_lite_wdata; peripheral/bus or unused output,d_s_axi_lite_wdata,same peripheral
+s_axi_lite_bresp,output,1:0,d_s_axi_lite_bresp; peripheral/bus or unused output,d_s_axi_lite_bresp,same peripheral
+s_axi_lite_bvalid,output,,d_s_axi_lite_bvalid; peripheral/bus or unused output,d_s_axi_lite_bvalid,same peripheral
+s_axi_lite_bready,input,,d_s_axi_lite_bready; peripheral/bus or unused output,d_s_axi_lite_bready,same peripheral
+s_axi_lite_arvalid,input,,d_s_axi_lite_arvalid; peripheral/bus or unused output,d_s_axi_lite_arvalid,same peripheral
+s_axi_lite_arready,output,,d_s_axi_lite_arready; peripheral/bus or unused output,d_s_axi_lite_arready,same peripheral
+s_axi_lite_araddr,input,AL_S_AXI_LITE_ADDR_WIDTH-1:0,d_s_axi_lite_araddr; peripheral/bus or unused output,d_s_axi_lite_araddr,same peripheral
+s_axi_lite_rvalid,output,,d_s_axi_lite_rvalid; peripheral/bus or unused output,d_s_axi_lite_rvalid,same peripheral
+s_axi_lite_rready,input,,d_s_axi_lite_rready; peripheral/bus or unused output,d_s_axi_lite_rready,same peripheral
+s_axi_lite_rdata,output,AL_S_AXI_LITE_DATA_WIDTH-1:0,d_s_axi_lite_rdata; peripheral/bus or unused output,d_s_axi_lite_rdata,same peripheral
+s_axi_lite_rresp,output,1:0,d_s_axi_lite_rresp; peripheral/bus or unused output,d_s_axi_lite_rresp,same peripheral
+m_axi_sg_awaddr,output,AL_M_AXI_SG_ADDR_WIDTH-1:0,d_m_axi_sg_awaddr; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_awlen,output,7:0,d_m_axi_sg_awlen; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_awsize,output,2:0,d_m_axi_sg_awsize; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_awburst,output,1:0,d_m_axi_sg_awburst; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_awprot,output,2:0,d_m_axi_sg_awprot; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_awcache,output,3:0,d_m_axi_sg_awcache; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_awuser,output,3:0,d_m_axi_sg_awuser; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_awvalid,output,,d_m_axi_sg_awvalid; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_awready,input,,d_m_axi_sg_awready; 1'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_wdata,output,AL_M_AXI_SG_DATA_WIDTH-1:0,d_m_axi_sg_wdata; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_wstrb,output,(AL_M_AXI_SG_DATA_WIDTH/8)-1:0,d_m_axi_sg_wstrb; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_wlast,output,,d_m_axi_sg_wlast; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_wvalid,output,,d_m_axi_sg_wvalid; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_wready,input,,d_m_axi_sg_wready; 1'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_bresp,input,1:0,d_m_axi_sg_bresp; 2'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_bvalid,input,,d_m_axi_sg_bvalid; 1'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_bready,output,,d_m_axi_sg_bready; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_araddr,output,AL_M_AXI_SG_ADDR_WIDTH-1:0,d_m_axi_sg_araddr; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_arlen,output,7:0,d_m_axi_sg_arlen; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_arsize,output,2:0,d_m_axi_sg_arsize; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_arburst,output,1:0,d_m_axi_sg_arburst; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_arprot,output,2:0,d_m_axi_sg_arprot; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_arcache,output,3:0,d_m_axi_sg_arcache; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_aruser,output,3:0,d_m_axi_sg_aruser; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_arvalid,output,,d_m_axi_sg_arvalid; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_arready,input,,d_m_axi_sg_arready; 1'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_rdata,input,AL_M_AXI_SG_DATA_WIDTH-1:0,d_m_axi_sg_rdata; 32'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_rresp,input,1:0,d_m_axi_sg_rresp; 2'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_rlast,input,,d_m_axi_sg_rlast; 1'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_rvalid,input,,d_m_axi_sg_rvalid; 1'd0,OMITTED (unconnected at bottom),same peripheral
+m_axi_sg_rready,output,,d_m_axi_sg_rready; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_mm2s_araddr,output,AL_M_AXI_MM2S_ADDR_WIDTH-1:0,d_m_axi_mm2s_araddr; peripheral/bus or unused output,OMITTED (unconnected at bottom),external read-bus constant 0
+m_axi_mm2s_arlen,output,7:0,d_m_axi_mm2s_arlen; peripheral/bus or unused output,OMITTED (unconnected at bottom),external read-bus constant 0
+m_axi_mm2s_arsize,output,2:0,d_m_axi_mm2s_arsize; peripheral/bus or unused output,OMITTED (unconnected at bottom),external read-bus constant 0
+m_axi_mm2s_arburst,output,1:0,d_m_axi_mm2s_arburst; peripheral/bus or unused output,OMITTED (unconnected at bottom),external read-bus constant 0
+m_axi_mm2s_arprot,output,2:0,d_m_axi_mm2s_arprot; peripheral/bus or unused output,OMITTED (unconnected at bottom),external read-bus constant 0
+m_axi_mm2s_arcache,output,3:0,d_m_axi_mm2s_arcache; peripheral/bus or unused output,OMITTED (unconnected at bottom),external read-bus constant 0
+m_axi_mm2s_aruser,output,3:0,d_m_axi_mm2s_aruser; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_mm2s_arvalid,output,,d_m_axi_mm2s_arvalid; peripheral/bus or unused output,OMITTED (unconnected at bottom),external read-bus constant 0
+m_axi_mm2s_arready,input,,d_m_axi_mm2s_arready; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_mm2s_rdata,input,AL_M_AXI_MM2S_DATA_WIDTH-1:0,d_m_axi_mm2s_rdata; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_mm2s_rresp,input,1:0,d_m_axi_mm2s_rresp; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_mm2s_rlast,input,,d_m_axi_mm2s_rlast; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_mm2s_rvalid,input,,d_m_axi_mm2s_rvalid; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_mm2s_rready,output,,d_m_axi_mm2s_rready; peripheral/bus or unused output,OMITTED (unconnected at bottom),external read-bus constant 0
+mm2s_prmry_reset_out_n,output,,d_mm2s_prmry_reset_out_n; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_tdata,output,AL_M_AXIS_MM2S_TDATA_WIDTH-1:0,d_m_axis_mm2s_tdata; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_tkeep,output,(AL_M_AXIS_MM2S_TDATA_WIDTH/8)-1:0,d_m_axis_mm2s_tkeep; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_tvalid,output,,d_m_axis_mm2s_tvalid; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_tready,input,,d_m_axis_mm2s_tready; 1'b0,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_tlast,output,,d_m_axis_mm2s_tlast; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_tuser,output,3:0,d_m_axis_mm2s_tuser; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_tid,output,4:0,d_m_axis_mm2s_tid; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_tdest,output,4:0,d_m_axis_mm2s_tdest; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+mm2s_cntrl_reset_out_n,output,,d_mm2s_cntrl_reset_out_n; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_cntrl_tdata,output,AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH-1:0,d_m_axis_mm2s_cntrl_tdata; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_cntrl_tkeep,output,(AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH/8)-1:0,d_m_axis_mm2s_cntrl_tkeep; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_cntrl_tvalid,output,,d_m_axis_mm2s_cntrl_tvalid; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_cntrl_tready,input,,d_m_axis_mm2s_cntrl_tready; 1'b1,OMITTED (unconnected at bottom),same peripheral
+m_axis_mm2s_cntrl_tlast,output,,d_m_axis_mm2s_cntrl_tlast; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+m_axi_s2mm_awaddr,output,AL_M_AXI_S2MM_ADDR_WIDTH-1:0,d_m_axi_s2mm_awaddr; peripheral/bus or unused output,d_m_axi_s2mm_awaddr,same peripheral
+m_axi_s2mm_awlen,output,7:0,d_m_axi_s2mm_awlen; peripheral/bus or unused output,d_m_axi_s2mm_awlen,same peripheral
+m_axi_s2mm_awsize,output,2:0,d_m_axi_s2mm_awsize; peripheral/bus or unused output,d_m_axi_s2mm_awsize,same peripheral
+m_axi_s2mm_awburst,output,1:0,d_m_axi_s2mm_awburst; peripheral/bus or unused output,d_m_axi_s2mm_awburst,same peripheral
+m_axi_s2mm_awprot,output,2:0,d_m_axi_s2mm_awprot; peripheral/bus or unused output,d_m_axi_s2mm_awprot,same peripheral
+m_axi_s2mm_awcache,output,3:0,d_m_axi_s2mm_awcache; peripheral/bus or unused output,d_m_axi_s2mm_awcache,same peripheral
+m_axi_s2mm_awuser,output,3:0,d_m_axi_s2mm_awuser; peripheral/bus or unused output,d_m_axi_s2mm_awuser,same peripheral
+m_axi_s2mm_awvalid,output,,d_m_axi_s2mm_awvalid; peripheral/bus or unused output,d_m_axi_s2mm_awvalid,same peripheral
+m_axi_s2mm_awready,input,,d_m_axi_s2mm_awready; peripheral/bus or unused output,d_m_axi_s2mm_awready,same peripheral
+m_axi_s2mm_wdata,output,AL_M_AXI_S2MM_DATA_WIDTH-1:0,d_m_axi_s2mm_wdata; peripheral/bus or unused output,d_m_axi_s2mm_wdata,same peripheral
+m_axi_s2mm_wstrb,output,(AL_M_AXI_S2MM_DATA_WIDTH/8)-1:0,d_m_axi_s2mm_wstrb; peripheral/bus or unused output,d_m_axi_s2mm_wstrb,same peripheral
+m_axi_s2mm_wlast,output,,d_m_axi_s2mm_wlast; peripheral/bus or unused output,d_m_axi_s2mm_wlast,same peripheral
+m_axi_s2mm_wvalid,output,,d_m_axi_s2mm_wvalid; peripheral/bus or unused output,d_m_axi_s2mm_wvalid,same peripheral
+m_axi_s2mm_wready,input,,d_m_axi_s2mm_wready; peripheral/bus or unused output,d_m_axi_s2mm_wready,same peripheral
+m_axi_s2mm_bresp,input,1:0,d_m_axi_s2mm_bresp; peripheral/bus or unused output,d_m_axi_s2mm_bresp,same peripheral
+m_axi_s2mm_bvalid,input,,d_m_axi_s2mm_bvalid; peripheral/bus or unused output,d_m_axi_s2mm_bvalid,same peripheral
+m_axi_s2mm_bready,output,,d_m_axi_s2mm_bready; peripheral/bus or unused output,d_m_axi_s2mm_bready,same peripheral
+s2mm_prmry_reset_out_n,output,,d_s2mm_prmry_reset_out_n; peripheral/bus or unused output,d_s2mm_prmry_reset_out_n,same peripheral
+s_axis_s2mm_tdata,input,AL_S_AXIS_S2MM_TDATA_WIDTH-1:0,d_s_axis_s2mm_tdata; stream_data,d_s_axis_s2mm_tdata,same peripheral
+s_axis_s2mm_tkeep,input,(AL_S_AXIS_S2MM_TDATA_WIDTH/8)-1:0,d_s_axis_s2mm_tkeep; stream_keep,d_s_axis_s2mm_tkeep,same peripheral
+s_axis_s2mm_tvalid,input,,d_s_axis_s2mm_tvalid; stream_valid,d_s_axis_s2mm_tvalid,same peripheral
+s_axis_s2mm_tready,output,,d_s_axis_s2mm_tready; peripheral/bus or unused output,d_s_axis_s2mm_tready,same peripheral
+s_axis_s2mm_tlast,input,,d_s_axis_s2mm_tlast; stream_last,d_s_axis_s2mm_tlast,same peripheral
+s_axis_s2mm_tuser,input,3:0,d_s_axis_s2mm_tuser; 0,d_s_axis_s2mm_tuser,same peripheral
+s_axis_s2mm_tid,input,4:0,d_s_axis_s2mm_tid; 0,d_s_axis_s2mm_tid,same peripheral
+s_axis_s2mm_tdest,input,4:0,d_s_axis_s2mm_tdest; 0,d_s_axis_s2mm_tdest,same peripheral
+s2mm_sts_reset_out_n,output,,d_s2mm_sts_reset_out_n; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+s_axis_s2mm_sts_tdata,input,AL_S_AXIS_S2MM_STS_TDATA_WIDTH-1:0,d_s_axis_s2mm_sts_tdata; 32'd0,OMITTED (unconnected at bottom),same peripheral
+s_axis_s2mm_sts_tkeep,input,(AL_S_AXIS_S2MM_STS_TDATA_WIDTH/8)-1:0,d_s_axis_s2mm_sts_tkeep; 4'd0,OMITTED (unconnected at bottom),same peripheral
+s_axis_s2mm_sts_tvalid,input,,d_s_axis_s2mm_sts_tvalid; 1'd0,OMITTED (unconnected at bottom),same peripheral
+s_axis_s2mm_sts_tready,output,,d_s_axis_s2mm_sts_tready; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+s_axis_s2mm_sts_tlast,input,,d_s_axis_s2mm_sts_tlast; 1'd0,OMITTED (unconnected at bottom),same peripheral
+mm2s_introut,output,,d_mm2s_introut; peripheral/bus or unused output,OMITTED (unconnected at bottom),same peripheral
+s2mm_introut,output,,d_s2mm_introut; peripheral/bus or unused output,d_s2mm_introut,same peripheral

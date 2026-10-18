@@ -1,0 +1,46 @@
+PRMRY_IS_ACLK_ASYNC : 0 : U : En :  :  : 
+INCLUDE_SG : 0 : U : En :  :  : 
+SG_INCLUDE_STSCNTRL_STRM : 0 : G : En :  :  : 
+SG_USE_STSAPP_LENGTH : 0 : G : En :  :  : 
+SG_LENGTH_WIDTH : 16 : U : En :  : 8 : 26
+INCLUDE_MM2S_SF : 1 : G : En :  :  : 
+M_AXI_MM2S_DATA_WIDTH : 64 : U : Dis : 64 :  : 
+M_AXIS_MM2S_TDATA_WIDTH : 32 : U : Dis : 32 :  : 
+NUM_S2MM_CHANNELS : 1 : U : En :  : 1 : 16
+NUM_MM2S_CHANNELS : 1 : U : En :  : 1 : 16
+M_AXI_S2MM_DATA_WIDTH : 64 : U : En : 64;;128;;256;;512;;1024 :  : 
+single_interface : 0 : G : En :  :  : 
+INCLUDE_MM2S : 0 : U : En :  :  : 
+INCLUDE_S2MM : 1 : U : En :  :  : 
+S_AXIS_S2MM_TDATA_WIDTH : 64 : U : En : 8;;16;;32;;64;;128;;256;;512;;1024 :  : 
+MM2S_BURST_SIZE : 16 : U : Dis : 16 :  : 
+S2MM_BURST_SIZE : 16 : U : En : 2;;4;;8;;16;;32;;64;;128;;256 :  : 
+MICRO_DMA : 0 : U : En :  :  : 
+INCLUDE_MM2S_DRE : 0 : G : En :  :  : 
+INCLUDE_S2MM_DRE : 1 : G : En :  :  : 
+S_AXI_LITE_ADDR_WIDTH : 10 : G : En :  :  : 
+S_AXI_LITE_DATA_WIDTH : 32 : G : En :  :  : 
+DLYTMR_RESOLUTION : 125 : G : En :  :  : 
+ADDR_MM2S_S2MM : 32 : U : En :  : 32 : 64
+M_AXI_SG_ADDR_WIDTH : 32 : G : En :  :  : 
+M_AXI_SG_DATA_WIDTH : 32 : G : En :  :  : 
+M_AXIS_MM2S_CNTRL_TDATA_WIDTH : 32 : G : En :  :  : 
+M_AXI_MM2S_ADDR_WIDTH : 32 : G : En :  :  : 
+M_AXI_S2MM_ADDR_WIDTH : 32 : G : En :  :  : 
+INCREASE_THROUGHPUT : 0 : G : En :  :  : 
+INCLUDE_S2MM_SF : 1 : G : En :  :  : 
+S_AXIS_S2MM_STS_TDATA_WIDTH : 32 : G : En :  :  : 
+Warning : 0 : G : En :  :  : 
+SG_INCLUDE_STSCNTRL_STRM_dis : 0 : U : Dis :  :  : 
+SG_USE_STSAPP_LENGTH_dis : 0 : U : Dis :  :  : 
+INCLUDE_MM2S_DRE_dis : 1 : U : Dis :  :  : 
+INCLUDE_S2MM_DRE_dis : 1 : U : En :  :  : 
+S_AXI_LITE_ACLK_FREQ_HZ_dis : 50.000000 : U : Dis :  : 0.000000 : 500.000000
+M_AXI_MM2S_ACLK_FREQ_HZ_dis : 250.000000 : U : Dis :  : 0.000000 : 500.000000
+M_AXI_S2MM_ACLK_FREQ_HZ_dis : 200.000000 : U : Dis :  : 0.000000 : 500.000000
+M_AXI_SG_ACLK_FREQ_HZ_dis : 100.000000 : U : Dis :  : 0.000000 : 500.000000
+S_AXI_LITE_ACLK_FREQ_HZ : 50000000 : G : Dis :  :  : 
+M_AXI_MM2S_ACLK_FREQ_HZ : 250000000 : G : Dis :  :  : 
+M_AXI_S2MM_ACLK_FREQ_HZ : 200000000 : G : Dis :  :  : 
+M_AXI_SG_ACLK_FREQ_HZ : 100000000 : G : Dis :  :  : 
+upsizer : 26 : G : En :  :  : 
