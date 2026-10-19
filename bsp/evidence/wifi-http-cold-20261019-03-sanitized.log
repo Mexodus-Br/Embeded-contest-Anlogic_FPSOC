@@ -1,0 +1,906 @@
+C!j
+[BOOT INFO] Boot Reg value          : 0x00000005
+[BOOT INFO] Boot Mode               : EMMC or SD Boot Mode
+      
+[BOOT INFO] IDE Version             : Release_2026.1_SP2 Build: 6.2.2.200067 
+[BOOT INFO] HPF Version             : 202601
+[BOOT INFO] BSP Version             : 2026.1.1
+      
+[BOOT INFO] Bitstream Generation    : 2026/10/13 15: 3:00
+[BOOT INFO] HPF Export              : 2026/10/13 15:06:12
+[BOOT INFO] hpfTag                  : 
+      
+[BOOT INFO] DDR Status              : 1024 MB, 1333 Mbps
+[BOOT INFO] CPU                     : 999 MHz 
+      
+[BOOT INFO] Bank200                 : LVCMOS 3.3V
+[BOOT INFO] Bank201                 : LVCMOS 1.8V
+      
+==================== In Stage 1 ====================
+System reset
+PMU Error Config Init
+PMU Error Config Init
+history reset reason: 00000000
+history pmu status 0: 00000000
+history pmu status 1: 00000000
+------------------AXI-MONITOR------------------
+debug timeout flag: [4:0] - aw, w, b, ar, r
+ddr_s0   : 0x0
+ddr_s1   : 0x0
+ddr_s2   : 0x0
+ddr_s3   : 0x0
+sx2x_m0  : 0x0
+sx2x_m1  : 0x0
+ocm_s2   : 0x0
+sh_m2    : 0x0
+smc      : 0x0
+dmacx    : 0x0
+gp_s0    : 0x0
+gp_s1    : 0x0
+hp_s0    : 0x0
+hp_s1    : 0x0
+apu      : 0x0
+jpu      : 0x0
+main_s6  : 0x0
+main_m6  : 0x0
+main_s1  : 0x0
+main_m0  : 0x0
+acp      : 0x0
+-----------------------------------------------
+mark fsbl is running...
+==================== In Stage 2 ====================
+Boot Mode: 0x00000005
+EMMC or SD Boot Mode
+multi boot offset is 0
+Request input clk 399960000 Hz, IO clk 49995000 Hz
+Response: 0x900
+CMD 1 send err, code: 0x18000
+Identify Card: SD
+Fixed rx clk phase [32m6[0m
+Card support bus width 4-bit
+----------Card Info----------
+|-Device: mmc@0xf8049000
+|-Manufacturer ID: 0x0
+|-OEM: 0x3432
+|-Name: SD
+|-Bus Speed: 49995 KHz
+|-Bus Width: 4-bit
+|-Tuning Offset: 0
+|-DMA Mode: SDMA
+|-Mode: HS
+|-Rd Block Len: 512
+|-Version: 4
+|-High Capacity: YES
+|-Capacity: 29.5GB
+-----------------------------
+drv is sd
+bootfile is 1:/BOOT.bin
+FsblInstancePtr->ImageOffsetAddress: 0x0
+boot header copy finished...
+Calculated Checksum: 0x1ec04974
+checksum check pass...
+partition headers copy finished...
+image header authentication not enabled....
+qspi width sel        : 0x00000000
+image id              : 0x43474c41
+enc status            : 0x00000000
+bh attribute          : 0x00000000
+bh ac offset          : 0x00000000
+first parti hdr offset: 0x00000300
+partition num         : 0x00000003
+bh checksum           : 0x1ec04974
+PartitionNum: 3
+==================== In Stage 3 ====================
+wdt restart
+Partition Header Checksum: 0xd6fe3787
+Calculated Checksum: 0xd6fe3787
+checksum check pass...
+Hash Type: 0x00000800
+Hash SHA256.
+Auth Type       : 0
+Efuse Auth Type : 0
+Authentication NOT enabled...
+Enc Type       : 0
+Efuse Enc Type : 0
+Encrypt NOT enabled.
+destination cpu: 0x00000020
+destination dev: 0x00000080
+check partition length: 
+
+Partition Header Infomation:
+Partition Length            : 0x003dd380
+Extracted Partition Length  : 0x003dd360
+Total Partition Length      : 0x003dd3c0
+Next Partition Header Offset: 0x00000380
+Dest Execution Address      : 0xffffffff
+Dest Load Address           : 0x200000
+Partition Offset            : 0x0002dec0
+Partition Attribute         : 0x000008a0
+Hash Data offset            : 0x0040b240
+AC Offset                   : 0x00000000
+Partition Header Checksum   : 0xd6fe3787
+
+loading pl partition...
+PCAP RESET
+Re-enable PCAP
+Boot device block size max: 4000
+PL init done
+cfg state: 00000001
+Auth type :  00
+Hash type :  02
+Enc type  :  65
+Enc mode  :  00
+Key mode  :  6e
+to ddr in a whole block, then to pcap
+partition src address      : 0x0002dec0
+partition load dest address: 0x00100000
+partition length           : 0x003dd380
+whole block
+calculate hash
+read hash
+Hash check passed...
+cfg state before progdone: 00000007
+BSP GP common reset0 released
+==================== In Stage 3 ====================
+wdt restart
+Partition Header Checksum: 0x588df1ad
+Calculated Checksum: 0x588df1ad
+checksum check pass...
+Hash Type: 0x00000800
+Hash SHA256.
+Auth Type       : 0
+Efuse Auth Type : 0
+Authentication NOT enabled...
+Enc Type       : 0
+Efuse Enc Type : 0
+Encrypt NOT enabled.
+destination cpu: 0x00000020
+destination dev: 0x00000000
+check partition length: 
+
+Partition Header Infomation:
+Partition Length            : 0x000e0b40
+Extracted Partition Length  : 0x000e0b1c
+Total Partition Length      : 0x000e0b80
+Next Partition Header Offset: 0x00000000
+Dest Execution Address      : 0x200000
+Dest Load Address           : 0x200000
+Partition Offset            : 0x0040b280
+Partition Attribute         : 0x00000820
+Hash Data offset            : 0x004ebdc0
+AC Offset                   : 0x00000000
+Partition Header Checksum   : 0x588df1ad
+
+loading ps partition...
+partition src address      : 0x40b280
+partition load dest address: 0x200000
+partition length           : 0x000e0b40
+Auth type :  00
+Hash type :  02
+Enc type  :  65
+Enc mode  :  00
+Key mode  :  6e
+calculate hash
+Hash check passed...
+ps partition copy finished
+Update handoff values
+==================== In Stage 4 ====================
+Mark FSBL is completed...
+wdt disable
+
+
+U-Boot 2021.01 (Oct 11 2026 - 00:00:00 +0000)
+
+CPU:   Anlogic dr1m90
+Model: Anlogic dr1m90 demo board
+DRAM:  1 GiB
+NAND:  0 MiB
+MMC:   window: start - 0, middle - 3, end - 7
+set mmc1 best rx clk phase [32m3[0m
+mmc@f8049000: 0 (SD), mmc@f804a000: 1 (eMMC)
+In:    serial@f8401000
+Out:   serial@f8401000
+Err:   serial@f8401000
+Model: Anlogic dr1m90 demo board
+Net:   No ethernet found.
+Hit any key to stop autoboot:  3  2  1  0 
+switch to partitions #0, OK
+mmc0 is current device
+Scanning mmc 0:1...
+Found U-Boot script /boot.scr
+779 bytes read in 14 ms (53.7 KiB/s)
+## Executing script at 08100000
+8350323 bytes read in 607 ms (13.1 MiB/s)
+15454 bytes read in 16 ms (942.4 KiB/s)
+## Booting kernel from Legacy Image at 10000000 ...
+   Image Name:   Linux
+   Image Type:   AArch64 Linux Kernel Image (lz4 compressed)
+   Data Size:    8350259 Bytes = 8 MiB
+   Load Address: 00400000
+   Entry Point:  00400000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 14000000
+   Booting using the fdt blob at 0x14000000
+   Uncompressing Kernel Image
+   Loading Device Tree to [POINTER_REDACTED], end [POINTER_REDACTED] ... OK
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd040]
+[    0.000000] Linux version 6.1.111-rt42-bsp-wifi1 (bsp@linux-builder) (aarch64-linux-gnu-gcc (Linaro GCC 7.5-2019.12) 7.5.0, GNU ld (Linaro_Binutils-2019.12) 2.28.2.20170706) #1 SMP PREEMPT Sun Oct 11 00:00:00 UTC 2026
+[    0.000000] Machine model: Anlogic, DR1M90 FPSoc
+[    0.000000] earlycon: uart0 at MMIO32 [POINTER_REDACTED] (options '')
+[    0.000000] printk: bootconsole [uart0] enabled
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created CMA memory pool at [POINTER_REDACTED], size 128 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem [POINTER_REDACTED]-[POINTER_REDACTED]]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem [POINTER_REDACTED]-[POINTER_REDACTED]]
+[    0.000000] Initmem setup node 0 [mem [POINTER_REDACTED]-[POINTER_REDACTED]]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv0.2 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] percpu: Embedded 21 pages/cpu s48360 r8192 d29464 u86016
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 258048
+[    0.000000] Kernel command line: console=ttyS0,115200n8 earlycon=uart,mmio32,0xf8401000 loglevel=7 root=PARTUUID=70d791a8-02 rootwait rootfstype=ext4 rw
+[    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 880452K/1048576K available (9920K kernel code, 1372K rwdata, 3108K rodata, 1600K init, 575K bss, 37052K reserved, 131072K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=2.
+[    0.000000] 	Trampoline variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GICv3: 160 SPIs implemented
+[    0.000000] GICv3: 0 Extended SPIs implemented
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GICv3: GICv3 features: 16 PPIs
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:[POINTER_REDACTED]
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000] arch_timer: cp15 timer(s) running at 33.33MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x7b00c4bad, max_idle_ns: 440795202744 ns
+[    0.000000] sched_clock: 56 bits at 33MHz, resolution 30ns, wraps every 2199023255551ns
+[    0.008225] Console: colour dummy device 80x25
+[    0.012710] Calibrating delay loop (skipped), value calculated using timer frequency.. 66.66 BogoMIPS (lpj=133333)
+[    0.023078] pid_max: default: 32768 minimum: 301
+[    0.027880] Mount-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.035298] Mountpoint-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.044449] cblist_init_generic: Setting adjustable number of callback queues.
+[    0.051708] cblist_init_generic: Setting shift to 1 and lim to 1.
+[    0.057882] cblist_init_generic: Setting adjustable number of callback queues.
+[    0.065127] cblist_init_generic: Setting shift to 1 and lim to 1.
+[    0.071377] rcu: Hierarchical SRCU implementation.
+[    0.076189] rcu: 	Max phase no-delay instances is 1000.
+[    0.081704] EFI services will not be available.
+[    0.086481] smp: Bringing up secondary CPUs ...
+[    0.091498] Detected VIPT I-cache on CPU1
+[    0.091599] GICv3: CPU1: found redistributor 1 region 0:[POINTER_REDACTED]
+[    0.091645] CPU1: Booted secondary processor 0x0000000001 [0x411fd040]
+[    0.091757] smp: Brought up 1 node, 2 CPUs
+[    0.113320] SMP: Total of 2 processors activated.
+[    0.118039] CPU features: detected: 32-bit EL0 Support
+[    0.123207] CPU features: detected: CRC32 instructions
+[    0.128427] CPU: All CPU(s) started at EL1
+[    0.132532] alternatives: applying system-wide alternatives
+[    0.139388] devtmpfs: initialized
+[    0.146568] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: [POINTER_REDACTED] ns
+[    0.156348] futex hash table entries: 512 (order: 3, 32768 bytes, linear)
+[    0.168716] DMI not present or invalid.
+[    0.173239] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.180235] DMA: preallocated 128 KiB GFP_KERNEL pool for atomic allocations
+[    0.187406] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.195274] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.203266] audit: initializing netlink subsys (disabled)
+[    0.208909] audit: type=2000 audit(0.132:1): state=initialized audit_enabled=0 res=1
+[    0.209338] thermal_sys: Registered thermal governor 'fair_share'
+[    0.216671] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.222773] thermal_sys: Registered thermal governor 'step_wise'
+[    0.229118] ASID allocator initialised with 65536 entries
+[    0.253786] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.260609] HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.266925] HugeTLB: registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.273725] HugeTLB: 0 KiB vmemmap can be freed for a 32.0 MiB page
+[    0.280002] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.286796] HugeTLB: 0 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.293072] HugeTLB: registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.299865] HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+[    0.307394] dw_dmac f804d000.ahb_dma: DesignWare DMA Controller, 8 channels
+[    0.314973] SCSI subsystem initialized
+[    0.318980] usbcore: registered new interface driver usbfs
+[    0.324535] usbcore: registered new interface driver hub
+[    0.329889] usbcore: registered new device driver usb
+[    0.335108] mc: Linux media interface: v0.10
+[    0.339429] videodev: Linux video capture interface: v2.00
+[    0.344967] pps_core: LinuxPPS API ver. 1 registered
+[    0.349940] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.359093] PTP clock support registered
+[    0.363380] FPGA manager framework
+[    0.367708] vgaarb: loaded
+[    0.370783] clocksource: Switched to clocksource arch_sys_counter
+[    0.384379] NET: Registered PF_INET protocol family
+[    0.389479] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.398621] tcp_listen_portaddr_hash hash table entries: 512 (order: 1, 8192 bytes, linear)
+[    0.407070] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.414845] TCP established hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.422694] TCP bind hash table entries: 8192 (order: 6, 262144 bytes, linear)
+[    0.430162] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.436630] UDP hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.443290] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes, linear)
+[    0.450529] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.456599] RPC: Registered named UNIX socket transport module.
+[    0.462544] RPC: Registered udp transport module.
+[    0.467260] RPC: Registered tcp transport module.
+[    0.471974] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.479317] PCI: CLS 0 bytes, default 64
+[    0.484200] Initialise system trusted keyrings
+[    0.488813] workingset: timestamp_bits=62 max_order=18 bucket_order=0
+[    0.505623] NFS: Registering the id_resolver key type
+[    0.510744] Key type id_resolver registered
+[    0.514944] Key type id_legacy registered
+[    0.518982] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.525697] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.533128] jffs2: version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+[    0.595620] Key type asymmetric registered
+[    0.599732] Asymmetric key parser 'x509' registered
+[    0.604679] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 242)
+[    0.618422] Serial: 8250/16550 driver, 2 ports, IRQ sharing disabled
+[    0.625701] printk: console [ttyS0] disabled
+[    0.650193] f8401000.serial: ttyS0 at MMIO 0xf8401000 (irq = 18, base_baud = 25000000) is a U6_16550A
+[    0.659581] printk: console [ttyS0] printing thread started
+[    0.659599] printk: console [ttyS0] enabled
+[    0.659607] printk: bootconsole [uart0] disabled
+[    0.681685] brd: module loaded
+[    0.685287] loop: module loaded
+[    0.686735] spi-nor spi0.0: found gd25q256, expected gd25lb256e
+[    0.687886] spi-nor spi0.0: gd25q256 (32768 Kbytes)
+[    0.690142] CAN device driver interface
+[    0.700697] dwc2 f8180000.usb: supply vusb_d not found, using dummy regulator
+[    0.700827] dwc2 f8180000.usb: supply vusb_a not found, using dummy regulator
+[    0.702910] dwc2 f8180000.usb: DWC OTG Controller
+[    0.702933] dwc2 f8180000.usb: new USB bus registered, assigned bus number 1
+[    0.702959] dwc2 f8180000.usb: irq 20, io mem 0xf8180000
+[    0.703143] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.01
+[    0.703156] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.703167] usb usb1: Product: DWC OTG Controller
+[   0.703175] usb usb1: Manufacturer: Linux 6.1.111-rt42-bsp-wifi1 dwc2_hsotg
+[38[    0.703657] hub 1-0:1.0: USB hub found
+[    0.703688] hub 1-0:1.0: 1 port detected
+[    0.704630] usbcore: registered new interface driver uas
+[    0.704696] usbcore: registered new interface driver usb-storage
+[    0.704977] i2c_dev: i2c /dev entries driver
+[    0.705069] usbcore: registered new interface driver uvcvideo
+[    0.705314] sdhci: Secure Digital Host Controller Interface driver
+[    0.705318] sdhci: Copyright(c) Pierre Ossman
+[    0.705322] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.705572] sdhci-dwcmshc f8049000.mmc: Got CD GPIO
+[    0.706149] usbcore: registered new interface driver usbhid
+[    0.706155] usbhid: USB HID core driver
+[    0.706409] pl353-smc f841a000.memory-controller: no matching children
+[    0.711358] ipip: IPv4 and MPLS over IPv4 tunneling driver
+[    0.711864] gre: GRE over IPv4 demultiplexor driver
+[    0.711870] ip_gre: GRE over IPv4 tunneling driver
+[    0.713118] IPv4 over IPsec tunneling driver
+[    0.714040] NET: Registered PF_INET6 protocol family
+[    0.715648] Segment Routing with IPv6
+[    0.715697] In-situ OAM (IOAM) with IPv6
+[    0.716338] NET: Registered PF_PACKET protocol family
+[    0.716356] NET: Registered PF_KEY protocol family
+[    0.716362] can: controller area network core
+[    0.716475] NET: Registered PF_CAN protocol family
+[    0.716482] can: raw protocol
+[    0.716489] can: broadcast manager protocol
+[    0.716499] can: netlink gateway - max_hops=1
+[    0.716809] Key type dns_resolver registered
+[    0.717370] Loading compiled-in X.509 certificates
+[    0.720116] Key type encrypted registered
+[    0.731334] of-fpga-region soc:base_fpga_region: FPGA Region probed
+[    0.732095] of_cfs_init
+[    0.732174] of_cfs_init: OK
+[    0.732358] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    0.734341] cfg80211: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    0.735606] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    0.735742] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    0.735757] cfg80211: failed to load regulatory.db
+[    0.735876] clk: Disabling unused clocks
+[    0.755632] mmc1: SDHCI controller on f804a000.mmc [f804a000.mmc] using ADMA
+[    0.762757] mmc0: SDHCI controller on f8049000.mmc [f8049000.mmc] using ADMA
+[    0.766676] Waiting for root device PARTUUID=70d791a8-02...
+[    0.795645] mmc0: new high speed SDHC card at address 0001
+[    0.796176] mmcblk0: mmc0:0001 SD 29.5 GiB 
+[    0.797227]  mmcblk0: p1 p2
+[    0.804529] mmc1: new high speed MMC card at address 0001
+[    0.805026] mmcblk1: mmc1:0001 IS008G 7.30 GiB 
+[    0.806250]  mmcblk1: p1 p2
+[    0.806844] mmcblk1boot0: mmc1:0001 IS008G 4.00 MiB 
+[    0.807452] mmcblk1boot1: mmc1:0001 IS008G 4.00 MiB 
+[    0.807888] mmcblk1rpmb: mmc1:0001 IS008G 4.00 MiB, chardev (239:0)
+[    1.002813] usb 1-1: new high-speed USB device number 2 using dwc2
+[    1.211090] usb 1-1: New USB device found, idVendor=1a40, idProduct=0101, bcdDevice= 1.11
+[    1.211112] usb 1-1: New USB device strings: Mfr=0, Product=1, SerialNumber=0
+[    1.211122] usb 1-1: Product: USB 2.0 Hub
+[    1.211662] hub 1-1:1.0: USB hub found
+[    1.211725] hub 1-1:1.0: 4 ports detected
+[    1.566000] EXT4-fs (mmcblk0p2): recovery complete
+[    1.571687] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Quota mode: disabled.
+[    1.571758] VFS: Mounted root (ext4 filesystem) on device 179:2.
+[    1.572558] devtmpfs: mounted
+[    1.573257] Freeing unused kernel memory: 1600K
+[    1.598829] usb 1-1.1: new high-speed USB device number 3 using dwc2
+[    1.598916] Checked W+X mappings: passed, no W+X pages found
+[    1.598937] Run /sbin/init as init process
+[    1.777868] EXT4-fs (mmcblk0p2): re-mounted. Quota mode: disabled.
+[    1.799711] usb 1-1.1: New USB device found, idVendor=a69c, idProduct=8d80, bcdDevice= 1.00
+[    1.799738] usb 1-1.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    1.799748] usb 1-1.1: Product: AIC Wlan
+[    1.799757] usb 1-1.1: Manufacturer: aicsemi
+[    1.799765] usb 1-1.1: SerialNumber: 20220103
+Starting syslogd: OK
+Starting klogd: OK
+Running sysctl: OK
+Initializing random number generator: OK
+Saving random seed: [    2.322809] random: crng init done
+OK
+Starting network: OK
+
+Delta Wi-Fi candidate - not board accepted
+
+delta-wifi login: [    2.802861] aic_load_fw: loading out-of-tree module taints kernel.
+[    2.804814] aic_bluetooth_mod_init 
+[    2.804824] RELEASE DATE:2024_0712_e2a932c1 
+[    2.804828] AICWFDBG(LOGINFO)	aicwf_prealloc_init enter
+[    2.813946] AICWFDBG(LOGINFO)	pre alloc rxbuff list len: 1000
+[    2.814038] AICWFDBG(LOGINFO)	aicwf_usb_probe vid:0xA69C pid:0x8D80 icl:0x0 isc:0x0 ipr:0x0 
+[    2.814054] AICWFDBG(LOGINFO)	aicloadfw_chipmatch USE AIC8800D80
+[    2.814060] Aic high speed USB device detected
+[    2.814669] chip_id=7, chip_mcu_id = 0
+[    2.814682] aic_load_firmware :firmware path = /vendor/etc/firmware/fw_patch_table_8800d80_u02.bin  
+[    2.828616] file md5:313babc74ae8b1d44dc0e0a4c4c73686
+[    2.828638] ### Upload fw_patch_table_8800d80_u02.bin fw_patch_table, size=23288
+[    2.828776] addr_adid 0x201940, addr_patch 0x1e0000
+[    2.828786] aic_load_firmware :firmware path = /vendor/etc/firmware/fw_adid_8800d80_u02.bin  
+[    2.837196] file md5:f546881a81b960d89a672578eb45a809
+[    2.837215] ### Upload fw_adid_8800d80_u02.bin firmware, @ = 201940  size=1708
+[    2.838229] fw download complete
+[    2.838229] 
+[    2.838238] aic_load_firmware :firmware path = /vendor/etc/firmware/fw_patch_8800d80_u02.bin  
+[    2.845185] file md5:8e83d7b94620c2a5444b2aaaab1a510d
+[    2.845207] ### Upload fw_patch_8800d80_u02.bin firmware, @ = 1e0000  size=24744
+[    2.851540] fw download complete
+[    2.851540] 
+[    3.249484] aicbt_patch_table_load bt btmode[4]:5 
+[    3.249511] aicbt_patch_table_load bt uart_baud[4]:1500000 
+[    3.249518] aicbt_patch_table_load bt uart_flowctrl[4]:1 
+[    3.249524] aicbt_patch_table_load bt lpm_enable[4]:0 
+[    3.249528] aicbt_patch_table_load bt tx_pwr[4]:28463 
+[    3.267331] patch version - Jul 11 2024 10:38:54 - git 73d2ce5
+[    3.267435] aic_load_firmware :firmware path = /vendor/etc/firmware/fmacfw_8800d80_u02.bin  
+[    3.297395] file md5:34718bf22fd55d5dcde139689998d055
+[    3.297425] ### Upload fmacfw_8800d80_u02.bin firmware, @ = 120000  size=348012
+[    3.392963] fw download complete
+[    3.392963] 
+[    3.392978] AICWFDBG(LOGERROR)	Read FW mem: 00120198
+[    3.393099] AICWFDBG(LOGERROR)	120198=1749fc
+[    3.393209] AICWFDBG(LOGERROR)	1201a0=176000
+[    3.393333] AICWFDBG(LOGINFO)	rd_version_val=06090101
+[    3.393457] AICWFDBG(LOGINFO)	1201a4=17ed7c
+[    3.403426] usbcore: registered new interface driver aic_load_fw
+[    3.416788] app_cmp
+[    3.416853] app_cmp
+[    3.416870] app_cmp
+[    3.416966] app_cmp
+[    3.416990] app_cmp
+[    3.417074] app_cmp
+[    3.417104] app_cmp
+[    3.417121] app_cmp
+[    3.417209] app_cmp
+[    3.417240] app_cmp
+[    3.417272] app_cmp
+[    3.467419] usb 1-1.1: USB disconnect, device number 3
+[    3.467584] aicwf_usb_disconnect enter 
+[    3.467590] aicwf_bus_deinit
+[    3.974883] q_sz/max:  0 /  8 - next tkn: 3266
+[    3.974906] q_sz/max:  0 /  8 - next tkn: 3266
+[    3.974932] usb bustx thread will to stop
+[    3.974949] usb bustx thread stop
+[    3.975026] exit aicwf_bus_deinit
+[    3.975145] usb busrx thread will to stop
+[    3.981858] usb busrx thread stop
+[    4.302814] usb 1-1.1: new high-speed USB device number 4 using dwc2
+[    4.503664] usb 1-1.1: New USB device found, idVendor=a69c, idProduct=8d81, bcdDevice= 1.00
+[    4.503689] usb 1-1.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    4.503699] usb 1-1.1: Product: AIC 8800D80
+[    4.503707] usb 1-1.1: Manufacturer: AICSemi
+[    4.503715] usb 1-1.1: SerialNumber: 20220103
+[    4.504347] AICWFDBG(LOGINFO)	aicwf_usb_probe vid:0xA69C pid:0x8D81 icl:0x0 isc:0x0 ipr:0x0 
+[    4.504364] aic_load_fw: probe of 1-1.1:1.0 failed with error -1
+[    4.504713] AICWFDBG(LOGINFO)	aicwf_usb_probe vid:0xA69C pid:0x8D81 icl:0x0 isc:0x0 ipr:0x0 
+[    4.504724] aic_load_fw: probe of 1-1.1:1.1 failed with error -1
+[    4.504961] AICWFDBG(LOGINFO)	aicwf_usb_probe vid:0xA69C pid:0x8D81 icl:0x0 isc:0x0 ipr:0x0 
+[    4.504971] aic_load_fw: probe of 1-1.1:1.2 failed with error -1
+[    4.600431] AICWFDBG(LOGINFO)	rwnx v6.4.3.0 - 1a4b0054d2M (master)
+[    4.600448] AICWFDBG(LOGINFO)	RELEASE DATE:2024_0712_e2a932c1 
+[    4.600570] AICWFDBG(LOGINFO)	aicwf_usb_chipmatch USE AIC8800D81
+[    4.600576] AICWFDBG(LOGINFO)	aicwf_parse_usb endpoints = 4
+[    4.600585] AICWFDBG(LOGINFO)	Aic high speed USB device detected
+[    4.600589] AICWFDBG(LOGINFO)	aicwf_usb_alloc_rx_urb AICWF_USB_RX_URBS:20 
+[    4.600614] AICWFDBG(LOGINFO)	aicwf_usb_alloc_tx_urb AICWF_USB_TX_URBS:200 
+[    4.600703] AICWFDBG(LOGINFO)	aicwf_usb_alloc_msg_rx_urb AICWF_USB_MSG_RX_URBS:100 
+[    4.600997] AICWFDBG(LOGINFO)	usb_busrx_thread the cpu is:0
+[    4.601066] AICWFDBG(LOGINFO)	aicwf_bus_init waiting for rx/tx thread init finish 
+[    4.601080] AICWFDBG(LOGINFO)	usb_bustx_thread the cpu is:0
+[    4.601639] AICWFDBG(LOGINFO)	usb_busrx_thread set_cpu_ret is:0
+[    4.601648] AICWFDBG(LOGINFO)	usb_busrx_thread change cpu to:1
+[    4.601696] AICWFDBG(LOGINFO)	usb_busrx_thread the policy of current thread is:1
+[    4.601702] AICWFDBG(LOGINFO)	usb_busrx_thread the rt_priority of current thread is:1
+[    4.601708] AICWFDBG(LOGINFO)	usb_busrx_thread the current pid is:180
+[    4.601722] AICWFDBG(LOGINFO)	usb_bustx_thread set_cpu_ret is:0
+[    4.601728] AICWFDBG(LOGINFO)	usb_bustx_thread change cpu to:1
+[    4.601737] AICWFDBG(LOGINFO)	usb_bustx_thread the policy of current thread is:1
+[    4.601743] AICWFDBG(LOGINFO)	usb_bustx_thread the rt_priority of current thread is:1
+[    4.601747] AICWFDBG(LOGINFO)	usb_bustx_thread the current pid is:181
+[    4.715542] AICWFDBG(LOGINFO)	rwnx_platform_init rwnx_cfg80211_init enter 
+[    4.715566] AICWFDBG(LOGINFO)	rwnx_cfg80211_init sizeof(struct rwnx_hw):17848 
+[    4.715752] AICWFDBG(LOGINFO)	usb_msg_busrx_thread the policy of current thread is:1
+[    4.715760] AICWFDBG(LOGINFO)	usb_msg_busrx_thread the rt_priority of current thread is:1
+[    4.715766] AICWFDBG(LOGINFO)	usb_msg_busrx_thread the current pid is:182
+[    4.719273] AICWFDBG(LOGINFO)	rwnx_cfg80211_init: FILTER_TCP_ACK
+[    4.719287] ========== tcp ack debug tcp_ack_init 
+[    4.719296] AICWFDBG(LOGINFO)	aicwf_prealloc_txq_alloc size is diff will to be kzalloc 
+[    4.719313] AICWFDBG(LOGINFO)	aicwf_prealloc_txq_alloc txq kzalloc successful 
+[    4.730918] AICWFDBG(LOGINFO)	userconfig file path:aic_userconfig_8800d80.txt 
+[    4.730932] AICWFDBG(LOGINFO)	### Load file aic_userconfig_8800d80.txt
+[    4.730941] AICWFDBG(LOGINFO)	rwnx_load_firmware :firmware path = /vendor/etc/firmware/aic8800D80/aic_userconfig_8800d80.txt  
+[    4.732024] AICWFDBG(LOGINFO)	file md5:35c8e99f3edd34d2a39bc9920e1da494
+[    4.732045] AICWFDBG(LOGINFO)	### Load file done: aic_userconfig_8800d80.txt, size=2683
+[    4.732053] AICWFDBG(LOGINFO)	rwnx_plat_userconfig_parsing: AIC USERCONFIG 2022/0803/1707
+[    4.732059] AICWFDBG(LOGINFO)	rwnx_plat_userconfig_parsing: txpwr_lvl
+[    4.732064] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=enable value=1
+[    4.732072] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_1m_2g4 value=18
+[    4.732079] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_2m_2g4 value=18
+[    4.732086] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_5m5_2g4 value=18
+[    4.732093] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_11m_2g4 value=18
+[    4.732100] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_6m_2g4 value=18
+[    4.732111] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_9m_2g4 value=18
+[    4.732119] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_12m_2g4 value=18
+[    4.732126] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_18m_2g4 value=18
+[    4.732133] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_24m_2g4 value=16
+[    4.732140] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_36m_2g4 value=16
+[    4.732148] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_48m_2g4 value=15
+[    4.732155] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11b_11ag_54m_2g4 value=15
+[    4.732163] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs0_2g4 value=18
+[    4.732171] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs1_2g4 value=18
+[    4.732179] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs2_2g4 value=18
+[    4.732186] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs3_2g4 value=18
+[    4.732195] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs4_2g4 value=16
+[    4.732202] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs5_2g4 value=16
+[    4.732211] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs6_2g4 value=15
+[    4.732219] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs7_2g4 value=15
+[    4.732227] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs8_2g4 value=14
+[    4.732239] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs9_2g4 value=14
+[    4.732248] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs0_2g4 value=18
+[    4.732256] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs1_2g4 value=18
+[    4.732265] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs2_2g4 value=18
+[    4.732273] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs3_2g4 value=18
+[    4.732282] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs4_2g4 value=16
+[    4.732290] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs5_2g4 value=16
+[    4.732299] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs6_2g4 value=15
+[    4.732308] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs7_2g4 value=15
+[    4.732317] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs8_2g4 value=14
+[    4.732326] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs9_2g4 value=14
+[    4.732335] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs10_2g4 value=13
+[    4.732344] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs11_2g4 value=13
+[    4.732353] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11a_6m_5g value=18
+[    4.732366] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11a_9m_5g value=18
+[    4.732376] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11a_12m_5g value=18
+[    4.732385] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11a_18m_5g value=18
+[    4.732395] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11a_24m_5g value=16
+[    4.732404] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11a_36m_5g value=16
+[    4.732414] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11a_48m_5g value=15
+[    4.732424] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11a_54m_5g value=15
+[    4.732434] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs0_5g value=18
+[    4.732444] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs1_5g value=18
+[    4.732454] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs2_5g value=18
+[    4.732465] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs3_5g value=18
+[    4.732476] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs4_5g value=16
+[    4.732490] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs5_5g value=16
+[    4.732501] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs6_5g value=15
+[    4.732512] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs7_5g value=15
+[    4.732523] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs8_5g value=14
+[    4.732534] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11n_11ac_mcs9_5g value=14
+[    4.732545] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs0_5g value=18
+[    4.732556] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs1_5g value=18
+[    4.732567] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs2_5g value=18
+[    4.732578] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs3_5g value=18
+[    4.732590] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs4_5g value=16
+[    4.732601] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs5_5g value=16
+[    4.732616] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs6_5g value=14
+[    4.732628] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs7_5g value=14
+[    4.732640] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs8_5g value=13
+[    4.732651] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs9_5g value=13
+[    4.732663] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs10_5g value=12
+[    4.732675] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_11ax_mcs11_5g value=12
+[    4.732687] AICWFDBG(LOGINFO)	rwnx_plat_userconfig_parsing: txpwr_lvl_adj
+[    4.732692] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_enable value=0
+[    4.732703] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_2g4_chan_1_4 value=0
+[    4.732715] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_2g4_chan_5_9 value=0
+[    4.732728] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_2g4_chan_10_13 value=0
+[    4.732743] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_5g_chan_42 value=0
+[    4.732756] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_5g_chan_58 value=0
+[    4.732768] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_5g_chan_106 value=0
+[    4.732780] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_5g_chan_122 value=0
+[    4.732792] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_5g_chan_138 value=0
+[    4.732804] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=lvl_adj_5g_chan_155 value=0
+[    4.732817] AICWFDBG(LOGINFO)	rwnx_plat_userconfig_parsing: txpwr_loss
+[    4.732822] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=loss_enable value=0
+[    4.732831] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=loss_value value=2
+[    4.732839] AICWFDBG(LOGINFO)	rwnx_plat_userconfig_parsing: txpwr_ofst
+[    4.732844] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_enable value=0
+[    4.732852] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_11b_chan_1_4 value=0
+[    4.732865] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_11b_chan_5_9 value=0
+[    4.732874] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_11b_chan_10_13 value=0
+[    4.732884] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_ofdm_highrate_chan_1_4 value=0
+[    4.732894] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_ofdm_highrate_chan_5_9 value=0
+[    4.732904] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_ofdm_highrate_chan_10_13 value=0
+[    4.732913] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_ofdm_lowrate_chan_1_4 value=0
+[    4.732923] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_ofdm_lowrate_chan_5_9 value=0
+[    4.732933] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_2g4_ofdm_lowrate_chan_10_13 value=0
+[    4.732944] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_lowrate_chan_42 value=0
+[    4.732954] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_lowrate_chan_58 value=0
+[    4.732964] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_lowrate_chan_106 value=0
+[    4.732975] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_lowrate_chan_122 value=0
+[    4.732989] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_lowrate_chan_138 value=0
+[    4.733000] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_lowrate_chan_155 value=0
+[    4.733011] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_highrate_chan_42 value=0
+[    4.733021] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_highrate_chan_58 value=0
+[    4.733032] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_highrate_chan_106 value=0
+[    4.733043] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_highrate_chan_122 value=0
+[    4.733054] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_highrate_chan_138 value=0
+[    4.733065] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_highrate_chan_155 value=0
+[    4.733077] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_midrate_chan_42 value=0
+[    4.733088] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_midrate_chan_58 value=0
+[    4.733099] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_midrate_chan_106 value=0
+[    4.733114] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_midrate_chan_122 value=0
+[    4.733126] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_midrate_chan_138 value=0
+[    4.733138] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=ofst_5g_ofdm_midrate_chan_155 value=0
+[    4.733149] AICWFDBG(LOGINFO)	rwnx_plat_userconfig_parsing: xtal cap
+[    4.733154] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=xtal_enable value=0
+[    4.733162] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=xtal_cap value=24
+[    4.733171] AICWFDBG(LOGINFO)	rwnx_plat_nvram_set_value:command=xtal_cap_fine value=31
+[    4.733214] AICWFDBG(LOGINFO)	userconfig download complete
+[    4.733214] 
+[    4.742630] AICWFDBG(LOGINFO)	is 5g support = 1, vendor_info = 0x00
+[    4.742851] AICWFDBG(LOGINFO)	Firmware Version: la Jul 03 2024 15:27:10 - g21266be
+[    4.742866] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:enable:1
+[    4.742872] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_1m_2g4:18
+[    4.742878] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_2m_2g4:18
+[    4.742883] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_5m5_2g4:18
+[    4.742887] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_11m_2g4:18
+[    4.742892] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_6m_2g4:18
+[    4.742897] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_9m_2g4:18
+[    4.742902] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_12m_2g4:18
+[    4.742907] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_18m_2g4:18
+[    4.742912] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_24m_2g4:16
+[    4.742917] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_36m_2g4:16
+[    4.742922] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_48m_2g4:15
+[    4.742927] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11b_11ag_54m_2g4:15
+[    4.742932] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs0_2g4:18
+[    4.742937] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs1_2g4:18
+[    4.742942] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs2_2g4:18
+[    4.742946] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs3_2g4:18
+[    4.742951] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs4_2g4:16
+[    4.742957] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs5_2g4:16
+[    4.742961] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs6_2g4:15
+[    4.742966] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs7_2g4:15
+[    4.742971] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs8_2g4:14
+[    4.742976] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs9_2g4:14
+[    4.742985] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs0_2g4:18
+[    4.742990] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs1_2g4:18
+[    4.742995] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs2_2g4:18
+[    4.743000] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs3_2g4:18
+[    4.743005] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs4_2g4:16
+[    4.743010] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs5_2g4:16
+[    4.743015] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs6_2g4:15
+[    4.743020] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs7_2g4:15
+[    4.743025] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs8_2g4:14
+[    4.743030] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs9_2g4:14
+[    4.743035] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs10_2g4:13
+[    4.743040] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs11_2g4:13
+[    4.743045] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_1m_5g:-128
+[    4.743050] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_2m_5g:-128
+[    4.743055] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_5m5_5g:-128
+[    4.743060] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_11m_5g:-128
+[    4.743064] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_6m_5g:18
+[    4.743069] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_9m_5g:18
+[    4.743074] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_12m_5g:18
+[    4.743079] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_18m_5g:18
+[    4.743084] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_24m_5g:16
+[    4.743089] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_36m_5g:16
+[    4.743094] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_48m_5g:15
+[    4.743099] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11a_54m_5g:15
+[    4.743107] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs0_5g:18
+[    4.743113] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs1_5g:18
+[    4.743117] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs2_5g:18
+[    4.743122] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs3_5g:18
+[    4.743127] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs4_5g:16
+[    4.743132] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs5_5g:16
+[    4.743137] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs6_5g:15
+[    4.743142] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs7_5g:15
+[    4.743148] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs8_5g:14
+[    4.743152] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11n_11ac_mcs9_5g:14
+[    4.743157] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs0_5g:18
+[    4.743162] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs1_5g:18
+[    4.743167] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs2_5g:18
+[    4.743172] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs3_5g:18
+[    4.743177] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs4_5g:16
+[    4.743182] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs5_5g:16
+[    4.743186] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs6_5g:14
+[    4.743191] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs7_5g:14
+[    4.743196] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs8_5g:13
+[    4.743201] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs9_5g:13
+[    4.743206] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs10_5g:12
+[    4.743211] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_v3_in_fdrv:lvl_11ax_mcs11_5g:12
+[    4.743216] AICWFDBG(LOGINFO)	get_userconfig_txpwr_loss:loss_enable:0
+[    4.743221] AICWFDBG(LOGINFO)	get_userconfig_txpwr_loss:loss_value:2
+[    4.743226] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:enable:1
+[    4.743235] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_1m_2g4:18
+[    4.743240] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_2m_2g4:18
+[    4.743245] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_5m5_2g4:18
+[    4.743249] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_11m_2g4:18
+[    4.743254] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_6m_2g4:18
+[    4.743259] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_9m_2g4:18
+[    4.743263] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_12m_2g4:18
+[    4.743268] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_18m_2g4:18
+[    4.743273] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_24m_2g4:16
+[    4.743277] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_36m_2g4:16
+[    4.743282] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_48m_2g4:15
+[    4.743287] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11b_11ag_54m_2g4:15
+[    4.743292] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs0_2g4:18
+[    4.743296] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs1_2g4:18
+[    4.743301] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs2_2g4:18
+[    4.743306] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs3_2g4:18
+[    4.743311] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs4_2g4:16
+[    4.743315] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs5_2g4:16
+[    4.743320] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs6_2g4:15
+[    4.743325] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs7_2g4:15
+[    4.743330] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs8_2g4:14
+[    4.743335] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs9_2g4:14
+[    4.743340] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs0_2g4:18
+[    4.743344] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs1_2g4:18
+[    4.743349] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs2_2g4:18
+[    4.743357] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs3_2g4:18
+[    4.743362] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs4_2g4:16
+[    4.743368] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs5_2g4:16
+[    4.743372] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs6_2g4:15
+[    4.743377] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs7_2g4:15
+[    4.743382] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs8_2g4:14
+[    4.743386] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs9_2g4:14
+[    4.743391] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs10_2g4:13
+[    4.743396] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs11_2g4:13
+[    4.743401] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_1m_5g:-128
+[    4.743405] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_2m_5g:-128
+[    4.743411] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_5m5_5g:-128
+[    4.743415] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_11m_5g:-128
+[    4.743420] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_6m_5g:18
+[    4.743425] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_9m_5g:18
+[    4.743429] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_12m_5g:18
+[    4.743434] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_18m_5g:18
+[    4.743439] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_24m_5g:16
+[    4.743443] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_36m_5g:16
+[    4.743448] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_48m_5g:15
+[    4.743453] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11a_54m_5g:15
+[    4.743457] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs0_5g:18
+[    4.743462] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs1_5g:18
+[    4.743467] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs2_5g:18
+[    4.743471] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs3_5g:18
+[    4.743477] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs4_5g:16
+[    4.743485] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs5_5g:16
+[    4.743490] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs6_5g:15
+[    4.743494] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs7_5g:15
+[    4.743499] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs8_5g:14
+[    4.743504] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11n_11ac_mcs9_5g:14
+[    4.743508] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs0_5g:18
+[    4.743513] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs1_5g:18
+[    4.743518] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs2_5g:18
+[    4.743523] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs3_5g:18
+[    4.743527] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs4_5g:16
+[    4.743532] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs5_5g:16
+[    4.743536] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs6_5g:14
+[    4.743541] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs7_5g:14
+[    4.743546] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs8_5g:13
+[    4.743550] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs9_5g:13
+[    4.743555] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs10_5g:12
+[    4.743560] AICWFDBG(LOGINFO)	rwnx_send_txpwr_lvl_v3_req:lvl_11ax_mcs11_5g:12
+[    4.744256] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:enable:0
+[    4.744264] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_2g4_chan_1_4:0
+[    4.744269] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_2g4_chan_5_9:0
+[    4.744274] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_2g4_chan_10_13:0
+[    4.744279] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_5g_chan_42:0
+[    4.744284] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_5g_chan_58:0
+[    4.744289] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_5g_chan_106:0
+[    4.744293] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_5g_chan_122:0
+[    4.744298] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_5g_chan_138:0
+[    4.744303] AICWFDBG(LOGINFO)	get_userconfig_txpwr_lvl_adj_in_fdrv:lvl_adj_5g_chan_155:0
+[    4.744310] AICWFDBG(LOGINFO)	get_userconfig_txpwr_ofst2x_in_fdrv:enable      :0
+[    4.744315] AICWFDBG(LOGINFO)	pwrofst2x 2.4g: [0]:11b, [1]:ofdm_highrate, [2]:ofdm_lowrate
+[    4.744315]   chan=	1-4	5-9	10-13
+[    4.744319] AICWFDBG(LOGINFO)	
+[    4.744319]   [0] =
+[    4.744322] AICWFDBG(LOGINFO)		0
+[    4.744325] AICWFDBG(LOGINFO)		0
+[    4.744328] AICWFDBG(LOGINFO)		0
+[    4.744331] AICWFDBG(LOGINFO)	
+[    4.744331]   [1] =
+[    4.744333] AICWFDBG(LOGINFO)		0
+[    4.744336] AICWFDBG(LOGINFO)		0
+[    4.744339] AICWFDBG(LOGINFO)		0
+[    4.744341] AICWFDBG(LOGINFO)	
+[    4.744341]   [2] =
+[    4.744344] AICWFDBG(LOGINFO)		0
+[    4.744347] AICWFDBG(LOGINFO)		0
+[    4.744350] AICWFDBG(LOGINFO)		0
+[    4.744353] AICWFDBG(LOGINFO)	
+[    4.744353] pwrofst2x 5g: [0]:ofdm_lowrate, [1]:ofdm_highrate, [2]:ofdm_midrate
+[    4.744353]   chan=	36-50	51-64	98-114	115-130	131-146	147-166
+[    4.744362] AICWFDBG(LOGINFO)	
+[    4.744362]   [0] =
+[    4.744365] AICWFDBG(LOGINFO)		0
+[    4.744368] AICWFDBG(LOGINFO)		0
+[    4.744371] AICWFDBG(LOGINFO)		0
+[    4.744373] AICWFDBG(LOGINFO)		0
+[    4.744376] AICWFDBG(LOGINFO)		0
+[    4.744379] AICWFDBG(LOGINFO)		0
+[    4.744382] AICWFDBG(LOGINFO)	
+[    4.744382]   [1] =
+[    4.744385] AICWFDBG(LOGINFO)		0
+[    4.744387] AICWFDBG(LOGINFO)		0
+[    4.744390] AICWFDBG(LOGINFO)		0
+[    4.744393] AICWFDBG(LOGINFO)		0
+[    4.744395] AICWFDBG(LOGINFO)		0
+[    4.744398] AICWFDBG(LOGINFO)		0
+[    4.744401] AICWFDBG(LOGINFO)	
+[    4.744401]   [2] =
+[    4.744404] AICWFDBG(LOGINFO)		0
+[    4.744406] AICWFDBG(LOGINFO)		0
+[    4.744409] AICWFDBG(LOGINFO)		0
+[    4.744412] AICWFDBG(LOGINFO)		0
+[    4.744415] AICWFDBG(LOGINFO)		0
+[    4.744417] AICWFDBG(LOGINFO)		0
+[    4.744420] AICWFDBG(LOGINFO)	
+[    4.744423] AICWFDBG(LOGINFO)	rwnx_send_txpwr_ofst2x_req:Do not use txpwr_ofst2x
+[    4.744428] AICWFDBG(LOGINFO)	get_userconfig_xtal_cap:enable       :0
+[    4.744433] AICWFDBG(LOGINFO)	get_userconfig_xtal_cap:xtal_cap     :24
+[    4.744438] AICWFDBG(LOGINFO)	get_userconfig_xtal_cap:xtal_cap_fine:31
+[    5.699441] AICWFDBG(LOGINFO)	get macaddr:[MAC_REDACTED]
+[    5.700195] AICWFDBG(LOGINFO)	HT supp 1, VHT supp 1, HE supp 1
+[    5.700583] rwnx_reg_notifier Enter
+[    5.700910] AICWFDBG(LOGINFO)	getRegdomainFromRwnxDB set ccode:00 
+[    5.700945] AICWFDBG(LOGINFO)	rwnx_get_countrycode_channels support channel:1 2 3 4 5 6 7 8 9 10 11 12 13 14 36 40 44 48 52 56 60 64 100 104 108 112 116 120 124 128 132 136 140 144 149 153 157 161 165 
+[    5.701003] ieee80211 phy0: 
+[    5.701003] *******************************************************
+[    5.701003] ** CAUTION: USING PERMISSIVE CUSTOM REGULATORY RULES **
+[    5.701003] *******************************************************
+[    5.701297] AICWFDBG(LOGINFO)	rwnx_interface_add: wlan%d, 2, 10
+[    5.701403] AICWFDBG(LOGINFO)	interface add:8c 7a b3 f8 18 bd
+[    5.714150] AICWFDBG(LOGINFO)	New interface create wlan0
+[    5.714164] AICWFDBG(LOGINFO)	rwnx_platform_init rwnx_cfg80211_init exit 
+[    5.714308] usbcore: registered new interface driver aic8800_fdrv
+[    8.070221] AICWFDBG(LOGINFO)	rwnx_rx_sm_connect_ind ind->status_code:0 
+[    8.070247] AICWFDBG(LOGINFO)	rwnx_rx_sm_connect_ind ind->roamed:0 ind->status_code:0 rwnx_vif->drv_conn_state:2
+[    8.070269] AICWFDBG(LOGINFO)	rwnx_rx_sm_connect_ind cfg80211_connect_result pass, rwnx_vif->drv_conn_state:3
+[    8.088483] AICWFDBG(LOGINFO)	need cfm ethertype:    8e88,user_idx=1, skb=[POINTER_REDACTED] sta_idx:0
+[    8.107194] AICWFDBG(LOGINFO)	usb_host_tx_cfm_handler:used_idx=0, hostid=[POINTER_REDACTED], [POINTER_REDACTED], status=9
+[    8.107532] AICWFDBG(LOGINFO)	need cfm ethertype:    8e88,user_idx=2, skb=[POINTER_REDACTED] sta_idx:0
+[    8.127354] AICWFDBG(LOGINFO)	usb_host_tx_cfm_handler:used_idx=1, hostid=[POINTER_REDACTED], [POINTER_REDACTED], status=9

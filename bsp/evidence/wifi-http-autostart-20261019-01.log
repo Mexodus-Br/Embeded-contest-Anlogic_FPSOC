@@ -1,0 +1,25 @@
+
+# stty -echo; printf '\nWIFI_ECHO_OFF\n'
+
+WIFI_ECHO_OFF
+# > > > > > > > > > > interface=wlan0
+key_mgmt=WPA2-PSK
+wpa_state=COMPLETED
+ip_address=192.168.2.245
+8: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.2.245/24 scope global wlan0
+       valid_lft forever preferred_lft forever
+default via 192.168.2.1 metric 600 
+192.168.2.0/24 proto kernel scope link src 192.168.2.245 
+HTTP process running (port 8080, wireless device only)
+Uid:	498	498	498	498
+Gid:	498	498	498	498
+8: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.2.245/24 scope global wlan0
+       valid_lft forever preferred_lft forever
+HTTP URL: http://192.168.2.245:8080/
+Autostart enabled for the configured router; cold boot still requires acceptance
+WIFI_AUTO_APPROVALS_SAVED_COLD_BOOT_NOT_YET_TESTED
+# 
+WIFI_EXIT=0
+# 

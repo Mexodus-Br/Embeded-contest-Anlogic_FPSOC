@@ -1,0 +1,73 @@
+{
+  "date_local": "2026-10-19 Asia/Taipei",
+  "status": "CORE_LAN_PING_HTTP_DOWNLOAD_PASSED_WITH_LIMITATIONS",
+  "board_wireless_ipv4": "192.168.2.245",
+  "prefixlen": 24,
+  "gateway": "192.168.2.1",
+  "pc_wireless_ipv4": "192.168.2.244",
+  "frequency_mhz": 5200,
+  "deployed_root_partuuid": "70d791a8-02",
+  "deployed_profile": "first HTTP image plus persistent firmware aliases, driver and STA permission-check fixes; local credentials and autostart approvals",
+  "latest_distributable_root_partuuid": "82e6e1bc-02",
+  "latest_distributable_board_boot_tested": false,
+  "A": "PASS",
+  "B": "PASS_ASSOCIATION_DHCP",
+  "C": "PARTIAL_BOARD_TO_PC_ICMP_BLOCKED",
+  "D": "PASS_LAN_COMMAND_LINE_AND_USER_BROWSER",
+  "E": "PASS_BINARY_AND_SANITIZED_SNAPSHOT",
+  "F": "OBSERVED_AND_RECONNECT_AND_USER_COLD_BOOT_PASSED",
+  "board_observation": {
+    "seconds": 604.06,
+    "checks": 61,
+    "association_failures": 0,
+    "gateway_ping_failures": 0,
+    "usb_or_firmware_events": []
+  },
+  "pc_http_observation": {
+    "seconds": 601.234,
+    "rounds": 117,
+    "failed_rounds": 0
+  },
+  "pc_continuous_ping": {
+    "sent": 601,
+    "received": 600,
+    "lost": 1,
+    "loss_percent": 0.16638935108153077,
+    "max_rtt_ms": 532
+  },
+  "reconnect": {
+    "address": "192.168.2.245",
+    "http_pid_before": 2315,
+    "http_pid_after": 2315,
+    "lan_download_and_ping": "PASS"
+  },
+  "cold_boot": {
+    "user_power_cycled": true,
+    "manual_network_or_http_start_used": false,
+    "automatic_snapshot_uptime_seconds": 12.27,
+    "http_uid": 498,
+    "http_pid": 257,
+    "lan_download_and_ping": "PASS",
+    "browser": "USER_CONFIRMED_NORMAL"
+  },
+  "final": {
+    "board_power": "ON",
+    "COM4": "CLOSED_RELEASED",
+    "sta_worker_pid": 195,
+    "wpa_pid": 203,
+    "dhcp_pid": 763,
+    "http_pid": 257,
+    "motion_modules_loaded": false,
+    "emmc_qspi_modified": false
+  },
+  "snapshot_hash_generated": false,
+  "cold_snapshot_board_pc_byte_compare": "PASS",
+  "cold_snapshot_bytes": 786,
+  "limitations": [
+    "Board-to-PC ICMP: 0/4; PC Public inbound Echo allow rule absent; firewall unchanged; filtering consistent but not packet-capture proven",
+    "Configured CN but vendor self-managed regulatory domain remains 00; regional/channel qualification pending",
+    "Board wall clock unsynchronized (1970); use PC UTC timestamps and board uptime",
+    "r3 distributable image offline verified but not written/booted; current board is documented patched first image",
+    "HTTP initial autostart retries for about 180 seconds; if router unavailable longer, wifi-http start is required after Wi-Fi connects"
+  ]
+}

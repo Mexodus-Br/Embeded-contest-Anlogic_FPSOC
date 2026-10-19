@@ -1,0 +1,52 @@
+
+Delta Wi-Fi candidate - not board accepted
+delta-wifi login: root
+Password: 
+# stty -echo; printf '\nWIFI_ECHO_OFF\n'
+
+WIFI_ECHO_OFF
+# > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > WIFI_POST_BOOT_BEGIN
+6.1.111-rt42-bsp-wifi1
+root_partuuid=70d791a8-02
+LOCAL_AUTO_APPROVAL_FILES_PRESENT
+interface=wlan0
+key_mgmt=WPA2-PSK
+wpa_state=COMPLETED
+ip_address=192.168.2.245
+8: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.2.245/24 scope global wlan0
+       valid_lft forever preferred_lft forever
+default via 192.168.2.1 metric 600 
+192.168.2.0/24 proto kernel scope link src 192.168.2.245 
+HTTP process running (port 8080, wireless device only)
+Uid:	498	498	498	498
+Gid:	498	498	498	498
+8: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.2.245/24 scope global wlan0
+       valid_lft forever preferred_lft forever
+HTTP URL: http://192.168.2.245:8080/
+AUTO_SNAPSHOT_SOURCE=BOARD_LOCAL_COLLECTION
+AUTO_SNAPSHOT_UPTIME_SECONDS=12.27
+AUTO_HTTP_RUNNING_UID498
+BINARY_REFERENCE_BYTE_COMPARE=PASS
+MOTION_MODULES_ABSENT
+1-1 vid:pid=1a40:0101 bus=1 dev=2 speed=480 parent=usb1
+  1-1:1.0 driver=hub
+1-1.1 vid:pid=a69c:8d81 bus=1 dev=4 speed=480 parent=1-1
+  1-1.1:1.0 driver=unbound
+  1-1.1:1.1 driver=unbound
+  1-1.1:1.2 driver=aic8800_fdrv
+usb1 vid:pid=1d6b:0002 bus=1 dev=1 speed=480 parent=f8180000.usb
+PING 192.168.2.1 (192.168.2.1): 56 data bytes
+64 bytes from 192.168.2.1: seq=0 ttl=64 time=505.909 ms
+64 bytes from 192.168.2.1: seq=1 ttl=64 time=1.045 ms
+64 bytes from 192.168.2.1: seq=2 ttl=64 time=1.058 ms
+64 bytes from 192.168.2.1: seq=3 ttl=64 time=1.165 ms
+
+--- 192.168.2.1 ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 1.045/127.294/505.909 ms
+WIFI_POST_BOOT_END
+# 
+WIFI_EXIT=0
+# 

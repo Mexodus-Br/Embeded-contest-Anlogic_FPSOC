@@ -4,9 +4,9 @@
 - HTTP用户态独立候选/最终ext4检查通过，原内核/模块/启动链/DTB未变；4项VM HTTP安全/完整下载测试通过，不能当作实板LAN通过。
 - 用户装卡/连接COM4并上电后，FSBL→U-Boot→Linux/SD根、1GiB/CMA128MiB、DWC2 Host/Hub和实际a69c:8d80通过。首次loader路径失败已留证；补同套U02平面路径别名后，chip_id=7固件下载、a69c:8d81和wlan0出现。原候选文件未包括这项实板后修复，部署态与文件镜像须分开标识。
 - r2修正版含平面固件路径别名与相同模块/启动链，独立本机镜像 `bsp/artifacts/wifi-http-20261019-r2/sdcard.img`，根 `c7965caa-02`、SHA256 `d429f239584c35a8a5a9c185af0a5f864f301750d343a6cd3c9e27f256cc1d81`。离线验证通过，尚未写卡；不能把当前首版+板端修复的运行结果写成r2冷启动通过。
-- 本次配置后实查Wi-Fi配置root:0600，但HTTP认证文件不存在；等待用户补本地认证。发现最小BusyBox无stat，已用Python lstat最小修复STA权限检查并应用在当前SD。STA worker运行、状态SCANNING，主动扫描15个网络但目标SSID不可见；尚未关联/取得IPv4。COM4已关闭交给用户核对路由器/本地配置，无任何运动操作。
+- 前期配置后实查Wi-Fi配置root:0600，但HTTP认证文件不存在，随后由用户补本地认证。发现最小BusyBox无stat，已用Python lstat最小修复STA权限检查并应用在当前SD。该阶段STA worker运行、SCANNING，扫描15个网络但目标不可见；后续用户补漏输的@后已关联，最终结果见下项。全程无运动操作。
 - r3独立镜像 `bsp/artifacts/wifi-http-20261019-r3/sdcard.img`，根 `82e6e1bc-02`、SHA256 `db50bdcf1908977fc29fd09bdc9e75d28e79475799a8a2fb0f703359c08cc734`，包含固件路径与STA权限检查修复。最终EXT4/启动链/内核/模块/源码/固件别名检查通过；未写卡。当前首版SD+两项持久修复不能冒充r3。
-- 本批ping/HTTP/文件下载/10分钟/重连/冷启动自动联网均待实测。HTTP尚未启动，无LAN验收通过声明。
+- 最新实测：用户修正SSID漏输@后WPA2-PSK COMPLETED，DHCP 192.168.2.245/24，网关192.168.2.1；电脑WLAN192.168.2.244/24。HTTP以UID/GID498运行；绑定电脑无线源的首页200、二进制逐字节、脱敏快照重复下载及401/404/403/405预检通过，用户浏览器认证/下载通过。板卡wlan0→网关4/4、电脑→板卡10/10；板卡→电脑0/4，Public入站Echo未见放行，未更改防火墙。板端604秒稳定观察通过；电脑601秒117轮HTTP/下载无失败，独立ping601发600收丢1包约0.17%；受控重连及用户冷启动自动联网/HTTP/下载复测通过。板卡→电脑ICMP方向仍未通过，完整A–F不能写全部通过。最终板卡上电，COM4关闭释放，HTTP UID498运行；细节见http/BUILD_STATUS.md。
 - 细节、路径、凭据/服务操作及电脑验收入口见 [http/README.md](http/README.md)。旧Wi-Fi候选与scope回退镜像保持。
 
 ---

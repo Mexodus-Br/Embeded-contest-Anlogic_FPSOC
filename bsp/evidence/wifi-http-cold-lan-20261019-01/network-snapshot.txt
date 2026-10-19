@@ -1,0 +1,44 @@
+{
+  "format": "wifi-diagnostics-v1",
+  "source": "BOARD_LOCAL_COLLECTION",
+  "collected_utc": "1970-01-01T00:00:12.272250Z",
+  "kernel": "6.1.111-rt42-bsp-wifi1",
+  "root_partuuid": "70d791a8-02",
+  "uptime_seconds": "12.27",
+  "interface": "wlan0",
+  "wpa_state": "COMPLETED",
+  "ipv4": [
+    {
+      "ip": "192.168.2.245",
+      "prefixlen": 24
+    }
+  ],
+  "routes": [
+    {
+      "dst": "default",
+      "gateway": "192.168.2.1",
+      "metric": 600
+    },
+    {
+      "dst": "192.168.2.0/24",
+      "prefsrc": "192.168.2.245"
+    }
+  ],
+  "usb": [
+    {
+      "port": "usb1",
+      "vid": "1d6b",
+      "pid": "0002"
+    },
+    {
+      "port": "1-1.1",
+      "vid": "a69c",
+      "pid": "8d81"
+    },
+    {
+      "port": "1-1",
+      "vid": "1a40",
+      "pid": "0101"
+    }
+  ]
+}

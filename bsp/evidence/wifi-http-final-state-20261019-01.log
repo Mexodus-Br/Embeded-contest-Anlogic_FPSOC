@@ -1,0 +1,36 @@
+
+# stty -echo; printf '\nWIFI_ECHO_OFF\n'
+
+WIFI_ECHO_OFF
+# > > > > > > > > > > > > > > > > > > > > > > > > WIFI_FINAL_STATE_BEGIN
+interface=wlan0
+key_mgmt=WPA2-PSK
+wpa_state=COMPLETED
+ip_address=192.168.2.245
+8: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.2.245/24 scope global wlan0
+       valid_lft forever preferred_lft forever
+default via 192.168.2.1 metric 600 
+192.168.2.0/24 proto kernel scope link src 192.168.2.245 
+HTTP process running (port 8080, wireless device only)
+Uid:	498	498	498	498
+Gid:	498	498	498	498
+8: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.2.245/24 scope global wlan0
+       valid_lft forever preferred_lft forever
+HTTP URL: http://192.168.2.245:8080/
+freq: 5200
+signal: -37 dBm
+rx bitrate: 86.7 MBit/s VHT-MCS 8 short GI VHT-NSS 1
+tx bitrate: 78.0 MBit/s VHT-MCS 8 VHT-NSS 1
+wifi-sta/worker.pid=195 live=True
+wifi-sta/wpa.pid=203 live=True
+wifi-sta/dhcp.pid=763 live=True
+wifi-http/server.pid=257 live=True
+LOADED_MODULE_NAMES=aic8800_fdrv,aic_load_fw
+BOARD_SNAPSHOT_BASE64=ewogICJmb3JtYXQiOiAid2lmaS1kaWFnbm9zdGljcy12MSIsCiAgInNvdXJjZSI6ICJCT0FSRF9MT0NBTF9DT0xMRUNUSU9OIiwKICAiY29sbGVjdGVkX3V0YyI6ICIxOTcwLTAxLTAxVDAwOjAwOjEyLjI3MjI1MFoiLAogICJrZXJuZWwiOiAiNi4xLjExMS1ydDQyLWJzcC13aWZpMSIsCiAgInJvb3RfcGFydHV1aWQiOiAiNzBkNzkxYTgtMDIiLAogICJ1cHRpbWVfc2Vjb25kcyI6ICIxMi4yNyIsCiAgImludGVyZmFjZSI6ICJ3bGFuMCIsCiAgIndwYV9zdGF0ZSI6ICJDT01QTEVURUQiLAogICJpcHY0IjogWwogICAgewogICAgICAiaXAiOiAiMTkyLjE2OC4yLjI0NSIsCiAgICAgICJwcmVmaXhsZW4iOiAyNAogICAgfQogIF0sCiAgInJvdXRlcyI6IFsKICAgIHsKICAgICAgImRzdCI6ICJkZWZhdWx0IiwKICAgICAgImdhdGV3YXkiOiAiMTkyLjE2OC4yLjEiLAogICAgICAibWV0cmljIjogNjAwCiAgICB9LAogICAgewogICAgICAiZHN0IjogIjE5Mi4xNjguMi4wLzI0IiwKICAgICAgInByZWZzcmMiOiAiMTkyLjE2OC4yLjI0NSIKICAgIH0KICBdLAogICJ1c2IiOiBbCiAgICB7CiAgICAgICJwb3J0IjogInVzYjEiLAogICAgICAidmlkIjogIjFkNmIiLAogICAgICAicGlkIjogIjAwMDIiCiAgICB9LAogICAgewogICAgICAicG9ydCI6ICIxLTEuMSIsCiAgICAgICJ2aWQiOiAiYTY5YyIsCiAgICAgICJwaWQiOiAiOGQ4MSIKICAgIH0sCiAgICB7CiAgICAgICJwb3J0IjogIjEtMSIsCiAgICAgICJ2aWQiOiAiMWE0MCIsCiAgICAgICJwaWQiOiAiMDEwMSIKICAgIH0KICBdCn0K
+ROOT_MOUNT=/dev/root / ext4 rw,relatime 0 0
+WIFI_FINAL_STATE_END
+# 
+WIFI_EXIT=0
+# 

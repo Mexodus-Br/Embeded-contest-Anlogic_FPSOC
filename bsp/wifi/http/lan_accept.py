@@ -43,13 +43,23 @@ def check():
     (a.output/'network-snapshot.txt').write_bytes(body) # No digest for diagnostic data.
     assert request('/files/network-snapshot.txt')[2]==body,'stable snapshot reconnect download'
     return len(body)
-assert request('/',False)[0]==401
-assert request('/files/network-snapshot.txt',False)[0]==401
-assert request('/files/missing.bin')[0]==404
-for path in ('/../etc/passwd','/files/%2e%2e/etc/shadow','/etc/wifi/wpa_supplicant.conf'):
-    assert request(path)[0] in (403,404)
-for method in ('PUT','DELETE','POST'):
-    assert request('/files/test.bin',method=method)[0]==405
+preflight=[]
+checks=[('authenticated_home','/',True,'GET',(200,)),
+        ('unauthorized_home','/',False,'GET',(401,)),
+        ('unauthorized_snapshot','/files/network-snapshot.txt',False,'GET',(401,)),
+        ('missing_file','/files/missing.bin',True,'GET',(404,))]
+checks += [('path_refused',path,True,'GET',(403,404)) for path in ('/../etc/passwd','/files/%2e%2e/etc/shadow','/etc/wifi/wpa_supplicant.conf')]
+checks += [('method_refused','/files/test.bin',True,method,(405,)) for method in ('PUT','DELETE','POST')]
+for name,path,authorized,method,expected in checks:
+    try:
+        code=request(path,authorized,method)[0]
+        event=dict(check=name,path=path,method=method,status=code,expected=list(expected),passed=code in expected)
+    except (OSError,ValueError,http.client.HTTPException) as error:
+        event=dict(check=name,path=path,method=method,passed=False,error=type(error).__name__)
+    preflight.append(event)
+    (a.output/'preflight.json').write_text(json.dumps(preflight,indent=2)+'\n')
+    if not event['passed']:
+        raise SystemExit('Preflight failed: '+json.dumps(event)+'; for HTTP 401 recheck the independent HTTP password locally')
 start=time.monotonic();failures=0;attempts=0
 while True:
     attempts+=1

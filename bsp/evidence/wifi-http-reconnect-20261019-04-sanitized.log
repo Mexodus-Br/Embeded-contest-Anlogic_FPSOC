@@ -1,0 +1,75 @@
+
+# stty -echo; printf '\nWIFI_ECHO_OFF\n'
+
+WIFI_ECHO_OFF
+# > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > WIFI_CONNECT_BEGIN
+/etc/wifi/wpa_supplicant.conf uid=0 mode=600
+/etc/wifi-http/auth.json uid=0 mode=600
+HTTP_PID_BEFORE_RECONNECT=2315
+[ 3146.152695] AICWFDBG(LOGINFO)	rwnx_cfg80211_disconnect drv_vif_index:0 disconnect reason:3 
+[ 3146.153627] AICWFDBG(LOGINFO)	deinit:macaddr:[MAC_REDACTED]
+[ 3146.153651] AICWFDBG(LOGINFO)	reord_m[MAC_REDACTED],bd
+[ 3146.153660] AICWFDBG(LOGINFO)	reord_deinit_sta
+[ 3146.153667] AICWFDBG(LOGINFO)	reord dinit in_irq():0 in_atomic:1 in_softirq:512
+[ 3146.153675] AICWFDBG(LOGINFO)	reord dinit in_irq():0 in_atomic:1 in_softirq:512
+[ 3146.153682] AICWFDBG(LOGINFO)	reord dinit in_irq():0 in_atomic:1 in_softirq:512
+[ 3146.153688] AICWFDBG(LOGINFO)	reord dinit in_irq():0 in_atomic:1 in_softirq:512
+[ 3146.153694] AICWFDBG(LOGINFO)	reord dinit in_irq():0 in_atomic:1 in_softirq:512
+[ 3146.153700] AICWFDBG(LOGINFO)	reord dinit in_irq():0 in_atomic:1 in_softirq:512
+[ 3146.153706] AICWFDBG(LOGINFO)	reord dinit in_irq():0 in_atomic:1 in_softirq:512
+[ 3146.153713] AICWFDBG(LOGINFO)	reord dinit in_irq():0 in_atomic:1 in_softirq:512
+[ 3146.180650] AICWFDBG(LOGINFO)	rwnx_close wlan0 Enter
+[ 3146.180667] AICWFDBG(LOGINFO)	state: 1 1 
+[ 3146.210021] AICWFDBG(LOGINFO)	HT supp 1, VHT supp 1, HE supp 1
+STA stopped
+STA worker requested; query wifi-sta status
+Failed to connect to non-global ctrl_ifname: wlan0  error: No such file or directory
+[ 3146.894838] rwnx_reg_notifier Enter
+[ 3148.891345] AICWFDBG(LOGINFO)	rwnx_rx_sm_connect_ind ind->status_code:0 
+[ 3148.891387] AICWFDBG(LOGINFO)	rwnx_rx_sm_connect_ind ind->roamed:0 ind->status_code:0 rwnx_vif->drv_conn_state:2
+[ 3148.891415] AICWFDBG(LOGINFO)	rwnx_rx_sm_connect_ind cfg80211_connect_result pass, rwnx_vif->drv_conn_state:3
+[ 3148.895692] AICWFDBG(LOGINFO)	need cfm ethertype:    8e88,user_idx=3, skb=[POINTER_REDACTED] sta_idx:0
+[ 3148.911990] AICWFDBG(LOGINFO)	usb_host_tx_cfm_handler:used_idx=2, hostid=[POINTER_REDACTED], [POINTER_REDACTED], status=9
+[ 3148.912333] AICWFDBG(LOGINFO)	need cfm ethertype:    8e88,user_idx=4, skb=[POINTER_REDACTED] sta_idx:0
+[ 3148.931362] AICWFDBG(LOGINFO)	usb_host_tx_cfm_handler:used_idx=3, hostid=[POINTER_REDACTED], [POINTER_REDACTED], status=9
+[ 3148.931605] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+interface=wlan0
+key_mgmt=WPA2-PSK
+wpa_state=COMPLETED
+ip_address=192.168.2.245
+8: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.2.245/24 scope global wlan0
+       valid_lft forever preferred_lft forever
+default via 192.168.2.1 metric 600 
+192.168.2.0/24 proto kernel scope link src 192.168.2.245 
+global
+country 00: DFS-UNSET
+	(2402 - 2472 @ 40), (6, 20), (N/A)
+	(2457 - 2482 @ 20), (6, 20), (N/A), AUTO-BW, PASSIVE-SCAN
+	(2474 - 2494 @ 20), (6, 20), (N/A), NO-OFDM, PASSIVE-SCAN
+	(5170 - 5250 @ 80), (6, 20), (N/A), AUTO-BW, PASSIVE-SCAN
+	(5250 - 5330 @ 80), (6, 20), (0 ms), DFS, AUTO-BW, PASSIVE-SCAN
+	(5490 - 5730 @ 160), (6, 20), (0 ms), DFS, PASSIVE-SCAN
+	(5735 - 5835 @ 80), (6, 20), (N/A), PASSIVE-SCAN
+	(57240 - 63720 @ 2160), (N/A, 0), (N/A)
+
+phy#0 (self-managed)
+country 00: DFS-UNSET
+	(2380 - 2520 @ 40), (N/A, 20), (N/A)
+	(5140 - 5980 @ 80), (N/A, 20), (N/A)
+
+Published sanitized network-snapshot.txt (no hash generated)
+Already running
+HTTP process running (port 8080, wireless device only)
+Uid:	498	498	498	498
+Gid:	498	498	498	498
+8: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.2.245/24 scope global wlan0
+       valid_lft forever preferred_lft forever
+HTTP URL: http://192.168.2.245:8080/
+HTTP_PID_AFTER_RECONNECT=2315
+BOARD_BINARY_REFERENCE_BYTE_COMPARE=PASS
+WIFI_CONNECT_END
+# 
+WIFI_EXIT=0
+# 

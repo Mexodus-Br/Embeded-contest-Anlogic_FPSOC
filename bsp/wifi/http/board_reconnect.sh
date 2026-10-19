@@ -8,6 +8,7 @@ for name in ('/etc/wifi/wpa_supplicant.conf', '/etc/wifi-http/auth.json'):
     print(name, 'uid=%d mode=%o' % (info.st_uid, stat.S_IMODE(info.st_mode)))
     assert info.st_uid == 0 and stat.S_IMODE(info.st_mode) == 0o600
 PY
+printf 'HTTP_PID_BEFORE_RECONNECT='; cat /run/wifi-http/server.pid
 wifi-sta reconnect
 ready=0
 for attempt in $(seq 1 45); do
@@ -17,8 +18,10 @@ done
 wifi-sta status
 test "$ready" = 1 || { echo WIFI_AUTH_DHCP_NOT_READY; exit 1; }
 iw reg get
+wifi-http-export
 wifi-http start
 wifi-http status
+printf 'HTTP_PID_AFTER_RECONNECT='; cat /run/wifi-http/server.pid
 python3 - <<'PY'
 from pathlib import Path
 assert Path('/srv/wifi-http/exports/test.bin').read_bytes()==bytes(range(256))*1024

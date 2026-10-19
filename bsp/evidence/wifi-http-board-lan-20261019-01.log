@@ -1,0 +1,24 @@
+
+# stty -echo; printf '\nWIFI_ECHO_OFF\n'
+
+WIFI_ECHO_OFF
+# > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > Board-local D80 approval stored; run wifi-driver load
+WIFI_DRIVER_QUALIFICATION_SAVED
+default via 192.168.2.1 dev wlan0 metric 600 
+192.168.2.0/24 dev wlan0 proto kernel scope link src 192.168.2.245 
+PING 192.168.2.1 (192.168.2.1): 56 data bytes
+64 bytes from 192.168.2.1: seq=0 ttl=64 time=3.680 ms
+64 bytes from 192.168.2.1: seq=1 ttl=64 time=1.234 ms
+64 bytes from 192.168.2.1: seq=2 ttl=64 time=1.274 ms
+64 bytes from 192.168.2.1: seq=3 ttl=64 time=1.332 ms
+
+--- 192.168.2.1 ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 1.234/1.880/3.680 ms
+PING 192.168.2.244 (192.168.2.244): 56 data bytes
+
+--- 192.168.2.244 ping statistics ---
+4 packets transmitted, 0 packets received, 100% packet loss
+# 
+WIFI_EXIT=1
+# 

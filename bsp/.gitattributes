@@ -24,3 +24,6 @@ evidence/scope-*/** -text
 telemetry/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evidence/telemetry-* -text
 evidence/telemetry-*/** -text
+# Preserve exact downloaded diagnostic bytes and UART records for this task.
+evidence/wifi-http-* -text
+evidence/wifi-http-*/** -text

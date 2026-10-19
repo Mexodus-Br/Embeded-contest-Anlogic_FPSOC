@@ -1,0 +1,105 @@
+[
+  {
+    "check": "authenticated_home",
+    "path": "/",
+    "method": "GET",
+    "status": 200,
+    "expected": [
+      200
+    ],
+    "passed": true
+  },
+  {
+    "check": "unauthorized_home",
+    "path": "/",
+    "method": "GET",
+    "status": 401,
+    "expected": [
+      401
+    ],
+    "passed": true
+  },
+  {
+    "check": "unauthorized_snapshot",
+    "path": "/files/network-snapshot.txt",
+    "method": "GET",
+    "status": 401,
+    "expected": [
+      401
+    ],
+    "passed": true
+  },
+  {
+    "check": "missing_file",
+    "path": "/files/missing.bin",
+    "method": "GET",
+    "status": 404,
+    "expected": [
+      404
+    ],
+    "passed": true
+  },
+  {
+    "check": "path_refused",
+    "path": "/../etc/passwd",
+    "method": "GET",
+    "status": 403,
+    "expected": [
+      403,
+      404
+    ],
+    "passed": true
+  },
+  {
+    "check": "path_refused",
+    "path": "/files/%2e%2e/etc/shadow",
+    "method": "GET",
+    "status": 403,
+    "expected": [
+      403,
+      404
+    ],
+    "passed": true
+  },
+  {
+    "check": "path_refused",
+    "path": "/etc/wifi/wpa_supplicant.conf",
+    "method": "GET",
+    "status": 404,
+    "expected": [
+      403,
+      404
+    ],
+    "passed": true
+  },
+  {
+    "check": "method_refused",
+    "path": "/files/test.bin",
+    "method": "PUT",
+    "status": 405,
+    "expected": [
+      405
+    ],
+    "passed": true
+  },
+  {
+    "check": "method_refused",
+    "path": "/files/test.bin",
+    "method": "DELETE",
+    "status": 405,
+    "expected": [
+      405
+    ],
+    "passed": true
+  },
+  {
+    "check": "method_refused",
+    "path": "/files/test.bin",
+    "method": "POST",
+    "status": 405,
+    "expected": [
+      405
+    ],
+    "passed": true
+  }
+]
