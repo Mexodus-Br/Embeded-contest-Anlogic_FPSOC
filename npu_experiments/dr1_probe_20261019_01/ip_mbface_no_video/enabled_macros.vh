@@ -1,0 +1,6 @@
+`define SOFT_NN_77b8d5bfaa14
+`define NN_ACTIVATE_77b8d5bfaa14
+`define NN_SHORTCUT_77b8d5bfaa14
+`define MBFace_77b8d5bfaa14
+`define SELECTABLE_NET_77b8d5bfaa14
+`define YOLOV5_77b8d5bfaa14

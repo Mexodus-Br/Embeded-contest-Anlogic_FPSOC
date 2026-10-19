@@ -1,0 +1,122 @@
+{
+  "conv1d": {
+    "checker_exit": 1,
+    "stored_parameters": 2499,
+    "original_parameters": 2499,
+    "original_logical_macs": 301152,
+    "lowering_max_abs_reference_error": 0.0,
+    "zero_embedded_conv_macs": null,
+    "graph_operators": [
+      {
+        "name": "conv0",
+        "type": "Conv"
+      },
+      {
+        "name": "relu0",
+        "type": "Relu"
+      },
+      {
+        "name": "conv1",
+        "type": "Conv"
+      },
+      {
+        "name": "relu1",
+        "type": "Relu"
+      },
+      {
+        "name": "temporal_mean",
+        "type": "GlobalAveragePool"
+      },
+      {
+        "name": "flatten",
+        "type": "Flatten"
+      },
+      {
+        "name": "classifier",
+        "type": "Gemm"
+      }
+    ],
+    "trained": false,
+    "npu_execution": false
+  },
+  "conv2d_1x3": {
+    "checker_exit": 0,
+    "stored_parameters": 2499,
+    "original_parameters": 2499,
+    "original_logical_macs": 301152,
+    "lowering_max_abs_reference_error": 0.0,
+    "zero_embedded_conv_macs": null,
+    "graph_operators": [
+      {
+        "name": "conv0",
+        "type": "Conv"
+      },
+      {
+        "name": "relu0",
+        "type": "Relu"
+      },
+      {
+        "name": "conv1",
+        "type": "Conv"
+      },
+      {
+        "name": "relu1",
+        "type": "Relu"
+      },
+      {
+        "name": "temporal_mean",
+        "type": "GlobalAveragePool"
+      },
+      {
+        "name": "flatten",
+        "type": "Flatten"
+      },
+      {
+        "name": "classifier",
+        "type": "Gemm"
+      }
+    ],
+    "trained": false,
+    "npu_execution": false
+  },
+  "conv2d_3x3_zero_embed": {
+    "checker_exit": 0,
+    "stored_parameters": 7203,
+    "original_parameters": 2499,
+    "original_logical_macs": 301152,
+    "lowering_max_abs_reference_error": 1.4901161193847656e-08,
+    "zero_embedded_conv_macs": 903264,
+    "graph_operators": [
+      {
+        "name": "conv0",
+        "type": "Conv"
+      },
+      {
+        "name": "relu0",
+        "type": "Relu"
+      },
+      {
+        "name": "conv1",
+        "type": "Conv"
+      },
+      {
+        "name": "relu1",
+        "type": "Relu"
+      },
+      {
+        "name": "temporal_mean",
+        "type": "GlobalAveragePool"
+      },
+      {
+        "name": "flatten",
+        "type": "Flatten"
+      },
+      {
+        "name": "classifier",
+        "type": "Gemm"
+      }
+    ],
+    "trained": false,
+    "npu_execution": false
+  }
+}

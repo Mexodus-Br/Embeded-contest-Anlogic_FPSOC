@@ -1,0 +1,8 @@
+`define SOFT_NN_77b8d5bfaa14
+`define NN_POOLING_77b8d5bfaa14
+`define NN_ACTIVATE_77b8d5bfaa14
+`define NN_UPSAMPLE_77b8d5bfaa14
+`define NN_ROUTE_77b8d5bfaa14
+`define NN_SHORTCUT_77b8d5bfaa14
+`define ALL_OPERATOR_77b8d5bfaa14
+`define YOLOV5_77b8d5bfaa14

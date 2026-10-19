@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:anlogic="http" xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+    <ipxact:vendor>anlogic.com</ipxact:vendor>
+    <ipxact:library>customized</ipxact:library>
+    <ipxact:name>design_design_0_Video_NPU_0</ipxact:name>
+    <ipxact:version>1.0</ipxact:version>
+    <ipxact:componentInstances>
+        <ipxact:componentInstance>
+            <ipxact:instanceName>video_npu_top_77b8d5bfaa14_Inst</ipxact:instanceName>
+            <ipxact:componentRef vendor="anlogic.com" library="ip" name="Video_NPU" version="1.1"/>
+            <ipxact:configurableElementValues>
+<ipxact:configurableElementValue referenceId="DW_AVB_ADDR">32</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="DW_AVB_DATA">64</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="DW_AVB_STB">8</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="DW_AVB_LEN">8</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="DW_AVB_ID">4</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="SOFT_NN">1</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="NN_POOLING">1</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="NN_ACTIVATE">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="NN_UPSAMPLE">1</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="NN_ROUTE">1</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="NN_SHORTCUT">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="SOFT_YOLO">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="SOFT_CSC">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="SOFT_RESIZE">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="NPU_SOFT">1</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="YOLOV3TINY">1</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="YOLOV3">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="YOLOV4">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="YOLOV5S">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="MBFace">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIS_ADDR_WD">33</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIS_DT_WD">32</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIS_DT_NB">4</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIS_BURSTP_WD">4</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIS_ID_WD">12</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIM_ADDR_WD">33</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIM_DT_WD">64</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIM_DT_NB">8</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIM_BURSTP_WD">4</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="AXIM_ID_WD">6</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="SOFT_HDMI_DISPLAY">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="PRE_PROCESS">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="POST_PROCESS">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="YOLOV8N">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="ALL_OPERATOR">0</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="SELECTABLE_NET">1</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="YOLOV5">1</ipxact:configurableElementValue>
+<ipxact:configurableElementValue referenceId="YOLOV8">0</ipxact:configurableElementValue>
+</ipxact:configurableElementValues>
+        </ipxact:componentInstance>
+    </ipxact:componentInstances>
+    <ipxact:adHocConnections>
+        <ipxact:adHocConnection>
+            <ipxact:name>M_AXI_ACLK</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="M_AXI_ACLK"/>
+                <ipxact:externalPortReference portRef="M_AXI_ACLK"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>M_AXI_AResetn</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="M_AXI_AResetn"/>
+                <ipxact:externalPortReference portRef="M_AXI_AResetn"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>S_AXILite_ACLK</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="S_AXILite_ACLK"/>
+                <ipxact:externalPortReference portRef="S_AXILite_ACLK"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>S_AXILite_AResetn</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="S_AXILite_AResetn"/>
+                <ipxact:externalPortReference portRef="S_AXILite_AResetn"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_awaddr_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_awaddr_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_awaddr_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_awprot_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_awprot_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_awprot_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_awvalid_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_awvalid_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_awvalid_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_awready_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_awready_o"/>
+                <ipxact:externalPortReference portRef="s_axilite_awready_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_wdata_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_wdata_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_wdata_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_wstrb_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_wstrb_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_wstrb_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_wvalid_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_wvalid_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_wvalid_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_wready_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_wready_o"/>
+                <ipxact:externalPortReference portRef="s_axilite_wready_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_bvalid_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_bvalid_o"/>
+                <ipxact:externalPortReference portRef="s_axilite_bvalid_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_bresp_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_bresp_o"/>
+                <ipxact:externalPortReference portRef="s_axilite_bresp_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_bready_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_bready_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_bready_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_araddr_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_araddr_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_araddr_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_arprot_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_arprot_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_arprot_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_arvalid_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_arvalid_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_arvalid_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_arready_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_arready_o"/>
+                <ipxact:externalPortReference portRef="s_axilite_arready_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_rdata_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_rdata_o"/>
+                <ipxact:externalPortReference portRef="s_axilite_rdata_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_rresp_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_rresp_o"/>
+                <ipxact:externalPortReference portRef="s_axilite_rresp_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_rvalid_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_rvalid_o"/>
+                <ipxact:externalPortReference portRef="s_axilite_rvalid_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>s_axilite_rready_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="s_axilite_rready_i"/>
+                <ipxact:externalPortReference portRef="s_axilite_rready_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awready_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awready_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_awready_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awid_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awid_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awid_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awaddr_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awaddr_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awaddr_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awlen_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awlen_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awlen_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awsize_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awsize_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awsize_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awburst_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awburst_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awburst_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awprot_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awprot_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awprot_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awvalid_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awvalid_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awvalid_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awlock_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awlock_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awlock_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_awcache_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_awcache_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_awcache_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_wdata_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_wdata_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_wdata_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_wstrb_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_wstrb_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_wstrb_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_wready_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_wready_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_wready_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_wlast_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_wlast_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_wlast_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_wvalid_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_wvalid_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_wvalid_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_bid_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_bid_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_bid_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_bresp_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_bresp_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_bresp_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_bvalid_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_bvalid_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_bvalid_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_bready_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_bready_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_bready_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arready_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arready_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_arready_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arid_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arid_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_arid_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_araddr_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_araddr_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_araddr_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arlen_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arlen_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_arlen_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arsize_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arsize_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_arsize_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arburst_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arburst_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_arburst_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arprot_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arprot_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_arprot_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arvalid_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arvalid_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_arvalid_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arlock_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arlock_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_arlock_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_arcache_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_arcache_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_arcache_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_rid_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_rid_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_rid_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_rdata_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_rdata_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_rdata_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_rresp_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_rresp_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_rresp_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_rlast_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_rlast_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_rlast_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_rvalid_soft_i</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_rvalid_soft_i"/>
+                <ipxact:externalPortReference portRef="m_axi_rvalid_soft_i"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>m_axi_rready_soft_o</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="m_axi_rready_soft_o"/>
+                <ipxact:externalPortReference portRef="m_axi_rready_soft_o"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+        <ipxact:adHocConnection>
+            <ipxact:name>npu_soft_intr</ipxact:name>
+            <ipxact:portReferences>
+                <ipxact:internalPortReference componentRef="video_npu_top_77b8d5bfaa14_Inst" portRef="npu_soft_intr"/>
+                <ipxact:externalPortReference portRef="npu_soft_intr"/>
+            </ipxact:portReferences>
+        </ipxact:adHocConnection>
+    </ipxact:adHocConnections>
+    <ipxact:vendorExtensions>
+        <anlogic:device>DR1M90GEG400</anlogic:device>
+        <anlogic:displayname>Video NPU</anlogic:displayname>
+        <anlogic:ipGenVersion>1.1</anlogic:ipGenVersion>
+    </ipxact:vendorExtensions>
+</ipxact:design>

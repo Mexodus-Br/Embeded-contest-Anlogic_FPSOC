@@ -1,0 +1,324 @@
+standard
+***Report Model: design_0_Video_NPU_0 Device: DR1M90GEG400***
+
+Design Statistics
+#IO                         0   out of    126    0.00%
+  #input                    0
+  #output                   0
+  #inout                    0
+#virtual IO               433
+  #input                  203
+  #output                 230
+  #inout                    0
+#lut                    17751
+  #lut1                   397
+  #lut2                  2120
+  #lut3                  4216
+  #lut4                  1144
+  #lut5                  2704
+  #lut6                  7170
+#reg                     9549
+  #slice reg             9549   out of 104960    9.10%
+  #pad reg                  0
+
+Utilization Statistics
+#slice*                 13882   out of  52480   26.45%
+  #used ram               176
+    #dram lut             176
+    #shifter lut            0
+  #used logic           13706
+    #with luts*          9845
+    #with adder          2907
+    #reg only*            954
+#f7mux                      0   out of  26240    0.00%
+#f8mux                      0   out of  13120    0.00%
+#eram                      15   out of    280    5.36%
+  #eram20k                 15
+  #fifo20k                  0
+#dsp                       29   out of    240   12.08%
+#pad                        0   out of    126    0.00%
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+Report Hierarchy Area:
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance                                                              |Module                               |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |adc    |soc     |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|top                                                                   |design_0_Video_NPU_0                 |9845      |2907    |9549    |15      |29      |176      |0           |0       |0       |0       |0      |0       |
+|  video_npu_top_77b8d5bfaa14_Inst                                     |video_npu_top_77b8d5bfaa14           |9425      |2907    |9549    |15      |29      |176      |0           |0       |0       |0       |0      |0       |
+|    soft_npu_top_77b8d5bfaa14                                         |soft_npu_top_77b8d5bfaa14            |9425      |2907    |9549    |15      |29      |176      |0           |0       |0       |0       |0      |0       |
+|      U_soft_npu_axi_we                                               |soft_npu_axi_we_77b8d5bfaa14         |240       |28      |386     |0       |0       |120      |0           |0       |0       |0       |0      |0       |
+|        axi_inf_fifo                                                  |soft_npu_quick_fifo_77b8d5bfaa14     |64        |0       |15      |0       |0       |64       |0           |0       |0       |0       |0      |0       |
+|        channel0                                                      |soft_npu_avb2axi_77b8d5bfaa14        |72        |28      |83      |0       |0       |56       |0           |0       |0       |0       |0      |0       |
+|          inst_soft_npu_avb2axi_bus                                   |soft_npu_avb2axi_fr_bus_77b8d5bfaa14 |46        |28      |58      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          send_fifo                                                   |soft_npu_quick_fifo_77b8d5bfaa14     |16        |0       |16      |0       |0       |56       |0           |0       |0       |0       |0      |0       |
+|        inst_arbit                                                    |soft_npu_avb2axi_arbit_77b8d5bfaa14  |42        |0       |27      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        inst_r_AXI_WRITE                                              |r_AXI_WRITE_77b8d5bfaa14             |17        |0       |238     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_AXI_master_transfer_limit_RSVD_16_31            |soft_rw_register_77b8d5bfaa14        |1         |0       |17      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_AXI_master_transfer_limit_axi_master_max_ot     |soft_rw_register_77b8d5bfaa14        |1         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_AXI_we_reset_RSVD_1_31                          |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_AXI_we_start_RSVD_1_31                          |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_AXI_we_start_axi_we_start                       |soft_w1_register_77b8d5bfaa14        |2         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Clear_interrupt_RSVD_1_31                       |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Clear_interrupt_err_int_clr                     |soft_w1_register_77b8d5bfaa14        |2         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Device_we_bs_addr_hi_CI_we_bs_addr_hi           |soft_rw_register_77b8d5bfaa14        |1         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Device_we_bs_addr_hi_CSC_we_bs_addr_hi          |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Device_we_bs_addr_hi_DISPLAY_we_bs_addr_hi      |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Device_we_bs_addr_hi_NN_we_bs_addr_hi           |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Device_we_bs_addr_hi_RESIZE_we_bs_addr_hi       |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Device_we_bs_addr_hi_RSVD_6_31                  |soft_rw_register_77b8d5bfaa14        |1         |0       |26      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Device_we_bs_addr_hi_YOLO_we_bs_addr_hi         |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Enable_interrupt_RSVD_1_31                      |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Enable_interrupt_err_int_en                     |soft_rw_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Error_info_0_error_info                         |soft_ro_register_77b8d5bfaa14        |1         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Interrupt_status_RSVD_1_31                      |soft_rw_register_77b8d5bfaa14        |2         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Interrupt_status_err_st                         |soft_ro_register_77b8d5bfaa14        |0         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_Work_info_0_work_info                           |soft_ro_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_WRITE_AXI_master_transfer_limit_axi_master_max_length |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        inst_soft_npu_axi_we_bit                                      |soft_npu_axi_we_bit_77b8d5bfaa14     |3         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        inst_soft_npu_send2axi_buff                                   |soft_npu_send2axi_buff_77b8d5bfaa14  |20        |0       |11      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|      U_soft_topctrl                                                  |soft_topctrl_77b8d5bfaa14            |24        |0       |235     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        U_r_TOP                                                       |r_TOP_77b8d5bfaa14                   |21        |0       |234     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_Clear_interrupt_RSVD_1_31                         |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_Clear_interrupt_err_int_clr                       |soft_w1_register_77b8d5bfaa14        |2         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_Enable_interrupt_RSVD_1_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_Enable_interrupt_err_int_en                       |soft_rw_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_Error_info_0_error_info                           |soft_ro_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_Interrupt_status_RSVD_1_31                        |soft_rw_register_77b8d5bfaa14        |2         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_Interrupt_status_err_st                           |soft_ro_register_77b8d5bfaa14        |0         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_Work_info_0_work_info                             |soft_ro_register_77b8d5bfaa14        |2         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_reset_CLP_reset                                   |soft_w1_register_77b8d5bfaa14        |3         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_CLP_reset_RSVD_1_31                                   |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Device_interrupt_status_AXI_rd_int                    |soft_ro_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Device_interrupt_status_CLP_int                       |soft_ro_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Device_interrupt_status_NN_int                        |soft_ro_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Device_interrupt_status_RSVD_9_31                     |soft_rw_register_77b8d5bfaa14        |1         |0       |24      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Enable_interrupt_RSVD_1_31                            |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Enable_interrupt_top_int_en                           |soft_rw_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Interrupt_status_RSVD_1_31                            |soft_rw_register_77b8d5bfaa14        |2         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Interrupt_status_top_int_st                           |soft_ro_register_77b8d5bfaa14        |0         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Op_select_RSVD_8_31                                   |soft_ro_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Op_select_route_select                                |soft_ro_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_TOP_Version_verison_info                                  |soft_ro_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|      u_clp                                                           |soft_clp_77b8d5bfaa14                |304       |59      |353     |0       |0       |48       |0           |0       |0       |0       |0      |0       |
+|        U0_AW_FIFO                                                    |CLP_FIFO_SYNC_77b8d5bfaa14           |5         |0       |4       |0       |0       |32       |0           |0       |0       |0       |0      |0       |
+|        U0_DR_FIFO                                                    |CLP_FIFO_SYNC_R_77b8d5bfaa14         |40        |0       |10      |0       |0       |16       |0           |0       |0       |0       |0      |0       |
+|        U0_DW_FIFO                                                    |CLP_FIFO_SYNC_77b8d5bfaa14           |0         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|      u_soft_axi_rd_if                                                |soft_axi_rd_if_top_77b8d5bfaa14      |171       |38      |461     |1       |0       |8        |0           |0       |0       |0       |0      |0       |
+|        U_r_AXI_READ                                                  |r_AXI_READ_77b8d5bfaa14              |19        |0       |234     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_AXI_master_transfer_limit_RSVD_16_31             |soft_rw_register_77b8d5bfaa14        |2         |0       |17      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_AXI_master_transfer_limit_axi_master_max_ot      |soft_rw_register_77b8d5bfaa14        |1         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_AXI_rd_reset_RSVD_1_31                           |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_AXI_rd_reset_axi_rd_reset                        |soft_w1_register_77b8d5bfaa14        |2         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_AXI_rd_start_RSVD_1_31                           |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_AXI_rd_start_axi_rd_start                        |soft_w1_register_77b8d5bfaa14        |3         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Clear_interrupt_RSVD_1_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Device_rd_bs_addr_hi_CI_rd_bs_addr_hi            |soft_rw_register_77b8d5bfaa14        |1         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Device_rd_bs_addr_hi_CSC_rd_bs_addr_hi           |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Device_rd_bs_addr_hi_DISPLAY_rd_bs_addr_hi       |soft_rw_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Device_rd_bs_addr_hi_NN_rd_bs_addr_hi            |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Device_rd_bs_addr_hi_RESIZE_rd_bs_addr_hi        |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Device_rd_bs_addr_hi_YOLO_rd_bs_addr_hi          |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Device_rd_bs_addr_hi_pkg_rd_bs_addr_hi           |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Enable_interrupt_RSVD_1_31                       |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Enable_interrupt_err_int_en                      |soft_rw_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Error_info_0_error_info                          |soft_ro_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Interrupt_status_RSVD_1_31                       |soft_rw_register_77b8d5bfaa14        |2         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Interrupt_status_err_st                          |soft_ro_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Work_info_0_work_info                            |soft_ro_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_AXI_master_transfer_limit_axi_master_max_length  |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_AXI_READ_Device_rd_bs_addr_hi_RSVD_7_31                   |soft_rw_register_77b8d5bfaa14        |0         |0       |25      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u_soft_axi_rd                                                 |soft_axi_bus_rd_77b8d5bfaa14         |85        |0       |118     |1       |0       |8        |0           |0       |0       |0       |0      |0       |
+|          fifo_ar                                                     |soft_sfifoNxN_77b8d5bfaa14           |14        |0       |13      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ram_sdp_77b8d5bfaa14                                      |ram_sdp_77b8d5bfaa14                 |2         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          fifo_rdata_prpt                                             |soft_sfifoNxN_77b8d5bfaa14           |13        |0       |18      |0       |0       |8        |0           |0       |0       |0       |0      |0       |
+|            ram_sdp_77b8d5bfaa14                                      |ram_sdp_77b8d5bfaa14                 |2         |0       |5       |0       |0       |8        |0           |0       |0       |0       |0      |0       |
+|        u_soft_axi_rd_prc                                             |soft_axi_rd_prc_77b8d5bfaa14         |66        |38      |64      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        U_channel_mux                                                 |channel_mux_77b8d5bfaa14             |1         |0       |45      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          u_channel_arb                                               |channel_arb_77b8d5bfaa14             |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|      u_soft_nn_top                                                   |soft_nn_top_77b8d5bfaa14             |7819      |2782    |8114    |14      |29      |0        |0           |0       |0       |0       |0      |0       |
+|        U_r_SOFT_NN                                                   |r_SOFT_NN_77b8d5bfaa14               |111       |0       |1622    |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_cfg_dt_RSVD_9_31                         |soft_rw_register_77b8d5bfaa14        |1         |0       |24      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_cfg_dt_function_sel                      |soft_rw_register_77b8d5bfaa14        |1         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_cfg_dt_prelu_slope_mode                  |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_i_trans_dt_RSVD_24_31                    |soft_rw_register_77b8d5bfaa14        |3         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_i_trans_dt_i_trans_scale                 |soft_rw_register_77b8d5bfaa14        |2         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_n_trans_dt_RSVD_24_31                    |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_n_trans_dt_n_trans_scale                 |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_o_trans_dt_RSVD_24_31                    |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_o_trans_dt_o_trans_scale                 |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_p_trans_dt_RSVD_24_31                    |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_p_trans_dt_p_trans_scale                 |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_tbl_dt_activate_tbl_dt                   |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_zero_dt_RSVD_26_31                       |soft_rw_register_77b8d5bfaa14        |1         |0       |7       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_zero_dt_activate_zero_odt                |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Clear_interrupt_RSVD_2_31                         |soft_rw_register_77b8d5bfaa14        |1         |0       |31      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Clear_interrupt_wb_int_clr                        |soft_w1_register_77b8d5bfaa14        |3         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Enable_interrupt_RSVD_2_31                        |soft_rw_register_77b8d5bfaa14        |3         |0       |31      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Enable_interrupt_err_int_en                       |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Enable_interrupt_wb_int_en                        |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Error_info_0_error_info                           |soft_ro_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM0_bs_addr_lo_fm0_bs_addr_lo                     |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM0_size_fm0_c                                    |soft_rw_register_77b8d5bfaa14        |2         |0       |13      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM0_size_fm0_w                                    |soft_rw_register_77b8d5bfaa14        |1         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM0_tsize_fm0_tsize                               |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM1_bs_addr_lo_fm1_bs_addr_lo                     |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM1_size_fm1_c                                    |soft_rw_register_77b8d5bfaa14        |1         |0       |13      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM1_size_fm1_w                                    |soft_rw_register_77b8d5bfaa14        |1         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM1_tsize_fm1_tsize                               |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM2_bs_addr_lo_fm2_bs_addr_lo                     |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM2_size_fm2_c                                    |soft_rw_register_77b8d5bfaa14        |1         |0       |13      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM2_size_fm2_w                                    |soft_rw_register_77b8d5bfaa14        |1         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM2_tsize_fm2_tsize                               |soft_rw_register_77b8d5bfaa14        |2         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM3_bs_addr_lo_fm3_bs_addr_lo                     |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM3_size_fm3_c                                    |soft_rw_register_77b8d5bfaa14        |1         |0       |13      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM3_size_fm3_w                                    |soft_rw_register_77b8d5bfaa14        |1         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM3_tsize_fm3_tsize                               |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM_wb_addr_lo_fm_wb_addr_lo                       |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Interrupt_status_RSVD_2_31                        |soft_rw_register_77b8d5bfaa14        |3         |0       |31      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Interrupt_status_err_st                           |soft_ro_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Interrupt_status_wb_dn_st                         |soft_ro_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_NN_master_transfer_limit_NN_master_ID             |soft_rw_register_77b8d5bfaa14        |2         |0       |5       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_NN_master_transfer_limit_RSVD_20_31               |soft_rw_register_77b8d5bfaa14        |1         |0       |12      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_NN_reset_NN_reset                                 |soft_w1_register_77b8d5bfaa14        |3         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_NN_reset_RSVD_1_31                                |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_NN_start_NN_start                                 |soft_w1_register_77b8d5bfaa14        |3         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_NN_start_RSVD_1_31                                |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_OP_en_RSVD_5_31                                   |soft_rw_register_77b8d5bfaa14        |1         |0       |28      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_OP_en_activate_en                                 |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_OP_en_pooling_en                                  |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_OP_en_route_en                                    |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_OP_en_shortcut_en                                 |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_OP_en_upsample_en                                 |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_PKG_base_addr_lo_pkg_base_addr_lo                 |soft_rw_register_77b8d5bfaa14        |1         |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_PKG_length_RSVD_30_31                             |soft_rw_register_77b8d5bfaa14        |1         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_PKG_length_pkg_length                             |soft_rw_register_77b8d5bfaa14        |1         |0       |31      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_PKG_master_transfer_limit_RSVD_4_31               |soft_rw_register_77b8d5bfaa14        |2         |0       |29      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_PKG_master_transfer_limit_pkg_master_ID           |soft_rw_register_77b8d5bfaa14        |1         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_cfg_dt_RSVD_12_31                         |soft_rw_register_77b8d5bfaa14        |1         |0       |21      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_cfg_dt_window_size                        |soft_rw_register_77b8d5bfaa14        |1         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_trans_dt_RSVD_24_31                       |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_trans_dt_pooling_scl_dt                   |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_zero_dt_RSVD_18_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |15      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_zero_dt_pooling_zero_odt                  |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Read_pkg_start_RSVD_1_31                          |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Read_pkg_start_read_pkg_start                     |soft_w1_register_77b8d5bfaa14        |5         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_cfg_dt_RSVD_16_31                           |soft_rw_register_77b8d5bfaa14        |2         |0       |17      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_cfg_dt_ifm_order_sel                        |soft_rw_register_77b8d5bfaa14        |1         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_0dt_RSVD_24_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_0dt_route_scl_0dt                     |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_1dt_RSVD_24_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_1dt_route_scl_1dt                     |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_2dt_RSVD_24_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_2dt_route_scl_2dt                     |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_3dt_RSVD_24_31                        |soft_rw_register_77b8d5bfaa14        |2         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_3dt_route_scl_3dt                     |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_zero_dt_a_RSVD_18_31                        |soft_rw_register_77b8d5bfaa14        |2         |0       |15      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_zero_dt_a_route_zero_i1dt                   |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_zero_dt_b_RSVD_27_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |6       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_zero_dt_b_route_zero_odt                    |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_cfg_dt_RSVD_13_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |20      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_cfg_dt_ifm_order_sel                     |soft_rw_register_77b8d5bfaa14        |0         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_cfg_dt_state_sel                         |soft_rw_register_77b8d5bfaa14        |1         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_fm0_trans_dt_RSVD_24_31                  |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_fm0_trans_dt_fm0_scl_dt                  |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_fm1_trans_dt_RSVD_24_31                  |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_fm1_trans_dt_fm1_scl_dt                  |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_zero_dt_RSVD_27_31                       |soft_rw_register_77b8d5bfaa14        |1         |0       |6       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_zero_dt_shortcut_zero_odt                |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_cfg_dt_RSVD_12_31                        |soft_rw_register_77b8d5bfaa14        |1         |0       |21      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_cfg_dt_window_size                       |soft_rw_register_77b8d5bfaa14        |1         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_trans_dt_RSVD_24_31                      |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_trans_dt_upsample_scl_dt                 |soft_rw_register_77b8d5bfaa14        |1         |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_zero_dt_RSVD_18_31                       |soft_rw_register_77b8d5bfaa14        |1         |0       |15      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_zero_dt_upsample_zero_odt                |soft_rw_register_77b8d5bfaa14        |1         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Work_info_0_work_info                             |soft_ro_register_77b8d5bfaa14        |2         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Work_mode_RSVD_1_31                               |soft_rw_register_77b8d5bfaa14        |1         |0       |32      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Work_mode_work_mode                               |soft_rw_register_77b8d5bfaa14        |1         |0       |1       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_i_trans_dt_i_trans_rshift                |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_n_trans_dt_n_trans_rshift                |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_o_trans_dt_o_trans_rshift                |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_p_trans_dt_p_trans_rshift                |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_zero_dt_activate_up_scale_dt             |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Activate_zero_dt_activate_zero_idt                |soft_rw_register_77b8d5bfaa14        |0         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM0_size_fm0_h                                    |soft_rw_register_77b8d5bfaa14        |0         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM1_size_fm1_h                                    |soft_rw_register_77b8d5bfaa14        |0         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM2_size_fm2_h                                    |soft_rw_register_77b8d5bfaa14        |0         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_FM3_size_fm3_h                                    |soft_rw_register_77b8d5bfaa14        |0         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_NN_master_transfer_limit_NN_master_max_length     |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_NN_master_transfer_limit_NN_master_max_ot         |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_cfg_dt_function_sel                       |soft_rw_register_77b8d5bfaa14        |0         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_cfg_dt_stride                             |soft_rw_register_77b8d5bfaa14        |0         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_trans_dt_pooling_rshft_dt                 |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Pooling_zero_dt_pooling_zero_idt                  |soft_rw_register_77b8d5bfaa14        |0         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_cfg_dt_function_sel                         |soft_rw_register_77b8d5bfaa14        |0         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_cfg_dt_ifm_number                           |soft_rw_register_77b8d5bfaa14        |0         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_0dt_route_rshft_0dt                   |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_1dt_route_rshft_1dt                   |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_2dt_route_rshft_2dt                   |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_trans_3dt_route_rshft_3dt                   |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_zero_dt_a_route_zero_i0dt                   |soft_rw_register_77b8d5bfaa14        |0         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_zero_dt_b_route_zero_i2dt                   |soft_rw_register_77b8d5bfaa14        |0         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Route_zero_dt_b_route_zero_i3dt                   |soft_rw_register_77b8d5bfaa14        |0         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_cfg_dt_function_sel                      |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_fm0_trans_dt_fm0_rshft_dt                |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_fm1_trans_dt_fm1_rshft_dt                |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_zero_dt_shortcut_zero_i0dt               |soft_rw_register_77b8d5bfaa14        |0         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Shortcut_zero_dt_shortcut_zero_i1dt               |soft_rw_register_77b8d5bfaa14        |0         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_cfg_dt_function_sel                      |soft_rw_register_77b8d5bfaa14        |0         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_cfg_dt_stride                            |soft_rw_register_77b8d5bfaa14        |0         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_trans_dt_upsample_rshft_dt               |soft_rw_register_77b8d5bfaa14        |0         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          r_SOFT_NN_Upsample_zero_dt_upsample_zero_idt                |soft_rw_register_77b8d5bfaa14        |0         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u0_fm2ln                                                      |soft_fm2ln_77b8d5bfaa14              |516       |45      |413     |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          u_sfifo512x64                                               |soft_sfifoNxN_77b8d5bfaa14           |30        |0       |28      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ram_sdp_77b8d5bfaa14                                      |ram_sdp_77b8d5bfaa14                 |7         |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u0_fm_cal                                                     |soft_fm_cal_77b8d5bfaa14             |46        |132     |81      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u0_write_back                                                 |soft_write_back_77b8d5bfaa14         |516       |37      |246     |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          u_soft_sfifo512x64                                          |soft_sfifoNxN_77b8d5bfaa14           |30        |0       |28      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ram_sdp_77b8d5bfaa14                                      |ram_sdp_77b8d5bfaa14                 |7         |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u1_fm2ln                                                      |soft_fm2ln_77b8d5bfaa14              |516       |45      |410     |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          u_sfifo512x64                                               |soft_sfifoNxN_77b8d5bfaa14           |30        |0       |28      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ram_sdp_77b8d5bfaa14                                      |ram_sdp_77b8d5bfaa14                 |7         |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u1_fm_cal                                                     |soft_fm_cal_77b8d5bfaa14             |46        |132     |81      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u_algo_mrg                                                    |soft_algo_mrg_77b8d5bfaa14           |87        |0       |68      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u_rd_arb                                                      |fm_rd_arb_77b8d5bfaa14               |24        |0       |46      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u_route                                                       |soft_route_77b8d5bfaa14              |830       |288     |726     |0       |8       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[0]$scale_route                           |scale_77b8d5bfaa14                   |105       |36      |140     |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[1]$scale_route                           |scale_77b8d5bfaa14                   |88        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[2]$scale_route                           |scale_77b8d5bfaa14                   |89        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[3]$scale_route                           |scale_77b8d5bfaa14                   |89        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[4]$scale_route                           |scale_77b8d5bfaa14                   |89        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[5]$scale_route                           |scale_77b8d5bfaa14                   |91        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[6]$scale_route                           |scale_77b8d5bfaa14                   |89        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[7]$scale_route                           |scale_77b8d5bfaa14                   |92        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|        u_route_para_mrg                                              |route_para_mrg_77b8d5bfaa14          |120       |32      |135     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u_shortcut                                                    |soft_shortcut_77b8d5bfaa14           |4035      |1560    |3250    |4       |16      |0        |0           |0       |0       |0       |0      |0       |
+|          fifo_fm0                                                    |soft_sfifoNxN_77b8d5bfaa14           |54        |0       |23      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ram_sdp_77b8d5bfaa14                                      |ram_sdp_77b8d5bfaa14                 |38        |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          fifo_fm1                                                    |soft_sfifoNxN_77b8d5bfaa14           |47        |0       |16      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ram_sdp_77b8d5bfaa14                                      |ram_sdp_77b8d5bfaa14                 |32        |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          proc[0]$proc                                                |soft_shortcut_proc_77b8d5bfaa14      |496       |192     |479     |0       |2       |0        |0           |0       |0       |0       |0      |0       |
+|          proc[1]$proc                                                |soft_shortcut_proc_77b8d5bfaa14      |466       |192     |352     |0       |2       |0        |0           |0       |0       |0       |0      |0       |
+|          proc[2]$proc                                                |soft_shortcut_proc_77b8d5bfaa14      |468       |192     |352     |0       |2       |0        |0           |0       |0       |0       |0      |0       |
+|          proc[3]$proc                                                |soft_shortcut_proc_77b8d5bfaa14      |459       |192     |352     |0       |2       |0        |0           |0       |0       |0       |0      |0       |
+|          proc[4]$proc                                                |soft_shortcut_proc_77b8d5bfaa14      |466       |192     |352     |0       |2       |0        |0           |0       |0       |0       |0      |0       |
+|          proc[5]$proc                                                |soft_shortcut_proc_77b8d5bfaa14      |466       |192     |352     |0       |2       |0        |0           |0       |0       |0       |0      |0       |
+|          proc[6]$proc                                                |soft_shortcut_proc_77b8d5bfaa14      |473       |192     |352     |0       |2       |0        |0           |0       |0       |0       |0      |0       |
+|          proc[7]$proc                                                |soft_shortcut_proc_77b8d5bfaa14      |477       |192     |352     |0       |2       |0        |0           |0       |0       |0       |0      |0       |
+|        u_soft_clpdma                                                 |soft_clpdma_77b8d5bfaa14             |75        |126     |82      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u_soft_nnctrl                                                 |soft_nnctrl_77b8d5bfaa14             |308       |184     |375     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        u_upsample                                                    |soft_upsample_77b8d5bfaa14           |589       |201     |579     |4       |5       |0        |0           |0       |0       |0       |0      |0       |
+|          ram0_sdp_i128o64                                            |ram_sdp_iBoS_77b8d5bfaa14            |2         |0       |1       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          ram1_sdp_i128o64                                            |ram_sdp_iBoS_77b8d5bfaa14            |2         |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[0]$scale_upsample                        |scale_77b8d5bfaa14                   |105       |36      |140     |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[2]$scale_upsample                        |scale_77b8d5bfaa14                   |91        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[4]$scale_upsample                        |scale_77b8d5bfaa14                   |89        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[6]$scale_upsample                        |scale_77b8d5bfaa14                   |91        |36      |61      |0       |1       |0        |0           |0       |0       |0       |0      |0       |
+|          scale_77b8d5bfaa14[7]$scale_upsample                        |scale_77b8d5bfaa14                   |1         |0       |0       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

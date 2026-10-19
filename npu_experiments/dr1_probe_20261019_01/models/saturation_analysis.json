@@ -1,0 +1,136 @@
+{
+  "uint8": {
+    "flat_input": {
+      "elements": 22576,
+      "range_low": -8.511373803019524,
+      "range_high": 12.767060704529285,
+      "values_outside_range": 0,
+      "values_below_range": 0,
+      "values_above_range": 0,
+      "rounded_values_clipped": 0,
+      "rounded_low_clipped": 0,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": false,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    },
+    "a0": {
+      "elements": 10624,
+      "range_low": 0.0,
+      "range_high": 8.89548322185874,
+      "values_outside_range": 4691,
+      "values_below_range": 4691,
+      "values_above_range": 0,
+      "rounded_values_clipped": 4631,
+      "rounded_low_clipped": 4631,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": true,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    },
+    "a1": {
+      "elements": 5312,
+      "range_low": 0.0,
+      "range_high": 12.981993891298771,
+      "values_outside_range": 2585,
+      "values_below_range": 2585,
+      "values_above_range": 0,
+      "rounded_values_clipped": 2561,
+      "rounded_low_clipped": 2561,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": true,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    },
+    "output_QuantizeLinear_Input": {
+      "elements": 996,
+      "range_low": -15.842297494411469,
+      "range_high": 21.563127145171165,
+      "values_outside_range": 1,
+      "values_below_range": 1,
+      "values_above_range": 0,
+      "rounded_values_clipped": 0,
+      "rounded_low_clipped": 0,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": false,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    }
+  },
+  "int8": {
+    "flat_input": {
+      "elements": 22576,
+      "range_low": -12.87587833404541,
+      "range_high": 12.77528553456068,
+      "values_outside_range": 0,
+      "values_below_range": 0,
+      "values_above_range": 0,
+      "rounded_values_clipped": 0,
+      "rounded_low_clipped": 0,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": false,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    },
+    "z0": {
+      "elements": 10624,
+      "range_low": -8.965526580810547,
+      "range_high": 8.895483404397964,
+      "values_outside_range": 47,
+      "values_below_range": 47,
+      "values_above_range": 0,
+      "rounded_values_clipped": 47,
+      "rounded_low_clipped": 47,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": false,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    },
+    "a0": {
+      "elements": 10624,
+      "range_low": -8.965526580810547,
+      "range_high": 8.895483404397964,
+      "values_outside_range": 0,
+      "values_below_range": 0,
+      "values_above_range": 0,
+      "rounded_values_clipped": 0,
+      "rounded_low_clipped": 0,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": false,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    },
+    "z1": {
+      "elements": 5312,
+      "range_low": -13.084214210510254,
+      "range_high": 12.981993786990643,
+      "values_outside_range": 0,
+      "values_below_range": 0,
+      "values_above_range": 0,
+      "rounded_values_clipped": 0,
+      "rounded_low_clipped": 0,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": false,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    },
+    "a1": {
+      "elements": 5312,
+      "range_low": -13.084214210510254,
+      "range_high": 12.981993786990643,
+      "values_outside_range": 0,
+      "values_below_range": 0,
+      "values_above_range": 0,
+      "rounded_values_clipped": 0,
+      "rounded_low_clipped": 0,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": false,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    },
+    "output_QuantizeLinear_Input": {
+      "elements": 996,
+      "range_low": -21.704246520996094,
+      "range_high": 21.53468209505081,
+      "values_outside_range": 0,
+      "values_below_range": 0,
+      "values_above_range": 0,
+      "rounded_values_clipped": 0,
+      "rounded_low_clipped": 0,
+      "rounded_high_clipped": 0,
+      "expected_relu_low_clamp": false,
+      "interpretation": "Observed CPU QDQ activation inputs over held-out full cycles; not a hardware saturation counter"
+    }
+  }
+}

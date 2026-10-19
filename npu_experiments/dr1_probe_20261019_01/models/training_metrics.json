@@ -1,0 +1,584 @@
+{
+  "seed": 20261019,
+  "epochs": 80,
+  "max_epochs": 80,
+  "batch_size": 64,
+  "optimizer": "Adam lr=0.001",
+  "selected_by": "validation cross entropy only",
+  "metrics": {
+    "train": {
+      "cycles": 1542,
+      "accuracy": 1.0,
+      "class_counts": [
+        854,
+        344,
+        344
+      ],
+      "stable_flag_counts": [
+        998,
+        544
+      ]
+    },
+    "validation": {
+      "cycles": 331,
+      "accuracy": 0.9969788519637462,
+      "class_counts": [
+        183,
+        74,
+        74
+      ],
+      "stable_flag_counts": [
+        234,
+        97
+      ]
+    },
+    "test": {
+      "cycles": 332,
+      "accuracy": 0.9909638554216867,
+      "class_counts": [
+        184,
+        74,
+        74
+      ],
+      "stable_flag_counts": [
+        217,
+        115
+      ]
+    }
+  },
+  "quality": {
+    "PS1": {
+      "shape": [
+        2205,
+        6000
+      ],
+      "hz": 100,
+      "nonfinite": 0
+    },
+    "PS2": {
+      "shape": [
+        2205,
+        6000
+      ],
+      "hz": 100,
+      "nonfinite": 0
+    },
+    "PS3": {
+      "shape": [
+        2205,
+        6000
+      ],
+      "hz": 100,
+      "nonfinite": 0
+    },
+    "PS4": {
+      "shape": [
+        2205,
+        6000
+      ],
+      "hz": 100,
+      "nonfinite": 0
+    },
+    "PS5": {
+      "shape": [
+        2205,
+        6000
+      ],
+      "hz": 100,
+      "nonfinite": 0
+    },
+    "PS6": {
+      "shape": [
+        2205,
+        6000
+      ],
+      "hz": 100,
+      "nonfinite": 0
+    },
+    "EPS1": {
+      "shape": [
+        2205,
+        6000
+      ],
+      "hz": 100,
+      "nonfinite": 0
+    },
+    "FS1": {
+      "shape": [
+        2205,
+        600
+      ],
+      "hz": 10,
+      "nonfinite": 0
+    },
+    "FS2": {
+      "shape": [
+        2205,
+        600
+      ],
+      "hz": 10,
+      "nonfinite": 0
+    },
+    "TS1": {
+      "shape": [
+        2205,
+        60
+      ],
+      "hz": 1,
+      "nonfinite": 0
+    },
+    "TS2": {
+      "shape": [
+        2205,
+        60
+      ],
+      "hz": 1,
+      "nonfinite": 0
+    },
+    "TS3": {
+      "shape": [
+        2205,
+        60
+      ],
+      "hz": 1,
+      "nonfinite": 0
+    },
+    "TS4": {
+      "shape": [
+        2205,
+        60
+      ],
+      "hz": 1,
+      "nonfinite": 0
+    },
+    "VS1": {
+      "shape": [
+        2205,
+        60
+      ],
+      "hz": 1,
+      "nonfinite": 0
+    },
+    "CE": {
+      "shape": [
+        2205,
+        60
+      ],
+      "hz": 1,
+      "nonfinite": 0
+    },
+    "CP": {
+      "shape": [
+        2205,
+        60
+      ],
+      "hz": 1,
+      "nonfinite": 0
+    },
+    "SE": {
+      "shape": [
+        2205,
+        60
+      ],
+      "hz": 1,
+      "nonfinite": 0
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "validation_cross_entropy": 0.9131714701652527
+    },
+    {
+      "epoch": 2,
+      "validation_cross_entropy": 0.7754027247428894
+    },
+    {
+      "epoch": 3,
+      "validation_cross_entropy": 0.6674133539199829
+    },
+    {
+      "epoch": 4,
+      "validation_cross_entropy": 0.5775352120399475
+    },
+    {
+      "epoch": 5,
+      "validation_cross_entropy": 0.5136534571647644
+    },
+    {
+      "epoch": 6,
+      "validation_cross_entropy": 0.4461348056793213
+    },
+    {
+      "epoch": 7,
+      "validation_cross_entropy": 0.39863359928131104
+    },
+    {
+      "epoch": 8,
+      "validation_cross_entropy": 0.36561185121536255
+    },
+    {
+      "epoch": 9,
+      "validation_cross_entropy": 0.33551225066185
+    },
+    {
+      "epoch": 10,
+      "validation_cross_entropy": 0.30845823884010315
+    },
+    {
+      "epoch": 11,
+      "validation_cross_entropy": 0.2861984670162201
+    },
+    {
+      "epoch": 12,
+      "validation_cross_entropy": 0.2681264281272888
+    },
+    {
+      "epoch": 13,
+      "validation_cross_entropy": 0.2566150724887848
+    },
+    {
+      "epoch": 14,
+      "validation_cross_entropy": 0.22860662639141083
+    },
+    {
+      "epoch": 15,
+      "validation_cross_entropy": 0.21543021500110626
+    },
+    {
+      "epoch": 16,
+      "validation_cross_entropy": 0.18798001110553741
+    },
+    {
+      "epoch": 17,
+      "validation_cross_entropy": 0.1763749122619629
+    },
+    {
+      "epoch": 18,
+      "validation_cross_entropy": 0.15680713951587677
+    },
+    {
+      "epoch": 19,
+      "validation_cross_entropy": 0.1425420343875885
+    },
+    {
+      "epoch": 20,
+      "validation_cross_entropy": 0.1324172168970108
+    },
+    {
+      "epoch": 21,
+      "validation_cross_entropy": 0.12103050202131271
+    },
+    {
+      "epoch": 22,
+      "validation_cross_entropy": 0.10991053283214569
+    },
+    {
+      "epoch": 23,
+      "validation_cross_entropy": 0.11267416179180145
+    },
+    {
+      "epoch": 24,
+      "validation_cross_entropy": 0.10053776204586029
+    },
+    {
+      "epoch": 25,
+      "validation_cross_entropy": 0.09379588067531586
+    },
+    {
+      "epoch": 26,
+      "validation_cross_entropy": 0.08300554752349854
+    },
+    {
+      "epoch": 27,
+      "validation_cross_entropy": 0.07786162197589874
+    },
+    {
+      "epoch": 28,
+      "validation_cross_entropy": 0.0808294415473938
+    },
+    {
+      "epoch": 29,
+      "validation_cross_entropy": 0.06799192726612091
+    },
+    {
+      "epoch": 30,
+      "validation_cross_entropy": 0.06415607780218124
+    },
+    {
+      "epoch": 31,
+      "validation_cross_entropy": 0.06943058967590332
+    },
+    {
+      "epoch": 32,
+      "validation_cross_entropy": 0.06108514964580536
+    },
+    {
+      "epoch": 33,
+      "validation_cross_entropy": 0.056519389152526855
+    },
+    {
+      "epoch": 34,
+      "validation_cross_entropy": 0.0524197593331337
+    },
+    {
+      "epoch": 35,
+      "validation_cross_entropy": 0.05195057392120361
+    },
+    {
+      "epoch": 36,
+      "validation_cross_entropy": 0.04564766213297844
+    },
+    {
+      "epoch": 37,
+      "validation_cross_entropy": 0.04396041855216026
+    },
+    {
+      "epoch": 38,
+      "validation_cross_entropy": 0.042798783630132675
+    },
+    {
+      "epoch": 39,
+      "validation_cross_entropy": 0.04251148924231529
+    },
+    {
+      "epoch": 40,
+      "validation_cross_entropy": 0.03674256056547165
+    },
+    {
+      "epoch": 41,
+      "validation_cross_entropy": 0.03611542657017708
+    },
+    {
+      "epoch": 42,
+      "validation_cross_entropy": 0.04368188977241516
+    },
+    {
+      "epoch": 43,
+      "validation_cross_entropy": 0.03441706672310829
+    },
+    {
+      "epoch": 44,
+      "validation_cross_entropy": 0.032520048320293427
+    },
+    {
+      "epoch": 45,
+      "validation_cross_entropy": 0.03212149068713188
+    },
+    {
+      "epoch": 46,
+      "validation_cross_entropy": 0.03021850995719433
+    },
+    {
+      "epoch": 47,
+      "validation_cross_entropy": 0.03402756154537201
+    },
+    {
+      "epoch": 48,
+      "validation_cross_entropy": 0.028861410915851593
+    },
+    {
+      "epoch": 49,
+      "validation_cross_entropy": 0.033950064331293106
+    },
+    {
+      "epoch": 50,
+      "validation_cross_entropy": 0.031195297837257385
+    },
+    {
+      "epoch": 51,
+      "validation_cross_entropy": 0.02791431173682213
+    },
+    {
+      "epoch": 52,
+      "validation_cross_entropy": 0.026958875358104706
+    },
+    {
+      "epoch": 53,
+      "validation_cross_entropy": 0.027626486495137215
+    },
+    {
+      "epoch": 54,
+      "validation_cross_entropy": 0.027019359171390533
+    },
+    {
+      "epoch": 55,
+      "validation_cross_entropy": 0.026587411761283875
+    },
+    {
+      "epoch": 56,
+      "validation_cross_entropy": 0.025127451866865158
+    },
+    {
+      "epoch": 57,
+      "validation_cross_entropy": 0.024263925850391388
+    },
+    {
+      "epoch": 58,
+      "validation_cross_entropy": 0.02966231107711792
+    },
+    {
+      "epoch": 59,
+      "validation_cross_entropy": 0.02341587468981743
+    },
+    {
+      "epoch": 60,
+      "validation_cross_entropy": 0.021540028974413872
+    },
+    {
+      "epoch": 61,
+      "validation_cross_entropy": 0.02048232965171337
+    },
+    {
+      "epoch": 62,
+      "validation_cross_entropy": 0.022041214630007744
+    },
+    {
+      "epoch": 63,
+      "validation_cross_entropy": 0.020338689908385277
+    },
+    {
+      "epoch": 64,
+      "validation_cross_entropy": 0.01857219822704792
+    },
+    {
+      "epoch": 65,
+      "validation_cross_entropy": 0.016239939257502556
+    },
+    {
+      "epoch": 66,
+      "validation_cross_entropy": 0.015593396499752998
+    },
+    {
+      "epoch": 67,
+      "validation_cross_entropy": 0.016328493133187294
+    },
+    {
+      "epoch": 68,
+      "validation_cross_entropy": 0.015088563784956932
+    },
+    {
+      "epoch": 69,
+      "validation_cross_entropy": 0.0209446232765913
+    },
+    {
+      "epoch": 70,
+      "validation_cross_entropy": 0.011870505288243294
+    },
+    {
+      "epoch": 71,
+      "validation_cross_entropy": 0.014485545456409454
+    },
+    {
+      "epoch": 72,
+      "validation_cross_entropy": 0.02713807299733162
+    },
+    {
+      "epoch": 73,
+      "validation_cross_entropy": 0.016289174556732178
+    },
+    {
+      "epoch": 74,
+      "validation_cross_entropy": 0.013822426088154316
+    },
+    {
+      "epoch": 75,
+      "validation_cross_entropy": 0.013160866685211658
+    },
+    {
+      "epoch": 76,
+      "validation_cross_entropy": 0.018298644572496414
+    },
+    {
+      "epoch": 77,
+      "validation_cross_entropy": 0.014214616268873215
+    },
+    {
+      "epoch": 78,
+      "validation_cross_entropy": 0.01156584732234478
+    },
+    {
+      "epoch": 79,
+      "validation_cross_entropy": 0.0109607744961977
+    },
+    {
+      "epoch": 80,
+      "validation_cross_entropy": 0.010208898223936558
+    }
+  ],
+  "feature_order": [
+    "PS1_mean",
+    "PS1_std_ddof0",
+    "PS1_min",
+    "PS1_max",
+    "PS2_mean",
+    "PS2_std_ddof0",
+    "PS2_min",
+    "PS2_max",
+    "PS3_mean",
+    "PS3_std_ddof0",
+    "PS3_min",
+    "PS3_max",
+    "PS4_mean",
+    "PS4_std_ddof0",
+    "PS4_min",
+    "PS4_max",
+    "PS5_mean",
+    "PS5_std_ddof0",
+    "PS5_min",
+    "PS5_max",
+    "PS6_mean",
+    "PS6_std_ddof0",
+    "PS6_min",
+    "PS6_max",
+    "EPS1_mean",
+    "EPS1_std_ddof0",
+    "EPS1_min",
+    "EPS1_max",
+    "FS1_mean",
+    "FS1_std_ddof0",
+    "FS1_min",
+    "FS1_max",
+    "FS2_mean",
+    "FS2_std_ddof0",
+    "FS2_min",
+    "FS2_max",
+    "TS1_mean",
+    "TS1_std_ddof0",
+    "TS1_min",
+    "TS1_max",
+    "TS2_mean",
+    "TS2_std_ddof0",
+    "TS2_min",
+    "TS2_max",
+    "TS3_mean",
+    "TS3_std_ddof0",
+    "TS3_min",
+    "TS3_max",
+    "TS4_mean",
+    "TS4_std_ddof0",
+    "TS4_min",
+    "TS4_max",
+    "VS1_mean",
+    "VS1_std_ddof0",
+    "VS1_min",
+    "VS1_max",
+    "CE_mean",
+    "CE_std_ddof0",
+    "CE_min",
+    "CE_max",
+    "CP_mean",
+    "CP_std_ddof0",
+    "CP_min",
+    "CP_max",
+    "SE_mean",
+    "SE_std_ddof0",
+    "SE_min",
+    "SE_max"
+  ],
+  "temporal_policy": "Each full 60s cycle is one example. Statistics at native sensor rates; no interpolation or sample-level alignment.",
+  "stability_policy": "Retain all cycles, flag 0 stable / flag 1 potentially unsettled; flag is not an input feature.",
+  "generalization_limit": "Random disjoint cycle split; adjacent cycles and condition regimes may remain correlated. No cross-machine or robot generalization claim.",
+  "npu_latency": "not measured",
+  "npu_execution": false
+}

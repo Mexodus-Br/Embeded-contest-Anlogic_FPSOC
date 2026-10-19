@@ -1,0 +1,79 @@
+{
+  "seed": 20261019,
+  "trained": false,
+  "diagnostic_effectiveness": "not evaluated",
+  "weights": 2736,
+  "biases": 51,
+  "logical_macs": 2736,
+  "input_shape": [
+    1,
+    68
+  ],
+  "operators": [
+    {
+      "name": "fc0",
+      "type": "Gemm",
+      "inputs": [
+        "input",
+        "w0",
+        "b0"
+      ],
+      "outputs": [
+        "z0"
+      ]
+    },
+    {
+      "name": "relu0",
+      "type": "Relu",
+      "inputs": [
+        "z0"
+      ],
+      "outputs": [
+        "a0"
+      ]
+    },
+    {
+      "name": "fc1",
+      "type": "Gemm",
+      "inputs": [
+        "a0",
+        "w1",
+        "b1"
+      ],
+      "outputs": [
+        "z1"
+      ]
+    },
+    {
+      "name": "relu1",
+      "type": "Relu",
+      "inputs": [
+        "z1"
+      ],
+      "outputs": [
+        "a1"
+      ]
+    },
+    {
+      "name": "fc2",
+      "type": "Gemm",
+      "inputs": [
+        "a1",
+        "w2",
+        "b2"
+      ],
+      "outputs": [
+        "output"
+      ]
+    }
+  ],
+  "max_abs_host_reference_error": 9.5367431640625e-07,
+  "live_graph_inputs": [
+    "input"
+  ],
+  "graph_nodes": 5,
+  "input_dependence_verified": true,
+  "dr1_conversion": "not run: host compiler absent; AArch64 runtime cannot run on this Windows host",
+  "constant_folding_after_dr1_conversion": "not verifiable without conversion output",
+  "quantized_model": "not yet generated; representative calibration data required"
+}

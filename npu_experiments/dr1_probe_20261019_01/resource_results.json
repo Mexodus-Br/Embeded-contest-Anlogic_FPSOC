@@ -1,0 +1,481 @@
+{
+  "capacity": {
+    "lut6_equivalent_gate": 52480,
+    "slice_gate": 52480,
+    "registers": 104960,
+    "eram": 280,
+    "dsp": 240
+  },
+  "baseline": {
+    "lut6_equivalent_gate": 29873,
+    "slice_gate": 37984,
+    "registers": 37863,
+    "eram": 58,
+    "dsp": 6
+  },
+  "baseline_phase": "candidate13 route",
+  "baseline_setup_ns": -2.173,
+  "baseline_hold_ns": 0.02,
+  "configurations": [
+    {
+      "configuration": "full_reference",
+      "phase": "gate pack + legalize; not placed/routed",
+      "slice_gate": 33082,
+      "register_only_slices": 2252,
+      "lut6_equivalent_gate": 30830,
+      "lut6_equivalent_definition": "derived: packed slices minus register-only slices; gate capacity proxy, not post-place LUT6 utilization",
+      "registers": 22527,
+      "pad_registers": 0,
+      "eram": 116,
+      "dsp": 84,
+      "virtual_io": 433,
+      "physical_io": 0,
+      "clock_resources": {
+        "pll": 0,
+        "gclk": 0,
+        "lclk": 0,
+        "sclk": 0,
+        "mlclk": 0,
+        "ioclk": 0
+      },
+      "clock_resources_boundary": "zero external clock fabric in this virtual-IO fixture, not an integrated clock budget",
+      "source_area": "ip_full_native/gate_full.area",
+      "external_interconnect_resources": "not measured",
+      "model_qualified": false,
+      "ip_body_lut6_equivalent_gate": 30410,
+      "virtual_boundary_lut6_equivalent_gate": 420,
+      "ip_body_other_resources": {
+        "registers": 22527,
+        "eram": 116,
+        "dsp": 84
+      },
+      "ip_body_slice": "not separately reported by hierarchy; full fixture slice count above",
+      "virtual_boundary_note": "top minus direct IP instance; these counters are not native PS/HP interconnect cost",
+      "arithmetic_budget": {
+        "lut6_equivalent_gate": {
+          "existing": 29873,
+          "ip": 30830,
+          "sum": 60703,
+          "capacity": 52480,
+          "remaining": -8223
+        },
+        "slice_gate": {
+          "existing": 37984,
+          "ip": 33082,
+          "sum": 71066,
+          "capacity": 52480,
+          "remaining": -18586
+        },
+        "registers": {
+          "existing": 37863,
+          "ip": 22527,
+          "sum": 60390,
+          "capacity": 104960,
+          "remaining": 44570
+        },
+        "eram": {
+          "existing": 58,
+          "ip": 116,
+          "sum": 174,
+          "capacity": 280,
+          "remaining": 106
+        },
+        "dsp": {
+          "existing": 6,
+          "ip": 84,
+          "sum": 90,
+          "capacity": 240,
+          "remaining": 150
+        }
+      },
+      "budget_limit": "gate IP + routed candidate13, with external interconnect omitted; arithmetic budget only"
+    },
+    {
+      "configuration": "whole_no_video",
+      "phase": "gate pack + legalize; not placed/routed",
+      "slice_gate": 22164,
+      "register_only_slices": 1510,
+      "lut6_equivalent_gate": 20654,
+      "lut6_equivalent_definition": "derived: packed slices minus register-only slices; gate capacity proxy, not post-place LUT6 utilization",
+      "registers": 15109,
+      "pad_registers": 0,
+      "eram": 59,
+      "dsp": 53,
+      "virtual_io": 433,
+      "physical_io": 0,
+      "clock_resources": {
+        "pll": 0,
+        "gclk": 0,
+        "lclk": 0,
+        "sclk": 0,
+        "mlclk": 0,
+        "ioclk": 0
+      },
+      "clock_resources_boundary": "zero external clock fabric in this virtual-IO fixture, not an integrated clock budget",
+      "source_area": "ip_whole_no_video/gate_full.area",
+      "external_interconnect_resources": "not measured",
+      "model_qualified": false,
+      "ip_body_lut6_equivalent_gate": 20234,
+      "virtual_boundary_lut6_equivalent_gate": 420,
+      "ip_body_other_resources": {
+        "registers": 15109,
+        "eram": 59,
+        "dsp": 53
+      },
+      "ip_body_slice": "not separately reported by hierarchy; full fixture slice count above",
+      "virtual_boundary_note": "top minus direct IP instance; these counters are not native PS/HP interconnect cost",
+      "arithmetic_budget": {
+        "lut6_equivalent_gate": {
+          "existing": 29873,
+          "ip": 20654,
+          "sum": 50527,
+          "capacity": 52480,
+          "remaining": 1953
+        },
+        "slice_gate": {
+          "existing": 37984,
+          "ip": 22164,
+          "sum": 60148,
+          "capacity": 52480,
+          "remaining": -7668
+        },
+        "registers": {
+          "existing": 37863,
+          "ip": 15109,
+          "sum": 52972,
+          "capacity": 104960,
+          "remaining": 51988
+        },
+        "eram": {
+          "existing": 58,
+          "ip": 59,
+          "sum": 117,
+          "capacity": 280,
+          "remaining": 163
+        },
+        "dsp": {
+          "existing": 6,
+          "ip": 53,
+          "sum": 59,
+          "capacity": 240,
+          "remaining": 181
+        }
+      },
+      "budget_limit": "gate IP + routed candidate13, with external interconnect omitted; arithmetic budget only"
+    },
+    {
+      "configuration": "tiny_no_video",
+      "phase": "gate pack + legalize; not placed/routed",
+      "slice_gate": 11045,
+      "register_only_slices": 102,
+      "lut6_equivalent_gate": 10943,
+      "lut6_equivalent_definition": "derived: packed slices minus register-only slices; gate capacity proxy, not post-place LUT6 utilization",
+      "registers": 8878,
+      "pad_registers": 0,
+      "eram": 35,
+      "dsp": 21,
+      "virtual_io": 433,
+      "physical_io": 0,
+      "clock_resources": {
+        "pll": 0,
+        "gclk": 0,
+        "lclk": 0,
+        "sclk": 0,
+        "mlclk": 0,
+        "ioclk": 0
+      },
+      "clock_resources_boundary": "zero external clock fabric in this virtual-IO fixture, not an integrated clock budget",
+      "source_area": "ip_tiny_no_video/gate_full.area",
+      "external_interconnect_resources": "not measured",
+      "model_qualified": false,
+      "ip_body_lut6_equivalent_gate": 10524,
+      "virtual_boundary_lut6_equivalent_gate": 419,
+      "ip_body_other_resources": {
+        "registers": 8878,
+        "eram": 35,
+        "dsp": 21
+      },
+      "ip_body_slice": "not separately reported by hierarchy; full fixture slice count above",
+      "virtual_boundary_note": "top minus direct IP instance; these counters are not native PS/HP interconnect cost",
+      "arithmetic_budget": {
+        "lut6_equivalent_gate": {
+          "existing": 29873,
+          "ip": 10943,
+          "sum": 40816,
+          "capacity": 52480,
+          "remaining": 11664
+        },
+        "slice_gate": {
+          "existing": 37984,
+          "ip": 11045,
+          "sum": 49029,
+          "capacity": 52480,
+          "remaining": 3451
+        },
+        "registers": {
+          "existing": 37863,
+          "ip": 8878,
+          "sum": 46741,
+          "capacity": 104960,
+          "remaining": 58219
+        },
+        "eram": {
+          "existing": 58,
+          "ip": 35,
+          "sum": 93,
+          "capacity": 280,
+          "remaining": 187
+        },
+        "dsp": {
+          "existing": 6,
+          "ip": 21,
+          "sum": 27,
+          "capacity": 240,
+          "remaining": 213
+        }
+      },
+      "budget_limit": "gate IP + routed candidate13, with external interconnect omitted; arithmetic budget only"
+    },
+    {
+      "configuration": "mbface_no_video",
+      "phase": "gate pack + legalize; not placed/routed",
+      "slice_gate": 15386,
+      "register_only_slices": 1073,
+      "lut6_equivalent_gate": 14313,
+      "lut6_equivalent_definition": "derived: packed slices minus register-only slices; gate capacity proxy, not post-place LUT6 utilization",
+      "registers": 10732,
+      "pad_registers": 0,
+      "eram": 29,
+      "dsp": 32,
+      "virtual_io": 433,
+      "physical_io": 0,
+      "clock_resources": {
+        "pll": 0,
+        "gclk": 0,
+        "lclk": 0,
+        "sclk": 0,
+        "mlclk": 0,
+        "ioclk": 0
+      },
+      "clock_resources_boundary": "zero external clock fabric in this virtual-IO fixture, not an integrated clock budget",
+      "source_area": "ip_mbface_no_video/gate_full.area",
+      "external_interconnect_resources": "not measured",
+      "model_qualified": false,
+      "ip_body_lut6_equivalent_gate": 13893,
+      "virtual_boundary_lut6_equivalent_gate": 420,
+      "ip_body_other_resources": {
+        "registers": 10732,
+        "eram": 29,
+        "dsp": 32
+      },
+      "ip_body_slice": "not separately reported by hierarchy; full fixture slice count above",
+      "virtual_boundary_note": "top minus direct IP instance; these counters are not native PS/HP interconnect cost",
+      "arithmetic_budget": {
+        "lut6_equivalent_gate": {
+          "existing": 29873,
+          "ip": 14313,
+          "sum": 44186,
+          "capacity": 52480,
+          "remaining": 8294
+        },
+        "slice_gate": {
+          "existing": 37984,
+          "ip": 15386,
+          "sum": 53370,
+          "capacity": 52480,
+          "remaining": -890
+        },
+        "registers": {
+          "existing": 37863,
+          "ip": 10732,
+          "sum": 48595,
+          "capacity": 104960,
+          "remaining": 56365
+        },
+        "eram": {
+          "existing": 58,
+          "ip": 29,
+          "sum": 87,
+          "capacity": 280,
+          "remaining": 193
+        },
+        "dsp": {
+          "existing": 6,
+          "ip": 32,
+          "sum": 38,
+          "capacity": 240,
+          "remaining": 202
+        }
+      },
+      "budget_limit": "gate IP + routed candidate13, with external interconnect omitted; arithmetic budget only"
+    },
+    {
+      "configuration": "v3_no_video",
+      "phase": "gate pack + legalize; not placed/routed",
+      "slice_gate": 13882,
+      "register_only_slices": 954,
+      "lut6_equivalent_gate": 12928,
+      "lut6_equivalent_definition": "derived: packed slices minus register-only slices; gate capacity proxy, not post-place LUT6 utilization",
+      "registers": 9549,
+      "pad_registers": 0,
+      "eram": 15,
+      "dsp": 29,
+      "virtual_io": 433,
+      "physical_io": 0,
+      "clock_resources": {
+        "pll": 0,
+        "gclk": 0,
+        "lclk": 0,
+        "sclk": 0,
+        "mlclk": 0,
+        "ioclk": 0
+      },
+      "clock_resources_boundary": "zero external clock fabric in this virtual-IO fixture, not an integrated clock budget",
+      "source_area": "ip_v3_no_video/gate_full.area",
+      "external_interconnect_resources": "not measured",
+      "model_qualified": false,
+      "ip_body_lut6_equivalent_gate": 12508,
+      "virtual_boundary_lut6_equivalent_gate": 420,
+      "ip_body_other_resources": {
+        "registers": 9549,
+        "eram": 15,
+        "dsp": 29
+      },
+      "ip_body_slice": "not separately reported by hierarchy; full fixture slice count above",
+      "virtual_boundary_note": "top minus direct IP instance; these counters are not native PS/HP interconnect cost",
+      "arithmetic_budget": {
+        "lut6_equivalent_gate": {
+          "existing": 29873,
+          "ip": 12928,
+          "sum": 42801,
+          "capacity": 52480,
+          "remaining": 9679
+        },
+        "slice_gate": {
+          "existing": 37984,
+          "ip": 13882,
+          "sum": 51866,
+          "capacity": 52480,
+          "remaining": 614
+        },
+        "registers": {
+          "existing": 37863,
+          "ip": 9549,
+          "sum": 47412,
+          "capacity": 104960,
+          "remaining": 57548
+        },
+        "eram": {
+          "existing": 58,
+          "ip": 15,
+          "sum": 73,
+          "capacity": 280,
+          "remaining": 207
+        },
+        "dsp": {
+          "existing": 6,
+          "ip": 29,
+          "sum": 35,
+          "capacity": 240,
+          "remaining": 205
+        }
+      },
+      "budget_limit": "gate IP + routed candidate13, with external interconnect omitted; arithmetic budget only"
+    }
+  ],
+  "independent_place": {
+    "configuration": "tiny_no_video",
+    "phase": "independent virtual-IO place at 100MHz; not routed",
+    "lut6_equivalent": 11105,
+    "slice": 11931,
+    "registers": 9112,
+    "eram": 35,
+    "dsp": 21,
+    "clock_resources": {
+      "pll": 0,
+      "gclk": 2,
+      "lclk": 0,
+      "sclk": 0,
+      "mlclk": 0,
+      "ioclk": 0
+    },
+    "setup_ns": 4.517,
+    "hold_ns": 0.0,
+    "source_area": "physical_tiny_100m/place.area",
+    "active_clock_mhz": 100,
+    "external_native_interconnect": "not measured",
+    "integrated_timing_pass": false,
+    "arithmetic_budget": {
+      "lut6_equivalent": {
+        "sum": 40978,
+        "remaining": 11502
+      },
+      "slice": {
+        "sum": 49915,
+        "remaining": 2565
+      },
+      "registers": {
+        "sum": 46975,
+        "remaining": 57985
+      },
+      "eram": {
+        "sum": 93,
+        "remaining": 187
+      },
+      "dsp": {
+        "sum": 27,
+        "remaining": 213
+      }
+    },
+    "ip_body_lut6_equivalent": 10884,
+    "boundary_lut6_equivalent": 221
+  },
+  "independent_route": {
+    "configuration": "tiny_no_video",
+    "phase": "independent virtual-IO route at 100MHz",
+    "lut6_equivalent": 11105,
+    "slice": 11931,
+    "registers": 9112,
+    "eram": 35,
+    "dsp": 21,
+    "feedthrough": 6974,
+    "clock_resources": {
+      "pll": 0,
+      "gclk": 2,
+      "lclk": 0,
+      "sclk": 11,
+      "mlclk": 0,
+      "ioclk": 0
+    },
+    "setup_ns": 1.012,
+    "hold_ns": 0.02,
+    "source_area": "physical_tiny_route100/route.area",
+    "active_clock_mhz": 100,
+    "external_native_interconnect": "not measured",
+    "integrated_timing_pass": false,
+    "ip_body_lut6_equivalent": 10884,
+    "boundary_lut6_equivalent": 221,
+    "arithmetic_budget": {
+      "lut6_equivalent": {
+        "sum": 40978,
+        "remaining": 11502
+      },
+      "slice": {
+        "sum": 49915,
+        "remaining": 2565
+      },
+      "registers": {
+        "sum": 46975,
+        "remaining": 57985
+      },
+      "eram": {
+        "sum": 93,
+        "remaining": 187
+      },
+      "dsp": {
+        "sum": 27,
+        "remaining": 213
+      }
+    }
+  }
+}
