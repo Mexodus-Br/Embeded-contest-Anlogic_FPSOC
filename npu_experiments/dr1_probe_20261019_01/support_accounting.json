@@ -1,0 +1,100 @@
+{
+  "meaning": "Accounting of existing IP only; no pruned netlist was generated.",
+  "hard_only_runtime_qualified": false,
+  "legal_minimum_pl_known": false,
+  "external_ps_hp_interconnect_measured": false,
+  "gate": {
+    "source": "ip_tiny_no_video\\gate_full.area",
+    "ip_core": {
+      "lut_capacity_equivalent": 10524,
+      "registers": 8878,
+      "eram": 35,
+      "dsp": 21
+    },
+    "four_shell_siblings": {
+      "lut_capacity_equivalent": 1039,
+      "registers": 1435,
+      "eram": 1,
+      "dsp": 0
+    },
+    "three_operator_siblings": {
+      "u_pooling": {
+        "lut_capacity_equivalent": 4326,
+        "registers": 3070,
+        "eram": 26,
+        "dsp": 8
+      },
+      "u_route": {
+        "lut_capacity_equivalent": 1119,
+        "registers": 726,
+        "eram": 0,
+        "dsp": 8
+      },
+      "u_upsample": {
+        "lut_capacity_equivalent": 794,
+        "registers": 579,
+        "eram": 4,
+        "dsp": 5
+      }
+    },
+    "three_operators_total": {
+      "lut_capacity_equivalent": 6239,
+      "registers": 4375,
+      "eram": 30,
+      "dsp": 21
+    },
+    "structural_residual_not_a_configuration": {
+      "lut_capacity_equivalent": 4285,
+      "registers": 4503,
+      "eram": 5,
+      "dsp": 0
+    }
+  },
+  "route": {
+    "source": "physical_tiny_route100\\route.area",
+    "ip_core": {
+      "lut_capacity_equivalent": 10884,
+      "registers": 9112,
+      "eram": 35,
+      "dsp": 21
+    },
+    "four_shell_siblings": {
+      "lut_capacity_equivalent": 1211,
+      "registers": 1430,
+      "eram": 1,
+      "dsp": 0
+    },
+    "three_operator_siblings": {
+      "u_pooling": {
+        "lut_capacity_equivalent": 4467,
+        "registers": 3124,
+        "eram": 26,
+        "dsp": 8
+      },
+      "u_route": {
+        "lut_capacity_equivalent": 1145,
+        "registers": 750,
+        "eram": 0,
+        "dsp": 8
+      },
+      "u_upsample": {
+        "lut_capacity_equivalent": 813,
+        "registers": 593,
+        "eram": 4,
+        "dsp": 5
+      }
+    },
+    "three_operators_total": {
+      "lut_capacity_equivalent": 6425,
+      "registers": 4467,
+      "eram": 30,
+      "dsp": 21
+    },
+    "structural_residual_not_a_configuration": {
+      "lut_capacity_equivalent": 4459,
+      "registers": 4645,
+      "eram": 5,
+      "dsp": 0
+    }
+  }
+}
