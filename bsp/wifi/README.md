@@ -1,3 +1,5 @@
+> 2026-10-19当前范围更新：用户授权最小静态HTTP诊断首页及只读认证下载，覆盖下方2026-10-18“不集成Web”的对应限制；不开发运动HMI。新镜像已Windows写SD/完整读回、实板SD启动/USB及修复后wlan0出现，LAN验收尚在进行。当前说明见 [http/README.md](http/README.md)，下方保留上一轮候选记录。
+
 # Wi-Fi STA 专项（scope 硬件基线）
 
 本轮日期 2026-10-18，Asia/Taipei。目标是路由器 STA 与局域网双向可达；本次板卡、SD 不可用，工作止于 SD 烧录前。**候选构建/脚本测试不代表 USB 枚举、Wi-Fi 联网或实板验收通过。** 当前状态及产物身份见 [BUILD_STATUS.md](BUILD_STATUS.md)。不集成 Web/AP/4G/安全/HOME/RS485/HP1，不自动加载运动客户端或运行任何运动程序，不操作 eMMC/QSPI。

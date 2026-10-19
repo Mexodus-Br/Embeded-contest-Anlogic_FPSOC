@@ -1,0 +1,20 @@
+
+# stty -echo; printf '\nWIFI_ECHO_OFF\n'
+
+WIFI_ECHO_OFF
+# > > > > > > > > > > > > > > > > > > > > > > > > > > > > > WIFI_CONNECT_BEGIN
+/etc/wifi/wpa_supplicant.conf uid=0 mode=600
+/etc/wifi-http/auth.json uid=0 mode=600
+[ 1392.637657] AICWFDBG(LOGINFO)	rwnx_close wlan0 Enter
+[ 1392.637678] AICWFDBG(LOGINFO)	state: 1 1 
+[ 1392.638648] AICWFDBG(LOGINFO)	HT supp 1, VHT supp 1, HE supp 1
+STA stopped
+STA worker requested; query wifi-sta status
+Failed to connect to non-global ctrl_ifname: wlan0  error: No such file or directory
+[ 1393.062843] rwnx_reg_notifier Enter
+interface=wlan0
+wpa_state=SCANNING
+WIFI_AUTH_DHCP_NOT_READY
+# 
+WIFI_EXIT=1
+# 

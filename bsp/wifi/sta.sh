@@ -39,7 +39,7 @@ cleanup() {
 case "${1:-status}" in
     start)
         wireless || { echo 'wireless interface absent; inspect USB/driver first'; exit 1; }
-        [ -f "$C" ] && [ ! -L "$C" ] && [ "$(stat -c '%u:%a' "$C")" = 0:600 ] || { echo 'run wifi-configure first (root:0600)'; exit 1; }
+        python3 -c 'import os,stat,sys; s=os.lstat(sys.argv[1]); sys.exit(0 if stat.S_ISREG(s.st_mode) and s.st_uid==0 and stat.S_IMODE(s.st_mode)==0o600 else 1)' "$C" 2>/dev/null || { echo 'run wifi-configure first (root:0600)'; exit 1; }
         if [ -f "$R/worker.pid" ] && kill -0 "$(cat "$R/worker.pid")" 2>/dev/null; then echo 'already running'; exit 0; fi
         mkdir "$R/starting" 2>/dev/null || { echo 'start/stop in progress'; exit 1; }
         "$0" worker >/dev/null 2>&1 &

@@ -62,13 +62,14 @@ class Service(unittest.TestCase):
             binpath.mkdir()
             for name in ('sta.sh','udhcpc.sh'):
                 text = (HERE/name).read_text().replace('/etc/wifi', str(root/'etc/wifi')).replace('/run/wifi-sta', str(root/'run/wifi-sta'))
+                text = text.replace('s.st_uid==0', 's.st_uid==os.geteuid()')
                 target = binpath/('wifi-sta' if name == 'sta.sh' else 'wifi-udhcpc')
                 target.write_text(text)
                 target.chmod(0o755)
             state = root/'state'
             state.write_text('DISCONNECTED')
             scripts = {
-                'id':'echo 0', 'stat':'echo 0:600',
+                'id':'echo 0',
                 'iw':'echo "type managed"',
                 'ip':'echo "$*" >> "$MOCK_ROOT/ip.log"; case "$*" in *"addr show"*) echo "inet 192.0.2.2/24";; esac',
                 'wpa_cli':'printf "wpa_state="; cat "$MOCK_ROOT/state"; echo',
@@ -84,10 +85,14 @@ class Service(unittest.TestCase):
                 path.write_text(('#!/bin/bash\n' if name in ('wpa-daemon','udhcpc') else '#!/bin/sh\n')+text+'\n')
                 path.chmod(0o755)
             (root/'etc/wifi/wpa_supplicant.conf').write_text(config.render('IEEE','password','TW'))
+            (root/'etc/wifi/wpa_supplicant.conf').chmod(0o600)
             env = dict(os.environ, PATH=str(binpath)+':'+os.environ['PATH'], MOCK_ROOT=str(root), WIFI_INTERFACE='wlan99')
             def run(*args, **kwargs):
                 return subprocess.run([str(binpath/'wifi-sta')]+list(args), env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, timeout=15, **kwargs)
             try:
+                (root/'etc/wifi/wpa_supplicant.conf').chmod(0o644)
+                self.assertNotEqual(run('start').returncode, 0)
+                (root/'etc/wifi/wpa_supplicant.conf').chmod(0o600)
                 started = time.monotonic()
                 self.assertEqual(run('start').returncode, 0)
                 self.assertLess(time.monotonic()-started, 2)

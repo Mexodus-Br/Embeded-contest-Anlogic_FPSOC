@@ -21,7 +21,7 @@ a = p.parse_args()
 root = Path(__file__).resolve().parents[1]
 assert a.image.resolve().is_relative_to((root/'artifacts').resolve())
 assert a.log.resolve().is_relative_to((root/'evidence').resolve())
-assert a.disk > 0 and a.bytes == 31299993600
+assert a.disk > 0 and a.bytes >= 536870912 and a.bytes % 512 == 0
 assert a.image.stat().st_size == 536870912
 assert len(a.sha256) == 64 and a.root_partuuid.endswith('-02')
 

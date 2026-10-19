@@ -1,3 +1,16 @@
+# 2026-10-19 Wi-Fi + HTTP 当前进展（覆盖下方对应历史状态）
+
+- 用户已授权本次新SD格式化/烧写；Windows重新核对31708938240B USB目标身份并完成512MiB写入、完整无缓存读回，源/读回一致。根PARTUUID `70d791a8-02`，镜像SHA256 `03a1ad579677026833863d3335e8d76d21074acb7c1dc577eb2594ba16e5bb65`。
+- HTTP用户态独立候选/最终ext4检查通过，原内核/模块/启动链/DTB未变；4项VM HTTP安全/完整下载测试通过，不能当作实板LAN通过。
+- 用户装卡/连接COM4并上电后，FSBL→U-Boot→Linux/SD根、1GiB/CMA128MiB、DWC2 Host/Hub和实际a69c:8d80通过。首次loader路径失败已留证；补同套U02平面路径别名后，chip_id=7固件下载、a69c:8d81和wlan0出现。原候选文件未包括这项实板后修复，部署态与文件镜像须分开标识。
+- r2修正版含平面固件路径别名与相同模块/启动链，独立本机镜像 `bsp/artifacts/wifi-http-20261019-r2/sdcard.img`，根 `c7965caa-02`、SHA256 `d429f239584c35a8a5a9c185af0a5f864f301750d343a6cd3c9e27f256cc1d81`。离线验证通过，尚未写卡；不能把当前首版+板端修复的运行结果写成r2冷启动通过。
+- 本次配置后实查Wi-Fi配置root:0600，但HTTP认证文件不存在；等待用户补本地认证。发现最小BusyBox无stat，已用Python lstat最小修复STA权限检查并应用在当前SD。STA worker运行、状态SCANNING，主动扫描15个网络但目标SSID不可见；尚未关联/取得IPv4。COM4已关闭交给用户核对路由器/本地配置，无任何运动操作。
+- r3独立镜像 `bsp/artifacts/wifi-http-20261019-r3/sdcard.img`，根 `82e6e1bc-02`、SHA256 `db50bdcf1908977fc29fd09bdc9e75d28e79475799a8a2fb0f703359c08cc734`，包含固件路径与STA权限检查修复。最终EXT4/启动链/内核/模块/源码/固件别名检查通过；未写卡。当前首版SD+两项持久修复不能冒充r3。
+- 本批ping/HTTP/文件下载/10分钟/重连/冷启动自动联网均待实测。HTTP尚未启动，无LAN验收通过声明。
+- 细节、路径、凭据/服务操作及电脑验收入口见 [http/README.md](http/README.md)。旧Wi-Fi候选与scope回退镜像保持。
+
+---
+
 # Wi-Fi STA 候选交付状态 — 2026-10-18（Asia/Taipei）
 
 **OFFLINE_VERIFIED / 停于 SD 烧录前；未部署，Wi-Fi 未验收。** 用户明确板卡与SD本次不可用；COM4空闲但板卡不在手边。本专项未打开串口、访问物理磁盘、复位/上电板卡、操作eMMC/QSPI、加载板端模块或发出任何运动命令。当前板上镜像、供电、模块、buffer和进程状态未知，不沿用历史scope末态。
