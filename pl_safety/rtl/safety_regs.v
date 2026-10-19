@@ -1,6 +1,7 @@
 `timescale 1ns/1ps
 `include "safety_defs.vh"
-module safety_regs(
+`include "interlock_defs.vh"
+module safety_regs #(parameter INTERLOCK_SUPPORT=0)(
  input wire clk,rst_n,
  input wire [32:0] s_awaddr,s_araddr,input wire [31:0] s_wdata,input wire [3:0] s_wstrb,
  input wire s_awvalid,s_wvalid,s_bready,s_arvalid,s_rready,
@@ -9,11 +10,15 @@ module safety_regs(
  input wire [255:0] config_hash,input wire config_ok,
  input wire [2047:0] live_snapshot,input wire [31:0] causes,
  input wire request_ok,clear_ok,home_done,home_cancelled,home_owner,pulse_safe,stopped,
- output wire home_request,clear_request,stop_request,irq
+ output wire home_request,clear_request,stop_request,irq,command_admission_pending,
+ output wire ext_write_fire,output wire [11:0] ext_write_offset,ext_read_offset,
+ output wire [31:0] ext_write_data,output wire [3:0] ext_write_strobe,
+ input wire ext_write_known,ext_read_known,input wire [1:0] ext_write_response,
+ input wire [31:0] ext_read_data
 );
  localparam [32:0] BASE={1'b0,`SAF_BASE};
  reg ah,wh;reg [32:0] address;reg [31:0] data;reg [3:0] strobe;
- reg submit_address,stop_address,command_data;
+ reg submit_address,stop_address,command_data,home_opcode;
  reg [31:0] opcode,arg,txn,last_id,last_opcode,last_arg;
  reg [31:0] ack_id,ack_error;reg ack_valid,ack_accepted,ack_complete,busy,cancel_pending;
  reg [31:0] pending,mask,snap_id;reg [2047:0] snapshot;reg snap_valid,ack_event;
@@ -21,6 +26,9 @@ module safety_regs(
  wire hit=address[32:12]==BASE[32:12];
  wire full=address[1:0]==0 && strobe==15;
  wire [11:0] offset=address[11:0];
+ assign ext_write_fire=INTERLOCK_SUPPORT && fire && hit && full;
+ assign ext_write_offset=offset;assign ext_write_data=data;assign ext_write_strobe=strobe;
+ assign ext_read_offset=s_araddr[11:0];
  wire same_payload=opcode==last_opcode && arg==last_arg;
  wire txn_valid=txn!=0 && txn>=last_id &&
    (txn!=last_id || same_payload) && (!busy || txn==last_id);
@@ -36,7 +44,7 @@ module safety_regs(
    `SAF_REGISTERS_SUBMIT:if(!submit_valid)response=2;
    `SAF_REGISTERS_IRQ_PENDING,`SAF_REGISTERS_IRQ_MASK:if((data & ~32'hf)!=0)response=2;
    `SAF_REGISTERS_SNAP_REQ:if(data==0 || data<=snap_id)response=2;
-   default:response=2;
+   default:response=INTERLOCK_SUPPORT && ext_write_known ? ext_write_response:2;
   endcase
  end
  wire good=fire && response==0;
@@ -44,6 +52,9 @@ module safety_regs(
  // These are exactly the aligned full-strobe SUBMIT/STOP predicates; no
  // command latency is added and mailbox validation is never bypassed.
  wire submit=fire && submit_address && command_data && txn_valid && txn!=last_id;
+ // Conservative configuration fence, before payload/transaction validation.
+ // The actual HOME/CLEAR decode below retains every original check and edge.
+ assign command_admission_pending=ah && submit_address && home_opcode;
  assign home_request=submit && opcode==`SAF_COMMANDS_HOME_START && arg==0;
  assign clear_request=submit && opcode==`SAF_COMMANDS_CLEAR_FAULT && arg==0;
  // Independent STOP does not depend on mailbox readiness or response mux.
@@ -59,10 +70,10 @@ module safety_regs(
  always @*begin
   read_data=0;read_known=1;word_index=0;
   case(s_araddr[11:0])
-   `SAF_REGISTERS_VERSION:read_data=`SAF_VERSION;
-   `SAF_REGISTERS_PROFILE:read_data=`SAF_PROFILE;
-   `SAF_REGISTERS_CAPS:read_data=`SAF_CAPS;
-   `SAF_REGISTERS_FEATURES:read_data=`SAF_FEATURES;
+   `SAF_REGISTERS_VERSION:read_data=INTERLOCK_SUPPORT ? `SI_VERSION:`SAF_VERSION;
+   `SAF_REGISTERS_PROFILE:read_data=INTERLOCK_SUPPORT ? `SI_PROFILE:`SAF_PROFILE;
+   `SAF_REGISTERS_CAPS:read_data=INTERLOCK_SUPPORT ? `SI_CAPS:`SAF_CAPS;
+   `SAF_REGISTERS_FEATURES:read_data=INTERLOCK_SUPPORT ? `SI_FEATURES:`SAF_FEATURES;
    `SAF_REGISTERS_OPCODE:read_data=opcode;
    `SAF_REGISTERS_ARG:read_data=arg;
    `SAF_REGISTERS_TXN:read_data=txn;
@@ -78,14 +89,15 @@ module safety_regs(
      word_index=(s_araddr[11:0]-`SAF_REGISTERS_CONFIG_ID_0)>>2;read_data=config_hash[word_index*32+:32];
     end else if(s_araddr[11:0]>=`SAF_SNAPSHOT_BASE && s_araddr[11:0]<`SAF_SNAPSHOT_BASE+`SAF_SNAPSHOT_WORDS*4)begin
      word_index=(s_araddr[11:0]-`SAF_SNAPSHOT_BASE)>>2;read_data=snap_valid ? snapshot[word_index*32+:32]:0;
-    end else read_known=0;
+    end else if(INTERLOCK_SUPPORT && ext_read_known)read_data=ext_read_data;
+    else read_known=0;
    end
   endcase
  end
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
    ah<=0;wh<=0;address<=0;data<=0;strobe<=0;submit_address<=0;stop_address<=0;command_data<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
-   opcode<=0;arg<=0;txn<=0;last_id<=0;last_opcode<=0;last_arg<=0;
+   opcode<=0;home_opcode<=0;arg<=0;txn<=0;last_id<=0;last_opcode<=0;last_arg<=0;
    ack_id<=0;ack_error<=0;ack_valid<=0;ack_accepted<=0;ack_complete<=0;busy<=0;cancel_pending<=0;
    pending<=0;mask<=0;snap_id<=0;snapshot<=0;snap_valid<=0;ack_event<=0;
   end else begin
@@ -103,7 +115,7 @@ module safety_regs(
    if(fire)begin
     ah<=0;wh<=0;s_bvalid<=1;s_bresp<=response;
     if(good)case(offset)
-     `SAF_REGISTERS_OPCODE:opcode<=data;
+     `SAF_REGISTERS_OPCODE:begin opcode<=data;home_opcode<=data==`SAF_COMMANDS_HOME_START;end
      `SAF_REGISTERS_ARG:arg<=data;
      `SAF_REGISTERS_TXN:txn<=data;
      `SAF_REGISTERS_IRQ_MASK:mask<=data;

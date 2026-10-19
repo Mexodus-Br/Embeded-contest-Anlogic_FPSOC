@@ -1,5 +1,9 @@
 # RS485 GP bridge 独立交接
 
+2026-10-18补充：下文保留旧R5S1独立交接状态。新增R5S2仅在interlock_*完整链启用，
+其空闲配置门、真实RUN、提交旁路与联锁资格见[SAF2契约](../pl_safety/INTERLOCK_CONTRACT.md)
+和[合并交接](../pl_safety/INTERLOCK_HANDOFF.md)；旧R5S1行为/偏移不变。
+
 本交付尚未系统集成或实板验收。BSP、运动/DMA顶层、Golden、GPIO和启动镜像没有修改；没有下载板卡。用户于2026-10-14接受GP_PROFILE_PROPOSAL.md三组契约。完成本交接后停止，系统接入由BSP统一安排。
 
 源码身份以本交接提交及 `evidence/identity_gp.json` 为准；清单固定源文件、唯一规范、工具、夹具和证据SHA256。采集基线2792c66；原协议schema.json/rate_design.json、transaction/UART/FIFO/divider/master字节不变。多速率模块仅增加只读观测端口，freeze_gp.py逆向去除该增量后逐字比较原调度模块，证明调度/退避逻辑未重写。历史MULTIRATE_HANDOFF.md仍是原采集器交接，本文件描述新增桥。

@@ -1,4 +1,4 @@
-/* Generated telemetry ABI, sole schema SHA256 1e8204ea46997ed09d87dec49d6ac83483d4b7f3f03665ea36104f8ba71d1f31 */
+/* Generated telemetry ABI, sole schema SHA256 5d4adbef586e82e50bf69c432404a9bca07b11894905ac3885f943751b13ce65 */
 #ifndef RS485_TELEM_DEFS_H
 #define RS485_TELEM_DEFS_H
 #include <stdint.h>

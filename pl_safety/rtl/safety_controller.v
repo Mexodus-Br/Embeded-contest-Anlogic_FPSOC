@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 `include "safety_defs.vh"
 module safety_controller #(
- parameter CONFIG_APPROVED=0,
+ parameter CONFIG_APPROVED=0,INTERLOCK_SUPPORT=0,
  parameter [2:0] HOME_DIRECTION=0,
  parameter [191:0] SEARCH_PERIOD=0,PULL_PERIOD=0,PRE_PERIOD=0,
  parameter [191:0] REFERENCE_POSITION=0,PULL_DISTANCE=0,PRE_DISTANCE=0,
@@ -23,7 +23,9 @@ module safety_controller #(
  output reg [2:0] hit_mask,released_mask,done_mask,
  output wire [191:0] travel,
  output reg accepted,rejected,home_done,home_cancelled,
- output wire request_ok,clear_ok
+ output wire request_ok,clear_ok,
+ input wire interlock_permit,interlock_detect,interlock_disable,interlock_clear_ok,
+ input wire [31:0] interlock_causes
 );
  localparam NEED=`SAF_STATES_NEED,PRE=`SAF_STATES_PRE,SEARCH=`SAF_STATES_SEARCH,SEARCH_DRAIN=`SAF_STATES_SEARCH_DRAIN,REF=`SAF_STATES_REF,PULL=`SAF_STATES_PULL,FINISH=`SAF_STATES_FINISH,READY=`SAF_STATES_READY,DRAIN=`SAF_STATES_DRAIN,FAULT=`SAF_STATES_FAULT;
  localparam [31:0] ESTOP=`SAF_CAUSES_ESTOP,PRE_FAIL=`SAF_CAUSES_PRE_FAIL,SEARCH_FAIL=`SAF_CAUSES_SEARCH_FAIL,
@@ -54,7 +56,11 @@ module safety_controller #(
   end
  end
  assign config_ok=config_parameters && (&config_valid[2:0]);
- assign home_owner=state>=PRE && state<=FINISH || state==DRAIN;
+ // SAF2 caches the ownership decode alongside state, not one clock after it.
+ // Every ownership-changing state assignment below updates the same FF; the
+ // final DRAIN completion retains the original last-assignment priority.
+ reg home_owner_q;
+ assign home_owner=INTERLOCK_SUPPORT ? home_owner_q : (state>=PRE && state<=FINISH || state==DRAIN);
  wire in_motion=state==PRE || state==SEARCH || state==PULL;
  wire estop=qualified && active[3];
  wire ordinary_limit=qualified && (|active[2:0]) && !home_owner && (|position_valid[2:0]);
@@ -84,33 +90,38 @@ module safety_controller #(
   if(state==PRE && timeout_reached)failure=failure|PRE_FAIL;
   if(state==PULL && timeout_reached)failure=failure|PULL_FAIL;
   if(state!=DRAIN && state!=FAULT && !clear_executor && (|executor_fault))failure=failure|EXEC_FAIL;
-  if(!config_ok || estop || stop_request || external_abort || (|failure) || (|causes))home_run=0;
+  if(!config_ok || estop || stop_request || external_abort || (|failure) || (|causes) ||
+    (INTERLOCK_SUPPORT && (!interlock_permit || interlock_detect)))home_run=0;
  end
- wire [31:0] new_causes=(estop ? ESTOP:0) | (ordinary_limit ? limit_cause:0) | failure;
- wire abort_now=estop || ordinary_limit || (|failure) || stop_request || external_abort;
+ wire [31:0] new_causes=(estop ? ESTOP:0) | (ordinary_limit ? limit_cause:0) | failure |
+   (INTERLOCK_SUPPORT ? interlock_causes:32'd0);
+ wire abort_now=estop || ordinary_limit || (|failure) || stop_request || external_abort ||
+   (INTERLOCK_SUPPORT && interlock_detect);
  assign request_ok=config_ok && qualified && released[3] && !estop && idle && pulse_safe &&
-  !(|causes) && (state==NEED || state==READY) && !abort_now;
+  !(|causes) && (state==NEED || state==READY) && !abort_now && (!INTERLOCK_SUPPORT || interlock_permit);
  // Closed limit is allowed here: clearing cannot authorize ordinary motion;
  // only the bounded HOME pre-clear path can subsequently move away.
  assign clear_ok=qualified && released[3] && !estop && idle && pulse_safe &&
-  !stop_request && !external_abort;
+  !stop_request && !external_abort && (!INTERLOCK_SUPPORT || interlock_clear_ok);
  assign home_enable=home_request && request_ok;
  assign home_reference=state==REF && !abort_now && !(|causes);
  assign home_complete=state==FINISH && pulse_safe && (&released[2:0]) && !(|active[2:0]) && !abort_now && !(|causes);
  assign home_direction=state==SEARCH ? HOME_DIRECTION : ~HOME_DIRECTION;
  assign home_period=state==SEARCH ? SEARCH_PERIOD : state==PRE ? PRE_PERIOD : PULL_PERIOD;
  assign home_reference_position=REFERENCE_POSITION;
- assign normal_inhibit=!config_ok || state!=READY || home_request || estop || ordinary_limit || (|causes);
+ assign normal_inhibit=!config_ok || state!=READY || home_request || estop || ordinary_limit || (|causes) ||
+   (INTERLOCK_SUPPORT && !interlock_permit);
  assign stop_motion=abort_now;
- assign disable_motion=estop && !causes[3];
- assign invalidate=(home_enable || estop || ordinary_limit || (home_owner && (abort_now || state==DRAIN))) ? 4'b0111 : 4'd0;
+ assign disable_motion=(estop && !causes[3]) || (INTERLOCK_SUPPORT && interlock_disable);
+ assign invalidate=(home_enable || estop || ordinary_limit || (home_owner && (abort_now || state==DRAIN)) ||
+   (INTERLOCK_SUPPORT && interlock_detect)) ? 4'b0111 : 4'd0;
  genvar g;generate for(g=0;g<3;g=g+1)begin: travels
   assign travel[g*64+:64]=count[g];
  end endgenerate
  integer i;
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
-   state<=NEED;causes<=0;first_cause<=0;first_time<=0;event_sequence<=0;
+   state<=NEED;home_owner_q<=0;causes<=0;first_cause<=0;first_time<=0;event_sequence<=0;
    hit_mask<=0;released_mask<=0;done_mask<=0;pre_mask<=0;phase_time<=0;phase_deadline<=0;phase_wrap<=0;
    clear_executor<=0;accepted<=0;rejected<=0;home_done<=0;home_cancelled<=0;
    home_start_time<=0;home_done_time<=0;
@@ -139,18 +150,21 @@ module safety_controller #(
    if(|new_causes)begin
     causes<=causes|new_causes;
     if(causes==0)begin
-     first_cause<=new_causes[3] ? ESTOP : new_causes;
+     first_cause<=new_causes[3] ? ESTOP : !INTERLOCK_SUPPORT ? new_causes :
+       |new_causes[2:0] ? (new_causes & 32'h7) : |new_causes[11:9] ? (new_causes & 32'he00) :
+       |new_causes[14:12] ? (new_causes & 32'h7000) : new_causes[15] ? 32'h8000:new_causes;
      first_time<=time_us;
     end
     if((new_causes & ~causes)!=0)event_sequence<=event_sequence+1'b1;
    end
    if(abort_now)begin
     if(home_owner && state!=DRAIN)home_cancelled<=1;
-    if(home_owner || ordinary_limit || (estop && !causes[3]))state<=DRAIN;
+    if(home_owner || ordinary_limit || (estop && !causes[3]) ||
+      (INTERLOCK_SUPPORT && interlock_disable))begin state<=DRAIN;home_owner_q<=1;end
     if(home_request || clear_request)rejected<=1;
    end else if(home_request)begin
     if(request_ok)begin
-     state<=PRE;pre_mask<=active[2:0];hit_mask<=0;released_mask<=0;done_mask<=0;
+     state<=PRE;home_owner_q<=1;pre_mask<=active[2:0];hit_mask<=0;released_mask<=0;done_mask<=0;
      phase_time<=time_us;{phase_wrap,phase_deadline}<={1'b0,time_us}+{1'b0,PRE_MAX_US};home_start_time<=time_us;accepted<=1;
      for(i=0;i<3;i=i+1)begin
     count[i]<=0;count_full[i]<=0;
@@ -162,7 +176,7 @@ module safety_controller #(
     end else rejected<=1;
    end else if(clear_request)begin
     if(clear_ok)begin
-     causes<=0;first_cause<=0;first_time<=0;state<=NEED;clear_executor<=1;accepted<=1;
+     causes<=0;first_cause<=0;first_time<=0;state<=NEED;home_owner_q<=0;clear_executor<=1;accepted<=1;
     end else rejected<=1;
    end else case(state)
     PRE:if((&reached_target) && (&released[2:0]) && pulse_safe)begin
@@ -191,11 +205,11 @@ module safety_controller #(
      done_mask<=reached_target;
      if((&reached_target) && pulse_safe && (&released[2:0]))state<=FINISH;
     end
-    FINISH:if(home_complete)begin state<=READY;home_done<=1;home_done_time<=time_us;event_sequence<=event_sequence+1'b1;end
+    FINISH:if(home_complete)begin state<=READY;home_owner_q<=0;home_done<=1;home_done_time<=time_us;event_sequence<=event_sequence+1'b1;end
     default:begin end
    endcase
    // Persistent sources must not prevent safe drain completion.
-   if(state==DRAIN && pulse_safe)begin state<=(|(causes|new_causes)) ? FAULT:NEED;end
+   if(state==DRAIN && pulse_safe)begin state<=(|(causes|new_causes)) ? FAULT:NEED;home_owner_q<=0;end
   end
  end
 endmodule

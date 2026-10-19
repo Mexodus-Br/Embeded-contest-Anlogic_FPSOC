@@ -1,5 +1,35 @@
 # PL safety / parallel HOME
 
+2026-10-18新增SAF2/R5S2联锁：行为与接入见[INTERLOCK_CONTRACT.md](INTERLOCK_CONTRACT.md)，
+完成情况和门禁见[INTERLOCK_HANDOFF.md](INTERLOCK_HANDOFF.md)。旧SAF1/R5S1入口默认行为保留。
+新验证使用interlocks.py、interlock_real_system.py、build_interlock.py及audit_interlock.py；
+下文历史封存/验证脚本含扩大哈希范围的旧规则，未经修改不要用于新交付，AGENT.md §11.5优先。
+
+SAF2复现入口（从仓库根目录；每个tag必须新建，Questa仅串行运行）：
+
+```powershell
+$py = 'C:\Users\boru\AppData\Local\Programs\Python\Python310\python.exe'
+& $py pl_safety/generate_interlock.py --check
+& $py pl_safety/verify_interlock.py
+& $py pl_safety/tests/interlock_suite.py --tag NEW_SUITE
+& $py pl_safety/tests/interlock_regressions.py --tag NEW_REGRESSION
+& $py pl_safety/tests/interlock_real_system.py --tag NEW_REAL
+# 以下也占用同一Questa许可，必须等上一项退出后串行运行。
+& $py pl_safety/tests/interlock_real_system.py --tag NEW_REAL_WD --scenario watchdog
+& $py pl_safety/tests/interlock_real_system.py --tag NEW_REAL_FB --scenario feedback_timeout
+& $py pl_safety/build_interlock.py --tag NEW_BUILD
+& $py pl_safety/verify_interlock_build.py --build NEW_BUILD --real NEW_REAL --tag NEW_IDENTITY
+& $py pl_safety/audit_interlock.py --build NEW_BUILD --tag NEW_AUDIT
+& $py pl_safety/report_interlock.py --build NEW_BUILD --audit interlock_audit_NEW_AUDIT --tag NEW_REPORT
+```
+
+新runner保留独立失败结果且不计算文件哈希。完整TD缓存依赖此前完整参考工程缓存；
+真实系统将本轮实际编译RTL和头文件逐字复制到新run目录，验证副本不会随之后源码编辑漂移。
+资源/时序使用含native PS的完整system_wrapper；真实IP仿真在GP/HP端以原BFM驱动真实
+受保护转换器与两DMA。均不生成部署镜像，不执行COM4或板卡操作。
+超时系统场景明确向已有统一时间寄存器注入非生产跳转；实际UART、GP、两DMA及背压
+继续运行，用于隔离验证超时与取消逻辑，不据此证明两秒实体计时或机械保护。
+
 现行行为与接口见 [CONTRACT.md](CONTRACT.md)。2026-10-16 用户已授权 RTL/自检；生产参数、接线/电气、实体轴映射和板级验收仍未完成。production.json 默认禁止启动。仿真和资源夹具禁止用于电机。
 
 实现位于 rtl/；旧运动底座只扩展 motion_executor、continuous_motion、motion_service 的可选私有接口，HOME_SUPPORT 缺省 0。新安全候选入口是 generated/safety_rs485_gp_ps_top.v，生产 CONFIG_PROFILE 缺省 0。generated/safety_*.v 是独立候选，不覆盖历史顶层；从实际六窗口架构增加第七窗口，并通过真实 GP/HP/DMA 通路验证。

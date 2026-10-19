@@ -1,7 +1,15 @@
 """Generate multi-rate constants from rate_design.json and wire schema.json."""
-import json
+import argparse,json
 from pathlib import Path
 R=Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser()
+parser.add_argument('--check',action='store_true')
+args=parser.parse_args()
+def emit(name,text):
+ path=R/'generated'/name
+ if args.check:
+  assert path.read_text()==text,('stale generated file',name)
+ else:path.write_text(text)
 d=json.loads((R/'rate_design.json').read_text());s=json.loads((R/'schema.json').read_text())
 p=next(p for p in d['candidate_profiles'] if p['name']==d['implementation']['default_profile'])
 packed=sum(n<<(32*i) for i,n in enumerate(p['period_us']))
@@ -18,9 +26,10 @@ v+=['function [31:0] query_wire_us;','input [2:0] q;','begin case(q)']
 for i,q in enumerate(s['queries']):
  v.append(f"3'd{i}: query_wire_us=(64'd{5+q['data_bytes']}*10*BIT_CYCLES*1000000+CLK_HZ-1)/CLK_HZ;")
 v+=['default: query_wire_us=0;','endcase end endfunction']
-(R/'generated/rate_parameters.vh').write_text('// GENERATED\n'+',\n'.join(params)+'\n')
-(R/'generated/rate_defs.vh').write_text('\n'.join(v)+'\n')
+emit('rate_parameters.vh','// GENERATED\n'+',\n'.join(params)+'\n')
+emit('rate_defs.vh','\n'.join(v)+'\n')
 c=['/* GENERATED */','#pragma once']+[f'#define MR_CFG_{k} {n}u' for k,n in d['implementation']['cfg_error'].items()]
 c += [f'#define MR_{k} {n}u' for k,n in values.items() if k!='DEFAULT_PERIODS']
 c += [f'#define MR_DEFAULT_PERIOD_{i}_US {n}u' for i,n in enumerate(p['period_us'])]
-(R/'generated/rate_defs.h').write_text('\n'.join(c)+'\n')
+emit('rate_defs.h','\n'.join(c)+'\n')
+print('PASS RS485 rate definitions'+(' check' if args.check else ' generated'))

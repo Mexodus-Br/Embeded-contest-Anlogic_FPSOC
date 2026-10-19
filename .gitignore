@@ -45,6 +45,17 @@ artifacts/
 /pl_safety/optimization/interlock_candidate*/*/
 /pl_safety/interlock_preflight*.json
 
+# Local Wi-Fi capture metadata and process-control markers; keep on disk.
+/bsp/evidence/wifi-http-*.log.json
+/bsp/evidence/wifi-http-*.stop
+/bsp/evidence/wifi-http-sd-*-exit.txt
+
+# Historical timing diagnostics (reusable scripts and reviewed reports stay visible).
+/pl_safety/optimization/timing_20261017/async_reg_manual.json
+/pl_safety/optimization/timing_20261017/candidate1_results.json
+/pl_safety/optimization/timing_20261017/deadline_math.json
+/pl_safety/optimization/timing_20261017/*_critical.txt
+
 # Local credentials: distribute examples only, never populated credentials.
 .env
 .env.*

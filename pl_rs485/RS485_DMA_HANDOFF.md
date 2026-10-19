@@ -1,5 +1,9 @@
 # RS485轻量解析、最新值缓存与独立HP1 DMA遥测交接
 
+2026-10-18：SAF2联锁从实际提交事件独立分支，FIFO满、遥测HP1背压或PS不读取不能
+屏蔽保护检测；原64B遥测、32B采集和DMA缓冲生命周期不变。
+新增行为/真实双DMA验证状态见[合并交接](../pl_safety/INTERLOCK_HANDOFF.md)。
+
 本交付独立验证，尚未系统集成或实板验收。未修改BSP、Golden、原运动/GPIO默认顶层、启动镜像，未下载板卡或接电机。基线7a0d479，最新规划698834c。用户于2026-10-14接受DMA_INDEPENDENT_ADDENDUM.md：独立S2MM-only controller/HP1及局部恢复；原提案的共享controller建议已被覆盖。完成交接后停止，BSP统一接入。
 
 固定源码为本交接提交，逐文件源码/IP/规范/配置/夹具/证据SHA256见evidence/identity_telemetry.json。原协议schema.json/rate_design.json及32B记录不改。唯一ABI来源pl_interface/schema.json新增rs485_telemetry；全局generate.py和tools/generate_telem.py生成PLI_TELEM_/RT_定义，旧GP、DMA、运动及RS485 profile数值不变。旧生成文件banner哈希随完整schema变化，BSP导入时必须按同一提交整体更新定义，不覆盖历史镜像身份。
