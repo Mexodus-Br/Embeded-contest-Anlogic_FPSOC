@@ -1,0 +1,57 @@
+# Local workspace and tool scratch files. Existing tracked evidence is retained.
+/.tmp/
+/log/
+*.log
+*.logw
+__pycache__/
+*.py[cod]
+*.vvp
+*.vcd
+*.fst
+*.wlf
+*.exe
+*.o
+*.obj
+*.ko
+
+# Portable equivalents of the old local .git/info/exclude rules.
+# A reviewed release archive can be explicitly added with git add -f.
+*.zip
+schematic-page*.png
+artifacts/
+
+# Generated run directories; keep reusable runners in tests/ and reviewed
+# reports in Git. Ignore rules do not untrack existing historical evidence.
+/bsp/evidence/*/
+/pl_dma/reports/*/
+/pl_rs485/evidence/*/
+/pl_safety/evidence/*/
+
+# Historical optimization scratch/results and source snapshots.
+# Root-level scripts/docs and the active interlock source remain visible.
+/pl_rs485/optimization/actual_system_opt*/
+/pl_rs485/optimization/diff_*/
+/pl_rs485/optimization/identity_check/
+/pl_rs485/optimization/regression_*/
+/pl_rs485/optimization/top_baseline_preflight/
+/pl_rs485/optimization/top_prepared_replay/
+/pl_rs485/optimization/round2/control_timing*/
+/pl_rs485/optimization/round2/identity/
+/pl_rs485/optimization/round2/ram_*/
+/pl_rs485/optimization/*stage*.paths
+/pl_rs485/optimization/round2/*stage*.paths
+/pl_safety/optimization/timing_20261017/*/
+/pl_safety/optimization/timing_20261017/source_stage.paths
+/pl_safety/optimization/interlock_candidate*/*/
+/pl_safety/interlock_preflight*.json
+
+# Local credentials: distribute examples only, never populated credentials.
+.env
+.env.*
+!.env.example
+!.env.sample
+id_rsa
+id_ed25519
+*.p12
+*.pfx
+wpa_supplicant.conf
