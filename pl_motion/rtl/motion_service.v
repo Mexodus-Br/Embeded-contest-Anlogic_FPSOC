@@ -6,7 +6,7 @@ module motion_service #(
  parameter START_MIN_POINTS=`PLI_MOTION_GP_MOTION_V1_START_MIN_POINTS,
  parameter [255:0] STEP_HIGH_CYCLES=0,STEP_LOW_CYCLES=0,DIR_SETUP_CYCLES=0,DIR_HOLD_CYCLES=0,
  parameter [255:0] EN_SETUP_CYCLES=0,EN_DISABLE_CYCLES=0,MAX_STEP_HZ=0,
- parameter [3:0] EN_ACTIVE_LEVEL=15,parameter HOME_SUPPORT=0
+ parameter [3:0] EN_ACTIVE_LEVEL=15,parameter HOME_SUPPORT=0,SAFETY_IDLE_REGISTERED=0
 )(
  input wire clk,rst_n,dma_reset_released,dma_error,input wire [3:0] fault,
  input wire [32:0] s_awaddr,s_araddr,input wire [31:0] s_wdata,input wire [3:0] s_wstrb,
@@ -121,7 +121,18 @@ module motion_service #(
  // STOP decode must not pass through the general response mux: ARM ready
  // itself observes abort, so sharing that mux creates a structural loop.
  wire stop_write=write_fire && stop_address && stop_data;
- assign safety_idle=maintenance_ok && !command_busy && !ah && !wh && !packet_busy;
+ wire full_safety_idle=maintenance_ok && !command_busy && !ah && !wh && !packet_busy;
+ // Configuration admission may wait one cycle after the planner drains.
+ // Current ownership/mailboxes fence the registered grant immediately when
+ // work is admitted. Fault detection and executor stopping remain combinational.
+ reg safety_idle_q;
+ always @(posedge clk or negedge rst_n)
+  if(!rst_n)safety_idle_q<=0;else safety_idle_q<=full_safety_idle && safety_pulse_safe;
+ wire idle_admission_fence=!session_valid && !command_busy && !ah && !wh &&
+  !packet_busy && !execute && !dispatch_pending && !req_open && !req_enable &&
+  !req_start && !req_resume && !req_disable &&
+  !(HOME_SUPPORT && home_owner);
+ assign safety_idle=SAFETY_IDLE_REGISTERED ? safety_idle_q && idle_admission_fence : full_safety_idle;
  // RX error already stops the normal kernel on its detecting edge. Register
  // only its notification to HOME to avoid error -> abort -> error feedback.
  reg safety_rx_error;

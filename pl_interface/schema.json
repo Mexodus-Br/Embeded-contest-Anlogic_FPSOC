@@ -4536,5 +4536,103 @@
         "SNAP_ID": 38
       }
     }
+  },
+  "interlock_profiles": {
+    "gp_safety_interlock_v2": {
+      "status": "BEHAVIOR_CONFIRMED_RELEASE_REQUIRES_SEPARATE_GATES",
+      "confirmation_date": "2026-10-18",
+      "base": 2157969408,
+      "size": 4096,
+      "profile": 843465043,
+      "version": 2,
+      "caps": 255,
+      "features": 255,
+      "time_hz": 1000000,
+      "timeout_min_us": 1000000,
+      "timeout_max_us": 3000000,
+      "timeout_default_us": 2000000,
+      "heartbeat_period_us": 500000,
+      "collector_profile": 844313938,
+      "collector_version": 2,
+      "collector_caps": 63,
+      "collector_features": 63,
+      "default_axis_mask": 7,
+      "registers": {
+        "SHADOW_AXES": 256,
+        "SHADOW_FEEDBACK_US": 260,
+        "SHADOW_WATCHDOG_US": 264,
+        "CONFIG_TXN": 268,
+        "CONFIG_COMMIT": 272,
+        "CONFIG_APPLIED": 276,
+        "ACTIVE_AXES": 280,
+        "ACTIVE_FEEDBACK_US": 284,
+        "ACTIVE_WATCHDOG_US": 288,
+        "OWNER_OPEN": 292,
+        "OWNER_CLOSE": 296,
+        "OWNER_LO": 300,
+        "OWNER_HI": 304,
+        "HEARTBEAT_OWNER_LO": 308,
+        "HEARTBEAT_OWNER_HI": 312,
+        "HEARTBEAT_SEQ_LO": 316,
+        "HEARTBEAT_SEQ_HI": 320,
+        "HEARTBEAT_COMMIT": 324,
+        "STATUS": 328,
+        "CAUSES": 332,
+        "FIRST_CAUSE": 336,
+        "FIRST_TIME_LO": 340,
+        "FIRST_TIME_HI": 344,
+        "LAST_SEQ_LO": 348,
+        "LAST_SEQ_HI": 352,
+        "SNAP_REQ": 356,
+        "SNAP_ID": 360,
+        "CONFIG_ACCEPTED": 364
+      },
+      "snapshot_base": 768,
+      "snapshot_words": 32,
+      "feature_bits": {
+        "LIMIT": 0, "HOME": 1, "FIXED_PULL": 2, "ESTOP": 3,
+        "SNAPSHOT": 4, "CONFIG_ID": 5, "RS485_INTERLOCK": 6, "PS_WATCHDOG": 7
+      },
+      "snapshot": {
+        "STATUS": 0, "CAUSES": 1, "FIRST_CAUSE": 2,
+        "FIRST_TIME_LO": 3, "FIRST_TIME_HI": 4,
+        "OWNER_LO": 5, "OWNER_HI": 6, "LAST_SEQ_LO": 7, "LAST_SEQ_HI": 8,
+        "AXES": 9, "FEEDBACK_US": 10, "WATCHDOG_US": 11,
+        "TIME_LO": 12, "TIME_HI": 13,
+        "FEEDBACK_TIME_A0_LO": 14, "FEEDBACK_TIME_A0_HI": 15,
+        "FEEDBACK_TIME_A1_LO": 16, "FEEDBACK_TIME_A1_HI": 17,
+        "FEEDBACK_TIME_A2_LO": 18, "FEEDBACK_TIME_A2_HI": 19,
+        "WATCHDOG_TIME_LO": 20, "WATCHDOG_TIME_HI": 21, "SEEN_AXES": 22
+      },
+      "causes": {
+        "PROTECT_A0": 512,
+        "PROTECT_A1": 1024,
+        "PROTECT_A2": 2048,
+        "FEEDBACK_A0": 4096,
+        "FEEDBACK_A1": 8192,
+        "FEEDBACK_A2": 16384,
+        "WATCHDOG": 32768
+      },
+      "status_bits": {
+        "POLL_RUN": 0,
+        "FEEDBACK_QUALIFIED": 1,
+        "OWNER_ACTIVE": 2,
+        "HEARTBEAT_QUALIFIED": 3,
+        "PERMIT": 4,
+        "FAULT": 5,
+        "DRAINED": 6,
+        "CONFIG_PENDING": 7
+      },
+      "errors": {"OK": 0, "ACCESS": 1, "VALUE": 2, "STATE": 3, "IDENTITY": 4, "TORN": 5},
+      "recovery": {
+        "invalidate_at_detection": true,
+        "disable_after_original_off_delay": true,
+        "home_required_after_clear": true,
+        "timeout_wins_same_edge": true,
+        "clear_irq_clears_fault": false,
+        "owner_and_sequence_bits": 64,
+        "owner_and_sequence_wrap": false
+      }
+    }
   }
 }

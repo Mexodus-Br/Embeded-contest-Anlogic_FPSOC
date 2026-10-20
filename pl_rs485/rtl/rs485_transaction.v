@@ -2,6 +2,7 @@
 // UART/FIFO layout is shared with v1. No motion or arbitrary command inputs.
 module rs485_transaction #(
  `include "parameters.vh"
+ ,parameter INTERLOCK_PREDECODE=0,parameter [79:0] PROTECTION_ADDRS=0
  ,parameter integer NORMAL_CYCLES=QUIET_CYCLES,ERROR_CYCLES=QUIET_CYCLES
 )(input wire clk,rst_n,input wire [63:0] time_us,input wire rx,
  input wire request_valid,output wire request_ready,input wire [7:0] request_address,
@@ -9,7 +10,7 @@ module rs485_transaction #(
  output wire tx,output reg de,output reg active,done,
  output reg [7:0] result,output reg bus_blocked,
  output reg push,output reg [255:0] push_data,
- output reg [31:0] accepted,errors,ignored_rx);
+ output reg [31:0] accepted,errors,ignored_rx,output reg [5:0] protection_decoded);
  `include "rs485_defs.vh"
  localparam integer BIT_CYCLES=(CLK_HZ+BAUD/2)/BAUD;
  localparam [3:0] IDLE=0,QUIET=1,PRE=2,SEND=3,HOLD=4,TURN=5,RECEIVE=6,EMIT=7;
@@ -22,6 +23,12 @@ module rs485_transaction #(
  reg [63:0] request_time,event_time;
  reg [31:0] request_seq;
  reg retry_pending,tx_start;
+ // Capture the fixed-format decode on the SAME EMIT edge as push_data.
+ // No FIFO/PS/DMA dependency and no additional detection pipeline stage.
+ wire protection_known=command==query_code(3'd4) && status==`RS_STATUS_VALID &&
+  length==query_length(3'd4) && payload[47:8]==0 && (payload[7:0]==1 || payload[7:0]==2);
+ wire [2:0] protection_axes={address==PROTECTION_ADDRS[16+:8],
+  address==PROTECTION_ADDRS[8+:8],address==PROTECTION_ADDRS[0+:8]} & {3{protection_known}};
  wire tx_busy,tx_done,rv,rf,line_idle;
  wire [7:0] rd;
  wire rx_enable=(state==IDLE)||(state==QUIET)||(state==RECEIVE);
@@ -33,7 +40,7 @@ module rs485_transaction #(
  endtask
  always @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
-   state<=QUIET;de<=0;active<=0;done<=0;result<=0;bus_blocked<=0;push<=0;push_data<=0;
+   state<=QUIET;de<=0;active<=0;done<=0;result<=0;bus_blocked<=0;push<=0;push_data<=0;protection_decoded<=0;
    timer<=0;deadline<=ERROR_CYCLES+TIMEOUT_CYCLES;interbyte<=0;poll_timer<=0;quiet_timer<=ERROR_CYCLES;
    address<=0;command<=0;attempt<=0;status<=0;sum<=0;tx_data<=0;length<=0;rx_count<=0;tx_index<=0;
    payload<=0;request_time<=0;event_time<=0;request_seq<=0;retry_pending<=0;tx_start<=0;
@@ -96,6 +103,8 @@ module rs485_transaction #(
      else if(rx_count!=0 && interbyte==0) fail(`RS_STATUS_TRUNCATED);
     end
     EMIT: begin
+     protection_decoded<=INTERLOCK_PREDECODE ?
+       {protection_axes & {3{payload[7:0]==1}},protection_axes}:6'd0;
      push<=1;push_data<={8'd`RS_VERSION,address,command,status,attempt,(status==0?{4'd0,length}:8'd0),request_seq,request_time,event_time,payload};
      if(status==0) begin if(accepted!=32'hffffffff) accepted<=accepted+1'b1;end
      else if(errors!=32'hffffffff) errors<=errors+1'b1;

@@ -1,5 +1,6 @@
 // Multi-rate read-only collector. One logical transaction, bounded config/divide.
 module rs485_multirate #(
+ parameter INTERLOCK_PREDECODE=0,
  `include "parameters.vh"
  ,
  `include "rate_parameters.vh"
@@ -18,7 +19,7 @@ module rs485_multirate #(
  output wire [7:0] node_failure_streak,output wire [63:0] node_cooldown_until_us,
  output wire [31:0] node_backoff_entries,
  output wire observe_push,output wire [255:0] observe_data,
- output wire [7999:0] observe_tasks,output wire [1279:0] observe_nodes);
+ output wire [7999:0] observe_tasks,output wire [1279:0] observe_nodes,output wire [31:0] next_revision,output wire [5:0] observe_protection,output wire next_config_change);
  `include "rs485_defs.vh"
  localparam integer TASKS=SLAVE_COUNT*5;
  localparam integer BIT_CYCLES=(CLK_HZ+BAUD/2)/BAUD;
@@ -56,6 +57,10 @@ module rs485_multirate #(
  wire engine_ready,engine_active,engine_done,engine_blocked,push;
  wire [7:0] engine_result;
  wire [255:0] push_data;
+ assign next_config_change=rst_n && state==CFG_WAIT && !engine_active && cfg_revision!=32'hffffffff;
+ wire [31:0] revision_increment=cfg_revision+1'b1;
+ assign next_revision=!rst_n ? 32'd0:
+   (state==CFG_WAIT && !engine_active && cfg_revision!=32'hffffffff) ? revision_increment:cfg_revision;
  wire request_valid=state==DISPATCH && found && enable && !pending && !(cfg_valid && cfg_ready);
  assign cfg_ready=!pending;
  assign busy=engine_active;
@@ -105,14 +110,14 @@ module rs485_multirate #(
   if(g<SLAVE_COUNT) assign node_offline[g]=offline[g];else assign node_offline[g]=1'b0;
  end endgenerate
  div_u64_u32 divider(clk,rst_n,div_start,numerator,denominator,div_busy,div_done,quotient,remainder);
- rs485_transaction #(.CLK_HZ(CLK_HZ),.BAUD(BAUD),.POLL_CYCLES(POLL_CYCLES),
+ rs485_transaction #(.INTERLOCK_PREDECODE(INTERLOCK_PREDECODE),.PROTECTION_ADDRS(SLAVE_ADDRS),.CLK_HZ(CLK_HZ),.BAUD(BAUD),.POLL_CYCLES(POLL_CYCLES),
   .TIMEOUT_CYCLES(TIMEOUT_CYCLES),.INTERBYTE_CYCLES(INTERBYTE_CYCLES),.RETRIES(RETRIES),
   .PRE_CYCLES(PRE_CYCLES),.POST_CYCLES(POST_CYCLES),.TURN_CYCLES(TURN_CYCLES),
   .NORMAL_CYCLES(NORMAL_CYCLES),.ERROR_CYCLES(ERROR_CYCLES)) engine(
   .clk(clk),.rst_n(rst_n),.time_us(time_us),.rx(rx),.request_valid(request_valid),.request_ready(engine_ready),
   .request_address(SLAVE_ADDRS[selected_node*8 +:8]),.request_query(selected_q),.request_sequence(next_sequence),
   .tx(tx),.de(de),.active(engine_active),.done(engine_done),.result(engine_result),.bus_blocked(engine_blocked),
-  .push(push),.push_data(push_data),.accepted(accepted),.errors(errors),.ignored_rx(ignored_rx));
+  .push(push),.push_data(push_data),.protection_decoded(observe_protection),.accepted(accepted),.errors(errors),.ignored_rx(ignored_rx));
  record_fifo #(.DEPTH(FIFO_DEPTH)) fifo(clk,rst_n,push,push_data,record_ready,record_valid,record_data,dropped,fifo_level);
  integer i,j;
  reg [63:0] lateness;
@@ -215,7 +220,7 @@ module rs485_multirate #(
      if(cfg_revision==32'hffffffff) begin cfg_error<=`MR_CFG_REVISION;cfg_rejected<=1;end
      else begin
       active_period_us<=shadow_period;active_mask<=shadow_mask;shortest<=shadow_shortest;
-      config_load_ppm<=load_sum[31:0];cfg_revision<=cfg_revision+1'b1;cfg_apply_sequence<=next_sequence;
+      config_load_ppm<=load_sum[31:0];cfg_revision<=revision_increment;cfg_apply_sequence<=next_sequence;
       cfg_error<=0;cfg_applied<=1;cursor<=0;scan_now<=time_us-1'b1;
       for(i=0;i<TASKS;i=i+1) next_due[i]<=time_us;
      end

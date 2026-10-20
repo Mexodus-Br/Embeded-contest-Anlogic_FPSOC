@@ -1,0 +1,99 @@
+# SAF2时序优化变更位置与语义
+
+2026-10-19，当前候选13。最终功能/资源/时序状态见INTERLOCK_HANDOFF.md；
+本文件记录修改理由与可审核位置，不表示route或发布签核已经完成。
+所有行号对应本轮源码；信号名/分支名用于后续行号变化时定位。
+
+|文件与位置|修改与实际路径原因|边沿/兼容性|
+|---|---|---|
+|pl_motion/rtl/motion_service.v:123–135，safety_idle_q|把pulse-safe与完整空闲条件一起采样，移除edge_age/low_age宽比较经配置资格绕回执行器的组合路径|仅SAF2使用寄存空闲许可；当前AXI/命令/session/HOME fence立即撤销许可。空闲授予可保守等待一拍，停止/禁止STEP不流水；legacy仍用原full_safety_idle|
+|pl_rs485/rtl/rs485_gp_regs.v:48–56，interlock_run/interlock_stop_commit|RUN直接导出唯一采集器寄存器；合法OFF fire独立输出，不再经有效RUN同时进入restart/保护解析|仍在原held AW/W且无BVALID的fire沿生效，精确地址、字节/零值预译码及拒绝规则不变；OFF当拍抑制新反馈超时，不清故障或WD|
+|pl_rs485/rtl/rs485_gp_bridge.v:15、26，interlock_stop_commit|只转发上述内部提交事件，避免两份有效RUN状态|原事务、重试、退避、FIFO、revision、32B记录不变；无新PS端口|
+|pl_safety/rtl/safety_motion_service.v:140–163，interlock_idle/monitor连接|SAF2不再重复组合pulse-safe，使用已寄存的完整排空资格；连接独立关闭事件|保留当前HOME owner及SUBMIT fence和实际EN失能检查；实际RUN/关闭事件均来自原采集器|
+|pl_safety/rtl/safety_interlock.v:31–60，protection_record/feedback_axis/monitoring|固定0x3E格式直接生成逐轴位图，避免通用task编码再译码及其高扇出；关闭事件只抑制监测，不进入restart/在途保护校验|使用同一生成协议定义；原通用采集解析器未修改。无新增解析寄存级，同一实际提交拍有效；在途保护及WD仍有效|
+|pl_safety/rtl/safety_controller.v:59–63、124、163、167、179、208、212，home_owner_q|新增1bit同拍所有权缓存，斩断state多位译码经monitoring/abort进入执行器的11级路径|仅SAF2使用缓存。与每个改变所有权的state赋值同拍更新，最后DRAIN排空覆盖优先级保留；不是对当前state再延迟一拍。legacy表达式不变|
+|pl_safety/generate_top.py:52–80及四个interlock_*生成顶层|传递collector_stop_commit内部连线|七个既有窗口、原GP转换器、双DMA/HP0/HP1、外部针脚和时钟接口均保持|
+
+## 边沿与代价的验证
+
+- 监测器79项，包含OFF/期限/保护/WD同拍、恢复、u64回绕与耗尽。
+- 未修改的通用解析器作为oracle：68728项固定译码差分，覆盖全部地址/查询组合、
+  枚举/版本/status/长度字节与非法高payload位。
+- GP 416项检查包含16种WSTRB×8类数据、AW/W错开及B/R背压，核对原OFF接受谓词。
+- interlock_suite_route13_complete的原374项全部通过，含14×24停止相位、
+  END/HOME完成/STEP候选同拍及逐拍完整排空资格、HOME所有权关系断言。
+- interlock_route13_owner_projection的20480项独立检查，以合法状态及匹配缓存为
+  归纳起点，穷举11bit有效谓词，检查真实RTL下一采样沿的原状态译码关系；层次注入
+  仅在测试中。后续suite纳入此模块，合计375项。
+- 真实受保护IP系统夹具在采样沿后继续核对所有权缓存与原状态关系，并保留禁止新
+  STEP、统一时间、HP0/HP1并发及数据一致性断言。候选13保护/独立WD/单轴反馈超时
+  三个场景均通过，证据为interlock_real_route13、interlock_real_watchdog13、
+  interlock_real_feedback13；后两者使用非生产统一epoch跳转，不是完整2秒墙钟长度仿真。
+- interlock_real_accepted13额外验证双端同拍接受：HP0读18/HP1写8，18拍背压并发，
+  其中2拍同时接受HP0读/HP1写；随后再次背压，保护/排空及原数据断言均通过。
+
+本轮声明状态总计2461bit，其中本次新增HOME owner缓存1bit；逻辑状态位不能代替
+综合/布线FF利用率。候选13门级只读数据库审计确认新增缓存为1个AL_MAP_SEQ FF
+（optimization/interlock_candidate13/owner_gate_result_r3.json）；最终比较报告分别列出
+实际gate/route全顶层及相关模块的寄存器代价，布线复制代价另据实际结果记录。
+没有修改STEP/DIR/EN唯一所有权、既有急停/限位/STOP沿、公共复位或DMA/DDR静止边界。
+
+## 物理证据边界
+
+### 2026-10-20候选16（当前）
+
+候选15 gate最差为reset_count→restart→feedback_expired→停止控制→executor/state，
+11级，cell2.863/net10.031ns、setup -2.964ns；其preplace和看门狗仿真在回合中断后退出，
+未完成物理流程，不套用旧route或宣布成功。
+
+候选16在safety_interlock.v新增active_context_q/off_context_q共2bit，完整下一代际
+和下一round相等关系与精确下一reset/config-change/config-apply一起投影当前资格。
+active资格对应previous_run且无当前配置/复位变化；off资格对应完整代际相等且不复位。
+当前RUN与合法OFF提交仍即时作用，RUN关闭后的在途保护语义保留。不是旧资格再延一拍。
+
+|位置|修改|资格与验证|
+|---|---|---|
+|pl_rs485/rtl/rs485_gp_regs.v，next_reset|只读预测原reset_count下一非零状态；复用已验证reset_commit|原计数器/写入/拒绝规则不变，含2→1→0及同拍reset优先级|
+|pl_rs485/rtl/rs485_multirate.v，next_config_change|只读预测原CFG_WAIT合法应用时的下一cfg_applied|MAX拒绝、旧revision及状态更新分支不变|
+|pl_rs485/rtl/rs485_gp_bridge.v|转发下一reset及应用标志，纳入local reset异步清零|与下一revision使用同一重置预测|
+|pl_safety/rtl/safety_interlock_regs.v，next_config_apply|输出原config_apply寄存器的精确D值|不改接收/应用拍或shadow原子性|
+|pl_safety/rtl/safety_interlock.v，两个context FF及monitoring/feedback_valid|缓存上述完整当前关系，消除restart组合译码进入当拍停止锥|default generic路径保留原判定；完整字比较不截位，时间戳和round检查保留|
+|pl_safety/rtl/safety_motion_service.v、pl_safety/generate_top.py及两份interlock内层顶层|只接入预测布尔量与原寄存器D值|外部GP/HP、格式、针脚及legacy生成物不变|
+
+unit_r1相对冻结候选13全624bit输出/round及资格关系8192周期、16384次前后沿比较通过；
+包含完整u32任意跳变/回绕、独立未来控制变化、当前OFF、时间回绕和到期。原100MHz/
+115200 GP e2e302项/11记录/丢弃>=2保留，并新增3936453拍真实源下一控制核对；安全
+寄存器91项及257拍下一apply核对通过。新增声明状态2472bit，实际代价待报告。
+
+### 2026-10-20候选15（当前验证中）
+
+原候选13最终setup -2.173ns、hold +0.020ns的失败证据保留。为切断实际
+push_data[30]→payload合法性/保护停止→DIR CE长路径，新增下列内部切分点；没有改变
+PS寄存器、旧ABI、原始32B采集/64B遥测格式、外部端口或检测/停止采样沿。
+
+|位置/模块|修改原因与实现|边沿与验证边界|
+|---|---|---|
+|pl_rs485/rtl/rs485_transaction.v，EMIT及protection_decoded|在原push_data捕获沿并行保存固定保护格式/枚举/Delta轴译码，6bit；消除原始payload高位经格式译码进入停止组合锥|原EMIT、push、记录字段、事务/重试/隔离和计数分支不变；默认参数禁用；67360组真实EMIT源状态对旧事务全部输出和通用解析器差分通过|
+|pl_rs485/rtl/rs485_multirate.v，observe_protection/next_revision|传递6bit事件；共用原revision+1算术，只输出原分支精确下一值|不改应用分支、MAX拒绝或调度；新参数默认0；配置仍在原拍应用|
+|pl_rs485/rtl/rs485_gp_regs.v，aw_reset/w_reset及next_generation|增加LOCAL_RESET精确地址/数据预译码2bit，输出原generation分支完整下一值|原AW/W捕获/写fire和所有拒绝门不变；原计数器分支不变，只共用+1；实际源预测旧独立检查3936453/4005拍通过，当前整链另逐拍检查|
+|pl_rs485/rtl/rs485_gp_bridge.v，completed_protection/next_generation/next_revision|仅SAF2启用源译码，传递完整下一值并纳入local reset同拍异步revision清零|无另一份RUN/配置状态，无FIFO/PS/DMA依赖|
+|pl_safety/rtl/safety_interlock.v，epoch_match_q/FEEDBACK_PREDECODE|完整下一字等式保存当前相等关系1bit，截断完整代际比较到restart路径；使用同事件的源译码，截断payload格式译码路径|不是把当前比较再延迟一拍；时间戳、round、重置和配置资格保留；default generic路径仍为直接旧判定；全624bit输出8192周期/16384次前后沿miter通过|
+|pl_safety/rtl/safety_motion_service.v、pl_safety/generate_top.py及两份interlock内层生成顶层|传递内部6bit译码及两个32bit下一值；SAF2选用两种切分点|其他legacy生成顶层逐字节不变；无新增PS GP/HP、FIFO或外部pin|
+
+当前新增声明状态2470bit，比候选13增加9bit（源译码6、reset预译码2、完整相等关系1）。
+实际FF代价待候选15综合/布线报告，不用声明位数估算。375项停止相位/legacy联锁回归
+已通过；真实受保护IP场景和原33项回归运行中，完整实际顶层interlock_route15已启动，
+全程16线程、最终恢复原约束。当前不能宣称候选15物理时序通过。
+
+隔离准备失败均保留：sources_r1未完成（原型14生成器改变events匹配字串导致断言），
+修正为在移除原事件线后单独添加新连线，完成sources_r2；unit_r1源测试将含function
+的协议头放在module外导致编译失败，修正测试作用域后unit_r2两项miter通过。
+
+route10完整实际顶层在原100MHz约束下setup -1.960ns、hold +0.020ns，失败证据保留。
+候选11 gate -2.617/0ns、候选12 gate -1.964/0ns用于定位；两者后续物理优化已主动
+中断，保留interruption.json、日志和数据库，不作为最终route验收。候选13现已从其同一
+place.db完成恢复布线，综合/布局/布线和数据库审计均显式16线程并读回，原约束已恢复
+且逐字节核对。最终route -2.173/+0.020ns，仍不满足setup严格大于1ns目标。
+实际最差为原始反馈payload[30]合法性/保护停止路径到A1 DIR CE，10级、cell2.173/
+net9.749ns；当前报告不能用门级generation路径或候选14模型替代。完整本轮资源和
+路径见optimization/interlock_candidate13/ROUND_REPORT_20261019.md。
