@@ -1,0 +1,14 @@
+#!/bin/sh
+case "$1" in
+ start)
+  [ -f /etc/wifi-http/autostart ] && [ -f /etc/wifi-http/auth.json ] || exit 0
+  (
+   for attempt in $(seq 1 90); do
+    if /usr/sbin/wifi-http start >/dev/null 2>&1; then exit 0; fi
+    sleep 2
+   done
+  ) >/dev/null 2>&1 &
+  ;;
+ stop) /usr/sbin/wifi-http stop;;
+ restart) /usr/sbin/wifi-http restart;;
+esac

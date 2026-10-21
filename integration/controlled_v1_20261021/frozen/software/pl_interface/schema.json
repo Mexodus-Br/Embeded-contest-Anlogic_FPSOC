@@ -1,0 +1,4638 @@
+{
+  "status": "PARTIALLY_FROZEN_LAYOUT_DRAFT",
+  "version": 1,
+  "registers": [
+    {
+      "name": "VERSION",
+      "offset": 0,
+      "width": 32,
+      "access": "RO",
+      "reset": 1,
+      "unit": "version",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CAPS",
+      "offset": 4,
+      "width": 32,
+      "access": "RO",
+      "reset": 15,
+      "unit": "axis capability bits",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "STATE",
+      "offset": 8,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "state enum",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "ENUM",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CONFIG_GENERATION",
+      "offset": 12,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "generation",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CMD_STATUS",
+      "offset": 16,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "flags",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "BUSY",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "ACK_VALID",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "ACCEPTED",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "COMPLETED",
+          "lsb": 3,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "ACK_ID",
+      "offset": 20,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "transaction",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "ACK_ERROR",
+      "offset": 24,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "error",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SESSION_LO",
+      "offset": 28,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "id",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SESSION_HI",
+      "offset": 32,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "id",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "ACCEPTED_SEQ",
+      "offset": 36,
+      "width": 32,
+      "access": "RO",
+      "reset": 4294967295,
+      "unit": "sequence",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "DONE_SEQ",
+      "offset": 40,
+      "width": 32,
+      "access": "RO",
+      "reset": 4294967295,
+      "unit": "sequence",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "MOTION_LEVEL",
+      "offset": 44,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "records",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TELEMETRY_LEVEL",
+      "offset": 48,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "records",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "FAULT_BITS",
+      "offset": 52,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "bitmap",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "RECORD",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "MOTION",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "SAFETY",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "COMM",
+          "lsb": 3,
+          "width": 1
+        },
+        {
+          "name": "DMA",
+          "lsb": 4,
+          "width": 1
+        },
+        {
+          "name": "CONTROL",
+          "lsb": 5,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "FAULT_FIRST_CODE",
+      "offset": 56,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "error",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "FAULT_TIME_LO",
+      "offset": 60,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "FAULT_TIME_HI",
+      "offset": 64,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "POSITION_VALID",
+      "offset": 68,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "axis bitmap",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "IRQ_PENDING",
+      "offset": 72,
+      "width": 32,
+      "access": "W1C",
+      "reset": 0,
+      "unit": "bitmap",
+      "effect": "set-wins W1C",
+      "fields": [
+        {
+          "name": "ACK",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "FAULT",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "MOTION_LOW",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "TELEMETRY",
+          "lsb": 3,
+          "width": 1
+        },
+        {
+          "name": "DROP",
+          "lsb": 4,
+          "width": 1
+        },
+        {
+          "name": "END",
+          "lsb": 5,
+          "width": 1
+        },
+        {
+          "name": "LINK",
+          "lsb": 6,
+          "width": 1
+        },
+        {
+          "name": "TEST",
+          "lsb": 7,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "IRQ_MASK",
+      "offset": 76,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "bitmap",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "ACK",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "FAULT",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "MOTION_LOW",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "TELEMETRY",
+          "lsb": 3,
+          "width": 1
+        },
+        {
+          "name": "DROP",
+          "lsb": 4,
+          "width": 1
+        },
+        {
+          "name": "END",
+          "lsb": 5,
+          "width": 1
+        },
+        {
+          "name": "LINK",
+          "lsb": 6,
+          "width": 1
+        },
+        {
+          "name": "TEST",
+          "lsb": 7,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "SNAP_ID",
+      "offset": 80,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "transaction",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_VALID",
+      "offset": 84,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "bool",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALID",
+          "lsb": 0,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "SNAP_TIME_LO",
+      "offset": 88,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_TIME_HI",
+      "offset": 92,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "MOTION_CAPACITY",
+      "offset": 96,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "records implemented",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TELEMETRY_CAPACITY",
+      "offset": 100,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "records implemented",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TICK_HZ",
+      "offset": 104,
+      "width": 32,
+      "access": "RO",
+      "reset": 1000000,
+      "unit": "Hz confirmed",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TEST_RW",
+      "offset": 108,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "scratch",
+      "effect": "byte-strobe scratch only",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "FEATURES",
+      "offset": 112,
+      "width": 32,
+      "access": "RO",
+      "reset": 7,
+      "unit": "profile features",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "NOP",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "SNAPSHOT",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "IRQ_TEST",
+          "lsb": 2,
+          "width": 1
+        },
+        {
+          "name": "MOTION",
+          "lsb": 3,
+          "width": 1
+        },
+        {
+          "name": "DMA",
+          "lsb": 4,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "TEST_IRQ_LEVEL",
+      "offset": 116,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "test source",
+      "effect": "persistent IRQ test source; full WSTRB",
+      "fields": [
+        {
+          "name": "ACTIVE",
+          "lsb": 0,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "LAST_TXN_ID",
+      "offset": 120,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "transaction ID",
+      "effect": "last consumed legal new transaction",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A0_POSITION_LO",
+      "offset": 128,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A0_POSITION_HI",
+      "offset": 132,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A0_PULSE_LO",
+      "offset": 136,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A0_PULSE_HI",
+      "offset": 140,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A1_POSITION_LO",
+      "offset": 144,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A1_POSITION_HI",
+      "offset": 148,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A1_PULSE_LO",
+      "offset": 152,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A1_PULSE_HI",
+      "offset": 156,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A2_POSITION_LO",
+      "offset": 160,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A2_POSITION_HI",
+      "offset": 164,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A2_PULSE_LO",
+      "offset": 168,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A2_PULSE_HI",
+      "offset": 172,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A3_POSITION_LO",
+      "offset": 176,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A3_POSITION_HI",
+      "offset": 180,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "step",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A3_PULSE_LO",
+      "offset": 184,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_A3_PULSE_HI",
+      "offset": 188,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "pulse",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_STATE",
+      "offset": 192,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "state",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "ENUM",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "SNAP_SESSION_LO",
+      "offset": 196,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "id",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_SESSION_HI",
+      "offset": 200,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "id",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_ACCEPTED_SEQ",
+      "offset": 204,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "sequence",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_DONE_SEQ",
+      "offset": 208,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "sequence",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "SNAP_POSITION_VALID",
+      "offset": 212,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "bitmap",
+      "effect": "snapshot payload",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "CMD_OPCODE",
+      "offset": 256,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "ENUM",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CMD_ARG",
+      "offset": 260,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "TXN_ID",
+      "offset": 264,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CMD_SESSION_LO",
+      "offset": 268,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CMD_SESSION_HI",
+      "offset": 272,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "none",
+      "effect": "command shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CMD_SUBMIT",
+      "offset": 276,
+      "width": 32,
+      "access": "WO",
+      "reset": 0,
+      "unit": "none",
+      "effect": "full strobe capture transaction",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "WD_TOKEN",
+      "offset": 280,
+      "width": 32,
+      "access": "WO",
+      "reset": 0,
+      "unit": "none",
+      "effect": "new token kick",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A0_LO",
+      "offset": 288,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A0_HI",
+      "offset": 292,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A1_LO",
+      "offset": 296,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A1_HI",
+      "offset": 300,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A2_LO",
+      "offset": 304,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A2_HI",
+      "offset": 308,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A3_LO",
+      "offset": 312,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "REBASE_A3_HI",
+      "offset": 316,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "rebase shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_AXIS_ENABLE",
+      "offset": 512,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "mask",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "CFG_NODE_ENABLE",
+      "offset": 516,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "mask",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "AXES",
+          "lsb": 0,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "name": "CFG_WD_ENABLE",
+      "offset": 520,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "bool",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "ENABLE",
+          "lsb": 0,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_WD_TIMEOUT_LO",
+      "offset": 524,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_WD_TIMEOUT_HI",
+      "offset": 528,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_PREBUFFER",
+      "offset": 532,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "records",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_DURATION_MIN_LO",
+      "offset": 536,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_DURATION_MIN_HI",
+      "offset": 540,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_DURATION_MAX_LO",
+      "offset": 544,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_DURATION_MAX_HI",
+      "offset": 548,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow; atomic CONFIG_COMMIT",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_HIGH",
+      "offset": 576,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_LOW",
+      "offset": 580,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_DIR_SETUP",
+      "offset": 584,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_DIR_HOLD",
+      "offset": 588,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_EN_SETUP",
+      "offset": 592,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_MAX_RATE",
+      "offset": 596,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "Hz",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_TARGET_MIN_LO",
+      "offset": 600,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_TARGET_MIN_HI",
+      "offset": 604,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_TARGET_MAX_LO",
+      "offset": 608,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_TARGET_MAX_HI",
+      "offset": 612,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_NODE_ID",
+      "offset": 616,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "address",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "NODE",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_POLARITY",
+      "offset": 620,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "STEP/DIR/EN bits",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "STEP_ACTIVE",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "DIR_POSITIVE",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "EN_ACTIVE",
+          "lsb": 2,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_COMM_POLICY",
+      "offset": 624,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "TBD",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "POLICY",
+          "lsb": 0,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_FAIL_THRESHOLD",
+      "offset": 628,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "poll",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A0_FRESH_LIMIT",
+      "offset": 632,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_HIGH",
+      "offset": 640,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_LOW",
+      "offset": 644,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_DIR_SETUP",
+      "offset": 648,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_DIR_HOLD",
+      "offset": 652,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_EN_SETUP",
+      "offset": 656,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_MAX_RATE",
+      "offset": 660,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "Hz",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_TARGET_MIN_LO",
+      "offset": 664,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_TARGET_MIN_HI",
+      "offset": 668,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_TARGET_MAX_LO",
+      "offset": 672,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_TARGET_MAX_HI",
+      "offset": 676,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_NODE_ID",
+      "offset": 680,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "address",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "NODE",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_POLARITY",
+      "offset": 684,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "STEP/DIR/EN bits",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "STEP_ACTIVE",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "DIR_POSITIVE",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "EN_ACTIVE",
+          "lsb": 2,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_COMM_POLICY",
+      "offset": 688,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "TBD",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "POLICY",
+          "lsb": 0,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_FAIL_THRESHOLD",
+      "offset": 692,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "poll",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A1_FRESH_LIMIT",
+      "offset": 696,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_HIGH",
+      "offset": 704,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_LOW",
+      "offset": 708,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_DIR_SETUP",
+      "offset": 712,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_DIR_HOLD",
+      "offset": 716,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_EN_SETUP",
+      "offset": 720,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_MAX_RATE",
+      "offset": 724,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "Hz",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_TARGET_MIN_LO",
+      "offset": 728,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_TARGET_MIN_HI",
+      "offset": 732,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_TARGET_MAX_LO",
+      "offset": 736,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_TARGET_MAX_HI",
+      "offset": 740,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_NODE_ID",
+      "offset": 744,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "address",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "NODE",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_POLARITY",
+      "offset": 748,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "STEP/DIR/EN bits",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "STEP_ACTIVE",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "DIR_POSITIVE",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "EN_ACTIVE",
+          "lsb": 2,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_COMM_POLICY",
+      "offset": 752,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "TBD",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "POLICY",
+          "lsb": 0,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_FAIL_THRESHOLD",
+      "offset": 756,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "poll",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A2_FRESH_LIMIT",
+      "offset": 760,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_HIGH",
+      "offset": 768,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_LOW",
+      "offset": 772,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_DIR_SETUP",
+      "offset": 776,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_DIR_HOLD",
+      "offset": 780,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_EN_SETUP",
+      "offset": 784,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "cycle",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_MAX_RATE",
+      "offset": 788,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "Hz",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_TARGET_MIN_LO",
+      "offset": 792,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_TARGET_MIN_HI",
+      "offset": 796,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_TARGET_MAX_LO",
+      "offset": 800,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_TARGET_MAX_HI",
+      "offset": 804,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "step",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_NODE_ID",
+      "offset": 808,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "address",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "NODE",
+          "lsb": 0,
+          "width": 8
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_POLARITY",
+      "offset": 812,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "STEP/DIR/EN bits",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "STEP_ACTIVE",
+          "lsb": 0,
+          "width": 1
+        },
+        {
+          "name": "DIR_POSITIVE",
+          "lsb": 1,
+          "width": 1
+        },
+        {
+          "name": "EN_ACTIVE",
+          "lsb": 2,
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_COMM_POLICY",
+      "offset": 816,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "TBD",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "POLICY",
+          "lsb": 0,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_FAIL_THRESHOLD",
+      "offset": 820,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "poll",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "CFG_A3_FRESH_LIMIT",
+      "offset": 824,
+      "width": 32,
+      "access": "RW",
+      "reset": 0,
+      "unit": "tick",
+      "effect": "config shadow",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_REJECTED",
+      "offset": 896,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_STALE",
+      "offset": 900,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_UNDERRUN",
+      "offset": 904,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_TELEMETRY_DROP",
+      "offset": 908,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_DMA_ERROR",
+      "offset": 912,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "name": "STAT_COMM_FAIL",
+      "offset": 916,
+      "width": 32,
+      "access": "RO",
+      "reset": 0,
+      "unit": "saturating count",
+      "effect": "none",
+      "fields": [
+        {
+          "name": "VALUE",
+          "lsb": 0,
+          "width": 32
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "OK",
+      "value": 0,
+      "severity": "INFO",
+      "impact": "none",
+      "report": "ACK"
+    },
+    {
+      "name": "BAD_RECORD",
+      "value": 257,
+      "severity": "ERROR",
+      "impact": "invalidate session / STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "STALE_SESSION",
+      "value": 258,
+      "severity": "WARN",
+      "impact": "discard old",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "SEQUENCE",
+      "value": 259,
+      "severity": "ERROR",
+      "impact": "invalidate session / STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "TARGET_RANGE",
+      "value": 260,
+      "severity": "ERROR",
+      "impact": "invalidate session / STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "UNEXECUTABLE",
+      "value": 513,
+      "severity": "ERROR",
+      "impact": "STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "UNDERRUN",
+      "value": 514,
+      "severity": "ERROR",
+      "impact": "STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "ARITHMETIC",
+      "value": 515,
+      "severity": "ERROR",
+      "impact": "STOP",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "POSITION_INVALID",
+      "value": 516,
+      "severity": "ERROR",
+      "impact": "reject START",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "LIMIT",
+      "value": 769,
+      "severity": "ERROR",
+      "impact": "STOP / latch",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "INTERLOCK",
+      "value": 770,
+      "severity": "ERROR",
+      "impact": "STOP / latch",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "ESTOP",
+      "value": 771,
+      "severity": "ERROR",
+      "impact": "STOP / position invalid",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "WATCHDOG",
+      "value": 772,
+      "severity": "ERROR",
+      "impact": "STOP / latch",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "CHECKSUM",
+      "value": 1025,
+      "severity": "POLICY",
+      "impact": "TBD per node",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "POLL_TIMEOUT",
+      "value": 1026,
+      "severity": "POLICY",
+      "impact": "TBD per node",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "DRIVER_ALARM",
+      "value": 1027,
+      "severity": "POLICY",
+      "impact": "TBD whole-machine policy",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "STALE_FEEDBACK",
+      "value": 1028,
+      "severity": "POLICY",
+      "impact": "TBD age policy",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "DMA",
+      "value": 1281,
+      "severity": "ERROR",
+      "impact": "STOP / invalidate session",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "LINK_RESET",
+      "value": 1282,
+      "severity": "ERROR",
+      "impact": "invalidate session",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "TELEMETRY_DROP",
+      "value": 1283,
+      "severity": "WARN",
+      "impact": "count / IRQ; critical policy TBD",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "BAD_COMMAND",
+      "value": 1537,
+      "severity": "ERROR",
+      "impact": "reject transaction",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "BUSY",
+      "value": 1538,
+      "severity": "ERROR",
+      "impact": "reject transaction",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "DUP_COMMAND",
+      "value": 1539,
+      "severity": "ERROR",
+      "impact": "reject transaction",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "BAD_CONFIG",
+      "value": 1540,
+      "severity": "ERROR",
+      "impact": "retain active config",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    },
+    {
+      "name": "FAULT_ACTIVE",
+      "value": 1541,
+      "severity": "ERROR",
+      "impact": "reject clear",
+      "report": "ACK or GP latch + IRQ + best-effort telemetry"
+    }
+  ],
+  "commands": {
+    "CONFIG_COMMIT": 1,
+    "OPEN_SESSION": 2,
+    "ENABLE": 3,
+    "START": 4,
+    "STOP": 5,
+    "PAUSE": 6,
+    "RESUME": 7,
+    "DISABLE": 8,
+    "CLEAR_FAULT": 9,
+    "FLUSH": 10,
+    "REBASE": 11,
+    "HOME": 12,
+    "SNAPSHOT": 13,
+    "CLEAR_STATS": 14,
+    "LINK_RECOVER": 15,
+    "NOP": 16
+  },
+  "frames": {
+    "motion": {
+      "length": 80,
+      "endian": "little",
+      "alignment": 8,
+      "fields": [
+        {
+          "name": "magic",
+          "offset": 0,
+          "type": "u32",
+          "constant": 827608909
+        },
+        {
+          "name": "version",
+          "offset": 4,
+          "type": "u16",
+          "constant": 1
+        },
+        {
+          "name": "length",
+          "offset": 6,
+          "type": "u16",
+          "constant": 80
+        },
+        {
+          "name": "session_id",
+          "offset": 8,
+          "type": "u64"
+        },
+        {
+          "name": "sequence",
+          "offset": 16,
+          "type": "u32"
+        },
+        {
+          "name": "batch_id",
+          "offset": 20,
+          "type": "u32"
+        },
+        {
+          "name": "flags",
+          "offset": 24,
+          "type": "u32",
+          "allowed_mask": 1,
+          "bits": {
+            "END": 0
+          }
+        },
+        {
+          "name": "axis_mask",
+          "offset": 28,
+          "type": "u32",
+          "allowed_mask": 15,
+          "bits": {
+            "A0": 0,
+            "A1": 1,
+            "A2": 2,
+            "A3": 3
+          }
+        },
+        {
+          "name": "duration_tick",
+          "offset": 32,
+          "type": "u64",
+          "min": 1
+        },
+        {
+          "name": "target0",
+          "offset": 40,
+          "type": "i64"
+        },
+        {
+          "name": "target1",
+          "offset": 48,
+          "type": "i64"
+        },
+        {
+          "name": "target2",
+          "offset": 56,
+          "type": "i64"
+        },
+        {
+          "name": "target3",
+          "offset": 64,
+          "type": "i64"
+        },
+        {
+          "name": "reserved",
+          "offset": 72,
+          "type": "u32",
+          "constant": 0
+        },
+        {
+          "name": "crc",
+          "offset": 76,
+          "type": "u32"
+        }
+      ]
+    },
+    "telemetry": {
+      "length": 128,
+      "endian": "little",
+      "alignment": 8,
+      "fields": [
+        {
+          "name": "magic",
+          "offset": 0,
+          "type": "u32",
+          "constant": 827149396
+        },
+        {
+          "name": "version",
+          "offset": 4,
+          "type": "u16",
+          "constant": 1
+        },
+        {
+          "name": "length",
+          "offset": 6,
+          "type": "u16",
+          "constant": 128
+        },
+        {
+          "name": "session_id",
+          "offset": 8,
+          "type": "u64"
+        },
+        {
+          "name": "telemetry_seq",
+          "offset": 16,
+          "type": "u32"
+        },
+        {
+          "name": "type",
+          "offset": 20,
+          "type": "u16",
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": {
+            "MOTION": 1,
+            "FEEDBACK": 2,
+            "SAFETY": 3,
+            "COMM": 4
+          }
+        },
+        {
+          "name": "axis",
+          "offset": 22,
+          "type": "u8",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            255
+          ]
+        },
+        {
+          "name": "node",
+          "offset": 23,
+          "type": "u8"
+        },
+        {
+          "name": "event_tick",
+          "offset": 24,
+          "type": "u64"
+        },
+        {
+          "name": "sample_tick",
+          "offset": 32,
+          "type": "u64"
+        },
+        {
+          "name": "age_tick",
+          "offset": 40,
+          "type": "u64"
+        },
+        {
+          "name": "motion_seq",
+          "offset": 48,
+          "type": "u32"
+        },
+        {
+          "name": "status",
+          "offset": 52,
+          "type": "u32",
+          "allowed_mask": 65535
+        },
+        {
+          "name": "validity",
+          "offset": 56,
+          "type": "u32",
+          "allowed_mask": 31,
+          "bits": {
+            "CMD_VALID": 0,
+            "FEEDBACK_VALID": 1,
+            "COMM_VALID": 2,
+            "FRESH": 3,
+            "RAW_VALID": 4
+          }
+        },
+        {
+          "name": "error_code",
+          "offset": 60,
+          "type": "u32"
+        },
+        {
+          "name": "command_position",
+          "offset": 64,
+          "type": "i64"
+        },
+        {
+          "name": "pulse_total",
+          "offset": 72,
+          "type": "u64"
+        },
+        {
+          "name": "feedback_raw",
+          "offset": 80,
+          "type": "i64"
+        },
+        {
+          "name": "feedback_unit",
+          "offset": 88,
+          "type": "u32",
+          "enum": [
+            0,
+            1
+          ],
+          "labels": {
+            "UNKNOWN": 0,
+            "ENCODER_COUNT": 1
+          }
+        },
+        {
+          "name": "driver_status",
+          "offset": 92,
+          "type": "u32"
+        },
+        {
+          "name": "poll_seq",
+          "offset": 96,
+          "type": "u32"
+        },
+        {
+          "name": "raw_length",
+          "offset": 100,
+          "type": "u32",
+          "max": 16
+        },
+        {
+          "name": "raw",
+          "offset": 104,
+          "type": "bytes16"
+        },
+        {
+          "name": "reserved",
+          "offset": 120,
+          "type": "u32",
+          "constant": 0
+        },
+        {
+          "name": "crc",
+          "offset": 124,
+          "type": "u32"
+        }
+      ]
+    },
+    "motion_stream_v2": {
+      "length": 72,
+      "fields": [
+        {
+          "name": "magic",
+          "type": "u32",
+          "offset": 0,
+          "constant": 844386125
+        },
+        {
+          "name": "version",
+          "type": "u16",
+          "offset": 4,
+          "constant": 2
+        },
+        {
+          "name": "length",
+          "type": "u16",
+          "offset": 6,
+          "constant": 72
+        },
+        {
+          "name": "session_id",
+          "type": "u64",
+          "offset": 8
+        },
+        {
+          "name": "sequence",
+          "type": "u32",
+          "offset": 16
+        },
+        {
+          "name": "flags",
+          "type": "u16",
+          "offset": 20
+        },
+        {
+          "name": "axis_mask",
+          "type": "u16",
+          "offset": 22
+        },
+        {
+          "name": "duration_tick",
+          "type": "u64",
+          "offset": 24
+        },
+        {
+          "name": "target0",
+          "type": "i64",
+          "offset": 32
+        },
+        {
+          "name": "target1",
+          "type": "i64",
+          "offset": 40
+        },
+        {
+          "name": "target2",
+          "type": "i64",
+          "offset": 48
+        },
+        {
+          "name": "target3",
+          "type": "i64",
+          "offset": 56
+        },
+        {
+          "name": "reserved",
+          "type": "u32",
+          "offset": 64,
+          "constant": 0
+        },
+        {
+          "name": "crc",
+          "type": "u32",
+          "offset": 68
+        }
+      ]
+    }
+  },
+  "confirmed_decisions": {
+    "date": "2026-10-07",
+    "format": "JSON; generated artifacts committed",
+    "time": "relative duration_tick per point",
+    "target_position": "signed64",
+    "delta": "signed65",
+    "timestamp": "unsigned64 1MHz; STOP/clear fault/DMA reset preserve; PL reconfiguration new epoch",
+    "stop": "finish current pulse timing, cancel session",
+    "position": "invalid on power-up; HOME or explicit maintenance REBASE; no automatic EN recovery",
+    "dma_first": "Anlogic AXI DMA HP0 64-bit stream simple mode; one record per packet; Linux DMAengine validation",
+    "single_axis_contract_date": "2026-10-09",
+    "step_dir": "STEP rising edge counted, idle low; DIR=1 positive; EN polarity explicit parameter",
+    "safety_edge_priority": "STOP/underflow/fault inhibit new same-cycle edge; retain already emitted count",
+    "maintenance_rebase": "EN disabled, idle, no session or pending command; load signed64 and set valid; HOME uses same commit; DISABLE invalidates",
+    "single_axis_stop_enable": "finish high/low and DIR hold; cancel session; retain EN for STOP/underflow/ordinary fault; DISABLE releases after safe stop and explicit delay",
+    "single_axis_reset_clear": "reset immediately idles STEP/disables EN/invalidates position and may truncate pulse; clear fault never restores session or EN; explicit new session required",
+    "four_axis_contract_date": "2026-10-09",
+    "four_axis_scheduler": "common Nmax=max(abs(delta_i)) slots; integer remainder emits exactly Ni; all nonzero axes emit in first slot",
+    "four_axis_correspondence": "actual rising edges in the same slot are corresponding; same-clock PL logical outputs in this phase; driver inputs require later measurement",
+    "four_axis_feasibility": "checked duration_tick*100; common conservative DIR/EN/low guard; whole group validated before output; final high/low/hold within duration; any infeasible axis rejects and cancels whole session",
+    "four_axis_phase_scope": "atomic single point with exact duration and common stop; normal point completion retains session; explicit upstream underflow; continuous FIFO/normal END/pause deferred",
+    "continuous_contract_date": "2026-10-09",
+    "continuous_end": "END final point completes full duration/pulse safety; close session, retain EN/actual position; no underflow; reject further same-session points after END accepted",
+    "continuous_pause": "PAUSE at current point boundary including same-cycle request; retain FIFO/prefetch/session/EN; explicit RESUME from next relative interval; exclude paused wall time; STOP/fault > END completion > PAUSE",
+    "continuous_sequence": "logical u32 from 0 strictly contiguous without wrap; duplicate/gap/order/post-END cancels current session; old session handshake discarded with stale, isolated from current session; OPEN idle/flushed with new nonzero globally unique upstream ID",
+    "continuous_start": "first point prechecked plus explicit START_MIN_POINTS and config/position/EN safety; complete cached END allows short trajectory below threshold",
+    "continuous_underflow": "boundary without prechecked next point cancels and flushes FIFO/all prefetch/prediction; same-cycle late point cannot rescue; STOP/fault/reset likewise flush; retain emitted count except reset zero/invalid; never restore old session",
+    "continuous_scope": "additive logical record interface; wire layout/CRC/product capacity/driver timing remain draft or explicit parameters; no AXI/DMA/BSP/hardware integration",
+    "gp_control_contract_date": "2026-10-12",
+    "gp_control_profile": "gp_control_probe_v1; logic/resource choices confirmed, implementation and HPF/DTS/board verification pending; all other GP entries remain draft"
+  },
+  "states": {
+    "INIT": 0,
+    "NOT_READY": 1,
+    "READY": 2,
+    "RUNNING": 3,
+    "PAUSING": 4,
+    "PAUSED": 5,
+    "STOPPING": 6,
+    "FAULT": 7,
+    "HOMING": 8
+  },
+  "gp_control_profiles": {
+    "gp_control_probe_v1": {
+      "status": "USER_CONFIRMED_IMPLEMENTATION_PENDING",
+      "confirmation": {
+        "date": "2026-10-12",
+        "reply": "接受",
+        "scope": "Five numbered items and GP_CONTROL_DRAFT.md minimum contract"
+      },
+      "abi_version": 1,
+      "documentation": "pl_motion/GP_CONTROL_DRAFT.md",
+      "deployment": {
+        "status": "NOT_DEPLOYABLE",
+        "required_evidence": [
+          "actual generated GP port widths/IP configuration",
+          "HPF and full address map/DTS conflict audit",
+          "actual IRQ mapping and level-high DTS",
+          "clock/reset and 10ns STA",
+          "self-checking HDL simulation",
+          "board MMIO/IRQ results"
+        ],
+        "hardware_verified": false
+      },
+      "address": {
+        "gp_port": "GP0",
+        "base": 2151677952,
+        "size": 4096,
+        "address_width": 33,
+        "data_width": 32,
+        "id_width": 12,
+        "endianness": "little",
+        "decode": "Full 33bit window comparison before low 12bit offset",
+        "out_of_window_response": "DECERR",
+        "legacy_avoidance": {
+          "base": 2147483648,
+          "size": 4194304,
+          "permanent_reservation": false
+        }
+      },
+      "converter": {
+        "ip": "Anlogic AXI Protocol Converter",
+        "version": "1.0",
+        "input_protocol": "AXI3",
+        "output_protocol": "AXI4-Lite",
+        "address_width": 33,
+        "data_width": 32,
+        "id_width": 12,
+        "read_write": true,
+        "user_signals": false
+      },
+      "irq": {
+        "pl_line": 0,
+        "gic_intid": 114,
+        "spi": 82,
+        "dts_cells": [
+          0,
+          82,
+          4
+        ],
+        "trigger": "level-high",
+        "mapping_status": "vendor paired-example inference; actual HPF/DTS verification required",
+        "supported_fields": [
+          "ACK",
+          "TEST"
+        ],
+        "pending_semantics": "latched-set-wins",
+        "clear_semantics": "W1C",
+        "mask_semantics": "1 enables output only; masked events still latch",
+        "pending_update": "(pending & ~w1c) | event_or_active_source",
+        "rearm": "mask persistent source if needed; remove source, W1C, readback, unmask; ACK unchanged by IRQ clear"
+      },
+      "clock_reset": {
+        "gp_hz": 100000000,
+        "control_hz": 100000000,
+        "timestamp_hz": 1000000,
+        "clock_source": "board H16 through legal global clock network",
+        "clock_domains": "one shared GP/control domain; no custom asynchronous GP-to-control CDC",
+        "reset_assertion": "asynchronous",
+        "reset_release": "synchronous, at least two stages",
+        "init_complete": "common synchronized reset released; enter NOT_READY and start timestamp at zero",
+        "new_epoch": [
+          "power-up initialization",
+          "whole PL control-domain reset",
+          "PL reconfiguration"
+        ],
+        "preserve_timestamp": [
+          "driver unbind/rebind",
+          "IRQ clear",
+          "STOP",
+          "clear fault",
+          "DMA reset"
+        ],
+        "gp_only_reset_supported": false,
+        "reset_ioctl_supported": false,
+        "hot_reconfiguration_supported": false,
+        "reset_precondition": "driver stops MMIO and all AXI channels quiescent before controlled whole-domain reset",
+        "epoch_identity": "software rebuilds device context and discards samples; no persistent hardware epoch number"
+      },
+      "supported_registers": [
+        "VERSION",
+        "CAPS",
+        "STATE",
+        "CMD_STATUS",
+        "ACK_ID",
+        "ACK_ERROR",
+        "POSITION_VALID",
+        "IRQ_PENDING",
+        "IRQ_MASK",
+        "SNAP_ID",
+        "SNAP_VALID",
+        "SNAP_TIME_LO",
+        "SNAP_TIME_HI",
+        "TICK_HZ",
+        "TEST_RW",
+        "FEATURES",
+        "TEST_IRQ_LEVEL",
+        "LAST_TXN_ID",
+        "SNAP_A0_POSITION_LO",
+        "SNAP_A0_POSITION_HI",
+        "SNAP_A0_PULSE_LO",
+        "SNAP_A0_PULSE_HI",
+        "SNAP_A1_POSITION_LO",
+        "SNAP_A1_POSITION_HI",
+        "SNAP_A1_PULSE_LO",
+        "SNAP_A1_PULSE_HI",
+        "SNAP_A2_POSITION_LO",
+        "SNAP_A2_POSITION_HI",
+        "SNAP_A2_PULSE_LO",
+        "SNAP_A2_PULSE_HI",
+        "SNAP_A3_POSITION_LO",
+        "SNAP_A3_POSITION_HI",
+        "SNAP_A3_PULSE_LO",
+        "SNAP_A3_PULSE_HI",
+        "SNAP_STATE",
+        "SNAP_SESSION_LO",
+        "SNAP_SESSION_HI",
+        "SNAP_ACCEPTED_SEQ",
+        "SNAP_DONE_SEQ",
+        "SNAP_POSITION_VALID",
+        "CMD_OPCODE",
+        "CMD_ARG",
+        "TXN_ID",
+        "CMD_SUBMIT"
+      ],
+      "supported_commands": [
+        "SNAPSHOT",
+        "NOP"
+      ],
+      "supported_errors": [
+        "OK",
+        "BAD_COMMAND"
+      ],
+      "supported_states": [
+        "INIT",
+        "NOT_READY"
+      ],
+      "expected_values": {
+        "VERSION": 1,
+        "CAPS": 15,
+        "FEATURES": 7,
+        "TICK_HZ": 1000000
+      },
+      "field_restrictions": {
+        "IRQ_PENDING": [
+          "ACK",
+          "TEST"
+        ],
+        "IRQ_MASK": [
+          "ACK",
+          "TEST"
+        ],
+        "FEATURES": [
+          "NOP",
+          "SNAPSHOT",
+          "IRQ_TEST"
+        ]
+      },
+      "reset_overrides": {
+        "SNAP_ACCEPTED_SEQ": 4294967295,
+        "SNAP_DONE_SEQ": 4294967295
+      },
+      "board_idle_values": {
+        "STATE": "NOT_READY",
+        "POSITION_VALID": 0,
+        "position": 0,
+        "pulse_total": 0,
+        "session": 0,
+        "accepted_seq": 4294967295,
+        "done_seq": 4294967295,
+        "external_motor_outputs": "not exported",
+        "motion_controls": "disconnected",
+        "DMA": "not connected"
+      },
+      "axi": {
+        "writes_inflight": 1,
+        "reads_inflight": 1,
+        "aw_w": "independent capture; pair exactly once",
+        "backpressure": "BVALID/RVALID held; RDATA/RRESP stable",
+        "read_side_effects": false,
+        "byte_strobe_registers": [
+          "TEST_RW",
+          "IRQ_MASK",
+          "CMD_OPCODE",
+          "CMD_ARG",
+          "TXN_ID"
+        ],
+        "full_strobe_registers": [
+          "IRQ_PENDING",
+          "TEST_IRQ_LEVEL",
+          "CMD_SUBMIT"
+        ],
+        "zero_strobe": "OKAY no side effect",
+        "reserved_bits": "effective write of 1 rejected entirely",
+        "invalid_access_response": "SLVERR no side effect",
+        "invalid_access": [
+          "unknown/unaligned offset",
+          "RO write",
+          "WO read",
+          "reserved bits set",
+          "illegal nonzero strobe"
+        ],
+        "submit_value": 1,
+        "linux_access": "whitelist only; illegal MMIO tested in HDL, not CPU"
+      },
+      "transaction": {
+        "single_writer": true,
+        "arg": 0,
+        "session_field": false,
+        "submit_capture": "all shadows captured atomically on paired SUBMIT",
+        "axi_okay": "submission only, not operation or motion completion",
+        "completion": "ACK_VALID and matching ACK_ID and COMPLETED; only NOP/snapshot operation",
+        "success": {
+          "accepted": 1,
+          "completed": 1,
+          "error": "OK"
+        },
+        "unsupported_opcode_or_arg": {
+          "accepted": 0,
+          "completed": 1,
+          "error": "BAD_COMMAND"
+        },
+        "id": "nonzero u32 strictly increasing, gaps allowed, no wrap",
+        "initial_id": 1,
+        "new_legal_id": "consume and update LAST_TXN_ID even for BAD_COMMAND; cache result",
+        "duplicate_same_payload": "reuse most recent cached result; no resampling; reassert ACK pending",
+        "invalid_id": [
+          "zero",
+          "backward",
+          "same ID different payload"
+        ],
+        "invalid_id_response": "SLVERR; preserve LAST_TXN_ID/cache/snapshot",
+        "busy_submit_response": "SLVERR; preserve in-flight payload/result",
+        "shadow_writes_while_busy": "allowed; captured payload unchanged",
+        "on_new_submit": "clear old ACK_VALID and set BUSY",
+        "on_publish": "clear BUSY, set ACK_VALID, emit ACK event",
+        "reset_priority": "cancel in-flight; no old ACK/snapshot publication",
+        "id_exhaustion": "stop submission; controlled whole-domain new epoch required",
+        "driver_rebind": "read LAST_TXN_ID before choosing next ID; consume old result before new submission"
+      },
+      "snapshot": {
+        "sampling": "one shared rising edge, pre-edge registered actual state",
+        "fields": [
+          "signed64 actual position per axis",
+          "u64 actual pulse_total per axis",
+          "u64 timestamp",
+          "position_valid",
+          "state",
+          "session",
+          "accepted_seq",
+          "done_seq"
+        ],
+        "same_edge_step_update": "visible only to a later snapshot",
+        "publication": "whole frame, SNAP_ID=TXN_ID and SNAP_VALID=1 same cycle; success ACK no earlier",
+        "hold": "until next successful new SNAPSHOT; duplicate/failed commands, NOP, reads and IRQ clear preserve",
+        "reset": "SNAP_VALID=0; frame zero except no-point sequence overrides",
+        "software_read": "serial request; ID/VALID, all LO/HI, ID/VALID; discard if invalid or changed",
+        "old_frame_during_busy": "readable but not completion for new ID",
+        "position_source": "emitted STEP command position; never planner endpoint or encoder feedback"
+      },
+      "unfrozen": [
+        "wire frame layouts and CRC",
+        "DMA configuration/deployment",
+        "FIFO capacity and drive timing values",
+        "other global registers/errors/states and command semantics",
+        "physical motor wiring"
+      ],
+      "migration": "additive profile and four registers/NOP/TEST bit in unused slots; existing draft addresses/commands unchanged; regenerate shared headers from schema; check FEATURES before enabling functionality; future motion/CDC changes require review"
+    }
+  },
+  "dma_loopback_profiles": {
+    "dma_loopback_v1": {
+      "status": "USER_CONFIRMED_PL_SIMULATION_OOC_VALIDATED_NOT_BOARD_TESTED",
+      "confirmation": {
+        "date": "2026-10-12",
+        "answer": "接受以上契约"
+      },
+      "address": {
+        "base": 2152726528,
+        "size": 4096,
+        "register_span": 1024,
+        "address_width": 33,
+        "data_width": 32,
+        "full_word_writes_only": true
+      },
+      "irq": {
+        "mm2s_line": 1,
+        "s2mm_line": 2,
+        "mm2s_spi": 83,
+        "s2mm_spi": 84,
+        "mm2s_intid": 115,
+        "s2mm_intid": 116,
+        "trigger": "level-high",
+        "new_lines_board_verified": false
+      },
+      "clock_hz": 100000000,
+      "memory_address_width": 32,
+      "hp_address_width": 33,
+      "hp_id_width": 6,
+      "stream_width": 64,
+      "fifo_depth": 16,
+      "maximum_transfer_bytes": 65535,
+      "minimum_transfer_bytes": 1,
+      "address_alignment_bytes": 8,
+      "parameters": {
+        "AL_S_AXI_LITE_ADDR_WIDTH": 10,
+        "AL_S_AXI_LITE_DATA_WIDTH": 32,
+        "AL_DLYTMR_RESOLUTION": 125,
+        "AL_PRMRY_IS_ACLK_ASYNC": 0,
+        "AL_INCLUDE_SG": 0,
+        "AL_SG_INCLUDE_STSCNTRL_STRM": 0,
+        "AL_SG_USE_STSAPP_LENGTH": 0,
+        "AL_SG_LENGTH_WIDTH": 16,
+        "AL_M_AXI_SG_ADDR_WIDTH": 32,
+        "AL_M_AXI_SG_DATA_WIDTH": 32,
+        "AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH": 32,
+        "AL_S_AXIS_S2MM_STS_TDATA_WIDTH": 32,
+        "AL_INCLUDE_MM2S": 1,
+        "AL_INCLUDE_MM2S_SF": 1,
+        "AL_INCLUDE_MM2S_DRE": 1,
+        "AL_MM2S_BURST_SIZE": 16,
+        "AL_M_AXI_MM2S_ADDR_WIDTH": 32,
+        "AL_M_AXI_MM2S_DATA_WIDTH": 64,
+        "AL_M_AXIS_MM2S_TDATA_WIDTH": 64,
+        "AL_INCLUDE_S2MM": 1,
+        "AL_INCLUDE_S2MM_SF": 1,
+        "AL_INCLUDE_S2MM_DRE": 1,
+        "AL_S2MM_BURST_SIZE": 16,
+        "AL_M_AXI_S2MM_ADDR_WIDTH": 32,
+        "AL_M_AXI_S2MM_DATA_WIDTH": 64,
+        "AL_S_AXIS_S2MM_TDATA_WIDTH": 64,
+        "AL_MICRO_DMA": 0,
+        "AL_INCREASE_THROUGHPUT": 0,
+        "AL_S_AXI_LITE_ACLK_FREQ_HZ": 100000000,
+        "AL_M_AXI_MM2S_ACLK_FREQ_HZ": 100000000,
+        "AL_M_AXI_S2MM_ACLK_FREQ_HZ": 100000000,
+        "AL_M_AXI_SG_ACLK_FREQ_HZ": 100000000
+      },
+      "packet": "One MM2S simple transfer per packet; post equal-length S2MM first; preserve data/keep/last/user/id/dest; no motion record layout is frozen.",
+      "reset": "Common p2f_rst0_n boot reset only; async assertion/two-stage release. Any primary channel reset flushes loop FIFO; release only after both channels recover. BSP blocks submissions, terminates synchronously and resets both directions before new generation; it must establish DDR quiescence before buffer reuse. DMA-only recovery preserves GP time/ABI.",
+      "documentation": "pl_dma/DMA_HANDOFF.md",
+      "control_registers": {
+        "MM2S_CONTROL": 0,
+        "MM2S_STATUS": 4,
+        "MM2S_ADDRESS": 24,
+        "MM2S_ADDRESS_MSB": 28,
+        "MM2S_LENGTH": 40,
+        "S2MM_CONTROL": 48,
+        "S2MM_STATUS": 52,
+        "S2MM_ADDRESS": 72,
+        "S2MM_ADDRESS_MSB": 76,
+        "S2MM_LENGTH": 88
+      },
+      "hardware_guard": "Full aligned word writes; BTT must be 1..65535; addresses 8-byte aligned; nonzero address MSB writes rejected with SLVERR before IP."
+    }
+  },
+  "motion_integration_profiles": {
+    "gp_motion_v1": {
+      "status": "USER_CONFIRMED",
+      "confirmation": {
+        "date": "2026-10-13",
+        "answer": "全部接受",
+        "document": "pl_motion/MOTION_INTEGRATION_CONTRACT_DRAFT.md"
+      },
+      "base": 2153775104,
+      "size": 4096,
+      "version": 1,
+      "profile_id": 827608909,
+      "irq_line": 3,
+      "irq_spi": 85,
+      "irq_intid": 117,
+      "record_bytes": 72,
+      "record_magic": 844386125,
+      "record_version": 2,
+      "max_packet_records": 910,
+      "raw_depth": 64,
+      "plan_depth": 8,
+      "start_min_points": 32,
+      "registers": {
+        "VERSION": 0,
+        "PROFILE": 4,
+        "STATUS": 8,
+        "ERROR": 12,
+        "OPCODE": 16,
+        "ARG": 20,
+        "TXN": 24,
+        "SUBMIT": 28,
+        "ACK_ID": 32,
+        "ACK_ERROR": 36,
+        "ACK_STATUS": 40,
+        "SESSION_LO": 44,
+        "SESSION_HI": 48,
+        "MAINT": 52,
+        "STOP": 56,
+        "PACKET_ARM": 60,
+        "RECOVER_GEN": 64,
+        "SNAP_REQ": 68,
+        "SNAP_ID": 72,
+        "SNAP_VALID": 76,
+        "IRQ_PENDING": 80,
+        "IRQ_MASK": 84,
+        "FIFO_LEVEL": 88,
+        "PLAN_LEVEL": 92,
+        "BUFFERED": 96,
+        "RAW_CAPACITY": 100,
+        "PLAN_CAPACITY": 104,
+        "START_THRESHOLD": 108,
+        "LINK_GEN": 112,
+        "LINK_READY": 116,
+        "PACKET_COUNT": 120,
+        "ACCEPT_SEQ": 124,
+        "DONE_SEQ": 128,
+        "ACTIVE_SEQ": 132,
+        "ACCEPT_VALID": 136,
+        "DONE_VALID": 140,
+        "REBASE_0": 256,
+        "REBASE_1": 260,
+        "REBASE_2": 264,
+        "REBASE_3": 268,
+        "REBASE_4": 272,
+        "REBASE_5": 276,
+        "REBASE_6": 280,
+        "REBASE_7": 284,
+        "SNAP_0": 512,
+        "SNAP_1": 516,
+        "SNAP_2": 520,
+        "SNAP_3": 524,
+        "SNAP_4": 528,
+        "SNAP_5": 532,
+        "SNAP_6": 536,
+        "SNAP_7": 540,
+        "SNAP_8": 544,
+        "SNAP_9": 548,
+        "SNAP_10": 552,
+        "SNAP_11": 556,
+        "SNAP_12": 560,
+        "SNAP_13": 564,
+        "SNAP_14": 568,
+        "SNAP_15": 572,
+        "SNAP_16": 576,
+        "SNAP_17": 580,
+        "SNAP_18": 584,
+        "SNAP_19": 588,
+        "SNAP_20": 592,
+        "SNAP_21": 596,
+        "SNAP_22": 600,
+        "SNAP_23": 604,
+        "SNAP_24": 608,
+        "SNAP_25": 612,
+        "SNAP_26": 616,
+        "SNAP_27": 620,
+        "SNAP_28": 624,
+        "SNAP_29": 628,
+        "SNAP_30": 632,
+        "SNAP_31": 636,
+        "ACTIVE_VALID": 144,
+        "ACCEPT_COUNT": 148,
+        "DONE_COUNT": 152,
+        "STALE_COUNT": 156,
+        "REJECT_COUNT": 160,
+        "CANCEL_COUNT": 164,
+        "STOP_COUNT": 168,
+        "END_COUNT": 172,
+        "CAPS": 176,
+        "FEATURES": 180,
+        "SNAP_32": 640,
+        "SNAP_33": 644,
+        "SNAP_34": 648,
+        "SNAP_35": 652,
+        "SNAP_36": 656,
+        "SNAP_37": 660,
+        "SNAP_38": 664,
+        "SNAP_39": 668,
+        "SNAP_40": 672,
+        "SNAP_41": 676,
+        "SNAP_42": 680,
+        "SNAP_43": 684,
+        "SNAP_44": 688,
+        "SNAP_45": 692,
+        "SNAP_46": 696,
+        "SNAP_47": 700,
+        "SNAP_48": 704,
+        "SNAP_49": 708,
+        "SNAP_50": 712,
+        "SNAP_51": 716,
+        "SNAP_52": 720,
+        "SNAP_53": 724,
+        "SNAP_54": 728,
+        "SNAP_55": 732,
+        "SNAP_56": 736,
+        "SNAP_57": 740,
+        "SNAP_58": 744,
+        "SNAP_59": 748,
+        "SNAP_60": 752,
+        "SNAP_61": 756,
+        "SNAP_62": 760,
+        "SNAP_63": 764
+      },
+      "status_bits": {
+        "BUSY": 0,
+        "SESSION": 1,
+        "RUNNING": 2,
+        "PAUSED": 3,
+        "START_READY": 4,
+        "RESUME_READY": 5,
+        "STOP_COMPLETE": 6,
+        "LINK_READY": 7,
+        "PACKET_BUSY": 8,
+        "CONFIG_VALID": 9
+      },
+      "irq_bits": {
+        "ACK": 0,
+        "CANCEL": 1,
+        "DONE": 2,
+        "ACCEPT": 3,
+        "SNAP": 4,
+        "ERROR": 5,
+        "STOP": 6
+      },
+      "ack_bits": {
+        "VALID": 0,
+        "ACCEPTED": 1,
+        "COMPLETED": 2,
+        "BUSY": 3
+      },
+      "snapshot_words": {
+        "STATUS": 0,
+        "ERROR": 1,
+        "TIME_LO": 2,
+        "TIME_HI": 3,
+        "SESSION_LO": 4,
+        "SESSION_HI": 5,
+        "LINK_GEN": 6,
+        "ACCEPT_SEQ": 7,
+        "DONE_SEQ": 8,
+        "ACTIVE_SEQ": 9,
+        "VALIDITY": 10,
+        "BUFFERED": 11,
+        "FIFO": 12,
+        "PLAN": 13,
+        "SIGNALS": 14,
+        "PACKET_COUNT": 15,
+        "AXES_FIRST": 16,
+        "ACTIVE_VALID": 32,
+        "ACCEPT_COUNT": 33,
+        "DONE_COUNT": 34,
+        "STALE_COUNT": 35,
+        "REJECT_COUNT": 36,
+        "CANCEL_COUNT": 37,
+        "STOP_COUNT": 38,
+        "END_COUNT": 39
+      },
+      "validation_envelope": {
+        "minimum_duration_tick": 100,
+        "maximum_supply_gap_tick": 2000,
+        "margin_tick": 1000,
+        "planning_margin_points": 2
+      },
+      "s2mm_telemetry": false,
+      "default_driver_configuration": "invalid; no physical motor pins",
+      "crc_reflected_polynomial": 3988292384,
+      "cycles_per_tick": 100,
+      "irq_all_mask": 127,
+      "supported_commands": [
+        "NOP",
+        "OPEN_SESSION",
+        "ENABLE",
+        "START",
+        "PAUSE",
+        "RESUME",
+        "DISABLE",
+        "REBASE",
+        "CLEAR_FAULT",
+        "LINK_RECOVER"
+      ],
+      "register_access": {
+        "VERSION": "RO",
+        "PROFILE": "RO",
+        "STATUS": "RO",
+        "ERROR": "RO",
+        "OPCODE": "RW",
+        "ARG": "RW",
+        "TXN": "RW",
+        "SUBMIT": "WO",
+        "ACK_ID": "RO",
+        "ACK_ERROR": "RO",
+        "ACK_STATUS": "RO",
+        "SESSION_LO": "RW",
+        "SESSION_HI": "RW",
+        "MAINT": "RW",
+        "STOP": "WO",
+        "PACKET_ARM": "WO",
+        "RECOVER_GEN": "RW",
+        "SNAP_REQ": "WO",
+        "SNAP_ID": "RO",
+        "SNAP_VALID": "RO",
+        "IRQ_PENDING": "W1C",
+        "IRQ_MASK": "RW",
+        "FIFO_LEVEL": "RO",
+        "PLAN_LEVEL": "RO",
+        "BUFFERED": "RO",
+        "RAW_CAPACITY": "RO",
+        "PLAN_CAPACITY": "RO",
+        "START_THRESHOLD": "RO",
+        "LINK_GEN": "RO",
+        "LINK_READY": "RO",
+        "PACKET_COUNT": "RO",
+        "ACCEPT_SEQ": "RO",
+        "DONE_SEQ": "RO",
+        "ACTIVE_SEQ": "RO",
+        "ACCEPT_VALID": "RO",
+        "DONE_VALID": "RO",
+        "REBASE_0": "RW",
+        "REBASE_1": "RW",
+        "REBASE_2": "RW",
+        "REBASE_3": "RW",
+        "REBASE_4": "RW",
+        "REBASE_5": "RW",
+        "REBASE_6": "RW",
+        "REBASE_7": "RW",
+        "SNAP_0": "RO",
+        "SNAP_1": "RO",
+        "SNAP_2": "RO",
+        "SNAP_3": "RO",
+        "SNAP_4": "RO",
+        "SNAP_5": "RO",
+        "SNAP_6": "RO",
+        "SNAP_7": "RO",
+        "SNAP_8": "RO",
+        "SNAP_9": "RO",
+        "SNAP_10": "RO",
+        "SNAP_11": "RO",
+        "SNAP_12": "RO",
+        "SNAP_13": "RO",
+        "SNAP_14": "RO",
+        "SNAP_15": "RO",
+        "SNAP_16": "RO",
+        "SNAP_17": "RO",
+        "SNAP_18": "RO",
+        "SNAP_19": "RO",
+        "SNAP_20": "RO",
+        "SNAP_21": "RO",
+        "SNAP_22": "RO",
+        "SNAP_23": "RO",
+        "SNAP_24": "RO",
+        "SNAP_25": "RO",
+        "SNAP_26": "RO",
+        "SNAP_27": "RO",
+        "SNAP_28": "RO",
+        "SNAP_29": "RO",
+        "SNAP_30": "RO",
+        "SNAP_31": "RO",
+        "ACTIVE_VALID": "RO",
+        "ACCEPT_COUNT": "RO",
+        "DONE_COUNT": "RO",
+        "STALE_COUNT": "RO",
+        "REJECT_COUNT": "RO",
+        "CANCEL_COUNT": "RO",
+        "STOP_COUNT": "RO",
+        "END_COUNT": "RO",
+        "CAPS": "RO",
+        "FEATURES": "RO",
+        "SNAP_32": "RO",
+        "SNAP_33": "RO",
+        "SNAP_34": "RO",
+        "SNAP_35": "RO",
+        "SNAP_36": "RO",
+        "SNAP_37": "RO",
+        "SNAP_38": "RO",
+        "SNAP_39": "RO",
+        "SNAP_40": "RO",
+        "SNAP_41": "RO",
+        "SNAP_42": "RO",
+        "SNAP_43": "RO",
+        "SNAP_44": "RO",
+        "SNAP_45": "RO",
+        "SNAP_46": "RO",
+        "SNAP_47": "RO",
+        "SNAP_48": "RO",
+        "SNAP_49": "RO",
+        "SNAP_50": "RO",
+        "SNAP_51": "RO",
+        "SNAP_52": "RO",
+        "SNAP_53": "RO",
+        "SNAP_54": "RO",
+        "SNAP_55": "RO",
+        "SNAP_56": "RO",
+        "SNAP_57": "RO",
+        "SNAP_58": "RO",
+        "SNAP_59": "RO",
+        "SNAP_60": "RO",
+        "SNAP_61": "RO",
+        "SNAP_62": "RO",
+        "SNAP_63": "RO"
+      },
+      "snapshot_fields": {
+        "VALIDITY": {
+          "POSITION_VALID": [
+            0,
+            4
+          ],
+          "CONFIG_VALID": [
+            4,
+            4
+          ],
+          "ACCEPT_VALID": [
+            8,
+            1
+          ],
+          "DONE_VALID": [
+            9,
+            1
+          ],
+          "ACTIVE_VALID": [
+            10,
+            1
+          ]
+        },
+        "SIGNALS": {
+          "STEP": [
+            0,
+            4
+          ],
+          "DIR": [
+            4,
+            4
+          ],
+          "EN": [
+            8,
+            4
+          ]
+        }
+      },
+      "supported_errors": [
+        "OK",
+        "BAD_RECORD",
+        "STALE_SESSION",
+        "SEQUENCE",
+        "UNEXECUTABLE",
+        "UNDERRUN",
+        "LINK_RESET",
+        "BAD_COMMAND",
+        "INTERLOCK",
+        "DMA"
+      ],
+      "features": 15,
+      "caps": 15,
+      "feature_bits": {
+        "MOTION": 0,
+        "DYNAMIC_SNAPSHOT": 1,
+        "PACKET_ARM": 2,
+        "RECOVER": 3,
+        "S2MM_TELEMETRY": 4
+      },
+      "transport_error_scope": "HP MM2S non-OKAY RRESP and primary reset are observed in hardware; other internal DMA errors require BSP IRQ handler GP STOP"
+    }
+  },
+  "rs485_gp_profiles": {
+    "gp_rs485_v1": {
+      "status": "USER_CONFIRMED",
+      "confirmation": {
+        "date": "2026-10-14",
+        "answer": "三组方案均接受"
+      },
+      "documentation": "pl_rs485/GP_PROFILE_PROPOSAL.md",
+      "base": 2154823680,
+      "size": 4096,
+      "address_width": 33,
+      "data_width": 32,
+      "clock_hz": 100000000,
+      "irq_line": 4,
+      "irq_spi": 86,
+      "irq_intid": 118,
+      "version": 1,
+      "profile": 827536722,
+      "caps": 31,
+      "features": 31,
+      "irq_valid_mask": 127,
+      "query_valid_mask": 31,
+      "fifo_depth": 8,
+      "max_nodes": 10,
+      "max_tasks": 50,
+      "node_base": 640,
+      "node_stride": 16,
+      "task_base": 832,
+      "task_stride": 32,
+      "snapshot_base": 512,
+      "snapshot_words": 480,
+      "registers": {
+        "VERSION": 0,
+        "PROFILE": 4,
+        "CAPS": 8,
+        "FEATURES": 12,
+        "RUN": 16,
+        "STATUS": 20,
+        "GENERATION": 24,
+        "LOCAL_RESET": 28,
+        "IRQ_PENDING": 32,
+        "IRQ_MASK": 36,
+        "LAST_ACCESS_ERROR": 40,
+        "FIFO_LEVEL": 44,
+        "SHADOW_PERIOD0": 64,
+        "SHADOW_PERIOD1": 68,
+        "SHADOW_PERIOD2": 72,
+        "SHADOW_PERIOD3": 76,
+        "SHADOW_PERIOD4": 80,
+        "SHADOW_MASK": 84,
+        "TXN_ID": 88,
+        "CFG_SUBMIT": 92,
+        "CFG_STATE": 96,
+        "CFG_TXN": 100,
+        "CFG_ERROR": 104,
+        "CFG_REVISION": 108,
+        "CFG_SEQUENCE": 112,
+        "CFG_TIME_LO": 116,
+        "CFG_TIME_HI": 120,
+        "CFG_GENERATION": 124,
+        "CURRENT_PERIOD0": 128,
+        "CURRENT_PERIOD1": 132,
+        "CURRENT_PERIOD2": 136,
+        "CURRENT_PERIOD3": 140,
+        "CURRENT_PERIOD4": 144,
+        "CURRENT_MASK": 148,
+        "CURRENT_LOAD": 152,
+        "CAPTURE": 160,
+        "CAPTURE_ID": 164,
+        "CAPTURE_STATUS": 168,
+        "CAPTURE_GENERATION": 172,
+        "CAPTURE_REVISION": 176,
+        "CONSUME_ID": 180,
+        "ABANDON_ID": 184,
+        "LAST_CONSUMED_ID": 188,
+        "WORD0": 192,
+        "WORD1": 196,
+        "WORD2": 200,
+        "WORD3": 204,
+        "WORD4": 208,
+        "WORD5": 212,
+        "WORD6": 216,
+        "WORD7": 220,
+        "SNAP_REQ_ID": 256,
+        "SNAP_SUBMIT": 260,
+        "SNAP_STATUS": 264,
+        "SNAP_ID": 268
+      },
+      "register_access": {
+        "VERSION": "RO",
+        "PROFILE": "RO",
+        "CAPS": "RO",
+        "FEATURES": "RO",
+        "RUN": "RW",
+        "STATUS": "RO",
+        "GENERATION": "RO",
+        "LOCAL_RESET": "WO",
+        "IRQ_PENDING": "W1C",
+        "IRQ_MASK": "RW",
+        "LAST_ACCESS_ERROR": "RO",
+        "FIFO_LEVEL": "RO",
+        "SHADOW_PERIOD0": "RW",
+        "SHADOW_PERIOD1": "RW",
+        "SHADOW_PERIOD2": "RW",
+        "SHADOW_PERIOD3": "RW",
+        "SHADOW_PERIOD4": "RW",
+        "SHADOW_MASK": "RW",
+        "TXN_ID": "RW",
+        "CFG_SUBMIT": "WO",
+        "CFG_STATE": "RO",
+        "CFG_TXN": "RO",
+        "CFG_ERROR": "RO",
+        "CFG_REVISION": "RO",
+        "CFG_SEQUENCE": "RO",
+        "CFG_TIME_LO": "RO",
+        "CFG_TIME_HI": "RO",
+        "CFG_GENERATION": "RO",
+        "CURRENT_PERIOD0": "RO",
+        "CURRENT_PERIOD1": "RO",
+        "CURRENT_PERIOD2": "RO",
+        "CURRENT_PERIOD3": "RO",
+        "CURRENT_PERIOD4": "RO",
+        "CURRENT_MASK": "RO",
+        "CURRENT_LOAD": "RO",
+        "CAPTURE": "WO",
+        "CAPTURE_ID": "RO",
+        "CAPTURE_STATUS": "RO",
+        "CAPTURE_GENERATION": "RO",
+        "CAPTURE_REVISION": "RO",
+        "CONSUME_ID": "WO",
+        "ABANDON_ID": "WO",
+        "LAST_CONSUMED_ID": "RO",
+        "WORD0": "RO",
+        "WORD1": "RO",
+        "WORD2": "RO",
+        "WORD3": "RO",
+        "WORD4": "RO",
+        "WORD5": "RO",
+        "WORD6": "RO",
+        "WORD7": "RO",
+        "SNAP_REQ_ID": "RW",
+        "SNAP_SUBMIT": "WO",
+        "SNAP_STATUS": "RO",
+        "SNAP_ID": "RO"
+      },
+      "snapshot_header": {
+        "TIME_LO": 0,
+        "TIME_HI": 1,
+        "GENERATION": 2,
+        "REVISION": 3,
+        "APPLY_SEQUENCE": 4,
+        "MASK": 5,
+        "PERIOD0": 6,
+        "PERIOD1": 7,
+        "PERIOD2": 8,
+        "PERIOD3": 9,
+        "PERIOD4": 10,
+        "LOAD": 11,
+        "FIFO_LEVEL": 12,
+        "DROPPED": 13,
+        "ACCEPTED": 14,
+        "ERRORS": 15,
+        "IGNORED_RX": 16,
+        "BUS_BUSY": 17,
+        "OFFLINE": 18,
+        "CFG_STATE": 19,
+        "CFG_TXN": 20,
+        "CFG_ERROR": 21,
+        "CFG_TIME_LO": 22,
+        "CFG_TIME_HI": 23,
+        "CFG_GENERATION": 24,
+        "RUN": 25,
+        "CAPTURE_ID": 26,
+        "CAPTURE_STATUS": 27,
+        "SLAVE_COUNT": 28,
+        "FIFO_DEPTH": 29,
+        "RESERVED0": 30,
+        "RESERVED1": 31
+      },
+      "task_fields": {
+        "SCHEDULED": 0,
+        "SENT": 1,
+        "VALID": 2,
+        "MISSED": 3,
+        "MAX_LATENESS": 4,
+        "RESERVED0": 5,
+        "RESERVED1": 6,
+        "RESERVED2": 7
+      },
+      "node_fields": {
+        "FLAGS": 0,
+        "COOLDOWN_LO": 1,
+        "COOLDOWN_HI": 2,
+        "BACKOFF": 3
+      },
+      "errors": {
+        "NONE": 0,
+        "ADDRESS": 1,
+        "ALIGN": 2,
+        "ACCESS": 3,
+        "STROBE": 4,
+        "RESERVED": 5,
+        "BUSY": 6,
+        "ID": 7,
+        "PAYLOAD": 8,
+        "EMPTY": 9,
+        "PARTIAL": 10,
+        "EXHAUSTED": 11,
+        "RESET_STATE": 12
+      },
+      "irq_bits": {
+        "DATA": 0,
+        "CFG_RESULT": 1,
+        "COMM_ERROR": 2,
+        "PROTECT_OBSERVED": 3,
+        "FIFO_DROP": 4,
+        "BUS_DIAGNOSTIC": 5,
+        "RESET_DONE": 6
+      },
+      "cfg_bits": {
+        "ACCEPTED": 0,
+        "PENDING": 1,
+        "APPLIED": 2,
+        "REJECTED": 3
+      },
+      "status_bits": {
+        "RUN": 0,
+        "BUSY": 1,
+        "CFG_PENDING": 2,
+        "COLLECTOR_READY": 3,
+        "CAPTURE_VALID": 4,
+        "RESETTING": 5
+      },
+      "capture_fields": {
+        "VALID": [
+          0,
+          1
+        ],
+        "READ_BITMAP": [
+          8,
+          8
+        ]
+      },
+      "node_flag_fields": {
+        "FAILURES": [
+          0,
+          8
+        ],
+        "OFFLINE": [
+          8,
+          1
+        ]
+      },
+      "constraints": {
+        "zero_strobe": "OKAY no effect",
+        "full_strobe": "WO and W1C require 0xf",
+        "ids": "nonzero monotonic no wrap; latest same payload idempotent",
+        "record_word_order": "word0=record[31:0]",
+        "local_reset": "RUN=0, collector idle and cfg_ready, no bridge config pending; system time preserved",
+        "metadata": "revision at enqueue, generation at capture; collector FIFO reset on local reset",
+        "snapshot": "same edge registered values; no sequential sampling",
+        "deployment": "candidate resources; final BSP HPF/DT/IRQ audit required; not integrated"
+      },
+      "feature_bits": {
+        "CONFIG": 0,
+        "RECORD_CAPTURE": 1,
+        "ATOMIC_STATS": 2,
+        "IRQ": 3,
+        "REVISION_SIDEBAND": 4
+      },
+      "cfg_error_source": "pl_rs485/rate_design.json#implementation/cfg_error"
+    }
+  },
+  "rs485_telemetry": {
+    "status": "USER_CONFIRMED",
+    "confirmation_date": "2026-10-14",
+    "documentation": "pl_rs485/DMA_INDEPENDENT_ADDENDUM.md",
+    "base": 2155872256,
+    "size": 4096,
+    "irq_line": 5,
+    "irq_spi": 87,
+    "irq_intid": 119,
+    "version": 1,
+    "profile": 827605842,
+    "caps": 31,
+    "features": 31,
+    "clock_hz": 100000000,
+    "fifo_depth": 256,
+    "batch_max": 16,
+    "flush_us": 10000,
+    "stale_floor_us": 100000,
+    "stale_periods": 3,
+    "record_bytes": 64,
+    "record_magic": 827602002,
+    "record_version": 1,
+    "crc_bytes": 60,
+    "crc_poly": 3988292384,
+    "crc_init": 4294967295,
+    "crc_xorout": 4294967295,
+    "rows": 15,
+    "row_base": 512,
+    "row_stride": 128,
+    "snapshot_base": 256,
+    "snapshot_words": 32,
+    "registers": {
+      "VERSION": 0,
+      "PROFILE": 4,
+      "CAPS": 8,
+      "FEATURES": 12,
+      "STATUS": 16,
+      "IRQ_PENDING": 20,
+      "IRQ_MASK": 24,
+      "ACCESS_ERROR": 28,
+      "ENABLE": 64,
+      "RECOVER_GEN": 68,
+      "RECOVER": 72,
+      "CANCEL": 76,
+      "PACKET_ID": 80,
+      "PACKET_GEN": 84,
+      "PACKET_COUNT": 88,
+      "PACKET_BYTES": 92,
+      "ARM_ID": 96,
+      "ARM_GEN": 100,
+      "ARM_BYTES": 104,
+      "ARM": 108,
+      "COMPLETE_ID": 112,
+      "COMPLETE_GEN": 116,
+      "COMPLETE_RESULT": 120,
+      "COMPLETE": 124,
+      "SNAP_REQ_ID": 128,
+      "SNAP_SUBMIT": 132,
+      "SNAP_STATUS": 136,
+      "SNAP_ID": 140,
+      "FIFO_LEVEL": 144,
+      "FULL_DROP": 148,
+      "DISABLED_DROP": 152,
+      "CANCEL_DROP": 156,
+      "STREAM_RECORDS": 160,
+      "STREAM_PACKETS": 164,
+      "DMA_OK": 168,
+      "DMA_FAILED": 172,
+      "PARSE_ERRORS": 176,
+      "SERIAL_LO": 180,
+      "SERIAL_HI": 184,
+      "TRANSPORT_GEN": 188
+    },
+    "register_access": {
+      "VERSION": "RO",
+      "PROFILE": "RO",
+      "CAPS": "RO",
+      "FEATURES": "RO",
+      "STATUS": "RO",
+      "IRQ_PENDING": "W1C",
+      "IRQ_MASK": "RW",
+      "ACCESS_ERROR": "RO",
+      "ENABLE": "RW",
+      "RECOVER_GEN": "RW",
+      "RECOVER": "WO",
+      "CANCEL": "WO",
+      "PACKET_ID": "RO",
+      "PACKET_GEN": "RO",
+      "PACKET_COUNT": "RO",
+      "PACKET_BYTES": "RO",
+      "ARM_ID": "RW",
+      "ARM_GEN": "RW",
+      "ARM_BYTES": "RW",
+      "ARM": "WO",
+      "COMPLETE_ID": "RW",
+      "COMPLETE_GEN": "RW",
+      "COMPLETE_RESULT": "RW",
+      "COMPLETE": "WO",
+      "SNAP_REQ_ID": "RW",
+      "SNAP_SUBMIT": "WO",
+      "SNAP_STATUS": "RO",
+      "SNAP_ID": "RO",
+      "FIFO_LEVEL": "RO",
+      "FULL_DROP": "RO",
+      "DISABLED_DROP": "RO",
+      "CANCEL_DROP": "RO",
+      "STREAM_RECORDS": "RO",
+      "STREAM_PACKETS": "RO",
+      "DMA_OK": "RO",
+      "DMA_FAILED": "RO",
+      "PARSE_ERRORS": "RO",
+      "SERIAL_LO": "RO",
+      "SERIAL_HI": "RO",
+      "TRANSPORT_GEN": "RO"
+    },
+    "row_offsets": {
+      "FLAGS": 0,
+      "ADDRESS_QUERY": 4,
+      "VALID_GENERATION": 8,
+      "VALID_REVISION": 12,
+      "RESULT_GENERATION": 16,
+      "RESULT_REVISION": 20,
+      "UPDATES": 24,
+      "RESERVED": 28,
+      "VALID_RAW": 32,
+      "RESULT_RAW": 64,
+      "SIGNED": 96,
+      "CARRY": 104,
+      "VALUE_ENUM": 108,
+      "AGE": 112,
+      "STALE_LIMIT": 120
+    },
+    "snapshot_header": {
+      "TIME_LO": 0,
+      "TIME_HI": 1,
+      "GENERATION": 2,
+      "REVISION": 3,
+      "MASK": 4,
+      "TRANSPORT_GEN": 5,
+      "STATUS": 6,
+      "FIFO_LEVEL": 7,
+      "FULL_DROP": 8,
+      "DISABLED_DROP": 9,
+      "CANCEL_DROP": 10,
+      "STREAM_RECORDS": 11,
+      "STREAM_PACKETS": 12,
+      "DMA_OK": 13,
+      "DMA_FAILED": 14,
+      "PARSE_ERRORS": 15,
+      "SERIAL_LO": 16,
+      "SERIAL_HI": 17,
+      "PACKET_ID": 18,
+      "PACKET_GEN": 19,
+      "PACKET_COUNT": 20,
+      "PACKET_BYTES": 21,
+      "WAIT_ARM_MAX_US": 22,
+      "BACKPRESSURE_CYCLES_MAX": 23,
+      "READY_LATENESS_MAX_US": 24
+    },
+    "frame_fields": {
+      "MAGIC": {
+        "offset": 0,
+        "size": 4
+      },
+      "VERSION": {
+        "offset": 4,
+        "size": 2
+      },
+      "LENGTH": {
+        "offset": 6,
+        "size": 2
+      },
+      "COLLECTOR_GENERATION": {
+        "offset": 8,
+        "size": 4
+      },
+      "REVISION": {
+        "offset": 12,
+        "size": 4
+      },
+      "TRANSPORT_GENERATION": {
+        "offset": 16,
+        "size": 4
+      },
+      "SERIAL": {
+        "offset": 20,
+        "size": 8
+      },
+      "RAW": {
+        "offset": 28,
+        "size": 32
+      },
+      "CRC": {
+        "offset": 60,
+        "size": 4
+      }
+    },
+    "flag_bits": {
+      "VALID_SEEN": 0,
+      "RESULT_SEEN": 1,
+      "RESULT_VALID": 2,
+      "ENUM_KNOWN": 3,
+      "STALE": 4,
+      "DISABLED": 5
+    },
+    "status_bits": {
+      "OPEN": 0,
+      "ENABLE": 1,
+      "PACKET_READY": 2,
+      "SENDING": 3,
+      "STREAM_DONE": 4,
+      "CANCEL_PENDING": 5,
+      "DMA_READY": 6,
+      "EXHAUSTED": 7
+    },
+    "irq_bits": {
+      "PACKET_READY": 0,
+      "PACKET_RESULT": 1,
+      "FAULT": 2,
+      "PARSE_ERROR": 3,
+      "FIFO_DROP": 4
+    },
+    "errors": {
+      "NONE": 0,
+      "ADDRESS": 1,
+      "ALIGN": 2,
+      "ACCESS": 3,
+      "STROBE": 4,
+      "RESERVED": 5,
+      "BUSY": 6,
+      "ID": 7,
+      "GENERATION": 8,
+      "LENGTH": 9,
+      "STATE": 10,
+      "EXHAUSTED": 11
+    },
+    "dma": {
+      "name": "dma_rs485_s2mm_v1",
+      "base": 2156920832,
+      "size": 4096,
+      "register_span": 1024,
+      "irq_line": 6,
+      "irq_spi": 88,
+      "irq_intid": 120,
+      "hp_port": 1,
+      "parameters": {
+        "AL_S_AXI_LITE_ADDR_WIDTH": 10,
+        "AL_S_AXI_LITE_DATA_WIDTH": 32,
+        "AL_DLYTMR_RESOLUTION": 125,
+        "AL_PRMRY_IS_ACLK_ASYNC": 0,
+        "AL_INCLUDE_SG": 0,
+        "AL_SG_INCLUDE_STSCNTRL_STRM": 0,
+        "AL_SG_USE_STSAPP_LENGTH": 0,
+        "AL_SG_LENGTH_WIDTH": 16,
+        "AL_M_AXI_SG_ADDR_WIDTH": 32,
+        "AL_M_AXI_SG_DATA_WIDTH": 32,
+        "AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH": 32,
+        "AL_S_AXIS_S2MM_STS_TDATA_WIDTH": 32,
+        "AL_INCLUDE_MM2S": 0,
+        "AL_INCLUDE_MM2S_SF": 1,
+        "AL_INCLUDE_MM2S_DRE": 1,
+        "AL_MM2S_BURST_SIZE": 16,
+        "AL_M_AXI_MM2S_ADDR_WIDTH": 32,
+        "AL_M_AXI_MM2S_DATA_WIDTH": 64,
+        "AL_M_AXIS_MM2S_TDATA_WIDTH": 64,
+        "AL_INCLUDE_S2MM": 1,
+        "AL_INCLUDE_S2MM_SF": 1,
+        "AL_INCLUDE_S2MM_DRE": 1,
+        "AL_S2MM_BURST_SIZE": 16,
+        "AL_M_AXI_S2MM_ADDR_WIDTH": 32,
+        "AL_M_AXI_S2MM_DATA_WIDTH": 64,
+        "AL_S_AXIS_S2MM_TDATA_WIDTH": 64,
+        "AL_MICRO_DMA": 0,
+        "AL_INCREASE_THROUGHPUT": 0,
+        "AL_S_AXI_LITE_ACLK_FREQ_HZ": 100000000,
+        "AL_M_AXI_MM2S_ACLK_FREQ_HZ": 100000000,
+        "AL_M_AXI_S2MM_ACLK_FREQ_HZ": 100000000,
+        "AL_M_AXI_SG_ACLK_FREQ_HZ": 100000000
+      },
+      "read_offsets": [
+        48,
+        52,
+        72,
+        76,
+        88
+      ],
+      "write_offsets": [
+        48,
+        52,
+        72,
+        76,
+        88
+      ],
+      "reset_scope": "independent controller only; common system reset remains shared"
+    },
+    "semantics": {
+      "event": "immutable completion, independent of diagnostic FIFO admission",
+      "record": "raw GP word order, LE envelope, source BE payload retained",
+      "rx": "freeze exact N*64 then RX descriptor before ARM; no short residue assumption",
+      "cache": "local collector reset invalidates; DMA reset preserves",
+      "cancel": "held VALID stable until handshake or primary reset; recover explicit after DDR quiescence",
+      "stale": "max(3*active_period,100000); disabled and unseen stale; modulo64 age",
+      "counter": "u32 saturating; serial u64 no wrap; IDs and generations u32 no wrap"
+    }
+  },
+  "safety_profiles": {
+    "gp_safety_home_v1": {
+      "status": "BEHAVIOR_CONFIRMED_NUMERIC_CONFIG_PENDING",
+      "confirmation_date": "2026-10-16",
+      "base": 2157969408,
+      "size": 4096,
+      "irq_line": 7,
+      "irq_spi": 89,
+      "irq_intid": 121,
+      "profile": 826687827,
+      "version": 1,
+      "caps": 63,
+      "features": 63,
+      "clock_hz": 100000000,
+      "time_hz": 1000000,
+      "registers": {
+        "VERSION": 0,
+        "PROFILE": 4,
+        "CAPS": 8,
+        "FEATURES": 12,
+        "OPCODE": 16,
+        "ARG": 20,
+        "TXN": 24,
+        "SUBMIT": 28,
+        "STOP": 32,
+        "ACK_ID": 36,
+        "ACK_STATUS": 40,
+        "ACK_ERROR": 44,
+        "IRQ_PENDING": 48,
+        "IRQ_MASK": 52,
+        "SNAP_REQ": 56,
+        "CONFIG_ID_0": 64,
+        "CONFIG_ID_1": 68,
+        "CONFIG_ID_2": 72,
+        "CONFIG_ID_3": 76,
+        "CONFIG_ID_4": 80,
+        "CONFIG_ID_5": 84,
+        "CONFIG_ID_6": 88,
+        "CONFIG_ID_7": 92,
+        "CONFIG_VALID": 96
+      },
+      "snapshot_base": 512,
+      "snapshot_words": 64,
+      "commands": {
+        "HOME_START": 1,
+        "CLEAR_FAULT": 2
+      },
+      "errors": {
+        "OK": 0,
+        "REJECTED": 1,
+        "CANCELLED": 2
+      },
+      "states": {
+        "NEED": 0,
+        "PRE": 1,
+        "SEARCH": 2,
+        "SEARCH_DRAIN": 3,
+        "REF": 4,
+        "PULL": 5,
+        "FINISH": 6,
+        "READY": 7,
+        "DRAIN": 8,
+        "FAULT": 9
+      },
+      "causes": {
+        "LIMIT_A0": 1,
+        "LIMIT_A1": 2,
+        "LIMIT_A2": 4,
+        "ESTOP": 8,
+        "PRE_FAIL": 16,
+        "SEARCH_FAIL": 32,
+        "PULL_FAIL": 64,
+        "RECONTACT": 128,
+        "EXEC_FAIL": 256
+      },
+      "snapshot": {
+        "STATE": 0,
+        "ACTIVE": 1,
+        "RELEASED": 2,
+        "CAUSES": 3,
+        "FIRST_CAUSE": 4,
+        "FIRST_TIME_LO": 5,
+        "FIRST_TIME_HI": 6,
+        "EVENT_SEQ_LO": 7,
+        "EVENT_SEQ_HI": 8,
+        "MASKS": 9,
+        "VALID": 10,
+        "EN": 11,
+        "PULSE_SAFE": 12,
+        "TIME_LO": 13,
+        "TIME_HI": 14,
+        "HOME_START_LO": 15,
+        "HOME_START_HI": 16,
+        "HOME_DONE_LO": 17,
+        "HOME_DONE_HI": 18,
+        "RESERVED": 19,
+        "POSITION_0": 20,
+        "POSITION_1": 21,
+        "POSITION_2": 22,
+        "POSITION_3": 23,
+        "POSITION_4": 24,
+        "POSITION_5": 25,
+        "TRAVEL_0": 26,
+        "TRAVEL_1": 27,
+        "TRAVEL_2": 28,
+        "TRAVEL_3": 29,
+        "TRAVEL_4": 30,
+        "TRAVEL_5": 31,
+        "PULSES_0": 32,
+        "PULSES_1": 33,
+        "PULSES_2": 34,
+        "PULSES_3": 35,
+        "PULSES_4": 36,
+        "PULSES_5": 37,
+        "SNAP_ID": 38
+      }
+    }
+  },
+  "interlock_profiles": {
+    "gp_safety_interlock_v2": {
+      "status": "BEHAVIOR_CONFIRMED_RELEASE_REQUIRES_SEPARATE_GATES",
+      "confirmation_date": "2026-10-18",
+      "base": 2157969408,
+      "size": 4096,
+      "profile": 843465043,
+      "version": 2,
+      "caps": 255,
+      "features": 255,
+      "time_hz": 1000000,
+      "timeout_min_us": 1000000,
+      "timeout_max_us": 3000000,
+      "timeout_default_us": 2000000,
+      "heartbeat_period_us": 500000,
+      "collector_profile": 844313938,
+      "collector_version": 2,
+      "collector_caps": 63,
+      "collector_features": 63,
+      "default_axis_mask": 7,
+      "registers": {
+        "SHADOW_AXES": 256,
+        "SHADOW_FEEDBACK_US": 260,
+        "SHADOW_WATCHDOG_US": 264,
+        "CONFIG_TXN": 268,
+        "CONFIG_COMMIT": 272,
+        "CONFIG_APPLIED": 276,
+        "ACTIVE_AXES": 280,
+        "ACTIVE_FEEDBACK_US": 284,
+        "ACTIVE_WATCHDOG_US": 288,
+        "OWNER_OPEN": 292,
+        "OWNER_CLOSE": 296,
+        "OWNER_LO": 300,
+        "OWNER_HI": 304,
+        "HEARTBEAT_OWNER_LO": 308,
+        "HEARTBEAT_OWNER_HI": 312,
+        "HEARTBEAT_SEQ_LO": 316,
+        "HEARTBEAT_SEQ_HI": 320,
+        "HEARTBEAT_COMMIT": 324,
+        "STATUS": 328,
+        "CAUSES": 332,
+        "FIRST_CAUSE": 336,
+        "FIRST_TIME_LO": 340,
+        "FIRST_TIME_HI": 344,
+        "LAST_SEQ_LO": 348,
+        "LAST_SEQ_HI": 352,
+        "SNAP_REQ": 356,
+        "SNAP_ID": 360,
+        "CONFIG_ACCEPTED": 364
+      },
+      "snapshot_base": 768,
+      "snapshot_words": 32,
+      "feature_bits": {
+        "LIMIT": 0, "HOME": 1, "FIXED_PULL": 2, "ESTOP": 3,
+        "SNAPSHOT": 4, "CONFIG_ID": 5, "RS485_INTERLOCK": 6, "PS_WATCHDOG": 7
+      },
+      "snapshot": {
+        "STATUS": 0, "CAUSES": 1, "FIRST_CAUSE": 2,
+        "FIRST_TIME_LO": 3, "FIRST_TIME_HI": 4,
+        "OWNER_LO": 5, "OWNER_HI": 6, "LAST_SEQ_LO": 7, "LAST_SEQ_HI": 8,
+        "AXES": 9, "FEEDBACK_US": 10, "WATCHDOG_US": 11,
+        "TIME_LO": 12, "TIME_HI": 13,
+        "FEEDBACK_TIME_A0_LO": 14, "FEEDBACK_TIME_A0_HI": 15,
+        "FEEDBACK_TIME_A1_LO": 16, "FEEDBACK_TIME_A1_HI": 17,
+        "FEEDBACK_TIME_A2_LO": 18, "FEEDBACK_TIME_A2_HI": 19,
+        "WATCHDOG_TIME_LO": 20, "WATCHDOG_TIME_HI": 21, "SEEN_AXES": 22
+      },
+      "causes": {
+        "PROTECT_A0": 512,
+        "PROTECT_A1": 1024,
+        "PROTECT_A2": 2048,
+        "FEEDBACK_A0": 4096,
+        "FEEDBACK_A1": 8192,
+        "FEEDBACK_A2": 16384,
+        "WATCHDOG": 32768
+      },
+      "status_bits": {
+        "POLL_RUN": 0,
+        "FEEDBACK_QUALIFIED": 1,
+        "OWNER_ACTIVE": 2,
+        "HEARTBEAT_QUALIFIED": 3,
+        "PERMIT": 4,
+        "FAULT": 5,
+        "DRAINED": 6,
+        "CONFIG_PENDING": 7
+      },
+      "errors": {"OK": 0, "ACCESS": 1, "VALUE": 2, "STATE": 3, "IDENTITY": 4, "TORN": 5},
+      "recovery": {
+        "invalidate_at_detection": true,
+        "disable_after_original_off_delay": true,
+        "home_required_after_clear": true,
+        "timeout_wins_same_edge": true,
+        "clear_irq_clears_fault": false,
+        "owner_and_sequence_bits": 64,
+        "owner_and_sequence_wrap": false
+      }
+    }
+  }
+}

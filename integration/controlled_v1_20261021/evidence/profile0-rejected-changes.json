@@ -1,0 +1,34 @@
+{
+  "from": "rtl_path38 / rtl37_candidate_r5",
+  "changes": [
+    "four explicit J12 input locations",
+    "CONFIG_PROFILE 2 -> 0; HOME disabled"
+  ],
+  "pins": {
+    "safety_limit_n[0]": [
+      "V7",
+      12
+    ],
+    "safety_limit_n[1]": [
+      "U9",
+      13
+    ],
+    "safety_limit_n[2]": [
+      "U8",
+      14
+    ],
+    "safety_estop_n": [
+      "V11",
+      15
+    ]
+  },
+  "input_assertion": "external pullup to BANK11 3.3V; contact to GND asserts low",
+  "external_pullup_value_ohms": null,
+  "wiring_measured": false,
+  "production_home_approved": false,
+  "final_pnr_required": true,
+  "speed": "reference 2; physical part grade unconfirmed",
+  "sdc_byte_unchanged": true,
+  "threads": 16,
+  "bitgen_permitted": false
+}

@@ -1,0 +1,92 @@
+--- a/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -2983,8 +2983,7 @@
+ 
+         scan_request->ssids[index].ssid_len = request->match_sets[index].ssid.ssid_len;
+ 
+-        AICWFDBG(LOGDEBUG, "%s request ssid:%s len:%d \r\n", __func__,
+-            scan_request->ssids[index].ssid, scan_request->ssids[index].ssid_len);
++        /* SSID intentionally omitted from kernel logs. */
+     }
+ 
+ 	for(index = 0;index < scan_request->n_channels; index++){
+--- a/aic8800/aic8800_fdrv/rwnx_msg_tx.c
++++ b/aic8800/aic8800_fdrv/rwnx_msg_tx.c
+@@ -2760,13 +2760,7 @@
+ 	if (sme->bssid)
+ 		memcpy(rwnx_vif->sta.bssid, sme->bssid, ETH_ALEN);
+ 
+-	AICWFDBG(LOGINFO, "%s drv_vif_index:%d connect to %s(%d) channel:%d auth_type:%d\r\n",
+-		__func__,
+-		rwnx_vif->drv_vif_index,
+-		rwnx_vif->sta.ssid,
+-		rwnx_vif->sta.ssid_len,
+-		req->chan.freq,
+-		req->auth_type);
++	/* SSID intentionally omitted from kernel logs. */
+ 
+     /* Send the SM_CONNECT_REQ message to LMAC FW */
+     return rwnx_send_msg(rwnx_hw, req, 1, SM_CONNECT_CFM, cfm);
+--- a/aic8800/aic8800_fdrv/rwnx_msg_rx.c
++++ b/aic8800/aic8800_fdrv/rwnx_msg_rx.c
+@@ -722,10 +722,7 @@
+                 memset(ssid, 0, ssid_len + 1);
+                 memcpy(ssid, &ie[2], ssid_len);
+                 freq = ind->center_freq;
+-                AICWFDBG(LOGDEBUG, "%s %02x:%02x:%02x:%02x:%02x:%02x ssid:%s freq:%d timestamp:%ld\r\n", __func__, 
+-                    bss->bssid[0],bss->bssid[1],bss->bssid[2],
+-                    bss->bssid[3],bss->bssid[4],bss->bssid[5],
+-                    ssid, freq, (long)mgmt->u.probe_resp.timestamp);
++                /* SSID intentionally omitted from kernel logs. */
+                 vfree(ssid);
+                 ssid = NULL;
+             }else{
+@@ -1011,30 +1008,7 @@
+ 		if (!bss) {
+ 			printk("%s bss is NULL \r\n", __func__);
+ 
+-			printk("%s bss ssid(%d):%s conn_bss_type:%d bss2 ssid(%d):%s conn_bss_type:%d\r\n", 
+-				__func__, 
+-				(int)rwnx_vif->sta.ssid_len,
+-				rwnx_vif->sta.ssid,
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 1, 0)
+-				IEEE80211_BSS_TYPE_ESS,
+-#else
+-				WLAN_CAPABILITY_ESS,
+-#endif
+-#if LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION
+-				(int)wdev->u.client.ssid_len,
+-				wdev->u.client.ssid, 
+-#else
+-				(int)wdev->ssid_len,
+-				wdev->ssid,
+-#endif
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 6, 0)
+-				wdev->conn_bss_type
+-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 1, 0)
+-				IEEE80211_BSS_TYPE_ESS
+-#else
+-				WLAN_CAPABILITY_ESS
+-#endif
+-				);
++			/* SSID intentionally omitted from kernel logs. */
+ 
+ 			printk("%s rwnx_vif->sta.bssid %02x %02x %02x %02x %02x %02x \r\n", __func__, 
+ 				rwnx_vif->sta.bssid[0], rwnx_vif->sta.bssid[1], rwnx_vif->sta.bssid[2],
+@@ -1143,14 +1117,14 @@
+ 
+ 	if (bss) {
+ 		cfg80211_unlink_bss(wiphy, bss);
+-		AICWFDBG(LOGINFO, "%s(): cfg80211_unlink %s!!\n", __func__, rwnx_vif->sta.ssid);
++		/* SSID intentionally omitted from kernel logs. */
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 9, 0)
+ 		cfg80211_put_bss(wiphy, bss);
+ #else
+ 		cfg80211_put_bss(bss);
+ #endif
+ 	}else{
+-		AICWFDBG(LOGINFO, "%s(): cfg80211_unlink error %s!!\n", __func__, rwnx_vif->sta.ssid);
++		/* SSID intentionally omitted from kernel logs. */
+ 	}
+ }
+ 

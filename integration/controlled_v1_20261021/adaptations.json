@@ -1,0 +1,11 @@
+{
+  "product_sources_changed": false,
+  "legacy_definitions_changed": false,
+  "r5s2": "new compatible; exact profile/caps/features; RUN-off config and RUN readback",
+  "safety": "new root-only exclusive diagnostic interface; snapshot/config/explicit timeout only",
+  "http": "one fixed authenticated read-only export path",
+  "dt": "new nodes disabled; validated-hp1-reset-drain absent",
+  "motion": "legacy client compiled for dependency check, excluded from auto startup",
+  "startup": "no owner OPEN, poll, HOME, REBASE, ENABLE, START or watchdog feed",
+  "dma_observation": "Read-only lifecycle sysfs on existing RX owner; no open/consume/cancel/allocate or new controller entry"
+}

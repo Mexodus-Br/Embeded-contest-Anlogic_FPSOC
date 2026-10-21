@@ -1,0 +1,29 @@
+{
+  "baseline_commit": "7966c8335b1f40b0880616911120917f494b5ae5",
+  "base": "bsp/dma/provider; previously board-validated recovery variant",
+  "vendor_inputs": {
+    "anlogic_dma.c": "ca73ef3e966286014bd8fc47b3dd1aed9bfe562096317396fe8fcabf88a9edf2",
+    "anlogic_dma.h": "b72a94a57ee0b85ffe92c915d2a56117a02e69520f221db718e2621512531b3f",
+    "axi-dma.c": "348b19565ce1021fece2bdf013c1901d5bb826f8cf86ffc218119ee4cba48eb6",
+    "dmaengine.h": "09d1c31b6a025adc25a6529854642689ab4302ae19007923f9cfa68f7733ec28"
+  },
+  "changes": {
+    "anlogic_dma.c": {
+      "base_raw_sha256": "1da05793a556be48d830497ab688090d8b51cc9c860189396368a8f27d4172f0",
+      "motion_raw_sha256": "bf9f045469f5e9744c5ddb5f7a7002cc98348f0097d5f7fa79434b0d366182b2"
+    },
+    "axi-dma.c": {
+      "base_raw_sha256": "e6004e1538c516373c30fb4769298e43b5199911ed71aaa0dc8e95f7e99af849",
+      "motion_raw_sha256": "dce2bfb909bf25447e7c298a5aa510d0032597fbd892a7fa81cb9d048ec377f0"
+    },
+    "include/linux/dma/anlogic_dma.h": {
+      "base_raw_sha256": "b72a94a57ee0b85ffe92c915d2a56117a02e69520f221db718e2621512531b3f",
+      "motion_raw_sha256": "e754262d5e865d68dc5cb0e5c7b9bd5dbb5af2adbff17f84a870b78e20c6b557"
+    }
+  },
+  "simple_review": "one SG entry, 8B alignment, 32bit mask, BTT16; one pending descriptor becomes active; no implicit error reset",
+  "controller_reset_scope": "both MM2S and S2MM; peer reserved with no RX descriptor; sync both IRQ/tasklets and descriptor queues before reuse",
+  "error_policy": "ERR_IRQ only invokes GP STOP first; normal IOC does not; DMA_ERROR reported to client",
+  "quiescence": "both HALTED / RUNSTOP+RESET clear / all descriptor queues empty; both IRQ+tasklets synchronized; post-reset stability recheck after 10ms; hard-PS outstanding bus closure still requires board evidence",
+  "unload_policy": "self reference while DMA buffer retained; explicit successful RELEASE only then drops pin; failure quarantine never frees/reuses/reopens"
+}

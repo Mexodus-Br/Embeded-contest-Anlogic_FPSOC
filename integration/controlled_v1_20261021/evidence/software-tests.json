@@ -1,0 +1,63 @@
+{
+  "physical_board_accessed": false,
+  "kernel": "6.1.111-rt42-bsp-wifi1",
+  "safety_actual_driver_function_model": {
+    "passed": true,
+    "checks": 79,
+    "irq_latches_preserved": true,
+    "config_receipts_separate": true
+  },
+  "r5s2_actual_config_and_identity_model": {
+    "passed": true,
+    "checks": 23
+  },
+  "sta_original_tests": {
+    "passed": true,
+    "tests": 4
+  },
+  "http_original_tests": {
+    "passed": true,
+    "tests": 4
+  },
+  "http_integration_tests_including_original": {
+    "passed": true,
+    "tests": 5
+  },
+  "cli_json_u64_age_unknown_boundary": {
+    "passed": true,
+    "syscalls_mocked": true
+  },
+  "seven_way_router": {
+    "commands": [
+      {
+        "command": [
+          "D:\\iverilog\\bin\\iverilog.EXE",
+          "-g2005",
+          "-I",
+          "integration/controlled_v1_20261021/hardware/gp",
+          "-I",
+          "integration/controlled_v1_20261021/hardware",
+          "-s",
+          "tb_router",
+          "-o",
+          "integration/controlled_v1_20261021/evidence/seven-router-unsandboxed/test.vvp",
+          "integration/controlled_v1_20261021/hardware/gp/safety_axi_lite_seven_way.v",
+          "integration/controlled_v1_20261021/evidence/seven-router-unsandboxed/tb.v"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "D:\\iverilog\\bin\\vvp.EXE",
+          "integration/controlled_v1_20261021/evidence/seven-router-unsandboxed/test.vvp"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "passed": true,
+    "hashes_computed": false
+  },
+  "all_seven_modules_vermagic_and_import_crcs_matched": true,
+  "hashes_computed": false,
+  "actual_ext4_inventory_and_startup": true
+}

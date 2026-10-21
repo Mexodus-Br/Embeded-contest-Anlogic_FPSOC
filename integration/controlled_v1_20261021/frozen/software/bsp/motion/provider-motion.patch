@@ -1,0 +1,162 @@
+--- a/anlogic_dma.c
++++ b/anlogic_dma.c
+@@ -22,7 +22,7 @@
+ 
+ #include "dmaengine.h"
+ 
+-#include <linux/dma/anlogic_dma.h>
++#include "include/linux/dma/anlogic_dma.h"
+ #include "../generated/dma_defs.h"
+ 
+ struct anlogic_axidma_tx_segment *anlogic_axidma_alloc_tx_segment(struct anlogic_dma_chan *chan)
+@@ -253,6 +253,9 @@
+ 			status & ANLOGIC_DMA_DMAXR_ALL_IRQ_MASK);
+ 
+ 	if (status & ANLOGIC_DMA_DMASR_ERR_IRQ) {
++        /* Motion STOP precedes controller recovery; ordinary IOC never stops. */
++        if (chan->motion_fault_stop)
++            chan->motion_fault_stop(chan->motion_fault_data);
+ 
+ 		/*
+ 		 * An error occurred. If C_FLUSH_ON_FSYNC is enabled and the
+@@ -312,7 +315,7 @@
+ 		return -EBUSY;
+ 	}
+ 
+-	if (chan->err && of_property_read_bool(chan->dev->of_node, "bsp,loopback-pair")) {
++	if (chan->err && of_property_read_bool(chan->dev->of_node, "bsp,motion-exclusive-controller")) {
+ 		al_dev->desc_ops.dma_free_tx_descriptor(chan, desc);
+ 		return -EIO;
+ 	}
+@@ -583,7 +586,7 @@
+ 	}
+ 
+ 	/* This additional policy applies only to the independent loop profile. */
+-	if (of_property_read_bool(node, "bsp,loopback-pair")) {
++	if (of_property_read_bool(node, "bsp,motion-exclusive-controller")) {
+ 		struct resource *r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 		u32 aw, lw;
+ 		if (!r || r->start != PLI_DMA_DMA_LOOPBACK_V1_BASE || resource_size(r) != PLI_DMA_DMA_LOOPBACK_V1_SIZE ||
+--- a/axi-dma.c
++++ b/axi-dma.c
+@@ -11,6 +11,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/io.h>
+ #include <linux/iopoll.h>
++#include <linux/delay.h>
+ #include <linux/module.h>
+ #include <linux/of_address.h>
+ #include <linux/of_dma.h>
+@@ -22,8 +23,8 @@
+ 
+ #include "dmaengine.h"
+ 
+-#include <linux/dma/anlogic_dma.h>
+-#include "../bsp_dma_pair.h"
++#include "include/linux/dma/anlogic_dma.h"
++#include "../provider_api.h"
+ 
+ static void anlogic_axidma_free_tx_descriptor(struct anlogic_dma_chan *chan,
+ 			       struct anlogic_dma_tx_descriptor *desc)
+@@ -161,7 +162,7 @@
+ 	u32 reg;
+ 	int err;
+ 
+-	if (!of_property_read_bool(chan->dev->of_node, "bsp,loopback-pair") &&
++	if (!of_property_read_bool(chan->dev->of_node, "bsp,motion-exclusive-controller") &&
+ 	    !chan->cyclic) {
+ 		err = chan->stop_transfer(chan);
+ 		if (err) {
+@@ -176,7 +177,7 @@
+ 	err = anlogic_dma_chan_reset(chan);
+ 	if (err)
+ 		return err;
+-	if (of_property_read_bool(chan->dev->of_node, "bsp,loopback-pair")) {
++	if (of_property_read_bool(chan->dev->of_node, "bsp,motion-exclusive-controller")) {
+ 		int i;
+ 		u32 sr, cr;
+ 		for (i = 0; i < 2; i++) {
+@@ -640,8 +641,8 @@
+ MODULE_DESCRIPTION("anlogic axi dma Controller Driver");
+ MODULE_LICENSE("GPL");
+ 
+-/* Narrow loopback-only postcondition, not a general raw-register API. */
+-int bsp_anlogic_loop_quiescent(struct dma_chan *tx, struct dma_chan *rx)
++/* Exclusive MM2S controller lifecycle, with an unsubmitted reset peer. */
++int bsp_motion_dma_quiescent(struct dma_chan *tx, struct dma_chan *rx)
+ {
+     struct anlogic_dma_chan *a = to_anlogic_chan(tx), *b = to_anlogic_chan(rx);
+     struct anlogic_dma_chan *channels[2] = {a, b};
+@@ -649,7 +650,7 @@
+     int i;
+     if (a->al_dev != b->al_dev || a->direction != DMA_MEM_TO_DEV ||
+         b->direction != DMA_DEV_TO_MEM || a->has_sg || b->has_sg ||
+-        !of_property_read_bool(a->dev->of_node, "bsp,loopback-pair"))
++        !of_property_read_bool(a->dev->of_node, "bsp,motion-exclusive-controller"))
+         return -EINVAL;
+     for (i = 0; i < 2; i++) {
+         struct anlogic_dma_chan *c = channels[i];
+@@ -669,6 +670,28 @@
+         }
+         spin_unlock_irqrestore(&c->lock, flags);
+     }
++    /* Verify a stable post-reset interval with submissions still blocked.
++     * This supplements the provider's terminate/reset protocol; it is not an
++     * independent physical HP outstanding-transaction monitor. */
++    msleep(10);
++    for (i = 0; i < 2; i++) {
++        struct anlogic_dma_chan *c = channels[i];
++        u32 cr, sr;
++        synchronize_irq(c->irq);
++        tasklet_kill(&c->tasklet);
++        cr = dma_ctrl_read(c, ANLOGIC_DMA_REG_DMACR);
++        sr = dma_ctrl_read(c, ANLOGIC_DMA_REG_DMASR);
++        if ((cr & (ANLOGIC_DMA_DMACR_RUNSTOP | ANLOGIC_DMA_DMACR_RESET)) ||
++            !(sr & ANLOGIC_DMA_DMASR_HALTED) || (sr & ANLOGIC_DMA_DMASR_ALL_ERR_MASK))
++            return -EBUSY;
++        spin_lock_irqsave(&c->lock, flags);
++        if (!list_empty(&c->active_list) || !list_empty(&c->pending_list) ||
++            !list_empty(&c->done_list)) {
++            spin_unlock_irqrestore(&c->lock, flags);
++            return -EBUSY;
++        }
++        spin_unlock_irqrestore(&c->lock, flags);
++    }
+     /* The last channel reset can clear BOTH interrupt enables. Restore only
+      * after both directions are halted and all old callbacks synchronized. */
+     for (i = 0; i < 2; i++) {
+@@ -677,7 +700,21 @@
+         dma_ctrl_set(channels[i], ANLOGIC_DMA_REG_DMACR,
+                      ANLOGIC_DMA_DMAXR_ALL_IRQ_MASK);
+     }
+-    dev_info(a->dev, "BSP loop pair quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers\n");
++    dev_info(a->dev, "BSP motion controller quiescent: both HALTED, reset clear, IRQ/tasklets synchronized; no descriptor owns buffers\n");
+     return 0;
+ }
+-EXPORT_SYMBOL_GPL(bsp_anlogic_loop_quiescent);
++EXPORT_SYMBOL_GPL(bsp_motion_dma_quiescent);
++
++/* Bind before any submission, detach only after both channels synchronized. */
++int bsp_motion_dma_fault_hook(struct dma_chan *tx, void (*stop)(void *), void *data)
++{
++    struct anlogic_dma_chan *c = to_anlogic_chan(tx);
++    if (c->has_sg || c->direction != DMA_MEM_TO_DEV ||
++        !of_property_read_bool(c->dev->of_node, "bsp,motion-exclusive-controller"))
++        return -EINVAL;
++    synchronize_irq(c->irq);
++    c->motion_fault_data = data;
++    c->motion_fault_stop = stop;
++    return 0;
++}
++EXPORT_SYMBOL_GPL(bsp_motion_dma_fault_hook);
+--- a/include/linux/dma/anlogic_dma.h
++++ b/include/linux/dma/anlogic_dma.h
+@@ -226,6 +226,8 @@
+ 	bool err;
+ 	bool idle;
+ 	bool terminating;
++	void (*motion_fault_stop)(void *data);
++	void *motion_fault_data;
+ 	struct tasklet_struct tasklet;
+ 	struct anlogic_vdma_config config;
+ 	bool flush_on_fsync;

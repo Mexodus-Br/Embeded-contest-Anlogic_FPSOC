@@ -1,0 +1,55 @@
+{
+  "status": "PASS_ACTUAL_EXT4_INVENTORY",
+  "out_of_tree_extra_modules": [
+    "bsp_gp.ko",
+    "bsp_motion.ko",
+    "bsp_rs485.ko",
+    "bsp_saf2_diag.ko"
+  ],
+  "excluded_legacy_entries_and_credentials": [
+    "usr/bin/delta-scope",
+    "usr/bin/motion-accept",
+    "usr/bin/dma-accept",
+    "lib/modules/6.1.111-rt42-bsp-wifi1/extra/bsp_dma_loop.ko",
+    "etc/wifi/wpa_supplicant.conf",
+    "etc/wifi/autostart",
+    "etc/wifi/driver-approved",
+    "etc/wifi-http/auth.json",
+    "etc/wifi-http/autostart",
+    "srv/wifi-http/exports/network-snapshot.txt",
+    "srv/wifi-http/exports/integration-snapshot.json"
+  ],
+  "startup_files_checked": [
+    "S01syslogd",
+    "S02klogd",
+    "S02sysctl",
+    "S20urandom",
+    "S40network",
+    "S45wifi",
+    "S46wifi-http",
+    "automount.sh",
+    "rcK",
+    "rcS",
+    "inittab"
+  ],
+  "no_automatic_control_entry": true,
+  "http_directories_root_owned_and_modes": {
+    "srv/wifi-http/exports": "0755",
+    "srv/wifi-http/public": "0755",
+    "etc/wifi-http": "0700"
+  },
+  "firmware_bytes_match_fresh_vendor_source_extraction": [
+    "aic_powerlimit_8800d80.txt",
+    "aic_userconfig_8800d80.txt",
+    "calibmode_8800d80.bin",
+    "fmacfw_8800d80_h_u02.bin",
+    "fmacfw_8800d80_u02.bin",
+    "fmacfw_8800d80_u02_ipc.bin",
+    "fw_adid_8800d80_u02.bin",
+    "fw_ble_scan_ad_filter.bin",
+    "fw_patch_8800d80_u02.bin",
+    "fw_patch_table_8800d80_u02.bin",
+    "lmacfw_rf_8800d80_u02.bin"
+  ],
+  "hashes_computed": false
+}

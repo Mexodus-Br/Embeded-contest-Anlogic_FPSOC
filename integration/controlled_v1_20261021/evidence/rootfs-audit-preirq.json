@@ -1,0 +1,34 @@
+{
+  "status": "PASS_OFFLINE_ROOTFS_ONLY_NOT_BOOTABLE_CHAIN",
+  "kernel": "6.1.111-rt42-bsp-wifi1",
+  "installed_files_compared_from_ext4": [
+    "usr/sbin/wifi-driver",
+    "usr/sbin/wifi-sta",
+    "usr/lib/wifi-http/server.py",
+    "usr/sbin/wifi-http-auth",
+    "usr/sbin/wifi-http-export",
+    "usr/sbin/wifi-http",
+    "etc/init.d/S46wifi-http",
+    "usr/bin/saf2-diag",
+    "usr/bin/rs485-accept",
+    "usr/sbin/integration-export",
+    "lib/modules/6.1.111-rt42-bsp-wifi1/extra/bsp_gp.ko",
+    "lib/modules/6.1.111-rt42-bsp-wifi1/extra/bsp_motion.ko",
+    "lib/modules/6.1.111-rt42-bsp-wifi1/extra/bsp_rs485.ko",
+    "lib/modules/6.1.111-rt42-bsp-wifi1/extra/bsp_saf2_diag.ko",
+    "lib/modules/6.1.111-rt42-bsp-wifi1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko",
+    "opt/wifi-candidates/aic_load_fw.ko",
+    "opt/wifi-candidates/aic8800_fdrv.ko"
+  ],
+  "firmware_aliases": 11,
+  "excluded_unqualified_motion_programs": [
+    "usr/bin/delta-scope"
+  ],
+  "credentials_present": false,
+  "autostart_approval_present": false,
+  "fake_board_snapshot_present": false,
+  "boot_hpf_bit_fsbl_sd_generated": false,
+  "partition_audit": "NOT_APPLICABLE_NO_SD_IMAGE",
+  "e2fsck": "PASS",
+  "hashes_computed": false
+}

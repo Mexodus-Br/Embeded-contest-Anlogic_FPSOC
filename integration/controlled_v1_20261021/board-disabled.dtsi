@@ -1,0 +1,46 @@
+/* Generated from the canonical schema. Disabled preview: no boot image.
+ * Enable only after full hardware/HPF/FSBL/GIC and reset-drain qualification.
+ */
+&soc {
+    rs485_dma: dma@80900000 {
+        compatible = "anlogic,axi-dma";
+        reg = <0 0x80900000 0 0x1000>;
+        #dma-cells = <1>; #address-cells = <1>; #size-cells = <0>;
+        anlogic,addrwidth = <32>;
+        anlogic,sg-length-width = <16>;
+        bsp,telemetry-exclusive-controller;
+        clocks = <&dma_loop_clock>, <&dma_loop_clock>;
+        clock-names = "s_axi_lite_aclk", "m_axi_s2mm_aclk";
+        status = "disabled";
+        dma-channel@30 {
+            compatible = "anlogic,axi-dma-s2mm-channel";
+            reg = <0x30>; interrupt-parent = <&gic>;
+            interrupts = <0 88 4>;
+            dma-channels = <1>;
+            anlogic,datawidth = <64>;
+            anlogic,include-dre;
+        };
+    };
+    rs485_control: rs485-control@80700000 {
+        compatible = "bsp,rs485-telemetry-r5s2";
+        reg = <0 0x80700000 0 0x1000>, <0 0x80800000 0 0x1000>;
+        reg-names = "collector", "cache-transport";
+        interrupt-parent = <&gic>;
+        interrupts = <0 86 4>, <0 87 4>;
+        interrupt-names = "collector", "cache-transport";
+        dmas = <&rs485_dma 1>; dma-names = "telemetry";
+        status = "disabled";
+        /* Deliberately no bsp,validated-hp1-reset-drain yet. */
+    };
+};
+
+/* SAF2 diagnostic-only node; no heartbeat service or motion commands. */
+&soc {
+    saf2_diag: safety@80a00000 {
+        compatible = "bsp,saf2-diagnostic-v1";
+        reg = <0 0x80a00000 0 0x1000>;
+        interrupt-parent = <&gic>;
+        interrupts = <0 89 4>;
+        status = "disabled";
+    };
+};

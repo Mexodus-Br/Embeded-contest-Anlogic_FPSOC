@@ -1,0 +1,6 @@
+`define F2P_IRQ_Available_f6ddd1d59490
+`define P2F_Reset0_Available_f6ddd1d59490
+`define Master_AXI_GP0_Interface_f6ddd1d59490
+`define Slave_AXI_HP0_Interface_f6ddd1d59490
+`define Slave_AXI_HP1_Interface_f6ddd1d59490
+`define SD0_cd_Dot_Enable_f6ddd1d59490

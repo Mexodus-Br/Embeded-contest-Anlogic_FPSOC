@@ -1,0 +1,57 @@
+{
+  "identity": "servo42c-multirate-design-v1",
+  "stage": "RTL implementation; v1 master retained unchanged",
+  "implementation": {
+    "min_period_us": 1000,
+    "max_period_us": 2147483647,
+    "load_limit_ppm": 750000,
+    "cfg_error": {"NONE":0,"RANGE":1,"LOAD":2,"REVISION":3},
+    "stat_bits": 32,
+    "default_profile": "compatibility"
+  },
+  "wire_schema": "schema.json",
+  "confirmed_on": "2026-10-13",
+  "confirmed": {
+    "period_scope": "five query types shared by all configured slaves",
+    "period_unit": "microseconds; period=0 disables query",
+    "query_mask_retained": true,
+    "configuration_apply": "atomic at logical transaction boundary",
+    "normal_and_error_guards_separate": true,
+    "default_guard_us": 10000,
+    "fast_guard_us": 1000,
+    "fast_guard_status": "simulation candidate only; board use requires measurement",
+    "node_failure_threshold": 3,
+    "node_backoff_us": 500000,
+    "retries_per_logical_request": 1
+  },
+  "design_rules": {
+    "schedule": "earliest ideal start time among due tasks; equal-time rotating tie break",
+    "overdue": "coalesce; one outstanding sample per slave/query, no catch-up bursts",
+    "time_source": "existing system time_us, unsigned64, 1MHz; no new epoch",
+    "node_probe": "one enabled query at cooldown expiry; success restores node, failure renews cooldown",
+    "wire_record": "retain current 256-bit record format; no scheduled-due time implied by request_us",
+    "counter_unit": "logical request failures, not individual retry attempts"
+  },
+  "budget_assumptions": {
+    "response_start_bound_us": 200,
+    "response_bound_status": "planning assumption, not measured hardware evidence",
+    "nominal_load_limit": 0.75,
+    "admission_status": "proposed; checked before config acceptance; runtime monitors still required"
+  },
+  "candidate_profiles": [
+    {
+      "name": "compatibility",
+      "status": "proposed rates; confirmed 10ms timing retained",
+      "period_us": [125000, 500000, 125000, 1000000, 1000000],
+      "normal_guard_us": 10000,
+      "min_start_gap_us": 10000
+    },
+    {
+      "name": "fast_training",
+      "status": "proposed rates and simulation only; no board authorization",
+      "period_us": [20000, 100000, 20000, 200000, 200000],
+      "normal_guard_us": 1000,
+      "min_start_gap_us": 1000
+    }
+  ]
+}

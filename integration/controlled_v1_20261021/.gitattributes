@@ -1,0 +1,9 @@
+# Frozen snapshots preserve the actual build bytes, including existing CRLF.
+* text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+frozen/** -text
+final_inputs/** -text
+reports/** -text

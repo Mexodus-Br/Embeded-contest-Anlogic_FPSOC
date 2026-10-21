@@ -1,0 +1,2 @@
+`define SD0_cd_Dot_Enable_f6ddd1d59490
+`define Internal_ETH0_PTP_Clk_f6ddd1d59490
