@@ -1,8 +1,8 @@
 # MOTOR3125 构建与验收 — 2026-10-21
 
-独立scope派生测试镜像已生成并完成Windows文件校验。未写实体SD、未打开COM4、未执行电机运动。
+独立scope派生测试镜像已生成并完成Windows文件校验；后续Windows烧写及512MiB完整读回通过。未打开COM4、未执行电机运动。
 
-用户确认SD未插，本轮在离线镜像交付阶段结束，不等待介质或继续上板。电机不动的问题是否由脉宽引起，尚无新镜像实物结果。
+构建轮曾按用户要求停在离线交付；用户随后接入SD并明确要求Windows烧写，部署结果如下。电机不动的问题是否由脉宽引起，尚无新镜像实物结果。
 
 | 项目 | 结果 |
 |---|---|
@@ -14,7 +14,7 @@
 | routed_100mhz | PASS |
 | matched_boot_dtb_rootfs | PASS |
 | local_image_transfer_and_root_partition | PASS |
-| sd_write_readback | NOT_EXECUTED |
+| sd_write_readback | PASS |
 | cold_boot | NOT_EXECUTED |
 | arm_board_execution | NOT_EXECUTED |
 | physical_gpio | NOT_EXECUTED |
@@ -48,3 +48,5 @@ check_timing除已知两类dummy（ERAM未使用reset输出、LSLICE未使用物
 FSBL/BOOT/DTS/rootfs由匹配HPF生成；DDR1GiB/32bit/1333MT/s/1.35V及存储/时钟基线保持。图像内文件、文件系统、地址/IRQ和本地完整SD文件及嵌入根分区校验通过。原scope镜像未改。
 
 本次未装载板端模块或分配板端buffer，未接管现有板端状态；COM4始终未打开。测试必须由用户按README显式启动，先核对配套启动身份和31.25µs实测波形；HOLD下EN不失能，保留独立切电。参考机械比4.5及16细分不等于实物确认。
+
+Windows部署（2026-10-21 22:16 +08:00）：重新枚举并匹配Generic- SD/MMC/MS PRO、USB、31299993600B、历史UniqueId，序列号为空；系统NVMe排除。写入范围仅0..536870911；写入24.844秒、无缓存完整读回18.079秒，读回SHA256与源镜像完全一致，MBR/FAT/EXT4签名及PARTUUID通过。原scope回退镜像在写前校验通过，eMMC/QSPI未修改。原始证据见`../evidence/motor3125-20261021/sd-write.log`及`.json`。写卡进程exit0，所有磁盘/卷句柄已关闭。尚未做冷启动或电机验收。

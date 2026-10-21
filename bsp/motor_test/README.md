@@ -1,6 +1,6 @@
 # MOTOR3125 独立脉宽对照镜像
 
-已构建镜像：[sdcard.img](../artifacts/motor3125/sdcard.img)，512MiB，根PARTUUID`f330c1cf-02`。SHA256为`f9fbe564a5cec7662c2fd9267f5ce437db0d5f3097e6e41eef73f4ef573b17a3`。完整状态见`BUILD_STATUS.md`；本轮按用户要求结束，SD未插，未烧录/上板。
+已构建镜像：[sdcard.img](../artifacts/motor3125/sdcard.img)，512MiB，根PARTUUID`f330c1cf-02`。SHA256为`f9fbe564a5cec7662c2fd9267f5ce437db0d5f3097e6e41eef73f4ef573b17a3`。Windows写卡及512MiB完整读回已于2026-10-21通过；尚未冷启动或执行电机验收。完整状态见`BUILD_STATUS.md`。
 
 仅用于用户手动控制的MKS42C V1.1.2电机台架对照。不是HOME、机械校准或产品验收；不自动执行命令、不接管COM4、不写SD/eMMC/QSPI。保留旧scope镜像。
 

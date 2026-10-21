@@ -187,7 +187,7 @@
     "routed_100mhz": "PASS",
     "matched_boot_dtb_rootfs": "PASS",
     "local_image_transfer_and_root_partition": "PASS",
-    "sd_write_readback": "NOT_EXECUTED",
+    "sd_write_readback": "PASS",
     "cold_boot": "NOT_EXECUTED",
     "arm_board_execution": "NOT_EXECUTED",
     "physical_gpio": "NOT_EXECUTED",
@@ -204,5 +204,28 @@
     "HOLD ignores EN: DISABLE is not physical driver disable",
     "Golden ratio4.5/microsteps16 are reference values; actual mechanics and driver microsteps unconfirmed",
     "independent HP1 telemetry, RS485, safety/HOME and Web are excluded from this minimal scope-derived image"
-  ]
+  ],
+  "sd_deployment": {
+    "status": "SD_DEPLOYMENT_VERIFIED_NOT_BOARD_BOOT_TESTED",
+    "finished_local": "2026-10-21T22:16:13+0800",
+    "disk_identity": {
+      "Number": 1,
+      "FriendlyName": "Generic- SD/MMC/MS PRO",
+      "UniqueId": "USBSTOR\\DISK&VEN_RSUER&PROD_RTSUERLUN0&REV_1.00\\0000:LAPTOP-JS7E5LFJ",
+      "BusType": "USB",
+      "Size": 31299993600,
+      "LogicalSectorSize": 512,
+      "IsBoot": false,
+      "IsSystem": false,
+      "IsReadOnly": false
+    },
+    "write_bytes": 536870912,
+    "readback_bytes": 536870912,
+    "readback_sha256": "f9fbe564a5cec7662c2fd9267f5ce437db0d5f3097e6e41eef73f4ef573b17a3",
+    "evidence": "bsp/evidence/motor3125-20261021/sd-write.log.json",
+    "cold_boot": "NOT_EXECUTED",
+    "motor_execution": "NOT_EXECUTED",
+    "writer_exit": 0,
+    "device_handles": "CLOSED"
+  }
 }
