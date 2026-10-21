@@ -1,6 +1,5 @@
 """Offline host-only checks for the curated partner kit; no device access."""
 import argparse
-import hashlib
 import json
 import os
 from pathlib import Path
@@ -15,14 +14,20 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def verify():
     manifest = json.loads((ROOT / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8"))
+    seen = set()
     for row in manifest["files"]:
+        if row["path"] in seen:
+            raise RuntimeError("Duplicate member: " + row["path"])
+        seen.add(row["path"])
         path = (ROOT / row["path"]).resolve()
         if ROOT not in path.parents or not path.is_file():
             raise RuntimeError("Missing or unsafe member: " + row["path"])
         data = path.read_bytes()
-        if len(data) != row["bytes"] or hashlib.sha256(data).hexdigest() != row["sha256"]:
-            raise RuntimeError("Identity mismatch: " + row["path"])
-    print("PASS package identity: %d files; baseline %s" % (len(manifest["files"]), manifest["source_commit"][:12]))
+        if len(data) != row["bytes"]:
+            raise RuntimeError("Size mismatch: " + row["path"])
+    if manifest["file_count_excluding_manifest"] != len(seen):
+        raise RuntimeError("Manifest file count mismatch")
+    print("PASS package inventory/sizes: %d files; baseline %s" % (len(manifest["files"]), manifest["source_commit"][:12]))
     return manifest
 
 
@@ -33,6 +38,8 @@ def main():
     manifest = verify()
     if args.verify_only:
         return
+    originals = {row["path"]: (ROOT / row["path"]).read_bytes() for row in manifest["files"]}
+    original_manifest = (ROOT / "PACKAGE_MANIFEST.json").read_bytes()
     cc, cxx = shutil.which("gcc"), shutil.which("g++")
     if not cc or not cxx:
         raise RuntimeError("Install GCC/G++ with C++17 support and add gcc/g++ to PATH; Python 3.10+ is required.")
@@ -76,8 +83,16 @@ def main():
         if len(frame) != 64 or zlib.crc32(frame[:60]) != int.from_bytes(frame[60:], "little"):
             raise RuntimeError("Independent zlib/frame-byte-order check failed")
     print("PASS independent telemetry CRC/byte-order: 17 frames")
-    verify()  # Tests may only create build/logs; distributed originals stay unchanged.
+    verify()
+    for name, before in originals.items():
+        if (ROOT / name).read_bytes() != before:
+            raise RuntimeError("Test modified distributed source: " + name)
+    if (ROOT / "PACKAGE_MANIFEST.json").read_bytes() != original_manifest:
+        raise RuntimeError("Test modified manifest")
+    print("PASS distributed originals unchanged by direct byte comparison; no file/log hashes")
     report = {"passed": True, "hardware_access": False, "source_commit": manifest["source_commit"],
+              "context_commit": manifest["context_commit"], "package_version": manifest["package_version"],
+              "distributed_originals_byte_equal": True, "file_or_log_hashes_computed": False,
               "python": sys.version, "platform": sys.platform,
               "cc": subprocess.check_output([cc, "--version"], text=True).splitlines()[0],
               "cxx": subprocess.check_output([cxx, "--version"], text=True).splitlines()[0],

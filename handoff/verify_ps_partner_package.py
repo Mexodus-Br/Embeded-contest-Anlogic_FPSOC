@@ -1,4 +1,5 @@
 """Verify a freshly extracted partner ZIP independently of the source tree."""
+import argparse
 import hashlib
 import json
 import os
@@ -9,7 +10,12 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-archive = ROOT / "deliverables/ps_partner_v1_ffc67e0.zip"
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--archive", required=True, type=Path, help="Exact final partner ZIP to verify")
+args = parser.parse_args()
+archive = args.archive.resolve()
+if not archive.is_file():
+    raise RuntimeError("Missing final partner ZIP: " + str(archive))
 scratch = ROOT / ".tmp"
 scratch.mkdir(exist_ok=True)
 destination = Path(tempfile.mkdtemp(prefix="合作方 解压验证_", dir=scratch)).resolve()
@@ -30,6 +36,7 @@ result = subprocess.run([sys.executable, str(package / "tools/smoke.py")], cwd=p
                         text=True, encoding="utf-8", errors="replace", timeout=300)
 print(result.stdout)
 record = {"archive": archive.name, "sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
+          "hash_scope": "final partner ZIP only; no logs or extracted file hashes",
           "bytes": archive.stat().st_size, "fresh_extraction": str(package),
           "exit_code": result.returncode, "stdout": result.stdout,
           "note": "Host-only Windows verification; no board/BSP access; extracted build/logs retained."}

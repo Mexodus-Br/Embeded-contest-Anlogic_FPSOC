@@ -1,6 +1,6 @@
 # 硬件资料核对记录
 
-2026-10-14当前规划：Wi-Fi STA连接路由器的局域网Web HMI为首版，HDMI/Qt暂缓，4G异地访问后续扩展；主线使用现有Buildroot核心BSP。无线资料、配置差异和验证边界见§13，早期图形系统和厂商镜像记录保留为历史事实。
+2026-10-22当前规划：Wi-Fi STA连接路由器的局域网Web HMI为首版，HDMI/Qt暂缓。用户确认板卡没有可用的4G模块，4G扩展计划已移除；主线使用现有Buildroot核心BSP。§13中厂商4G资料和后续扩展表述保留为历史，不再构成项目待办。无线资料、配置差异和验证边界见§13。
 
 2026-10-11后续实板补充：用户确认SD启动与COM4可进入，只读核对确认Linux6.1.111-rt42-bsp-sd1、根为SD mmcblk0p2/PARTUUID=d0e414b9-02、1GiB物理映射及128MiB CMA预留；运行.config哈希与交付匹配。完整冷启动FSBL/U-Boot、实物DDR供电/颗粒及压力/DMA/运动验收仍未完成，详见[bsp/BOARD_VALIDATION.md](bsp/BOARD_VALIDATION.md)。
 
@@ -375,7 +375,9 @@ DT中Ethernet clock-frequency为100MHz；dmesg网络驱动另报告assumed host 
 - 两者都仍需配套厂商内核源码/配置/补丁、当前工具工程迁移和通用运动DMA验证。Ubuntu用户空间不解除BSP依赖；Buildroot的-rt42标签也不单独证明更适合或已满足运动实时性。STEP时序仍由PL保证，Linux侧需要实测轨迹预缓存/供给与桌面并发负载。
 - 若后续资源或部署目标需要精简，可评估Ubuntu停用完整桌面后运行全屏HMI，或转向Buildroot；当时尚未冻结最终发行版、Qt版本或部署方式。Ubuntu20.04标准支持已于2025-05-31结束，长期维护时应结合厂商BSP兼容性另行规划更新/支持路径（官方来源：https://ubuntu.com/20-04）。
 
-## 13. 2026-10-14 Wi-Fi / Web HMI 与后续 4G
+## 13. Wi-Fi / Web HMI及历史4G资料
+
+2026-10-22：用户确认板卡没有可用4G模块，4G扩展计划移除。本节2026-10-14资料清单保留，不再安排4G拨号或公网中转开发。
 
 用户要求将局域网无线与Web方案纳入当前规划。控制链路为浏览器→PS Web服务→统一命令/状态入口→现有坐标/运动后端→PL；串口复用执行后端。首版不需要图形桌面、HDMI或Qt，使用板卡连接路由器的Wi-Fi STA，手机/电脑在同一局域网访问板卡地址。网页资源本地提供，不依赖互联网；板卡AP功能未验证。
 
@@ -385,7 +387,7 @@ DT中Ethernet clock-frequency为100MHz；dmesg网络驱动另报告assumed host 
 | --- | --- | --- |
 | `05-4_米联客-安路F3P-CZ02开发板无线通信方案.pdf` | 文件存在，作为后续教程参考，本轮未据PDF正文作新增硬件结论 | 开发时核对工具/内核版本及实物条件 |
 | `WIFI.zip` | AIC8800 USB驱动源码、AIC8800D80相关代码、固件及旧构建产物 | 按项目内核/config/Module.symvers重编，核对实际USB设备ID、固件加载路径和驱动依赖；不直接加载旧ko |
-| `4G.zip` | GobiNet源码、Quectel连接管理源码/quectel-CM、旧ko及工具产物 | 模块实物型号、USB组合接口、天线、SIM和网络条件待确认，后续才验证拨号/公网中转 |
+| `4G.zip` | GobiNet源码、Quectel连接管理源码/quectel-CM、旧ko及工具产物 | 历史资料；无可用4G模块，扩展计划已移除，不列为待验收项 |
 
 当前项目基线 `bsp/evidence/kernel.config` 已有 CONFIG_INET=y、CONFIG_USB=y、CONFIG_USB_DWC2=y、CONFIG_USB_DWC2_HOST=y；WLAN未启用、USB_SERIAL未启用。最新scope展开DTS的usb_otg0最终status=disabled、dr_mode=host。Buildroot配置未包含本项目专用无线认证/DHCP/网页服务部署配置。USB不是内核完全缺失：需审核设备树/供电/Host枚举，补齐实际驱动所需无线配置、固件和网络工具，再验证STA接入。内核或配置变化后相关树外GP/运动/DMA模块也需匹配重建及身份门禁。
 
