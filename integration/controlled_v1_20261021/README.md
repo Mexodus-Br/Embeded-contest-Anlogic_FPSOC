@@ -2,6 +2,8 @@
 
 先读`REVIEW.md`和`ACCEPTANCE.md`。最终资源与时序见`RESOURCE_REPORT.md`；原候选与新固定管脚顶层分开登记。发布资格保持false，不将无负STA解释为全项目放行。
 
+2026-10-21用户本次免除严格setup>1ns生成条件后，已生成并离线验证一致启动镜像`artifacts/boot_candidate_v1/sdcard.img`，根PARTUUID `f0391b66-02`。构建、身份、未关闭门禁与使用边界见`BOOT_CANDIDATE.md`；尚未写卡/实板启动，控制节点全部disabled。
+
 独立来源在`frozen/pl`和`frozen/software`。这些目录已经保存固定输入，日常复验不要重新复制产品工作树；`prepare.py`只用于重建一个不存在的冻结目录。首次完整重建顺序为：
 
 ```powershell
@@ -39,7 +41,7 @@ python3 candidate/audit_final_rootfs.py
 
 既有依赖：原`embedded-bsp`的Linaro工具链/vendor输入，`embedded-bsp-wifi-20261018`的同一wifi1内核源码/输出和Buildroot host，已离线验证的干净`embedded-bsp-wifi-http-20261019-r3/output/rootfs-target`。Wi-Fi驱动从原vendor-input.zip只提取源码/固件并应用固定privacy patch，不带旧对象；全部七模块检查每个导入符号CRC。原rootfs仅作基础，最终安装文件从实际ext4提取逐字节比较，检查11个固件别名、账号/凭据/批准缺席及只读fsck。镜像不是仅检查暂存目录。
 
-本机最终离线文件在`artifacts/`：rootfs-offline.ext4、preview-disabled.dtb、七模块、ARM saf2-diag/rs485-accept，以及实际使用的kernel.config/Module.symvers。DTB只是七窗口禁用预览，rootfs没有配套BOOT/bit/HPF/FSBL或SD分区，不能写卡启动。最终P&R已复核：100MHz setup +0.078ns/hold +0.020ns，无负STA，严格setup>1ns未达，signoff仍false。最小交付清单见`delivery.json`，最终资源见`RESOURCE_REPORT.md`；本轮交接和只读进度查询见`HANDOFF.md`与`status.ps1`。日志、数据库和整棵证据目录不哈希。
+本机离线软件文件在`artifacts/`：rootfs-offline.ext4、preview-disabled.dtb、七模块、ARM saf2-diag/rs485-accept，以及实际使用的kernel.config/Module.symvers。preview-disabled.dtb仍仅属旧头预览，不用于新启动链；新HPF配套DTB/BOOT/SD均在`artifacts/boot_candidate_v1/`。最终P&R已复核：100MHz setup +0.078ns/hold +0.020ns，无负STA，严格setup>1ns未达，本次按用户要求免除该生成条件，signoff仍false。最小交付清单见`delivery.json`，最终资源见`RESOURCE_REPORT.md`；交接和只读进度查询见`HANDOFF.md`与`status.ps1`。日志、数据库和整棵证据目录不哈希。
 
 本任务先后发现并保留：新增驱动编译错误、生成器缺依赖、AIC跨模块符号核对缺项、测试夹具宏冲突、Windows沙箱Icarus异常，以及PROFILE0缩减运动逻辑导致的无效约束。修正后通过项与仍开放门禁分开，失败日志在本机`evidence/`、VM build及`hardware_profile0_rejected/`。
 
@@ -58,7 +60,7 @@ integration-export
 
 RS485现有显式`rs485-accept idle|diagnostic-timeouts|cancel|release`只用于后续匹配系统；超时模式会查询UART，不能隐式启动或作为真实保护反馈。先投精确RX再ARM，COMPLETE之前保存数据。取消/恢复失败保留quarantine，不卸载或复用buffer，不以PL drained解除DDR门禁。
 
-后续无电机启动链须先具备受保护IP、最终实际P&R/有效约束、IO/CDC和PS/复位等对应发布资格，随后从同一个新实际工程生成bit/HPF，用该HPF重建FSBL并核对GP/HP0/HP1内部reset释放，生成匹配DTB，再组成BOOT、wifi1内核、最终rootfs及SD分区；重新审核最终分区/文件系统/启动文件身份。生产HOME与机械参数仍可保持阶段D门禁，不能用PROFILE2放行真实运动。中断RX的DDR静止资格属于独立门禁，未证明时保持quarantine，不妨碍具备其余资格后的静态接入或有界正常IOC检查。旧scope的BOOT/HPF/DT头仅用于历史回退/禁用预览，不能与本候选PL混装，也不能只换bit。
+本次已经按明确授权生成离线启动链，保持其余门禁开放。后续上板前须具备受保护IP、最终实际P&R/有效约束、IO/CDC和PS/复位等对应发布资格；阶段B/C显式接入需要审核启用控制节点的同批DT并重新登记镜像身份。生产HOME与机械参数仍可保持阶段D门禁，不能用PROFILE2放行真实运动。中断RX的DDR静止资格属于独立门禁，未证明时保持quarantine，不妨碍具备其余资格后的静态接入或有界正常IOC检查。旧scope的BOOT/HPF/DT头仅用于历史回退/禁用预览，不能与本候选PL混装，也不能只换bit。
 
 写卡前重新读取当次SD型号、容量、序列/身份、UniqueId及系统盘排除，并取得覆盖授权；本轮没有写卡授权对象，不沿用disk1。经审核后完整写入/无缓存读回并核对分区和PARTUUID。COM4仅确认未被用户占用后接入，115200/8N1、无流控、DTR/RTS=false；用户自行断电、装卡、上电。不写eMMC/QSPI。
 

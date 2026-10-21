@@ -1,6 +1,6 @@
 # 最终实际完整顶层资源与时序
 
-采集时间：2026-10-21T14:26:03.050669+08:00。本报告对应`hardware/`的完整native PS/GP/双HP/九GPIO/SAF2/R5S2顶层，来自冻结rtl_path38 / rtl37_candidate_r5，只固定四路安全输入球位，保留完整PROFILE2资源/功能配置。PROFILE2仍未批准用于真实运动。
+采集时间：2026-10-21T14:56:22.607283+08:00。本报告对应`hardware/`的完整native PS/GP/双HP/九GPIO/SAF2/R5S2顶层，来自冻结rtl_path38 / rtl37_candidate_r5，只固定四路安全输入球位，保留完整PROFILE2资源/功能配置。PROFILE2仍未批准用于真实运动。
 
 **最终名义route setup +0.078ns、hold +0.020ns。无负STA=True；严格setup>1ns=False；发布signoff=false。**
 
@@ -56,4 +56,4 @@ check_timing：invalid约束0类，组合环0类；其余dummy/no-input-delay/no
 
 `hardware_profile0_rejected/`完整保留。该尝试将未批准生产PROFILE0接入顶层，工具因配置资格为常量删除部分运动逻辑和九路输出寄存器；虽然route为+1.282/+0.020ns，但只有Slice26402、ERAM57、DSP2、PAD FF0，GPIO最大延迟约束无效1类。它不构成完整功能系统的时序通过，不用于本候选比较或发布。最终已恢复原完整PROFILE2并重新独立完成全流程。
 
-原rtl_path38的+0.032/+0.020ns、Slice36694/ERAM69/DSP6及其>1ns失败记录保持。bit/HPF/FSBL/BOOT/SD未生成，没有上板或运动验收。
+原rtl_path38的+0.032/+0.020ns、Slice36694/ERAM69/DSP6及其>1ns失败记录保持。离线bit/HPF/FSBL/BOOT/SD生成=True，没有上板或运动验收。用户本次免除>1ns生成条件，但无负STA要求与其余发布门禁保持；见BOOT_CANDIDATE.md。

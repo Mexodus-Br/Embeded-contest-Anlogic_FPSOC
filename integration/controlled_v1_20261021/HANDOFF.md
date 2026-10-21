@@ -1,5 +1,11 @@
 # 本轮暂停点（2026-10-21，Asia/Taipei）
 
+## 最新：离线启动镜像生成
+
+用户追加要求生成镜像并免除本次setup>1ns条件后，已生成一致bit/HPF/新FSBL/新HPF配套禁用DTB/wifi1/rootfs/SD文件，完成实际镜像分区/启动文件/rootfs及FSBL复位代码审核并下载校验。本机`artifacts/boot_candidate_v1/sdcard.img`，根`f0391b66-02`，详细身份与复现见BOOT_CANDIDATE.md。新HPF的原DDR/存储初始化与已验收scope保持，仅HP1增加复位释放/64bit配置。
+
+本次只免除>1ns生成条件，其余门禁继续开放，signoff=false。未写卡/实板启动或申请DMA，B/C未执行，D锁定。下文“未生成”均为历史暂停点，以上述更新及ACCEPTANCE.md为当前状态。
+
 ## 布线完成后的复核更新
 
 用户通知后已完成离线复核：日志2026-10-21 14:23:13结束并含完整完成标记；最终100MHz/10ns setup +0.078ns、hold +0.020ns，各组负违例端点均0。Slice36670、LUT6 28802、Slice FF37617另PAD9、ERAM69、DSP6、IO17；174份未适配冻结输入逐字节一致，原SDC及PS属性保持，四输入球位读回正确，16线程实际读回5次。

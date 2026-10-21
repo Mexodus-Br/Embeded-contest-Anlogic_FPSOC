@@ -4,14 +4,14 @@
   "engineering_release_complete": false,
   "offline_software_candidate_assembled": true,
   "rootfs_generated": true,
-  "boot_chain_generated": false,
-  "sd_image_generated": false,
+  "boot_chain_generated": true,
+  "sd_image_generated": true,
   "new_candidate_board_booted": false,
   "no_motor_board_accepted": false,
   "mechanical_motion_authorized": false,
   "full_top_pnr_completed": true,
   "hardware": {
-    "completed_at_asia_taipei": "2026-10-21T14:26:03.050669+08:00",
+    "completed_at_asia_taipei": "2026-10-21T14:56:22.607283+08:00",
     "flow_completed": true,
     "flow_log_modified_at_asia_taipei": "2026-10-21T14:23:13.609250+08:00",
     "unchanged_frozen_input_files_checked": 174,
@@ -153,7 +153,7 @@
     "syn_5066_present": true,
     "standalone_route_drc_created": false,
     "signoff_pass": false,
-    "bit_hpf_boot_sd_generated": false,
+    "bit_hpf_boot_sd_generated": true,
     "hashes_computed_for_reports_or_databases": false
   },
   "software": {
@@ -193,7 +193,7 @@
     "hashes_computed": false,
     "kernel_config_and_symbols_unchanged": true
   },
-  "hash_scope": "ONE final offline rootfs and eleven named direct sources only. No logs, databases, evidence tree or intermediate hashes.",
+  "hash_scope": "Final offline SD/boot components, one rootfs and eleven named direct sources only; no logs/databases/evidence/intermediates.",
   "files": {
     "artifacts/rootfs-offline.ext4": {
       "sha256": "d2f6090394291303a7e34dab78234a3381e806857d353833fa4c162eef688f85",
@@ -242,8 +242,57 @@
     "final_inputs/gp.adc": {
       "sha256": "1e3ee91c39a253d4a4628bd2793401cb7409a7db82531cb218711d2930875d65",
       "bytes": 1985
+    },
+    "artifacts/boot_candidate_v1/sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "82852c8b6f2b1df213c57f2e620856dbddd7c05083761d204f6927fb2bed5fbf"
+    },
+    "artifacts/boot_candidate_v1/BOOT.bin": {
+      "bytes": 5160512,
+      "sha256": "160081b589096a4aa7b73df60e55d54d573f6419d9e24921a07a687af9edf2b4"
+    },
+    "artifacts/boot_candidate_v1/system.hpf": {
+      "bytes": 1376918,
+      "sha256": "59a965ef64b3b3ad25f5c3bebab795857675c494b8d8fe752b7a71f883bc04e7"
+    },
+    "artifacts/boot_candidate_v1/system.bit": {
+      "bytes": 4052214,
+      "sha256": "17c483cebcbd7716fed4fcd5d4be559fb4009856730487df95edb5ee71d4e35d"
+    },
+    "artifacts/boot_candidate_v1/fsbl.elf": {
+      "bytes": 1509960,
+      "sha256": "1342e10ca16f6256d04c98b644f1ae0de0253e88ec92f2cffcc80b280da664a3"
+    },
+    "artifacts/boot_candidate_v1/u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "artifacts/boot_candidate_v1/system.dtb": {
+      "bytes": 16439,
+      "sha256": "bf55ee747243f2ddd492c1eb4d43cd67d770028b4ddf48ea8282268f07766dc9"
+    },
+    "artifacts/boot_candidate_v1/uImage.lz4": {
+      "bytes": 8350323,
+      "sha256": "c893c43761e68150bd94cbb84f994ebe1ae268b7423a2d0aac6edc0f000e18c1"
+    },
+    "artifacts/boot_candidate_v1/boot.cmd": {
+      "bytes": 707,
+      "sha256": "b7f6e1fdfe7c92e39a83b4f277a43f9620ac4bd4caf5b761bdf6faf6a02495a6"
+    },
+    "artifacts/boot_candidate_v1/boot.scr": {
+      "bytes": 779,
+      "sha256": "5306d89c49e80cde14508ab403e2ff2ce7f26a960d685e375c9275753a22cfff"
+    },
+    "artifacts/boot_candidate_v1/boot.bif": {
+      "bytes": 365,
+      "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
     }
   },
   "rollback": "Existing accepted Wi-Fi SD unchanged; scope rollback retained.",
-  "board_serial_services_dma_buffers": "Not inspected by this task; no board connection, module loading or DMA allocation by this task."
+  "board_serial_services_dma_buffers": "Not inspected by this task; no board connection, module loading or DMA allocation by this task.",
+  "offline_boot_image_verified": true,
+  "root_partuuid": "f0391b66-02",
+  "setup_gt_1ns_waived_for_this_candidate": true,
+  "other_release_gates_waived": false,
+  "boot_delivery_manifest": "artifacts/boot_candidate_v1/manifest.json"
 }

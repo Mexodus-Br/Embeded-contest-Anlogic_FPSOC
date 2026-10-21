@@ -12,6 +12,8 @@ from datetime import datetime,timezone,timedelta
 
 H=Path(__file__).resolve().parent
 P=H/'hardware'
+boot_manifest=H/'artifacts/boot_candidate_v1/manifest.json'
+boot=json.loads(boot_manifest.read_text()) if boot_manifest.exists() else None
 log=(P/'run.log').read_text(errors='replace')
 assert 'INTERLOCK_FULL_TOP_COMPLETE' in log,'Final actual top still running'
 assert 'RTL_POST_ROUTE_HIGH_BEGIN' in log and 'RTL_POST_ROUTE_HIGH_END' in log
@@ -88,7 +90,7 @@ result={'completed_at_asia_taipei':source_time,'flow_completed':True,
     'invalid_constraints':invalid,'combinational_loop_categories':loops,
     'sdc_byte_unchanged':True,'syn_5066_present':'SYN-5066' in log,
     'standalone_route_drc_created':(P/'route.drc').exists(),'signoff_pass':False,
-    'bit_hpf_boot_sd_generated':False,'hashes_computed_for_reports_or_databases':False}
+    'bit_hpf_boot_sd_generated':bool(boot),'hashes_computed_for_reports_or_databases':False}
 (H/'evidence/final-hardware.json').write_text(json.dumps(result,indent=2)+'\n')
 reports=H/'reports';reports.mkdir(exist_ok=True)
 for name in ['route.timing','route.area','route.check']:
@@ -146,7 +148,7 @@ check_timing：invalid约束{invalid}类，组合环{loops}类；其余dummy/no-
 
 `hardware_profile0_rejected/`完整保留。该尝试将未批准生产PROFILE0接入顶层，工具因配置资格为常量删除部分运动逻辑和九路输出寄存器；虽然route为+1.282/+0.020ns，但只有Slice26402、ERAM57、DSP2、PAD FF0，GPIO最大延迟约束无效1类。它不构成完整功能系统的时序通过，不用于本候选比较或发布。最终已恢复原完整PROFILE2并重新独立完成全流程。
 
-原rtl_path38的+0.032/+0.020ns、Slice36694/ERAM69/DSP6及其>1ns失败记录保持。bit/HPF/FSBL/BOOT/SD未生成，没有上板或运动验收。
+原rtl_path38的+0.032/+0.020ns、Slice36694/ERAM69/DSP6及其>1ns失败记录保持。离线bit/HPF/FSBL/BOOT/SD生成={bool(boot)}，没有上板或运动验收。用户本次免除>1ns生成条件，但无负STA要求与其余发布门禁保持；见BOOT_CANDIDATE.md。
 '''
 (H/'RESOURCE_REPORT.md').write_text(text,encoding='utf-8')
 transfer=json.loads((H/'evidence/rootfs-transfer.json').read_text())
@@ -168,5 +170,17 @@ delivery={'candidate':'controlled_v1_20261021','status':'OFFLINE_CANDIDATE_RELEA
  'hash_scope':'ONE final offline rootfs and eleven named direct sources only. No logs, databases, evidence tree or intermediate hashes.',
  'files':hashes,'rollback':'Existing accepted Wi-Fi SD unchanged; scope rollback retained.',
  'board_serial_services_dma_buffers':'Not inspected by this task; no board connection, module loading or DMA allocation by this task.'}
+if boot:
+    audit=json.loads((H/'evidence/boot-image-audit.json').read_text())
+    assert audit['status']=='PASS_OFFLINE_IMAGE_CONTENTS'
+    delivery.update(boot_chain_generated=True,sd_image_generated=True,
+        offline_boot_image_verified=True,root_partuuid=boot['root_partuuid'],
+        setup_gt_1ns_waived_for_this_candidate=True,other_release_gates_waived=False,
+        boot_delivery_manifest='artifacts/boot_candidate_v1/manifest.json')
+    # Reuse already verified final-delivery hashes; do not hash any evidence or reports.
+    for name,record in boot['files'].items():
+        if name=='rootfs.ext4':continue # Same audited rootfs already named above.
+        delivery['files']['artifacts/boot_candidate_v1/'+name]=record
+    delivery['hash_scope']='Final offline SD/boot components, one rootfs and eleven named direct sources only; no logs/databases/evidence/intermediates.'
 (H/'delivery.json').write_text(json.dumps(delivery,indent=2)+'\n')
 print('Collected full-top final reports; STA',stages['route'],'signoff remains false; minimal delivery manifest written')

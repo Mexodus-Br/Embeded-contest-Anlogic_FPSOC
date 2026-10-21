@@ -30,12 +30,14 @@ if (Test-Path -LiteralPath $finalTiming) {
     $timing = @(Select-String -LiteralPath $finalTiming -Pattern 'WNS|TNS|Slack|slack|Setup|Hold|Period' | Select-Object -First 30 | ForEach-Object {$_.Line})
 }
 $state = if ($complete) {'FLOW_COMPLETE_REVIEW_REQUIRED'} elseif ($running.Count) {'RUNNING'} elseif ($processError) {'PROCESS_UNKNOWN'} else {'STOPPED_OR_NOT_VISIBLE_CHECK_LOG'}
+$bootManifestPath = Join-Path $taskRoot 'artifacts/boot_candidate_v1/manifest.json'
+$bootManifest = if (Test-Path -LiteralPath $bootManifestPath) { Get-Content -LiteralPath $bootManifestPath -Raw | ConvertFrom-Json } else { $null }
 $result = [pscustomobject]@{
     checked_at=(Get-Date).ToString('o'); state=$state; processes=$running; process_query_error=$processError
     log=$logPath; log_modified=$logInfo.LastWriteTime.ToString('o'); log_age_seconds=[math]::Round(((Get-Date)-$logInfo.LastWriteTime).TotalSeconds)
     last_stage=($stageLines | Select-Object -Last 1); completion_marker=$complete
     thread16_readbacks_in_tail=$threadReads.Count; reports=$reports; final_timing_excerpt=$timing
-    signoff_pass=$false; boot_chain_generated=$false; board_acceptance='NOT_EXECUTED'
+    signoff_pass=$false; boot_chain_generated=[bool]$bootManifest; root_partuuid=$bootManifest.root_partuuid; boot_image_status=$bootManifest.status; board_acceptance='NOT_EXECUTED'
     note='Intermediate WNS is not final STA. Completion requires review of nominal 100MHz constraints, timing, resources and open gates. No motion authorization.'
     log_tail=@($lines | Select-Object -Last $Tail)
 }
@@ -49,6 +51,6 @@ Write-Output 'Reports (existence does not imply approval):'
 $reports | Format-Table name,bytes,modified -AutoSize | Out-String | Write-Output
 if ($timing.Count) { Write-Output 'Final timing file excerpt (requires completion marker and review):'; $timing | Write-Output }
 Write-Output $result.note
-Write-Output 'signoff_pass=false; BOOT/SD not generated; board acceptance not executed.'
+Write-Output ("signoff_pass=false; offline BOOT/SD generated={0}; root={1}; board acceptance not executed." -f [bool]$bootManifest,$bootManifest.root_partuuid)
 Write-Output 'Recent log:'
 $result.log_tail | Write-Output

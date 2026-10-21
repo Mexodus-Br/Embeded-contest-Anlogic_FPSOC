@@ -18,8 +18,8 @@
 |A|Wi-Fi/HTTP|PASS离线|STA原4项、HTTP原4项、新路径/首页链接共5项；认证、拒绝、逐字节文件与旧功能保留；不是本候选LAN验收|
 |A|七窗口/八SPI|PASS|实际七路译码460项；编译DT cells/ranges/GIC冲突审核；所有节点disabled|
 |A|实际ext4内容|PASS离线|最终安装文件取出与直接源码/二进制逐字节比，11固件别名、账户/凭据/批准缺席、e2fsck通过；VM→Windows最终rootfs匹配|
-|A|分区与配套启动链|NOT_GENERATED / BLOCKED|只有离线rootfs和禁用DT预览，没有新bit/HPF/FSBL/BOOT/SD；不能与旧scope BOOT混装|
-|B|新SD根、内核/PL/profile、1GiB/CMA、IRQ空闲|NOT_EXECUTED|未生成/写入新SD，未接入COM4|
+|A|分区与配套启动链|PASS离线 / 发布BLOCKED|本次用户免除>1ns生成条件；新bit/HPF/FSBL/BOOT/DTB/wifi1/rootfs/SD一致链已生成，镜像实际两分区/启动文件/rootfs检查通过，根f0391b66-02；控制节点disabled，其余门禁保留|
+|B|新SD根、内核/PL/profile、1GiB/CMA、IRQ空闲|NOT_EXECUTED|已生成SD文件，尚未写入实体卡，未接入COM4；配置审核不替代读回|
 |B|受控快照、统一时间、IRQ与DMA空闲|NOT_EXECUTED|模型和预览DT不代替板端身份及静态接入|
 |B|STA、电脑→板ping、认证HTTP、逐字节下载|NOT_EXECUTED本候选|2026-10-19首版SD加两修复已有通过记录；r3只有离线通过，均不冒充新候选|
 |B|重连、用户冷启动、至少10分钟稳定|NOT_EXECUTED本候选|先完成同一启动链，再按原LAN脚本验收，记录丢包/方向及HTTP失败|
@@ -42,4 +42,4 @@
 - DMA/buffer：本任务未在板卡加载新模块、申请coherent buffer或启动DMA；板上其他历史owner/buffer状态未读取，不能推断为已静止/释放。
 - 存储：SD/eMMC/QSPI均未写。当前已验收Wi-Fi系统与scope回退文件保留，未覆盖用户AGENT.md/.gitignore/BACKUP.md及其他任务修改或日志。
 
-本轮可交付范围是受控离线候选、匹配软件/设备树预览与复现/诊断/回退说明。完整工程发布、可启动SD、实板冷启动、无电机实板验收、机械运动许可仍分别受门禁控制，均不能由离线编译或时序数字代替。
+本轮可交付范围是受控离线候选、完整启动链SD文件及复现/诊断/回退说明。镜像离线生成通过；完整工程发布、实板冷启动、无电机实板验收、机械运动许可仍分别受门禁控制，均不能由镜像生成或时序数字代替。
