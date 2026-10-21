@@ -1,5 +1,17 @@
 # 本轮暂停点（2026-10-21，Asia/Taipei）
 
+## 布线完成后的复核更新
+
+用户通知后已完成离线复核：日志2026-10-21 14:23:13结束并含完整完成标记；最终100MHz/10ns setup +0.078ns、hold +0.020ns，各组负违例端点均0。Slice36670、LUT6 28802、Slice FF37617另PAD9、ERAM69、DSP6、IO17；174份未适配冻结输入逐字节一致，原SDC及PS属性保持，四输入球位读回正确，16线程实际读回5次。
+
+`finalize.py`经复核后已执行，生成RESOURCE_REPORT.md、delivery.json和原样最终报告。报告/日志/数据库未计算哈希。最终SDC已有的安全输入false-path保持原状，不新增例外；CDC与同步器资格仍需独立证明。report_route_status执行完成但未产生独立route.drc，原stdout摘录保存于reports/route-status-excerpt.txt，不把它冒称独立DRC清洁证据。
+
+无负STA通过；严格setup>1ns失败；完整发布signoff仍false。离线软件/rootfs已生成，但BOOT/HPF/FSBL/bit/SD未生成，B/C未执行，D锁定。REVIEW.md中集中列出的厂商/实物资格输入仍待提供，保持门禁，不启动新的布线、板端或运动任务。
+
+以下为上轮原始暂停记录，仅供追溯，当前状态以上述更新及ACCEPTANCE.md为准。
+
+## 上轮原始暂停记录
+
 按用户要求提供只读进度查询脚本后结束本轮，不等待布线。完整PF2实际顶层仍在`hardware/run.tcl`执行；最后观察为route后的Post Detailed Routing修复阶段。最终HIGH优化、最终100MHz报告及完成标记尚未确认；中间负WNS不能当作最终失败或通过。
 
 ```powershell

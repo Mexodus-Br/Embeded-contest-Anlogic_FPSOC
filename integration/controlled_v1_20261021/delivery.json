@@ -1,0 +1,249 @@
+{
+  "candidate": "controlled_v1_20261021",
+  "status": "OFFLINE_CANDIDATE_RELEASE_BLOCKED",
+  "engineering_release_complete": false,
+  "offline_software_candidate_assembled": true,
+  "rootfs_generated": true,
+  "boot_chain_generated": false,
+  "sd_image_generated": false,
+  "new_candidate_board_booted": false,
+  "no_motor_board_accepted": false,
+  "mechanical_motion_authorized": false,
+  "full_top_pnr_completed": true,
+  "hardware": {
+    "completed_at_asia_taipei": "2026-10-21T14:26:03.050669+08:00",
+    "flow_completed": true,
+    "flow_log_modified_at_asia_taipei": "2026-10-21T14:23:13.609250+08:00",
+    "unchanged_frozen_input_files_checked": 174,
+    "four_pin_locations_read_back": true,
+    "source_candidate": "rtl37_candidate_r5 / actual rtl_path38 frozen inputs",
+    "changes": "four explicit safety input locations only; full PROFILE2 retained, not approved for motion",
+    "full_functional_resource_configuration_retained": true,
+    "threads": 16,
+    "thread_readbacks": 5,
+    "clock_mhz": 100,
+    "period_ns": 10,
+    "reference_speed": 2,
+    "actual_speed_grade_verified": false,
+    "sta_coverage_percent": 99.97,
+    "stages": {
+      "gate": {
+        "setup_ns": -1.25,
+        "hold_ns": 0.0
+      },
+      "place": {
+        "setup_ns": 2.571,
+        "hold_ns": 0.0
+      },
+      "route_before_high": {
+        "setup_ns": 0.078,
+        "hold_ns": 0.02
+      },
+      "route": {
+        "setup_ns": 0.078,
+        "hold_ns": 0.02
+      }
+    },
+    "resources": {
+      "lut6": {
+        "used": 28802,
+        "total": 52480,
+        "percent": 54.88,
+        "remaining": 23678
+      },
+      "slice": {
+        "used": 36670,
+        "total": 52480,
+        "percent": 69.87,
+        "remaining": 15810
+      },
+      "slice_ff": {
+        "used": 37617,
+        "total": 104960,
+        "percent": 35.84,
+        "remaining": 67343
+      },
+      "eram": {
+        "used": 69,
+        "total": 280,
+        "percent": 24.64,
+        "remaining": 211
+      },
+      "dsp": {
+        "used": 6,
+        "total": 240,
+        "percent": 2.5,
+        "remaining": 234
+      },
+      "io": {
+        "used": 17,
+        "total": 126,
+        "percent": 13.49,
+        "remaining": 109
+      },
+      "gclk": {
+        "used": 1,
+        "total": 32,
+        "percent": 3.12,
+        "remaining": 31
+      },
+      "sclk": {
+        "used": 6,
+        "total": 72,
+        "percent": 8.33,
+        "remaining": 66
+      },
+      "pll": {
+        "used": 0,
+        "total": 8,
+        "percent": 0.0,
+        "remaining": 8
+      },
+      "lclk": {
+        "used": 0,
+        "total": 20,
+        "percent": 0.0,
+        "remaining": 20
+      },
+      "mlclk": {
+        "used": 0,
+        "total": 8,
+        "percent": 0.0,
+        "remaining": 8
+      },
+      "ioclk": {
+        "used": 0,
+        "total": 16,
+        "percent": 0.0,
+        "remaining": 16
+      },
+      "pad_ff": {
+        "used": 9
+      }
+    },
+    "no_negative_setup_hold": true,
+    "strict_setup_gt_1ns": false,
+    "per_group_negative_endpoint_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "invalid_constraints": 0,
+    "combinational_loop_categories": 0,
+    "sdc_byte_unchanged": true,
+    "syn_5066_present": true,
+    "standalone_route_drc_created": false,
+    "signoff_pass": false,
+    "bit_hpf_boot_sd_generated": false,
+    "hashes_computed_for_reports_or_databases": false
+  },
+  "software": {
+    "kernelrelease": "6.1.111-rt42-bsp-wifi1",
+    "source": "/home/uisrc/embedded-bsp-wifi-20261018/vendor/sources/linux",
+    "output": "/home/uisrc/embedded-bsp-wifi-20261018/output/kernel",
+    "modules": {
+      "bsp_rs485.ko": {
+        "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+        "imports_crc_matched": 47
+      },
+      "anlogic-dma-engine.ko": {
+        "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+        "imports_crc_matched": 48
+      },
+      "bsp_saf2_diag.ko": {
+        "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+        "imports_crc_matched": 21
+      },
+      "bsp_gp.ko": {
+        "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+        "imports_crc_matched": 31
+      },
+      "bsp_motion.ko": {
+        "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+        "imports_crc_matched": 42
+      },
+      "aic_load_fw.ko": {
+        "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+        "imports_crc_matched": 69
+      },
+      "aic8800_fdrv.ko": {
+        "vermagic": "6.1.111-rt42-bsp-wifi1 SMP preempt mod_unload modversions aarch64",
+        "imports_crc_matched": 222
+      }
+    },
+    "hashes_computed": false,
+    "kernel_config_and_symbols_unchanged": true
+  },
+  "hash_scope": "ONE final offline rootfs and eleven named direct sources only. No logs, databases, evidence tree or intermediate hashes.",
+  "files": {
+    "artifacts/rootfs-offline.ext4": {
+      "sha256": "d2f6090394291303a7e34dab78234a3381e806857d353833fa4c162eef688f85",
+      "bytes": 268435456
+    },
+    "safety/bsp_saf2_diag.c": {
+      "sha256": "ca3b6bab8e739b9ab3201fe4108cc0589da8fddd0889c952ca4006f96a94629f",
+      "bytes": 6867
+    },
+    "safety/saf2_diag.c": {
+      "sha256": "5af5db935ceed7386e5f3941f75c49a3158ddfff32f5a13ea8aa4f9c9afb652b",
+      "bytes": 4176
+    },
+    "safety/safety_uapi.h": {
+      "sha256": "3dd1e62da8c98ebb116117feacf521f2c4f18f2d2c166f1b7e5f8ddb22322020",
+      "bytes": 696
+    },
+    "frozen/software/bsp/telemetry/client/bsp_rs485.c": {
+      "sha256": "91836219c56ab851468422f3ec2f71ea48d9073618ed176cc04aa3b60403f6d0",
+      "bytes": 17190
+    },
+    "frozen/software/bsp/wifi/http/server.py": {
+      "sha256": "4a3171b209cd9939e8dd257ec0501ee1637cdbc2801b24613c60dcf625955fd2",
+      "bytes": 6182
+    },
+    "frozen/software/bsp/wifi/http/export.py": {
+      "sha256": "39668b84ebc152b8a39e2ecca6c885f13df39aaad16bad7cb5ebf9749a0f7df9",
+      "bytes": 4038
+    },
+    "frozen/software/bsp/wifi/driver.sh": {
+      "sha256": "fb7d445cbf0a59b8a042f951e76096390889449234bfc87fc141f800278da30d",
+      "bytes": 2631
+    },
+    "frozen/software/bsp/wifi/sta.sh": {
+      "sha256": "c7a7de263f180da2eed46ea5820cb64ba081bceee945aee06fc2c89678fa4237",
+      "bytes": 4687
+    },
+    "frozen/software/pl_interface/schema.json": {
+      "sha256": "5d4adbef586e82e50bf69c432404a9bca07b11894905ac3885f943751b13ce65",
+      "bytes": 109734
+    },
+    "final_inputs/system_wrapper.v": {
+      "sha256": "7fd1223badd5182151d3396cc71b6fcb8fe786b453a4415c95bf582b0f6e3aed",
+      "bytes": 10412
+    },
+    "final_inputs/gp.adc": {
+      "sha256": "1e3ee91c39a253d4a4628bd2793401cb7409a7db82531cb218711d2930875d65",
+      "bytes": 1985
+    }
+  },
+  "rollback": "Existing accepted Wi-Fi SD unchanged; scope rollback retained.",
+  "board_serial_services_dma_buffers": "Not inspected by this task; no board connection, module loading or DMA allocation by this task."
+}

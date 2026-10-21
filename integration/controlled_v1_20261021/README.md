@@ -39,7 +39,7 @@ python3 candidate/audit_final_rootfs.py
 
 既有依赖：原`embedded-bsp`的Linaro工具链/vendor输入，`embedded-bsp-wifi-20261018`的同一wifi1内核源码/输出和Buildroot host，已离线验证的干净`embedded-bsp-wifi-http-20261019-r3/output/rootfs-target`。Wi-Fi驱动从原vendor-input.zip只提取源码/固件并应用固定privacy patch，不带旧对象；全部七模块检查每个导入符号CRC。原rootfs仅作基础，最终安装文件从实际ext4提取逐字节比较，检查11个固件别名、账号/凭据/批准缺席及只读fsck。镜像不是仅检查暂存目录。
 
-本机最终离线文件在`artifacts/`：rootfs-offline.ext4、preview-disabled.dtb、七模块、ARM saf2-diag/rs485-accept，以及实际使用的kernel.config/Module.symvers。DTB只是七窗口禁用预览，rootfs没有配套BOOT/bit/HPF/FSBL或SD分区，不能写卡启动。最终P&R尚待完成审查，`delivery.json`及最终资源报告尚未生成；本轮交接和只读进度查询见`HANDOFF.md`与`status.ps1`。日志、数据库和整棵证据目录不哈希。
+本机最终离线文件在`artifacts/`：rootfs-offline.ext4、preview-disabled.dtb、七模块、ARM saf2-diag/rs485-accept，以及实际使用的kernel.config/Module.symvers。DTB只是七窗口禁用预览，rootfs没有配套BOOT/bit/HPF/FSBL或SD分区，不能写卡启动。最终P&R已复核：100MHz setup +0.078ns/hold +0.020ns，无负STA，严格setup>1ns未达，signoff仍false。最小交付清单见`delivery.json`，最终资源见`RESOURCE_REPORT.md`；本轮交接和只读进度查询见`HANDOFF.md`与`status.ps1`。日志、数据库和整棵证据目录不哈希。
 
 本任务先后发现并保留：新增驱动编译错误、生成器缺依赖、AIC跨模块符号核对缺项、测试夹具宏冲突、Windows沙箱Icarus异常，以及PROFILE0缩减运动逻辑导致的无效约束。修正后通过项与仍开放门禁分开，失败日志在本机`evidence/`、VM build及`hardware_profile0_rejected/`。
 

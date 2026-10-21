@@ -1,0 +1,146 @@
+{
+  "completed_at_asia_taipei": "2026-10-21T14:26:03.050669+08:00",
+  "flow_completed": true,
+  "flow_log_modified_at_asia_taipei": "2026-10-21T14:23:13.609250+08:00",
+  "unchanged_frozen_input_files_checked": 174,
+  "four_pin_locations_read_back": true,
+  "source_candidate": "rtl37_candidate_r5 / actual rtl_path38 frozen inputs",
+  "changes": "four explicit safety input locations only; full PROFILE2 retained, not approved for motion",
+  "full_functional_resource_configuration_retained": true,
+  "threads": 16,
+  "thread_readbacks": 5,
+  "clock_mhz": 100,
+  "period_ns": 10,
+  "reference_speed": 2,
+  "actual_speed_grade_verified": false,
+  "sta_coverage_percent": 99.97,
+  "stages": {
+    "gate": {
+      "setup_ns": -1.25,
+      "hold_ns": 0.0
+    },
+    "place": {
+      "setup_ns": 2.571,
+      "hold_ns": 0.0
+    },
+    "route_before_high": {
+      "setup_ns": 0.078,
+      "hold_ns": 0.02
+    },
+    "route": {
+      "setup_ns": 0.078,
+      "hold_ns": 0.02
+    }
+  },
+  "resources": {
+    "lut6": {
+      "used": 28802,
+      "total": 52480,
+      "percent": 54.88,
+      "remaining": 23678
+    },
+    "slice": {
+      "used": 36670,
+      "total": 52480,
+      "percent": 69.87,
+      "remaining": 15810
+    },
+    "slice_ff": {
+      "used": 37617,
+      "total": 104960,
+      "percent": 35.84,
+      "remaining": 67343
+    },
+    "eram": {
+      "used": 69,
+      "total": 280,
+      "percent": 24.64,
+      "remaining": 211
+    },
+    "dsp": {
+      "used": 6,
+      "total": 240,
+      "percent": 2.5,
+      "remaining": 234
+    },
+    "io": {
+      "used": 17,
+      "total": 126,
+      "percent": 13.49,
+      "remaining": 109
+    },
+    "gclk": {
+      "used": 1,
+      "total": 32,
+      "percent": 3.12,
+      "remaining": 31
+    },
+    "sclk": {
+      "used": 6,
+      "total": 72,
+      "percent": 8.33,
+      "remaining": 66
+    },
+    "pll": {
+      "used": 0,
+      "total": 8,
+      "percent": 0.0,
+      "remaining": 8
+    },
+    "lclk": {
+      "used": 0,
+      "total": 20,
+      "percent": 0.0,
+      "remaining": 20
+    },
+    "mlclk": {
+      "used": 0,
+      "total": 8,
+      "percent": 0.0,
+      "remaining": 8
+    },
+    "ioclk": {
+      "used": 0,
+      "total": 16,
+      "percent": 0.0,
+      "remaining": 16
+    },
+    "pad_ff": {
+      "used": 9
+    }
+  },
+  "no_negative_setup_hold": true,
+  "strict_setup_gt_1ns": false,
+  "per_group_negative_endpoint_counts": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "invalid_constraints": 0,
+  "combinational_loop_categories": 0,
+  "sdc_byte_unchanged": true,
+  "syn_5066_present": true,
+  "standalone_route_drc_created": false,
+  "signoff_pass": false,
+  "bit_hpf_boot_sd_generated": false,
+  "hashes_computed_for_reports_or_databases": false
+}

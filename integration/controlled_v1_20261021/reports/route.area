@@ -1,0 +1,307 @@
+standard
+***Report Model: system_wrapper Device: DR1M90GEG400***
+
+Design Statistics
+#IO                        17   out of    126   13.49%
+  #input                    6
+  #output                  11
+  #inout                    0
+#lut6                   28802   out of  52480   54.88%
+#reg                    37626
+  #slice reg            37617   out of 104960   35.84%
+  #pad reg                  9
+
+Utilization Statistics
+#slice                  36670   out of  52480   69.87%
+  #used ram               456
+    #dram lut             456
+    #shifter lut            0
+  #used logic           36214
+    #with luts          21343
+    #with adder          7003
+    #reg only            7868
+#feedthrough            22131
+#f7mux                    279   out of  26240    1.06%
+#f8mux                     94   out of  13120    0.72%
+#eram                      69   out of    280   24.64%
+  #eram20k                 69
+  #fifo20k                  0
+#dsp                        6   out of    240    2.50%
+#soc                        1   out of      1  100.00%
+#pad                       17   out of    126   13.49%
+#pll                        0   out of      8    0.00%
+#gclk                       1   out of     32    3.12%
+#lclk                       0   out of     20    0.00%
+#sclk                       6   out of     72    8.33%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+
+Detailed IO Report
+
+        Name           Direction    Location    IOStandard    IOType    DriveStrength    PullType    PackReg    DiffResistor  
+      clk_100m           INPUT        H16        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+      rs485_rx           INPUT        N16        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+   safety_estop_n        INPUT        V11        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+  safety_limit_n[2]      INPUT         U8        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+  safety_limit_n[1]      INPUT         U9        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+  safety_limit_n[0]      INPUT         V7        LVCMOS33      HRIO          N/A          PULLUP      NONE          NONE      
+       a0_dir           OUTPUT        Y13        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+        a0_en           OUTPUT         T9        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+       a0_step          OUTPUT        Y12        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+       a1_dir           OUTPUT         T5        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+        a1_en           OUTPUT         U5        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+       a1_step          OUTPUT        U10        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+       a2_dir           OUTPUT         W6        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+        a2_en           OUTPUT         U7        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+       a2_step          OUTPUT         V6        LVCMOS33      HRIO           8            NONE       OREG          NONE      
+      rs485_de          OUTPUT        N15        LVCMOS33      HRIO           8            NONE       NONE          NONE      
+      rs485_tx          OUTPUT        L17        LVCMOS33      HRIO           8            NONE       NONE          NONE      
+
+Report Clock Domain Luts:
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+  Index   |  Name                                          |  Frequency   |  LUT As Logic   |  LUT As Shifter   |  LUT As Dram   |  BRAM   |  DSP
+---------------------------------------------------------------------------------------------------------------------------------------------------
+  #1      |  board_100m                                    |  100MHz      |  37434          |  0                |  909           |  69     |  6
+  #2      |  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S  |  100MHz      |  68             |  0                |  0             |  0      |  0
+  #3      |  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0   |  100MHz      |  300            |  0                |  0             |  2      |  0
+  #4      |  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP1   |  100MHz      |  186            |  0                |  0             |  2      |  0
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Clock Resource Statistics
+Index     ClockNet                                                                                    Type            DriverType         Driver                ClockFanout        GclkLocation
+#1        control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh    InferredGclk    io                 clk_100m_syn_91.di    22943              x79y59z16
+
+Report Hierarchy Area:
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance                               |Module                                     |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |adc    |soc     |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|top                                    |system_wrapper                             |21343     |7003    |37626   |69      |6       |456      |0           |279     |94      |0       |0      |1       |
+|  control                              |interlock_rs485_gp_ps_top                  |21295     |7003    |37617   |69      |6       |456      |0           |279     |94      |0       |0      |0       |
+|    core                               |interlock_rs485_gp_full_top                |21292     |7003    |37613   |69      |6       |456      |0           |279     |94      |0       |0      |0       |
+|      converter                        |axi_protocol_converter_merge               |922       |66      |2113    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|        conversion_to_lite$axi_axilite |axi_protocol_converter_lite                |894       |66      |2113    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|          RD$ar_channel                |axi_protocol_converter_lite_ar             |56        |33      |71      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            cmd_translator_0           |axi_protocol_converter_lite_cmd_translator |50        |33      |59      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              incr_cmd                 |axi_protocol_converter_lite_incr_cmd       |18        |21      |22      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              wrap_cmd                 |axi_protocol_converter_lite_wrap_cmd       |31        |12      |35      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ar_cmd_fsm_0               |axi_protocol_converter_lite_rd_cmd_fsm     |3         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          RD$r_channel                 |axi_protocol_converter_lite_r              |575       |0       |1531    |0       |0       |0        |0           |188     |94      |0       |0      |0       |
+|            rd_data_fifo_0             |axi_protocol_converter_lite_simple_fifo    |437       |0       |1104    |0       |0       |0        |0           |136     |68      |0       |0      |0       |
+|            transaction_fifo_0         |axi_protocol_converter_lite_simple_fifo    |134       |0       |417     |0       |0       |0        |0           |52      |26      |0       |0      |0       |
+|          SI_REG                       |axi_register_slice_top                     |156       |0       |345     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            ar_slice                   |axi_register_slice_c                       |42        |0       |112     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            r_slice                    |axi_register_slice_c                       |49        |0       |97      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            aw_slice                   |axi_register_slice_c                       |42        |0       |103     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            b_slice                    |axi_register_slice_c                       |23        |0       |33      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          WR$aw_channel                |axi_protocol_converter_lite_aw             |59        |33      |73      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            cmd_translator_w           |axi_protocol_converter_lite_cmd_translator |52        |33      |58      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              incr_cmd                 |axi_protocol_converter_lite_incr_cmd       |22        |21      |20      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              wrap_cmd                 |axi_protocol_converter_lite_wrap_cmd       |30        |12      |38      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            cmd_fsm_aw                 |axi_protocol_converter_lite_wr_cmd_fsm     |4         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          WR$b_channel                 |axi_protocol_converter_lite_b              |44        |0       |88      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            bresp_fifo                 |axi_protocol_converter_lite_simple_fifo    |5         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            bid_fifo                   |axi_protocol_converter_lite_simple_fifo    |7         |0       |66      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|      fabric                           |interlock_rs485_shared_lite_top            |20370     |6937    |35500   |69      |6       |456      |0           |91      |0       |0       |0      |0       |
+|        dma_core                       |interlock_motion_dma_lite_top              |8916      |4783    |14178   |27      |4       |440      |0           |50      |0       |0       |0      |0       |
+|          dma                          |axi_dma                                    |907       |133     |1710    |13      |0       |0        |0           |10      |0       |0       |0      |0       |
+|            voxztl                     |alc_axi_datamover                          |722       |133     |1293    |13      |0       |0        |0           |10      |0       |0       |0      |0       |
+|              cjkpgq$meedsf            |alc_axi_datamover_s2mm_full_wrap           |257       |71      |658     |8       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                ahmwnr                 |alc_axi_datamover_reset                    |4         |0       |5       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                caismy$lfcwvd          |alc_axi_datamover_indet_btt                |13        |7       |37      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  buuuha               |soft_fifo_sync                             |6         |0       |14      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    gwlhvo             |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  lrecyr               |soft_fifo_sync                             |6         |7       |23      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    gwlhvo             |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                codtvl                 |alc_axi_datamover_skid2mm_buf              |48        |0       |148     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                ednifo                 |alc_axi_datamover_cmd_status               |13        |0       |74      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  mhkpiu$sbqtjp        |alc_axi_datamover_fifo                     |5         |0       |24      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  teneub               |alc_axi_datamover_fifo                     |8         |0       |50      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                lnyoqm                 |alc_axi_datamover_wrdata_cntl              |43        |16      |61      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  aqmtoq$peulpp        |alc_axi_datamover_fifo                     |6         |0       |9       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |5         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                oncqrn$agkwmt          |alc_axi_datamover_s2mm_realign             |8         |0       |13      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  mnhpix               |alc_axi_datamover_fifo                     |3         |0       |7       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |3         |0       |7       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  tnekqq$lohpzi        |alc_axi_datamover_s2mm_scatter             |2         |0       |3       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                pzfgdr                 |alc_axi_datamover_addr_cntl                |16        |0       |57      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  hszuqb$imutro        |alc_axi_datamover_fifo                     |3         |0       |8       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |3         |0       |8       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                ybadvw                 |alc_axi_datamover_wr_status_cntl           |27        |0       |59      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  bapppk               |alc_axi_datamover_fifo                     |8         |0       |11      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |8         |0       |11      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  heplgg$cmtmke        |alc_axi_datamover_fifo                     |6         |0       |12      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |6         |0       |12      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                yiwjax$edahir          |alc_axi_datamover_ibttcc                   |85        |48      |204     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              eqlled$lkjjvr            |alc_axi_datamover_mm2s_full_wrap           |465       |62      |635     |5       |0       |0        |0           |10      |0       |0       |0      |0       |
+|                ahttpf                 |alc_axi_datamover_pcc                      |99        |48      |175     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                gkclky                 |alc_axi_datamover_rddata_cntl              |35        |0       |54      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  aqmtoq$peulpp        |alc_axi_datamover_fifo                     |7         |0       |10      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |5         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                gszdlk$lvcvoy          |alc_axi_datamover_rd_sf                    |32        |14      |46      |3       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  lrecyr               |soft_fifo_sync                             |13        |14      |23      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    gwlhvo             |ram_infer_sync                             |0         |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  zcndjo$mnhpix        |alc_axi_datamover_fifo                     |3         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |3         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                pzfgdr                 |alc_axi_datamover_addr_cntl                |16        |0       |58      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  hszuqb$imutro        |alc_axi_datamover_fifo                     |3         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |2         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                uvuste$qqpftg          |alc_axi_datamover_mm2s_dre                 |254       |0       |232     |0       |0       |0        |0           |10      |0       |0       |0      |0       |
+|                  divalx$iinipa        |alc_axi_datamover_dre_mux8_1_x_n           |20        |0       |9       |0       |0       |0        |0           |10      |0       |0       |0      |0       |
+|                ahmwnr                 |alc_axi_datamover_reset                    |4         |0       |5       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                ednifo                 |alc_axi_datamover_cmd_status               |20        |0       |60      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  mhkpiu$sbqtjp        |alc_axi_datamover_fifo                     |5         |0       |7       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  teneub               |alc_axi_datamover_fifo                     |15        |0       |53      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                mkiook                 |alc_axi_datamover_rd_status_cntl           |5         |0       |5       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            vyjqtk                     |axi_dma_reg_module                         |130       |0       |239     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              rqyefe$mgjzzn            |axi_dma_lite_if                            |44        |0       |77      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              twtduf$pouefg            |axi_dma_register_s2mm                      |34        |0       |67      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              lxszhd$cbfgia            |axi_dma_register                           |42        |0       |95      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            uwemju$xaoyfg              |axi_dma_mm2s_mngr                          |25        |0       |64      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              segeec$qsegdt$wepefk     |axi_dma_smple_sm                           |19        |0       |55      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              segeec$wabggh            |axi_dma_mm2s_sts_mngr                      |2         |0       |3       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              segeec$onojhh            |axi_dma_mm2s_cmdsts_if                     |3         |0       |5       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            awxobz$iawsjr              |axi_dma_s2mm_mngr                          |14        |0       |85      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              kozplt$sujacs            |axi_dma_s2mm_cmdsts_if                     |4         |0       |25      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              kozplt$qsegdt$atijzp     |axi_dma_smple_sm                           |8         |0       |56      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              kozplt$jvcpfj            |axi_dma_s2mm_sts_mngr                      |2         |0       |3       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            xbqazh                     |axi_dma_rst_module                         |16        |0       |29      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              comgok$edtsyf            |axi_dma_reset                              |7         |0       |12      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              wkoedx$edtsyf            |axi_dma_reset                              |7         |0       |12      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              gzrngu                   |alc_cdc_sync                               |0         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                jdmicl$sazdfu$iavltb   |FDR                                        |0         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          hp_converter                 |axi_protocol_converter_merge               |134       |66      |304     |3       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            gen_axi4_axi3$conv_axi3    |conv_axi3                                  |134       |66      |304     |3       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              ENABLE_READ$ar_inst      |conv_axi3_a                                |46        |33      |134     |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                R_CHANNEL$rd_cmd_queue |conv_axi3_fifo_wrapper                     |13        |0       |19      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  soft_fifo_al0        |soft_fifo_al                               |11        |0       |17      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    ram_inst           |ram_infer                                  |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              ENABLE_WRITE$aw_inst     |conv_axi3_a                                |71        |33      |148     |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                B_Channel$cmd_b_queue  |conv_axi3_fifo_wrapper                     |14        |0       |19      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  soft_fifo_al0        |soft_fifo_al                               |12        |0       |17      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    ram_inst           |ram_infer                                  |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                W_Channel$wr_cmd_queue |conv_axi3_fifo_wrapper                     |12        |0       |19      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  soft_fifo_al0        |soft_fifo_al                               |10        |0       |17      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    ram_inst           |ram_infer                                  |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              ENABLE_WRITE$w_inst      |conv_axi3_w                                |9         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              ENABLE_WRITE$b_inst      |conv_axi3_b                                |8         |0       |13      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          motion                       |safety_motion_service                      |7806      |4584    |11981   |11      |4       |440      |0           |40      |0       |0       |0      |0       |
+|            controller                 |safety_controller                          |403       |316     |653     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            inputs                     |safety_inputs                              |46        |0       |48      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            interlocks$extension       |safety_interlock_regs                      |312       |2       |960     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            interlocks$monitor         |safety_interlock                           |678       |256     |922     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            motion                     |motion_service                             |5463      |4010    |8025    |11      |4       |440      |0           |40      |0       |0       |0      |0       |
+|              kernel                   |continuous_motion                          |3371      |3401    |4434    |11      |4       |440      |0           |0       |0       |0       |0      |0       |
+|                executor               |motion_executor                            |1925      |2624    |1752    |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                plan_fifo              |motion_plan_fifo                           |43        |0       |563     |0       |0       |440      |0           |0       |0       |0       |0      |0       |
+|                planner                |motion_planner                             |1082      |680     |1621    |0       |4       |0        |0           |0       |0       |0       |0      |0       |
+|                raw_fifo               |motion_plan_fifo                           |21        |0       |21      |11      |0       |0        |0           |0       |0       |0       |0      |0       |
+|              receiver                 |motion_stream_rx                           |352       |64      |768     |0       |0       |0        |0           |8       |0       |0       |0      |0       |
+|            registers                  |safety_regs                                |902       |0       |1371    |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          guard                        |dma_lite_guard                             |22        |0       |111     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        registers                      |rs485_probe_time_regs                      |422       |0       |568     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        router                         |safety_axi_lite_seven_way                  |116       |0       |298     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|        rs485                          |rs485_gp_bridge                            |5893      |1157    |10411   |6       |1       |16       |0           |0       |0       |0       |0      |0       |
+|          collector                    |rs485_multirate                            |3573      |1093    |5886    |6       |1       |0        |0           |0       |0       |0       |0      |0       |
+|            divider                    |div_u64_u32                                |134       |32      |235     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            engine                     |rs485_transaction                          |436       |296     |777     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              u_rx                     |uart_rx                                    |47        |32      |63      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              u_tx                     |uart_tx                                    |20        |0       |25      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            fifo                       |record_fifo                                |15        |32      |46      |6       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          regs                         |rs485_gp_regs                              |2320      |64      |4525    |0       |0       |16       |0           |0       |0       |0       |0      |0       |
+|        telemetry                      |rs485_telem_top                            |4018      |862     |8367    |24      |1       |0        |0           |31      |0       |0       |0      |0       |
+|          cache                        |rs485_latest_cache                         |2055      |289     |5606    |12      |1       |0        |0           |24      |0       |0       |0      |0       |
+|          regs                         |rs485_telem_regs                           |890       |0       |1091    |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          transport                    |rs485_telemetry                            |1073      |573     |1670    |12      |0       |0        |0           |7       |0       |0       |0      |0       |
+|        telemetry_dma                  |telemetry_dma_lite_top                     |1003      |135     |1678    |12      |0       |0        |0           |10      |0       |0       |0      |0       |
+|          dma                          |axi_dma                                    |881       |102     |1394    |10      |0       |0        |0           |10      |0       |0       |0      |0       |
+|            awxobz$iawsjr              |axi_dma_s2mm_mngr                          |20        |0       |95      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              kozplt$qsegdt$atijzp     |axi_dma_smple_sm                           |15        |0       |67      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              kozplt$sujacs            |axi_dma_s2mm_cmdsts_if                     |4         |0       |25      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              kozplt$jvcpfj            |axi_dma_s2mm_sts_mngr                      |1         |0       |3       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            voxztl                     |alc_axi_datamover                          |759       |102     |1118    |10      |0       |0        |0           |10      |0       |0       |0      |0       |
+|              cjkpgq$meedsf            |alc_axi_datamover_s2mm_full_wrap           |759       |102     |1118    |10      |0       |0        |0           |10      |0       |0       |0      |0       |
+|                caismy$lfcwvd          |alc_axi_datamover_indet_btt                |37        |22      |51      |3       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  lrecyr               |soft_fifo_sync                             |12        |14      |23      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    gwlhvo             |ram_infer_sync                             |0         |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  buuuha               |soft_fifo_sync                             |8         |0       |14      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    gwlhvo             |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                codtvl                 |alc_axi_datamover_skid2mm_buf              |53        |0       |146     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                ednifo                 |alc_axi_datamover_cmd_status               |6         |0       |51      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  teneub               |alc_axi_datamover_fifo                     |3         |0       |28      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  mhkpiu$sbqtjp        |alc_axi_datamover_fifo                     |3         |0       |23      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                lnyoqm                 |alc_axi_datamover_wrdata_cntl              |53        |16      |64      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  aqmtoq$peulpp        |alc_axi_datamover_fifo                     |5         |0       |9       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |4         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                oncqrn$agkwmt          |alc_axi_datamover_s2mm_realign             |477       |16      |455     |2       |0       |0        |0           |10      |0       |0       |0      |0       |
+|                  tnekqq$lohpzi        |alc_axi_datamover_s2mm_scatter             |202       |16      |202     |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    cyixtm             |alc_axi_datamover_fifo                     |11        |0       |18      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      soswev$siumvh    |soft_fifo_sync                             |9         |0       |14      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                        gwlhvo         |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    dmdaeg             |alc_axi_datamover_slice                    |15        |0       |16      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    tgzwds             |alc_axi_datamover_mssai_skid_buf           |131       |0       |126     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  yurefj$sfvhrv        |alc_axi_datamover_s2mm_dre                 |262       |0       |234     |0       |0       |0        |0           |10      |0       |0       |0      |0       |
+|                    divalx$iinipa      |alc_axi_datamover_dre_mux8_1_x_n           |20        |0       |9       |0       |0       |0        |0           |10      |0       |0       |0      |0       |
+|                  mnhpix               |alc_axi_datamover_fifo                     |2         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |2         |0       |8       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                ybadvw                 |alc_axi_datamover_wr_status_cntl           |26        |0       |55      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  bapppk               |alc_axi_datamover_fifo                     |8         |0       |11      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |8         |0       |11      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  heplgg$cmtmke        |alc_axi_datamover_fifo                     |5         |0       |11      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |5         |0       |11      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                yiwjax$edahir          |alc_axi_datamover_ibttcc                   |94        |48      |232     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                pzfgdr                 |alc_axi_datamover_addr_cntl                |11        |0       |60      |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  hszuqb$imutro        |alc_axi_datamover_fifo                     |5         |0       |8       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    soswev$siumvh      |soft_fifo_sync                             |5         |0       |8       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                      gwlhvo           |ram_infer_sync                             |0         |0       |0       |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                ahmwnr                 |alc_axi_datamover_reset                    |2         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            vyjqtk                     |axi_dma_reg_module                         |94        |0       |164     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              rqyefe$mgjzzn            |axi_dma_lite_if                            |51        |0       |64      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              twtduf$pouefg            |axi_dma_register_s2mm                      |43        |0       |100     |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            xbqazh                     |axi_dma_rst_module                         |8         |0       |17      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              comgok$edtsyf            |axi_dma_reset                              |7         |0       |15      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          hp_converter                 |axi_protocol_converter_merge               |91        |33      |187     |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|            gen_axi4_axi3$conv_axi3    |conv_axi3                                  |91        |33      |187     |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              ENABLE_WRITE$aw_inst     |conv_axi3_a                                |71        |33      |152     |2       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                B_Channel$cmd_b_queue  |conv_axi3_fifo_wrapper                     |12        |0       |18      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  soft_fifo_al0        |soft_fifo_al                               |11        |0       |17      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    ram_inst           |ram_infer                                  |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                W_Channel$wr_cmd_queue |conv_axi3_fifo_wrapper                     |14        |0       |19      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  soft_fifo_al0        |soft_fifo_al                               |12        |0       |17      |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                    ram_inst           |ram_infer                                  |0         |0       |0       |1       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              ENABLE_WRITE$w_inst      |conv_axi3_w                                |9         |0       |9       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              ENABLE_WRITE$b_inst      |conv_axi3_b                                |8         |0       |7       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|              ENABLE_READ$ar_inst      |conv_axi3_a                                |3         |0       |19      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                R_CHANNEL$rd_cmd_queue |conv_axi3_fifo_wrapper                     |3         |0       |19      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|                  soft_fifo_al0        |soft_fifo_al                               |2         |0       |17      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|          guard                        |telemetry_dma_guard                        |21        |0       |87      |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|    write_owner                        |gp_ps_write_adapter                        |3         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0      |0       |
+|  ps                                   |ARM_Processor_System_f6ddd1d59490          |2         |0       |0       |0       |0       |0        |0           |0       |0       |0       |0      |1       |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+DataNet Average Fanout:
+
+   Index     Fanout     Nets   
+    #1          1       56874  
+    #2          2       12682  
+    #3          3       4738   
+    #4          4       1971   
+    #5        5-10      3397   
+    #6        11-50     1199   
+    #7       51-100      175   
+    #8       101-500     60    
+  Average     2.15             

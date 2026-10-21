@@ -18,6 +18,23 @@ assert 'RTL_POST_ROUTE_HIGH_BEGIN' in log and 'RTL_POST_ROUTE_HIGH_END' in log
 assert len(re.findall(r'Number of Thread = 16',log))>=4
 assert (P/'system/hdl/system_wrapper.v').read_bytes()==(H/'frozen/pl/system/hdl/system_wrapper.v').read_bytes()
 assert (P/'gp/gp.sdc').read_bytes()==(H/'frozen/pl/gp/gp.sdc').read_bytes()
+assert (P/'gp/ps-generated-properties.tcl').read_bytes()==(H/'frozen/pl/gp/ps-generated-properties.tcl').read_bytes()
+# Check every frozen input by bytes; only the pin file and relocated launch files may differ.
+source_files_checked=0
+for src in (H/'frozen/pl').rglob('*'):
+    if not src.is_file(): continue
+    rel=src.relative_to(H/'frozen/pl')
+    if rel.as_posix() in {'gp/gp.adc','run.tcl','system.al'}: continue
+    assert (P/rel).read_bytes()==src.read_bytes(),str(rel)
+    source_files_checked+=1
+adc=(P/'gp/gp.adc').read_bytes()
+assert adc.startswith((H/'frozen/pl/gp/gp.adc').read_bytes())
+area_text=(P/'route.area').read_text()
+for port,ball in [('safety_limit_n[0]','V7'),('safety_limit_n[1]','U9'),('safety_limit_n[2]','U8'),('safety_estop_n','V11')]:
+    assert re.search(re.escape(port)+r'\s+INPUT\s+'+ball+r'\s+LVCMOS33',area_text),(port,ball)
+nominal=(P/'nominal_route.sdc').read_text()
+assert 'create_clock -name board_100m -period 10 ' in nominal
+assert 'route_budget.sdc' not in (P/'route.timing').read_text()
 
 
 def timing(path):
@@ -58,6 +75,8 @@ assert violations,'Missing per-group final STA endpoint statistics'
 sta=sta and all(x==0 for x in violations)
 source_time=datetime.now(timezone(timedelta(hours=8))).isoformat()
 result={'completed_at_asia_taipei':source_time,'flow_completed':True,
+    'flow_log_modified_at_asia_taipei':datetime.fromtimestamp((P/'run.log').stat().st_mtime,timezone(timedelta(hours=8))).isoformat(),
+    'unchanged_frozen_input_files_checked':source_files_checked,'four_pin_locations_read_back':True,
     'source_candidate':'rtl37_candidate_r5 / actual rtl_path38 frozen inputs',
     'changes':'four explicit safety input locations only; full PROFILE2 retained, not approved for motion',
     'full_functional_resource_configuration_retained':functional,
@@ -74,6 +93,12 @@ result={'completed_at_asia_taipei':source_time,'flow_completed':True,
 reports=H/'reports';reports.mkdir(exist_ok=True)
 for name in ['route.timing','route.area','route.check']:
     shutil.copyfile(P/name,reports/name)
+shutil.copyfile(P/'nominal_route.sdc',reports/'nominal_route.sdc')
+# The tool printed route-status stages to stdout despite -file; preserve the exact excerpt.
+drc_start=log.index('RUN-1002 : start command "report_route_status -drc -file route.drc"')
+drc_end=log.index('RUN-1003 : finish command "report_route_status -drc -file route.drc"',drc_start)
+drc_end=log.index('\n',drc_end)
+(reports/'route-status-excerpt.txt').write_text(log[drc_start:drc_end]+'\n')
 fixed=H/'final_inputs';fixed.mkdir(exist_ok=True)
 shutil.copyfile(P/'system/hdl/system_wrapper.v',fixed/'system_wrapper.v')
 shutil.copyfile(P/'gp/gp.adc',fixed/'gp.adc')
