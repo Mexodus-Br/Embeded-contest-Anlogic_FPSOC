@@ -1,0 +1,27 @@
+aarch64-linux-gnu-g++ (Linaro GCC 7.5-2019.12) 7.5.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ /home/uisrc/embedded-bsp/vendor/tools/aarch64-linux/bin/aarch64-linux-gnu-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -fno-fast-math -ffp-contract=off -static-libstdc++ -static-libgcc golden_model/src/model.cpp golden_model/src/main.cpp -o build/delta-model
++ /home/uisrc/embedded-bsp/vendor/tools/aarch64-linux/bin/aarch64-linux-gnu-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -fno-fast-math -ffp-contract=off -static-libstdc++ -static-libgcc -Igolden_model/tests -Igolden_model/baseline golden_model/tests/oracle.cpp golden_model/baseline/robotGeometry.cpp golden_model/baseline/RampsStepper.cpp -o build/firmware-oracle
+golden_model/baseline/RampsStepper.cpp: In constructor 'RampsStepper::RampsStepper(int, int, int, bool)':
+golden_model/baseline/RampsStepper.cpp:13:3: warning: statement has no effect [-Wunused-value]
+   stepperStepTargetPosition;
+   ^~~~~~~~~~~~~~~~~~~~~~~~~
+golden_model/baseline/RampsStepper.cpp: At global scope:
+golden_model/baseline/RampsStepper.cpp:90:2: warning: extra ';' [-Wpedantic]
+ };
+  ^
++ /home/uisrc/embedded-bsp/vendor/tools/aarch64-linux/bin/aarch64-linux-gnu-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -fno-fast-math -ffp-contract=off -static-libstdc++ -static-libgcc -Werror -pthread -Igolden_model/src -Ibsp/motion golden_model/src/model.cpp bsp/scope/delta_scope.cpp -o build/delta-scope
++ /home/uisrc/embedded-bsp/vendor/tools/aarch64-linux/bin/aarch64-linux-gnu-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -fno-fast-math -ffp-contract=off -static-libstdc++ -static-libgcc -Werror -pthread -Igolden_model/src -Ibsp/motion golden_model/src/model.cpp bsp/scope/unit_scope.cpp -o build/scope-unit
++ g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -fno-fast-math -ffp-contract=off -pthread -Igolden_model/src -Ibsp/motion golden_model/src/model.cpp bsp/scope/unit_scope.cpp -o build/scope-unit-host
++ build/scope-unit-host
++ sha256sum build/delta-model build/firmware-oracle build/delta-scope golden_model/configs/firmware_reference.cfg
+2677f8e16e19a65a631a8486e6242707a691520b5e97fdbd6e1043b9d27ac220  build/delta-model
+984ce37ed1f4d4d8d80ebbd701e5fcf9ca19d1f9343465984c6d7b9804faeb04  build/firmware-oracle
+a96df2a05051c3cc448c1a6a0d24095895783085da2cbf407a2dfa77f87fea75  build/delta-scope
+28690a0c442b9a8a6c8f59e680ca6e3d40936c4916b4d883aec26038958cec00  golden_model/configs/firmware_reference.cfg
++ file build/delta-model build/delta-scope
+build/delta-model: ELF 64-bit LSB executable, ARM aarch64, version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-, for GNU/Linux 3.7.0, BuildID[sha1]=47bc35c59c7f446aee6ab7bf602ac9a4b3ab90cc, with debug_info, not stripped
+build/delta-scope: ELF 64-bit LSB executable, ARM aarch64, version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-, for GNU/Linux 3.7.0, BuildID[sha1]=50b7a463ba2d02a4c3e239c345b13918e47c4bfa, with debug_info, not stripped

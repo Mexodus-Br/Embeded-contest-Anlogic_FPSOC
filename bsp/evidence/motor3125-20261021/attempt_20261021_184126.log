@@ -1,0 +1,1937 @@
+============================================================
+   TD Release_2026.1_SP2
+   Copyright (c) 2012-2026 Anlogic Inc.
+   Executable = D:/Anlogic/TD_Release_2026.1_SP2.200.067/bin/td_commands_prompt.exe
+   Build number = 6.2.2.200067
+   Built at =   16:15:53 Apr 23 2026
+   Run by =     boru
+   Run Date =   Wed Oct 21 18:26:33 2026
+
+   Run on =     LAPTOP-JS7E5LFJ
+============================================================
+RUN-1002 : start command "set_param flow thread 16"
+RUN-1002 : start command "get_param flow thread"
+RUN-1002 : start command "get_param flow thread"
+MOTOR_THREADS 16
+RUN-1002 : start command "import_device dr1_90.db -package DR1M90GEG400 -speed 2"
+ARC-1001 : Device Initialization.
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :           OPTION          |      IO       |   SETTING   
+ARC-1001 : --------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |    35 IOs     |    gpio    
+ARC-1001 :            jtag           |  F9/J6/G6/F6  |  dedicate  
+ARC-1001 : --------------------------------------------------------
+RUN-1003 : finish command "import_device dr1_90.db -package DR1M90GEG400 -speed 2" in  5.677432s wall, 4.671875s user + 0.687500s system = 5.359375s CPU (94.4%)
+
+RUN-1004 : used memory is 420 MB, reserved memory is 409 MB, peak memory is 454 MB
+RUN-1002 : start command "open_project system.al"
+PRJ-5611 WARNING: gp/axi_lite_two_way.v and gp/axi_lite_three_way.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/axis_loop_fifo.v and gp/axi_lite_two_way.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_gp_full_top.v and gp/axis_loop_fifo.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_gp_ps_top.v and gp/dma_gp_full_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_lite_guard.v and gp/dma_gp_ps_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_loopback_top.v and gp/dma_lite_guard.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/dma_shared_lite_top.v and gp/dma_loopback_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/motion_dma_lite_top.v and gp/dma_shared_lite_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/motion_gp_full_top.v and gp/motion_dma_lite_top.v have the same CompileOrder value.
+PRJ-5611 WARNING: gp/motion_gp_ps_top.v and gp/motion_gp_full_top.v have the same CompileOrder value.
+PRJ-5611 Similar messages will be suppressed.
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v
+HDL-1007 : analyze verilog file system/ip/system_ARM_Processor_System_0/system_ARM_Processor_System_0.v
+HDL-1007 : analyze verilog file system/hdl/system.v
+HDL-1007 : analyze verilog file system/hdl/system_wrapper.v
+HDL-1007 : analyze verilog file gp/axi_protocol_converter_merge.v
+Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit (http://www.openssl.org/)
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+All rights reserved.
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(138)
+HDL-1007 : back to file 'gp/axi_protocol_converter_merge.v' in gp/axi_protocol_converter_merge.v(589)
+HDL-1007 : analyze verilog file gp/axi_dma.v
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2)
+HDL-1007 : back to file 'gp/axi_dma_func_pkg.vh' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(1902)
+HDL-1007 : back to file 'gp/axi_dma_param_pkg.vh' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(1902)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(1943)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(1943)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2308)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2308)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(2629)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(2629)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3563)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3563)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3583)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3583)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3676)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3676)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(3798)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(3798)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4139)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4139)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4160)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4160)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4488)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4488)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4548)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4548)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(4993)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(4993)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5058)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5058)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5344)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5344)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5378)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5378)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5584)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(5656)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(5656)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6272)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6272)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6365)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6365)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6840)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6840)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(6881)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(6881)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7063)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7063)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7074)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7074)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7820)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7820)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(7831)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(7831)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8568)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8568)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8625)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8625)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8741)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8741)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8773)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8773)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8925)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8925)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(8940)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(8940)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9225)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9225)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9246)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9246)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9412)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9412)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9441)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9441)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9630)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9630)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(9667)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(9667)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10608)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10652)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10652)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10881)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10881)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(10923)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(10923)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11394)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11394)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11425)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11425)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11608)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(11674)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(11674)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12095)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12095)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12136)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12136)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12486)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12486)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(12608)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(12608)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(13746)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(13746)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(13868)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(13868)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16267)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16267)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16322)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16322)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16793)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16793)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(16826)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(16826)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(17792)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(17792)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(17862)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(17862)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18389)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18389)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18442)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18442)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18737)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18737)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(18798)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(18798)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19043)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19043)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19069)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19069)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19175)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19175)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19212)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19212)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19544)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19544)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(19604)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(19604)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20247)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20247)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20268)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20268)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20432)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20432)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20452)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20452)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20547)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20547)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20574)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20574)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(20636)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20758)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20758)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20777)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20777)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20968)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20968)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(20989)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(20989)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(21277)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(21277)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(21352)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(21352)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22057)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22057)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22081)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22081)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22177)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22177)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22286)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22286)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22809)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22809)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(22838)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(22838)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23076)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23076)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23116)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23116)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23366)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23366)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(23427)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(23427)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24023)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24023)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24049)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24049)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24584)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24620)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24620)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24809)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24809)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(24837)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(24837)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25282)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25282)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(25584)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25600)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25600)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25626)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25626)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25716)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25716)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25740)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25740)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25886)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25886)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(25961)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(25961)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26176)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26176)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26238)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26238)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26628)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26628)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(26654)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(26654)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27178)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27178)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27244)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27244)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27859)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27859)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(27880)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(27880)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(28129)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(28129)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(28205)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(28205)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29095)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29095)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29114)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29114)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29306)
+HDL-1007 : back to file '**' in gp/axi_dma_param_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29306)
+HDL-1007 : analyze included file ** in gp/axi_dma.v(29367)
+HDL-1007 : back to file '**' in gp/axi_dma_func_pkg.vh(1)
+HDL-1007 : back to file '**' in gp/axi_dma.v(29367)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29924)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29925)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(29927)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30030)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30031)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30033)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30085)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30086)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30088)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29625)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29741)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29743)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29744)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29745)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29747)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29749)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29751)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29753)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(29755)
+HDL-5370 Similar messages will be suppressed.
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30458)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30459)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30558)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in gp/axi_dma.v(30559)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30176)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30177)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30276)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30277)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30278)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30279)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30281)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30283)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30284)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(30285)
+HDL-5370 Similar messages will be suppressed.
+HDL-5007 WARNING: block identifier is required on this block in gp/axi_dma.v(36931)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36885)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36886)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36887)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36888)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36889)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36890)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36891)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36892)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(36893)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(41154)
+HDL-5370 Similar messages will be suppressed.
+HDL-5007 WARNING: block identifier is required on this block in gp/axi_dma.v(47218)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47173)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47174)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47175)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47176)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47177)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47178)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47179)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47180)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(47181)
+HDL-5370 WARNING: parameter '**' becomes localparam in '**' with formal parameter declaration list in gp/axi_dma.v(51280)
+HDL-5370 Similar messages will be suppressed.
+HDL-1007 : back to file 'gp/axi_dma.v' in gp/axi_dma.v(182)
+HDL-1007 : analyze verilog file gp/motion_stream_rx.v
+HDL-1007 : analyze verilog file gp/motion_service.v
+HDL-1007 : analyze verilog file gp/motion_planner.v
+HDL-1007 : analyze verilog file gp/motion_fifo.v
+HDL-1007 : analyze verilog file gp/motion_executor.v
+HDL-1007 : analyze verilog file gp/gp_ps_write_adapter.v
+HDL-1007 : analyze verilog file gp/gp_ps_control_top.v
+HDL-1007 : analyze verilog file gp/gp_control_top.v
+HDL-1007 : analyze verilog file gp/gp_control_regs.v
+HDL-1007 : analyze verilog file gp/four_axis_motion.v
+HDL-1007 : analyze verilog file gp/continuous_motion.v
+HDL-1007 : analyze verilog file gp/axis_motion.v
+HDL-1007 : analyze verilog file gp/motion_shared_lite_top.v
+HDL-1007 : analyze verilog file gp/motion_gp_ps_top.v
+HDL-1007 : analyze verilog file gp/motion_gp_full_top.v
+HDL-1007 : analyze verilog file gp/motion_dma_lite_top.v
+HDL-1007 : analyze verilog file gp/dma_shared_lite_top.v
+HDL-5007 WARNING: column 1026 exceeds maximum value 1023 in gp/dma_shared_lite_top.v(1198)
+HDL-1007 : analyze verilog file gp/dma_loopback_top.v
+HDL-1007 : analyze verilog file gp/dma_lite_guard.v
+HDL-1007 : analyze verilog file gp/dma_gp_ps_top.v
+HDL-1007 : analyze verilog file gp/dma_gp_full_top.v
+HDL-5007 WARNING: column 1025 exceeds maximum value 1023 in gp/dma_gp_full_top.v(1234)
+HDL-1007 : analyze verilog file gp/axis_loop_fifo.v
+HDL-1007 : analyze verilog file gp/axi_lite_two_way.v
+HDL-1007 : analyze verilog file gp/axi_lite_three_way.v
+PRJ-1401 : Successfully analyzed 30 source files.
+RUN-1003 : finish command "open_project system.al" in  2.723027s wall, 1.828125s user + 0.312500s system = 2.140625s CPU (78.6%)
+
+RUN-1004 : used memory is 482 MB, reserved memory is 468 MB, peak memory is 482 MB
+RUN-1002 : start command "elaborate -top system_wrapper"
+HDL-1007 : port 'motion_point_start' remains unconnected for this instance in system/hdl/system_wrapper.v(165)
+HDL-1007 : port 'motion_point_done' remains unconnected for this instance in system/hdl/system_wrapper.v(165)
+HDL-1007 : port 'motion_slot_event' remains unconnected for this instance in system/hdl/system_wrapper.v(165)
+HDL-1007 : port 'motion_slot_id' remains unconnected for this instance in system/hdl/system_wrapper.v(165)
+HDL-1007 : elaborate module system_wrapper in system/hdl/system_wrapper.v(2)
+HDL-1007 : port 'master_fahb_haddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_hburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_hprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_hready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_hsel' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_hsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_htrans' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_hwdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_hwrite' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_tx_clk' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_tx_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_txd' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_txen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_txer' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_mcgr_dma_req_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_ptp_pps_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_ptp_timestamp_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe0_ptp_timestamp_toggle_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_tx_clk' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_tx_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_txd' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_txen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_txer' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_mcgr_dma_req_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_ptp_pps_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_ptp_timestamp_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gbe1_ptp_timestamp_toggle_o' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'f2p_cti_trig_ack' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_gp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp0_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_hp1_axi_arst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_clk_lcl' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_fahb_clk_glb' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'p2f_clk1' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'p2f_clk1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'p2f_clk2' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'p2f_clk2_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'p2f_clk3' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'p2f_clk3_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_rst_n_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_rst_n_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_araddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arcache' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arlen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arlock' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_arvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awaddr' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awburst' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awcache' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awlen' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awlock' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awprot' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awsize' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_awvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_bready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_rready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_wdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_wlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_wstrb' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'master_gp1_axi_wvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_arready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_awready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_bid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_bresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_bvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_rdata' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_rid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_rlast' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_rresp' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_rvalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'slave_acp_wready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'p2f_cti_trig' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'standbywfe_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'standbywfi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart0_de' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart0_dtr_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart0_out1_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart0_out2_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart0_re' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart0_rts_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart1_de' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart1_dtr_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart1_out1_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart1_out2_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart1_re' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart1_rts_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma0_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma0_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma0_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma0_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma1_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma1_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma1_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma1_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma2_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma2_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma2_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma2_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma3_datype' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma3_davalid' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma3_drready' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'dma3_rst_n' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'can0_stby' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'can0_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'can1_stby' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'can1_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gpio_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'gpio_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'i2c0_scl_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'i2c0_sda_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'i2c1_scl_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'i2c1_sda_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'mdc0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'mdc1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'mdio0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'mdio1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'mdio0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'mdio1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_cmd_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_cmd_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_2_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_3_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_4_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_4_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_5_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_5_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_6_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_6_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_7_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_data_7_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio0_pwr_ctrl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_cmd_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_cmd_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_data_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_data_1_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_data_2_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_data_3_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'sdio1_pwr_ctrl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_miso_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_miso_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_mosi_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_mosi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_sclk_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_sclk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_ss_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_ss_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_ss_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi0_ss_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_miso_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_miso_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_mosi_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_mosi_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_sclk_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_sclk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_ss_0_oe' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_ss_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_ss_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'spi1_ss_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'swdt_rst_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'ttc0_wave1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'ttc0_wave2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'ttc0_wave0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'ttc1_wave1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'ttc1_wave2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'ttc1_wave0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_clk_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_ctl_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_0_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_10_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_11_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_12_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_13_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_14_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_15_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_1_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_2_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_3_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_4_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_5_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_6_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_7_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_8_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'trace_data_9_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart0_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'uart1_tx_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : port 'event_out' remains unconnected for this instance in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(126)
+HDL-1007 : elaborate module ARM_Processor_System_f6ddd1d59490(P2F_CLK0_DIV=8) in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(4)
+HDL-1007 : elaborate module DR1_PHY_PROCESSOR_SYSTEM(P2F_CLK1_DIV=2,P2F_CLK2_DIV=2,P2F_CLK3_DIV=2) in D:\Anlogic\TD_Release_2026.1_SP2.200.067\arch/dr1_macro.v(1637)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 64 for port 'slave_hp1_axi_wdata' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(290)
+HDL-5007 WARNING: actual bit length 4 differs from formal bit length 8 for port 'slave_hp1_axi_wstrb' in system/ip/system_ARM_Processor_System_0/RTL/ARM_Processor_System_f6ddd1d59490.v(292)
+HDL-1007 : elaborate module motion_gp_ps_top(FIFO_DEPTH=64,PLAN_DEPTH=8,START_MIN_POINTS=32,STEP_HIGH_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,STEP_LOW_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,DIR_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,DIR_HOLD_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_DISABLE_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,MAX_STEP_HZ=256'b01111101000000000000000000000000000000000000000000000000000000000111110100000000000000000000000000000000000000000000000000000000011111010000000,EN_ACTIVE_LEVEL=4'b1111) in gp/motion_gp_ps_top.v(1129)
+HDL-1007 : elaborate module gp_ps_write_adapter in gp/gp_ps_write_adapter.v(4)
+HDL-1007 : elaborate module motion_gp_full_top(FIFO_DEPTH=64,PLAN_DEPTH=8,START_MIN_POINTS=32,STEP_HIGH_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,STEP_LOW_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,DIR_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,DIR_HOLD_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_DISABLE_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,MAX_STEP_HZ=256'b01111101000000000000000000000000000000000000000000000000000000000111110100000000000000000000000000000000000000000000000000000000011111010000000,EN_ACTIVE_LEVEL=4'b1111) in gp/motion_gp_full_top.v(1130)
+HDL-1007 : elaborate module axi_protocol_converter_merge(AL_US_AXI_PROTOCOL=1,AL_AXI_ID_WIDTH=32'b01100,AL_AXI_ADDR_WIDTH=32'b0100001,AL_AXI_DATA_WIDTH=32'b0100000,AL_AXI_SUPPORTS_USER_SIGNALS=0) in gp/axi_protocol_converter_merge.v(5)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(13)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2072)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1644)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2545)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(646)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(926)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1032)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1540)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1445)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(752)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(535)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1260)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1118)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1364)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2072)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1644)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(1882)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2545)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(182)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(432)
+HDL-1007 : elaborate module motion_shared_lite_top(FIFO_DEPTH=64,PLAN_DEPTH=8,START_MIN_POINTS=32,STEP_HIGH_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,STEP_LOW_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,DIR_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,DIR_HOLD_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_DISABLE_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,MAX_STEP_HZ=256'b01111101000000000000000000000000000000000000000000000000000000000111110100000000000000000000000000000000000000000000000000000000011111010000000,EN_ACTIVE_LEVEL=4'b1111) in gp/motion_shared_lite_top.v(1128)
+HDL-1007 : elaborate module axi_lite_three_way in gp/axi_lite_three_way.v(1130)
+HDL-1007 : elaborate module gp_control_regs in gp/gp_control_regs.v(1129)
+HDL-1007 : elaborate module motion_dma_lite_top(FIFO_DEPTH=64,PLAN_DEPTH=8,START_MIN_POINTS=32,STEP_HIGH_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,STEP_LOW_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,DIR_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,DIR_HOLD_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_DISABLE_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,MAX_STEP_HZ=256'b01111101000000000000000000000000000000000000000000000000000000000111110100000000000000000000000000000000000000000000000000000000011111010000000,EN_ACTIVE_LEVEL=4'b1111) in gp/motion_dma_lite_top.v(1129)
+HDL-1007 : elaborate module dma_lite_guard in gp/dma_lite_guard.v(1129)
+HDL-1007 : elaborate module axi_dma(AL_S_AXI_LITE_ADDR_WIDTH=32'b01010,AL_S_AXI_LITE_DATA_WIDTH=32'b0100000,AL_DLYTMR_RESOLUTION=32'b01111101,AL_PRMRY_IS_ACLK_ASYNC=32'b0,AL_INCLUDE_SG=32'b0,AL_SG_INCLUDE_STSCNTRL_STRM=32'b0,AL_SG_USE_STSAPP_LENGTH=32'b0,AL_SG_LENGTH_WIDTH=32'b010000,AL_M_AXI_SG_ADDR_WIDTH=32'b0100000,AL_M_AXI_SG_DATA_WIDTH=32'b0100000,AL_M_AXIS_MM2S_CNTRL_TDATA_WIDTH=32'b0100000,AL_S_AXIS_S2MM_STS_TDATA_WIDTH=32'b0100000,AL_INCLUDE_MM2S=32'b01,AL_INCLUDE_MM2S_SF=32'b01,AL_INCLUDE_MM2S_DRE=32'b01,AL_MM2S_BURST_SIZE=32'b010000,AL_M_AXI_MM2S_ADDR_WIDTH=32'b0100000,AL_M_AXI_MM2S_DATA_WIDTH=32'b01000000,AL_M_AXIS_MM2S_TDATA_WIDTH=32'b01000000,AL_INCLUDE_S2MM=32'b01,AL_INCLUDE_S2MM_SF=32'b01,AL_INCLUDE_S2MM_DRE=32'b01,AL_S2MM_BURST_SIZE=32'b010000,AL_M_AXI_S2MM_ADDR_WIDTH=32'b0100000,AL_M_AXI_S2MM_DATA_WIDTH=32'b01000000,AL_S_AXIS_S2MM_TDATA_WIDTH=32'b01000000,AL_MICRO_DMA=32'b0,AL_INCREASE_THROUGHPUT=32'b0,AL_S_AXI_LITE_ACLK_FREQ_HZ=32'b0101111101011110000100000000,AL_M_AXI_MM2S_ACLK_FREQ_HZ=32'b0101111101011110000100000000,AL_M_AXI_S2MM_ACLK_FREQ_HZ=32'b0101111101011110000100000000,AL_M_AXI_SG_ACLK_FREQ_HZ=32'b0101111101011110000100000000) in gp/axi_dma.v(1)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_dma.v(10668)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_dma.v(10689)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(10606)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(59625)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(60410)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(10680)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(10701)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(26626)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(12484)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(9628)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(27176)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(27266)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(13087)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(13744)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(13949)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(22175)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(25714)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(8739)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(20430)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(8923)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(6270)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(23074)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(3561)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32569)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(40954)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(46107)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(33848)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(44631)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(42929)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(55049)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(55049)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(33401)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_dma.v(31987)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_dma.v(31987)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32008)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32010)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32020)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(44760)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(45355)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32008)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32010)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32020)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(43910)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32008)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32010)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32020)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32008)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32010)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32020)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(36839)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34056)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34103)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34155)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(36898)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(50986)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(33848)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(58468)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32008)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32010)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in gp/axi_dma.v(32020)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5007 Similar messages will be suppressed.
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(58557)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34662)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(52229)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(46866)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(47186)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(52765)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(42672)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(41860)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(55049)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(54217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(52982)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(35736)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(54293)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(58927)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(34217)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(31579)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(32118)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_dma.v(32232)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_dma.v(32001)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(59104)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(59152)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(53839)
+HDL-1007 : elaborate module ** in gp/axi_dma.v(57200)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(550)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(551)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(552)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(600)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(601)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(602)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(603)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(604)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(605)
+HDL-5314 WARNING: net '**' does not have a driver in gp/axi_dma.v(675)
+HDL-5314 Similar messages will be suppressed.
+HDL-1007 : elaborate module motion_service(FIFO_DEPTH=64,PLAN_DEPTH=8,START_MIN_POINTS=32,STEP_HIGH_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,STEP_LOW_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,DIR_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,DIR_HOLD_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_DISABLE_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,MAX_STEP_HZ=256'b01111101000000000000000000000000000000000000000000000000000000000111110100000000000000000000000000000000000000000000000000000000011111010000000,EN_ACTIVE_LEVEL=4'b1111) in gp/motion_service.v(1129)
+HDL-1007 : elaborate module motion_stream_rx in gp/motion_stream_rx.v(1130)
+HDL-1007 : elaborate module continuous_motion(FIFO_DEPTH=64,PLAN_DEPTH=8,START_MIN_POINTS=32,STEP_HIGH_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,STEP_LOW_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,DIR_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,DIR_HOLD_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_DISABLE_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,MAX_STEP_HZ=256'b01111101000000000000000000000000000000000000000000000000000000000111110100000000000000000000000000000000000000000000000000000000011111010000000,EN_ACTIVE_LEVEL=4'b1111) in gp/continuous_motion.v(3)
+HDL-1007 : elaborate module motion_fifo(WIDTH=421,DEPTH=64) in gp/motion_fifo.v(4)
+HDL-1007 : extracting RAM for identifier 'memory' in gp/motion_fifo.v(15)
+HDL-1007 : elaborate module motion_planner(STEP_HIGH_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,STEP_LOW_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,DIR_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,DIR_HOLD_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,MAX_STEP_HZ=256'b01111101000000000000000000000000000000000000000000000000000000000111110100000000000000000000000000000000000000000000000000000000011111010000000) in gp/motion_planner.v(2)
+HDL-1007 : elaborate module motion_fifo(WIDTH=1197,DEPTH=8) in gp/motion_fifo.v(4)
+HDL-1007 : extracting RAM for identifier 'memory' in gp/motion_fifo.v(15)
+HDL-1007 : elaborate module motion_executor(STEP_HIGH_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,STEP_LOW_CYCLES=256'b011000011010100000000000000000000000000000000000000000000000000001100001101010000000000000000000000000000000000000000000000000000110000110101,DIR_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,DIR_HOLD_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_SETUP_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,EN_DISABLE_CYCLES=256'b011111010000000000000000000000000000000000000000000000000000000001111101000000000000000000000000000000000000000000000000000000000111110100,MAX_STEP_HZ=256'b01111101000000000000000000000000000000000000000000000000000000000111110100000000000000000000000000000000000000000000000000000000011111010000000) in gp/motion_executor.v(3)
+HDL-1007 : elaborate module axi_protocol_converter_merge(AL_DS_AXI_PROTOCOL=1,AL_AXI_ID_WIDTH=6,AL_AXI_ADDR_WIDTH=33,AL_AXI_DATA_WIDTH=64,AL_AXI_SUPPORTS_USER_SIGNALS=0) in gp/axi_protocol_converter_merge.v(5)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(2797)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(3252)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_protocol_converter_merge.v(4017)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_protocol_converter_merge.v(4017)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_protocol_converter_merge.v(4017)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_protocol_converter_merge.v(4017)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(3988)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_protocol_converter_merge.v(4641)
+HDL-1007 : port '**' remains unconnected for this instance in gp/axi_protocol_converter_merge.v(4641)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(4233)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(4782)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_protocol_converter_merge.v(4896)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(4655)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(3988)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(4233)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(4782)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_protocol_converter_merge.v(4896)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(4655)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(4116)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(3862)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(3252)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(3988)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(4233)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(4782)
+HDL-1007 : extracting RAM for identifier '**' in gp/axi_protocol_converter_merge.v(4896)
+HDL-5317 WARNING: input port '**' is not connected on this instance in gp/axi_protocol_converter_merge.v(4655)
+HDL-1007 : elaborate module ** in gp/axi_protocol_converter_merge.v(4051)
+HDL-1200 : Current top model is system_wrapper
+HDL-5106 WARNING: Initial value omitted on non-DFF net "fmywoe" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "zhswhl" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "divalx$lrrfme[6]" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "divalx$lrrfme[5]" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "divalx$lrrfme[4]" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "divalx$lrrfme[3]" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "divalx$lrrfme[2]" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "divalx$lrrfme[1]" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "divalx$lrrfme[0]" in gp/axi_dma.v(0) 
+HDL-5106 WARNING: Initial value omitted on non-DFF net "knccuo[0][9]" in gp/axi_dma.v(0) 
+HDL-5106 Similar messages will be suppressed.
+HDL-1100 : Inferred 16 RAMs.
+RUN-1003 : finish command "elaborate -top system_wrapper" in  5.323048s wall, 4.562500s user + 0.578125s system = 5.140625s CPU (96.6%)
+
+RUN-1004 : used memory is 735 MB, reserved memory is 749 MB, peak memory is 949 MB
+RUN-1002 : start command "read_adc -file gp/gp.adc"
+RUN-1002 : start command "set_pin_assignment  clk_100m   LOCATION = H16; IOSTANDARD = LVCMOS33; "
+RUN-1002 : start command "set_pin_assignment  a0_step   LOCATION = Y12; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1002 : start command "set_pin_assignment  a0_dir   LOCATION = Y13; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1002 : start command "set_pin_assignment  a0_en   LOCATION = T9; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1002 : start command "set_pin_assignment  a1_step   LOCATION = U10; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1002 : start command "set_pin_assignment  a1_dir   LOCATION = T5; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1002 : start command "set_pin_assignment  a1_en   LOCATION = U5; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1002 : start command "set_pin_assignment  a2_step   LOCATION = V6; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1002 : start command "set_pin_assignment  a2_dir   LOCATION = W6; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1002 : start command "set_pin_assignment  a2_en   LOCATION = U7; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; SLEWRATE = SLOW; PACKREG = ON; "
+RUN-1001 : Starting of IO setups legality check.
+RUN-1002 : start command "read_sdc gp/gp.sdc"
+RUN-1002 : start command "read_sdc gp/ps-generated-properties.tcl"
+RUN-1002 : start command "optimize_rtl"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+SYN-1001 : Stage 1 | Optimize RTL
+SYN-1001 : Stage 1.1 | Check Design Sanity
+SYN-1001 : End Stage 1.1 | Check Design Sanity; Time: 0.074314s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (63.1%); Memory(MB): used = 736, reserved = 749, peak = 949;
+
+SYN-1079 : finish stage Check Design Sanity. Total instances: 72528, Total nets: 198936.
+
+SYN-1001 : Stage 1.2 | Initialize Design
+SYN-1001 : End Stage 1.2 | Initialize Design; Time: 0.860518s wall, 0.796875s user + 0.015625s system = 0.812500s CPU (94.4%); Memory(MB): used = 737, reserved = 751, peak = 949;
+
+SYN-1079 : finish stage Initialize Design. Total instances: 13064, Total nets: 126626.
+
+SYN-1001 : Stage 1.3 | Flatten Module
+SYN-1011 : Flatten model system_wrapper
+SYN-1050 : Instances selected by 'keep_hierarchy':
+RUN-1001 : ------------------------------------------------------------------------------------------------------------
+RUN-1001 :           instance           |  keep_hierarchy  |         down_module         |         file(line)          
+RUN-1001 : ------------------------------------------------------------------------------------------------------------
+RUN-1001 :  control/core/fabric/dma...  |       true       | soft_fifo_sync(lvtpuq=1...  |       gp/axi_dma.v(0)       
+RUN-1001 :  control/core/fabric/dma...  |       true       | soft_fifo_al(DATA_WIDTH...  | gp/axi_protocol_convert...  
+RUN-1001 : ------------------------------------------------------------------------------------------------------------
+SYN-1001 : End Stage 1.3 | Flatten Module; Time: 2.692581s wall, 2.484375s user + 0.109375s system = 2.593750s CPU (96.3%); Memory(MB): used = 724, reserved = 734, peak = 949;
+
+SYN-1079 : finish stage Flatten Module. Total instances: 14714, Total nets: 99408.
+
+SYN-1001 : Stage 1.4 | Uniform Instance
+SYN-5025 WARNING: Using 0 for all undriven pins and nets
+SYN-1001 : End Stage 1.4 | Uniform Instance; Time: 0.483763s wall, 0.421875s user + 0.062500s system = 0.484375s CPU (100.1%); Memory(MB): used = 724, reserved = 734, peak = 949;
+
+SYN-1079 : finish stage Uniform Instance. Total instances: 11506, Total nets: 96192.
+
+SYN-1001 : Stage 1.5 | Optimize Design
+SYN-1066 : Inferred FSM for state register 'control/core/converter/conversion_to_lite$axi_axilite/RD$ar_channel/ar_cmd_fsm_0/state_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00             0001
+                    01             0010
+                    10             0100
+                    11             1000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/converter/conversion_to_lite$axi_axilite/RD$ar_channel/ar_cmd_fsm_0/state_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1066 : Inferred FSM for state register 'control/core/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_fsm_aw/state_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00             0001
+                    01             0010
+                    10             0100
+                    11             1000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/converter/conversion_to_lite$axi_axilite/WR$aw_channel/cmd_fsm_aw/state_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1066 : Inferred FSM for state register 'control/core/fabric/dma_core/dma/awxobz$iawsjr/kozplt$qsegdt$atijzp/ieebjk_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00              001
+                    01              010
+                    10              100
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/fabric/dma_core/dma/awxobz$iawsjr/kozplt$qsegdt$atijzp/ieebjk_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1066 : Inferred FSM for state register 'control/core/fabric/dma_core/dma/uwemju$xaoyfg/segeec$qsegdt$wepefk/ieebjk_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                    00              001
+                    01              010
+                    10              100
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/fabric/dma_core/dma/uwemju$xaoyfg/segeec$qsegdt$wepefk/ieebjk_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1066 : Inferred FSM for state register 'control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/oncqrn$agkwmt/npzmkk_reg' in module 'system_wrapper'
+--------------------------------------------
+     Previous Encoding     New Encoding
+--------------------------------------------
+                   000           000001
+                   001           000010
+                   010           000100
+                   011           001000
+                   100           010000
+                   101           100000
+--------------------------------------------
+SYN-1067 : encoded FSM with state register 'control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/oncqrn$agkwmt/npzmkk_reg' using encoding 'one_hot' in model 'system_wrapper'
+SYN-1080 : No more FSM messages will be printed, If more FSM messages are needed, please modify the message level to verbose
+SYN-1057 : Inferred 12 FSM(s)
+SYN-1001 : Optimize 2 less-than instances
+SYN-1032 : 90615/1054 useful/useless nets, 10833/17 useful/useless insts
+SYN-1021 : Optimized 8 onehot mux instances.
+SYN-1021 : Optimized 19 onehot mux instances.
+SYN-1019 : Optimized 8 mux instances.
+SYN-1021 : Optimized 7 onehot mux instances.
+SYN-1021 : Optimized 7 onehot mux instances.
+SYN-1021 : Optimized 1 onehot mux instances.
+SYN-1016 : Merged 1554 instances.
+SYN-1016 : Merged 3835 instances.
+SYN-1001 : End Stage 1.5 | Optimize Design; Time: 51.398890s wall, 45.640625s user + 3.484375s system = 49.125000s CPU (95.6%); Memory(MB): used = 1352, reserved = 1397, peak = 1404;
+
+SYN-1079 : finish stage Optimize Design. Total instances: 37247, Total nets: 43919.
+
+SYN-1001 : Stage 1.6 | Optimize Iteratively
+SYN-1018 : Transformed 7 mux instances.
+SYN-1019 : Optimized 13 mux instances.
+SYN-1021 : Optimized 421 onehot mux instances.
+SYN-1014 : Optimize round 1
+SYN-1044 : Optimized 69 inv instances.
+SYN-1017 : Remove 35 const input seq instances
+SYN-1018 : Transformed 3 mux instances.
+SYN-1019 : Optimized 23 mux instances.
+SYN-1020 : Optimized 4522 distributor mux.
+SYN-1001 : Optimize 23 less-than instances
+SYN-1019 : Optimized 11 mux instances.
+SYN-1016 : Merged 16843 instances.
+SYN-1015 : Optimize round 1, 46608 better
+SYN-1014 : Optimize round 2
+SYN-1044 : Optimized 14 inv instances.
+SYN-1017 : Remove 5 const input seq instances
+SYN-1019 : Optimized 4 mux instances.
+SYN-1020 : Optimized 5 distributor mux.
+SYN-1019 : Optimized 301 mux instances.
+SYN-1016 : Merged 17 instances.
+SYN-1015 : Optimize round 2, 558 better
+SYN-3010 : Optimized 706 DFF(s)
+SYN-1014 : Optimize round 1
+SYN-1019 : Optimized 4 mux instances.
+SYN-1020 : Optimized 283 distributor mux.
+SYN-1016 : Merged 1598 instances.
+SYN-1015 : Optimize round 1, 1912 better
+SYN-1014 : Optimize round 2
+SYN-1044 : Optimized 4 inv instances.
+SYN-1020 : Optimized 2 distributor mux.
+SYN-1016 : Merged 13 instances.
+SYN-1015 : Optimize round 2, 21 better
+SYN-1014 : Optimize round 3
+SYN-1015 : Optimize round 3, 0 better
+SYN-1001 : End Stage 1.6 | Optimize Iteratively; Time: 119.336359s wall, 103.343750s user + 11.484375s system = 114.828125s CPU (96.2%); Memory(MB): used = 1370, reserved = 1387, peak = 1575;
+
+SYN-1079 : finish stage Optimize Iteratively. Total instances: 57183, Total nets: 63089.
+
+SYN-1001 : Stage 1.7 | Check Design
+SYN-1001 : End Stage 1.7 | Check Design; Time: 0.021981s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (71.1%); Memory(MB): used = 1370, reserved = 1387, peak = 1575;
+
+SYN-1079 : finish stage Check Design. Total instances: 57183, Total nets: 63089.
+
+SYN-1001 : End Stage 1 | Optimize RTL; Time: 174.880795s wall, 152.750000s user + 15.156250s system = 167.906250s CPU (96.0%); Memory(MB): used = 1370, reserved = 1387, peak = 1575;
+
+SYN-1079 : finish stage Optimize RTL. Total instances: 57183, Total nets: 63089.
+
+RUN-1003 : finish command "optimize_rtl" in  174.921746s wall, 152.765625s user + 15.156250s system = 167.921875s CPU (96.0%)
+
+RUN-1004 : used memory is 1370 MB, reserved memory is 1387 MB, peak memory is 1575 MB
+RUN-1002 : start command "optimize_gate -maparea gate.area"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+SYN-1001 : Stage 2 | Optimize Gate
+SYN-1001 : Stage 2.1 | Map Reg
+SYN-1001 : End Stage 2.1 | Map Reg; Time: 3.325002s wall, 3.078125s user + 0.171875s system = 3.250000s CPU (97.7%); Memory(MB): used = 1370, reserved = 1387, peak = 1575;
+
+SYN-1079 : finish stage Map Reg. Total instances: 57183, Total nets: 63089.
+
+SYN-1001 : Stage 2.2 | Map IO
+SYN-2001 : Map 10 IOs to PADs of model 'system_wrapper'
+SYN-1001 : End Stage 2.2 | Map IO; Time: 0.209353s wall, 0.171875s user + 0.000000s system = 0.171875s CPU (82.1%); Memory(MB): used = 1370, reserved = 1387, peak = 1575;
+
+SYN-1001 : Stage 2.3 | Map Macro
+RUN-1002 : start command "update_pll_param -module system_wrapper"
+SYN-2501 : Processed 0 LOGIC_BUF instances.
+SYN-2571 : Map 1 macro multiplier
+SYN-2571 : Optimize after map_dsp, round 1
+SYN-2571 : Optimize after map_dsp, round 1, 0 better
+SYN-2601 : All the used dsp number is 4
+SYN-1001 : Throwback 587 control mux instances
+SYN-1001 : Generate 3 bigger adders
+SYN-1001 : Convert 3 adder
+SYN-1001 : Optimize 14 adders
+SYN-1001 : Optimize 1 less-than instances
+SYN-2501 : Optimize round 1
+SYN-1016 : Merged 1218 instances.
+SYN-2501 : Optimize round 1, 5482 better
+SYN-2501 : Optimize round 2
+SYN-2501 : Optimize round 2, 0 better
+SYN-2501 : Optimize round 1
+SYN-2501 : Optimize round 1, 0 better
+SYN-1030 : Map 25 macro adder
+SYN-1031 : Map 40 macro less-than
+SYN-2501 : Map 203 macro adder(s)
+SYN-3009 : Map 332 FxMUX in MapMacro
+SYN-1019 : Optimized 1015 mux instances.
+SYN-1016 : Merged 1757 instances.
+SYN-1001 : End Stage 2.3 | Map Macro; Time: 50.042932s wall, 45.484375s user + 2.750000s system = 48.234375s CPU (96.4%); Memory(MB): used = 1350, reserved = 1376, peak = 1575;
+
+SYN-1079 : finish stage Map Macro. Total instances: 72742, Total nets: 79461.
+
+SYN-1001 : Stage 2.4 | Map Gate
+SYN-3001 : Collect 14655 PI 6886 PO (6 timing unconstrained) for mapping
+SYN-2581 : Mapping with K=6, #lut = 10905 (3.90), #lev = 12 (5.18), #crit_level = 0, #edge = 42551
+SYN-2551 : Post LUT mapping optimization.
+SYN-2581 : Mapping with K=6, #lut = 10944 (3.91), #lev = 12 (4.82), #crit_level = 0, #edge = 42832
+SYN-3001 : Logic optimization opt = 16.55 sec, map = 1.75 sec, post map opt = 12.81 sec.
+SYN-1001 : End Stage 2.4 | Map Gate; Time: 67.520504s wall, 63.843750s user + 1.437500s system = 65.281250s CPU (96.7%); Memory(MB): used = 1373, reserved = 1430, peak = 1575;
+
+RUN-1002 : start command "report_area -file gate.area"
+RUN-1001 : standard
+***Report Model: system_wrapper Device: DR1M90GEG400***
+
+Design Statistics
+#IO                        10   out of    126    7.94%
+  #input                    1
+  #output                   9
+  #inout                    0
+#lut                    16553
+  #lut1                    33
+  #lut2                  2210
+  #lut3                  2127
+  #lut4                  3028
+  #lut5                  1388
+  #lut6                  2634
+  #1-bit adder           5133
+#reg                    13350
+  #slice reg            13341   out of 104960   12.71%
+  #pad reg                  9
+
+Utilization Statistics
+#unit lut*              12816   out of  52480   24.42%
+  #logic lut*            7683
+  #1-bit adder           5133
+#reg                    13341   out of 104960   12.71%
+  #dff                  13341
+  #latch                    0
+#f7mux                    238   out of  26240    0.91%
+#f8mux                     94   out of  13120    0.72%
+#eram                      16   out of    280    5.71%
+  #eram20k                 16
+  #fifo20k                  0
+#dsp                        4   out of    240    1.67%
+#dram                     108
+#soc                        1   out of      1  100.00%
+#pad                       10   out of    126    7.94%
+  #ireg                     0
+  #oreg                     9
+  #treg                     0
+#pll                        0   out of      8    0.00%
+#gclk                       0   out of     32    0.00%
+#lclk                       0   out of     20    0.00%
+#sclk                       0   out of     72    0.00%
+#mlclk                      0   out of      8    0.00%
+#ioclk                      0   out of     16    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+RUN-1003 : finish command "report_area -file gate.area" in  1.098430s wall, 1.031250s user + 0.000000s system = 1.031250s CPU (93.9%)
+
+RUN-1004 : used memory is 1372 MB, reserved memory is 1428 MB, peak memory is 1575 MB
+SYN-1001 : Packing model "system_wrapper" ...
+SYN-1001 : Stage 2.5 | Pack Gate
+SYN-4010 : Pack lib has 78 rtl pack models with 50 top pack blocks
+SYN-1014 : Optimize round 1
+SYN-1015 : Optimize round 1, 0 better
+SYN-4002 : Packing 13337 DFF/LATCH to SEQ ...
+SYN-1001 : Remove 123 carry adders
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  5.813524s wall, 5.640625s user + 0.109375s system = 5.750000s CPU (98.9%)
+
+RUN-1004 : used memory is 1326 MB, reserved memory is 1373 MB, peak memory is 1575 MB
+TMR-2502 : Net delay update with mode: Synthesized
+RUN-1002 : start command "end_timer"
+SYN-4009 : Pack 103 carry chain into lslice
+SYN-1001 : End Stage 2.5 | Pack Gate; Time: 14.317409s wall, 13.718750s user + 0.218750s system = 13.937500s CPU (97.3%); Memory(MB): used = 1389, reserved = 1444, peak = 1575;
+
+RUN-1002 : start command "report_qor -step gate -file gate.qor"
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  7.512078s wall, 7.171875s user + 0.125000s system = 7.296875s CPU (97.1%)
+
+RUN-1004 : used memory is 1454 MB, reserved memory is 1514 MB, peak memory is 1575 MB
+TMR-2502 : Net delay update with mode: Synthesized
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |        -1878                |
+|     Setup TNS             |     -2136044                |
+|     Num of violated S-EP  |         2838                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #registers            |        13337                |
+|     #luts                 |        10944                |
+|     #lut1                 |           33                |
+|     #lut1(~A)             |           33                |
+|     #slices               |         5685                |
+|     slices percentage     |       10.83%                |
+|     #RAMs                 |           16                |
+|     #DSPs                 |            4                |
+|     #f7mux                |        0.91%                |
+|     #MACROs               |          357                |
+|     #insts in MACRO       |         5947                |
+-----------------------------------------------------------
+| kept_net                  |                             |
+|     #syn_keep             |            0                |
+|     #keep_hier            |          651                |
+|     #dont_touch           |            0                |
+|     #mark_debug           |            0                |
+|     #max_fanout_keep      |            0                |
+|     #async_reg            |            0                |
+-----------------------------------------------------------
+| Top 1% datanet fanout#    |        56.32                |
+| dff(single fanout)->dff   |          370                |
+| dff(single fanout)->dram  |          165                |
+-----------------------------------------------------------
+| Over-quota path num*      |                             |
+|     Total Number          |            0                |
+|     Total Level Slack     |            0                |
+|     Worst Level Slack     |            0                |
+-----------------------------------------------------------
+| Rent**                    |                             |
+-----------------------------------------------------------
+Note*: Over-quota path shows the over-path-level-threshold path number of each clock.
+       The clock will not be shown if no path is with path level over the threshold.
+       The threshold is defined as worst path_margin / 800ps.
+Note**: Rent shows the rent exponent value of the modules whose rent value exceeds the threshold.
+        Only modules under top are reported, and the threshold is defined as 0.7.
+
+Logic Level Distribution
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Clock                                                 |  Period             |  0      |  1     |  2     |  3     |  4     |  5    |  6     |  7    |  8     |  9    |  10    |  11    |  12
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  board_100m                                            |  10.000ns (100MHz)  |  17946  |  3836  |  1810  |  2426  |  1661  |  987  |  1025  |  369  |  3005  |  620  |  3374  |  2619  |  227
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_GP0S          |  10.000ns (100MHz)  |  63     |  3     |  0     |  0     |  0     |  0    |  0     |  0    |  0     |  0    |  0     |  0     |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.GEN_PL_HP0           |  10.000ns (100MHz)  |  84     |  77    |  0     |  2     |  0     |  1    |  0     |  0    |  0     |  0    |  0     |  0     |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.master_gp0_axi_aclk  |  10.000ns (100MHz)  |  0      |  0     |  0     |  0     |  0     |  0    |  0     |  0    |  0     |  0    |  0     |  0     |  0
+  ps/DR1_PHY_PROCESSOR_SYSTEM_Inst.slave_hp0_axi_aclk   |  10.000ns (100MHz)  |  0      |  0     |  0     |  0     |  0     |  0    |  0     |  0    |  0     |  0    |  0     |  0     |  0
+  Total                                                 |  NA                 |  18093  |  3916  |  1810  |  2428  |  1661  |  988  |  1025  |  369  |  3005  |  620  |  3374  |  2619  |  227
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Note: The table count the worst 100000 paths, each endpoint count only one time.(40135 paths analyzed)
+
+Hierarchical Rent Exponent Report
++---------------------------------------------------------------------+
+|Inst      |Model              |Rent     |Cell     |Pin     |Term     |
++---------------------------------------------------------------------+
+|top       |system_wrapper     |0.06     |30906    |159438  |10       |
+|  control |motion_gp_ps_top_1 |0.47     |30820    |158487  |649      |
++---------------------------------------------------------------------+
+Note: Cell represents total number of cells inside module; Pin represents total number of pins
+      which have net connection inside module; Term represents total number of PIs and POs of module.
+      Rent represents the relationship between number of terms and number of cells in module.
+      A module with higher rent corresponds to highly connected logic and strong connectivity with others.
+Report gate stage QoR done.
+
+RUN-0008 : Do critical warning check and 0 issue(s) found.
+RUN-0008 : Do timing check and 1 issue(s) found.
+RUN-0008 : Do area check and 0 issue(s) found.
+QoR Evaluation
+-------------------------------------------------------------------------------------------------------------------------------------------
+  ID        |  Priority  |  Description                                                  |  Suggestion
+-------------------------------------------------------------------------------------------------------------------------------------------
+  QOR-1001  |  LOW       |  - Gate timing is too bad, SWNS -1878ps and STNS -2136044ps.  |  - Try following setting to improve timing:
+            |            |                                                               |      set_param gate map_mode logic_level_prior
+            |            |                                                               |      set_param gate map_strategy 2
+-------------------------------------------------------------------------------------------------------------------------------------------
+Note* (*) means this parameter has been set already.
+      (+) means this parameter has been set, suggest to upgrade higher effort level.
+Note** plesae resolve priority MUST FIX and HIGH issues firstly
+       because these have highly possible to block the timing convergence even stop the flow.
+Note*** some suggested settings are not suitable to use together
+        take care of using them separately if suggestion mentioned.
+RUN-1003 : finish command "report_qor -step gate -file gate.qor" in  36.566039s wall, 35.406250s user + 0.281250s system = 35.687500s CPU (97.6%)
+
+RUN-1004 : used memory is 1487 MB, reserved memory is 1519 MB, peak memory is 1575 MB
+SYN-1001 : End Stage 2 | Optimize Gate; Time: 174.820142s wall, 164.375000s user + 4.875000s system = 169.250000s CPU (96.8%); Memory(MB): used = 1487, reserved = 1519, peak = 1575;
+
+RUN-1003 : finish command "optimize_gate -maparea gate.area" in  174.839250s wall, 164.406250s user + 4.875000s system = 169.281250s CPU (96.8%)
+
+RUN-1004 : used memory is 1487 MB, reserved memory is 1519 MB, peak memory is 1575 MB
+RUN-1002 : start command "report_timing_summary -file gate.timing -path_num 10"
+RUN-1002 : start command "export_db gate.db"
+RUN-1001 : Exported flow parameters
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported packer
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported ATMR Setting
+RUN-1001 : Exported timing constraints
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported ChipWatcher
+RUN-1003 : finish command "export_db gate.db" in  1.203619s wall, 1.515625s user + 0.031250s system = 1.546875s CPU (128.5%)
+
+RUN-1004 : used memory is 1487 MB, reserved memory is 1519 MB, peak memory is 1575 MB
+RUN-1002 : start command "legalize_phy_inst"
+SYN-1001 : Stage 3 | Legalize Phy Inst
+SYN-1011 : Flatten model system_wrapper
+SYN-1001 : End Stage 3 | Legalize Phy Inst; Time: 0.373379s wall, 0.359375s user + 0.000000s system = 0.359375s CPU (96.2%); Memory(MB): used = 1488, reserved = 1519, peak = 1575;
+
+RUN-1002 : start command "place"
+RUN-1001 : Open license file D:/Anlogic/TD_Release_2026.1_SP2.200.067/license/Anlogic.lic
+PHY-3001 : Placer runs in 22 thread(s).
+PHY-1001 : Stage 1 | Initialize Design
+PHY-1001 : Stage 1.1 | Build Design
+PHY-1001 : 10933 luts, 13337 seqs, 864 mslices, 4821 lslices, 10 pads, 16 brams, 4 dsps
+RUN-1002 : start command "legalize_phy_inst"
+SYN-1011 : Flatten model system_wrapper
+PHY-1001 : Remove keep and sweep redundant instances ...
+PHY-1001 : 10933 luts, 13337 seqs, 864 mslices, 4821 lslices, 10 pads, 16 brams, 4 dsps
+PHY-1001 : End Stage 1.1 | Build Design; Time: 0.618579s wall, 0.578125s user + 0.000000s system = 0.578125s CPU (93.5%); Memory(MB): used = 1488, reserved = 1519, peak = 1575;
+
+PHY-1001 : Stage 1.2 | PrePlace Optimize Design
+OPT-1001 : Stage 1.2.1 | Simplify Lut
+OPT-1001 : End Stage 1.2.1 | Simplify Lut; Time: 0.190237s wall, 0.171875s user + 0.000000s system = 0.171875s CPU (90.3%); Memory(MB): used = 1488, reserved = 1519, peak = 1575;
+
+OPT-1001 : Stage 1.2.2 | Sweep
+OPT-1001 : End Stage 1.2.2 | Sweep; Time: 0.074600s wall, 0.078125s user + 0.000000s system = 0.078125s CPU (104.7%); Memory(MB): used = 1488, reserved = 1519, peak = 1575;
+
+OPT-1001 : Stage 1.2.3 | Merge Lut
+OPT-1001 : Start remap optimization ...
+RUN-1001 :   Added 0 lut1 for undup drivers
+OPT-1001 : skip lut merge since lut number 10902 is similar to or less than reg number 13335
+OPT-1001 : End Stage 1.2.3 | Merge Lut; Time: 0.474227s wall, 0.406250s user + 0.000000s system = 0.406250s CPU (85.7%); Memory(MB): used = 1488, reserved = 1519, peak = 1575;
+
+OPT-1001 : Stage 1.2.4 | Synthesize High-fanout Net
+OPT-1001 : Start high-fanout net optimization in pre-place flow with medium effort ...
+OPT-1001 : Separate data sinks from clock nets
+RUN-1001 :   Split clock net control/core/fabric/dma_core/control_rst_n(9517) by moving 9508 data sinks to new driver control/core/fabric/dma_core/reset_release_reg[1]_dup_2
+RUN-1001 :   Split clock net control/core/fabric/dma_core/motion/kernel/executor/mux213_syn_27(2) by moving 1 data sinks to new driver control/core/fabric/dma_core/motion/kernel/executor/mux213_syn_50
+RUN-1001 :   Split clock net control/core/fabric/dma_core/motion/kernel/executor/mux213_syn_30(2) by moving 1 data sinks to new driver control/core/fabric/dma_core/motion/kernel/executor/mux213_syn_52
+RUN-1001 :   Split clock net control/core/fabric/dma_core/motion/kernel/executor/mux213_syn_33(2) by moving 1 data sinks to new driver control/core/fabric/dma_core/motion/kernel/executor/mux213_syn_54
+RUN-1001 : HFN opt statistic
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :   DriverCell type  |  HFN count  |  Duplicated count  
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :       LSLICE       |      0      |         0          
+RUN-1001 :       MSLICE       |      0      |         0          
+RUN-1001 :        TOTAL       |      4      |         4          
+RUN-1001 : ------------------------------------------------------
+OPT-1001 : End high-fanout net optimization;  0.613628s wall, 0.546875s user + 0.031250s system = 0.578125s CPU (94.2%)
+
+OPT-1001 : Current memory(MB): used = 1488, reserved = 1519, peak = 1575.
+OPT-1001 : End Stage 1.2.4 | Synthesize High-fanout Net; Time: 0.618675s wall, 0.562500s user + 0.031250s system = 0.593750s CPU (96.0%); Memory(MB): used = 1488, reserved = 1519, peak = 1575;
+
+OPT-1001 : End physical optimization;  1.363562s wall, 1.218750s user + 0.031250s system = 1.250000s CPU (91.7%)
+
+PHY-1001 : End Stage 1.2 | PrePlace Optimize Design; Time: 1.369140s wall, 1.234375s user + 0.031250s system = 1.265625s CPU (92.4%); Memory(MB): used = 1488, reserved = 1519, peak = 1575;
+
+PHY-1001 : Stage 1.3 | Initialize Clock
+PHY-1001 : Start to synthesize physical clock networks.
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  10.719834s wall, 10.203125s user + 0.093750s system = 10.296875s CPU (96.1%)
+
+RUN-1004 : used memory is 1536 MB, reserved memory is 1576 MB, peak memory is 1581 MB
+PHY-1001 : Populate physical database on model system_wrapper.
+RUN-1001 : There are total 30212 instances
+RUN-0007 : 10905 luts, 13336 seqs, 864 mslices, 4814 lslices, 10 pads, 16 brams, 4 dsps
+RUN-1001 : There are total 41354 nets
+RUN-1001 : 29010 nets have 2 pins
+RUN-1001 : 9620 nets have [3 - 5] pins
+RUN-1001 : 2136 nets have [6 - 10] pins
+RUN-1001 : 226 nets have [11 - 20] pins
+RUN-1001 : 289 nets have [21 - 99] pins
+RUN-1001 : 73 nets have 100+ pins
+PHY-1001 : End Stage 1.3 | Initialize Clock; Time: 15.809258s wall, 14.953125s user + 0.218750s system = 15.171875s CPU (96.0%); Memory(MB): used = 1538, reserved = 1576, peak = 1581;
+
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  8.142483s wall, 7.703125s user + 0.093750s system = 7.796875s CPU (95.8%)
+
+RUN-1004 : used memory is 1530 MB, reserved memory is 1568 MB, peak memory is 1588 MB
+RUN-1001 : Huge Net Statistic
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Fanout  |  Slack  |                                            Net                                            
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------
+RUN-1001 :    9509   |  -1024  |                   control/core/fabric/dma_core/control_rst_n_dup_56925                    
+RUN-1001 :    1603   |  6676   |   control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/rst   
+RUN-1001 :    1526   |  4804   |        control/core/fabric/dma_core/motion/kernel/planner/guard_cycles_b1[0]_syn_4        
+RUN-1001 :    1096   |  3440   |  control/core/converter/conversion_to_lite$axi_axilite/RD$r_channel/rd_data_fifo_0/wr_en  
+RUN-1001 :    1066   |  2293   |                    control/core/fabric/dma_core/motion/snapshot_write                     
+RUN-1001 :    1027   |  -1878  |             control/core/fabric/dma_core/motion/kernel/planner/mux73_syn_1099             
+RUN-1001 : ----------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 1 | Initialize Design; Time: 30.240367s wall, 28.531250s user + 0.375000s system = 28.906250s CPU (95.6%); Memory(MB): used = 1526, reserved = 1562, peak = 1588;
+
+PHY-1001 : Stage 2 | Global Placement
+RUN-1001 : Report Control nets information:
+RUN-1001 : DFF Distribution
+RUN-1001 : -------------------------------------
+RUN-1001 :   CE   |  SSR  |  ASR  |  DFF Count  
+RUN-1001 : -------------------------------------
+RUN-1001 :   No   |  No   |  No   |     242     
+RUN-1001 :   No   |  No   |  Yes  |     554     
+RUN-1001 :   No   |  Yes  |  No   |     202     
+RUN-1001 :   Yes  |  No   |  No   |     592     
+RUN-1001 :   Yes  |  No   |  Yes  |    10426    
+RUN-1001 :   Yes  |  Yes  |  No   |    1320     
+RUN-1001 : -------------------------------------
+RUN-1001 : Control Group Statistic
+RUN-1001 : -----------------------------
+RUN-1001 :   #CLK  |  #CE  |  #SSR/ASR  
+RUN-1001 : -----------------------------
+RUN-1001 :    1    |  192  |     63     
+RUN-1001 : -----------------------------
+RUN-0007 : Control Set = 221
+PHY-1001 : Stage 2.1 | Place Fixed Instances
+PHY-1001 : Stage 2.1.1 | Pre-Place DRC Check
+PHY-1001 : End Stage 2.1.1 | Pre-Place DRC Check; Time: 0.013569s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (115.2%); Memory(MB): used = 1528, reserved = 1563, peak = 1588;
+
+PHY-1001 : End Stage 2.1 | Place Fixed Instances; Time: 0.273100s wall, 0.265625s user + 0.000000s system = 0.265625s CPU (97.3%); Memory(MB): used = 1528, reserved = 1563, peak = 1588;
+
+PHY-1001 : Stage 2.2 | Init-Place DRC Check
+RUN-1001 : Stage 2.2.1 | Run Bound Checker
+RUN-1001 : End Stage 2.2.1 | Run Bound Checker; Time: 0.000310s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 1528, reserved = 1563, peak = 1588;
+
+RUN-1001 : Stage 2.2.2 | Run Force Route Checker
+RUN-1001 : End Stage 2.2.2 | Run Force Route Checker; Time: 0.007526s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (207.6%); Memory(MB): used = 1528, reserved = 1563, peak = 1588;
+
+RUN-1001 : Stage 2.2.3 | Run Sigmap Checker
+RUN-1001 : End Stage 2.2.3 | Run Sigmap Checker; Time: 0.054396s wall, 0.046875s user + 0.000000s system = 0.046875s CPU (86.2%); Memory(MB): used = 1528, reserved = 1563, peak = 1588;
+
+PHY-1001 : End Stage 2.2 | Init-Place DRC Check; Time: 0.065642s wall, 0.062500s user + 0.000000s system = 0.062500s CPU (95.2%); Memory(MB): used = 1528, reserved = 1563, peak = 1588;
+
+PHY-1001 : Clock GCLK Statistics:
+RUN-1001 : GCLK Index: 
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Index  |                                                 Clock GCLK                                                  |  Location   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :     1    |  control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ivvbyh_created_gclkinst  |  x79y59z16  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Clock Nets Connect To GCLK Statistics: 
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Index  |                        Leading Net                        |  CLK/DATA/IO/PLL Sink(s)  |                       Following Net                       |  CLK/DATA/IO/PLL Sink(s)  
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :     1    | control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf...  |          1/0/0/0          | control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf...  |        13491/0/0/0        
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : Stage 2.3 | GP Phase 1
+PHY-3001 : There are total 3 huge nets that have been set as skipped
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.28  |  0.05  |  0.22  |  0.00   |  0.02  |  0.06  |  0.00  |    0.00    |  0.01   |  0.00   
+RUN-1001 :   Target Density  |  0.90  |  1.00  |  0.90  |  0.90   |  1.00  |  1.00  |  1.00  |    1.00    |  0.90   |  0.90   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.27  |  0.10  |  0.22  |  0.00   |  0.10  |  0.10  |  0.00  |    0.00    |  0.10   |  0.00   
+RUN-1001 :   Target Density  |  0.90  |  1.00  |  0.90  |  0.90   |  1.00  |  1.00  |  1.00  |    1.00    |  0.90   |  0.90   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+PHY-3001 : HPWL 7.977E+04 (1*3.583E+04 + 1*4.394E+04), Overflow {1.495E-01, 2.120E-01, 1.082E-01, 0.000E+00, 7.303E-02, 7.181E-02, 0.000E+00, 0.000E+00, 2.602E-02, 0.000E+00}
+PHY-1001 : Updating congestion by RUDY ...
+RUN-1001 : Generating global routing grids ...
+RUN-1001 : Building simple global routing graph ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 0/19300.
+RUN-1001 : Generate nets statistics:
+RUN-1001 : ----------------------------
+RUN-1001 :        Type       |  Nets   
+RUN-1001 : ----------------------------
+RUN-1001 :   TotalRouteNets  |  30124  
+RUN-1001 :   DontRouteNets   |  10824  
+RUN-1001 :     RouteNets     |  19300  
+RUN-1001 :     RouteSinks    |  40145  
+RUN-1001 : ----------------------------
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 99.95 (V 51.80, H 82.12, I 82.15, O 99.86)
+PHY-1001 : top5  = 83.56 (V 41.42, H 64.82, I 60.93, O 73.49)
+PHY-1001 : top10 = 71.89 (V 34.81, H 55.38, I 51.11, O 61.84)
+PHY-1001 : top15 = 63.41 (V 30.13, H 48.99, I 44.23, O 53.71)
+PHY-1001 : End update congestion by RUDY;  1.746377s wall, 1.906250s user + 0.046875s system = 1.953125s CPU (111.8%)
+
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.32  |  0.10  |  0.30  |  0.00   |  0.10  |  0.10  |  0.00  |    0.00    |  0.10   |  0.00   
+RUN-1001 :   Target Density  |  0.90  |  1.00  |  0.90  |  0.90   |  1.00  |  1.00  |  1.00  |    1.00    |  0.90   |  0.90   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 2.3 | GP Phase 1; Time: 32.790978s wall, 136.125000s user + 12.015625s system = 148.140625s CPU (451.8%); Memory(MB): used = 1692, reserved = 1717, peak = 1698;
+
+PHY-1001 : Stage 2.4 | GP Phase 2
+PHY-3001 : HPWL 8.563E+04 (1*4.035E+04 + 1*4.528E+04), Overflow {1.487E-01, 1.927E-01, 1.062E-01, 0.000E+00, 5.748E-02, 7.803E-02, 0.000E+00, 0.000E+00, 2.002E-02, 0.000E+00}
+PHY-1001 : Updating congestion by RUDY ...
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 96.90 (V 49.31, H 78.82, I 70.24, O 79.55)
+PHY-1001 : top5  = 79.96 (V 37.93, H 63.05, I 53.54, O 62.82)
+PHY-1001 : top10 = 69.28 (V 31.78, H 54.59, I 45.35, O 54.09)
+PHY-1001 : top15 = 61.95 (V 27.87, H 48.96, I 39.92, O 48.08)
+PHY-1001 : End update congestion by RUDY;  0.157105s wall, 0.531250s user + 0.015625s system = 0.546875s CPU (348.1%)
+
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.32  |  0.10  |  0.30  |  0.00   |  0.10  |  0.10  |  0.00  |    0.00    |  0.10   |  0.00   
+RUN-1001 :   Target Density  |  0.90  |  1.00  |  0.90  |  0.90   |  1.00  |  1.00  |  1.00  |    1.00    |  0.90   |  0.90   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 2.4 | GP Phase 2; Time: 17.490096s wall, 82.828125s user + 5.671875s system = 88.500000s CPU (506.0%); Memory(MB): used = 1722, reserved = 1747, peak = 1736;
+
+PHY-1001 : Stage 2.5 | PrePack Physical Optimization
+OPT-1001 : Total overflow 302.25 peak overflow 1.56
+OPT-1001 : Stage 2.5.1 | Synthesize High-fanout Net
+OPT-1001 : Start high-fanout net optimization in post-GP flow with medium effort ...
+OPT-1001 : Update timing in Manhattan mode
+OPT-1001 : End timing update;  4.084591s wall, 4.312500s user + 0.109375s system = 4.421875s CPU (108.3%)
+
+OPT-1001 : Start: SWNS -970 STNS -18785 NUM_FEPS 111
+OPT-1001 : Total overflow 302.25 peak overflow 1.56
+OPT-1001 :  select 100 high fanout candidates
+OPT-1001 :  crit level 1 net count 15 (fanout thres 50)
+OPT-1001 :  crit level 2 net count 11 (fanout thres 50)
+OPT-1001 :  crit level 3 net count 4 (fanout thres 40)
+OPT-1001 :  crit level 4 net count 25 (fanout thres 30)
+OPT-1001 :  crit level 5 net count 21 (fanout thres 30)
+OPT-1001 :  crit level 6 net count 24 (fanout thres 30)
+PHY-1001 : Populate physical database on model system_wrapper.
+OPT-1001 : 98 high-fanout net processed.
+OPT-1001 : Total overflow 313.19 peak overflow 2.72
+RUN-1001 : HFN opt statistic
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :   DriverCell type  |  HFN count  |  Duplicated count  
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :         REG        |     32      |        264         
+RUN-1001 :        LUT6        |     11      |        107         
+RUN-1001 :        LUT5        |     14      |        132         
+RUN-1001 :        LUT4        |     20      |        102         
+RUN-1001 :        LUT3        |     17      |         74         
+RUN-1001 :        LUT2        |      4      |         23         
+RUN-1001 :        TOTAL       |     98      |        702         
+RUN-1001 : ------------------------------------------------------
+OPT-1001 : End high-fanout net optimization;  45.818666s wall, 44.203125s user + 1.156250s system = 45.359375s CPU (99.0%)
+
+OPT-1001 : Update timing in Manhattan mode
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  7.999519s wall, 7.468750s user + 0.187500s system = 7.656250s CPU (95.7%)
+
+RUN-1004 : used memory is 1811 MB, reserved memory is 1840 MB, peak memory is 1887 MB
+OPT-1001 : End timing update;  12.128736s wall, 11.734375s user + 0.328125s system = 12.062500s CPU (99.5%)
+
+OPT-1001 : Current memory(MB): used = 1809, reserved = 1837, peak = 1887.
+OPT-1001 : End Stage 2.5.1 | Synthesize High-fanout Net; Time: 58.043469s wall, 56.312500s user + 1.531250s system = 57.843750s CPU (99.7%); Memory(MB): used = 1809, reserved = 1837, peak = 1887;
+
+OPT-0007 : End flow postgp: SWNS -895 STNS -7678 NUM_FEPS 59
+OPT-1001 : End physical optimization;  58.449908s wall, 57.031250s user + 1.546875s system = 58.578125s CPU (100.2%)
+
+PHY-1001 : End Stage 2.5 | PrePack Physical Optimization; Time: 58.467652s wall, 57.046875s user + 1.546875s system = 58.593750s CPU (100.2%); Memory(MB): used = 1809, reserved = 1837, peak = 1887;
+
+PHY-1001 : Stage 2.6 | GP Phase 3
+PHY-3001 : There are total 2 huge nets that have been set as skipped
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.33  |  0.10  |  0.30  |  0.00   |  0.10  |  0.10  |  0.00  |    0.00    |  0.10   |  0.00   
+RUN-1001 :   Target Density  |  0.90  |  1.00  |  0.90  |  0.90   |  1.00  |  1.00  |  1.00  |    1.00    |  0.90   |  0.90   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+PHY-3001 : After prepack phys-opt, HPWL 1.030E+05 (1*5.029E+04 + 1*5.269E+04), HPWL delta +20.3%
+PHY-3001 : HPWL 9.492E+04 (1*4.621E+04 + 1*4.871E+04), Overflow {1.497E-01, 1.856E-01, 1.096E-01, 0.000E+00, 8.256E-02, 7.823E-02, 0.000E+00, 0.000E+00, 2.892E-02, 0.000E+00}
+PHY-1001 : End Stage 2.6 | GP Phase 3; Time: 25.442661s wall, 92.093750s user + 5.750000s system = 97.843750s CPU (384.6%); Memory(MB): used = 1803, reserved = 1830, peak = 1887;
+
+PHY-1001 : Stage 2.7 | Block Detailed Placement
+PHY-1001 : Stage 2.7.1 | Block Legalization
+PHY-3001 : Before Legalized: Len = 1.55635e+06
+PHY-3001 : After Legalized: Len = 1.55442e+06, Over = 34.5312 with grid_size = 480
+PHY-1001 : End Stage 2.7.1 | Block Legalization; Time: 0.524968s wall, 0.578125s user + 0.000000s system = 0.578125s CPU (110.1%); Memory(MB): used = 1819, reserved = 1845, peak = 1887;
+
+PHY-1001 : Stage 2.7.2 | Simulated Annealing Based DP
+PHY-0007 : Initial: WL Cost = 176557, TD Cost = 2.94945e+06, SWNS = -548, STNS = -84028, Nums per T = 180, Range Limit = 2x32
+PHY-0007 : Finally: WL Cost = 176557, TD Cost = 2.94945e+06, WL Ratio = 1, TD Ratio = 1, SWNS = -548, STNS = -84028
+RUN-1001 : Print Detailed placement's Summary information
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :             |  Total  |  Accept  |  Reject by overFlow  |  Reject by worseCost  |  Failed by noTarget  |  Failed by gridCheck  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   RAM/DSPs  |   180   |    0     |          0           |          180          |          0           |           0           
+RUN-1001 :    Macros   |   21    |    0     |          0           |          21           |          0           |           0           
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 2.7.2 | Simulated Annealing Based DP; Time: 4.527994s wall, 5.031250s user + 0.062500s system = 5.093750s CPU (112.5%); Memory(MB): used = 1821, reserved = 1847, peak = 1887;
+
+PHY-3001 : End Detailed Place; 
+PHY-1001 : End Stage 2.7 | Block Detailed Placement; Time: 5.187539s wall, 6.375000s user + 0.062500s system = 6.437500s CPU (124.1%); Memory(MB): used = 1819, reserved = 1845, peak = 1887;
+
+PHY-1001 : Stage 2.8 | GP Phase 4
+RUN-1001 : Resource Distribution
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :                   |  LUTL  |  LUTM  |   FF   |  CARRY  |  DSP   |  BRAM  |  URAM  |  FIFOCTRL  |  F7MUX  |  F8MUX  
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+RUN-1001 :       Fields      |   0    |   1    |   2    |    3    |   4    |   5    |   6    |     7      |    8    |    9    
+RUN-1001 :    Utilization    |  0.33  |  0.10  |  0.30  |  0.00   |  0.00  |  0.00  |  0.00  |    0.00    |  0.10   |  0.00   
+RUN-1001 :   Target Density  |  0.90  |  1.00  |  0.90  |  0.90   |  1.00  |  1.00  |  1.00  |    1.00    |  0.90   |  0.90   
+RUN-1001 : -------------------------------------------------------------------------------------------------------------------
+PHY-3001 : HPWL 9.876E+04 (1*4.844E+04 + 1*5.031E+04), Overflow {9.993E-02, 1.873E-01, 6.795E-02, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 4.071E-02, 0.000E+00}, normalized-grad(wirelength/density): 1.000E+00/2.536E+01
+PHY-1001 : End Stage 2.8 | GP Phase 4; Time: 30.664626s wall, 81.390625s user + 3.703125s system = 85.093750s CPU (277.5%); Memory(MB): used = 1803, reserved = 1830, peak = 1887;
+
+PHY-3001 : Global placement completed: Len = 1.59634e+06, Over = 24.9688 with grid_size = 480
+PHY-1001 : End Stage 2 | Global Placement; Time: 174.980055s wall, 461.312500s user + 28.890625s system = 490.203125s CPU (280.1%); Memory(MB): used = 1818, reserved = 1845, peak = 1887;
+
+PHY-1001 : Stage 3 | PrePack Optimize Design
+OPT-1001 : Start physical optimization ...
+OPT-1001 : Total overflow 258.66 peak overflow 1.47
+OPT-1001 : Stage 3.1 | Global Optimization
+OPT-1001 : Start global optimization ...
+OPT-1001 : Update timing in Manhattan mode
+OPT-1001 : End timing update;  3.697382s wall, 3.781250s user + 0.062500s system = 3.843750s CPU (104.0%)
+
+OPT-0007 : Start: SWNS 664 STNS 0 NUM_FEPS 0
+OPT-0007 : Iter 1: improved SWNS 1174 STNS 0 NUM_FEPS 0 with 33 cells processed and 6428 slack improved
+OPT-0007 : Iter 2: improved SWNS 1295 STNS 0 NUM_FEPS 0 with 34 cells processed and 5106 slack improved
+OPT-0007 : Iter 3: improved SWNS 1295 STNS 0 NUM_FEPS 0 with 18 cells processed and 2110 slack improved
+OPT-0007 : Iter 4: improved SWNS 1295 STNS 0 NUM_FEPS 0 with 11 cells processed and 2135 slack improved
+OPT-0007 : Iter 5: improved SWNS 1295 STNS 0 NUM_FEPS 0 with 4 cells processed and 733 slack improved
+OPT-1001 : Overall commit ratio 0.62
+OPT-1001 : End global optimization;  4.401059s wall, 4.453125s user + 0.078125s system = 4.531250s CPU (103.0%)
+
+OPT-1001 : Current memory(MB): used = 1818, reserved = 1845, peak = 1887.
+OPT-1001 : End Stage 3.1 | Global Optimization; Time: 11.066631s wall, 13.062500s user + 0.203125s system = 13.265625s CPU (119.9%); Memory(MB): used = 1818, reserved = 1845, peak = 1887;
+
+OPT-0007 : End flow prepack: SWNS 1295 STNS 0 NUM_FEPS 0
+OPT-1001 : End physical optimization;  11.466324s wall, 13.718750s user + 0.203125s system = 13.921875s CPU (121.4%)
+
+PHY-1001 : End Stage 3 | PrePack Optimize Design; Time: 11.468763s wall, 13.718750s user + 0.203125s system = 13.921875s CPU (121.4%); Memory(MB): used = 1818, reserved = 1845, peak = 1887;
+
+PHY-1001 : Stage 4 | Pack and Legalization
+PHY-1001 : Stage 4.1 | Direct Legalization
+PHY-3001 : Start Direct Legalization ...
+PHY-3001 : Get top1 grid util = 0.897969, top1_avg = 0.901302.
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-3001 : Before Legalization for Slice Macros, Len = 1.62428e+06.
+RUN-1001 : Legalization top10 inst displacement:
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Index  |  Bounded  |  Height  |        Location        |  Disp. (slots)  |  Disp. (grids)  |                                  Name                                   
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :     1    |     N     |    8     |   x77y8z4 to x81y8z0   |       36        |        4        |  control/core/fabric/dma_core/motion/kernel/plan_fifo/ramread0_syn_192  
+RUN-1001 :     2    |     N     |    8     |   x65y8z2 to x69y8z0   |       34        |        4        |  control/core/fabric/dma_core/motion/kernel/plan_fifo/ramread0_syn_732  
+RUN-1001 :     3    |     N     |    8     |  x77y22z1 to x81y22z0  |       33        |        4        |  control/core/fabric/dma_core/motion/kernel/raw_fifo/ramread0_syn_807   
+RUN-1001 :     4    |     N     |    8     |  x77y26z0 to x81y26z0  |       32        |        4        |  control/core/fabric/dma_core/motion/kernel/raw_fifo/ramread0_syn_867   
+RUN-1001 :     5    |     N     |    8     |  x78y32z3 to x81y33z0  |       29        |        4        |  control/core/fabric/dma_core/motion/kernel/raw_fifo/ramread0_syn_947   
+RUN-1001 :     6    |     N     |    8     |  x78y30z4 to x81y31z0  |       28        |        4        |  control/core/fabric/dma_core/motion/kernel/raw_fifo/ramread0_syn_907   
+RUN-1001 :     7    |     N     |    8     |  x78y24z5 to x81y25z0  |       27        |        4        |  control/core/fabric/dma_core/motion/kernel/raw_fifo/ramread0_syn_847   
+RUN-1001 :     8    |     N     |    8     |  x94y40z5 to x92y42z0  |       27        |        4        |  control/core/fabric/dma_core/motion/kernel/raw_fifo/ramread0_syn_127   
+RUN-1001 :     9    |     N     |    8     |  x63y33z3 to x66y33z0  |       27        |        3        |  control/core/fabric/dma_core/motion/kernel/plan_fifo/ramread0_syn_912  
+RUN-1001 :    10    |     N     |    8     |  x78y32z2 to x81y32z0  |       26        |        3        |  control/core/fabric/dma_core/motion/kernel/raw_fifo/ramread0_syn_927   
+RUN-1001 : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHY-3001 : After Legalization for Slice Macros, Len = 1.69372e+06.
+PHY-3001 : Total Iter 96, legal = 23992 / 23992 (100.00%), avg_move = 21.62, max_move = 296.
+PHY-3001 : There are no illegal insts.
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-3001 : End Direct Legalization;  22.896270s wall, 203.906250s user + 1.437500s system = 205.343750s CPU (896.8%)
+
+RUN-1001 : Summary of LUT-FF Pairs
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   Num of Fanout Seqs  |   1x   |  2x   |  3~5  |  6~10  |  >10  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :         Total         |  5945  |  342  |  40   |   79   |   8   
+RUN-1001 :          Grid         |  5920  |  342  |  40   |   16   |   5   
+RUN-1001 :          Bank         |  5886  |  329  |  40   |   16   |   5   
+RUN-1001 :         Paired        |  5836  |  324  |  38   |   14   |   5   
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 : Summary of LUT Pairs
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+RUN-1001 :            |           |           |           |           |           |  O5 + O6  |  Only O5  |  Only O6  |  Total  
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   5 Share  |  4 Share  |  3 Share  |  2 Share  |  1 Share  |  0 Share  |           |           |           |         
+RUN-1001 :     69     |    508    |    362    |   1435    |   1001    |   4766    |   8141    |   1488    |   2726    |  12355  
+RUN-1001 : ---------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 4.1 | Direct Legalization; Time: 23.003713s wall, 204.000000s user + 1.437500s system = 205.437500s CPU (893.1%); Memory(MB): used = 1897, reserved = 1925, peak = 1924;
+
+PHY-3001 : After Direct Legalization, Len = 2.01477e+06.
+PHY-1001 : End Stage 4 | Pack and Legalization; Time: 23.861005s wall, 204.890625s user + 1.437500s system = 206.328125s CPU (864.7%); Memory(MB): used = 1910, reserved = 1938, peak = 1924;
+
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  13.786868s wall, 13.078125s user + 0.265625s system = 13.343750s CPU (96.8%)
+
+RUN-1004 : used memory is 1976 MB, reserved memory is 2007 MB, peak memory is 2023 MB
+PHY-1001 : Stage 5 | Detailed Placement
+PHY-1001 : Stage 5.1 | SLICE Detailed Placement
+PHY-1001 : Stage 5.1.1 | Spreading
+PHY-3001 : Design contains 331 ce signals.
+PHY-3001 : Spreading for sector grids.
+PHY-3001 : Iter 1, total overflow: 0
+PHY-3001 : tot_capacity: 24, usage_cnt: 2, movable_cnt: 24
+PHY-3001 : Spreading for clock grids.
+PHY-3001 : clock grid count for 62 x 6 grids
+PHY-3001 : Spreading for plb grids.
+PHY-3001 : total displace: 0, max displace: 0.
+PHY-3001 : End spreading;  0.720834s wall, 0.687500s user + 0.015625s system = 0.703125s CPU (97.5%)
+
+PHY-1001 : End Stage 5.1.1 | Spreading; Time: 0.721232s wall, 0.687500s user + 0.015625s system = 0.703125s CPU (97.5%); Memory(MB): used = 1942, reserved = 1971, peak = 2023;
+
+PHY-1001 : Stage 5.1.2 | Simulated Annealing Based DP
+RUN-1001 : Generating global routing grids ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 0/19970.
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 2.32355e+06, over cnt = 2721(1%), over = 5862, worst = 9
+PHY-1002 : len = 2.39325e+06, over cnt = 1482(0%), over = 1510, worst = 3
+PHY-1002 : len = 2.43645e+06, over cnt = 59(0%), over = 59, worst = 1
+PHY-1002 : len = 2.43936e+06, over cnt = 3(0%), over = 3, worst = 1
+PHY-1001 : End global iterations;  7.583831s wall, 12.765625s user + 0.187500s system = 12.953125s CPU (170.8%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 80.30 (S 65.30, N 48.40, E 69.44, W 77.22, I 60.52, O 80.59)
+PHY-1001 : top5  = 66.31 (S 51.65, N 37.00, E 53.76, W 61.57, I 47.87, O 58.52)
+PHY-1001 : top10 = 59.12 (S 43.99, N 30.77, E 45.30, W 51.88, I 41.63, O 49.74)
+PHY-1001 : top15 = 53.89 (S 38.33, N 26.51, E 39.56, W 45.16, I 36.95, O 42.67)
+PHY-0007 : Initial: WL Cost = 188379, TD Cost = 1.56744e+06, SWNS = 863, STNS = 0, Nums per T = 100920, Range Limit = 4x8
+PHY-0007 : Finally: WL Cost = 172535, TD Cost = 1.25104e+06, WL Ratio = 0.915894, TD Ratio = 0.798143, SWNS = 1006, STNS = 0
+RUN-1001 : Print Detailed placement's Summary information
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :           |  Total   |  Accept  |  Reject by overFlow  |  Reject by worseCost  |  Failed by noTarget  |  Failed by gridCheck  
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------
+RUN-1001 :   Slices  |  807360  |  17552   |         2563         |        770437         |         1796         |         15012         
+RUN-1001 :   Macros  |  28134   |   189    |         270          |         27340         |         231          |          104          
+RUN-1001 : ------------------------------------------------------------------------------------------------------------------------------
+PHY-1001 : End Stage 5.1.2 | Simulated Annealing Based DP; Time: 82.255541s wall, 86.640625s user + 1.125000s system = 87.765625s CPU (106.7%); Memory(MB): used = 1933, reserved = 1962, peak = 2023;
+
+PHY-3001 : End Detailed Place; 
+PHY-3001 : Final: Len = 1.83653e+06, Over = 0
+PHY-1001 : End Stage 5.1 | SLICE Detailed Placement; Time: 83.321369s wall, 88.640625s user + 1.140625s system = 89.781250s CPU (107.8%); Memory(MB): used = 1930, reserved = 1958, peak = 2023;
+
+PHY-3001 : End Detailed Place; 
+PHY-1001 : Stage 5.2 | PostPack Optimize Design
+OPT-1001 : Start physical optimization ...
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 : Stage 5.2.1 | Optimize Duplicated Nets
+OPT-1001 : Start high-fanout net optimization in optimize equivalent flow with medium effort ...
+OPT-1001 : Clean unloaded insts before merging registers
+PHY-1001 : Populate physical database on model system_wrapper.
+PHY-1001 : Populate physical database on model system_wrapper.
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 : End optimize duplicated nets. Total 233 instances are merged and 3348 sinks are reconnected,  11.622576s wall, 11.250000s user + 0.359375s system = 11.609375s CPU (99.9%)
+
+OPT-1001 : End high-fanout net optimization;  11.628666s wall, 11.250000s user + 0.359375s system = 11.609375s CPU (99.8%)
+
+OPT-1001 : Update timing in Manhattan mode
+RUN-1002 : start command "start_timer"
+RUN-1003 : finish command "start_timer" in  16.924497s wall, 16.093750s user + 0.406250s system = 16.500000s CPU (97.5%)
+
+RUN-1004 : used memory is 1948 MB, reserved memory is 1978 MB, peak memory is 2039 MB
+OPT-1001 : End timing update;  23.352592s wall, 22.562500s user + 0.546875s system = 23.109375s CPU (99.0%)
+
+OPT-1001 : Current memory(MB): used = 1948, reserved = 1978, peak = 2039.
+OPT-1001 : End Stage 5.2.1 | Optimize Duplicated Nets; Time: 35.180824s wall, 34.546875s user + 0.921875s system = 35.468750s CPU (100.8%); Memory(MB): used = 1948, reserved = 1978, peak = 2039;
+
+OPT-1001 : Stage 5.2.2 | Synthesize High-fanout Net
+OPT-1001 : Start high-fanout net optimization in post-pack flow with medium effort ...
+OPT-1001 : Start: SWNS 1000 STNS 0 NUM_FEPS 0
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+OPT-1001 :  select 44 high fanout candidates
+OPT-1001 :  crit level 1 net count 3 (fanout thres 50)
+OPT-1001 :  crit level 2 net count 4 (fanout thres 50)
+OPT-1001 :  crit level 3 net count 8 (fanout thres 40)
+OPT-1001 :  crit level 4 net count 9 (fanout thres 30)
+OPT-1001 :  crit level 5 net count 13 (fanout thres 30)
+OPT-1001 :  crit level 6 net count 7 (fanout thres 30)
+PHY-1001 : Populate physical database on model system_wrapper.
+OPT-1001 : 40 high-fanout net processed.
+OPT-1001 : Total overflow 0.00 peak overflow 0.00
+RUN-1001 : HFN opt statistic
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :   DriverCell type  |  HFN count  |  Duplicated count  
+RUN-1001 : ------------------------------------------------------
+RUN-1001 :       LSLICE       |      0      |         0          
+RUN-1001 :       MSLICE       |      0      |         0          
+RUN-1001 :        OTHER       |     40      |        142         
+RUN-1001 :        TOTAL       |     40      |        142         
+RUN-1001 : ------------------------------------------------------
+OPT-1001 : End high-fanout net optimization;  48.789794s wall, 47.171875s user + 1.187500s system = 48.359375s CPU (99.1%)
+
+OPT-1001 : Current memory(MB): used = 1948, reserved = 1978, peak = 2039.
+OPT-1001 : End Stage 5.2.2 | Synthesize High-fanout Net; Time: 48.898252s wall, 47.593750s user + 1.234375s system = 48.828125s CPU (99.9%); Memory(MB): used = 1948, reserved = 1978, peak = 2039;
+
+OPT-1001 : Stage 5.2.3 | Setup Timing Optimization
+OPT-1001 : Start Setup Timing Optimization with mode 4 ...
+OPT-0007 : Start: SWNS 1000 STNS 0 NUM_FEPS 0
+OPT-1001 : Start congestion update ...
+RUN-1001 : Generating global routing grids ...
+PHY-1001 : Generate routing nets ...
+PHY-1001 : Reuse net number 9572/20548.
+PHY-1001 : Global iterations in 22 thread ...
+PHY-1002 : len = 2.28933e+06, over cnt = 2520(1%), over = 4422, worst = 9
+PHY-1002 : len = 2.32896e+06, over cnt = 1552(0%), over = 1572, worst = 2
+PHY-1002 : len = 2.37525e+06, over cnt = 67(0%), over = 67, worst = 1
+PHY-1002 : len = 2.37928e+06, over cnt = 2(0%), over = 2, worst = 1
+PHY-1001 : End global iterations;  2.565115s wall, 4.281250s user + 0.093750s system = 4.375000s CPU (170.6%)
+
+PHY-1001 : Congestion index:
+PHY-1001 : top1  = 81.47 (S 69.03, N 49.88, E 69.78, W 77.91, I 60.71, O 78.85)
+PHY-1001 : top5  = 67.76 (S 55.07, N 38.66, E 54.01, W 62.13, I 47.76, O 55.99)
+PHY-1001 : top10 = 60.31 (S 46.81, N 32.00, E 45.31, W 52.61, I 41.58, O 47.18)
+PHY-1001 : top15 = 54.89 (S 40.75, N 27.50, E 39.59, W 46.08, I 36.87, O 40.91)
+OPT-1001 : End congestion update;  3.267142s wall, 4.968750s user + 0.125000s system = 5.093750s CPU (155.9%)
+
+OPT-1001 : Unpack Path Based Optimization:
+OPT-0007 : Iter 1: improved SWNS 1691 STNS 0 NUM_FEPS 0 with 29(1286) cells and 643(643) paths processed with 7339 slack improved, crit_thod: 1681 ratio: 0.97(33/34) rt: 25.9s
+OPT-0007 : Iter 2: improved SWNS 1923 STNS 0 NUM_FEPS 0 with 88(7966) cells and 3983(3983) paths processed with 14313 slack improved, crit_thod: 2072 ratio: 0.96(99/103) rt: 60.4s

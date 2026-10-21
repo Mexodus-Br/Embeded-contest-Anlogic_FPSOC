@@ -1,0 +1,82 @@
+{
+  "status": "BUILT_NOT_BOARD_BOOT_TESTED",
+  "ddr": {
+    "capacity_mib": 1024,
+    "dq_width": 32,
+    "rate_mts": 1333,
+    "io_voltage_v": 1.35,
+    "physical_voltage_measured": false
+  },
+  "root_partuuid": "f330c1cf-02",
+  "partitions": [
+    {
+      "number": 1,
+      "start_sector": 2048,
+      "sectors": 131072,
+      "filesystem": "FAT32"
+    },
+    {
+      "number": 2,
+      "start_sector": 133120,
+      "sectors": 524288,
+      "filesystem": "EXT4"
+    }
+  ],
+  "versions": {
+    "linux": "6.1.111-rt42-bsp-sd1",
+    "uboot": "2021.01",
+    "buildroot": "2022.02.6",
+    "TD": "2026.1 SP2 6.2.2.200067",
+    "FD": "2026.1 SP1"
+  },
+  "files": {
+    "sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "f9fbe564a5cec7662c2fd9267f5ce437db0d5f3097e6e41eef73f4ef573b17a3"
+    },
+    "BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "1f9721e431a55925e09719f33d3c831b9404aaef643229948e6d0df981c04cf1"
+    },
+    "system.hpf": {
+      "bytes": 646024,
+      "sha256": "3831396ea95d563f95edbf9a85bf3683eaf51cefcc5e59d2d839514b0d166aa5"
+    },
+    "system.bit": {
+      "bytes": 4052214,
+      "sha256": "ee9704aa65e78532be51a85be65187c4fad2248aae9f9ca1423425ea3d574660"
+    },
+    "fsbl.elf": {
+      "bytes": 1507000,
+      "sha256": "8454255fbf74a7da4cbaf213fe434d8388c5568edaaad3994f24898ee10bfb91"
+    },
+    "u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "system.dtb": {
+      "bytes": 15458,
+      "sha256": "fa8da409b0f93d687348ef8cc457abecef771ac77e2d3b4e3bb951eb4e7cb196"
+    },
+    "uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    },
+    "rootfs.ext4": {
+      "bytes": 268435456,
+      "sha256": "ab33af00dfbcad7210f644c9f024dafbf196c1d2118eac0d49714450dd90b503"
+    },
+    "boot.cmd": {
+      "bytes": 707,
+      "sha256": "03e83d7477e6d12babc3cd633a5993d1e6dc7d3027fbe08b1e41bac7221166c1"
+    },
+    "boot.scr": {
+      "bytes": 779,
+      "sha256": "231f754e4049fc73d97273154307212d9b639c7801a169f2a3872b2b3e4f54df"
+    },
+    "boot.bif": {
+      "bytes": 365,
+      "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
+    }
+  }
+}

@@ -1,0 +1,129 @@
+Table of Contents
+-----------------
+1. checking no clock(0) (HIGH)
+2. checking clock definition(0) (HIGH)
+3. checking dummy node(2) (HIGH)
+4. checking invalid constraint(0) (HIGH)
+5. checking pll/clock buffer clock constraints(0) (HIGH)
+6. checking combinational loops(0) (HIGH)
+7. checking soft fifo timing exception constraints(0) (HIGH)
+8. checking no path constraints(0) (MEDIUM)
+9. checking shadowed/ignored timing exception constraints(0) (MEDIUM)
+10. checking no input delay(0) (MEDIUM)
+11. checking no output delay(0) (MEDIUM)
+12. checking partial input delay(0) (MEDIUM)
+13. checking partial output delay(0) (MEDIUM)
+14. checking abnormal input delay(0) (MEDIUM)
+
+
+1. checking nets with no clock driven. (HIGH)
+---------------------------------------------
+2. checking clock definition problems. (HIGH)
+---------------------------------------------
+2.1 There are 0 leaf clock pins driven by multiple clocks. (HIGH)
+
+
+2.2 There are 0 clocks created on internal clock network. (HIGH)
+
+
+2.3 There are 0 unexpandable clock sets. (HIGH)
+
+
+2.4 There are 0 local clocks. (HIGH)
+
+
+2.5 There are 0 generated clocks that are not connected to their master clocks. (HIGH)
+
+
+3. checking dummy nodes. (HIGH)
+---------------------------------------------
+There are 2 nodes are dangling. (HIGH)
+
+DummyNode in Model: DR1_PHY_ERAM
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/buuuha/gwlhvo/ramread0_syn_14.orstb
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/caismy$lfcwvd/lrecyr/gwlhvo/ramread0_syn_15.orstb
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/lnyoqm/aqmtoq$peulpp/soswev$siumvh/gwlhvo/ramread0_syn_15.orstb
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/oncqrn$agkwmt/mnhpix/soswev$siumvh/gwlhvo/ramread0_syn_15.orstb
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/pzfgdr/hszuqb$imutro/soswev$siumvh/gwlhvo/ramread0_syn_15.orstb
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/pzfgdr/hszuqb$imutro/soswev$siumvh/gwlhvo/ramread0_syn_56.orstb
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/pzfgdr/hszuqb$imutro/soswev$siumvh/gwlhvo/ramread0_syn_15.orsta
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/ybadvw/bapppk/soswev$siumvh/gwlhvo/ramread0_syn_13.orstb
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/ybadvw/heplgg$cmtmke/soswev$siumvh/gwlhvo/ramread0_syn_14.orstb
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gkclky/aqmtoq$peulpp/soswev$siumvh/gwlhvo/ramread0_syn_15.orstb
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gkclky/aqmtoq$peulpp/soswev$siumvh/gwlhvo/ramread0_syn_15.orsta
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_54.orsta
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_13.orsta
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_13.orstb
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/lrecyr/gwlhvo/ramread0_syn_54.orstb
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/gszdlk$lvcvoy/zcndjo$mnhpix/soswev$siumvh/gwlhvo/ramread0_syn_15.orstb
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/pzfgdr/hszuqb$imutro/soswev$siumvh/gwlhvo/ramread0_syn_15.orsta
+	control/core/fabric/dma_core/dma/voxztl/eqlled$lkjjvr/pzfgdr/hszuqb$imutro/soswev$siumvh/gwlhvo/ramread0_syn_15.orstb
+	control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_READ$ar_inst/R_CHANNEL$rd_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_13.orstb
+	control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/B_Channel$cmd_b_queue/soft_fifo_al0/ram_inst/ramread0_syn_13.orstb
+	control/core/fabric/dma_core/hp_converter/gen_axi4_axi3$conv_axi3/ENABLE_WRITE$aw_inst/W_Channel$wr_cmd_queue/soft_fifo_al0/ram_inst/ramread0_syn_14.orstb
+
+DummyNode in Model: DR1_PHY_LSLICE
+	control/core/fabric/dma_core/dma/voxztl/cjkpgq$meedsf/lnyoqm/ylppcz$awrdzi/sub0_syn_886.ofb
+
+4. checking invalid constraints. (HIGH)
+---------------------------------------------
+There are 0 invalid constraints. (HIGH)
+
+
+5. checking PLL/buffer clocks. (HIGH)
+---------------------------------------------
+6. checking combinational loops. (HIGH)
+---------------------------------------------
+There are 0 combinational loops. (HIGH)
+
+
+7. checking soft fifo set_max_delay constraints. (HIGH)
+---------------------------------------------
+There are 0 max-delay datapath-only paths that are part of the provided async clock paths, whereas the timing between other registers is not relaxed or ignored. (HIGH)
+
+
+8. checking no path constraints. (MEDIUM)
+---------------------------------------------
+There are 0 constraints that have no timing paths. (MEDIUM)
+
+
+9. checking path exception constraints shadowed/ignored by other constraints. (MEDIUM)
+---------------------------------------------
+
+MCP/SMD Summary
+--------------------
+
+		Max Check
+		--------------------
+		     Total    Dominated     Shadowed      Ignored   Constraint
+		         9            9            0            0   set_max_delay -to [get_ports {a0_step a0_dir a0_en a1_step a1_dir a1_en a2_step a2_dir a2_en}] -datapath_only 20
+
+		Min Check
+		--------------------
+		     Total    Dominated     Shadowed      Ignored   Constraint
+
+10. checking no input delay (MEDIUM)
+--------------------------
+There are 0 input ports that with no input delay specified. (MEDIUM)
+
+
+11. checking no output delay (MEDIUM)
+--------------------------
+There are 0 output ports that with no output delay specified. (MEDIUM)
+
+
+12. checking partial input delay (MEDIUM)
+--------------------------
+There are 0 input ports with partial input delay specified. (MEDIUM)
+
+
+13. checking partial output delay (MEDIUM)
+--------------------------
+There are 0 output ports with partial output delay specified. (MEDIUM)
+
+
+14. checking abnormal set_input_delay constraints. (MEDIUM)
+---------------------------------------------
+There are 0 abnormal set_input_delay constraints. (MEDIUM)
+
+

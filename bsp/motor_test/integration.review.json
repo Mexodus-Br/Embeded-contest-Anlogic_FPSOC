@@ -1,0 +1,77 @@
+{
+  "stages": {
+    "gate": {
+      "setup_ns": -1.878,
+      "hold_ns": 0.0
+    },
+    "place": {
+      "setup_ns": 2.437,
+      "hold_ns": 0.0
+    },
+    "route": {
+      "setup_ns": 0.087,
+      "hold_ns": 0.02
+    }
+  },
+  "resources": {
+    "lut6": 13257,
+    "reg": 13595,
+    "slice": 15469,
+    "eram": 16,
+    "dsp": 4,
+    "gclk": 1,
+    "sclk": 6
+  },
+  "critical": [],
+  "reference_speed": 2,
+  "threads": 16,
+  "timing_pass": true,
+  "board_validated": false,
+  "status": "REVIEWED_FOR_ISOLATED_MOTION_BUILD",
+  "check_timing": {
+    "no clock": 0,
+    "clock definition": 0,
+    "dummy node": 2,
+    "invalid constraint": 0,
+    "pll/clock buffer clock constraints": 0,
+    "combinational loops": 0,
+    "soft fifo timing exception constraints": 0,
+    "no path constraints": 0,
+    "shadowed/ignored timing exception constraints": 0,
+    "no input delay": 0,
+    "no output delay": 0,
+    "partial input delay": 0,
+    "partial output delay": 0,
+    "abnormal input delay": 0
+  },
+  "hpf_sha256": "3831396ea95d563f95edbf9a85bf3683eaf51cefcc5e59d2d839514b0d166aa5",
+  "bitstream_sha256": "ee9704aa65e78532be51a85be65187c4fad2248aae9f9ca1423425ea3d574660",
+  "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1",
+  "profile": {
+    "clock_hz": 100000000,
+    "step_high_cycles": 3125,
+    "step_low_cycles": 3125,
+    "dir_setup_cycles": 500,
+    "dir_hold_cycles": 500,
+    "en_setup_cycles": 500,
+    "en_disable_cycles": 500,
+    "max_step_hz": 16000,
+    "axis_mask": 7,
+    "m4_enabled": false,
+    "baseline_gpio_commit": "df17b4ebd6e358d6626a227b5c0c152c1f6cb9ed",
+    "purpose": "explicit motor bench pulse-width comparison; not calibrated mechanics"
+  },
+  "ps_macros_unchanged": true,
+  "excluded_timestamp_macros": {
+    "BITSTREAM_GENERATE_TIME": "(\"2026/10/21 19:29:00\")",
+    "HPF_EXPORT_TIME": "(\"2026/10/21 19:30:22\")"
+  },
+  "pl_gpio_source": "df17b4e",
+  "bsp_source": "db5f75c",
+  "physical_speed_confirmed": false,
+  "driver_timing_validated": false,
+  "sd_written": false,
+  "board_motion_executed": false,
+  "scope": "minimal HP0/MOT2/J12 motor pulse comparison; excludes independent HP1/RS485/safety HOME",
+  "io_constraint": "original asynchronous GPIO 20ns budget; not receiver synchronization qualification"
+}

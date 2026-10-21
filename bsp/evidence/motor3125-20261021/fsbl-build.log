@@ -1,0 +1,377 @@
+patching file Makefile
+patching file alfsbl_partition_load.c
+aarch64-none-elf-gcc (Arm GNU Toolchain 12.3.Rel1 (Build arm-12.35)) 12.3.1 20230626
+Copyright (C) 2022 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+make: Entering directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/demo/fsbl_motor3125'
+=====================================
+Anlogic FPSoc Software Development Kit
+Compling:  alfsbl_emmc_raw.c.o
+Compling:  alfsbl_qspi.c.o
+AL_CHIP=dr1m90 CORE= V=0 PLAT=project_motor3125 RTOS= PFLOAT=1 NOGC:0 DOWNLOAD: ocm 
+=====================================
+Compling:  alfsbl_init.c.o
+Compling:  alfsbl_secure.c.o
+Compling:  alfsbl_image_header.c.o
+Compling:  alfsbl_handoff.c.o
+Compling:  alfsbl_boot.c.o
+Compling:  alfsbl_efuse.c.o
+Compling:  alfsbl_err_lockdown.c.o
+Compling:  alfsbl_main.c.o
+Compling:  alfsbl_partition_load.c.o
+Compling:  alfsbl_misc.c.o
+Compling:  ps_init_default.c.o
+Compling:  alfsbl_sd.c.o
+Compling:  alfsbl_nand.c.o
+make -C /home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/ lib
+make -C /home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/semihost/ lib
+make -C /home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lwip-2.1.3/ lib
+make -C /home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/FATFS/ lib
+make -C /home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/libmetal/ lib
+make -C /home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/open-amp/ lib
+make -C /home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/boards/project_motor3125 lib
+make[1]: Entering directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/semihost'
+make[1]: Entering directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/boards/project_motor3125'
+make[1]: Entering directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/open-amp'
+Compling:  version.c.o
+make[1]: Entering directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/FATFS'
+Compling:  al_semihost.c.o
+Compling:  rpmsg_virtio.c.o
+Compling:  ddr_speed_bin.c.o
+make[1]: Entering directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/libmetal'
+Compling:  rpmsg.c.o
+Compling:  ffsystem.c.o
+Compling:  virtqueue.c.o
+Compling:  soc_plat.c.o
+Compling:  ff.c.o
+Compling:  ffunicode.c.o
+Compling:  fd_ddr_init.c.o
+Compling:  virtio.c.o
+Compling:  softirq.c.o
+Compling:  elf_loader.c.o
+Compling:  log.c.o
+Compling:  diskio.c.o
+Compling:  init.c.o
+Compling:  remoteproc_virtio.c.o
+Compling:  irq.c.o
+Compling:  io.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/demo/fsbl_motor3125/alfsbl_misc.c:68:13: warning: 'AlFsbl_Num2Str' defined but not used [-Wunused-function]
+   68 | static void AlFsbl_Num2Str(char *Str, uint32_t Num, uint32_t *StrLen)
+      |             ^~~~~~~~~~~~~~
+Compling:  device.c.o
+make[1]: Entering directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lwip-2.1.3'
+Compling:  remoteproc.c.o
+Compling:  shmem.c.o
+Compling:  rsc_table_parser.c.o
+Compling:  ethernet.c.o
+Compling:  version.c.o
+Compling:  stats.c.o
+Compling:  rpmsg_rpc_server.c.o
+Compling:  rpmsg_rpc_client.c.o
+Compling:  dma.c.o
+Compling:  mem.c.o
+Compling:  init.c.o
+Compling:  shmem.c.o
+make[1]: Entering directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc'
+Compling:  init.c.o
+Compling:  al_aarch64_start.S.o
+Compling:  memp.c.o
+Compling:  al_aarch64_mmu.S.o
+Compling:  tcp.c.o
+Compling:  irq.c.o
+Compling:  al_aarch64_vectors.S.o
+Compling:  io.c.o
+Compling:  altcp_alloc.c.o
+Compling:  al_aarch64_mem.S.o
+Compling:  condition.c.o
+Compling:  dns.c.o
+Compling:  al_aarch64_pagetables.S.o
+Compling:  timeouts.c.o
+Compling:  device.c.o
+Compling:  al_aarch64_semihost.c.o
+Compling:  ip.c.o
+Compling:  time.c.o
+Compling:  pbuf.c.o
+Compling:  al_aarch64_core.c.o
+Compling:  irq.c.o
+Compling:  raw.c.o
+Compling:  sys.c.o
+Compling:  al_aarch64_exception.c.o
+Compling:  tcp_in.c.o
+Compling:  al_aarch64_cpu.c.o
+Compling:  def.c.o
+Compling:  al_aarch64_backtrace.c.o
+Compling:  netif.c.o
+Compling:  sys.c.o
+Compling:  altcp.c.o
+Compling:  al_gicv3_private.c.o
+Compling:  al_gicv3_main.c.o
+Compling:  inet_chksum.c.o
+Compling:  al_gicv3.c.o
+Compling:  altcp_tcp.c.o
+Compling:  udp.c.o
+Compling:  al_sys_timer.c.o
+Compling:  al_chip.c.o
+Compling:  tcp_out.c.o
+Compling:  al_top.c.o
+Compling:  ip4_frag.c.o
+Compling:  al_dr1m90.c.o
+Compling:  dhcp.c.o
+Compling:  al_mpu.c.o
+Compling:  al_gic.c.o
+Compling:  etharp.c.o
+Compling:  al_adc_cfg.c.o
+Compling:  ip4_addr.c.o
+Compling:  igmp.c.o
+Compling:  al_adc_dev.c.o
+Compling:  ip4.c.o
+Compling:  al_adc_hal.c.o
+Compling:  al_can_hal.c.o
+Compling:  autoip.c.o
+Compling:  al_can_cfg.c.o
+Compling:  icmp.c.o
+Compling:  ip6_frag.c.o
+Compling:  dhcp6.c.o
+Compling:  inet6.c.o
+Compling:  al_can_dev.c.o
+Compling:  ip6_addr.c.o
+Compling:  ip6.c.o
+Compling:  al_cipher_dev.c.o
+Compling:  nd6.c.o
+Compling:  mld6.c.o
+Compling:  al_cipher_hal.c.o
+Compling:  al_cipher_cfg.c.o
+Compling:  ethip6.c.o
+Compling:  icmp6.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/demo/fsbl_motor3125/alfsbl_partition_load.c: In function 'AlFsbl_LoadPsPartition':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/demo/fsbl_motor3125/alfsbl_partition_load.c:499:25: warning: implicit declaration of function 'memcpy' [-Wimplicit-function-declaration]
+  499 |                         memcpy(HashBuffer, QSPI_XIP_BASEADDR + ImageOffsetAddress + PtHdr->HashDataOffset, 32);
+      |                         ^~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/demo/fsbl_motor3125/alfsbl_partition_load.c:23:1: note: 'memcpy' is defined in header '<string.h>'; did you forget to '#include <string.h>'?
+   22 | #include "al_hal.h"
+  +++ |+#include <string.h>
+   23 | 
+Compling:  al_dma_hal.c.o
+Compling:  netbuf.c.o
+Compling:  api_lib.c.o
+Compling:  netifapi.c.o
+Compling:  al_dma_cfg.c.o
+Compling:  tcpip.c.o
+Compling:  al_dma_dev.c.o
+Compling:  netdb.c.o
+Compling:  if_api.c.o
+Compling:  al_dmacahb_hal.c.o
+Compling:  err.c.o
+Compling:  al_dmacahb_cfg.c.o
+Compling:  al_dmacahb_dev.c.o
+Compling:  al_efuse_dev.c.o
+Compling:  api_msg.c.o
+Compling:  al_efuse_hal.c.o
+Compling:  sockets.c.o
+Compling:  al_gbe_hal.c.o
+Compling:  al_gbe_ethernetif.c.o
+Compling:  al_gbe_cfg.c.o
+Compling:  al_ethlite_ethernetif.c.o
+Compling:  sys_arch.c.o
+make[1]: Leaving directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/libmetal'
+Compling:  al_gbe_dev.c.o
+Compling:  al_gbe_phy_yt8531dh.c.o
+Compling:  al_gbe_phy_yt8531sh.c.o
+make[1]: Leaving directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/semihost'
+Compling:  al_gbe_phy_rtl8211f.c.o
+Compling:  al_gbe_phy.c.o
+Compling:  al_gpio_cfg.c.o
+Compling:  al_gpio_hal.c.o
+Compling:  al_iic_hal.c.o
+Compling:  al_iic_cfg.c.o
+Compling:  al_iic_dev.c.o
+Compling:  al_ipc_cfg.c.o
+Compling:  al_ipc_hal.c.o
+Compling:  al_mmc_cfg.c.o
+Compling:  al_mmc_dev.c.o
+Compling:  al_mmc_hal.c.o
+Compling:  al_mpu_cfg.c.o
+Compling:  al_mpu_dev.c.o
+Compling:  al_mpu_hal.c.o
+Compling:  al_qspi_hal.c.o
+Compling:  al_qspi_cfg.c.o
+Compling:  al_qspi_dev.c.o
+Compling:  al_smc_cfg.c.o
+Compling:  al_smc_dev.c.o
+Compling:  al_smc_hal.c.o
+Compling:  al_spi_cfg.c.o
+Compling:  al_spi_dev.c.o
+Compling:  al_spi_hal.c.o
+Compling:  al_spi_controller.c.o
+Compling:  al_spi_nor_ids.c.o
+Compling:  al_spi_nor.c.o
+Compling:  al_tc_hal.c.o
+Compling:  al_tc_cfg.c.o
+Compling:  al_tc_dev.c.o
+Compling:  al_uart_cfg.c.o
+Compling:  al_uart_dev.c.o
+Compling:  al_usb_hal.c.o
+Compling:  al_uart_hal.c.o
+Compling:  al_usb_cfg.c.o
+Compling:  al_wdt_hal.c.o
+make[1]: Leaving directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/boards/project_motor3125'
+Compling:  al_wdt_cfg.c.o
+Compling:  al_xmon_hal.c.o
+Compling:  al_xmon_cfg.c.o
+Compling:  al_axi_dma_hal.c.o
+Compling:  al_axi_dma_cfg.c.o
+Compling:  al_axi_dma_dev.c.o
+Compling:  al_axi_ethernet_lite_hal.c.o
+Compling:  al_axi_ethernet_lite_cfg.c.o
+Compling:  al_axi_ethernet_lite_dev.c.o
+Compling:  al_axi_gpio_cfg.c.o
+Compling:  al_axi_gpio_hal.c.o
+Compling:  al_axi_iic_hal.c.o
+Compling:  al_axi_iic_cfg.c.o
+Compling:  al_axi_iic_dev.c.o
+Compling:  al_axi_quad_spi_hal.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_dma/src/al_axi_dma_hal.c: In function 'AlAxiDma_Hal_Init':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_dma/src/al_axi_dma_hal.c:109:19: warning: array subscript DevId is outside array bounds of 'AlAxiDma_HalStruct[0]' [-Warray-bounds]
+  109 |         *Handle = &AXI_DMA_Handle[DevId];
+      |                   ^~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_dma/src/al_axi_dma_hal.c:16:20: note: while referencing 'AXI_DMA_Handle'
+   16 | AlAxiDma_HalStruct AXI_DMA_Handle[AL_AXI_DMA_NUM_INSTANCE];
+      |                    ^~~~~~~~~~~~~~
+Compling:  al_axi_quad_spi_cfg.c.o
+make[1]: Leaving directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/open-amp'
+Compling:  al_axi_quad_spi_dev.c.o
+Compling:  al_axi_canfd_hal.c.o
+Compling:  al_axi_canfd_cfg.c.o
+Compling:  al_axi_canfd_dev.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_ethernet_lite/src/al_axi_ethernet_lite_hal.c: In function 'AlAxiEthLite_Hal_Init':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_ethernet_lite/src/al_axi_ethernet_lite_hal.c:58:19: warning: array subscript DevId is outside array bounds of 'AL_AXI_ETHLITE_HalStruct[0]' [-Warray-bounds]
+   58 |         *Handle = &AlAxiEthLiteHandle[DevId];
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_ethernet_lite/src/al_axi_ethernet_lite_hal.c:10:26: note: while referencing 'AlAxiEthLiteHandle'
+   10 | AL_AXI_ETHLITE_HalStruct AlAxiEthLiteHandle[AL_AXI_ETH_LITE_NUM_INSTANCE];
+      |                          ^~~~~~~~~~~~~~~~~~
+Compling:  al_axi_uart_lite_hal.c.o
+Compling:  al_axi_uart_lite_cfg.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_iic/src/al_axi_iic_hal.c: In function 'AlAxiIic_Hal_Init':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_iic/src/al_axi_iic_hal.c:62:19: warning: array subscript DevId is outside array bounds of 'AlAxiIic_HalStruct[0]' [-Warray-bounds]
+   62 |         *Handle = &AXI_IIC_Handle[DevId];
+      |                   ^~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_iic/src/al_axi_iic_hal.c:9:20: note: while referencing 'AXI_IIC_Handle'
+    9 | AlAxiIic_HalStruct AXI_IIC_Handle[AL_AXI_IIC_NUM_INSTANCE];
+      |                    ^~~~~~~~~~~~~~
+Compling:  al_axi_uart_lite_dev.c.o
+Compling:  al_axi_vdma_hal.c.o
+Compling:  al_axi_vdma_cfg.c.o
+Compling:  al_axi_vdma_dev.c.o
+Compling:  al_axi_uart_16550_hal.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_canfd/src/al_axi_canfd_hal.c:11:1: warning: excess elements in array initializer
+   11 | static AlAxiCanFd_HalStruct AlAxiCanFdHandle[AL_AXI_CANFD_NUM_INSTANCE] = { 0 };
+      | ^~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_canfd/src/al_axi_canfd_hal.c:11:1: note: (near initialization for 'AlAxiCanFdHandle')
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_quad_spi/src/al_axi_quad_spi_hal.c: In function 'AlAxiQspi_Hal_Init':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_quad_spi/src/al_axi_quad_spi_hal.c:79:19: warning: array subscript DevId is outside array bounds of 'AlAxiQspi_HalStruct[0]' [-Warray-bounds]
+   79 |         *Handle = &AlAxiQspiHandle[DevId];
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_quad_spi/src/al_axi_quad_spi_hal.c:22:28: note: while referencing 'AlAxiQspiHandle'
+   22 | static AlAxiQspi_HalStruct AlAxiQspiHandle[AL_AXI_QSPI_NUM_INSTANCE];
+      |                            ^~~~~~~~~~~~~~~
+Compling:  al_axi_uart_16550_cfg.c.o
+Compling:  al_axi_uart_16550_dev.c.o
+Compling:  al_axi_intc_hal.c.o
+Compling:  al_axi_intc_cfg.c.o
+Compling:  al_axi_intc_dev.c.o
+Compling:  execve.c.o
+Compling:  stat.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_vdma/src/al_axi_vdma_hal.c: In function 'AlAxiVdma_Hal_Init':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_vdma/src/al_axi_vdma_hal.c:67:19: warning: array subscript DevId is outside array bounds of 'AlAxiVdma_Hal_Struct[0]' [-Warray-bounds]
+   67 |         *Handle = &AXI_VDMA_Handle[DevId];
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_vdma/src/al_axi_vdma_hal.c:12:22: note: while referencing 'AXI_VDMA_Handle'
+   12 | AlAxiVdma_Hal_Struct AXI_VDMA_Handle[AL_AXI_VDMA_NUM_INSTANCE];
+      |                      ^~~~~~~~~~~~~~~
+Compling:  link.c.o
+Compling:  read.c.o
+Compling:  exit.c.o
+Compling:  clock_gettime.c.o
+Compling:  unlink.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_canfd/src/al_axi_canfd_hal.c: In function 'AlAxiCanFd_Hal_Init':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_canfd/src/al_axi_canfd_hal.c:105:19: warning: array subscript DevId is outside array bounds of 'AlAxiCanFd_HalStruct[0]' [-Warray-bounds]
+  105 |         *Handle = &AlAxiCanFdHandle[DevId];
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_canfd/src/al_axi_canfd_hal.c:11:29: note: while referencing 'AlAxiCanFdHandle'
+   11 | static AlAxiCanFd_HalStruct AlAxiCanFdHandle[AL_AXI_CANFD_NUM_INSTANCE] = { 0 };
+      |                             ^~~~~~~~~~~~~~~~
+Compling:  wait.c.o
+Compling:  lseek.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_hal.c: In function 'AlAxiIntc_Hal_Init':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_hal.c:21:19: warning: array subscript DevId is outside array bounds of 'AL_AXI_INTC_HalStruct[0]' [-Warray-bounds]
+   21 |         *Handle = &AlAxiIntcHandle[DevId];
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_hal.c:10:23: note: while referencing 'AlAxiIntcHandle'
+   10 | AL_AXI_INTC_HalStruct AlAxiIntcHandle[AL_AXI_INTC_NUM_INSTANCE];
+      |                       ^~~~~~~~~~~~~~~
+Compling:  kill.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c: In function 'AlAxiIntc_Dev_RegHandler':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c:74:24: warning: array subscript <unknown> is outside array bounds of 'AL_AXI_INTC_INTR_HandlerStruct[0][32]' [-Warray-bounds]
+   74 |     AlAxiIntcHandleList[InitConfig->AxiIntcDevId][InitConfig->IntrId].Func = Func;
+      |     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c:12:32: note: while referencing 'AlAxiIntcHandleList'
+   12 | AL_AXI_INTC_INTR_HandlerStruct AlAxiIntcHandleList[AL_AXI_INTC_NUM_INSTANCE][AL_AXI_INTC_MAX_INTR_NUMBER];
+      |                                ^~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c:75:24: warning: array subscript <unknown> is outside array bounds of 'AL_AXI_INTC_INTR_HandlerStruct[0][32]' [-Warray-bounds]
+   75 |     AlAxiIntcHandleList[InitConfig->AxiIntcDevId][InitConfig->IntrId].Param = Param;
+      |     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c:12:32: note: while referencing 'AlAxiIntcHandleList'
+   12 | AL_AXI_INTC_INTR_HandlerStruct AlAxiIntcHandleList[AL_AXI_INTC_NUM_INSTANCE][AL_AXI_INTC_MAX_INTR_NUMBER];
+      |                                ^~~~~~~~~~~~~~~~~~~
+Compling:  gettimeofday.c.o
+Compling:  isatty.c.o
+Compling:  memcmp.c.o
+Compling:  close.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c: In function 'AlAxiIntc_Dev_IntrHandler':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c:99:32: warning: array subscript AxiIntcDevId is outside array bounds of 'AL_AXI_INTC_INTR_HandlerStruct[0][32]' [-Warray-bounds]
+   99 |             AlAxiIntcHandleList[AxiIntcDevId][IntrNum].Func(AlAxiIntcHandleList[AxiIntcDevId][IntrNum].Param);
+      |             ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c:12:32: note: while referencing 'AlAxiIntcHandleList'
+   12 | AL_AXI_INTC_INTR_HandlerStruct AlAxiIntcHandleList[AL_AXI_INTC_NUM_INSTANCE][AL_AXI_INTC_MAX_INTR_NUMBER];
+      |                                ^~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c:99:80: warning: array subscript AxiIntcDevId is outside array bounds of 'AL_AXI_INTC_INTR_HandlerStruct[0][32]' [-Warray-bounds]
+   99 |             AlAxiIntcHandleList[AxiIntcDevId][IntrNum].Func(AlAxiIntcHandleList[AxiIntcDevId][IntrNum].Param);
+      |                                                             ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_intc/src/al_axi_intc_dev.c:12:32: note: while referencing 'AlAxiIntcHandleList'
+   12 | AL_AXI_INTC_INTR_HandlerStruct AlAxiIntcHandleList[AL_AXI_INTC_NUM_INSTANCE][AL_AXI_INTC_MAX_INTR_NUMBER];
+      |                                ^~~~~~~~~~~~~~~~~~~
+Compling:  open.c.o
+Compling:  write.c.o
+Compling:  memcpy.c.o
+Compling:  clock_settime.c.o
+Compling:  clock_getres.c.o
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_uart_lite/src/al_axi_uart_lite_hal.c: In function 'AlAxiUartLite_Hal_Init':
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_uart_lite/src/al_axi_uart_lite_hal.c:90:19: warning: array subscript DevId is outside array bounds of 'Al_AxiUartLite_HalStruct[0]' [-Warray-bounds]
+   90 |         *Handle = &AlAxiUartLiteHandle[DevId];
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc/driver/pl_driver/axi_uart_lite/src/al_axi_uart_lite_hal.c:19:33: note: while referencing 'AlAxiUartLiteHandle'
+   19 | static Al_AxiUartLite_HalStruct AlAxiUartLiteHandle[AL_AXI_UART_LITE_NUM_INSTANCE];
+      |                                 ^~~~~~~~~~~~~~~~~~~
+Compling:  fstat.c.o
+Compling:  sbrk.c.o
+Compling:  times.c.o
+Compling:  fork.c.o
+Compling:  memset.c.o
+Compling:  getpid.c.o
+Compling:  strlen.c.o
+make[1]: Leaving directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lwip-2.1.3'
+Compling:  al_cli.c.o
+Compling:  al_cli_console.c.o
+Compling:  al_cli_uart_console.c.o
+Compling:  al_cli_cmd.c.o
+Compling:  al_log.c.o
+Compling:  al_printf.c.o
+Compling:  al_simp_printf.c.o
+make[1]: Leaving directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/fpsoc'
+make[1]: Leaving directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/3rdparty/lib/FATFS'
+   text	   data	    bss	    dec	    hex	filename
+ 177024	   6640	  29808	 213472	  341e0	/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/demo/fsbl_motor3125/build/fsbl.elf
+make: Leaving directory '/home/uisrc/embedded-bsp-scope/sdk/master_sdk/solutions/demo/fsbl_motor3125'

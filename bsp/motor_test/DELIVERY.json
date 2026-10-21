@@ -1,0 +1,208 @@
+{
+  "purpose": "MOTOR3125 isolated motor bench pulse comparison; not a calibrated machine release",
+  "source_baselines": {
+    "pl_gpio": "df17b4ebd6e358d6626a227b5c0c152c1f6cb9ed",
+    "bsp": "db5f75c",
+    "image_packager": "0a4ca51"
+  },
+  "profile": {
+    "clock_hz": 100000000,
+    "step_high_cycles": 3125,
+    "step_low_cycles": 3125,
+    "dir_setup_cycles": 500,
+    "dir_hold_cycles": 500,
+    "en_setup_cycles": 500,
+    "en_disable_cycles": 500,
+    "max_step_hz": 16000,
+    "axis_mask": 7,
+    "m4_enabled": false,
+    "baseline_gpio_commit": "df17b4ebd6e358d6626a227b5c0c152c1f6cb9ed",
+    "purpose": "explicit motor bench pulse-width comparison; not calibrated mechanics"
+  },
+  "image_path": "bsp/artifacts/motor3125/sdcard.img",
+  "image_sha256": "f9fbe564a5cec7662c2fd9267f5ce437db0d5f3097e6e41eef73f4ef573b17a3",
+  "image_bytes": 536870912,
+  "root_partuuid": "f330c1cf-02",
+  "final_artifacts": {
+    "sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "f9fbe564a5cec7662c2fd9267f5ce437db0d5f3097e6e41eef73f4ef573b17a3"
+    },
+    "BOOT.bin": {
+      "bytes": 5160448,
+      "sha256": "1f9721e431a55925e09719f33d3c831b9404aaef643229948e6d0df981c04cf1"
+    },
+    "system.hpf": {
+      "bytes": 646024,
+      "sha256": "3831396ea95d563f95edbf9a85bf3683eaf51cefcc5e59d2d839514b0d166aa5"
+    },
+    "system.bit": {
+      "bytes": 4052214,
+      "sha256": "ee9704aa65e78532be51a85be65187c4fad2248aae9f9ca1423425ea3d574660"
+    },
+    "fsbl.elf": {
+      "bytes": 1507000,
+      "sha256": "8454255fbf74a7da4cbaf213fe434d8388c5568edaaad3994f24898ee10bfb91"
+    },
+    "u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "system.dtb": {
+      "bytes": 15458,
+      "sha256": "fa8da409b0f93d687348ef8cc457abecef771ac77e2d3b4e3bb951eb4e7cb196"
+    },
+    "uImage.lz4": {
+      "bytes": 8122647,
+      "sha256": "671d852d640c75277bd910cc219c0dd03e23fe9405615834af6c29fde2f97bab"
+    },
+    "rootfs.ext4": {
+      "bytes": 268435456,
+      "sha256": "ab33af00dfbcad7210f644c9f024dafbf196c1d2118eac0d49714450dd90b503"
+    },
+    "boot.cmd": {
+      "bytes": 707,
+      "sha256": "03e83d7477e6d12babc3cd633a5993d1e6dc7d3027fbe08b1e41bac7221166c1"
+    },
+    "boot.scr": {
+      "bytes": 779,
+      "sha256": "231f754e4049fc73d97273154307212d9b639c7801a169f2a3872b2b3e4f54df"
+    },
+    "boot.bif": {
+      "bytes": 365,
+      "sha256": "d122e6f70ab8720c327fc106524c074cd8c8e5459e5b47d466b21c22cae83053"
+    }
+  },
+  "installed_modules_and_programs": {
+    "usr/bin/delta-scope": "f06472420613213ea4f00e9dc919066122db6621d99853ca51e1a110e17376bf",
+    "usr/bin/delta-model": "2677f8e16e19a65a631a8486e6242707a691520b5e97fdbd6e1043b9d27ac220",
+    "usr/bin/firmware-oracle": "984ce37ed1f4d4d8d80ebbd701e5fcf9ca19d1f9343465984c6d7b9804faeb04",
+    "usr/bin/scope-unit": "3463ab07c6c6dca31d5e4486e1dab5079a22bafdbeb38a09b9361604973828ff",
+    "etc/delta-scope/firmware_reference.cfg": "28690a0c442b9a8a6c8f59e680ca6e3d40936c4916b4d883aec26038958cec00",
+    "etc/delta-scope/model-inputs.txt": "11a4f323cd1713bcf46e044f31c26a1c9fd893bd9af05b6d5cd4b13a07ba03e1",
+    "etc/delta-scope/files.sha256": "f4321eb6235536fed1d767ef9a6ed4a2b85a15872ab988c67a23dd4f356d399b",
+    "etc/motor3125-profile": "50d596793f5a5b391787742d93aafff5a611b4865f3788f50abf09935bd7c67e",
+    "usr/bin/gp-accept": "ce7a38c0c2e4f35fe1b73d0591fc9881476ce064fede2823a57d552840017136",
+    "usr/bin/bsp-readonly-check": "dc380b5a5f4bc86c32f605a03c4dbc4eabeb6e30344d0a9c3f757aa40965393a",
+    "lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_motion.ko": "d67390e345651ab991322b65eb1afa839a1bfd57e4708999e25b2f036eaed232",
+    "lib/modules/6.1.111-rt42-bsp-sd1/extra/bsp_gp.ko": "c0131bcdd4d18485e4392e16428778bf2aac5520bfa48a781ec86d1aede3040b",
+    "lib/modules/6.1.111-rt42-bsp-sd1/kernel/drivers/dma/anlogic/anlogic-dma-engine.ko": "11c6098a010127be5d87d2f66243c6bc04b36eca1272eb6839d2a5063bdb91eb",
+    "lib/modules/6.1.111-rt42-bsp-sd1/modules.dep": "842c0fabfcc08e213c42022e4081917abcb31d980176efe37d1187b5ccfd632d"
+  },
+  "direct_source_sha256": {
+    "bsp/motor_test/CONFIG.json": "ce381a402ab7b02e416996c5bffc8ee905078db6e9a90928c3f5f27d0115a06d",
+    "bsp/motor_test/delta_scope.cpp": "091a777d622651b17517d083237987aaff2d077e7e8b87b2087f34f98cf736a4",
+    "bsp/motor_test/prepare.py": "dfee7656cdaa8da38d1f6e547117ab2efd22c727460638909d8c5b70badb30cb",
+    "bsp/motor_test/build_hardware.py": "399eea569c2356ceffe65153008fd8bca4c77d10990337e7505d21d858076dcb",
+    "bsp/motor_test/package.sh": "7cb24df127fceba5c80cad8d65107be2bfd813c8b696cc0c6b565c1319a1621f",
+    "bsp/motor_test/stage_vm.py": "8e1798ad6c7ec158703730c55a6eaad46a2420bf5d91ee55fb4b1756f08ab47c",
+    "bsp/evidence/motor3125-20261021/system_wrapper.v": "bb3052e433042ea644b7c0a9c376e6a0843a1a7dfa07689bc6494b4fd0b5db06",
+    "bsp/evidence/motor3125-20261021/gpio.adc": "407403e2c086383b924c7ba8ce8fee5a783cf00a269f9cce2f1d7df501718384",
+    "bsp/evidence/motor3125-20261021/gpio.sdc": "b4270ffa31affabdc07f410a0a3159933f38378377077600f544612c95352840",
+    "bsp/evidence/motor3125-20261021/ps-properties.tcl": "325ab17d87cf7dd0d967de2b95aa090f9ecfa6d24ed4537b6aa75c5fd9cdaa29"
+  },
+  "hardware": {
+    "stages": {
+      "gate": {
+        "setup_ns": -1.878,
+        "hold_ns": 0.0
+      },
+      "place": {
+        "setup_ns": 2.437,
+        "hold_ns": 0.0
+      },
+      "route": {
+        "setup_ns": 0.087,
+        "hold_ns": 0.02
+      }
+    },
+    "resources": {
+      "lut6": 13257,
+      "reg": 13595,
+      "slice": 15469,
+      "eram": 16,
+      "dsp": 4,
+      "gclk": 1,
+      "sclk": 6
+    },
+    "critical": [],
+    "reference_speed": 2,
+    "threads": 16,
+    "timing_pass": true,
+    "board_validated": false,
+    "status": "REVIEWED_FOR_ISOLATED_MOTION_BUILD",
+    "check_timing": {
+      "no clock": 0,
+      "clock definition": 0,
+      "dummy node": 2,
+      "invalid constraint": 0,
+      "pll/clock buffer clock constraints": 0,
+      "combinational loops": 0,
+      "soft fifo timing exception constraints": 0,
+      "no path constraints": 0,
+      "shadowed/ignored timing exception constraints": 0,
+      "no input delay": 0,
+      "no output delay": 0,
+      "partial input delay": 0,
+      "partial output delay": 0,
+      "abnormal input delay": 0
+    },
+    "hpf_sha256": "3831396ea95d563f95edbf9a85bf3683eaf51cefcc5e59d2d839514b0d166aa5",
+    "bitstream_sha256": "ee9704aa65e78532be51a85be65187c4fad2248aae9f9ca1423425ea3d574660",
+    "kernel_config_sha256": "81f7b75cb8e2f0901ef3dbd6eb78282db988031904dd1001ed709beb1120dbf1",
+    "profile": {
+      "clock_hz": 100000000,
+      "step_high_cycles": 3125,
+      "step_low_cycles": 3125,
+      "dir_setup_cycles": 500,
+      "dir_hold_cycles": 500,
+      "en_setup_cycles": 500,
+      "en_disable_cycles": 500,
+      "max_step_hz": 16000,
+      "axis_mask": 7,
+      "m4_enabled": false,
+      "baseline_gpio_commit": "df17b4ebd6e358d6626a227b5c0c152c1f6cb9ed",
+      "purpose": "explicit motor bench pulse-width comparison; not calibrated mechanics"
+    },
+    "ps_macros_unchanged": true,
+    "excluded_timestamp_macros": {
+      "BITSTREAM_GENERATE_TIME": "(\"2026/10/21 19:29:00\")",
+      "HPF_EXPORT_TIME": "(\"2026/10/21 19:30:22\")"
+    },
+    "pl_gpio_source": "df17b4e",
+    "bsp_source": "db5f75c",
+    "physical_speed_confirmed": false,
+    "driver_timing_validated": false,
+    "sd_written": false,
+    "board_motion_executed": false,
+    "scope": "minimal HP0/MOT2/J12 motor pulse comparison; excludes independent HP1/RS485/safety HOME",
+    "io_constraint": "original asynchronous GPIO 20ns budget; not receiver synchronization qualification"
+  },
+  "acceptance": {
+    "frozen_source_isolation": "PASS",
+    "rtl_pulse_and_stop": "PASS",
+    "real_dma_gp": "PASS",
+    "arm_compilation": "PASS",
+    "host_parser_codec_and_duration_bounds": "PASS",
+    "routed_100mhz": "PASS",
+    "matched_boot_dtb_rootfs": "PASS",
+    "local_image_transfer_and_root_partition": "PASS",
+    "sd_write_readback": "NOT_EXECUTED",
+    "cold_boot": "NOT_EXECUTED",
+    "arm_board_execution": "NOT_EXECUTED",
+    "physical_gpio": "NOT_EXECUTED",
+    "motor_operation": "NOT_EXECUTED",
+    "physical_stop": "NOT_EXECUTED"
+  },
+  "board_actions_performed": false,
+  "serial_opened": false,
+  "buffer_state": "No board client loaded or DMA buffers allocated by this task; existing board state was not taken over",
+  "limitations": [
+    "reference speed2; physical device speed unconfirmed",
+    "31.25us at driver input and motor behavior unmeasured",
+    "MOT1 profile does not encode pulse parameters; cold boot identity plus measured pulse width required",
+    "HOLD ignores EN: DISABLE is not physical driver disable",
+    "Golden ratio4.5/microsteps16 are reference values; actual mechanics and driver microsteps unconfirmed",
+    "independent HP1 telemetry, RS485, safety/HOME and Web are excluded from this minimal scope-derived image"
+  ]
+}
