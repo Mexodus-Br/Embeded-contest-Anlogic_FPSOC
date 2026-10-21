@@ -10,7 +10,8 @@
 |A|生成定义/旧ABI|PASS|干净规范及生成物检查；旧常量不重定义，R5S2严格单独识别|
 |A|实际PS基线|PASS配置审核|仅HP1启用/64bit差异，其余原DDR/存储属性保持；不证明实物电压或训练|
 |A|新固定管脚完整顶层P&R|PASS无负STA；FAIL严格>1ns|最终100MHz setup +0.078ns/hold +0.020ns，负违例端点0；Slice36670/ERAM69/DSP6/PAD9；16线程读回5次。见RESOURCE_REPORT；原rtl_path38+0.032/+0.020只属原候选|
-|A|最终物理/发布资格|BLOCKED|SYN-5066、同步器/CDC、IO外部时序、实物速度、生产HOME、DDR drain均未关闭|
+|A|最终物理/发布资格|BLOCKED|SYN-5066、IO外部时序、实物速度、生产HOME、DDR drain均未关闭；CDC独立门禁已按2026-10-21用户决定移除|
+|A|CDC/同步器工程检查|TRACKED / 非独立门禁|保留检查、告警和未验证记录；不要求完整CDC物理资格证明，不表示检查通过；具体缺陷按影响处理|
 |A|GP/DMA/运动/采集/安全/Wi-Fi七模块|PASS编译与身份|wifi1同源码/输出/.config/Module.symvers；vermagic和全部导入CRC匹配|
 |A|SAF2诊断软件|PASS模型79项|提取实际驱动函数，验证配置accepted/applied分别观察、IRQ保留/屏蔽、快照/资格拒绝/回读/不接管旧owner/无运动或心跳写；不是实板|
 |A|R5S2软件适配|PASS模型23项|旧profile拒绝、RUN-off配置、RUN回读、配置错误及只读观察无副作用；不是有效反馈或DDR证明|

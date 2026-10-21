@@ -142,7 +142,7 @@ PAD FF={resources['pad_ff']['used']}；完整功能资源配置保持检查={fun
 
 check_timing：invalid约束{invalid}类，组合环{loops}类；其余dummy/no-input-delay/no-output-delay及未约束路径必须按reports/route.check逐项审查。SYN-5066仍存在={result['syn_5066_present']}，不得用后续“0 issue(s)”覆盖综合删除内部驱动的警告。独立route.drc文件生成={result['standalone_route_drc_created']}；缺失时不宣称独立DRC文件清洁。
 
-四路实际位置须在reports/route.area中读回V7/U9/U8/V11，九输出保持Y12/Y13/T9、U10/T5/U5、V6/W6/U7。外部上拉、实物电气/IO delay、CDC/同步器及速度等级等仍未资格确认；当前STA不解除这些门禁。全网data/CE/reset/clock物理扇出审计未关闭，不据最差路径Max Fanout代表全网高扇出已解决。
+四路实际位置须在reports/route.area中读回V7/U9/U8/V11，九输出保持Y12/Y13/T9、U10/T5/U5、V6/W6/U7。外部上拉、实物电气/IO delay及速度等级等仍未资格确认；当前STA不解除这些门禁。2026-10-21用户已移除CDC/同步器独立门禁，相关检查和未验证项继续记录，不表示已通过。全网data/CE/reset/clock物理扇出审计未关闭，不据最差路径Max Fanout代表全网高扇出已解决。
 
 ## 保留的失败配置尝试
 
@@ -163,6 +163,8 @@ hashes={'artifacts/rootfs-offline.ext4':{'sha256':transfer['sha256'],'bytes':tra
 for name in scope:
     data=(H/name).read_bytes();hashes[name]={'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)}
 delivery={'candidate':'controlled_v1_20261021','status':'OFFLINE_CANDIDATE_RELEASE_BLOCKED',
+ 'cdc_independent_release_gate_removed':True,
+ 'cdc_policy':'2026-10-21 user decision: retain engineering checks and specific defect tracking; no standalone CDC/synchronizer qualification gate; other gates unchanged',
  'engineering_release_complete':False,'offline_software_candidate_assembled':True,
  'rootfs_generated':True,'boot_chain_generated':False,'sd_image_generated':False,
  'new_candidate_board_booted':False,'no_motor_board_accepted':False,'mechanical_motion_authorized':False,

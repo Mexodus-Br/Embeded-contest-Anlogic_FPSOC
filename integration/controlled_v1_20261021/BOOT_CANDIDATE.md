@@ -1,5 +1,7 @@
 # 离线启动镜像候选
 
+2026-10-21后续决策：用户移除CDC及同步器资格的独立门禁，保留工程检查和已知问题跟踪；其他门禁不变，signoff仍false。下述生成授权及镜像manifest是生成时记录，当前门禁以REVIEW.md为准。本次仅调整政策记录，镜像未重建、未部署。
+
 2026-10-21用户要求“生成启动镜像，本次忽略setup大于1约束”。该授权用于生成本次离线候选，保留100MHz/10ns、setup/hold非负条件；严格>1ns的历史目标仍记录为未达。其余资格未豁免，signoff=false，未取得任何当次SD覆盖对象或实板/运动许可。
 
 本机文件：`artifacts/boot_candidate_v1/sdcard.img`，536870912字节（512MiB）。SHA256：`82852c8b6f2b1df213c57f2e620856dbddd7c05083761d204f6927fb2bed5fbf`。预期根PARTUUID为`f0391b66-02`。同目录保存BOOT.bin、system.bit、system.hpf、fsbl.elf、system.dtb、wifi1 uImage.lz4、u-boot.bin、rootfs.ext4及boot.cmd/scr/bif和manifest.json；详细身份见manifest。不得与scope BOOT或其他批次DT/驱动混装。
@@ -25,6 +27,6 @@
 4. 执行`bash candidate/build_boot_vm.sh`。它复制SDK到独立目录，从新HPF重建FSBL/DTB，使用相同wifi1内核和已审计rootfs生成SD文件。依赖原有工具链、Buildroot工具、vendor bootgen、dtc/fdtget、mtools、dosfstools、e2fsprogs及build/dts-preview/audit.py；不改共享SDK/内核或其他实验。
 5. 执行`python3 candidate/verify_boot_vm.py`；仅校验明确最终交付物，分区和rootfs采用逐字节比较。将output/release的12个最终文件及manifest传回，校验最终文件身份，保存审计JSON和日志。日志/数据库/boot.vfat/中间目录均不加入哈希清单。工具版本固定可复现流程和输入；HPF导出时间不同会改变文件身份，不承诺跨次生成字节完全相同。
 
-当前仅完成离线生成和审计。SYN-5066、CDC/同步器、外部IO时序、电气/接线和实物速度/DDR资格仍开放。生产HOME/驱动参数、真实485保护反馈、中断RX后的DDR静止保持各自门禁。禁用节点不能用于宣称受控快照或DMA验收通过；后续静态接入须在资格满足后形成明确启用的同批DT，重新审查并记录镜像身份，不通过动态任意MMIO绕过。
+当前仅完成离线生成和审计。SYN-5066、外部IO时序、电气/接线和实物速度/DDR资格仍开放。CDC/同步器保留工程检查与问题记录，不再作为独立门禁。生产HOME/驱动参数、真实485保护反馈、中断RX后的DDR静止保持各自门禁。禁用节点不能用于宣称受控快照或DMA验收通过；后续静态接入须在资格满足后形成明确启用的同批DT，重新审查并记录镜像身份，不通过动态任意MMIO绕过。
 
 部署仍按README执行：先读当次SD型号/容量/序列/UniqueId并取得覆盖授权，优先另一张卡，保留已验收Wi-Fi卡及scope回退；不沿用旧磁盘号。用户断电/装卡/上电，COM4确认可用后115200/8N1且DTR/RTS=false。不写eMMC/QSPI。本任务未连接板卡/串口、申请DMA或改变buffer，实时状态未知。

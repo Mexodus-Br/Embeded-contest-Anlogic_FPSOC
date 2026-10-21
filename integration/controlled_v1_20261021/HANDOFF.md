@@ -1,5 +1,9 @@
 # 本轮暂停点（2026-10-21，Asia/Taipei）
 
+## 最新政策：移除CDC独立门禁
+
+2026-10-21用户决定：CDC及同步器资格不再作为独立发布、上板或阶段验收阻塞项，保留工程检查、告警和已知问题记录。具体缺陷按实际影响处理；其他门禁、当次部署/运动授权和signoff=false不变。详细见REVIEW.md与PHASE0_CONSTRAINTS.md顶部。本段覆盖下文历史记录中的CDC独立资格要求；未改RTL/约束或重建镜像。
+
 ## 最新：离线启动镜像生成
 
 用户追加要求生成镜像并免除本次setup>1ns条件后，已生成一致bit/HPF/新FSBL/新HPF配套禁用DTB/wifi1/rootfs/SD文件，完成实际镜像分区/启动文件/rootfs及FSBL复位代码审核并下载校验。本机`artifacts/boot_candidate_v1/sdcard.img`，根`f0391b66-02`，详细身份与复现见BOOT_CANDIDATE.md。新HPF的原DDR/存储初始化与已验收scope保持，仅HP1增加复位释放/64bit配置。

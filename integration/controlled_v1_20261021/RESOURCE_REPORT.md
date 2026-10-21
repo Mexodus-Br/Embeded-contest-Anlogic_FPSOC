@@ -50,7 +50,7 @@ Clock Uncertainty   : 0.085ns (sdc uncertainty: 0.000ns, default uncertainty: 0.
 
 check_timing：invalid约束0类，组合环0类；其余dummy/no-input-delay/no-output-delay及未约束路径必须按reports/route.check逐项审查。SYN-5066仍存在=True，不得用后续“0 issue(s)”覆盖综合删除内部驱动的警告。独立route.drc文件生成=False；缺失时不宣称独立DRC文件清洁。
 
-四路实际位置须在reports/route.area中读回V7/U9/U8/V11，九输出保持Y12/Y13/T9、U10/T5/U5、V6/W6/U7。外部上拉、实物电气/IO delay、CDC/同步器及速度等级等仍未资格确认；当前STA不解除这些门禁。全网data/CE/reset/clock物理扇出审计未关闭，不据最差路径Max Fanout代表全网高扇出已解决。
+四路实际位置须在reports/route.area中读回V7/U9/U8/V11，九输出保持Y12/Y13/T9、U10/T5/U5、V6/W6/U7。外部上拉、实物电气/IO delay及速度等级等仍未资格确认；当前STA不解除这些门禁。2026-10-21用户已移除CDC/同步器独立门禁，相关检查和未验证项继续记录，不表示已通过。全网data/CE/reset/clock物理扇出审计未关闭，不据最差路径Max Fanout代表全网高扇出已解决。
 
 ## 保留的失败配置尝试
 

@@ -73,9 +73,11 @@ assert (P/'system/hdl/system_wrapper.v').read_bytes()==(H/'hardware/system/hdl/s
 assert (P/'gp/gp.sdc').read_bytes()==(H/'hardware/gp/gp.sdc').read_bytes()
 assert 'create_clock -name board_100m -period 10' in (P/'gp/gp.sdc').read_text()
 out['sdc_unchanged']=True
-out['gates']=['SYN-5066 protected S2MM IP','real speed grade','synchronizer and CDC qualification',
+out['gates']=['SYN-5066 protected S2MM IP','real speed grade',
               'external IO delays and input electrical qualification','production HOME approval',
               'interrupted HP1 DDR drain qualification']
+out['cdc_independent_release_gate_removed']=True
+out['cdc_policy']='2026-10-21 user decision: retain engineering checks and specific defect tracking; no standalone CDC/synchronizer qualification gate; other gates unchanged'
 out['passed_input_identity']=True
 (H/'evidence/input-audit.json').write_text(json.dumps(out,indent=2)+'\n')
 print('PASS actual candidate, real compiled copies and PS/DDR/storage baseline audit')

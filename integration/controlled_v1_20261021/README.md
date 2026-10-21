@@ -2,6 +2,8 @@
 
 先读`REVIEW.md`和`ACCEPTANCE.md`。最终资源与时序见`RESOURCE_REPORT.md`；原候选与新固定管脚顶层分开登记。发布资格保持false，不将无负STA解释为全项目放行。
 
+2026-10-21用户已移除CDC及同步器资格的独立发布门禁，保留工程检查和已知问题跟踪；不要求完整CDC物理资格证明。其余门禁及当次授权边界不变，历史证据/镜像manifest不改写为检查通过，当前政策见REVIEW.md。
+
 2026-10-21用户本次免除严格setup>1ns生成条件后，已生成并离线验证一致启动镜像`artifacts/boot_candidate_v1/sdcard.img`，根PARTUUID `f0391b66-02`。构建、身份、未关闭门禁与使用边界见`BOOT_CANDIDATE.md`；尚未写卡/实板启动，控制节点全部disabled。
 
 独立来源在`frozen/pl`和`frozen/software`。这些目录已经保存固定输入，日常复验不要重新复制产品工作树；`prepare.py`只用于重建一个不存在的冻结目录。首次完整重建顺序为：
@@ -60,7 +62,7 @@ integration-export
 
 RS485现有显式`rs485-accept idle|diagnostic-timeouts|cancel|release`只用于后续匹配系统；超时模式会查询UART，不能隐式启动或作为真实保护反馈。先投精确RX再ARM，COMPLETE之前保存数据。取消/恢复失败保留quarantine，不卸载或复用buffer，不以PL drained解除DDR门禁。
 
-本次已经按明确授权生成离线启动链，保持其余门禁开放。后续上板前须具备受保护IP、最终实际P&R/有效约束、IO/CDC和PS/复位等对应发布资格；阶段B/C显式接入需要审核启用控制节点的同批DT并重新登记镜像身份。生产HOME与机械参数仍可保持阶段D门禁，不能用PROFILE2放行真实运动。中断RX的DDR静止资格属于独立门禁，未证明时保持quarantine，不妨碍具备其余资格后的静态接入或有界正常IOC检查。旧scope的BOOT/HPF/DT头仅用于历史回退/禁用预览，不能与本候选PL混装，也不能只换bit。
+本次已经按明确授权生成离线启动链，除已移除的CDC独立门禁外，保持其余门禁开放。后续上板前须具备受保护IP、最终实际P&R/有效约束、外部IO和PS/复位等对应发布资格；CDC/同步器按工程检查和具体问题跟踪，不单独阻塞。阶段B/C显式接入需要审核启用控制节点的同批DT并重新登记镜像身份。生产HOME与机械参数仍可保持阶段D门禁，不能用PROFILE2放行真实运动。中断RX的DDR静止资格属于独立门禁，未证明时保持quarantine，不妨碍具备其余资格后的静态接入或有界正常IOC检查。旧scope的BOOT/HPF/DT头仅用于历史回退/禁用预览，不能与本候选PL混装，也不能只换bit。
 
 写卡前重新读取当次SD型号、容量、序列/身份、UniqueId及系统盘排除，并取得覆盖授权；本轮没有写卡授权对象，不沿用disk1。经审核后完整写入/无缓存读回并核对分区和PARTUUID。COM4仅确认未被用户占用后接入，115200/8N1、无流控、DTR/RTS=false；用户自行断电、装卡、上电。不写eMMC/QSPI。
 
