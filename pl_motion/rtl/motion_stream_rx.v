@@ -12,7 +12,7 @@ module motion_stream_rx(
  output wire [63:0] point_session,duration_tick,
  output wire [31:0] point_sequence,output wire point_end,
  output wire [3:0] point_mask,output wire [255:0] point_target,
- output wire error,output wire error_candidate,output reg packet_closed,output reg [31:0] packet_count
+ output wire error,output wire error_candidate,output reg packet_closed,output reg [31:0] packet_count,output reg next_packet_empty
 );
  localparam IDLE=0,RX=1,CRC=2,CHECK=3,PENDING=4;
  reg [2:0] state;reg [3:0] beat;reg [3:0] byte_index,byte_limit;
@@ -54,14 +54,14 @@ module motion_stream_rx(
  assign error=rst_n && !abort && error_candidate;
  assign point_valid=rst_n && link_ready && !abort && state==PENDING;
  always @(posedge clk or negedge rst_n)begin
-  if(!rst_n)begin checked_bad<=0;state<=IDLE;beat<=0;byte_index<=0;byte_limit<=0;held<=0;record_data<=0;crc<=32'hffffffff;last_index<=0;completed<=0;final_record<=0;packet_closed<=0;packet_count<=0;end
+  if(!rst_n)begin checked_bad<=0;state<=IDLE;beat<=0;byte_index<=0;byte_limit<=0;crc<=32'hffffffff;last_index<=0;completed<=0;final_record<=0;packet_closed<=0;packet_count<=0;end
   else begin
    packet_closed<=0;
-   if(abort || error || !link_ready)begin state<=IDLE;beat<=0;record_data<=0;crc<=32'hffffffff;completed<=0;last_index<=0;end
+   if(abort || error || !link_ready)begin state<=IDLE;beat<=0;crc<=32'hffffffff;completed<=0;last_index<=0;end
    else case(state)
     IDLE:if(arm && arm_ready)begin last_index<=arm_count-32'd1;completed<=0;beat<=0;crc<=32'hffffffff;state<=RX;end
     RX:if(s_valid && s_ready)begin
-     record_data[beat*64+:64]<=s_data;held<=s_data;byte_index<=0;byte_limit<=beat==8 ? 4:8;
+     byte_index<=0;byte_limit<=beat==8 ? 4:8;
      final_record<=is_final_record;state<=CRC;
     end
     CRC:begin
@@ -77,4 +77,25 @@ module motion_stream_rx(
    endcase
   end
  end
+
+// Exact next packet-empty predicate, sampled with the mailbox qualification.
+// It describes the SAME edge as the source state; error/abort stay direct.
+always @*begin
+ next_packet_empty=state==IDLE;
+ if(!rst_n)next_packet_empty=1;
+ else if(abort || error || !link_ready)next_packet_empty=1;
+ else case(state)
+  IDLE:if(arm && arm_ready)next_packet_empty=0;
+  RX,CRC,CHECK:next_packet_empty=0;
+  PENDING:if(point_ready)next_packet_empty=final_record;
+  default:next_packet_empty=1;
+ endcase
+end
+
+// All nine words are overwritten before CHECK/PENDING can own a record.
+// Only invalid internal payload differs after abort/reset; valid data, CRC,
+// TLAST checks and the detecting-edge error/stop remain cycle identical.
+always @(posedge clk)if(state==RX && s_valid && s_ready)begin
+ record_data[beat*64+:64]<=s_data;held<=s_data;
+end
 endmodule

@@ -99,7 +99,7 @@ module safety_regs #(parameter INTERLOCK_SUPPORT=0)(
    ah<=0;wh<=0;address<=0;data<=0;strobe<=0;submit_address<=0;stop_address<=0;command_data<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
    opcode<=0;home_opcode<=0;arg<=0;txn<=0;last_id<=0;last_opcode<=0;last_arg<=0;
    ack_id<=0;ack_error<=0;ack_valid<=0;ack_accepted<=0;ack_complete<=0;busy<=0;cancel_pending<=0;
-   pending<=0;mask<=0;snap_id<=0;snapshot<=0;snap_valid<=0;ack_event<=0;
+   pending<=0;mask<=0;snap_id<=0;snap_valid<=0;ack_event<=0;
   end else begin
    ack_event<=0;pending<=(pending & ~w1c)|events;
    if(s_awvalid && s_awready)begin
@@ -120,7 +120,7 @@ module safety_regs #(parameter INTERLOCK_SUPPORT=0)(
      `SAF_REGISTERS_TXN:txn<=data;
      `SAF_REGISTERS_IRQ_MASK:mask<=data;
      `SAF_REGISTERS_SNAP_REQ:begin
-      snapshot<=live_snapshot;snapshot[`SAF_SNAPSHOT_SNAP_ID*32+:32]<=data;snap_id<=data;snap_valid<=1;
+      snap_id<=data;snap_valid<=1;
      end
      default:begin end
     endcase
@@ -142,5 +142,10 @@ module safety_regs #(parameter INTERLOCK_SUPPORT=0)(
     s_rresp<=s_araddr[32:12]!=BASE[32:12] ? 3 : (s_araddr[1:0]!=0 || !read_known ? 2:0);
    end
   end
+ end
+ // Reset invalidates the snapshot atomically; its data need not be cleared.
+ // The entire payload is replaced on the original accepted capture edge.
+ always @(posedge clk)if(rst_n && good && offset==`SAF_REGISTERS_SNAP_REQ)begin
+  snapshot<=live_snapshot;snapshot[`SAF_SNAPSHOT_SNAP_ID*32+:32]<=data;
  end
 endmodule

@@ -27,7 +27,7 @@ module safety_motion_service #(
  input wire saf_awvalid,saf_wvalid,saf_bready,saf_arvalid,saf_rready,
  output wire saf_awready,saf_wready,saf_arready,saf_bvalid,saf_rvalid,
  output wire [1:0] saf_bresp,saf_rresp,output wire [31:0] saf_rdata,output wire safety_irq,
- input wire collector_run,collector_stop_commit,collector_reset,collector_config_pending,collector_config_change,collector_busy,
+ input wire collector_run,collector_stop_commit,collector_reset,collector_config_pending,collector_config_stored_pending,collector_config_change,collector_busy,
  input wire [31:0] collector_generation,collector_revision,collector_next_generation,collector_next_revision,
  input wire collector_next_reset,collector_next_config_change,
  input wire [159:0] collector_periods,input wire [4:0] collector_mask,
@@ -53,7 +53,7 @@ always @(posedge clk or negedge rst_n)
 reg stop_notify;
 always @(posedge clk or negedge rst_n)
  if(!rst_n)stop_notify<=0;else stop_notify<=ctrl_stop;
-wire il_permit,il_detect,il_disable,il_clear_ok;wire [31:0] il_detected,il_causes;
+wire il_run_permit,il_permit,il_detect,il_disable,il_clear_ok;wire [31:0] il_detected,il_causes;
 wire fast_stop=stop_request || (INTERLOCK_SUPPORT && il_detect) || (sampled &&
  (active[3] || (!owner && (|position_valid[2:0]) && (|active[2:0]))));
 wire [2:0] run,hdirection,hfault;wire [191:0] period,reference_position,travel;
@@ -76,13 +76,13 @@ genvar g;generate for(g=0;g<3;g=g+1)begin: home_config
   {1'b0,C_PRE_PERIOD[g*64+:64]}>=MIN_PERIOD && C_SEARCH_PERIOD[g*64+:64]>=MIN_RATE_PERIOD &&
   C_PULL_PERIOD[g*64+:64]>=MIN_RATE_PERIOD && C_PRE_PERIOD[g*64+:64]>=MIN_RATE_PERIOD;
 end endgenerate
-safety_controller #(.CONFIG_APPROVED(C_APPROVED && C_RELEASE_CYCLES!=0),.INTERLOCK_SUPPORT(INTERLOCK_SUPPORT),.HOME_DIRECTION(C_HOME_DIRECTION),
+safety_controller #(.CONFIG_APPROVED(C_APPROVED && C_RELEASE_CYCLES!=0),.INTERLOCK_SUPPORT(INTERLOCK_SUPPORT),.SPLIT_RUN_PERMIT(INTERLOCK_SUPPORT),.HOME_DIRECTION(C_HOME_DIRECTION),
  .SEARCH_PERIOD(C_SEARCH_PERIOD),.PULL_PERIOD(C_PULL_PERIOD),.PRE_PERIOD(C_PRE_PERIOD),
  .REFERENCE_POSITION(C_REFERENCE_POSITION),.PULL_DISTANCE(C_PULL_DISTANCE),.PRE_DISTANCE(C_PRE_DISTANCE),
  .SEARCH_MAX_STEPS(C_SEARCH_MAX_STEPS),.PULL_MAX_STEPS(C_PULL_MAX_STEPS),.PRE_MAX_STEPS(C_PRE_MAX_STEPS),
  .SEARCH_MAX_US(C_SEARCH_MAX_US),.PULL_MAX_US(C_PULL_MAX_US),.PRE_MAX_US(C_PRE_MAX_US)) controller(
  .clk(clk),.rst_n(rst_n),.time_us(shared_time_us),.qualified(sampled),.active(active),.released(released),
- .interlock_permit(il_permit),.interlock_detect(il_detect),.interlock_disable(il_disable),
+ .interlock_run_permit(il_run_permit),.interlock_permit(il_permit),.interlock_detect(il_detect),.interlock_disable(il_disable),
  .interlock_clear_ok(il_clear_ok),.interlock_causes(il_detected),
  .home_request(hrequest),.clear_request(clear_request),.stop_request(stop_request),
  .idle(idle),.pulse_safe(pulse_safe),.external_abort(abort_service),.executor_fault(hfault | executor_faults[2:0]),
@@ -157,6 +157,19 @@ generate if(INTERLOCK_SUPPORT)begin: interlocks
  wire [1023:0] snapshot={288'd0,29'd0,seen,last_times,shared_time_us,wd_us,fb_us,29'd0,active_axes,
    last_sequence,owner_id,first_time,first_cause,il_causes,status};
  assign il_permit=raw_permit && !collector_config_pending && !cfg_pending;
+ // config_admission implies interlock_idle, which includes !owner. During
+ // every PRE/SEARCH/PULL executing cycle owner is true, so the admission
+ // cofactor is exactly zero. Retain ALL stored/configuration/reset fences.
+ // HOME acceptance and ordinary commands still use the full current permit.
+ assign il_run_permit=raw_permit && !collector_config_stored_pending && !cfg_pending;
+ // synthesis translate_off
+ always @(posedge clk)if(rst_n && owner)begin
+  if(interlock_idle)$fatal(1,"HOME owner cannot hold idle admission");
+  if(collector_config_pending !== collector_config_stored_pending)
+   $fatal(1,"configuration admission reached an executing HOME owner");
+  if(il_run_permit !== il_permit)$fatal(1,"HOME permit cofactor mismatch");
+ end
+ // synthesis translate_on
  assign il_clear_ok=clear_eligible && !collector_config_pending && !cfg_pending;
  safety_interlock #(.LOOKAHEAD_EPOCH(1),.FEEDBACK_PREDECODE(1),.LOOKAHEAD_CONTEXT(1)) monitor(.next_collector_reset(collector_next_reset),.next_config_change(collector_next_config_change),.next_config_apply(next_cfg_apply),.feedback_predecoded(feedback_predecoded),.next_generation(collector_next_generation),.next_revision(collector_next_revision),.clk(clk),.rst_n(rst_n),.time_us(shared_time_us),
   .poll_run(collector_run),.poll_stop_commit(collector_stop_commit),.collector_reset(collector_reset),.config_change(collector_config_change),
@@ -185,7 +198,7 @@ generate if(INTERLOCK_SUPPORT)begin: interlocks
   .committed_feedback_us(cfg_fb_us),.committed_watchdog_us(cfg_wd_us),
   .config_axes(),.config_feedback_us(),.config_watchdog_us(),.heartbeat_owner(first_owner),.heartbeat_sequence(hb_sequence));
 end else begin: no_interlocks
- assign il_permit=1;assign il_clear_ok=1;assign il_detect=0;assign il_disable=0;
+ assign il_run_permit=1;assign il_permit=1;assign il_clear_ok=1;assign il_detect=0;assign il_disable=0;
  assign il_causes=0;assign il_detected=0;assign ext_wknown=0;assign ext_rknown=0;
  assign ext_rd=0;assign ext_response=2;
 end endgenerate

@@ -1,0 +1,10 @@
+{
+  "hashes_computed": false,
+  "external_cycles_added": 0,
+  "new_nonreset_bits": 2,
+  "captured_edge": "Original transaction.EMIT captures raw256/protection6/time2 atomically; monitor consumes the original push edge",
+  "reference": "monitor restart ? current time : stored round_start is the exact round_start after EMIT edge",
+  "preserved": "complete raw timestamps, signed modulo-age qualification, round/config/generation/RESET competition, original stop edge and FIFO/cache independence",
+  "legacy": "LOOKAHEAD_TIME default0; INTERLOCK_PREDECODE default0; no ABI/format/numeric changes",
+  "status": "isolated producer/monitor/whole-safety validation pending"
+}

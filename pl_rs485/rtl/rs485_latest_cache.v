@@ -73,7 +73,9 @@ module rs485_latest_cache #(parameter integer SLAVE_COUNT=3,parameter [79:0] SLA
    case(word_index)
     0:snapshot_data={26'd0,read_disabled,(!row_flags[0] || read_disabled || age>=read_limit),row_flags};
     1:snapshot_data={16'd0,SLAVE_ADDRS[(row_index/5)*8+:8],raw[239:232]};
-    2,3,4,5,6:snapshot_data=read_meta[6+(word_index-2)*32+:32];
+    2,3:snapshot_data=read_meta[4] ? read_meta[6+(word_index-2)*32+:32]:32'd0;
+    4,5:snapshot_data=read_meta[5] ? read_meta[6+(word_index-2)*32+:32]:32'd0;
+    6:snapshot_data=read_meta[134+:32];
     7:snapshot_data=0;
     24:snapshot_data=decoded[31:0];25:snapshot_data=decoded[63:32];
     26:snapshot_data=raw[47:16];27:snapshot_data={7'd0,decoded_known,raw[7:0],raw[15:0]};
@@ -90,7 +92,7 @@ module rs485_latest_cache #(parameter integer SLAVE_COUNT=3,parameter [79:0] SLA
    for(i=0;i<TASKS;i=i+1) begin
     seen[i]<=0;last_seen[i]<=0;last_valid[i]<=0;known_enum[i]<=0;
     good_pointer[i]<=0;last_pointer[i]<=0;good_written[i]<=0;last_written[i]<=0;
-    good_gen[i]<=0;good_rev[i]<=0;last_gen[i]<=0;last_rev[i]<=0;updates[i]<=0;
+    updates[i]<=0;
    end
   end else begin
    generation<=collector_generation;
@@ -100,10 +102,10 @@ module rs485_latest_cache #(parameter integer SLAVE_COUNT=3,parameter [79:0] SLA
     if(!formed) begin if(parse_errors!=32'hffffffff) parse_errors<=parse_errors+1'b1;end
     else begin
      last_pointer[task_index]<=next_last;last_written[task_index]<=1;
-     last_gen[task_index]<=event_generation;last_rev[task_index]<=event_revision;last_seen[task_index]<=1;last_valid[task_index]<=valid;
+     last_seen[task_index]<=1;last_valid[task_index]<=valid;
      if(valid) begin
       good_pointer[task_index]<=next_good;good_written[task_index]<=1;
-      good_gen[task_index]<=event_generation;good_rev[task_index]<=event_revision;seen[task_index]<=1;known_enum[task_index]<=known;
+      seen[task_index]<=1;known_enum[task_index]<=known;
       if(updates[task_index]!=32'hffffffff) updates[task_index]<=updates[task_index]+1'b1;
      end
     end
@@ -130,4 +132,13 @@ module rs485_latest_cache #(parameter integer SLAVE_COUNT=3,parameter [79:0] SLA
   if(snapshot_capture && (next_last==last_pointer[task_index] || (valid && next_good==good_pointer[task_index]))) $fatal(1,"write to newly captured slot");
  end
  // synthesis translate_on
+
+// Immutable identity payload has the same lifetime as its corresponding RAM
+// record. Since-reset written bits remain async-reset and mask every frozen
+// generation/revision before the first write. Generation changes deliberately
+// preserve old raw/identity, exactly as before; seen validity is independent.
+always @(posedge clk)if(write_record)begin
+ last_gen[task_index]<=event_generation;last_rev[task_index]<=event_revision;
+ if(valid)begin good_gen[task_index]<=event_generation;good_rev[task_index]<=event_revision;end
+end
 endmodule

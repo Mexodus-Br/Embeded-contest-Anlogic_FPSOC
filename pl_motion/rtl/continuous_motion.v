@@ -28,7 +28,7 @@ module continuous_motion #(
  input wire home_owner,home_enable,home_reference,home_complete,
  input wire [2:0] home_run,home_direction,input wire [191:0] home_period,home_reference_position,
  input wire [3:0] safety_invalidate,output wire safety_pulse_safe,
- output wire [2:0] home_fault
+ output wire [2:0] home_fault,output reg next_session_empty
 );
  wire own=HOME_SUPPORT ? home_owner : 1'b0;
  wire raw_ready,raw_valid,raw_pop;
@@ -59,7 +59,7 @@ module continuous_motion #(
  assign point_ready=rst_n && (old_record || invalid_order || (raw_ready && !cancel_now));
  wire raw_push=point_valid && !old_record && !invalid_order && !cancel_now;
  wire ingress=raw_push && raw_ready;
- motion_fifo #(.WIDTH(421),.DEPTH(FIFO_DEPTH)) raw_fifo(
+ motion_fifo #(.WIDTH(421),.DEPTH(FIFO_DEPTH),.SPARE_SLOT(1)) raw_fifo(
   .clk(clk),.rst_n(rst_n),.flush(flush_all),.in_valid(raw_push),.in_ready(raw_ready),
   .in_data({point_target,duration_tick,point_session,point_sequence,point_end,point_mask}),
   .out_valid(raw_valid),.out_ready(raw_pop),.out_data(raw_data),.level(fifo_level));
@@ -161,4 +161,15 @@ module continuous_motion #(
  initial if(FIFO_DEPTH<2 || PLAN_DEPTH<2 || START_MIN_POINTS<1 ||
   START_MIN_POINTS>FIFO_DEPTH+PLAN_DEPTH+1)$fatal(1,"invalid continuous cache parameters");
  // synthesis translate_on
+
+// Project the original session-valid assignments with their original priority.
+always @*begin
+ next_session_empty=!session_valid;
+ if(!rst_n)next_session_empty=1;
+ else if(cancel_now || finish_now)next_session_empty=1;
+ else if(open_req)begin
+  if(maintenance_ok && !(|fault_latched) && open_session_id!=0 && open_session_id!=session_id &&
+     !rebase_req && !enable_req && !start_req && !resume_req)next_session_empty=0;
+ end
+end
 endmodule

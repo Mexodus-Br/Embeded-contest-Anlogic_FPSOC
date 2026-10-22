@@ -28,7 +28,7 @@ wire [2:0] fixture_axes={fixture_task==14,fixture_task==9,fixture_task==4} &
 wire [5:0] fixture_decoded={fixture_axes & {3{fixture_enum==1}},fixture_axes};
 wire interlock_idle,interlock_idle_off;
 safety_motion_service #(.INTERLOCK_SUPPORT(1),''')
-    text = text.replace('.clk(clk),.rst_n(rst_n),.dma_reset_released', '''.collector_run(poll_run),.collector_stop_commit(1'b0),.collector_reset(1'b0),.collector_config_pending(1'b0),
+    text = text.replace('.clk(clk),.rst_n(rst_n),.dma_reset_released', '''.collector_run(poll_run),.collector_stop_commit(1'b0),.collector_reset(1'b0),.collector_config_pending(1'b0),.collector_config_stored_pending(1'b0),
 .collector_config_change(1'b0),.collector_busy(collector_busy),.collector_generation(32'd1),.collector_revision(32'd1),
 .collector_next_generation(32'd1),.collector_next_revision(32'd1),.feedback_predecoded(fixture_decoded),
 .collector_next_reset(1'b0),.collector_next_config_change(1'b0),

@@ -1,0 +1,8 @@
+{
+  "hashes_computed": false,
+  "register_cost": 4,
+  "external_cycles_added": 0,
+  "math": "For u64 start and u32 delta, carry(start+delta) iff (deadline mod2^64)<start; capture carry and deadline atomically",
+  "preserved": "original expiry edge, wrap arcs, arbitrary time jumps, same-edge expiry priority, timeout values and all old default parameters",
+  "status": "isolated module validation pending"
+}

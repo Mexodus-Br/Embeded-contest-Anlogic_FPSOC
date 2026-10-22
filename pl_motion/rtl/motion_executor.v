@@ -133,15 +133,15 @@ always @*begin
   end
  end
 end
-reg [64:0] sum_time,sum_axis;
+
 integer i;
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
   home_fault_reg<=0;state<=IDLE;enabled<=0;disabling<=0;step<=0;dir<=15;position_valid<=0;fault_latched<=0;
-  moving<=0;positive<=15;cycles<=0;master<=0;quotient<=0;remainder<=0;elapsed<=0;
-  next_slot<=0;slot_index<=0;time_remainder<=0;slot_id<=0;
+  
+  slot_id<=0;
   point_start<=0;done<=0;stopped<=0;plan_rejected<=0;rebase_accepted<=0;pulse_event<=0;slot_event<=0;
-  for(i=0;i<4;i=i+1)begin pos[i]<=0;count[i]<=0;accumulator[i]<=0;high_left[i]<=0;edge_age[i]<=0;low_age[i]<=0;dir_age[i]<=0;en_age[i]<=0;off_left[i]<=0;end
+  for(i=0;i<4;i=i+1)begin pos[i]<=0;high_left[i]<=0;edge_age[i]<=0;low_age[i]<=0;dir_age[i]<=0;en_age[i]<=0;off_left[i]<=0;end
  end else begin
   point_start<=0;done<=0;stopped<=0;plan_rejected<=0;rebase_accepted<=0;pulse_event<=0;slot_event<=0;
   fault_latched<=fault_latched|fault;
@@ -195,16 +195,12 @@ always @(posedge clk or negedge rst_n)begin
     end else plan_rejected<=1;
    end
    if(state==RUN)begin
-    elapsed<=elapsed+64'd1;
+    
     if(slot_due)begin
      if(!emission_ok)begin state<=DRAIN;fault_latched<=15;plan_rejected<=1;end
      else begin
-      slot_event<=1;slot_id<=slot_index;slot_index<=slot_index+64'd1;
-      sum_time={1'b0,time_remainder}+{1'b0,remainder};
-      if(sum_time>={1'b0,master})begin time_remainder<=sum_time-{1'b0,master};next_slot<=next_slot+quotient+64'd1;end
-      else begin time_remainder<=sum_time[63:0];next_slot<=next_slot+quotient;end
+      slot_event<=1;slot_id<=slot_index;
       for(i=0;i<4;i=i+1)if(moving[i])begin
-       sum_axis={1'b0,accumulator[i]}+{1'b0,count[i]};accumulator[i]<=emit[i] ? sum_axis-{1'b0,master} : sum_axis[63:0];
        if(emit[i])begin step[i]<=1;pulse_event[i]<=1;edge_age[i]<=0;high_left[i]<=h[i];pos[i]<=pos[i]+(positive[i] ? 64'sd1 : -64'sd1);end
       end
      end
@@ -218,10 +214,9 @@ always @(posedge clk or negedge rst_n)begin
    if(plan_valid && plan_ready)begin
     if(!commit_ok)begin state<=DRAIN;plan_rejected<=1;end
     else begin
-     state<=RUN;cycles<=plan_cycles;master<=plan_master;quotient<=plan_quotient;remainder<=plan_remainder;
-     moving<=plan_moving;positive<=plan_positive;elapsed<=1;next_slot<=plan_guard;slot_index<=0;time_remainder<=0;point_start<=1;
+     state<=RUN;
+     point_start<=1;
      for(i=0;i<4;i=i+1)begin
-      count[i]<=plan_counts[i*64+:64];accumulator[i]<=plan_master-plan_counts[i*64+:64];
       if(plan_moving[i] && dir[i]!=plan_positive[i])begin dir[i]<=plan_positive[i];dir_age[i]<=0;end
      end
     end
@@ -232,4 +227,39 @@ always @(posedge clk or negedge rst_n)begin
   if(|invalid)position_valid<=position_valid & ~invalid;
  end
 end
+
+// Private plan data are overwritten before every RUN grant. Writes while
+// IDLE/at the old boundary may be speculative; only the original control
+// process can accept a plan, emit STEP, update position or publish events.
+// On cancellation/failure, its state invalidates the entire data set on the
+// original edge. No global stop/reset enable is needed on these data flops.
+reg [64:0] data_time,data_axis;
+integer data_lane;
+always @(posedge clk)begin
+ if(state==RUN)begin
+  elapsed<=elapsed+64'd1;
+  if(slot_due)begin
+   slot_index<=slot_index+64'd1;
+   data_time={1'b0,time_remainder}+{1'b0,remainder};
+   if(data_time>={1'b0,master})begin
+    time_remainder<=data_time-{1'b0,master};next_slot<=next_slot+quotient+64'd1;
+   end else begin time_remainder<=data_time[63:0];next_slot<=next_slot+quotient;end
+   for(data_lane=0;data_lane<4;data_lane=data_lane+1)if(moving[data_lane])begin
+    data_axis={1'b0,accumulator[data_lane]}+{1'b0,count[data_lane]};
+    accumulator[data_lane]<=emit[data_lane] ? data_axis-{1'b0,master}:data_axis[63:0];
+   end
+  end
+ end
+ // The control grant can occur only in IDLE or at this exact boundary.
+ // Rejected/unowned input data may be copied, but never create RUN/STEP.
+ if(state==IDLE || boundary)begin
+  cycles<=plan_cycles;master<=plan_master;quotient<=plan_quotient;remainder<=plan_remainder;
+  moving<=plan_moving;positive<=plan_positive;elapsed<=1;next_slot<=plan_guard;slot_index<=0;time_remainder<=0;
+  for(data_lane=0;data_lane<4;data_lane=data_lane+1)begin
+   count[data_lane]<=plan_counts[data_lane*64+:64];
+   accumulator[data_lane]<=plan_master-plan_counts[data_lane*64+:64];
+  end
+ end
+end
+
 endmodule

@@ -19,7 +19,7 @@ module rs485_multirate #(
  output wire [7:0] node_failure_streak,output wire [63:0] node_cooldown_until_us,
  output wire [31:0] node_backoff_entries,
  output wire observe_push,output wire [255:0] observe_data,
- output wire [7999:0] observe_tasks,output wire [1279:0] observe_nodes,output wire [31:0] next_revision,output wire [5:0] observe_protection,output wire next_config_change);
+ output wire [7999:0] observe_tasks,output wire [1279:0] observe_nodes,output wire [31:0] next_revision,output wire [5:0] observe_protection,output wire next_config_change,output wire observe_stats_ready);
  `include "rs485_defs.vh"
  localparam integer TASKS=SLAVE_COUNT*5;
  localparam integer BIT_CYCLES=(CLK_HZ+BAUD/2)/BAUD;
@@ -87,14 +87,15 @@ module rs485_multirate #(
  function [31:0] default_shortest;input [159:0] ps;integer q;reg [31:0] n,p;
   begin n=32'hffffffff;for(q=0;q<5;q=q+1) begin p=ps[q*32 +:32];if(p!=0 && p<n) n=p;end default_shortest=n;end
  endfunction
- assign stat_scheduled=debug_task<TASKS?scheduled[debug_task]:0;
- assign stat_sent=debug_task<TASKS?sent[debug_task]:0;
- assign stat_valid=debug_task<TASKS?valid_count[debug_task]:0;
- assign stat_missed=debug_task<TASKS?missed[debug_task]:0;
- assign stat_max_lateness_us=debug_task<TASKS?max_late[debug_task]:0;
+ assign stat_scheduled=initialized && debug_task<TASKS?scheduled[debug_task]:0;
+ assign stat_sent=initialized && debug_task<TASKS?sent[debug_task]:0;
+ assign stat_valid=initialized && debug_task<TASKS?valid_count[debug_task]:0;
+ assign stat_missed=initialized && debug_task<TASKS?missed[debug_task]:0;
+ assign stat_max_lateness_us=initialized && debug_task<TASKS?max_late[debug_task]:0;
  assign node_failure_streak=debug_node<SLAVE_COUNT?failures[debug_node]:0;
  assign node_cooldown_until_us=debug_node<SLAVE_COUNT?cooldown[debug_node]:0;
  assign node_backoff_entries=debug_node<SLAVE_COUNT?backoffs[debug_node]:0;
+ assign observe_stats_ready=initialized;
  assign observe_push=push;
  assign observe_data=push_data;
  genvar view;
@@ -131,18 +132,18 @@ module rs485_multirate #(
    scan_q<=0;selected_q<=0;found<=0;selected_probe<=0;inflight_probe<=0;best_due<=0;scan_now<=0;
    dispatch_time<=0;dispatch_period<=0;next_sequence<=0;numerator<=0;denominator<=1;bus_busy_events<=0;
    missed_operand<=0;scheduled_operand<=0;operands_ready<=0;
-   for(i=0;i<TASKS;i=i+1) begin next_due[i]<=0;scheduled[i]<=0;sent[i]<=0;valid_count[i]<=0;missed[i]<=0;max_late[i]<=0;end
+   
    for(i=0;i<SLAVE_COUNT;i=i+1) begin offline[i]<=0;failures[i]<=0;cooldown[i]<=0;backoffs[i]<=0;end
   end else begin
    div_start<=0;cfg_applied<=0;cfg_rejected<=0;
    if(cfg_valid && cfg_ready) begin pending<=1;shadow_period<=cfg_period_us;shadow_mask<=cfg_mask;end
-   if(!initialized) begin initialized<=1;for(i=0;i<TASKS;i=i+1) next_due[i]<=time_us;end
+   if(!initialized)initialized<=1;
    if(engine_blocked) bus_busy_events<=sat_add(bus_busy_events,1);
    if(engine_done) begin
     if(engine_result==`RS_STATUS_VALID) begin
-     valid_count[inflight]<=sat_add(valid_count[inflight],1);failures[inflight_node]<=0;
+     failures[inflight_node]<=0;
      if(inflight_probe) begin offline[inflight_node]<=0;
-      for(j=0;j<5;j=j+1) next_due[inflight_node*5+j]<=time_us;end
+      end
     end else if(engine_result!=`RS_STATUS_BUS_BUSY) begin
      if(inflight_probe || failures[inflight_node]>=FAILURE_THRESHOLD-1) begin
       offline[inflight_node]<=1;cooldown[inflight_node]<=time_us+BACKOFF_US;
@@ -177,11 +178,11 @@ module rs485_multirate #(
       inflight<=selected;inflight_node<=selected_node;inflight_probe<=selected_probe;
       operands_ready<=0;
       next_sequence<=next_sequence+1'b1;cursor<=(selected==TASKS-1)?0:selected+1'b1;
-      sent[selected]<=sat_add(sent[selected],1);
+      
       dispatch_time<=time_us;dispatch_period<=active_period_us[selected_q*32 +:32];
       lateness=time_us-best_due;
-      if(lateness>max_late[selected]) max_late[selected]<=sat_add(0,lateness);
-      if(selected_probe) begin scheduled[selected]<=sat_add(scheduled[selected],1);state<=IDLE;end
+      
+      if(selected_probe) begin state<=IDLE;end
       else begin
        numerator<=lateness;denominator<=active_period_us[selected_q*32 +:32];div_start<=1;state<=ADVANCE_WAIT;
       end
@@ -193,9 +194,9 @@ module rs485_multirate #(
      end
      if(div_done) begin
      // Modulo arithmetic preserves ideal phase across 64-bit time wrap.
-     next_due[inflight]<=dispatch_time-remainder+dispatch_period;
-     missed[inflight]<=sat_add(missed_operand,quotient);
-     scheduled[inflight]<=sat_add(scheduled_operand,quotient+1'b1);state<=IDLE;
+     
+     
+     state<=IDLE;
      end
     end
     CFG_CHECK: begin
@@ -222,7 +223,7 @@ module rs485_multirate #(
       active_period_us<=shadow_period;active_mask<=shadow_mask;shortest<=shadow_shortest;
       config_load_ppm<=load_sum[31:0];cfg_revision<=revision_increment;cfg_apply_sequence<=next_sequence;
       cfg_error<=0;cfg_applied<=1;cursor<=0;scan_now<=time_us-1'b1;
-      for(i=0;i<TASKS;i=i+1) next_due[i]<=time_us;
+      
      end
     end
     default: state<=IDLE;
@@ -238,4 +239,38 @@ module rs485_multirate #(
     $fatal(1,"invalid multirate parameters");
  end
  // synthesis translate_on
+
+// Only the one-bit initialized/control owner needs asynchronous invalidation.
+// The first clock after each reset initializes all observable statistics while
+// their public read views are still zero. Scheduling already waits for that
+// same original initialized edge; no query/configuration cycle is added.
+integer si,sj;
+reg [63:0] statistics_lateness;
+always @(posedge clk)begin
+ if(!initialized)begin
+  for(si=0;si<TASKS;si=si+1)begin
+   scheduled[si]<=0;sent[si]<=0;valid_count[si]<=0;missed[si]<=0;max_late[si]<=0;
+  end
+ end else begin
+  if(engine_done && engine_result==`RS_STATUS_VALID)valid_count[inflight]<=sat_add(valid_count[inflight],1);
+  if(state==DISPATCH && !pending && found && enable && !(cfg_valid && cfg_ready) && engine_ready)begin
+   sent[selected]<=sat_add(sent[selected],1);
+   statistics_lateness=time_us-best_due;
+   if(statistics_lateness>max_late[selected])max_late[selected]<=sat_add(0,statistics_lateness);
+   if(selected_probe)scheduled[selected]<=sat_add(scheduled[selected],1);
+  end
+  if(state==ADVANCE_WAIT && div_done)begin
+   missed[inflight]<=sat_add(missed_operand,quotient);
+   scheduled[inflight]<=sat_add(scheduled_operand,quotient+1'b1);
+  end
+ end
+ // Private deadlines are initialized by the existing startup/configuration
+ // state before SCAN can read them. Keep original last-assignment priority.
+ if(!initialized)for(si=0;si<TASKS;si=si+1)next_due[si]<=time_us;
+ if(engine_done && engine_result==`RS_STATUS_VALID && inflight_probe)
+  for(sj=0;sj<5;sj=sj+1)next_due[inflight_node*5+sj]<=time_us;
+ if(state==ADVANCE_WAIT && div_done)next_due[inflight]<=dispatch_time-remainder+dispatch_period;
+ if(state==CFG_WAIT && !engine_active && cfg_revision!=32'hffffffff)
+  for(si=0;si<TASKS;si=si+1)next_due[si]<=time_us;
+end
 endmodule

@@ -49,7 +49,7 @@ def render():
   for child in ['motion_dma_lite_top','rs485_shared_lite_top','rs485_gp_full_top','rs485_gp_ps_top']:
    s=s.replace('safety_'+child,'interlock_'+child)
   if name=='motion_dma_lite_top':
-   ports='''input wire collector_run,collector_stop_commit,collector_reset,collector_config_pending,collector_config_change,collector_busy,
+   ports='''input wire collector_run,collector_stop_commit,collector_reset,collector_config_pending,collector_config_stored_pending,collector_config_change,collector_busy,
 input wire [31:0] collector_generation,collector_revision,collector_next_generation,collector_next_revision,
 input wire collector_next_reset,collector_next_config_change,
 input wire [159:0] collector_periods,input wire [4:0] collector_mask,
@@ -58,7 +58,7 @@ output wire interlock_idle,interlock_idle_off'''
    s=addports(s,ports)
    s=s.replace('safety_motion_service #(','safety_motion_service #(.INTERLOCK_SUPPORT(1),')
    s=s.replace(' motion(', ' motion(.collector_run(collector_run),.collector_stop_commit(collector_stop_commit),.collector_reset(collector_reset),'+
-     '.collector_config_pending(collector_config_pending),.collector_config_change(collector_config_change),.collector_busy(collector_busy),'+
+     '.collector_config_pending(collector_config_pending),.collector_config_stored_pending(collector_config_stored_pending),.collector_config_change(collector_config_change),.collector_busy(collector_busy),'+
      '.collector_next_reset(collector_next_reset),.collector_next_config_change(collector_next_config_change),.collector_generation(collector_generation),.collector_revision(collector_revision),.collector_next_generation(collector_next_generation),.collector_next_revision(collector_next_revision),'+
      '.collector_periods(collector_periods),.collector_mask(collector_mask),'+
      '.feedback_commit(feedback_commit),.feedback_raw(feedback_raw),.feedback_predecoded(feedback_predecoded),'+
@@ -68,10 +68,10 @@ output wire interlock_idle,interlock_idle_off'''
    assert s.count(events)==1
    s=s.replace(events,'')
    s=s.replace('wire [230:0] m_awaddr;',
-     'wire interlock_idle,interlock_idle_off,collector_run,collector_stop_commit,collector_reset,collector_config_pending,collector_config_change,collector_busy;\n'+
+     'wire interlock_idle,interlock_idle_off,collector_run,collector_stop_commit,collector_reset,collector_config_pending,collector_config_stored_pending,collector_config_change,collector_busy;\n'+
      events+'\nwire [5:0] completed_protection;\nwire collector_next_reset,collector_next_config_change;\nwire [31:0] collector_next_generation,collector_next_revision;\nwire [230:0] m_awaddr;')
    s=s.replace(' dma_core(', ' dma_core(.collector_run(collector_run),.collector_stop_commit(collector_stop_commit),.collector_reset(collector_reset),'+
-     '.collector_config_pending(collector_config_pending),.collector_config_change(collector_config_change),.collector_busy(collector_busy),'+
+     '.collector_config_pending(collector_config_pending),.collector_config_stored_pending(collector_config_stored_pending),.collector_config_change(collector_config_change),.collector_busy(collector_busy),'+
      '.collector_next_reset(collector_next_reset),.collector_next_config_change(collector_next_config_change),.collector_generation(generation),.collector_revision(revision),.collector_next_generation(collector_next_generation),.collector_next_revision(collector_next_revision),'+
      '.collector_periods(periods),.collector_mask(query_mask),'+
      '.feedback_commit(completed_valid),.feedback_raw(completed_raw),.feedback_predecoded(completed_protection),'+
@@ -79,7 +79,7 @@ output wire interlock_idle,interlock_idle_off'''
    s=s.replace('rs485_gp_bridge rs485(', 'rs485_gp_bridge #(.INTERLOCK_SUPPORT(1)) rs485('+
      '.completed_protection(completed_protection),.interlock_idle(interlock_idle),.interlock_idle_off(interlock_idle_off),'+
      '.interlock_run(collector_run),.interlock_stop_commit(collector_stop_commit),.interlock_reset(collector_reset),.next_reset(collector_next_reset),.next_config_change(collector_next_config_change),.next_generation(collector_next_generation),.next_revision(collector_next_revision),'+
-     '.interlock_config_pending(collector_config_pending),.interlock_config_change(collector_config_change),.interlock_busy(collector_busy),')
+     '.interlock_config_pending(collector_config_pending),.interlock_config_stored_pending(collector_config_stored_pending),.interlock_config_change(collector_config_change),.interlock_busy(collector_busy),')
   result['interlock_'+name+'.v']=s
  return result
 def main():
