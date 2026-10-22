@@ -1,0 +1,1744 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:delta:ps:api:1",
+  "title": "D1 host simulation API v1",
+  "$comment": "Select a $defs entry using the endpoint mapping in ps-api.md. Numeric/geometry cross-field constraints remain authoritative in the C++ validator.",
+  "$defs": {
+    "u64": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]{0,19})$",
+      "description": "Canonical decimal uint64; service additionally checks <=18446744073709551615."
+    },
+    "i64": {
+      "type": "string",
+      "pattern": "^(0|-?[1-9][0-9]{0,18})$",
+      "description": "Canonical decimal int64; service additionally checks signed bounds."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,128}$"
+    },
+    "xyz": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "steps": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/i64"
+        },
+        {
+          "$ref": "#/$defs/i64"
+        },
+        {
+          "$ref": "#/$defs/i64"
+        },
+        {
+          "const": "0"
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "empty": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "leg": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sample": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "details": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "field",
+        "leg",
+        "sample",
+        "details"
+      ],
+      "additionalProperties": false
+    },
+    "failure": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "const": false
+        },
+        "error": {
+          "$ref": "#/$defs/error"
+        }
+      },
+      "required": [
+        "ok",
+        "error"
+      ],
+      "additionalProperties": false
+    },
+    "point": {
+      "type": "object",
+      "properties": {
+        "xyz_mm": {
+          "$ref": "#/$defs/xyz"
+        },
+        "duration_us": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/u64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dwell_us": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "xyz_mm"
+      ],
+      "additionalProperties": false
+    },
+    "repeat": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "finite"
+            },
+            "count": {
+              "$ref": "#/$defs/u64"
+            }
+          },
+          "required": [
+            "mode",
+            "count"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "until_stopped"
+            }
+          },
+          "required": [
+            "mode"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "task": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "parameter_version": {
+          "$ref": "#/$defs/id"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/point"
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "repeat": {
+          "$ref": "#/$defs/repeat"
+        }
+      },
+      "required": [
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "box": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "$ref": "#/$defs/xyz"
+        },
+        "max": {
+          "$ref": "#/$defs/xyz"
+        }
+      },
+      "required": [
+        "min",
+        "max"
+      ],
+      "additionalProperties": false
+    },
+    "fixture": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "speed_mm_s": {
+          "type": "number"
+        },
+        "acceleration_mm_s2": {
+          "type": "number"
+        },
+        "sample_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "max_sample_distance_mm": {
+          "type": "number"
+        },
+        "max_samples": {
+          "$ref": "#/$defs/u64"
+        },
+        "workspace": {
+          "$ref": "#/$defs/box"
+        },
+        "forbidden_boxes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/box"
+          },
+          "maxItems": 128
+        },
+        "joint_min_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "joint_max_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "max_joint_step_deg": {
+          "type": "number"
+        },
+        "pulse_interval_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "segment_guard_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "max_duration_us": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "id",
+        "speed_mm_s",
+        "acceleration_mm_s2",
+        "sample_us",
+        "max_sample_distance_mm",
+        "max_samples",
+        "workspace",
+        "forbidden_boxes",
+        "joint_min_deg",
+        "joint_max_deg",
+        "max_joint_step_deg",
+        "pulse_interval_us",
+        "segment_guard_us",
+        "max_duration_us"
+      ],
+      "additionalProperties": false
+    },
+    "golden": {
+      "type": "object",
+      "properties": {
+        "base_radius_mm": {
+          "type": "number"
+        },
+        "effector_radius_mm": {
+          "type": "number"
+        },
+        "upper_length_mm": {
+          "type": "number"
+        },
+        "lower_length_mm": {
+          "type": "number"
+        },
+        "main_gear_teeth": {
+          "type": "number"
+        },
+        "motor_gear_teeth": {
+          "type": "number"
+        },
+        "microsteps": {
+          "type": "number"
+        },
+        "steps_per_rev": {
+          "type": "number"
+        },
+        "angle_offset_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "step_offset": {
+          "$ref": "#/$defs/xyz"
+        },
+        "inverse": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "fixture": {
+          "$ref": "#/$defs/fixture"
+        },
+        "golden": {
+          "$ref": "#/$defs/golden"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "fixture",
+        "golden"
+      ],
+      "additionalProperties": false
+    },
+    "pose": {
+      "type": "object",
+      "properties": {
+        "xyz_mm": {
+          "$ref": "#/$defs/xyz"
+        },
+        "joint_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "steps": {
+          "$ref": "#/$defs/steps"
+        },
+        "angles_rad": {
+          "$ref": "#/$defs/xyz"
+        },
+        "raw_steps": {
+          "$ref": "#/$defs/xyz"
+        },
+        "rad_to_step_factor": {
+          "type": "number"
+        },
+        "axis_order": {
+          "const": [
+            "high",
+            "low",
+            "rot",
+            "M4_disabled"
+          ]
+        }
+      },
+      "required": [
+        "xyz_mm",
+        "joint_deg",
+        "steps"
+      ],
+      "additionalProperties": false
+    },
+    "position": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "enum": [
+            "simulation",
+            "unknown"
+          ]
+        },
+        "model": {
+          "const": "sample_endpoint_simulation"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "stale": {
+          "type": "boolean"
+        },
+        "position_id": {
+          "$ref": "#/$defs/id"
+        },
+        "parameter_version": {
+          "type": "string"
+        },
+        "xyz_mm": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/xyz"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "joint_deg": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/xyz"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "steps": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/steps"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "updated_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "source",
+        "model",
+        "valid",
+        "stale",
+        "position_id",
+        "parameter_version",
+        "xyz_mm",
+        "joint_deg",
+        "steps",
+        "updated_monotonic_us"
+      ],
+      "additionalProperties": false
+    },
+    "leg": {
+      "type": "object",
+      "properties": {
+        "from_mm": {
+          "$ref": "#/$defs/xyz"
+        },
+        "to_mm": {
+          "$ref": "#/$defs/xyz"
+        },
+        "start_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "duration_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "acceleration_time_s": {
+          "type": "number"
+        },
+        "peak_speed_mm_s": {
+          "type": "number"
+        },
+        "profile": {
+          "enum": [
+            "trapezoid",
+            "triangle"
+          ]
+        },
+        "specified_duration": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "from_mm",
+        "to_mm",
+        "start_us",
+        "duration_us",
+        "acceleration_time_s",
+        "peak_speed_mm_s",
+        "profile",
+        "specified_duration"
+      ],
+      "additionalProperties": false
+    },
+    "preview_request": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "parameter_version": {
+          "$ref": "#/$defs/id"
+        },
+        "start_position_id": {
+          "$ref": "#/$defs/id"
+        },
+        "task": {
+          "$ref": "#/$defs/task"
+        }
+      },
+      "required": [
+        "parameter_version",
+        "start_position_id",
+        "task"
+      ],
+      "additionalProperties": false
+    },
+    "preview": {
+      "type": "object",
+      "properties": {
+        "executable": {
+          "type": "boolean"
+        },
+        "target": {
+          "$ref": "#/$defs/pose"
+        },
+        "fixture_id": {
+          "$ref": "#/$defs/id"
+        },
+        "scope": {
+          "const": "host_fixture_only"
+        },
+        "start_position_id": {
+          "$ref": "#/$defs/id"
+        },
+        "duration_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "legs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/leg"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/error"
+          }
+        },
+        "sample_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "preview_id": {
+          "$ref": "#/$defs/id"
+        },
+        "parameter_version": {
+          "$ref": "#/$defs/id"
+        },
+        "state_version": {
+          "$ref": "#/$defs/u64"
+        },
+        "expires_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "repeat": {
+          "$ref": "#/$defs/repeat"
+        },
+        "cycle_duration_us": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/u64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "executable",
+        "target",
+        "errors",
+        "sample_count",
+        "preview_id",
+        "parameter_version",
+        "state_version",
+        "expires_monotonic_us",
+        "repeat",
+        "cycle_duration_us"
+      ],
+      "additionalProperties": false
+    },
+    "run_request": {
+      "type": "object",
+      "properties": {
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "client_command_id": {
+          "$ref": "#/$defs/id"
+        },
+        "preview_id": {
+          "$ref": "#/$defs/id"
+        },
+        "deadline_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "boot_id",
+        "client_command_id",
+        "preview_id",
+        "deadline_monotonic_us"
+      ],
+      "additionalProperties": false
+    },
+    "command": {
+      "type": "object",
+      "properties": {
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "command_id": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "enum": [
+            "received",
+            "validated",
+            "submitted",
+            "running",
+            "stopping",
+            "completed",
+            "cancelled",
+            "failed",
+            "unknown"
+          ]
+        },
+        "request": {
+          "$ref": "#/$defs/run_request"
+        },
+        "simulation": {
+          "const": true
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "updated_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "error": {
+          "$ref": "#/$defs/error"
+        }
+      },
+      "required": [
+        "boot_id",
+        "command_id",
+        "status",
+        "request",
+        "simulation",
+        "task_id"
+      ],
+      "additionalProperties": false
+    },
+    "backend": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "simulation"
+        },
+        "pulse_model": {
+          "const": "not_cycle_accurate"
+        },
+        "accepted_sequence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/u64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completed_sequence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/u64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "pulse_model",
+        "accepted_sequence",
+        "completed_sequence"
+      ],
+      "additionalProperties": false
+    },
+    "log_stats": {
+      "type": "object",
+      "properties": {
+        "last_event_id": {
+          "$ref": "#/$defs/u64"
+        },
+        "queue_depth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dropped": {
+          "$ref": "#/$defs/u64"
+        },
+        "write_errors": {
+          "$ref": "#/$defs/u64"
+        },
+        "last_flushed_event_id": {
+          "$ref": "#/$defs/u64"
+        },
+        "retired": {
+          "$ref": "#/$defs/u64"
+        },
+        "durability": {
+          "type": "string"
+        },
+        "history_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "last_event_id",
+        "queue_depth",
+        "dropped",
+        "write_errors",
+        "last_flushed_event_id",
+        "retired",
+        "durability",
+        "history_count"
+      ],
+      "additionalProperties": false
+    },
+    "recovery": {
+      "type": "object",
+      "properties": {
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "command_id": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "const": "unknown"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "simulation_injection_enabled": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "simulation": {
+          "const": true
+        },
+        "mode": {
+          "enum": [
+            "task",
+            "manual"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "idle",
+            "submitted",
+            "running",
+            "stopping",
+            "fault"
+          ]
+        },
+        "state_version": {
+          "$ref": "#/$defs/u64"
+        },
+        "monotonic_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "stop_epoch": {
+          "$ref": "#/$defs/u64"
+        },
+        "handled_stop_epoch": {
+          "$ref": "#/$defs/u64"
+        },
+        "parameter_version": {
+          "$ref": "#/$defs/id"
+        },
+        "position": {
+          "$ref": "#/$defs/position"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/pose"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "active_command_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "command": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/command"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recovery": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/recovery"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "control_owned": {
+          "type": "boolean"
+        },
+        "preview_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "backend": {
+          "$ref": "#/$defs/backend"
+        },
+        "logs": {
+          "$ref": "#/$defs/log_stats"
+        },
+        "you_control": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "simulation_injection_enabled",
+        "schema_version",
+        "boot_id",
+        "simulation",
+        "mode",
+        "phase",
+        "state_version",
+        "monotonic_us",
+        "stop_epoch",
+        "handled_stop_epoch",
+        "parameter_version",
+        "position",
+        "target",
+        "active_command_id",
+        "command",
+        "recovery",
+        "control_owned",
+        "preview_id",
+        "backend",
+        "logs"
+      ],
+      "additionalProperties": false
+    },
+    "auth_request": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ],
+      "additionalProperties": false
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "csrf": {
+          "type": "string"
+        },
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "csrf",
+        "boot_id"
+      ],
+      "additionalProperties": false
+    },
+    "logout": {
+      "type": "object",
+      "properties": {
+        "logged_out": {
+          "const": true
+        }
+      },
+      "required": [
+        "logged_out"
+      ],
+      "additionalProperties": false
+    },
+    "control_request": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "enum": [
+            "acquire",
+            "release"
+          ]
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "additionalProperties": false
+    },
+    "control": {
+      "type": "object",
+      "properties": {
+        "you_control": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "you_control"
+      ],
+      "additionalProperties": false
+    },
+    "mode": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "task",
+            "manual"
+          ]
+        }
+      },
+      "required": [
+        "mode"
+      ],
+      "additionalProperties": false
+    },
+    "stop": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "const": "received"
+        },
+        "stop_epoch": {
+          "$ref": "#/$defs/u64"
+        },
+        "simulation": {
+          "const": true
+        }
+      },
+      "required": [
+        "status",
+        "stop_epoch",
+        "simulation"
+      ],
+      "additionalProperties": false
+    },
+    "cancel": {
+      "type": "object",
+      "properties": {
+        "cancelled": {
+          "const": true
+        }
+      },
+      "required": [
+        "cancelled"
+      ],
+      "additionalProperties": false
+    },
+    "saved": {
+      "type": "object",
+      "properties": {
+        "saved": {
+          "const": true
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "executed": {
+          "const": false
+        }
+      },
+      "required": [
+        "saved",
+        "id",
+        "executed"
+      ],
+      "additionalProperties": false
+    },
+    "ids": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      },
+      "required": [
+        "ids"
+      ],
+      "additionalProperties": false
+    },
+    "boots": {
+      "type": "object",
+      "properties": {
+        "boot_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "current_boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "history_incomplete": {
+          "const": true
+        },
+        "archive_errors": {
+          "$ref": "#/$defs/u64"
+        },
+        "archive_retired": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "boot_ids",
+        "current_boot_id",
+        "history_incomplete",
+        "archive_errors",
+        "archive_retired"
+      ],
+      "additionalProperties": false
+    },
+    "teach": {
+      "type": "object",
+      "properties": {
+        "point": {
+          "$ref": "#/$defs/point"
+        },
+        "source": {
+          "const": "simulation"
+        },
+        "position_id": {
+          "$ref": "#/$defs/id"
+        },
+        "parameter_version": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "point",
+        "source",
+        "position_id",
+        "parameter_version"
+      ],
+      "additionalProperties": false
+    },
+    "jog_start": {
+      "type": "object",
+      "properties": {
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "jog_id": {
+          "$ref": "#/$defs/id"
+        },
+        "axis": {
+          "enum": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "sign": {
+          "enum": [
+            -1,
+            1
+          ]
+        },
+        "speed_mm_s": {
+          "type": "number"
+        },
+        "refresh_seq": {
+          "const": "0"
+        },
+        "stop_epoch": {
+          "$ref": "#/$defs/u64"
+        },
+        "deadline_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "boot_id",
+        "jog_id",
+        "axis",
+        "sign",
+        "speed_mm_s",
+        "refresh_seq",
+        "stop_epoch",
+        "deadline_monotonic_us"
+      ],
+      "additionalProperties": false
+    },
+    "jog_refresh": {
+      "type": "object",
+      "properties": {
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "jog_id": {
+          "$ref": "#/$defs/id"
+        },
+        "refresh_seq": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "boot_id",
+        "jog_id",
+        "refresh_seq"
+      ],
+      "additionalProperties": false
+    },
+    "jog_started": {
+      "type": "object",
+      "properties": {
+        "jog_id": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "const": "running"
+        },
+        "expires_in_us": {
+          "const": "350000"
+        }
+      },
+      "required": [
+        "jog_id",
+        "status",
+        "expires_in_us"
+      ],
+      "additionalProperties": false
+    },
+    "jog_refreshed": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "const": "running"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "inject": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "reference_position",
+            "position_unknown",
+            "fault",
+            "stop_failure",
+            "clear_stop_failure",
+            "logs",
+            "log_burst"
+          ]
+        },
+        "disk_failure": {
+          "type": "boolean"
+        },
+        "pause_log_writer": {
+          "type": "boolean"
+        },
+        "count": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "applied": {
+      "type": "object",
+      "properties": {
+        "applied": {
+          "const": true
+        },
+        "simulation": {
+          "const": true
+        }
+      },
+      "required": [
+        "applied"
+      ],
+      "additionalProperties": false
+    },
+    "telem_record": {
+      "type": "object",
+      "properties": {
+        "collector_generation": {
+          "$ref": "#/$defs/u64"
+        },
+        "transport_generation": {
+          "$ref": "#/$defs/u64"
+        },
+        "revision": {
+          "$ref": "#/$defs/u64"
+        },
+        "completion_serial": {
+          "$ref": "#/$defs/u64"
+        },
+        "sequence": {
+          "$ref": "#/$defs/u64"
+        },
+        "request_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "event_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "payload": {
+          "$ref": "#/$defs/u64"
+        },
+        "address": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "query": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "data_valid": {
+          "type": "boolean"
+        },
+        "kind": {
+          "enum": [
+            "encoder_carry_value",
+            "command_pulses",
+            "error_counts",
+            "enable",
+            "protect",
+            "unknown"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/i64"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "carry": {
+                  "$ref": "#/$defs/i64"
+                },
+                "value": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "carry",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "known": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "raw",
+                "known"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "raw_hex_le": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{128}$"
+        }
+      },
+      "required": [
+        "collector_generation",
+        "transport_generation",
+        "revision",
+        "completion_serial",
+        "sequence",
+        "request_us",
+        "event_us",
+        "payload",
+        "address",
+        "query",
+        "status",
+        "attempt",
+        "data_valid",
+        "kind",
+        "value",
+        "raw_hex_le"
+      ],
+      "additionalProperties": false
+    },
+    "telem_latest": {
+      "type": "object",
+      "properties": {
+        "last_valid": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/telem_record"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "last_result": {
+          "$ref": "#/$defs/telem_record"
+        },
+        "observed_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "stale": {
+          "type": "boolean"
+        },
+        "source": {
+          "const": "frozen_fixture_replay"
+        },
+        "current_generation": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "last_valid",
+        "last_result",
+        "observed_monotonic_us",
+        "stale",
+        "source",
+        "current_generation"
+      ],
+      "additionalProperties": false
+    },
+    "telemetry": {
+      "type": "object",
+      "properties": {
+        "simulation": {
+          "const": true
+        },
+        "latest": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/telem_latest"
+          }
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/telem_record"
+          }
+        },
+        "active_identity": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "collector_generation": {
+                  "$ref": "#/$defs/u64"
+                },
+                "transport_generation": {
+                  "$ref": "#/$defs/u64"
+                },
+                "revision": {
+                  "$ref": "#/$defs/u64"
+                }
+              },
+              "required": [
+                "collector_generation",
+                "transport_generation",
+                "revision"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stale": {
+          "type": "boolean"
+        },
+        "missing_serials": {
+          "$ref": "#/$defs/u64"
+        },
+        "xyz_feedback": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "simulation",
+        "latest",
+        "history",
+        "active_identity",
+        "stale",
+        "missing_serials",
+        "xyz_feedback"
+      ],
+      "additionalProperties": false
+    },
+    "replayed": {
+      "type": "object",
+      "properties": {
+        "frames": {
+          "const": 17
+        },
+        "simulation": {
+          "const": true
+        }
+      },
+      "required": [
+        "frames",
+        "simulation"
+      ],
+      "additionalProperties": false
+    },
+    "filter": {
+      "type": "object",
+      "properties": {
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "clock": {
+          "const": "monotonic"
+        },
+        "from_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "to_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "severity": {
+          "enum": [
+            "",
+            "info",
+            "warning",
+            "error"
+          ]
+        },
+        "component": {
+          "type": "string"
+        },
+        "command_id": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "event_id": {
+          "$ref": "#/$defs/u64"
+        },
+        "monotonic_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "wall_time_valid": {
+          "const": false
+        },
+        "wall_time": {
+          "type": "null"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "warning",
+            "error"
+          ]
+        },
+        "component": {
+          "type": "string"
+        },
+        "command_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "task_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "event": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object"
+        },
+        "simulation": {
+          "const": true
+        }
+      },
+      "required": [
+        "schema_version",
+        "boot_id",
+        "event_id",
+        "monotonic_us",
+        "wall_time_valid",
+        "wall_time",
+        "severity",
+        "component",
+        "command_id",
+        "task_id",
+        "event",
+        "details",
+        "simulation"
+      ],
+      "additionalProperties": false
+    },
+    "snapshot": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "record_type": {
+          "const": "snapshot"
+        },
+        "snapshot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "filters": {
+          "$ref": "#/$defs/filter"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "upper_event_id": {
+          "$ref": "#/$defs/u64"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "gaps": {
+          "type": "boolean"
+        },
+        "dropped": {
+          "$ref": "#/$defs/u64"
+        },
+        "retired": {
+          "$ref": "#/$defs/u64"
+        },
+        "write_errors": {
+          "$ref": "#/$defs/u64"
+        },
+        "expires_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "simulation": {
+          "const": true
+        },
+        "durability": {
+          "type": "string"
+        },
+        "lower_event_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/u64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_type",
+        "snapshot_id",
+        "boot_id",
+        "filters",
+        "count",
+        "upper_event_id",
+        "truncated",
+        "gaps",
+        "dropped",
+        "retired",
+        "write_errors",
+        "expires_monotonic_us",
+        "simulation",
+        "durability",
+        "lower_event_id"
+      ],
+      "additionalProperties": false
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          }
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "metadata",
+        "events",
+        "next_cursor"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

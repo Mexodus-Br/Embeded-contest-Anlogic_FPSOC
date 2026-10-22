@@ -1,0 +1,33 @@
+{
+  "identity": "servo42c-readonly-v1",
+  "confirmation": "2026-10-13 user: 115200 baud, faster polling; other protocol and FIFO terms accepted",
+  "profile": {
+    "CLK_HZ": 100000000, "BAUD": 115200, "SLAVE_COUNT": 3,
+    "SLAVE_ADDRS": 14868960, "QUERY_MASK": 31,
+    "POLL_CYCLES": 1000000, "TIMEOUT_CYCLES": 1000000,
+    "INTERBYTE_CYCLES": 200000, "RETRIES": 1,
+    "PRE_CYCLES": 1000, "POST_CYCLES": 1000,
+    "TURN_CYCLES": 1000, "QUIET_CYCLES": 1000000, "FIFO_DEPTH": 8
+  },
+  "queries": [
+    {"name":"ENCODER", "code":48, "data_bytes":6, "fields":"carry:int32 BE, value:uint16 BE", "source":"manual 5.1 p12; calibrated motor", "mode":"STP concurrency unverified"},
+    {"name":"PULSES", "code":51, "data_bytes":4, "fields":"pulses:int32 BE", "source":"manual 5.1 p12 example 00000100=256", "mode":"STP concurrency unverified"},
+    {"name":"ERROR", "code":57, "data_bytes":2, "fields":"angle_error:int16 BE, 65536 counts/revolution", "source":"manual p12-13 example 00B7", "mode":"STP concurrency unverified"},
+    {"name":"ENABLE", "code":58, "data_bytes":1, "fields":"1=enabled,2=disabled", "source":"manual 5.1 p13", "mode":"STP concurrency unverified"},
+    {"name":"PROTECT", "code":62, "data_bytes":1, "fields":"1=protected,2=not protected", "source":"manual 5.1 p13", "mode":"STP concurrency unverified"}
+  ],
+  "status": {"VALID":0,"CHECKSUM":1,"FRAMING":2,"TIMEOUT":3,"TRUNCATED":4,"ADDRESS":5,"BUS_BUSY":6},
+  "record_bits":256,
+  "record": [
+    {"name":"PAYLOAD", "lsb":0,"width":48},
+    {"name":"EVENT_US", "lsb":48,"width":64},
+    {"name":"REQUEST_US", "lsb":112,"width":64},
+    {"name":"SEQUENCE", "lsb":176,"width":32},
+    {"name":"LENGTH", "lsb":208,"width":8},
+    {"name":"ATTEMPT", "lsb":216,"width":8},
+    {"name":"STATUS", "lsb":224,"width":8},
+    {"name":"QUERY", "lsb":232,"width":8},
+    {"name":"ADDRESS", "lsb":240,"width":8},
+    {"name":"VERSION", "lsb":248,"width":8}
+  ]
+}

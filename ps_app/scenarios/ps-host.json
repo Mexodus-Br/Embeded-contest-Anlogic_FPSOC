@@ -1,0 +1,22 @@
+{
+  "op": "plan",
+  "fixture": {
+    "id": "host_demo_v1",
+    "speed_mm_s": 20,
+    "acceleration_mm_s2": 100,
+    "sample_us": "10000",
+    "max_sample_distance_mm": 0.25,
+    "max_samples": "200000",
+    "workspace": {"min": [-100, -100, -300], "max": [100, 100, -100]},
+    "forbidden_boxes": [],
+    "joint_min_deg": [-90, -90, -90],
+    "joint_max_deg": [90, 90, 90],
+    "max_joint_step_deg": 5,
+    "pulse_interval_us": "10",
+    "segment_guard_us": "10",
+    "max_duration_us": "3600000000"
+  },
+  "golden": {},
+  "start": {"valid": true, "position_id": "host_reference_0", "xyz_mm": [0, 0, -140], "steps": ["-1090", "-1090", "-1090", "0"]},
+  "points": [{"xyz_mm": [5, 0, -140]}]
+}

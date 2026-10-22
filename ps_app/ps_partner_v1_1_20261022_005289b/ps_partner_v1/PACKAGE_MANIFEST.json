@@ -1,0 +1,701 @@
+{
+  "package": "ps_partner_v1",
+  "package_version": "1.1",
+  "created_date": "2026-10-22",
+  "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+  "context_commit": "005289ba59463650012e13e5a017225b1c635661",
+  "requirements_status": "functional_v1_1_adds_log_view_download_API_and_numeric_parameters_open",
+  "four_g_extension_planned": false,
+  "new_scope": "authenticated application log viewing, filtering, pagination, detail and download",
+  "hash_scope": "ONE final partner ZIP only; no per-file, log, sample or evidence hashes computed",
+  "hardware_integration_owner": "project_team_not_partner",
+  "file_count_excluding_manifest": 76,
+  "uncompressed_bytes_excluding_manifest": 1200657,
+  "selection_policy": "explicit_allowlist; no credentials, binaries, BSP build/deploy scripts, vendor IP or full logs",
+  "files": [
+    {
+      "path": "HOST_VALIDATION.md",
+      "bytes": 1869,
+      "source_path": "handoff/ps_partner_v1/HOST_VALIDATION.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "c9c1755d1e58c52f5ccc0b7781bd215bb0770da1",
+      "role": "curated_partner_guide_or_host_tool",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "PS_REQUIREMENTS_V1.md",
+      "bytes": 15867,
+      "source_path": "PS_REQUIREMENTS_V1.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "aee2ab9ef7556627753037fef5a014080f3189d6",
+      "role": "approved_requirements_v1_1",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4930,
+      "source_path": "handoff/ps_partner_v1/README.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "ca46713fb909f242b6f30a698adcf9e47bd36eb9",
+      "role": "curated_partner_guide_or_host_tool",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/NOTICE.md",
+      "bytes": 1006,
+      "source_path": "golden_model/NOTICE.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "637f2205faf199f4ea288d4a728c67c8c5888f17",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/README.md",
+      "bytes": 7343,
+      "source_path": "golden_model/README.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "451f1cc050d70d9fe10ed4d7544f5ca6a2c1757b",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/SOURCE_ANALYSIS.md",
+      "bytes": 9828,
+      "source_path": "golden_model/SOURCE_ANALYSIS.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "771220feff9ade55940a6d95bf7c0a7135bb363c",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/VALIDATION.md",
+      "bytes": 5284,
+      "source_path": "golden_model/VALIDATION.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "c3eb4acaa2c03beb65589952123418a75387db5e",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/RampsStepper.cpp",
+      "bytes": 2285,
+      "source_path": "golden_model/baseline/RampsStepper.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "147372b989dcb87203cd46ef43fa92436ac7a74e",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/RampsStepper.h",
+      "bytes": 822,
+      "source_path": "golden_model/baseline/RampsStepper.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "17d410057553ed6c87a75a0229683797873d7005",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/command.cpp",
+      "bytes": 4030,
+      "source_path": "golden_model/baseline/command.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "a989220da5ebf21ffa7db00be810521ec2ff96f5",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/command.h",
+      "bytes": 842,
+      "source_path": "golden_model/baseline/command.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "71df75788b9b50b313ae9de178014203b3135890",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/config.h",
+      "bytes": 4163,
+      "source_path": "golden_model/baseline/config.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "25839432be3c8b065407916bf7ccf411c899013d",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/delta_fengyue_V2.0.ino",
+      "bytes": 22137,
+      "source_path": "golden_model/baseline/delta_fengyue_V2.0.ino",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "34b3dabbc693744da877deb34a53adbfe74968d6",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/endstop.cpp",
+      "bytes": 1272,
+      "source_path": "golden_model/baseline/endstop.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "493e14e3ebb8a8e8bc23086172a732f2187b3ca0",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/endstop.h",
+      "bytes": 462,
+      "source_path": "golden_model/baseline/endstop.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "3e968defc3df59d5f241148758aad3e3c5d08e39",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/interpolation.cpp",
+      "bytes": 6295,
+      "source_path": "golden_model/baseline/interpolation.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "5f4efddccdfc23a1254ca89a929e48ddef74cec5",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/interpolation.h",
+      "bytes": 1640,
+      "source_path": "golden_model/baseline/interpolation.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "80c9be41b8d8e03b4eaf27a74427a4f35e24a26e",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/manifest.json",
+      "bytes": 3012,
+      "source_path": "golden_model/baseline/manifest.json",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "0cd3b8b5ff2adbb54791e57be8777a93facd6106",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/pinout.h",
+      "bytes": 1651,
+      "source_path": "golden_model/baseline/pinout.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "86b2eabfbf718f5db2cad5a87ea92e8dfea6a6dd",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/robotGeometry.cpp",
+      "bytes": 1636,
+      "source_path": "golden_model/baseline/robotGeometry.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "f81312f3f09bc7b16e46bfc853367472cd959912",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/baseline/robotGeometry.h",
+      "bytes": 588,
+      "source_path": "golden_model/baseline/robotGeometry.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "9e614318fc0626755bd640416e7dd40d4ff75c71",
+      "role": "unchanged_golden_provenance",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/build.py",
+      "bytes": 2136,
+      "source_path": "golden_model/build.py",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "8e50262bef7085bfcbda0203adb542c7b4f5fe53",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/configs/firmware_reference.cfg",
+      "bytes": 1133,
+      "source_path": "golden_model/configs/firmware_reference.cfg",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "9055c45f9d7b3be92f1d4ae64eb20e3044d7bfa7",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/generate_vectors.py",
+      "bytes": 3534,
+      "source_path": "golden_model/generate_vectors.py",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "0e02e6d15c28aefce10da29157a635792d3d1e6f",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/src/main.cpp",
+      "bytes": 3743,
+      "source_path": "golden_model/src/main.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "14495a4a637a3406252c812a77ddfdac7bc2305e",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/src/model.cpp",
+      "bytes": 6825,
+      "source_path": "golden_model/src/model.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "88ed180e07f8d1ab4664585225c66308eeaa24a3",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/src/model.hpp",
+      "bytes": 1133,
+      "source_path": "golden_model/src/model.hpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "40e288c0dc82814fbc970f771ba9f0e85699a4df",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/tests/Arduino.h",
+      "bytes": 294,
+      "source_path": "golden_model/tests/Arduino.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "8cb1ef11bcc45152d493cdba476d847bec56adbb",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/tests/oracle.cpp",
+      "bytes": 1741,
+      "source_path": "golden_model/tests/oracle.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "83d7b40a11428e34d8989a68f5647f81695d0be2",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/tests/test_regression.py",
+      "bytes": 9855,
+      "source_path": "golden_model/tests/test_regression.py",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "0c8a934dbb127b1dd2e826846c0c50d572fd434a",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "golden_model/vectors/firmware_host.json",
+      "bytes": 547228,
+      "source_path": "golden_model/vectors/firmware_host.json",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "f1bac308dd6ff40d43c3873adeecbd22a0a9f303",
+      "role": "golden_host_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "guides/BOUNDARIES.md",
+      "bytes": 4013,
+      "source_path": "handoff/ps_partner_v1/guides/BOUNDARIES.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "eab4490d75213e199778f2b7f839dc4acf9552b1",
+      "role": "curated_partner_guide_or_host_tool",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "guides/DELIVERY_CHECKLIST.md",
+      "bytes": 3663,
+      "source_path": "handoff/ps_partner_v1/guides/DELIVERY_CHECKLIST.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "ce0fd9fbdca3503e33a367f4a1ce95997d6ab708",
+      "role": "curated_partner_guide_or_host_tool",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "guides/LOG_VIEW_DOWNLOAD.md",
+      "bytes": 6652,
+      "source_path": "handoff/ps_partner_v1/guides/LOG_VIEW_DOWNLOAD.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "85b02f2d531b2063911ed5ed853a3823f2601efc",
+      "role": "curated_partner_guide_or_host_tool",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "guides/PROJECT_CONTEXT.md",
+      "bytes": 5613,
+      "source_path": "handoff/ps_partner_v1/guides/PROJECT_CONTEXT.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "fba9174915d000173dcdb7f5494063643548d33c",
+      "role": "curated_partner_guide_or_host_tool",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "guides/WORK_PLAN.md",
+      "bytes": 4553,
+      "source_path": "handoff/ps_partner_v1/guides/WORK_PLAN.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "e2b3ecb7879b50927fdb527694ae021006a3dca9",
+      "role": "curated_partner_guide_or_host_tool",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_interface/generate.py",
+      "bytes": 19408,
+      "source_path": "pl_interface/generate.py",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "659ad23b5639454a5b852cdd1922e5015a60977e",
+      "role": "canonical_schema_and_motion_codec",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_interface/generated/errors.md",
+      "bytes": 2709,
+      "source_path": "pl_interface/generated/errors.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "a67c31f3ab53b0c8bf90a1a2f435ceead07e8040",
+      "role": "canonical_schema_and_motion_codec",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_interface/generated/interface_defs.h",
+      "bytes": 92676,
+      "source_path": "pl_interface/generated/interface_defs.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "db1f54bf577eee26f2fa078c3c2fd6462c0b620d",
+      "role": "canonical_schema_and_motion_codec",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_interface/generated/interface_defs.vh",
+      "bytes": 80775,
+      "source_path": "pl_interface/generated/interface_defs.vh",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "5b4605bd4dd6da3f5166848f7e4a5e8d18f63ebd",
+      "role": "canonical_schema_and_motion_codec",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_interface/generated/registers.md",
+      "bytes": 22904,
+      "source_path": "pl_interface/generated/registers.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "fdaf1cf2da0c1069e3d73d25e2fc26fea5767e09",
+      "role": "canonical_schema_and_motion_codec",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_interface/motion_v2.py",
+      "bytes": 1553,
+      "source_path": "pl_interface/motion_v2.py",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "2506b7d5a30ebd6e45e6aa220fbd83aac36ae13f",
+      "role": "canonical_schema_and_motion_codec",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_interface/schema.json",
+      "bytes": 99329,
+      "source_path": "pl_interface/schema.json",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "ca6c24e81fcf44a7fc494ebd10f94d40a7aa6513",
+      "role": "canonical_schema_and_motion_codec",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_interface/tests/test_motion_v2.py",
+      "bytes": 2019,
+      "source_path": "pl_interface/tests/test_motion_v2.py",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "fa44fe49215f9a3f762b7d17a1563210a4b140c1",
+      "role": "canonical_schema_and_motion_codec",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/generated/gp_defs.h",
+      "bytes": 8041,
+      "source_path": "pl_rs485/generated/gp_defs.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "1ec5cec8b4bd64e1219ee2da918744fe382e7a60",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/generated/gp_defs.vh",
+      "bytes": 6662,
+      "source_path": "pl_rs485/generated/gp_defs.vh",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "876c8d626f3d5224c7e33d5de1aa61455358a323",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/generated/gp_registers.md",
+      "bytes": 1397,
+      "source_path": "pl_rs485/generated/gp_registers.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "2a40615ff5c02c93a1bb028d13bc73639c524cae",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/generated/rs485_defs.h",
+      "bytes": 1630,
+      "source_path": "pl_rs485/generated/rs485_defs.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "0e3ea5cbe819267c0c895d4625942803851b577b",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/generated/telem_defs.h",
+      "bytes": 9703,
+      "source_path": "pl_rs485/generated/telem_defs.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "caf08db6052c693372595a6401a8e261c37d0cd9",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/generated/telem_defs.vh",
+      "bytes": 8116,
+      "source_path": "pl_rs485/generated/telem_defs.vh",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "28aa72c8504fe14fe6052b1e6ddc282e8dc0dfc8",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/generated/telem_registers.md",
+      "bytes": 926,
+      "source_path": "pl_rs485/generated/telem_registers.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "626d8b48dbfe01fdab5e67e44e19a69b6c6f7f43",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/rate_design.json",
+      "bytes": 2326,
+      "source_path": "pl_rs485/rate_design.json",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "cc4457f10abd625307ec6e3267892cac71e45a5d",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/schema.json",
+      "bytes": 1921,
+      "source_path": "pl_rs485/schema.json",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "23cb37245fc4894c0d8a4167a68f38b81861597b",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/software/rs485_gp.c",
+      "bytes": 4934,
+      "source_path": "pl_rs485/software/rs485_gp.c",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "66287abb1dd72ba37bd6a3f23bea4f27d83170df",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/software/rs485_gp.h",
+      "bytes": 1683,
+      "source_path": "pl_rs485/software/rs485_gp.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "f130d51ae486626914a17320636c3ba980632bf3",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/software/rs485_telem.c",
+      "bytes": 2077,
+      "source_path": "pl_rs485/software/rs485_telem.c",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "fe565e49574f7f1b83ba04f19961a149a25c7958",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/software/rs485_telem.h",
+      "bytes": 943,
+      "source_path": "pl_rs485/software/rs485_telem.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "32a1e5bc9183d6bc4afd5edf2994c049568ca452",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/tests/test_gp_software.c",
+      "bytes": 4709,
+      "source_path": "pl_rs485/tests/test_gp_software.c",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "a1c08ce13469dc2108b61ce50d5e794608c50acb",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/tests/test_telem_software.c",
+      "bytes": 1689,
+      "source_path": "pl_rs485/tests/test_telem_software.c",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "99e0cf03004003cdeb4c384d94c68de917ab8f04",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/tools/generate_gp.py",
+      "bytes": 2283,
+      "source_path": "pl_rs485/tools/generate_gp.py",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "7632dc9ab2efc76cd1877896b59de7c20fb672ec",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "pl_rs485/tools/generate_telem.py",
+      "bytes": 2000,
+      "source_path": "pl_rs485/tools/generate_telem.py",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "6392c8ae05a57de65fe21f57235420ad540ea726",
+      "role": "telemetry_decoder_and_definitions",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/MOTION_HANDOFF.md",
+      "bytes": 14991,
+      "source_path": "pl_motion/MOTION_HANDOFF.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "12d67e4124a1d2ee26dc697c8e880c25a24bcd8f",
+      "role": "historical_delivery_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/OPTIMIZATION_HANDOFF.md",
+      "bytes": 11887,
+      "source_path": "pl_rs485/optimization/OPTIMIZATION_HANDOFF.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "b1b7aa2db81640a7ca69589bf060b07f3b9e4a06",
+      "role": "historical_delivery_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/RS485_DMA_HANDOFF.md",
+      "bytes": 24056,
+      "source_path": "pl_rs485/RS485_DMA_HANDOFF.md",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "0b222140d40efe7a3f4a3cace8ba2d5af2bed2db",
+      "role": "historical_delivery_reference",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/board/delta_scope.cpp",
+      "bytes": 13617,
+      "source_path": "bsp/scope/delta_scope.cpp",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "3e78d1dbbf81d4a06b679e62db2fef829f7fe3e8",
+      "role": "board_reference_only_not_host_build",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/board/mot2_codec.h",
+      "bytes": 1274,
+      "source_path": "bsp/motion/mot2_codec.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "a02d4145720834ef8916f8a13ac94582b89bf041",
+      "role": "board_reference_only_not_host_build",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/board/motion_uapi.h",
+      "bytes": 982,
+      "source_path": "bsp/motion/motion_uapi.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "4bed5e420d2e4299e34e28e3e0e0bd7b18404363",
+      "role": "board_reference_only_not_host_build",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/board/rs485_uapi.h",
+      "bytes": 1030,
+      "source_path": "bsp/telemetry/rs485_uapi.h",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "bc2f637acdb88bf33566458730505f22775d34a5",
+      "role": "board_reference_only_not_host_build",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/current/bsp/motor_test/BUILD_STATUS.md",
+      "bytes": 4224,
+      "source_path": "bsp/motor_test/BUILD_STATUS.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "4a7a9891f05ea33799f25bf018b00da8b740906e",
+      "role": "current_context_not_base_code_or_deployment_permission",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/current/bsp/wifi/http/BUILD_STATUS.md",
+      "bytes": 5992,
+      "source_path": "bsp/wifi/http/BUILD_STATUS.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "da40fdbb4a1a00becc9d6b28f328e9e8ef3eb557",
+      "role": "current_context_not_base_code_or_deployment_permission",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/current/integration/controlled_v1_20261021/ACCEPTANCE.md",
+      "bytes": 6606,
+      "source_path": "integration/controlled_v1_20261021/ACCEPTANCE.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "4be33f9e5a1ef9c44d83d71e53be4b8a482db2fd",
+      "role": "current_context_not_base_code_or_deployment_permission",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/current/integration/controlled_v1_20261021/BOOT_CANDIDATE.md",
+      "bytes": 5611,
+      "source_path": "integration/controlled_v1_20261021/BOOT_CANDIDATE.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "359f6323b4029c0bdef598b1f87e3741b63d9003",
+      "role": "current_context_not_base_code_or_deployment_permission",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/current/integration/controlled_v1_20261021/REVIEW.md",
+      "bytes": 8105,
+      "source_path": "integration/controlled_v1_20261021/REVIEW.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "1059e0293f11ec1de63951760fdffe6b2f42f7cc",
+      "role": "current_context_not_base_code_or_deployment_permission",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "reference/current/pl_safety/INTERLOCK_CONTRACT.md",
+      "bytes": 12619,
+      "source_path": "pl_safety/INTERLOCK_CONTRACT.md",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "b0aa9f296645cb6b2268ced6489eaa7a2a8b4b87",
+      "role": "current_context_not_base_code_or_deployment_permission",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "samples/telemetry_rtl_frames.hex",
+      "bytes": 2210,
+      "source_path": "pl_rs485/evidence/telemetry_unit_final/frames.hex",
+      "source_commit": "ffc67e05dbc7a8fb5559b5753c035ca26b9e815c",
+      "source_git_blob": "f5e7ecbdfb64ec6e8537de8573c074620b2a6239",
+      "role": "frozen_rtl_not_board_sample",
+      "origin": "pinned_git"
+    },
+    {
+      "path": "tools/smoke.py",
+      "bytes": 5962,
+      "source_path": "handoff/ps_partner_v1/tools/smoke.py",
+      "source_commit": "005289ba59463650012e13e5a017225b1c635661",
+      "source_git_blob": "f45b222c5bf9d9f4fa977dfc860b462929bfbc3c",
+      "role": "curated_partner_guide_or_host_tool",
+      "origin": "pinned_git"
+    }
+  ]
+}
