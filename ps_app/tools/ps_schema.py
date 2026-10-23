@@ -70,7 +70,16 @@ def schema():
     d['page']=obj({'metadata':ref('snapshot'),'events':array(ref('event')),'next_cursor':nullable(S)})
     d['snapshot']['properties']['lower_event_id']=nullable(ref('u64'));d['snapshot']['required'].append('lower_event_id')
     d['state']['required']=[k for k in d['state']['properties'] if k!='you_control']
-    return {'$schema':'https://json-schema.org/draft/2020-12/schema','$id':'urn:delta:ps:api:1','title':'D1 host simulation API v1','$comment':'Select a $defs entry using the endpoint mapping in ps-api.md. Numeric/geometry cross-field constraints remain authoritative in the C++ validator.','$defs':d}
+    # Hardware mode keeps unavailable XYZ explicit and publishes measured counters separately.
+    for name in ['state','command','stop','event','snapshot']:
+        d[name]['properties']['simulation']=B
+    d['position']['properties']['model']=enum('sample_endpoint_simulation','unknown')
+    d['backend']={'oneOf':[d['backend'],obj({'kind':const('hardware'),'boot_id':ref('id'),'position_id':S,'command_id':S,'parameter_revision':S,'generation':ref('u64'),'phase':enum('unknown','idle','queued','running','stopping','stopped','fault','rejected','homing'),'error':S,'owner_id':ref('u64'),'cancel_epoch':ref('u64'),'observed_stop_epoch':ref('u64'),'accepted_sequence':nullable(ref('u64')),'completed_sequence':nullable(ref('u64')),'quarantine':B,'dma_owned':B})]}
+    d['hardware_action']=obj({'action':enum('open','close','clear','home','recover'),'boot_id':ref('id')})
+    d['hardware_queued']=obj({'status':const('queued'),'simulation':const(False)})
+    d['hardware_telemetry']=obj({'simulation':const(False),'source':const('bsp_snapshot'),'observed_monotonic_us':ref('u64'),'source_time_us':ref('u64'),'transport_generation':ref('u64'),'command_position':obj({'source':const('pl_step_counter'),'position_id':S,'valid':B,'steps':array(ref('i64'),minItems=3,maxItems=3),'pulses':array(ref('u64'),minItems=3,maxItems=3)}),'xyz_estimate':{'type':'null'},'driver_feedback':{'type':'null'},'raw':{},'stale':B})
+    d['telemetry']={'oneOf':[d['telemetry'],d['hardware_telemetry'],obj({'simulation':const(False),'source':const('unavailable'),'stale':const(True)})]}
+    return {'$schema':'https://json-schema.org/draft/2020-12/schema','$id':'urn:delta:ps:api:1','title':'PS shared simulation/hardware API v1','$comment':'Select a $defs entry using the endpoint mapping in ps-api.md. Numeric/geometry cross-field constraints remain authoritative in the C++ validator.','$defs':d}
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--check',action='store_true');a=p.parse_args()

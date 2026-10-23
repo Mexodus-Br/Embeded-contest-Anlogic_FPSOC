@@ -7,7 +7,7 @@ class SimulationBackend final:public ExecutionBackend,public SimulationControl {
     uint64_t started_=0,iteration_=0,index_=0,stop_at_=0;
     bool running_=false,stop_failure_=false;
 public:
-    void submit(std::shared_ptr<const PlannedTask> plan,uint64_t now)override {
+    void submit(std::shared_ptr<const PlannedTask> plan,uint64_t now,const ExecutionBinding&)override {
         plan_=std::move(plan);started_=now;iteration_=index_=stop_at_=0;running_=true;
     }
     void manual_target(const ManualSegment &)override {plan_.reset();running_=false;}

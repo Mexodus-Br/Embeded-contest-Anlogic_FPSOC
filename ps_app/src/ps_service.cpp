@@ -1,5 +1,6 @@
 #include "ps_runtime.hpp"
 #include "ps_backend.hpp"
+#include "ps_hardware_port.hpp"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -27,7 +28,7 @@ struct Service::Impl {
     std::string boot=random_id(),owner,mode="task",phase="idle",position_id=random_id(),parameter_id="host_demo_v1",active_id,last_id,pose_parameter;
     Json params,pose=nullptr,commanded=nullptr,commands=Json::object(),recovery=nullptr,telemetry_history=Json::array(),latest=Json::object();
     std::shared_ptr<const Preview> preview;
-    std::unique_ptr<ExecutionBackend> backend=simulation_backend();
+    std::unique_ptr<ExecutionBackend> backend;
     std::mutex mutex,file_mutex,preview_mutex,admission_mutex;
     std::atomic<uint64_t> stop_epoch{0};
     std::atomic<bool> quit{false};
@@ -38,7 +39,7 @@ struct Service::Impl {
     Json jog_parameters;std::set<std::string> used_jogs;
     Logs logs;
     std::thread worker;
-    Impl(ps_fs::path r,ps_fs::path d,bool inject):root(std::move(r)),data(std::move(d)),allow_simulation_injection(inject),logs(boot,data/"logs"){
+    Impl(ps_fs::path r,ps_fs::path d,bool inject,bool hardware,std::shared_ptr<BoardDevice> device):root(std::move(r)),data(std::move(d)),backend(hardware?std::unique_ptr<ExecutionBackend>(new HardwareBackend(device?std::move(device):linux_board(),boot)):simulation_backend()),allow_simulation_injection(inject&&!hardware),logs(boot,data/"logs",!hardware){
         auto request=read_json(root/"scenarios/ps-host.json");params={{"schema_version",1},{"id",parameter_id},{"fixture",request.at("fixture")},{"golden",request.at("golden")}};
         if(ps_fs::exists(data/"recovery.json"))try{recovery=read_json(data/"recovery.json");recovery["status"]="unknown";recovery["reason"]="service_restart_requires_reconciliation";}catch(...){recovery={{"status","unknown"},{"reason","recovery_record_unreadable"}};}
         logs.emit("service_started","service","info",{{"position","unknown"},{"recovery",recovery}});worker=std::thread([this]{tick();});
@@ -54,12 +55,14 @@ struct Service::Impl {
     void transition(const std::string &s){phase=s;if(!active_id.empty()&&commands.contains(active_id)){commands[active_id]["status"]=s;commands[active_id]["updated_monotonic_us"]=std::to_string(monotonic_us());}
         std::string task=active_id.empty()?"":commands.at(active_id).value("task_id",std::string());
         logs.emit(s,"command",s=="failed"?"error":"info",Json::object(),active_id,task);}
-    void begin_stop(uint64_t now){handled_stop=stop_epoch.load();backend->request_stop(now);jog_id.clear();invalidate();transition("stopping");}
+    void begin_stop(uint64_t now){handled_stop=stop_epoch.load();if(backend->simulation())backend->request_stop(now);jog_id.clear();invalidate();transition("stopping");}
     void tick(){while(!quit){auto now=monotonic_us();{
         std::lock_guard<std::mutex> lock(mutex);
         if(stop_epoch.load()!=handled_stop)begin_stop(now);
         auto update=backend->poll(now);
-        if(phase=="stopping"&&update.stopped){if(!update.pulse_safe){position_valid=false;transition("failed");phase="fault";}else{transition("cancelled");phase="idle";active_id.clear();}logs.emit("stop_result","backend",update.pulse_safe?"info":"error",{{"pulse_safe",update.pulse_safe},{"simulation",true}});}
+        if(!backend->simulation()&&phase=="fault"&&backend->status().at("phase")=="idle"){phase="idle";active_id.clear();}
+        if(update.failed&&phase!="fault"){position_valid=false;invalidate();transition("failed");phase="fault";}
+        if(phase=="stopping"&&update.stopped){if(!update.pulse_safe){position_valid=false;transition("failed");phase="fault";}else{transition("cancelled");phase="idle";active_id.clear();}logs.emit("stop_result","backend",update.pulse_safe?"info":"error",{{"pulse_safe",update.pulse_safe},{"simulation",backend->simulation()}});}
         if(!jog_id.empty()&&(now-jog_refresh>350000)){logs.emit("jog_input_timeout","command","warning");++stop_epoch;begin_stop(now);}
         if(!jog_id.empty()&&now-jog_tick>=10000&&phase=="running"){
             double dt=std::min(0.02,double(now-jog_tick)/1e6);jog_tick=now;double acc=jog_parameters.at("fixture").at("acceleration_mm_s2");jog_actual_speed=std::min(jog_speed,jog_actual_speed+acc*dt);
@@ -85,32 +88,37 @@ struct Service::Impl {
             }catch(const Error &e){logs.emit("jog_rejected","planner","error",e.detail);++stop_epoch;begin_stop(now);}
         }
         if(jog_id.empty()&&(phase=="submitted"||phase=="running")){
-            if(phase=="submitted")transition("running");
+            if(phase=="submitted"&&(backend->simulation()||update.accepted))transition("running");
             if(!update.pose.is_null())set_pose(update.pose,update.parameter);
             if(update.iteration!=iteration){iteration=update.iteration;if(!update.completed)logs.emit("task_iteration","backend","info",{{"iteration",std::to_string(iteration)}},active_id,commands.at(active_id).value("task_id",std::string()));}
             if(update.completed){invalidate();transition("completed");phase="idle";active_id.clear();}
         }
     }std::this_thread::sleep_for(std::chrono::milliseconds(5));}}
-    Json status(){auto log_stats=logs.stats();std::lock_guard<std::mutex> lock(mutex);auto now=monotonic_us();bool valid=valid_position();Json position={{"source",valid?"simulation":"unknown"},{"model","sample_endpoint_simulation"},{"valid",valid},{"stale",false},
+    Json status(){auto log_stats=logs.stats();std::lock_guard<std::mutex> lock(mutex);auto now=monotonic_us();bool valid=valid_position();Json position={{"source",valid?"simulation":"unknown"},{"model",backend->simulation()?"sample_endpoint_simulation":"unknown"},{"valid",valid},{"stale",false},
         {"position_id",position_id},{"parameter_version",pose_parameter},{"xyz_mm",valid?pose.at("xyz_mm"):Json()},{"joint_deg",valid?pose.at("joint_deg"):Json()},{"steps",valid?pose.at("steps"):Json()},{"updated_monotonic_us",std::to_string(pose_time)}};
-        return {{"schema_version",1},{"boot_id",boot},{"simulation",true},{"simulation_injection_enabled",allow_simulation_injection},{"mode",mode},{"phase",stop_epoch!=handled_stop?"stopping":phase},{"state_version",std::to_string(state_version)},
+        return {{"schema_version",1},{"boot_id",boot},{"simulation",backend->simulation()},{"simulation_injection_enabled",allow_simulation_injection},{"mode",mode},{"phase",stop_epoch!=handled_stop?"stopping":phase},{"state_version",std::to_string(state_version)},
             {"monotonic_us",std::to_string(now)},{"stop_epoch",std::to_string(stop_epoch)},{"handled_stop_epoch",std::to_string(handled_stop)},{"parameter_version",parameter_id},{"position",position},{"target",commanded},
             {"active_command_id",active_id.empty()?Json():Json(active_id)},{"command",last_id.empty()?Json():commands.at(last_id)},
             {"recovery",recovery},{"control_owned",!owner.empty()},{"preview_id",preview?Json(preview->id):Json()},{"backend",backend->status()},{"logs",log_stats}};
     }
 };
-Service::Service(const ps_fs::path &r,const ps_fs::path &d,bool inject):impl_(new Impl(r,d,inject)){}
+Service::Service(const ps_fs::path &r,const ps_fs::path &d,bool inject,bool hardware,std::shared_ptr<BoardDevice> device):impl_(new Impl(r,d,inject,hardware,std::move(device))){}
 Service::~Service(){delete impl_;}
 std::string Service::boot_id()const{return impl_->boot;}
 Json Service::state(){return impl_->status();}
 void Service::revoke_session(const std::string &session){auto &s=*impl_;std::lock_guard<std::mutex> l(s.mutex);if(s.owner!=session)return;s.owner.clear();s.invalidate();if(s.jog_owner==session&&!s.jog_id.empty())++s.stop_epoch;s.logs.emit("control_revoked","service");}
-Json Service::stop(const std::string &session){(void)session;auto &s=*impl_;auto epoch=++s.stop_epoch;s.logs.emit("stop_requested","command","info",{{"stop_epoch",std::to_string(epoch)}});return {{"status","received"},{"stop_epoch",std::to_string(epoch)},{"simulation",true}};}
+Json Service::stop(const std::string &session){(void)session;auto &s=*impl_;auto epoch=++s.stop_epoch;if(!s.backend->simulation())s.backend->request_stop(monotonic_us());s.logs.emit("stop_requested","command","info",{{"stop_epoch",std::to_string(epoch)}});return {{"status","received"},{"stop_epoch",std::to_string(epoch)},{"simulation",s.backend->simulation()}};}
 Json Service::events(uint64_t id){return impl_->logs.events_after(id);}
 std::string Service::export_log(const std::string &id){return impl_->logs.export_jsonl(id);}
 Json Service::handle(const std::string &method,const std::string &path,const std::map<std::string,std::string> &query,const Json &body,const std::string &session){auto &s=*impl_;
     if(method=="GET"&&path=="/state"){auto r=state();{std::lock_guard<std::mutex> l(s.mutex);r["you_control"]=s.owner==session;}return r;}
     if(method=="POST"&&path=="/stop")return stop(session);
-    if(method=="POST"&&path=="/control"){fields(body,{"action"});std::lock_guard<std::mutex> l(s.mutex);s.idle();auto a=body.value("action",std::string("acquire"));require(a=="acquire"||a=="release","FORMAT","Unknown control action");
+    if(method=="POST"&&path=="/hardware/action"){
+        fields(body,{"action","boot_id"});std::lock_guard<std::mutex> l(s.mutex);s.control(session);
+        require(body.at("boot_id")==s.boot,"BOOT_MISMATCH","Old hardware action rejected");
+        s.backend->action(body.at("action").get<std::string>());s.position_valid=false;s.invalidate();return {{"status","queued"},{"simulation",false}};
+    }
+    if(method=="POST"&&path=="/control"){fields(body,{"action"});std::lock_guard<std::mutex> l(s.mutex);if(!s.backend->simulation()&&s.phase=="fault")require(s.stop_epoch==s.handled_stop,"BUSY","STOP still pending");else s.idle();auto a=body.value("action",std::string("acquire"));require(a=="acquire"||a=="release","FORMAT","Unknown control action");
         require(s.owner.empty()||s.owner==session,"CONTROL_BUSY","Control belongs to another session");s.owner=a=="release"?"":session;s.invalidate();s.logs.emit("control_"+a);return {{"you_control",s.owner==session}};}
     if(method=="POST"&&path=="/mode"){fields(body,{"mode"});auto m=body.at("mode").get<std::string>();require(m=="task"||m=="manual","FORMAT","Unknown mode");std::lock_guard<std::mutex> l(s.mutex);s.control(session);s.idle();s.mode=m;s.invalidate();return {{"mode",m}};}
     if(method=="POST"&&path=="/preview/cancel"){fields(body,{});std::lock_guard<std::mutex> l(s.mutex);s.control(session);s.invalidate();return {{"cancelled",true}};}
@@ -136,7 +144,7 @@ Json Service::handle(const std::string &method,const std::string &path,const std
             if(s.commands.contains(id)){require(s.commands[id].at("request")==body,"ID_CONFLICT","ID already used for different command");
                 if(s.commands[id].contains("error")){auto d=s.commands[id].at("error");Error e(d.at("code"),d.at("message"));e.detail=d;throw e;}return s.commands[id];}
             s.control(session);require(s.commands.size()<1024,"RESOURCE_LIMIT","Command identity ledger full; no identities evicted");
-            s.commands[id]={{"boot_id",s.boot},{"command_id",id},{"status","received"},{"request",body},{"simulation",true},{"task_id",""}};}
+            s.commands[id]={{"boot_id",s.boot},{"command_id",id},{"status","received"},{"request",body},{"simulation",s.backend->simulation()},{"task_id",""}};}
         s.logs.emit("received","command","info",Json::object(),id);
         try{
             std::unique_lock<std::mutex> admission(s.admission_mutex,std::try_to_lock);require(bool(admission),"BUSY","Another command is being admitted");
@@ -150,7 +158,9 @@ Json Service::handle(const std::string &method,const std::string &path,const std
             // Admission is serialized, but disk/network never hold the motion mutex.
             {std::lock_guard<std::mutex> file(s.file_mutex);atomic_save(s.data/"recovery.json",{{"boot_id",s.boot},{"command_id",id},{"status","unknown"},{"reason","accepted_execution_requires_reconciliation_on_restart"}});}
             std::lock_guard<std::mutex> l(s.mutex);s.idle();require(s.stop_epoch==epoch&&p==s.preview&&s.position_id==p->position&&s.parameter_id==p->parameter&&monotonic_us()<u64(body.at("deadline_monotonic_us"),"deadline"),"PREVIEW_STALE","Execution conditions changed before submission");
-            s.active_id=s.last_id=id;s.iteration=0;s.backend->submit(p,monotonic_us());s.preview.reset();s.transition("submitted");return s.commands[id];
+            s.active_id=s.last_id=id;s.iteration=0;ExecutionBinding binding;
+            if(!s.backend->simulation()){auto bs=s.backend->status();binding.boot_id=s.boot;binding.command_id=id;binding.parameter_revision=p->parameter;binding.start_position_id=bs.at("position_id");binding.cancel_epoch=u64(bs.at("cancel_epoch"),"cancel");binding.generation=uint32_t(u64(bs.at("generation"),"generation"));for(int a=0;a<3;a++)binding.start_steps[a]=i64(s.pose.at("steps")[a],"steps");}
+            s.backend->submit(p,monotonic_us(),binding);s.preview.reset();s.transition("submitted");return s.commands[id];
         }catch(const Error &e){std::lock_guard<std::mutex> l(s.mutex);s.commands[id]["status"]="failed";s.commands[id]["error"]=e.detail;s.logs.emit("rejected","command","warning",e.detail,id,s.commands[id].value("task_id",std::string()));throw;}
         catch(const std::exception &){Error e("STORAGE","Admission failed before execution; inspect local storage");std::lock_guard<std::mutex> l(s.mutex);s.commands[id]["status"]="failed";s.commands[id]["error"]=e.detail;throw e;}
     }
@@ -177,7 +187,7 @@ Json Service::handle(const std::string &method,const std::string &path,const std
         require(u64(body.at("refresh_seq"),"refresh_seq")==0,"STALE_INPUT","Jog session starts at sequence zero");s.used_jogs.insert(id);s.jog_parameters=s.params;s.jog_id=id;s.jog_owner=session;s.jog_seq=0;s.jog_refresh=s.jog_tick=monotonic_us();s.jog_axis=axis=="x"?0:axis=="y"?1:2;s.jog_sign=sign;s.jog_speed=speed;s.jog_actual_speed=0;s.invalidate();s.phase="running";s.logs.emit("jog_started");return {{"jog_id",id},{"status","running"},{"expires_in_us","350000"}};
     }
     if(method=="POST"&&(path=="/jog/refresh"||path=="/jog/end")){fields(body,{"boot_id","jog_id","refresh_seq"});{std::lock_guard<std::mutex> l(s.mutex);require(body.at("boot_id")==s.boot&&body.at("jog_id")==s.jog_id&&s.jog_owner==session&&!s.jog_id.empty(),"STALE_INPUT","Jog session is no longer active");auto seq=u64(body.at("refresh_seq"),"refresh_seq");require(seq>s.jog_seq,"STALE_INPUT","Old refresh rejected without renewing lease");s.jog_seq=seq;if(path=="/jog/refresh"){s.jog_refresh=monotonic_us();return {{"status","running"}};}}return stop(session);}
-    if(method=="POST"&&path.rfind("/simulation/",0)==0)require(s.allow_simulation_injection,"SIMULATION_DISABLED","Simulation injection requires explicit launch capability");
+    if(method=="POST"&&path.rfind("/simulation/",0)==0)require(s.backend->simulation()&&s.allow_simulation_injection,"SIMULATION_DISABLED","Simulation injection requires explicit launch capability");
     if(method=="POST"&&path=="/simulation/inject"){
         fields(body,{"kind","disk_failure","pause_log_writer","count"});auto kind=body.at("kind").get<std::string>();
         if(kind=="logs"){s.logs.inject(body.value("disk_failure",false),body.value("pause_log_writer",false));return {{"applied",true}};}
@@ -188,7 +198,7 @@ Json Service::handle(const std::string &method,const std::string &path,const std
         if(kind=="fault"){s.backend->request_stop(monotonic_us());s.jog_id.clear();s.position_valid=false;s.transition("failed");s.phase="fault";s.invalidate();return {{"applied",true}};}
         s.idle();if(kind=="position_unknown")s.position_valid=false;
         else if(kind=="reference_position"){s.set_pose(kinematics({{"op","ik"},{"xyz_mm",{0,0,-140}},{"golden",s.params.at("golden")}}));s.recovery=nullptr;}
-        else throw Error("FORMAT","Unknown simulation injection");s.invalidate();s.logs.emit(kind,"simulation");return {{"applied",true},{"simulation",true}};
+        else throw Error("FORMAT","Unknown simulation injection");s.invalidate();s.logs.emit(kind,"simulation");return {{"applied",true},{"simulation",s.backend->simulation()}};
     }
     if(method=="POST"&&path=="/simulation/telemetry"){
         {std::lock_guard<std::mutex> l(s.mutex);s.control(session);}std::ifstream f(s.root/"ps_partner_v1_1_20261022_005289b/ps_partner_v1/samples/telemetry_rtl_frames.hex");require(bool(f),"NOT_FOUND","Frozen telemetry fixture missing");Json rows=Json::array();std::string line;while(std::getline(f,line)){if(!line.empty()&&line.back()=='\r')line.pop_back();if(!line.empty())rows.push_back(telemetry_decode({{"op","telemetry_decode"},{"hex",line},{"byte_order","verilog_msb_hex"}}));}
@@ -197,12 +207,13 @@ Json Service::handle(const std::string &method,const std::string &path,const std
             std::string key=std::to_string(row.at("address").get<int>())+":"+std::to_string(row.at("query").get<int>());auto &entry=s.latest[key];
             if(entry.is_null()||entry.at("last_result").at("collector_generation")!=row.at("collector_generation")||entry.at("last_result").at("transport_generation")!=row.at("transport_generation")||entry.at("last_result").at("revision")!=row.at("revision"))entry={{"last_valid",nullptr}};
             if(row.at("data_valid").get<bool>())entry["last_valid"]=row;entry["last_result"]=row;entry["observed_monotonic_us"]=std::to_string(monotonic_us());s.telemetry_history.push_back(row);
-        }s.last_telemetry=monotonic_us();s.logs.emit("telemetry_replayed","telemetry","info",{{"frames",rows.size()},{"missing_serials",std::to_string(s.telem_dropped)}});return {{"frames",rows.size()},{"simulation",true}};
+        }s.last_telemetry=monotonic_us();s.logs.emit("telemetry_replayed","telemetry","info",{{"frames",rows.size()},{"missing_serials",std::to_string(s.telem_dropped)}});return {{"frames",rows.size()},{"simulation",s.backend->simulation()}};
     }
+    if(method=="GET"&&path=="/telemetry"&&!s.backend->simulation()){auto r=s.backend->telemetry();if(r.is_null())return {{"simulation",false},{"source","unavailable"},{"stale",true}};r["stale"]=monotonic_us()-u64(r.at("observed_monotonic_us"),"observation")>=250000;return r;}
     if(method=="GET"&&path=="/telemetry"){std::lock_guard<std::mutex> l(s.mutex);auto latest=s.latest;bool stale=!s.last_telemetry||monotonic_us()-s.last_telemetry>500000;for(auto i=latest.begin();i!=latest.end();++i){i.value()["stale"]=stale;i.value()["source"]="frozen_fixture_replay";}
         Json active=nullptr;if(!s.telemetry_history.empty()){auto &last=s.telemetry_history.back();active={{"collector_generation",last.at("collector_generation")},{"transport_generation",last.at("transport_generation")},{"revision",last.at("revision")}};
             for(auto &entry:latest){bool current=true;for(auto k:{"collector_generation","transport_generation","revision"})current&=entry.at("last_result").at(k)==active.at(k);entry["current_generation"]=current;entry["stale"]=stale||!current;}}
-        return {{"simulation",true},{"latest",latest},{"history",s.telemetry_history},{"active_identity",active},{"stale",stale},{"missing_serials",std::to_string(s.telem_dropped)},{"xyz_feedback",nullptr}};}
+        return {{"simulation",s.backend->simulation()},{"latest",latest},{"history",s.telemetry_history},{"active_identity",active},{"stale",stale},{"missing_serials",std::to_string(s.telem_dropped)},{"xyz_feedback",nullptr}};}
     if(method=="POST"&&path=="/logs/snapshots")return s.logs.snapshot(body);
     if(method=="GET"&&path=="/logs"){for(auto &q:query)require(q.first=="snapshot"||q.first=="cursor"||q.first=="limit","FORMAT","Unknown log query field");auto id=query.at("snapshot");size_t offset=0;if(query.count("cursor")){auto c=query.at("cursor");require(c.rfind(id+":",0)==0,"FORMAT","Cursor belongs to another snapshot");offset=size_t(u64(c.substr(id.size()+1),"cursor"));}size_t limit=query.count("limit")?size_t(u64(query.at("limit"),"limit")):50;return s.logs.page(id,offset,limit);}
     if(method=="GET"&&path=="/logs/boots"){require(query.empty(),"FORMAT","Unexpected boot query");return s.logs.boots();}

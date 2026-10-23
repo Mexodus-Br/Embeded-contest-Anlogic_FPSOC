@@ -109,7 +109,7 @@ static void serve(std::shared_ptr<Http> h,Socket fd,bool control){
             }
             auto result=h->service->handle(r.method,path,r.query,r.body,session);reply(fd,200,result.dump());return;
         }
-        if(r.path=="/api/health"&&r.method=="GET"){reply(fd,200,Json({{"app","ps-simulation"},{"version",1},{"simulation",true}}).dump());return;}
+        if(r.path=="/api/health"&&r.method=="GET"){reply(fd,200,Json({{"app",h->service->state().at("simulation").get<bool>()?"ps-simulation":"ps-hardware"},{"version",1},{"simulation",h->service->state().at("simulation")}}).dump());return;}
         ps::require(r.method=="GET","NOT_FOUND","Unknown resource");static const std::map<std::string,std::string> assets={{"/","index.html"},{"/index.html","index.html"},{"/app.js","app.js"},{"/style.css","style.css"}};
         auto it=assets.find(r.path);ps::require(it!=assets.end(),"NOT_FOUND","Unknown static resource");std::ifstream f(h->root/"web/ps"/it->second,std::ios::binary);ps::require(bool(f),"NOT_FOUND","Static resource missing");std::ostringstream bytes;bytes<<f.rdbuf();reply(fd,200,bytes.str(),it->second=="app.js"?"application/javascript; charset=utf-8":it->second=="style.css"?"text/css; charset=utf-8":"text/html; charset=utf-8");
     }catch(const ps::Error &e){auto code=e.detail.at("code").get<std::string>();int status=code=="AUTH"?401:code=="NOT_FOUND"?404:code=="RESOURCE_LIMIT"?429:400;
@@ -128,7 +128,8 @@ static void nonblocking(Socket fd,bool enabled){
 int main(int argc,char **argv){try{
     int port=18083;std::string backend;bool allow_injection=false;ps_fs::path root=ps_fs::current_path(),data=root/"runs/ps",token_file=root/".cache/ps-token";
     for(int i=1;i<argc;i++){std::string arg=argv[i];ps::require(i+1<argc,"FORMAT","Option needs value");std::string value=argv[++i];if(arg=="--backend")backend=value;else if(arg=="--allow-simulation-injection"){ps::require(value=="true"||value=="false","FORMAT","Expected true or false");allow_injection=value=="true";}else if(arg=="--port")port=std::stoi(value);else if(arg=="--data")data=ps_fs::u8path(value);else if(arg=="--token-file")token_file=ps_fs::u8path(value);else throw ps::Error("FORMAT","Unknown option");}
-    ps::require(backend=="simulation","BACKEND_UNAVAILABLE","Select --backend simulation explicitly; hardware adapter is not implemented (no fallback)");
+    ps::require(backend=="simulation"||backend=="hardware","BACKEND_UNAVAILABLE","Select --backend simulation or hardware explicitly (no fallback)");
+    ps::require(backend!="hardware"||!allow_injection,"FORMAT","Simulation injection forbidden in hardware mode");
     ps::require(port>1024&&port<65536,"FORMAT","Invalid port");
 #ifdef _WIN32
     WSADATA wsa;ps::require(WSAStartup(MAKEWORD(2,2),&wsa)==0,"NETWORK","Winsock startup failed");
@@ -138,7 +139,7 @@ int main(int argc,char **argv){try{
     {std::ifstream f(token_file);std::getline(f,h->token);ps::require(h->token.size()>=32&&ps::logical_id(h->token),"AUTH","Token file invalid");}
     Socket listener=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);ps::require(listener!=INVALID_SOCKET,"NETWORK","Cannot create listener");sockaddr_in address{};address.sin_family=AF_INET;address.sin_port=htons(uint16_t(port));address.sin_addr.s_addr=htonl(INADDR_LOOPBACK);
     ps::require(bind(listener,reinterpret_cast<sockaddr*>(&address),sizeof(address))==0,"NETWORK","Port unavailable");ps::require(listen(listener,32)==0,"NETWORK","Listen failed");
-    h->service=std::make_shared<ps::Service>(root,data,allow_injection);std::cout<<"PS simulation: "<<h->origin<<" (loopback only; login required)"<<std::endl;
+    h->service=std::make_shared<ps::Service>(root,data,allow_injection,backend=="hardware");std::cout<<"PS "+backend+": "<<h->origin<<" (loopback only; login required)"<<std::endl;
     struct Pending {Socket fd;uint64_t deadline;};std::deque<Pending> pending;
     nonblocking(listener,true);
     for(;;){

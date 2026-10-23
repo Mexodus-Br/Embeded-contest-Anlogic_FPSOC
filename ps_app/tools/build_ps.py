@@ -17,8 +17,10 @@ def build(zig=None, target="native", server=False):
     includes = [ROOT / "src", ROOT / "third_party", KIT]
     commands = [compile_sources(base + [ROOT / "src/ps_cli.cpp"], output / ("ps_core" + suffix), tc, includes=includes)]
     if server:
-        commands.append(compile_sources(base + [ROOT / "src/ps_backend.cpp", ROOT / "src/ps_runtime.cpp", ROOT / "src/ps_service.cpp", ROOT / "src/ps_server.cpp"], output / ("ps_server" + suffix), tc,
+        commands.append(compile_sources(base + [ROOT / "src/ps_backend.cpp", ROOT / "src/ps_hardware_backend.cpp", ROOT / "src/ps_linux_board.cpp", ROOT / "src/ps_runtime.cpp", ROOT / "src/ps_service.cpp", ROOT / "src/ps_server.cpp"], output / ("ps_server" + suffix), tc,
                                         includes=includes, libraries=["-lws2_32", "-lbcrypt"] if os.name == "nt" and target == "native" else (["-pthread", "-lstdc++fs"] if target == "sdk" else ["-pthread"])))
+    if server:
+        commands.append(compile_sources(base + [ROOT / "src/ps_backend.cpp", ROOT / "src/ps_hardware_backend.cpp", ROOT / "src/ps_linux_board.cpp", ROOT / "src/ps_runtime.cpp", ROOT / "src/ps_service.cpp", ROOT / "src/ps_control.cpp"], output / ("ps_control" + suffix), tc, includes=includes, libraries=["-lbcrypt"] if os.name == "nt" and target == "native" else (["-pthread", "-lstdc++fs"] if target == "sdk" else ["-pthread"])))
     (output / "build_info.json").write_text(json.dumps({"target": target, "commands": commands, "hardware_access": False}, ensure_ascii=False, indent=2), encoding="utf-8")
     print(output)
 

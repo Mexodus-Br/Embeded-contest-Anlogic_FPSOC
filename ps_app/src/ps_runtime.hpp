@@ -16,6 +16,7 @@ void atomic_save(const ps_fs::path &path,const Json &value);
 Json read_json(const ps_fs::path &path);
 
 class Logs {
+    bool simulation_;
     struct Snapshot {uint64_t expires;Json rows,metadata;};
     std::string boot_;
     ps_fs::path directory_;
@@ -33,7 +34,7 @@ class Logs {
     uint64_t retired_=0;
     void writer();
 public:
-    Logs(std::string boot,ps_fs::path directory);
+    Logs(std::string boot,ps_fs::path directory,bool simulation=true);
     ~Logs();
     void emit(const std::string &event,const std::string &component="command",const std::string &level="info",Json details=Json::object(),const std::string &command="",const std::string &task="");
     Json stats();
@@ -46,11 +47,12 @@ public:
     void inject(bool disk,bool pause){fail_disk_=disk;pause_writer_=pause;wake_.notify_all();}
 };
 
+class BoardDevice;
 class Service {
     struct Impl;
     Impl *impl_;
 public:
-    Service(const ps_fs::path &root,const ps_fs::path &data,bool allow_simulation_injection=false);
+    Service(const ps_fs::path &root,const ps_fs::path &data,bool allow_simulation_injection=false,bool hardware=false,std::shared_ptr<BoardDevice> device=nullptr);
     ~Service();
     Json handle(const std::string &method,const std::string &path,const std::map<std::string,std::string> &query,const Json &body,const std::string &session);
     Json state();

@@ -1,3 +1,5 @@
+> 2026-10-23增量：真实模式的state/backend/telemetry及日志来源已有schema分支；`POST /api/v1/hardware/action`请求选`hardware_action`、入队响应选`hardware_queued`，实际结果查backend状态/只读快照。其余待验证范围见[BACKEND.md](BACKEND.md)。以下保留原模拟API说明。
+
 > 本文保留 D1 来件描述。本目录整改增补及生产待定项见 [INTEGRATION.md](INTEGRATION.md)、[BACKEND.md](BACKEND.md) 和 [WIFI_ACCESS.md](WIFI_ACCESS.md)。
 
 # D1 主机 API v1

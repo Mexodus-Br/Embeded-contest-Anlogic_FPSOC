@@ -4,7 +4,7 @@ import json, subprocess, sys, time
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'build/partner'
 OUT.mkdir(parents=True,exist_ok=True)
-steps=[('build',['tools/build_ps.py','--server']),('schema',['tools/ps_schema.py','--check']),('reference',['tools/verify_partner.py']),('core',['tests/ps_core.py']),('service',['tests/ps_service.py']),('boundary',['tests/ps_boundary.py'])]
+steps=[('build',['tools/build_ps.py','--server']),('hardware',['tests/ps_hardware.py']),('safety_execution',['../bsp/safety_execution/test_driver.py']),('serial',['tests/ps_serial.py']),('schema',['tools/ps_schema.py','--check']),('reference',['tools/verify_partner.py']),('core',['tests/ps_core.py']),('service',['tests/ps_service.py']),('boundary',['tests/ps_boundary.py'])]
 records=[]
 for name,args in steps:
     start=time.monotonic()

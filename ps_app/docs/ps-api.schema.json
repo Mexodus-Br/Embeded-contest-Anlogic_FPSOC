@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:delta:ps:api:1",
-  "title": "D1 host simulation API v1",
+  "title": "PS shared simulation/hardware API v1",
   "$comment": "Select a $defs entry using the endpoint mapping in ps-api.md. Numeric/geometry cross-field constraints remain authoritative in the C++ validator.",
   "$defs": {
     "u64": {
@@ -409,7 +409,10 @@
           ]
         },
         "model": {
-          "const": "sample_endpoint_simulation"
+          "enum": [
+            "sample_endpoint_simulation",
+            "unknown"
+          ]
         },
         "valid": {
           "type": "boolean"
@@ -664,7 +667,7 @@
           "$ref": "#/$defs/run_request"
         },
         "simulation": {
-          "const": true
+          "type": "boolean"
         },
         "task_id": {
           "type": "string"
@@ -687,42 +690,138 @@
       "additionalProperties": false
     },
     "backend": {
-      "type": "object",
-      "properties": {
-        "kind": {
-          "const": "simulation"
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "simulation"
+            },
+            "pulse_model": {
+              "const": "not_cycle_accurate"
+            },
+            "accepted_sequence": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/u64"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "completed_sequence": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/u64"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "pulse_model",
+            "accepted_sequence",
+            "completed_sequence"
+          ],
+          "additionalProperties": false
         },
-        "pulse_model": {
-          "const": "not_cycle_accurate"
-        },
-        "accepted_sequence": {
-          "anyOf": [
-            {
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "hardware"
+            },
+            "boot_id": {
+              "$ref": "#/$defs/id"
+            },
+            "position_id": {
+              "type": "string"
+            },
+            "command_id": {
+              "type": "string"
+            },
+            "parameter_revision": {
+              "type": "string"
+            },
+            "generation": {
               "$ref": "#/$defs/u64"
             },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "completed_sequence": {
-          "anyOf": [
-            {
+            "phase": {
+              "enum": [
+                "unknown",
+                "idle",
+                "queued",
+                "running",
+                "stopping",
+                "stopped",
+                "fault",
+                "rejected",
+                "homing"
+              ]
+            },
+            "error": {
+              "type": "string"
+            },
+            "owner_id": {
               "$ref": "#/$defs/u64"
             },
-            {
-              "type": "null"
+            "cancel_epoch": {
+              "$ref": "#/$defs/u64"
+            },
+            "observed_stop_epoch": {
+              "$ref": "#/$defs/u64"
+            },
+            "accepted_sequence": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/u64"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "completed_sequence": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/u64"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "quarantine": {
+              "type": "boolean"
+            },
+            "dma_owned": {
+              "type": "boolean"
             }
-          ]
+          },
+          "required": [
+            "kind",
+            "boot_id",
+            "position_id",
+            "command_id",
+            "parameter_revision",
+            "generation",
+            "phase",
+            "error",
+            "owner_id",
+            "cancel_epoch",
+            "observed_stop_epoch",
+            "accepted_sequence",
+            "completed_sequence",
+            "quarantine",
+            "dma_owned"
+          ],
+          "additionalProperties": false
         }
-      },
-      "required": [
-        "kind",
-        "pulse_model",
-        "accepted_sequence",
-        "completed_sequence"
-      ],
-      "additionalProperties": false
+      ]
     },
     "log_stats": {
       "type": "object",
@@ -801,7 +900,7 @@
           "$ref": "#/$defs/id"
         },
         "simulation": {
-          "const": true
+          "type": "boolean"
         },
         "mode": {
           "enum": [
@@ -1015,7 +1114,7 @@
           "$ref": "#/$defs/u64"
         },
         "simulation": {
-          "const": true
+          "type": "boolean"
         }
       },
       "required": [
@@ -1435,70 +1534,175 @@
       "additionalProperties": false
     },
     "telemetry": {
-      "type": "object",
-      "properties": {
-        "simulation": {
-          "const": true
-        },
-        "latest": {
+      "oneOf": [
+        {
           "type": "object",
-          "additionalProperties": {
-            "$ref": "#/$defs/telem_latest"
-          }
+          "properties": {
+            "simulation": {
+              "const": true
+            },
+            "latest": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/telem_latest"
+              }
+            },
+            "history": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/telem_record"
+              }
+            },
+            "active_identity": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "collector_generation": {
+                      "$ref": "#/$defs/u64"
+                    },
+                    "transport_generation": {
+                      "$ref": "#/$defs/u64"
+                    },
+                    "revision": {
+                      "$ref": "#/$defs/u64"
+                    }
+                  },
+                  "required": [
+                    "collector_generation",
+                    "transport_generation",
+                    "revision"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stale": {
+              "type": "boolean"
+            },
+            "missing_serials": {
+              "$ref": "#/$defs/u64"
+            },
+            "xyz_feedback": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "simulation",
+            "latest",
+            "history",
+            "active_identity",
+            "stale",
+            "missing_serials",
+            "xyz_feedback"
+          ],
+          "additionalProperties": false
         },
-        "history": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/telem_record"
-          }
-        },
-        "active_identity": {
-          "anyOf": [
-            {
+        {
+          "type": "object",
+          "properties": {
+            "simulation": {
+              "const": false
+            },
+            "source": {
+              "const": "bsp_snapshot"
+            },
+            "observed_monotonic_us": {
+              "$ref": "#/$defs/u64"
+            },
+            "source_time_us": {
+              "$ref": "#/$defs/u64"
+            },
+            "transport_generation": {
+              "$ref": "#/$defs/u64"
+            },
+            "command_position": {
               "type": "object",
               "properties": {
-                "collector_generation": {
-                  "$ref": "#/$defs/u64"
+                "source": {
+                  "const": "pl_step_counter"
                 },
-                "transport_generation": {
-                  "$ref": "#/$defs/u64"
+                "position_id": {
+                  "type": "string"
                 },
-                "revision": {
-                  "$ref": "#/$defs/u64"
+                "valid": {
+                  "type": "boolean"
+                },
+                "steps": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/i64"
+                  },
+                  "minItems": 3,
+                  "maxItems": 3
+                },
+                "pulses": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/u64"
+                  },
+                  "minItems": 3,
+                  "maxItems": 3
                 }
               },
               "required": [
-                "collector_generation",
-                "transport_generation",
-                "revision"
+                "source",
+                "position_id",
+                "valid",
+                "steps",
+                "pulses"
               ],
               "additionalProperties": false
             },
-            {
+            "xyz_estimate": {
               "type": "null"
+            },
+            "driver_feedback": {
+              "type": "null"
+            },
+            "raw": {},
+            "stale": {
+              "type": "boolean"
             }
-          ]
+          },
+          "required": [
+            "simulation",
+            "source",
+            "observed_monotonic_us",
+            "source_time_us",
+            "transport_generation",
+            "command_position",
+            "xyz_estimate",
+            "driver_feedback",
+            "raw",
+            "stale"
+          ],
+          "additionalProperties": false
         },
-        "stale": {
-          "type": "boolean"
-        },
-        "missing_serials": {
-          "$ref": "#/$defs/u64"
-        },
-        "xyz_feedback": {
-          "type": "null"
+        {
+          "type": "object",
+          "properties": {
+            "simulation": {
+              "const": false
+            },
+            "source": {
+              "const": "unavailable"
+            },
+            "stale": {
+              "const": true
+            }
+          },
+          "required": [
+            "simulation",
+            "source",
+            "stale"
+          ],
+          "additionalProperties": false
         }
-      },
-      "required": [
-        "simulation",
-        "latest",
-        "history",
-        "active_identity",
-        "stale",
-        "missing_serials",
-        "xyz_feedback"
-      ],
-      "additionalProperties": false
+      ]
     },
     "replayed": {
       "type": "object",
@@ -1610,7 +1814,7 @@
           "type": "object"
         },
         "simulation": {
-          "const": true
+          "type": "boolean"
         }
       },
       "required": [
@@ -1674,7 +1878,7 @@
           "$ref": "#/$defs/u64"
         },
         "simulation": {
-          "const": true
+          "type": "boolean"
         },
         "durability": {
           "type": "string"
@@ -1737,6 +1941,125 @@
         "metadata",
         "events",
         "next_cursor"
+      ],
+      "additionalProperties": false
+    },
+    "hardware_action": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "enum": [
+            "open",
+            "close",
+            "clear",
+            "home",
+            "recover"
+          ]
+        },
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "action",
+        "boot_id"
+      ],
+      "additionalProperties": false
+    },
+    "hardware_queued": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "const": "queued"
+        },
+        "simulation": {
+          "const": false
+        }
+      },
+      "required": [
+        "status",
+        "simulation"
+      ],
+      "additionalProperties": false
+    },
+    "hardware_telemetry": {
+      "type": "object",
+      "properties": {
+        "simulation": {
+          "const": false
+        },
+        "source": {
+          "const": "bsp_snapshot"
+        },
+        "observed_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "source_time_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "transport_generation": {
+          "$ref": "#/$defs/u64"
+        },
+        "command_position": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "const": "pl_step_counter"
+            },
+            "position_id": {
+              "type": "string"
+            },
+            "valid": {
+              "type": "boolean"
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/i64"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "pulses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/u64"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "required": [
+            "source",
+            "position_id",
+            "valid",
+            "steps",
+            "pulses"
+          ],
+          "additionalProperties": false
+        },
+        "xyz_estimate": {
+          "type": "null"
+        },
+        "driver_feedback": {
+          "type": "null"
+        },
+        "raw": {},
+        "stale": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "simulation",
+        "source",
+        "observed_monotonic_us",
+        "source_time_us",
+        "transport_generation",
+        "command_position",
+        "xyz_estimate",
+        "driver_feedback",
+        "raw",
+        "stale"
       ],
       "additionalProperties": false
     }

@@ -43,7 +43,7 @@ void atomic_save(const ps_fs::path &path,const Json &value){
     }catch(const Error &){std::error_code ec;ps_fs::remove(tmp,ec);throw;}
     catch(...){std::error_code ec;ps_fs::remove(tmp,ec);throw Error("STORAGE","Document write failed; existing version preserved");}
 }
-Logs::Logs(std::string b,ps_fs::path d):boot_(std::move(b)),directory_(std::move(d)),writer_(){load_archive();writer_=std::thread([this]{writer();});}
+Logs::Logs(std::string b,ps_fs::path d,bool simulation):simulation_(simulation),boot_(std::move(b)),directory_(std::move(d)),writer_(){load_archive();writer_=std::thread([this]{writer();});}
 void Logs::load_archive(){
     // Only approved fixed rotation segments; no client paths, no recursive scan.
     size_t bytes=0;
@@ -61,7 +61,7 @@ void Logs::load_archive(){
             try{
                 require(!oversized,"FORMAT","Oversized archived event");auto row=Json::parse(line);
                 for(auto key:{"schema_version","boot_id","event_id","monotonic_us","wall_time_valid","wall_time","severity","component","command_id","task_id","event","details","simulation"})require(row.contains(key),"FORMAT","Incomplete archived event");
-                require(row.at("schema_version")==1&&row.at("boot_id").is_string()&&logical_id(row.at("boot_id"))&&row.at("simulation")==true,"FORMAT","Invalid archived identity/source");
+                require(row.at("schema_version")==1&&row.at("boot_id").is_string()&&logical_id(row.at("boot_id"))&&row.at("simulation").is_boolean(),"FORMAT","Invalid archived identity/source");
                 (void)u64(row.at("event_id"),"event_id");(void)u64(row.at("monotonic_us"),"monotonic_us");
                 require(row.at("event").is_string()&&row.at("component").is_string()&&row.at("details").is_object(),"FORMAT","Invalid archived fields");
                 archive_.push_back(row);bytes+=row.dump().size();
@@ -81,7 +81,7 @@ Logs::~Logs(){stop_=true;wake_.notify_all();writer_.join();}
 void Logs::emit(const std::string &event,const std::string &component,const std::string &level,Json details,const std::string &command,const std::string &task){
     Json row={{"schema_version",1},{"boot_id",boot_},{"event_id",""},{"monotonic_us",""},
         {"wall_time_valid",false},{"wall_time",nullptr},{"severity",level},{"component",component},{"command_id",command.empty()?Json():Json(command)},
-        {"task_id",task.empty()?Json():Json(task)},{"event",event},{"details",std::move(details)},{"simulation",true}};
+        {"task_id",task.empty()?Json():Json(task)},{"event",event},{"details",std::move(details)},{"simulation",simulation_}};
     if(row.dump().size()>8192)row["details"]={{"truncated",true},{"reason","event exceeds 8192 byte fixture limit"}};
     std::unique_lock<std::mutex> lock(queue_mutex_,std::try_to_lock);
     if(!lock||queue_.size()>=1024){++dropped_;return;}
@@ -126,7 +126,7 @@ Json Logs::snapshot(const Json &filter){
     std::string id=random_id();Json meta={{"schema_version",1},{"record_type","snapshot"},{"snapshot_id",id},{"boot_id",selected},{"filters",filter},
         {"count",rows.size()},{"lower_event_id",rows.empty()?Json():rows.front().at("event_id")},{"upper_event_id",std::to_string(upper)},{"truncated",truncated},{"gaps",selected!=boot_||dropped_.load()!=0||retired_!=0||write_errors_.load()!=0},
         {"dropped",std::to_string(dropped_)},{"retired",std::to_string(retired_)},{"write_errors",std::to_string(write_errors_)},
-        {"expires_monotonic_us",std::to_string(now+60000000)},{"simulation",true},{"durability",selected==boot_?"memory_snapshot; stream_flush_only; failures_reported":"reloaded_retained_segments; historical_completeness_unknown; flush_only"}};
+        {"expires_monotonic_us",std::to_string(now+60000000)},{"simulation",source.empty()?simulation_:source.front().at("simulation").get<bool>()},{"durability",selected==boot_?"memory_snapshot; stream_flush_only; failures_reported":"reloaded_retained_segments; historical_completeness_unknown; flush_only"}};
     snapshots_.emplace(id,Snapshot{now+60000000,std::move(rows),meta});return meta;
 }
 Json Logs::page(const std::string &id,size_t offset,size_t limit){std::lock_guard<std::mutex> lock(mutex_);auto it=snapshots_.find(id);
