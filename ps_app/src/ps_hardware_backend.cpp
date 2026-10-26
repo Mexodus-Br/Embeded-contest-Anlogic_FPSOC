@@ -37,6 +37,9 @@ BackendUpdate HardwareBackend::poll(uint64_t now){
     return r; // No target-derived XYZ or pose publication.
 }
 void HardwareBackend::action(const std::string &name){
+    // The integrated PL still carries PROFILE2's synthetic HOME references and
+    // direction 101. It has no approved production HOME configuration.
+    require(name!="home","PRODUCTION_HOME_UNAPPROVED","PROFILE2 HOME directions/reference are a fixture; production HOME is unavailable");
     static const std::map<std::string,SafetyAction> names={{"open",SafetyAction::open},{"close",SafetyAction::close},{"clear",SafetyAction::clear},{"home",SafetyAction::home},{"recover",SafetyAction::recover}};
     require(names.count(name),"FORMAT","Unknown hardware action");std::lock_guard<std::mutex> l(mutex_);
     require(actions_.empty()&&!pending_&&phase_!="running"&&phase_!="queued"&&phase_!="homing"&&phase_!="stopping","BUSY","Control operation pending");actions_.push_back(names.at(name));

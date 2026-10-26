@@ -43,10 +43,13 @@ assert release == '6.1.111-rt42-bsp-wifi1'
 assert (O/'.config').read_bytes() == (OLD/'build/kernel.config').read_bytes()
 assert (O/'Module.symvers').read_bytes() == (OLD/'build/Module.symvers').read_bytes()
 identity = json.loads((TASK/'source-identity.json').read_text())
-identity.update(kernel=release, version='full-system-20261026-r1',
+identity.update(kernel=release, version='full-system-20261026-stage2-r1',
     hardware_origin_commit='4b2579e', backend_origin_commit='b9239a1',
     board_acceptance='NOT_EXECUTED', motion_qualified=False,
     xyz_source=None, rs485_service_publication=False,
+    xyz_required_source='driver_encoder_0x30_after_calibration_and_FK',
+    home_cartesian_direction='+Z', pull_cartesian_direction='-Z',
+    hardware_home_api_enabled=False,
     pulse_profile='H=L=500 cycles / 5us, DIR setup/hold=500 cycles, 100MHz',
     previous_stage1_profile='cf764ad MOTOR3125: H=L=3125 cycles / 31.25us',
     pl_rebuilt=False, limitations=['Real XYZ/FK/calibration unavailable; jog/teach/coordinate execution remain refused',
@@ -293,6 +296,11 @@ with tempfile.TemporaryDirectory(dir=BUILD) as tmp:
         run('mcopy', '-i', str(image)+'@@1048576', '::/'+name, p)
         assert p.read_bytes() == (RELEASE/name).read_bytes()
 identity.update(root_partuuid=uuid, status='OFFLINE_INTEGRATED_IMAGE_WITH_FUNCTIONAL_LIMITATIONS',
+    signoff_pass=False, other_release_gates_waived=False,
+    retained_hardware_issues=['SYN-5066 protected-IP equivalence', 'external IO timing/electrical acceptance',
+        'physical speed grade/DDR qualification', 'production HOME/calibration',
+        'actual RS485/STP feedback', 'HP1 interrupted-RX DDR drain'],
+    cdc_independent_gate=False,
     module_crc_audit='PASS', runtime_abi_audit='PASS', dt_roundtrip_audit='PASS',
     ext4_installed_files_readback=len(direct), partition_and_fat_readback='PASS',
     files={name: {'bytes': (RELEASE/name).stat().st_size, 'sha256': sha(RELEASE/name)}

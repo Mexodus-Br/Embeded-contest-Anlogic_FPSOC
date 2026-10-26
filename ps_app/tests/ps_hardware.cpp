@@ -52,6 +52,9 @@ static void submit(HardwareBackend &b,std::shared_ptr<PlannedTask> p,uint64_t no
     b.submit(std::move(p),now,binding);
 }
 int main(int argc,char **argv){try{unsigned cases=0;
+    {auto d=std::make_shared<FakeBoard>();HardwareBackend b(d,"home_gate");bool refused=false;
+     try{b.action("home");}catch(const Error&e){refused=e.detail.at("code")=="PRODUCTION_HOME_UNAPPROVED";}
+     check(refused&&d->opens==0&&d->starts==0,"unapproved fixture HOME refused before device action");cases++;}
     {auto d=std::make_shared<FakeBoard>();HardwareBackend b(d,"boot1");ready(b);submit(b,plan_for(),monotonic_us());wait_for(b,[](auto&r){return r.accepted;});
      auto r=b.poll(monotonic_us());check(!r.completed,"IOC not motion done");d->complete();wait_for(b,[](auto&r){return r.completed;});cases++;}
     {auto d=std::make_shared<FakeBoard>();HardwareBackend b(d,"boot2");ready(b);d->mutate([](auto&f){f.reject=true;});submit(b,plan_for(),monotonic_us());wait_for(b,[](auto&r){return r.failed;});check(b.status().at("phase")=="fault","reject fails");cases++;}

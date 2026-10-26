@@ -16,7 +16,7 @@
 |维护配置|saf2-maint复用诊断UAPI，目标为执行设备；与服务独占互斥，显式无电机config/timeout实验，不作为后台喂狗进程|
 |真实XYZ与方向|尚无获准FK/标定/驱动旧目标一致性处理；保持未知，真实jog/teach拒绝，坐标预览不能执行。没有新增伪参考位置API，未改Golden|
 |RS485服务发布|32B/64B尚未由唯一采集owner发布，driver_feedback=null；R5S2采集管理/RUN-off、raw副本/身份仍需实现，不能把SAF2保护资格当完整服务反馈|
-|生产HOME|当前PL为PROFILE2夹具，参考100/-200/300步与HOME参数均非实物标定；配置有效不代表批准。不得在实板调用HOME；生产配置可能需要PL变更与受影响验证|
+|生产HOME|当前PL为PROFILE2夹具，方向101与用户确认+Z不一致，参考100/-200/300步非实物标定；最终后端入队前明确拒绝HOME。生产配置需要PL变更与受影响验证|
 |权限隔离限制|当前设备所有者HTTP进程为root；原UID498诊断HTTP不具控制权，不能把其低权限资格套用到新HMI。局域网服务仅本地显式配置后开启|
 
 **因此：镜像可完成系统软件装配和离线检查，但不能登记为真实坐标/方向/RS485产品功能全部完成，也不能把第2阶段总记PASS或直接进入第3/4阶段运动。** 缺口不是“仅剩上板验证”。分阶段操作、通过标准与停止点见[ACCEPTANCE.md](ACCEPTANCE.md)。
@@ -49,7 +49,7 @@ cf764ad实际写入的是MOTOR3125，不能按早期scope默认5µs理解。对�
 
 build_vm.py依序编译执行模块/ARM程序、检查模块CRC/ELF/库ABI、组装rootfs/DT、从实际ext4取出安装文件比对、只读fsck、组装512MiB SD文件并读回两分区与FAT启动文件。仅对明确最终部署文件计算SHA256，不递归哈希、不哈希日志/中间文件。
 
-最终身份见artifacts/release/manifest.json（待构建完成登记），其中包括源码提交/直接覆盖源码、启动链来源、版本、PARTUUID、最终交付文件SHA256和功能限制。板端/etc/full-system-identity.json保存软件/PL来源与限制，不冒充实时硬件身份。
+最终交付批次待登记；r3仅为前一软件装配候选，最终批次增加HOME拒绝以防误用PROFILE2。最终manifest包括源码提交、启动链来源、版本、PARTUUID、最终交付文件SHA256和功能限制。板端/etc/full-system-identity.json保存软件/PL来源与限制，不冒充实时硬件身份。
 
 部署必须先取得当次SD覆盖授权，再完整写入与读回。用户断电装卡上电；串口仅确认可用后接入。无Wi-Fi个人配置、HTTP个人凭据或预设HMI令牌。默认localhost观察服务；本地明确配置IPv4后维护重启，使用板卡LAN地址:18083，令牌在板端root权限读取，不能发送到日志或Git。
 
@@ -58,4 +58,6 @@ build_vm.py依序编译执行模块/ARM程序、检查模块CRC/ELF/库ABI、组
 - Windows本机构建ps_core/ps_server/ps_control通过；新增显式绑定、wildcard拒绝、Host/Origin/认证检查通过；原服务14项、边界5项通过。
 - 新执行模块41项实际C函数寄存器模型复测通过；宿主警告与内核编译结果分开记录。
 - 首次沙箱回环测试无法连通，默认Python缺jsonschema；使用现有隔离依赖并在沙箱外仅运行localhost后通过，不把环境失败记为业务通过。
-- VM r1执行模块在-Werror=misleading-indentation失败；仅拆分if/break行，原失败目录保留，r2目标模块编译通过。其余目标构建/镜像检查结果待最终登记。
+- VM r1执行模块在-Werror=misleading-indentation失败；仅拆分if/break行，原失败目录保留。r2/r3目标模块、用户态、模块CRC、全库ABI、DT反向结构比较、ext4安装文件比对、fsck和SD两分区/FAT启动文件读回通过。最终批次增加HOME拒绝后重新构建登记。
+
+用户后续确认的RS485反馈来源、原厂实际模型、HOME +Z/退离-Z及缺少的标定见[POSITION_RS485_REVIEW.md](POSITION_RS485_REVIEW.md)。没有把这些方向确认扩展为生产参考/距离/速度批准。
