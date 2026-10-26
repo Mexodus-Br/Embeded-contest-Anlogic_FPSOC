@@ -1,5 +1,7 @@
 # 完整软件接入镜像工作记录
 
+**最终离线r4交付已完成并传回核验。** 镜像、提交、SHA256、版本、PARTUUID、检查结果和部署边界见[DELIVERY.md](DELIVERY.md)；最终本机文件在`artifacts/release-r4/`。XYZ/方向/RS485产品功能与实板验收仍未完成，不以镜像装配掩盖这些缺口。
+
 起点 b9239a1，固定PL启动链取自4b2579e的controlled_v1_20261021，保留其他任务的未提交RTL、旧镜像、回退卡与全部失败记录。此目录制作新的系统文件镜像，不写实体卡、不连接板卡/串口、不操作eMMC/QSPI。CDC独立门禁保持已移除状态，不新增4G计划。
 
 ## 实现核对与当前缺口
@@ -49,7 +51,7 @@ cf764ad实际写入的是MOTOR3125，不能按早期scope默认5µs理解。对�
 
 build_vm.py依序编译执行模块/ARM程序、检查模块CRC/ELF/库ABI、组装rootfs/DT、从实际ext4取出安装文件比对、只读fsck、组装512MiB SD文件并读回两分区与FAT启动文件。仅对明确最终部署文件计算SHA256，不递归哈希、不哈希日志/中间文件。
 
-最终交付批次待登记；r3仅为前一软件装配候选，最终批次增加HOME拒绝以防误用PROFILE2。最终manifest包括源码提交、启动链来源、版本、PARTUUID、最终交付文件SHA256和功能限制。板端/etc/full-system-identity.json保存软件/PL来源与限制，不冒充实时硬件身份。
+最终交付为release-r4，对应源码1ff2e40；r3仅为前一软件装配候选，最终批次增加HOME拒绝以防误用PROFILE2。最终manifest包括源码提交、启动链来源、版本、PARTUUID、最终交付文件SHA256和功能限制。板端/etc/full-system-identity.json保存软件/PL来源与限制，不冒充实时硬件身份。
 
 部署必须先取得当次SD覆盖授权，再完整写入与读回。用户断电装卡上电；串口仅确认可用后接入。无Wi-Fi个人配置、HTTP个人凭据或预设HMI令牌。默认localhost观察服务；本地明确配置IPv4后维护重启，使用板卡LAN地址:18083，令牌在板端root权限读取，不能发送到日志或Git。
 
@@ -58,6 +60,6 @@ build_vm.py依序编译执行模块/ARM程序、检查模块CRC/ELF/库ABI、组
 - Windows本机构建ps_core/ps_server/ps_control通过；新增显式绑定、wildcard拒绝、Host/Origin/认证检查通过；原服务14项、边界5项通过。
 - 新执行模块41项实际C函数寄存器模型复测通过；宿主警告与内核编译结果分开记录。
 - 首次沙箱回环测试无法连通，默认Python缺jsonschema；使用现有隔离依赖并在沙箱外仅运行localhost后通过，不把环境失败记为业务通过。
-- VM r1执行模块在-Werror=misleading-indentation失败；仅拆分if/break行，原失败目录保留。r2/r3目标模块、用户态、模块CRC、全库ABI、DT反向结构比较、ext4安装文件比对、fsck和SD两分区/FAT启动文件读回通过。最终批次增加HOME拒绝后重新构建登记。
+- VM r1执行模块在-Werror=misleading-indentation失败；仅拆分if/break行，原失败目录保留。r2/r3目标模块、用户态、模块CRC、全库ABI、DT反向结构比较、ext4安装文件比对、fsck和SD两分区/FAT启动文件读回通过。最终r4增加HOME拒绝后重新构建，以上检查及传回身份全部通过，见DELIVERY.md。
 
 用户后续确认的RS485反馈来源、原厂实际模型、HOME +Z/退离-Z及缺少的标定见[POSITION_RS485_REVIEW.md](POSITION_RS485_REVIEW.md)。没有把这些方向确认扩展为生产参考/距离/速度批准。

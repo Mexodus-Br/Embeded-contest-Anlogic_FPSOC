@@ -1,0 +1,41 @@
+{
+  "version": "full-system-20261026-stage2-r1",
+  "base_commit": "1ff2e40bd91ae57c4cfb6c7abbff43b87315c0c8",
+  "hardware_origin_commit": "4b2579e",
+  "backend_origin_commit": "b9239a1",
+  "root_partuuid": "f1beebfc-02",
+  "status": "OFFLINE_INTEGRATED_IMAGE_WITH_FUNCTIONAL_LIMITATIONS",
+  "hardware_home_api_enabled": false,
+  "signoff_pass": false,
+  "other_release_gates_waived": false,
+  "cdc_independent_gate": false,
+  "retained_hardware_issues": [
+    "SYN-5066 protected-IP equivalence",
+    "external IO timing/electrical acceptance",
+    "physical speed grade/DDR qualification",
+    "production HOME/calibration",
+    "actual RS485/STP feedback",
+    "HP1 interrupted-RX DDR drain"
+  ],
+  "image": "artifacts/release-r4/sdcard.img",
+  "image_bytes": 536870912,
+  "image_sha256": "e0d5abb1235b74665752396c3faff9beca49c084803bd5d4f4b095e232db90de",
+  "final_manifest": "artifacts/release-r4/manifest.json",
+  "board_acceptance": "NOT_EXECUTED",
+  "sd_written": false,
+  "serial_opened": false,
+  "all_product_features_complete": false,
+  "remaining": [
+    "RS485 owner raw publication and RUN management",
+    "encoder calibration and FK XYZ",
+    "production HOME configuration and affected PL verification"
+  ],
+  "counts": {
+    "modules_crc_checked": 212,
+    "symbol_imports_crc_checked": 3556,
+    "fake_board_cases": 18,
+    "driver_model_checks": 41,
+    "service_cases": 14,
+    "boundary_cases": 5
+  }
+}
