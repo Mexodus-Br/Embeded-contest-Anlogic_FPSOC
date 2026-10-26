@@ -73,7 +73,7 @@ static bool equal_secret(const std::string &a,const std::string &b){unsigned dif
 static std::string cookie(const Request &r){auto it=r.headers.find("cookie");if(it==r.headers.end())return "";std::istringstream cookies(it->second);std::string x;while(std::getline(cookies,x,';')){while(!x.empty()&&x.front()==' ')x.erase(x.begin());if(x.rfind("ps_session=",0)==0)return x.substr(11);}return "";}
 static void serve(std::shared_ptr<Http> h,Socket fd,bool control){
     struct Guard{std::shared_ptr<Http> h;Socket fd;bool control;~Guard(){close_socket(fd);if(control)--h->controls;else --h->connections;}}guard{h,fd,control};
-    try{auto r=receive(fd);ps::require(r.headers.count("host")&&(r.headers.at("host")==h->origin.substr(7)||r.headers.at("host")==h->localhost.substr(7)),"AUTH","Host must be loopback origin");
+    try{auto r=receive(fd);ps::require(r.headers.count("host")&&(r.headers.at("host")==h->origin.substr(7)||r.headers.at("host")==h->localhost.substr(7)),"AUTH","Host must match configured origin");
         std::vector<std::string> expired;
         {std::lock_guard<std::mutex> l(h->sessions_mutex);for(auto i=h->sessions.begin();i!=h->sessions.end();)if(i->second.expires<=ps::monotonic_us()){expired.push_back(i->first);i=h->sessions.erase(i);}else ++i;}
         for(const auto &id:expired)h->service->revoke_session(id);
@@ -126,20 +126,22 @@ static void nonblocking(Socket fd,bool enabled){
 #endif
 }
 int main(int argc,char **argv){try{
-    int port=18083;std::string backend;bool allow_injection=false;ps_fs::path root=ps_fs::current_path(),data=root/"runs/ps",token_file=root/".cache/ps-token";
-    for(int i=1;i<argc;i++){std::string arg=argv[i];ps::require(i+1<argc,"FORMAT","Option needs value");std::string value=argv[++i];if(arg=="--backend")backend=value;else if(arg=="--allow-simulation-injection"){ps::require(value=="true"||value=="false","FORMAT","Expected true or false");allow_injection=value=="true";}else if(arg=="--port")port=std::stoi(value);else if(arg=="--data")data=ps_fs::u8path(value);else if(arg=="--token-file")token_file=ps_fs::u8path(value);else throw ps::Error("FORMAT","Unknown option");}
+    int port=18083;std::string backend,bind_address="127.0.0.1";bool allow_injection=false;ps_fs::path root=ps_fs::current_path(),data=root/"runs/ps",token_file=root/".cache/ps-token";
+    for(int i=1;i<argc;i++){std::string arg=argv[i];ps::require(i+1<argc,"FORMAT","Option needs value");std::string value=argv[++i];if(arg=="--backend")backend=value;else if(arg=="--bind")bind_address=value;else if(arg=="--allow-simulation-injection"){ps::require(value=="true"||value=="false","FORMAT","Expected true or false");allow_injection=value=="true";}else if(arg=="--port")port=std::stoi(value);else if(arg=="--data")data=ps_fs::u8path(value);else if(arg=="--token-file")token_file=ps_fs::u8path(value);else throw ps::Error("FORMAT","Unknown option");}
     ps::require(backend=="simulation"||backend=="hardware","BACKEND_UNAVAILABLE","Select --backend simulation or hardware explicitly (no fallback)");
     ps::require(backend!="hardware"||!allow_injection,"FORMAT","Simulation injection forbidden in hardware mode");
     ps::require(port>1024&&port<65536,"FORMAT","Invalid port");
 #ifdef _WIN32
     WSADATA wsa;ps::require(WSAStartup(MAKEWORD(2,2),&wsa)==0,"NETWORK","Winsock startup failed");
 #endif
-    auto h=std::make_shared<Http>();h->root=root;h->origin="http://127.0.0.1:"+std::to_string(port);h->localhost="http://localhost:"+std::to_string(port);
+    in_addr bind_ip{};
+    ps::require(inet_pton(AF_INET,bind_address.c_str(),&bind_ip)==1&&bind_ip.s_addr!=htonl(INADDR_ANY)&&bind_ip.s_addr!=htonl(INADDR_BROADCAST),"FORMAT","--bind requires a concrete local IPv4 address");
+    auto h=std::make_shared<Http>();h->root=root;h->origin="http://"+bind_address+":"+std::to_string(port);h->localhost=bind_address=="127.0.0.1"?"http://localhost:"+std::to_string(port):h->origin;
     if(!ps_fs::exists(token_file)){ps_fs::create_directories(token_file.parent_path());std::ofstream f(token_file);f.exceptions(std::ios::failbit|std::ios::badbit);f<<ps::random_id()<<ps::random_id()<<'\n';f.close();}
     {std::ifstream f(token_file);std::getline(f,h->token);ps::require(h->token.size()>=32&&ps::logical_id(h->token),"AUTH","Token file invalid");}
-    Socket listener=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);ps::require(listener!=INVALID_SOCKET,"NETWORK","Cannot create listener");sockaddr_in address{};address.sin_family=AF_INET;address.sin_port=htons(uint16_t(port));address.sin_addr.s_addr=htonl(INADDR_LOOPBACK);
+    Socket listener=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);ps::require(listener!=INVALID_SOCKET,"NETWORK","Cannot create listener");sockaddr_in address{};address.sin_family=AF_INET;address.sin_port=htons(uint16_t(port));address.sin_addr=bind_ip;
     ps::require(bind(listener,reinterpret_cast<sockaddr*>(&address),sizeof(address))==0,"NETWORK","Port unavailable");ps::require(listen(listener,32)==0,"NETWORK","Listen failed");
-    h->service=std::make_shared<ps::Service>(root,data,allow_injection,backend=="hardware");std::cout<<"PS "+backend+": "<<h->origin<<" (loopback only; login required)"<<std::endl;
+    h->service=std::make_shared<ps::Service>(root,data,allow_injection,backend=="hardware");std::cout<<"PS "+backend+": "<<h->origin<<" (explicit bind; login required)"<<std::endl;
     struct Pending {Socket fd;uint64_t deadline;};std::deque<Pending> pending;
     nonblocking(listener,true);
     for(;;){

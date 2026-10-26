@@ -116,7 +116,8 @@ static long control(struct file *f,unsigned int op,unsigned long arg)
  case SAF2_ACK:{struct saf2_action a={0};u32 before=rd(d,SAF_REGISTERS_ACK_ID);
   a.txn=d->txn;a.ack_id=before;a.ack_status=rd(d,SAF_REGISTERS_ACK_STATUS);a.ack_error=rd(d,SAF_REGISTERS_ACK_ERROR);
   if(rd(d,SAF_REGISTERS_ACK_ID)!=before){ret=-EAGAIN;break;}
-  if(copy_to_user((void __user *)arg,&a,sizeof(a)))ret=-EFAULT;break;}
+  if(copy_to_user((void __user *)arg,&a,sizeof(a)))ret=-EFAULT;
+  break;}
 
  case SAF2_SNAPSHOT:{struct saf2_snapshot s={0};ret=snapshot(d,&s);
   if(!ret && copy_to_user((void __user *)arg,&s,sizeof(s)))ret=-EFAULT;
