@@ -36,5 +36,9 @@ with tarfile.open(archive, 'w:gz') as tar:
     info = tarfile.TarInfo('source-identity.json'); info.size = len(identity)
     tar.addfile(info, io.BytesIO(identity))
     for name in ['build_vm.py','build_boot.py','ps-local.py','S47ps-hmi']:
-        tar.add(HERE/name, arcname=name)
+        # Read the committed LF-normalized scripts, never raw Windows CRLF copies.
+        data=subprocess.check_output(['git','show',revision+':integration/home_calibration_20261027/'+name],cwd=ROOT)
+        assert b'\r' not in data, 'Linux build/startup inputs must use LF'
+        info=tarfile.TarInfo(name);info.size=len(data);info.mode=0o644
+        tar.addfile(info,io.BytesIO(data))
 print(archive)

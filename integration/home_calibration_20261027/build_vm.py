@@ -45,7 +45,7 @@ assert (O/'Module.symvers').read_bytes() == (OLD/'build/Module.symvers').read_by
 identity = json.loads((TASK/'source-identity.json').read_text())
 identity['home_configuration']=json.loads((SRC/'pl_safety/config/production.json').read_text())
 identity['home_config_id']=hashlib.sha256(json.dumps(identity['home_configuration'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
-identity.update(kernel=release, version='home-calibration-20261027-r1',
+identity.update(kernel=release, version='home-calibration-20261027-r2',
     hardware_origin_commit='05686d4-plus-isolated-calibration-PL', backend_origin_commit='b9239a1',
     board_acceptance='NOT_EXECUTED', motion_qualified=False,
     xyz_source=None, rs485_service_publication=True,
@@ -111,6 +111,9 @@ for name in ['libstdc++.so.6', 'libgcc_s.so.1']:
 install(TASK/'ps-local.py', 'usr/bin/ps-local', 0o700)
 install(BUILD/'saf2-maint', 'usr/bin/saf2-maint', 0o700)
 install(TASK/'S47ps-hmi', 'etc/init.d/S47ps-hmi', 0o700)
+assert b'\r' not in (TARGET/'etc/init.d/S47ps-hmi').read_bytes()
+run('sh','-n',TARGET/'etc/init.d/S47ps-hmi')
+run('python3','-m','py_compile',TARGET/'usr/bin/ps-local')
 install(module/'bsp_saf2_exec.ko', 'lib/modules/'+release+'/extra/bsp_saf2_exec.ko')
 install(rs485_module/'bsp_rs485.ko', 'lib/modules/'+release+'/extra/bsp_rs485.ko')
 for name in ['web', 'scenarios']:
