@@ -1,5 +1,7 @@
 #include "ps_hardware_port.hpp"
 #include "ps_runtime.hpp"
+#include "ps_home_calibration.hpp"
+#include "ps_feedback_cache.hpp"
 #include <cassert>
 #include <chrono>
 #include <functional>
@@ -15,7 +17,7 @@ struct FakeBoard final:BoardDevice {
         if(a==SafetyAction::open){check(!s.owner_active,"old owner cannot be opened");opens++;s.qualified=s.heartbeat=false;s.owner_active=true;s.owner=100+opens;last_seq=0;return s.owner;}
         check(a==SafetyAction::recover||owner==s.owner,"action owner");
         if(a==SafetyAction::close){check(s.stopped,"close idle");s.owner_active=false;}
-        if(a==SafetyAction::home){s.ready=true;s.position_valid=true;}
+        if(a==SafetyAction::home){s.ready=false;s.home_active=true;s.position_valid=false;s.home_start_us+=1000;}
         if(a==SafetyAction::clear)s.fault=false;
         if(a==SafetyAction::recover){check(!s.quarantine,"quarantine retained");s.dma_owned=false;++s.generation;}
         return 0;
@@ -52,6 +54,25 @@ static void submit(HardwareBackend &b,std::shared_ptr<PlannedTask> p,uint64_t no
     b.submit(std::move(p),now,binding);
 }
 int main(int argc,char **argv){try{unsigned cases=0;
+    {const uint32_t expected[8]=HC_CONFIG_WORDS;uint32_t bad[8];std::copy(expected,expected+8,bad);
+     check(home_config_matches(expected,true)&&!home_config_matches(expected,false),"HOME config validity gate");
+     bad[7]^=1;check(!home_config_matches(bad,true),"every config identity word checked");cases++;}
+    {uint32_t w[512]={};w[RT_SNAP_GENERATION]=3;w[RT_SNAP_REVISION]=5;auto*r=w+32;r[0]=7;r[2]=3;r[3]=5;
+     auto put=[](uint32_t *raw,unsigned shift,unsigned width,uint64_t value){for(unsigned n=0;n<width;n++)if((value>>n)&1)raw[(shift+n)/32]|=1u<<((shift+n)%32);};
+     auto*raw=r+8;put(raw,RS_VERSION_LSB,8,1);put(raw,RS_ADDRESS_LSB,8,0xe0);put(raw,RS_QUERY_LSB,8,RS_QUERY_ENCODER);put(raw,RS_LENGTH_LSB,8,6);put(raw,0,48,UINT64_C(0xffffffff8000));
+     std::copy(raw,raw+8,r+16);auto f=feedback_cache(w,7,1000);check(f.at("rows")[0].at("valid").get<bool>(),"fresh real cache identity");
+     check(f.at("rows")[0].at("last_valid").at("value").at("carry")=="-1","signed encoder carry remains separate");
+     r[0]|=RT_FLAG_STALE;check(feedback_cache(w,8,2000).at("rows")[0].at("stale").get<bool>(),"cache stale preserved");
+     r[0]=7;r[3]=4;check(!feedback_cache(w,9,3000).at("rows")[0].at("valid").get<bool>(),"old revision not promoted");
+     r[3]=5;auto d=std::make_shared<FakeBoard>();d->s.driver_feedback=feedback_cache(w,10,4000);HardwareBackend b(d,"feedback_schema");
+     wait_for(b,[&](auto&){return b.telemetry().is_object();});auto t=b.telemetry();t["stale"]=false;std::cout<<t.dump()<<'\n';cases++;}
+    {auto d=std::make_shared<FakeBoard>();d->s.home_capable=true;d->s.calibration_only=true;HardwareBackend b(d,"home_only");ready(b);
+     bool refused=false;try{submit(b,plan_for(),monotonic_us());}catch(const Error&e){refused=e.detail.at("code")=="CALIBRATION_ONLY";}check(refused,"HOME calibration never permits ordinary plan");
+     b.action("home");wait_for(b,[&](auto&){return b.status().at("phase")=="homing";});
+     d->mutate([](auto&f){f.s.ready=true;f.s.home_active=false;f.s.position_valid=true;f.s.position={0,0,0};f.s.home_done_us=f.s.home_start_us+1500000;});
+     wait_for(b,[&](auto&){return b.status().at("phase")=="idle";});check(b.telemetry().at("xyz_estimate").is_null(),"HOME_DONE does not calibrate XYZ");cases++;}
+    {auto d=std::make_shared<FakeBoard>();d->s.home_capable=true;HardwareBackend b(d,"home_fault");ready(b);b.action("home");
+     wait_for(b,[&](auto&){return b.status().at("phase")=="homing";});d->mutate([](auto&f){f.s.fault=true;});wait_for(b,[](auto&r){return r.failed;});check(d->stops>0,"HOME fault stops without waiting for watchdog");cases++;}
     {auto d=std::make_shared<FakeBoard>();HardwareBackend b(d,"home_gate");bool refused=false;
      try{b.action("home");}catch(const Error&e){refused=e.detail.at("code")=="PRODUCTION_HOME_UNAPPROVED";}
      check(refused&&d->opens==0&&d->starts==0,"unapproved fixture HOME refused before device action");cases++;}
@@ -75,6 +96,11 @@ int main(int argc,char **argv){try{unsigned cases=0;
     if(argc==3){auto d=std::make_shared<FakeBoard>();Service s(ps_fs::u8path(argv[1]),ps_fs::u8path(argv[2]),true,true,d);auto state=s.state();check(!state.at("simulation").get<bool>()&&!state.at("simulation_injection_enabled").get<bool>(),"real source labels");
         s.handle("POST","/control",{},{{"action","acquire"}},"serial");bool refused=false;try{s.handle("POST","/simulation/inject",{},{{"kind","reference_position"}},"serial");}catch(const Error&){refused=true;}check(refused,"hardware no simulation injection");
         s.handle("POST","/hardware/action",{},{{"action","open"},{"boot_id",s.boot_id()}},"serial");std::this_thread::sleep_for(std::chrono::milliseconds(50));auto t=s.handle("GET","/telemetry",{},{},"serial");check(!t.at("simulation").get<bool>()&&t.at("xyz_estimate").is_null(),"readonly hardware telemetry unknown XYZ");
+        auto reject_home=[&](Json body,const std::string &code){bool rejected=false;try{s.handle("POST","/hardware/action",{},body,"serial");}catch(const Error &e){rejected=e.detail.at("code")==code;}check(rejected,"HOME intent binding rejection");};
+        Json home={{"action","home"},{"boot_id",s.boot_id()}};reject_home(home,"HOME_BINDING_REQUIRED");
+        auto bs=s.state().at("backend");home["owner_id"]=bs.at("owner_id");home["cancel_epoch"]=bs.at("cancel_epoch");home["request_id"]="home_binding_test";home["deadline_monotonic_us"]=std::to_string(monotonic_us()+1500000);
+        auto bad=home;bad["owner_id"]="0";reject_home(bad,"STALE_ACTION");bad=home;bad["cancel_epoch"]="999";reject_home(bad,"STALE_ACTION");bad=home;bad["deadline_monotonic_us"]="1";reject_home(bad,"EXPIRED");
+        reject_home(home,"PRODUCTION_HOME_UNAPPROVED");reject_home(home,"ID_CONFLICT");
         d->mutate([](auto&f){f.s.owner_active=false;});auto end=monotonic_us()+1000000;while(s.state().at("phase")!="fault"&&monotonic_us()<end)std::this_thread::sleep_for(std::chrono::milliseconds(5));
         check(s.state().at("phase")=="fault","service observes owner loss");s.revoke_session("serial");auto acquired=s.handle("POST","/control",{},{{"action","acquire"}},"recovery_client");check(acquired.at("you_control").get<bool>(),"new controller can explicitly recover a hardware fault");
         std::cout<<s.state().dump()<<'\n'<<t.dump()<<'\n';cases++;}

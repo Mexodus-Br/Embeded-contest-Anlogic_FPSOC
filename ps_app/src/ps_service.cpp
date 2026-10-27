@@ -32,11 +32,12 @@ struct Service::Impl {
     std::mutex mutex,file_mutex,preview_mutex,admission_mutex;
     std::atomic<uint64_t> stop_epoch{0};
     std::atomic<bool> quit{false};
+    std::string last_hardware_phase;uint64_t last_calibration_sample=0;
     uint64_t handled_stop=0,state_version=1,last_telemetry=0,telem_serial=0,telem_dropped=0,pose_time=0,iteration=0;
     bool position_valid=false;
     const bool allow_simulation_injection;
     std::string jog_id,jog_owner;uint64_t jog_seq=0,jog_refresh=0,jog_tick=0;int jog_axis=0,jog_sign=1;double jog_speed=0,jog_actual_speed=0;
-    Json jog_parameters;std::set<std::string> used_jogs;
+    Json jog_parameters;std::set<std::string> used_jogs,used_home_requests;
     Logs logs;
     std::thread worker;
     Impl(ps_fs::path r,ps_fs::path d,bool inject,bool hardware,std::shared_ptr<BoardDevice> device):root(std::move(r)),data(std::move(d)),backend(hardware?std::unique_ptr<ExecutionBackend>(new HardwareBackend(device?std::move(device):linux_board(),boot)):simulation_backend()),allow_simulation_injection(inject&&!hardware),logs(boot,data/"logs",!hardware){
@@ -60,6 +61,24 @@ struct Service::Impl {
         std::lock_guard<std::mutex> lock(mutex);
         if(stop_epoch.load()!=handled_stop)begin_stop(now);
         auto update=backend->poll(now);
+        if(!backend->simulation()){
+            auto hardware=backend->status();auto hp=hardware.at("phase").get<std::string>();
+            if(hp!=last_hardware_phase||(hp=="homing"&&now-last_calibration_sample>=100000)){
+                auto t=backend->telemetry();Json sample={{"backend",hardware}};
+                if(t.is_object()){
+                    sample["observed_monotonic_us"]=t.at("observed_monotonic_us");sample["source_time_us"]=t.at("source_time_us");
+                    sample["command_position"]=t.at("command_position");sample["calibration"]=t.at("calibration");
+                    if(t.at("raw").is_object()){sample["safety_snapshot"]=t.at("raw").at("global");sample["config_id"]=t.at("raw").at("config_id");sample["snapshot_ids"]=t.at("raw").at("snapshot_ids");}
+                    if(t.at("driver_feedback").is_object()){
+                        auto f=t.at("driver_feedback");sample["feedback_snapshot_id"]=f.at("snapshot_id");sample["feedback_source_time_us"]=f.at("source_time_us");
+                        sample["feedback_rows"]=Json::array();for(auto &row:f.at("rows"))if(row.at("slot")==0||row.at("slot")==1)sample["feedback_rows"].push_back(row);
+                    }
+                }
+                logs.emit("home_calibration_observation","hardware","info",sample);
+                last_hardware_phase=hp;last_calibration_sample=now;
+            }
+            if(phase=="homing"&&hp=="idle")phase="idle";
+        }
         if(!backend->simulation()&&phase=="fault"&&backend->status().at("phase")=="idle"){phase="idle";active_id.clear();}
         if(update.failed&&phase!="fault"){position_valid=false;invalidate();transition("failed");phase="fault";}
         if(phase=="stopping"&&update.stopped){if(!update.pulse_safe){position_valid=false;transition("failed");phase="fault";}else{transition("cancelled");phase="idle";active_id.clear();}logs.emit("stop_result","backend",update.pulse_safe?"info":"error",{{"pulse_safe",update.pulse_safe},{"simulation",backend->simulation()}});}
@@ -114,9 +133,18 @@ Json Service::handle(const std::string &method,const std::string &path,const std
     if(method=="GET"&&path=="/state"){auto r=state();{std::lock_guard<std::mutex> l(s.mutex);r["you_control"]=s.owner==session;}return r;}
     if(method=="POST"&&path=="/stop")return stop(session);
     if(method=="POST"&&path=="/hardware/action"){
-        fields(body,{"action","boot_id"});std::lock_guard<std::mutex> l(s.mutex);s.control(session);
+        fields(body,{"action","boot_id","owner_id","cancel_epoch","request_id","deadline_monotonic_us"});std::lock_guard<std::mutex> l(s.mutex);s.control(session);
         require(body.at("boot_id")==s.boot,"BOOT_MISMATCH","Old hardware action rejected");
-        s.backend->action(body.at("action").get<std::string>());s.position_valid=false;s.invalidate();return {{"status","queued"},{"simulation",false}};
+        if(body.at("action")=="home"){
+            s.idle();auto b=s.backend->status();auto now=monotonic_us();
+            require(body.contains("owner_id")&&body.contains("cancel_epoch")&&body.contains("request_id")&&body.contains("deadline_monotonic_us"),"HOME_BINDING_REQUIRED","HOME requires current owner/cancel identity, request ID and deadline");
+            require(body.at("owner_id")==b.at("owner_id")&&body.at("cancel_epoch")==b.at("cancel_epoch"),"STALE_ACTION","HOME owner/cancel binding changed");
+            auto deadline=u64(body.at("deadline_monotonic_us"),"deadline_monotonic_us");
+            require(deadline>now&&deadline-now>=100000&&deadline-now<=2000000,"EXPIRED","HOME start deadline requires 0.1..2 seconds remaining");
+            auto request=body.at("request_id").get<std::string>();require(logical_id(request)&&s.used_home_requests.size()<1024&&!s.used_home_requests.count(request),"ID_CONFLICT","HOME request already used or ledger full");
+            s.used_home_requests.insert(request);
+        }
+        s.backend->action(body.at("action").get<std::string>());s.logs.emit("hardware_action_queued","hardware","info",body);if(body.at("action")=="home")s.phase="homing";s.position_valid=false;s.invalidate();return {{"status","queued"},{"simulation",false}};
     }
     if(method=="POST"&&path=="/control"){fields(body,{"action"});std::lock_guard<std::mutex> l(s.mutex);if(!s.backend->simulation()&&s.phase=="fault")require(s.stop_epoch==s.handled_stop,"BUSY","STOP still pending");else s.idle();auto a=body.value("action",std::string("acquire"));require(a=="acquire"||a=="release","FORMAT","Unknown control action");
         require(s.owner.empty()||s.owner==session,"CONTROL_BUSY","Control belongs to another session");s.owner=a=="release"?"":session;s.invalidate();s.logs.emit("control_"+a);return {{"you_control",s.owner==session}};}

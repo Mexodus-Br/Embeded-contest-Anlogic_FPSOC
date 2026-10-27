@@ -24,7 +24,18 @@ def render():
  out={'safety_defs.vh':'\n'.join(v),'safety_defs.h':'\n'.join(h)}
  params=['// Generated versioned configuration. PROFILE=0 production, 1 simulation.']
  cfgs=[json.loads((D/'config'/f'{n}.json').read_text()) for n in ['production','simulation','resource_fixture']]
- assert cfgs[0]['approved'] is False and all(c['approved'] is True for c in cfgs[1:])
+ assert type(cfgs[0]['approved']) is bool and all(c['approved'] is True for c in cfgs[1:])
+ if cfgs[0]['approved']:
+  c=cfgs[0]
+  assert c.get('approval_scope')=='home_calibration_only' and c.get('machine_xyz_calibrated') is False
+  assert c.get('reference_convention')=='limit_contact_minus_150_pull_complete_zero_unmapped'
+  assert c['REFERENCE_POSITION']==[-150]*3 and c['PULL_DISTANCE']==[150]*3
+  assert c['HOME_DIRECTION']==0 and c['SEARCH_MAX_STEPS']==[500]*3
+  assert c['SEARCH_MAX_US']==10000000 and c['PULL_MAX_US']==c['PRE_MAX_US']==3000000
+  assert c['PRE_DISTANCE']==c['PRE_MAX_STEPS']==c['PULL_MAX_STEPS']==[150]*3
+  assert c['RELEASE_CYCLES']==2000000
+  assert all(c[k]==[1000000]*3 for k in ['SEARCH_PERIOD','PULL_PERIOD','PRE_PERIOD'])
+  assert c['motion_timing']==dict(clock_hz=100000000,step_high_cycles=3125,step_low_cycles=3125,dir_setup_cycles=500,dir_hold_cycles=500,en_setup_cycles=500,en_disable_cycles=500,max_step_hz=16000)
  assert all(c['version']==1 for c in cfgs) and cfgs[1]['purpose'].startswith('simulation_only')
  keys=['HOME_DIRECTION','RELEASE_CYCLES','SEARCH_MAX_US','PULL_MAX_US','PRE_MAX_US','SEARCH_PERIOD','PULL_PERIOD','PRE_PERIOD','REFERENCE_POSITION','PULL_DISTANCE','PRE_DISTANCE','SEARCH_MAX_STEPS','PULL_MAX_STEPS','PRE_MAX_STEPS']
  for k in keys:
@@ -38,12 +49,19 @@ def render():
    assert type(x) is int and 0<=x<(1<<width)
    values.append(f"{width}'h{x:x}")
   params.append(f'localparam [{width-1}:0] C_{k}=CONFIG_PROFILE==2 ? {values[2]} : CONFIG_PROFILE==1 ? {values[1]} : {values[0]};')
- params.append("localparam C_APPROVED=CONFIG_PROFILE==1 || CONFIG_PROFILE==2; // simulation fixture only; production remains disabled")
+ params.append(f"localparam C_APPROVED=CONFIG_PROFILE==0 ? 1'b{int(cfgs[0]['approved'])} : (CONFIG_PROFILE==1 || CONFIG_PROFILE==2);")
+ params.append("localparam C_HOME_ONLY=CONFIG_PROFILE==0; // production approval authorizes only bounded HOME calibration")
  for i,cfg in enumerate(cfgs):
   digest=hashlib.sha256(json.dumps(cfg,sort_keys=True,separators=(',',':')).encode()).hexdigest()
   params.append(f"localparam [255:0] CONFIG_HASH_{i}=256'h{digest};")
  params.append('localparam [255:0] C_CONFIG_HASH=CONFIG_PROFILE==2 ? CONFIG_HASH_2 : CONFIG_PROFILE==1 ? CONFIG_HASH_1 : CONFIG_HASH_0;')
  out['safety_parameters.vh']='\n'.join(params)+'\n'
+ cfg=cfgs[0];digest=hashlib.sha256(json.dumps(cfg,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+ policy=['/* Generated from production.json: exact HOME calibration identity, never XYZ qualification. */','#ifndef HOME_CALIBRATION_POLICY_H','#define HOME_CALIBRATION_POLICY_H',f'#define HC_APPROVED {int(cfg["approved"])}u']
+ for i in range(8):policy.append(f'#define HC_CONFIG_WORD_{i} 0x{int(digest,16)>>(32*i)&0xffffffff:08x}u')
+ policy.append('#define HC_CONFIG_WORDS { '+', '.join(f'HC_CONFIG_WORD_{i}' for i in range(8))+' }')
+ policy.append('#define HC_REFERENCE_STEPS (-150)\n#define HC_COMPLETED_STEPS 0\n#endif\n')
+ out['home_calibration_policy.h']='\n'.join(policy)
  return out
 def main():
  a=argparse.ArgumentParser();a.add_argument('--check',action='store_true');args=a.parse_args()

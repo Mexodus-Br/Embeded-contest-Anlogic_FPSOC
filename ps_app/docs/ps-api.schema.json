@@ -800,6 +800,12 @@
             },
             "dma_owned": {
               "type": "boolean"
+            },
+            "home_capable": {
+              "type": "boolean"
+            },
+            "calibration_only": {
+              "type": "boolean"
             }
           },
           "required": [
@@ -817,7 +823,9 @@
             "accepted_sequence",
             "completed_sequence",
             "quarantine",
-            "dma_owned"
+            "dma_owned",
+            "home_capable",
+            "calibration_only"
           ],
           "additionalProperties": false
         }
@@ -914,7 +922,8 @@
             "submitted",
             "running",
             "stopping",
-            "fault"
+            "fault",
+            "homing"
           ]
         },
         "state_version": {
@@ -1661,7 +1670,17 @@
               "type": "null"
             },
             "driver_feedback": {
-              "type": "null"
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/hardware_feedback"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "calibration": {
+              "$ref": "#/$defs/home_calibration"
             },
             "raw": {},
             "stale": {
@@ -1677,6 +1696,7 @@
             "command_position",
             "xyz_estimate",
             "driver_feedback",
+            "calibration",
             "raw",
             "stale"
           ],
@@ -1982,6 +2002,297 @@
       ],
       "additionalProperties": false
     },
+    "cached_raw32": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "query": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "data_valid": {
+          "type": "boolean"
+        },
+        "request_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "event_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "sequence": {
+          "$ref": "#/$defs/u64"
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/i64"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "carry": {
+                  "$ref": "#/$defs/i64"
+                },
+                "value": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "carry",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "known": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "raw",
+                "known"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "address",
+        "query",
+        "status",
+        "data_valid",
+        "request_us",
+        "event_us",
+        "sequence",
+        "attempt",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "cache_row": {
+      "type": "object",
+      "properties": {
+        "axis": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "slot": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "flags": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "stale": {
+          "type": "boolean"
+        },
+        "last_valid": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/cached_raw32"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "last_result": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/cached_raw32"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid_generation": {
+          "$ref": "#/$defs/u64"
+        },
+        "valid_revision": {
+          "$ref": "#/$defs/u64"
+        },
+        "result_generation": {
+          "$ref": "#/$defs/u64"
+        },
+        "result_revision": {
+          "$ref": "#/$defs/u64"
+        },
+        "age_us": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/u64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stale_limit_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "raw_valid_words": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 8,
+          "maxItems": 8
+        },
+        "raw_result_words": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 8,
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "axis",
+        "slot",
+        "flags",
+        "valid",
+        "stale",
+        "last_valid",
+        "last_result",
+        "valid_generation",
+        "valid_revision",
+        "result_generation",
+        "result_revision",
+        "age_us",
+        "stale_limit_us",
+        "raw_valid_words",
+        "raw_result_words"
+      ],
+      "additionalProperties": false
+    },
+    "hardware_feedback": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "const": "bsp_rs485_cache_snapshot"
+        },
+        "snapshot_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_time_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "observed_monotonic_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "collector_generation": {
+          "$ref": "#/$defs/u64"
+        },
+        "revision": {
+          "$ref": "#/$defs/u64"
+        },
+        "transport_generation": {
+          "$ref": "#/$defs/u64"
+        },
+        "asynchronous": {
+          "const": true
+        },
+        "history_complete": {
+          "const": false
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cache_row"
+          },
+          "minItems": 15,
+          "maxItems": 15
+        }
+      },
+      "required": [
+        "source",
+        "snapshot_id",
+        "source_time_us",
+        "observed_monotonic_us",
+        "collector_generation",
+        "revision",
+        "transport_generation",
+        "asynchronous",
+        "history_complete",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "home_calibration": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "const": "home_counts_only"
+        },
+        "counts_referenced": {
+          "type": "boolean"
+        },
+        "contact_reference_steps": {
+          "const": [
+            "-150",
+            "-150",
+            "-150"
+          ]
+        },
+        "pull_complete_steps": {
+          "const": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xyz_valid": {
+          "const": false
+        },
+        "joint_angles_calibrated": {
+          "const": false
+        },
+        "machine_display_zero": {
+          "const": "formal_pull_complete_pose_pending_model_mapping"
+        }
+      },
+      "required": [
+        "mode",
+        "counts_referenced",
+        "contact_reference_steps",
+        "pull_complete_steps",
+        "xyz_valid",
+        "joint_angles_calibrated",
+        "machine_display_zero"
+      ],
+      "additionalProperties": false
+    },
     "hardware_telemetry": {
       "type": "object",
       "properties": {
@@ -2042,7 +2353,17 @@
           "type": "null"
         },
         "driver_feedback": {
-          "type": "null"
+          "anyOf": [
+            {
+              "$ref": "#/$defs/hardware_feedback"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calibration": {
+          "$ref": "#/$defs/home_calibration"
         },
         "raw": {},
         "stale": {
@@ -2058,6 +2379,7 @@
         "command_position",
         "xyz_estimate",
         "driver_feedback",
+        "calibration",
         "raw",
         "stale"
       ],

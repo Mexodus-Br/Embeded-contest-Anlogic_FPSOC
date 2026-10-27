@@ -1,0 +1,52 @@
+{
+  "setup_ns": 1.109,
+  "hold_ns": 0.02,
+  "setup_gt_1ns": true,
+  "threads": 16,
+  "config_profile": 0,
+  "home_only": true,
+  "clock_mhz": 100,
+  "metrics": {
+    "lut6": {
+      "used": 23369,
+      "total": 52480,
+      "percent": 44.53
+    },
+    "slice": {
+      "used": 31344,
+      "total": 52480,
+      "percent": 59.73
+    },
+    "slice reg": {
+      "used": 33568,
+      "total": 104960,
+      "percent": 31.98
+    },
+    "eram": {
+      "used": 57,
+      "total": 280,
+      "percent": 20.36
+    },
+    "dsp": {
+      "used": 2,
+      "total": 240,
+      "percent": 0.83
+    },
+    "pad": {
+      "used": 17,
+      "total": 126,
+      "percent": 13.49
+    }
+  },
+  "matched_hpf_ps_parameters": 556,
+  "bit_matches_hpf": true,
+  "cdc_independent_gate": false,
+  "board_tested": false,
+  "signoff_pass": false,
+  "unresolved": [
+    "protected-IP SYN-5066",
+    "external IO/electrical qualification",
+    "physical speed/DDR",
+    "actual RS485 and HOME acceptance"
+  ]
+}

@@ -8,6 +8,7 @@ HardwareBackend::HardwareBackend(std::shared_ptr<BoardDevice> d,std::string boot
 HardwareBackend::~HardwareBackend(){quit_=true;try{device_->stop();}catch(...){}worker_.join();}
 void HardwareBackend::submit(std::shared_ptr<const PlannedTask> p,uint64_t now,const ExecutionBinding &binding){
     std::lock_guard<std::mutex> l(mutex_);
+    require(!board_.calibration_only,"CALIBRATION_ONLY","Only bounded HOME calibration is enabled; ordinary motion remains disabled");
     require(cancel_<UINT64_MAX/2-1&&!pending_&&phase_=="idle"&&board_.ready&&board_.qualified&&owner_&&board_.owner==owner_&&!board_.fault&&!board_.quarantine,"QUALIFICATION_MISSING","Explicit owner, recovery and complete HOME required");
     require(p&&p->first.at("samples").size()>0&&p->first.at("samples").size()<=200000,"RESOURCE_LIMIT","Bounded plan required");
     require(binding.boot_id==boot_&&logical_id(binding.command_id)&&binding.parameter_revision==p->parameter&&binding.start_position_id==position_id_&&binding.cancel_epoch==cancel_&&binding.generation==board_.generation&&binding.start_steps==board_.position&&board_.position_valid,"STALE_INPUT","Boot/command/parameter/start position/generation/cancel binding mismatch");
@@ -37,39 +38,40 @@ BackendUpdate HardwareBackend::poll(uint64_t now){
     return r; // No target-derived XYZ or pose publication.
 }
 void HardwareBackend::action(const std::string &name){
-    // The integrated PL still carries PROFILE2's synthetic HOME references and
-    // direction 101. It has no approved production HOME configuration.
-    require(name!="home","PRODUCTION_HOME_UNAPPROVED","PROFILE2 HOME directions/reference are a fixture; production HOME is unavailable");
-    static const std::map<std::string,SafetyAction> names={{"open",SafetyAction::open},{"close",SafetyAction::close},{"clear",SafetyAction::clear},{"home",SafetyAction::home},{"recover",SafetyAction::recover}};
+    static const std::map<std::string,SafetyAction> names={{"open",SafetyAction::open},{"close",SafetyAction::close},{"clear",SafetyAction::clear},{"home",SafetyAction::home},{"recover",SafetyAction::recover},{"configure",SafetyAction::configure},{"feedback_on",SafetyAction::feedback_on},{"feedback_off",SafetyAction::feedback_off},{"disable",SafetyAction::disable}};
     require(names.count(name),"FORMAT","Unknown hardware action");std::lock_guard<std::mutex> l(mutex_);
-    require(actions_.empty()&&!pending_&&phase_!="running"&&phase_!="queued"&&phase_!="homing"&&phase_!="stopping","BUSY","Control operation pending");actions_.push_back(names.at(name));
+    require(name!="home"||board_.home_capable,"PRODUCTION_HOME_UNAPPROVED","Exact approved HOME calibration config identity and valid snapshot required");
+    require(actions_.empty()&&!pending_&&phase_!="running"&&phase_!="queued"&&phase_!="homing"&&phase_!="stopping","BUSY","Control operation pending");actions_.push_back({names.at(name),owner_,cancel_.load(),monotonic_us()+100000});
 }
-Json HardwareBackend::status()const{std::lock_guard<std::mutex> l(mutex_);return {{"kind","hardware"},{"boot_id",boot_},{"position_id",position_id_},{"command_id",command_id_},{"parameter_revision",parameter_revision_},{"generation",std::to_string(board_.generation)},{"phase",phase_},{"error",error_},{"owner_id",std::to_string(owner_)},{"cancel_epoch",std::to_string(cancel_.load())},{"observed_stop_epoch",std::to_string(observed_cancel_)},{"accepted_sequence",board_.accepted_valid?Json(std::to_string(board_.accepted)):Json()},{"completed_sequence",board_.done_valid?Json(std::to_string(board_.done)):Json()},{"quarantine",board_.quarantine},{"dma_owned",board_.dma_owned}};}
+Json HardwareBackend::status()const{std::lock_guard<std::mutex> l(mutex_);return {{"kind","hardware"},{"boot_id",boot_},{"position_id",position_id_},{"command_id",command_id_},{"parameter_revision",parameter_revision_},{"generation",std::to_string(board_.generation)},{"phase",phase_},{"error",error_},{"owner_id",std::to_string(owner_)},{"cancel_epoch",std::to_string(cancel_.load())},{"observed_stop_epoch",std::to_string(observed_cancel_)},{"accepted_sequence",board_.accepted_valid?Json(std::to_string(board_.accepted)):Json()},{"completed_sequence",board_.done_valid?Json(std::to_string(board_.done)):Json()},{"quarantine",board_.quarantine},{"dma_owned",board_.dma_owned},{"home_capable",board_.home_capable},{"calibration_only",board_.calibration_only}};}
 Json HardwareBackend::telemetry()const{std::lock_guard<std::mutex> l(mutex_);return publication_;}
 void HardwareBackend::run(){
-    ExecutionBinding binding;std::shared_ptr<const PlannedTask> active;size_t offset=0;uint64_t session=0,id=0,seq=0,last_feed=0,epoch=0,deadline=0,iteration=0,stop_deadline=0;uint32_t generation=0,ends=0;bool started=false,stop_pending=false,lost=false;
+    ExecutionBinding binding;std::shared_ptr<const PlannedTask> active;size_t offset=0;uint64_t session=0,id=0,seq=0,last_feed=0,epoch=0,deadline=0,iteration=0,stop_deadline=0,home_before=0,home_deadline=0;uint32_t generation=0,ends=0;bool started=false,stop_pending=false,lost=false,homing=false;
     while(!quit_){auto now=monotonic_us();try{
         auto write_before_snapshot=stop_write_result_.load();
         auto b=device_->read();
         auto current=cancel_.load();
-        if(current!=epoch){epoch=current;active.reset();offset=0;started=false;stop_pending=true;stop_deadline=now+2000000;std::lock_guard<std::mutex> l(mutex_);pending_.reset();actions_.clear();completion_=false;stop_result_=false;stop_ok_=false;phase_="stopping";observed_cancel_=epoch;}
+        if(current!=epoch){epoch=current;active.reset();homing=false;offset=0;started=false;stop_pending=true;stop_deadline=now+2000000;std::lock_guard<std::mutex> l(mutex_);pending_.reset();actions_.clear();completion_=false;stop_result_=false;stop_ok_=false;phase_="stopping";observed_cancel_=epoch;}
         if(id&&(!b.owner_active||b.owner!=id)){
             id=0;active.reset();lost=true;device_->stop();std::lock_guard<std::mutex> l(mutex_);pending_.reset();phase_="fault";error_="owner_lost";
         }
         auto stop_write=stop_write_result_.load();
         if(stop_pending&&stop_write==epoch*2+1&&write_before_snapshot==stop_write&&cancel_==epoch&&b.stopped&&b.pulse_safe){stop_pending=false;std::lock_guard<std::mutex> l(mutex_);stop_result_=true;stop_ok_=true;phase_="stopped";}
         if(stop_pending&&(stop_write==epoch*2||now>=stop_deadline)){stop_pending=false;std::lock_guard<std::mutex> l(mutex_);stop_result_=true;stop_ok_=false;phase_="fault";error_="stop_failed_or_timeout";lost=true;}
+        if(homing&&(b.fault||!b.home_capable||now>=home_deadline))throw Error("HOME_FAILED","HOME fault, config identity change or execution deadline");
         if(active&&session&&(b.fault||b.quarantine||b.generation!=generation||b.session!=session||now>=deadline))throw Error("HARDWARE_FAILURE","Fault, generation/session mismatch or execution timeout");
         auto lease=lease_.load();bool healthy=lease&&(lease>=now||now-lease<250000)&&!b.quarantine&&!lost;
-        if(active&&!healthy)throw Error("CONTROL_STALE","Critical command loop stopped progressing");
+        if((active||homing)&&!healthy)throw Error("CONTROL_STALE","Critical command loop stopped progressing");
         if(id&&healthy&&(!last_feed||now-last_feed>=500000)){require(seq!=UINT64_MAX,"EXHAUSTED","Heartbeat sequence exhausted");device_->feed(id,++seq);last_feed=now;}
-        SafetyAction a=SafetyAction::open;bool action=false;
-        {std::lock_guard<std::mutex> l(mutex_);if(!actions_.empty()){a=actions_.front();actions_.clear();action=true;}}
+        SafetyAction a=SafetyAction::open;bool action=false;PendingAction request{};
+        {std::lock_guard<std::mutex> l(mutex_);if(!actions_.empty()){request=actions_.front();a=request.action;actions_.clear();action=true;}}
         if(action){
+            require(request.cancel==cancel_.load()&&!stop_pending&&monotonic_us()<request.expires,"STALE_ACTION","Cancelled or expired hardware action");
+            if(a==SafetyAction::home)require(request.owner==id,"STALE_ACTION","HOME owner changed after admission");
             auto action_lease=lease_.load(),action_now=monotonic_us();
             require(action_lease&&(action_lease>=action_now||action_now-action_lease<250000),"CONTROL_STALE","Expired control action");
             if(a==SafetyAction::open){require(!b.owner_active,"OWNER_BUSY","Never adopt an old owner");id=device_->safety(a,0);seq=last_feed=0;lost=false;}
-            else device_->safety(a,id);
+            else {if(a==SafetyAction::home){require(b.home_capable&&b.qualified&&id&&b.owner==id&&!b.fault&&!b.dma_owned,"QUALIFICATION_MISSING","Approved fresh HOME identity, healthy owner and feedback required");home_before=b.home_start_us;} device_->safety(a,id);if(a==SafetyAction::home){homing=true;home_deadline=now+20000000;}}
             if(a==SafetyAction::close)id=0;
             std::lock_guard<std::mutex> l(mutex_);phase_=lost?"fault":(a==SafetyAction::home?"homing":"idle");if(!lost)error_.clear();
             continue; // Observe the post-command snapshot before any qualification decision.
@@ -103,9 +105,9 @@ void HardwareBackend::run(){
         Json positions=Json::array(),pulses=Json::array();for(auto v:b.position)positions.push_back(std::to_string(v));for(auto v:b.pulses)pulses.push_back(std::to_string(v));
         {std::lock_guard<std::mutex> l(mutex_);if(b.position!=board_.position||b.pulses!=board_.pulses||b.position_valid!=board_.position_valid||b.generation!=board_.generation||position_id_.empty())position_id_=boot_+"_"+std::to_string(++position_revision_);
             board_=b;owner_=id;
-            if(phase_=="homing"&&b.ready&&!b.fault)phase_="idle";
-            publication_={{"simulation",false},{"source","bsp_snapshot"},{"observed_monotonic_us",std::to_string(now)},{"source_time_us",std::to_string(b.pl_time_us)},{"transport_generation",std::to_string(b.generation)},{"command_position",{{"source","pl_step_counter"},{"position_id",position_id_},{"valid",b.position_valid&&!b.fault},{"steps",positions},{"pulses",pulses}}},{"xyz_estimate",nullptr},{"driver_feedback",nullptr},{"raw",b.raw}};}
-    }catch(const std::exception &e){active.reset();session=0;try{device_->stop();}catch(...){}std::lock_guard<std::mutex> l(mutex_);pending_.reset();phase_="fault";error_=e.what();completion_=false;lost=true;}
+            if(homing&&b.ready&&b.position_valid&&b.home_start_us!=home_before&&b.home_done_us>=b.home_start_us){require(b.position==std::array<int64_t,3>{0,0,0},"HOME_REFERENCE","HOME completed with unexpected calibration counts");homing=false;phase_="idle";}
+            publication_={{"simulation",false},{"source","bsp_snapshot"},{"observed_monotonic_us",std::to_string(now)},{"source_time_us",std::to_string(b.pl_time_us)},{"transport_generation",std::to_string(b.generation)},{"command_position",{{"source","pl_step_counter"},{"position_id",position_id_},{"valid",b.position_valid&&!b.fault},{"steps",positions},{"pulses",pulses}}},{"xyz_estimate",nullptr},{"driver_feedback",b.driver_feedback},{ "calibration",{{"mode","home_counts_only"},{"counts_referenced",b.home_capable&&b.ready&&b.position_valid&&!b.fault},{"contact_reference_steps",{"-150","-150","-150"}},{"pull_complete_steps",{"0","0","0"}},{"xyz_valid",false},{"joint_angles_calibrated",false},{"machine_display_zero","formal_pull_complete_pose_pending_model_mapping"}}},{"raw",b.raw}};}
+    }catch(const std::exception &e){active.reset();homing=false;session=0;try{device_->stop();}catch(...){}std::lock_guard<std::mutex> l(mutex_);pending_.reset();phase_="fault";error_=e.what();completion_=false;lost=true;}
     std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 }

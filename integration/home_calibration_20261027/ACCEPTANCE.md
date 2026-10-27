@@ -1,0 +1,69 @@
+# HOME与坐标标定实板验收记录
+
+状态：未写卡、未接入串口、未执行实板测试。以下命令仅供当次条件确认后逐项执行；本文件不授予写卡或运动许可。所有测试记录操作者、日期、SD硬件身份、镜像SHA256、软件提交、配置ID、启动boot_id、串口及接线照片编号。
+
+## A：介质、身份与脉冲隔离
+
+前置：先只读枚举当次SD的型号、容量、唯一标识和盘号；用户确认目标并明确授权覆盖，再写本任务sdcard.img并读回核验。不得凭旧盘号写卡；不操作eMMC/QSPI。用户断电、保留回退卡、隔离驱动STEP/EN或断开电机。先确认串口未被其他工具占用，再打开串口，由用户上电。
+
+在串口Linux中只读核对：
+
+```sh
+cat /etc/full-system-identity.json
+cat /etc/home-calibration-config.json
+uname -r
+cat /proc/cmdline
+ls -l /dev/bsp-motion /dev/bsp-saf2-exec /dev/bsp-rs485
+ps-local state
+ps-local telemetry
+```
+
+通过：精确新版本/配置ID；wifi1内核；真实后端、XYZ=null、calibration_only=true；无历史owner接管，无自动轮询/HOME/使能/脉冲，设备0600。断设备启动必须失败且不能回退模拟。重启和服务重启不得重放，旧boot/owner/cancel的HOME拒绝。状态queued不代表硬件接受或动作成功。
+
+## B：隔离状态下的波形与异常
+
+前置：A通过，示波器/逻辑分析仪已接三轴STEP/DIR/EN与限位，电机仍隔离；操作者可随时急停。以下每行完成后读取state与telemetry，确认ACK、owner、资格、cause、计数和源时间，再执行下一行。
+
+```sh
+ps-local action configure
+ps-local action feedback_on
+ps-local action open
+ps-local state
+ps-local telemetry
+ps-local action clear
+```
+
+必须确认真实485保护查询三轴均健康且不陈旧、owner/heartbeat合格；故障不允许以模拟应答越过。按受控开关模拟HOME流程，显式 `ps-local action home`；各轴依次触发，保持稳定释放20ms。采集搜索DIR000、退离111、100Hz/轴、STEP高31.25µs且低至少31.25µs，以及DIR/EN各500拍守卫。开机已闭合开关的轴先固定150步预退离，再重新搜索；正式退离各150步，最终计数0。M4无输出。HOME后仍XYZ未知、普通ENABLE/OPEN_SESSION/START/轨迹请求拒绝。
+
+逐项单独复测：搜索500步未触发、10s超时、预退离/正式退离150步未稳定释放及3s超时；释放抖动/重触发；HOME各阶段STOP、急停、心跳丢失、485丢失/故障/RUN-off；中断后迟到反馈与旧HOME请求不能恢复脉冲。人工STOP：`ps-local stop`。通过要求实际输出停止、脉冲完整排空、故障/有效位符合契约，恢复必须显式重新确认与新请求。需要强停时先硬件急停/由用户断电，不依赖网页。
+
+收尾依次检查脉冲已静止，然后：
+
+```sh
+ps-local stop
+ps-local action disable
+ps-local action close
+ps-local action feedback_off
+ps-local release
+```
+
+停止条件：任何身份不符、未预期输出、方向/脉宽/限位极性错误、反馈失效、停止超时、重启重放或诊断来源不清，立即停止并保留日志，定位修复后仅复测受影响部分。
+
+## C：近限位低速HOME与标定采集
+
+前置：用户明确确认A/B通过及当次电机接线、16细分、4.5:1、三轴机械正向，平台处于近限位且每轴500步内可安全到达的姿态；急停和手动断电可用，退离150步有机械空间。用户确认后才接收STEP并使用B相同后端/配置/命令。禁止扩大搜索范围或从任意姿态试全程HOME。
+
+逐次记录开关起始状态、每轴触发顺序/掩码、搜索/预退离/正式退离脉冲计数、global HOME起止PL时间、实际DIR/EN/STEP波形、SAF2/运动/缓存快照ID、generation/revision、0x30编码器carry/value、0x33接收命令脉冲以及保护状态。`ps-local telemetry`可保存JSON；服务同时产出home_calibration_observation日志，Web保留日志查询与下载。缓存是异步最近观察，不是触点沿同步编码器锁存或完整64B历史。
+
+通过：各轴搜索命中并在限额内结束；触发快停；正式退离各150步且开关稳定释放；HOME完成参考计数均0；反馈健康、时间与计数一致且多次重复数据可解释。显示零为正式退离姿态，仍不得宣称机械0°或真实XYZ。
+
+## D：后续坐标标定
+
+本镜像保持XYZ/方向/示教/任务运动关闭。使用C采集数据确认机械参考、编码器方向/比例/偏置和原厂几何FK映射，实测XYZ及逐轴角度边界与余量，保留IK校验；完成模型和边界验证后另行实施放行。台面init只设置PS工作坐标偏移，不做PL REBASE/ENABLE。
+
+| 阶段 | 结果 | 证据/问题 |
+|---|---|---|
+| A 介质与身份 | 未执行 | 等待镜像交付后当次SD授权 |
+| B 隔离验收 | 未执行 | 等待用户接线与串口确认 |
+| C 近限位HOME | 未执行 | 等待A/B通过及用户当次确认 |
+| D 坐标/普通运动 | 未开放 | 机械/FK/编码器/边界待标定 |

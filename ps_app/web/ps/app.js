@@ -6,12 +6,12 @@ function commandId(){
   const bytes=new Uint8Array(16);globalThis.crypto.getRandomValues(bytes);
   return Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
 }
-const phaseNames={idle:'静止待操作',submitted:'已提交后端',running:'执行中',stopping:'正在停止',fault:'故障待核对'};
+const phaseNames={idle:'静止待操作',submitted:'已提交后端',running:'执行中',stopping:'正在停止',homing:'HOME 标定中',fault:'故障待核对'};
 function message(text,bad=false){$('message').textContent=text;$('message').className=bad?'error':'';}
 async function api(path,method='GET',body){const r=await fetch('/api/v1'+path,{method,headers:method==='GET'?{}:{'Content-Type':'application/json','X-CSRF-Token':csrf},body:body===undefined?undefined:JSON.stringify(body)});const j=await r.json();if(!r.ok){const e=Error(j.error?.message||'请求失败');e.code=j.error?.code;e.details=j.error;throw e;}return j;}
 const action=fn=>async()=>{try{await fn();}catch(e){message((e.code?e.code+' · ':'')+e.message,true);}};
 function coordinates(p){return Array.isArray(p)?p.map(x=>fmt(x)).join(' / ')+' mm':'未知';}
-function render(s){state=s;$('backend-mode').textContent=s.simulation?'● 主机模拟 · 未连接硬件':'● 真实 BSP 后端 · 实板资格未验收';$('hardware-controls').hidden=s.simulation;$('hardware-state').textContent=pretty(s.backend);for(const b of document.querySelectorAll('[data-hardware]'))b.disabled=b.dataset.hardware==='home'||!owns||['queued','running','homing','stopping'].includes(s.backend.phase);if(typeof s.you_control==='boolean')owns=s.you_control;
+function render(s){state=s;$('backend-mode').textContent=s.simulation?'● 主机模拟 · 未连接硬件':'● 真实 BSP 后端 · 实板资格未验收';$('hardware-controls').hidden=s.simulation;$('hardware-state').textContent=pretty(s.backend);for(const b of document.querySelectorAll('[data-hardware]'))b.disabled=(b.dataset.hardware==='home'&&!s.backend.home_capable)||!owns||['queued','running','homing','stopping'].includes(s.backend.phase);if(typeof s.you_control==='boolean')owns=s.you_control;
   $('phase').textContent=phaseNames[s.phase]||s.phase;$('backend-status').textContent='接收段 '+(s.backend.accepted_sequence??'—')+' · 完成段 '+(s.backend.completed_sequence??'—');
   $('current-xyz').textContent=coordinates(s.position.xyz_mm);$('current-source').textContent=s.position.valid?'来源：仿真采样端点 · 非真实反馈':'位置无效，禁止运行与示教';
   $('current-angles').textContent=s.position.joint_deg?'角度 '+s.position.joint_deg.map(x=>fmt(x,4)).join(' / ')+' °':'角度未知';$('current-steps').textContent=s.position.steps?'绝对步数 '+s.position.steps.join(' / '):'步数未知';
@@ -67,4 +67,4 @@ for(const b of document.querySelectorAll('[data-tab]'))b.onclick=action(async()=
 setInterval(()=>{if(!$('telemetry').hidden&&csrf)telemetry().catch(()=>{});},1000);
 const token=new URLSearchParams(location.hash.slice(1)).get('token');if(token)history.replaceState(null,'',location.pathname);try{await login(token);}catch{connected=false;}
 
-for(const b of document.querySelectorAll('[data-hardware]'))b.onclick=action(async()=>{await api('/hardware/action','POST',{action:b.dataset.hardware,boot_id:state.boot_id});invalidate(false);message('安全操作已入队；以后端状态和快照为准。');await refresh();});
+for(const b of document.querySelectorAll('[data-hardware]'))b.onclick=action(async()=>{const body={action:b.dataset.hardware,boot_id:state.boot_id};if(body.action==='home'){body.owner_id=state.backend.owner_id;body.cancel_epoch=state.backend.cancel_epoch;body.request_id=commandId();body.deadline_monotonic_us=(BigInt(state.monotonic_us)+2000000n).toString();}await api('/hardware/action','POST',body);invalidate(false);message('安全操作已入队；以后端状态和快照为准。');await refresh();});

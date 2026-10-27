@@ -10,6 +10,7 @@ out=OUT/'safety-execution';out.mkdir(parents=True,exist_ok=True)
 s=(root/'bsp/safety_execution/bsp_saf2_exec.c').read_text()
 functions=s[s.index('static u32 rd('):s.index('static const struct file_operations ops=')].replace('unsigned long arg','uintptr_t arg')
 defines=''
+defines+='\n'+(root/'pl_safety/generated/home_calibration_policy.h').read_text()
 for name in ['safety_defs.h','interlock_defs.h']:
     defines+='\n'+(root/'integration/controlled_v1_20261021/safety/generated'/name).read_text().replace('#include <linux/types.h>','')
 for f in ['integration/controlled_v1_20261021/safety/safety_uapi.h','bsp/safety_execution/execution_uapi.h']:
@@ -77,6 +78,9 @@ int main(void){struct diag d={.base=regs};struct file f={.private_data=&d};struc
  o.sequence=1;CHECK(control(&f,SAF2_OWNER_FEED,(unsigned long long)&o)==0);before=writes;CHECK(control(&f,SAF2_OWNER_FEED,(unsigned long long)&o)==-ESTALE);CHECK(writes==before);
  bad=o;bad.id++;bad.sequence++;CHECK(control(&f,SAF2_OWNER_FEED,(unsigned long long)&bad)==-ESTALE);
  reject_feed=true;o.sequence=2;CHECK(control(&f,SAF2_OWNER_FEED,(unsigned long long)&o)==-EIO);reject_feed=false;CHECK(control(&f,SAF2_OWNER_FEED,(unsigned long long)&o)==-ESTALE);o.sequence=3;CHECK(control(&f,SAF2_OWNER_FEED,(unsigned long long)&o)==0);
+ before=writes;CHECK(control(&f,SAF2_HOME,(unsigned long long)&a)==-EPERM);CHECK(writes==before);
+ {const u32 expected[8]=HC_CONFIG_WORDS;unsigned i;regs[SAF_REGISTERS_CONFIG_VALID/4]=1;for(i=0;i<8;i++)regs[(SAF_REGISTERS_CONFIG_ID_0+4*i)/4]=expected[i];}
+ regs[SAF_REGISTERS_CONFIG_ID_0/4]^=1;before=writes;CHECK(control(&f,SAF2_HOME,(unsigned long long)&a)==-EPERM);CHECK(writes==before);regs[SAF_REGISTERS_CONFIG_ID_0/4]^=1;
  CHECK(control(&f,SAF2_HOME,(unsigned long long)&a)==0);CHECK(regs[SAF_REGISTERS_OPCODE/4]==SAF_COMMANDS_HOME_START);CHECK(regs[SAF_REGISTERS_ARG/4]==0);CHECK(control(&f,SAF2_HOME,(unsigned long long)&a)==-EBUSY);
  a.txn=2;CHECK(control(&f,SAF2_CLEAR,(unsigned long long)&a)==0);CHECK(regs[SAF_REGISTERS_OPCODE/4]==SAF_COMMANDS_CLEAR_FAULT);CHECK(control(&f,SAF2_ACK,(unsigned long long)&a)==0);CHECK(a.ack_id==2&&!a.ack_error);
  before=lock_calls;CHECK(control(&f,SAF2_STOP,0)==0);CHECK(lock_calls==before);CHECK(regs[SAF_REGISTERS_STOP/4]==1);

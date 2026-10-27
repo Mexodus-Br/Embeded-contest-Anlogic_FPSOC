@@ -1,0 +1,16 @@
+/* Generated from production.json: exact HOME calibration identity, never XYZ qualification. */
+#ifndef HOME_CALIBRATION_POLICY_H
+#define HOME_CALIBRATION_POLICY_H
+#define HC_APPROVED 1u
+#define HC_CONFIG_WORD_0 0x94285ad0u
+#define HC_CONFIG_WORD_1 0x7617ce44u
+#define HC_CONFIG_WORD_2 0x2a353fd0u
+#define HC_CONFIG_WORD_3 0x60b72bdfu
+#define HC_CONFIG_WORD_4 0x0a7b40f3u
+#define HC_CONFIG_WORD_5 0xf99bdea2u
+#define HC_CONFIG_WORD_6 0x88b8cec8u
+#define HC_CONFIG_WORD_7 0x5f5d223du
+#define HC_CONFIG_WORDS { HC_CONFIG_WORD_0, HC_CONFIG_WORD_1, HC_CONFIG_WORD_2, HC_CONFIG_WORD_3, HC_CONFIG_WORD_4, HC_CONFIG_WORD_5, HC_CONFIG_WORD_6, HC_CONFIG_WORD_7 }
+#define HC_REFERENCE_STEPS (-150)
+#define HC_COMPLETED_STEPS 0
+#endif

@@ -16,9 +16,17 @@
 #include "execution_uapi.h"
 #include "interlock_defs.h"
 #include "safety_defs.h"
+#include "../../pl_safety/generated/home_calibration_policy.h"
 struct diag { void __iomem *base; struct miscdevice misc; struct mutex lock; bool opened, cancelled_owner; spinlock_t command_lock; u64 owner, sequence; u32 txn; atomic_t irq_events; };
 static u32 rd(struct diag *d,u32 off) { return readl(d->base+off); }
 static void wr(struct diag *d,u32 off,u32 v) { writel(v,d->base+off); }
+static bool calibration_home_ok(struct diag *d)
+{
+ const u32 expected[8]=HC_CONFIG_WORDS;unsigned i;
+ if(!HC_APPROVED || !rd(d,SAF_REGISTERS_CONFIG_VALID))return false;
+ for(i=0;i<8;i++)if(rd(d,SAF_REGISTERS_CONFIG_ID_0+4*i)!=expected[i])return false;
+ return true;
+}
 static int identify(struct diag *d)
 {
  return rd(d,SAF_REGISTERS_VERSION)==SI_VERSION && rd(d,SAF_REGISTERS_PROFILE)==SI_PROFILE &&
@@ -104,6 +112,7 @@ static long control(struct file *f,unsigned int op,unsigned long arg)
   if(!d->owner || !(rd(d,SI_REG_STATUS)&SI_STATUS_OWNER_ACTIVE) || !(rd(d,SI_REG_STATUS)&SI_STATUS_HEARTBEAT_QUALIFIED) ||
       d->owner!=rd64(d,SI_REG_OWNER_LO,SI_REG_OWNER_HI)){ret=-ESTALE;break;}
   if(!a.txn || a.txn<=d->txn || (rd(d,SAF_REGISTERS_ACK_STATUS)&8)){ret=-EBUSY;break;}
+  if(op==SAF2_HOME && !calibration_home_ok(d)){ret=-EPERM;break;}
   spin_lock_irqsave(&d->command_lock,flags);
   if(d->cancelled_owner){spin_unlock_irqrestore(&d->command_lock,flags);ret=-ECANCELED;break;}
   d->txn=a.txn;wr(d,SAF_REGISTERS_OPCODE,op==SAF2_HOME?SAF_COMMANDS_HOME_START:SAF_COMMANDS_CLEAR_FAULT);

@@ -16,9 +16,12 @@ struct BoardState {
     std::array<int64_t,3> position{};
     std::array<uint64_t,3> pulses{};
     bool position_valid=false;
+    bool home_capable=false,calibration_only=false,home_active=false;
+    uint64_t home_start_us=0,home_done_us=0;
+    Json driver_feedback=nullptr;
     Json raw=nullptr;
 };
-enum class SafetyAction {open,close,clear,home,recover};
+enum class SafetyAction {open,close,clear,home,recover,configure,feedback_on,feedback_off,disable};
 // Typed BSP seam; no physical address or arbitrary MMIO API.
 class BoardDevice {
 public:
@@ -50,7 +53,8 @@ class HardwareBackend final:public ExecutionBackend {
     std::string phase_="unknown",error_;
     uint64_t owner_=0,observed_cancel_=0,iteration_=0;
     bool completion_=false,stop_result_=false,stop_ok_=false;
-    std::vector<SafetyAction> actions_;
+    struct PendingAction {SafetyAction action;uint64_t owner,cancel,expires;};
+    std::vector<PendingAction> actions_;
     void run();
 public:
     HardwareBackend(std::shared_ptr<BoardDevice>,std::string boot);

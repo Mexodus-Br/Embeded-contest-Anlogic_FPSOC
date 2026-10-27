@@ -1,0 +1,40 @@
+#!/bin/sh
+# Start the actual backend in observe-only state. No owner/config/RUN/motion writes.
+set -eu
+case "${1:-}" in
+start)
+    [ "$(id -u)" = 0 ] || exit 1
+    mkdir -p /run/ps-hmi /var/lib/ps-hmi /etc/ps-hmi
+    chmod 700 /run/ps-hmi /var/lib/ps-hmi /etc/ps-hmi
+    mkdir /run/ps-hmi/lock 2>/dev/null || exit 0
+    trap 'rmdir /run/ps-hmi/lock 2>/dev/null || true' EXIT
+    # No fallback backend, no diagnostic SAF2 owner, no legacy scope init.
+    modprobe anlogic-dma-engine
+    modprobe bsp_motion
+    modprobe bsp_saf2_exec
+    modprobe bsp_rs485
+    chmod 600 /dev/bsp-motion /dev/bsp-saf2-exec /dev/bsp-rs485
+    address=127.0.0.1
+    if [ -f /etc/ps-hmi/bind-ipv4 ]; then
+        address=$(cat /etc/ps-hmi/bind-ipv4)
+    fi
+    umask 077
+    cd /opt/ps-app
+    printf 'http://%s:18083\n' "$address" > /run/ps-hmi/url
+    /usr/bin/ps_server --backend hardware --bind "$address" --port 18083 \
+        --data /var/lib/ps-hmi --token-file /etc/ps-hmi/token \
+        >> /var/log/ps-hmi.log 2>&1 &
+    pid=$!
+    echo "$pid" > /run/ps-hmi/pid
+    # The daemon never respawns or replays a command after a crash.
+    ( while kill -0 "$pid" 2>/dev/null; do sleep 2; done
+      rm -f /run/ps-hmi/pid
+      rmdir /run/ps-hmi/lock 2>/dev/null || true ) >/dev/null 2>&1 &
+    trap - EXIT
+    ;;
+stop)
+    # Request STOP only; retain process, owner expiry and DMA evidence for inspection.
+    /usr/bin/ps-local stop
+    ;;
+*) echo 'Usage: S47ps-hmi start|stop (stop requests STOP; it does not unload drivers)' >&2; exit 1;;
+esac
