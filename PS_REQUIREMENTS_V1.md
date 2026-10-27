@@ -10,6 +10,8 @@
 
 同日用户决定：HOME确定机器基准/零点，台面init确定用户工作区零点。新增COM-10～COM-11，产品init与历史delta-scope维护REBASE明确区分；实现及实机标定仍未完成。
 
+同日用户确定首轮正式退离候选为16细分下三轴各150个STEP脉冲（PULL_DISTANCE）；启动时开关已闭合的PRE_DISTANCE不随之确定。production配置已记录此值并保持approved=false，其他HOME参数与实物资格仍待补齐；不能据此宣称已生成新镜像或允许执行HOME。参数口径及实际构建状态见PHASE0_CONSTRAINTS.md对应条目。
+
 本基线依据用户在本会话中的明确确认，覆盖PHASE0_CONSTRAINTS.md对应历史待定项。六项PS组件按此共同目标开发；本文件不改变已冻结的PL/GP/MOT2/遥测协议。调整已冻结需求须说明原因、影响及迁移方式并取得用户确认；第10节开放项不得由各执行agent分别猜测。
 
 ## 1. 范围与组件边界
