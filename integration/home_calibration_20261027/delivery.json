@@ -1,0 +1,118 @@
+{
+  "final": true,
+  "image": "D:/Works/Embedded_contest/dev/integration/home_calibration_20261027/artifacts/release-r2/sdcard.img",
+  "source_commit": "6bec51644cca5a8699a318b3ab2fe13650ddfc86",
+  "version": "home-calibration-20261027-r2",
+  "config_id": "5f5d223d88b8cec8f99bdea20a7b40f360b72bdf2a353fd07617ce4494285ad0",
+  "root_partuuid": "a61e22d5-02",
+  "image_sha256": "335a509643f57fe6753c5f596fc7e7f0d84cff7b9c8febc584fcc6779e85f69d",
+  "necessary_final_files": {
+    "sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "335a509643f57fe6753c5f596fc7e7f0d84cff7b9c8febc584fcc6779e85f69d"
+    },
+    "BOOT.bin": {
+      "bytes": 5160512,
+      "sha256": "ced7f500b70231a2f442fbaa63321f565c5e0ac56a9ac94560717397e8bb209f"
+    },
+    "system.hpf": {
+      "bytes": 1208425,
+      "sha256": "3c5a154884e540b45eea1aad0ab2ca78908842b8e04043cd121a9d00dad5c942"
+    },
+    "system.bit": {
+      "bytes": 4052214,
+      "sha256": "02d1bb3062f5d4b8d4a1a89e54114d56147912f6ee334e80b55b48d60818e366"
+    },
+    "fsbl.elf": {
+      "bytes": 1509832,
+      "sha256": "f5043bcfd1bd784f2acffa1dc0e637639d7df2c5fef7f5b3ed227171669cf38e"
+    },
+    "u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "uImage.lz4": {
+      "bytes": 8350323,
+      "sha256": "c893c43761e68150bd94cbb84f994ebe1ae268b7423a2d0aac6edc0f000e18c1"
+    },
+    "system.dtb": {
+      "bytes": 16415,
+      "sha256": "9b8d24b07268f370afc7d1a5ada57c5139e3e0c4dda65880c53f924c2cf3766d"
+    },
+    "rootfs.ext4": {
+      "bytes": 268435456,
+      "sha256": "a61e22d5cfdb140189013e4d7a6a06fc4bba90edbd7b87ce85e432a25ca5d86e"
+    },
+    "boot.cmd": {
+      "bytes": 707,
+      "sha256": "2b8dcac532006b9afc8ad0a78052d02e88b39b328b55a41293d9ad8084c2cddd"
+    },
+    "boot.scr": {
+      "bytes": 779,
+      "sha256": "c051a8c646301cbc5968b140e7bfaec65975930c994b38399ae0db76659c8e15"
+    }
+  },
+  "hardware": {
+    "setup_ns": 1.109,
+    "hold_ns": 0.02,
+    "setup_gt_1ns": true,
+    "threads": 16,
+    "config_profile": 0,
+    "home_only": true,
+    "clock_mhz": 100,
+    "metrics": {
+      "lut6": {
+        "used": 23369,
+        "total": 52480,
+        "percent": 44.53
+      },
+      "slice": {
+        "used": 31344,
+        "total": 52480,
+        "percent": 59.73
+      },
+      "slice reg": {
+        "used": 33568,
+        "total": 104960,
+        "percent": 31.98
+      },
+      "eram": {
+        "used": 57,
+        "total": 280,
+        "percent": 20.36
+      },
+      "dsp": {
+        "used": 2,
+        "total": 240,
+        "percent": 0.83
+      },
+      "pad": {
+        "used": 17,
+        "total": 126,
+        "percent": 13.49
+      }
+    },
+    "matched_hpf_ps_parameters": 556,
+    "bit_matches_hpf": true,
+    "cdc_independent_gate": false,
+    "board_tested": false,
+    "signoff_pass": false,
+    "unresolved": [
+      "protected-IP SYN-5066",
+      "external IO/electrical qualification",
+      "physical speed/DDR",
+      "actual RS485 and HOME acceptance"
+    ]
+  },
+  "module_count": 212,
+  "matched_module_imports": 3556,
+  "offline_complete": true,
+  "board_tested": false,
+  "sd_written": false,
+  "ordinary_motion_enabled": false,
+  "vm_task": "/home/uisrc/embedded-home-calibration-20261027-r3",
+  "superseded_not_deployable": [
+    "artifacts/release-r1"
+  ],
+  "board_acceptance_record": "ACCEPTANCE.md"
+}

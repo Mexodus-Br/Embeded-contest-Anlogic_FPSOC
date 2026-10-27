@@ -18,7 +18,7 @@ prepare_hardware.py仅复制冻结输入，替换生成参数、选择PROFILE0�
 
 prepare_sources.py从固定Git提交打包最小软件输入；build_boot.py用新HPF在独立SDK副本重建FSBL/BOOT，核对PS/DDR/存储生成宏和可执行初始化、GP/HP0/HP1复位释放。build_vm.py在原wifi1内核与Buildroot GCC7.5构建SAF2和新增typed RUN的RS485模块、ARM程序，检查全部安装模块CRC、ELF/运行库依赖、DT、实际ext4内容及512MiB SD文件两分区/启动文件读回。旧镜像/SDK/内核来源保留。
 
-最终结果与必要交付物SHA256见DELIVERY.md（最终版本r2）；不能由脚本存在推导镜像已完成。只哈希必要最终交付物及配置身份，不哈希日志、中间数据库或证据目录。
+最终结果、编译身份与必要交付物SHA256见[DELIVERY.md](DELIVERY.md)（最终版本r2）。离线镜像已完成，实板未执行。只哈希必要最终交付物及配置身份，不哈希日志、中间数据库或证据目录。
 
 ## HOME入口与数据
 
