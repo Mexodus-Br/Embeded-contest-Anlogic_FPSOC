@@ -1,6 +1,7 @@
 #include "ps_runtime.hpp"
 #include "ps_backend.hpp"
 #include "ps_hardware_port.hpp"
+#include "ps_calibration.hpp"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -12,7 +13,7 @@
 namespace ps {
 static void fields(const Json &j,std::initializer_list<const char*> names){require(j.is_object(),"FORMAT","Expected object");for(auto i=j.begin();i!=j.end();++i){bool ok=false;for(auto n:names)ok|=i.key()==n;require(ok,"FORMAT","Unknown field",i.key());}}
 static Json task_checked(const Json &t){
-    fields(t,{"schema_version","id","points","repeat","parameter_version"});require(t.value("schema_version",1)==1,"VERSION","Unsupported task version");
+    fields(t,{"schema_version","id","points","repeat","parameter_version","work_revision"});require(t.value("schema_version",1)==1,"VERSION","Unsupported task version");
     if(t.contains("parameter_version"))require(t.at("parameter_version").is_string()&&logical_id(t.at("parameter_version")),"FORMAT","Invalid parameter version");
     if(t.contains("id"))require(logical_id(t.at("id").get<std::string>()),"FORMAT","Invalid task ID");
     auto &points=t.at("points");require(points.is_array()&&!points.empty()&&points.size()<=1000,"RESOURCE_LIMIT","Task requires 1..1000 points");
@@ -35,13 +36,19 @@ struct Service::Impl {
     std::string last_hardware_phase;uint64_t last_calibration_sample=0;
     uint64_t handled_stop=0,state_version=1,last_telemetry=0,telem_serial=0,telem_dropped=0,pose_time=0,iteration=0;
     bool position_valid=false;
+    bool calibration_verified=false;
+    std::string verified_home,verified_generation,verified_revision,work_revision=random_id();
+    Json work_origin=Json::array({0,0,0}),last_stationary_joint=nullptr;
+    uint64_t stationary_since=0;
     const bool allow_simulation_injection;
     std::string jog_id,jog_owner;uint64_t jog_seq=0,jog_refresh=0,jog_tick=0;int jog_axis=0,jog_sign=1;double jog_speed=0,jog_actual_speed=0;
-    Json jog_parameters;std::set<std::string> used_jogs,used_home_requests;
+    Json jog_parameters,jog_planned_pose;std::set<std::string> used_jogs,used_home_requests;
     Logs logs;
     std::thread worker;
     Impl(ps_fs::path r,ps_fs::path d,bool inject,bool hardware,std::shared_ptr<BoardDevice> device):root(std::move(r)),data(std::move(d)),backend(hardware?std::unique_ptr<ExecutionBackend>(new HardwareBackend(device?std::move(device):linux_board(),boot)):simulation_backend()),allow_simulation_injection(inject&&!hardware),logs(boot,data/"logs",!hardware){
         auto request=read_json(root/"scenarios/ps-host.json");params={{"schema_version",1},{"id",parameter_id},{"fixture",request.at("fixture")},{"golden",request.at("golden")}};
+        if(ps_fs::exists(data/"selected-parameters.json"))try{auto selected=read_json(data/"selected-parameters.json");std::string id=selected.at("id");require(logical_id(id),"FORMAT","Invalid saved parameter identity");auto p=read_json(data/"parameters"/(id+".json"));validate_calibration(p);params=p;parameter_id=id;}catch(const std::exception &e){logs.emit("parameter_restore_rejected","storage","error",{{"reason",e.what()}});}
+        if(ps_fs::exists(data/"work-origin.json"))try{auto w=read_json(data/"work-origin.json");require(w.at("parameter_version")==parameter_id,"VERSION","Stored origin belongs to another calibration");(void)calibrated_vec(w.at("origin_machine_mm"));work_origin=w.at("origin_machine_mm");work_revision=w.at("revision");}catch(const std::exception &e){logs.emit("origin_restore_rejected","storage","warning",{{"reason",e.what()}});}
         if(ps_fs::exists(data/"recovery.json"))try{recovery=read_json(data/"recovery.json");recovery["status"]="unknown";recovery["reason"]="service_restart_requires_reconciliation";}catch(...){recovery={{"status","unknown"},{"reason","recovery_record_unreadable"}};}
         logs.emit("service_started","service","info",{{"position","unknown"},{"recovery",recovery}});worker=std::thread([this]{tick();});
     }
@@ -49,7 +56,8 @@ struct Service::Impl {
     void control(const std::string &session){require(owner==session,"CONTROL_REQUIRED","Acquire control before this operation");}
     void idle(){require(phase=="idle"&&stop_epoch==handled_stop,"BUSY","An execution, stop or fault requires attention");}
     void invalidate(){preview.reset();++state_version;}
-    bool valid_position()const{return position_valid&&pose_parameter==parameter_id;}
+    bool production()const{return params.value("schema_version",1)==2;}
+    bool valid_position()const{return position_valid&&pose_parameter==parameter_id&&(backend->simulation()||(calibration_verified&&monotonic_us()-pose_time<=u64(params.at("calibration").at("max_age_us"),"max_age_us")));}
     void set_pose(const Json &p,const std::string &parameter=""){pose=p;position_valid=true;position_id=random_id();pose_parameter=parameter.empty()?parameter_id:parameter;pose_time=monotonic_us();}
     Json start()const{return {{"valid",valid_position()},{"position_id",position_id},{"xyz_mm",valid_position()?pose.at("xyz_mm"):Json()},
                              {"steps",valid_position()?pose.at("steps"):Json()}};}
@@ -63,6 +71,21 @@ struct Service::Impl {
         auto update=backend->poll(now);
         if(!backend->simulation()){
             auto hardware=backend->status();auto hp=hardware.at("phase").get<std::string>();
+            if(production())try{
+                auto publication=backend->telemetry();
+                require(hardware.at("home_ready")==true&&hardware.at("home_done_us")!="0","POSITION_UNKNOWN","Complete HOME required for calibrated feedback");
+                auto measured=calibrated_pose(publication,params,monotonic_us());
+                bool same=!last_stationary_joint.is_null();
+                if(same)for(int a=0;a<3;a++)same= same&&std::abs(double(last_stationary_joint[a])-double(measured.at("joint_deg")[a]))<=0.01;
+                if(!same||hardware.at("pulse_safe")!=true||hp!="idle"){stationary_since=now;last_stationary_joint=measured.at("joint_deg");}
+                if(!stationary_since){stationary_since=now;last_stationary_joint=measured.at("joint_deg");}
+                if(calibration_verified){
+                    require(hardware.at("home_done_us")==verified_home&&measured.at("collector_generation")==verified_generation&&measured.at("revision")==verified_revision,"CALIBRATION_STALE","HOME or feedback configuration identity changed");
+                    if(!position_valid||pose.at("steps")!=measured.at("steps")||pose.at("joint_deg")!=measured.at("joint_deg")){set_pose(measured);invalidate();}
+                    else {pose=measured;pose_time=now;}
+                }
+            }catch(const std::exception &){if(position_valid){position_valid=false;invalidate();}stationary_since=0;last_stationary_joint=nullptr;
+                if(calibration_verified){calibration_verified=false;if(phase=="submitted"||phase=="running"){++stop_epoch;begin_stop(now);}}}
             if(hp!=last_hardware_phase||(hp=="homing"&&now-last_calibration_sample>=100000)){
                 auto t=backend->telemetry();Json sample={{"backend",hardware}};
                 if(t.is_object()){
@@ -83,7 +106,11 @@ struct Service::Impl {
         if(update.failed&&phase!="fault"){position_valid=false;invalidate();transition("failed");phase="fault";}
         if(phase=="stopping"&&update.stopped){if(!update.pulse_safe){position_valid=false;transition("failed");phase="fault";}else{transition("cancelled");phase="idle";active_id.clear();}logs.emit("stop_result","backend",update.pulse_safe?"info":"error",{{"pulse_safe",update.pulse_safe},{"simulation",backend->simulation()}});}
         if(!jog_id.empty()&&(now-jog_refresh>350000)){logs.emit("jog_input_timeout","command","warning");++stop_epoch;begin_stop(now);}
-        if(!jog_id.empty()&&now-jog_tick>=10000&&phase=="running"){
+        if(!backend->simulation()&&!jog_id.empty()&&phase=="running"&&jog_tick<=now+100000){
+            try{while(jog_tick<=now+100000){auto chunk=calibrated_jog_chunk(jog_parameters,jog_planned_pose,jog_axis,jog_sign,jog_speed,jog_actual_speed);backend->manual_target({chunk,jog_id+"_"+std::to_string(jog_tick),50000});jog_planned_pose=chunk.at("last_pose");jog_tick+=50000;}}
+            catch(const Error &e){logs.emit("jog_rejected","planner","error",e.detail);++stop_epoch;begin_stop(now);}
+        }
+        if(backend->simulation()&&!jog_id.empty()&&now-jog_tick>=10000&&phase=="running"){
             double dt=std::min(0.02,double(now-jog_tick)/1e6);jog_tick=now;double acc=jog_parameters.at("fixture").at("acceleration_mm_s2");jog_actual_speed=std::min(jog_speed,jog_actual_speed+acc*dt);
             Json point=pose.at("xyz_mm");point[jog_axis]=double(point[jog_axis])+jog_sign*jog_actual_speed*dt;
             try{auto next=kinematics({{"op","ik"},{"xyz_mm",point},{"golden",jog_parameters.at("golden")}});auto &f=jog_parameters.at("fixture");
@@ -113,9 +140,10 @@ struct Service::Impl {
             if(update.completed){invalidate();transition("completed");phase="idle";active_id.clear();}
         }
     }std::this_thread::sleep_for(std::chrono::milliseconds(5));}}
-    Json status(){auto log_stats=logs.stats();std::lock_guard<std::mutex> lock(mutex);auto now=monotonic_us();bool valid=valid_position();Json position={{"source",valid?"simulation":"unknown"},{"model",backend->simulation()?"sample_endpoint_simulation":"unknown"},{"valid",valid},{"stale",false},
+    Json status(){auto log_stats=logs.stats();std::lock_guard<std::mutex> lock(mutex);auto now=monotonic_us();bool valid=valid_position();Json position={{"source",valid?(backend->simulation()?"simulation":"encoder_0x30_calibrated_fk"):"unknown"},{"model",backend->simulation()?"sample_endpoint_simulation":"golden_sphere_fk"},{"valid",valid},{"stale",!valid},
         {"position_id",position_id},{"parameter_version",pose_parameter},{"xyz_mm",valid?pose.at("xyz_mm"):Json()},{"joint_deg",valid?pose.at("joint_deg"):Json()},{"steps",valid?pose.at("steps"):Json()},{"updated_monotonic_us",std::to_string(pose_time)}};
-        return {{"schema_version",1},{"boot_id",boot},{"simulation",backend->simulation()},{"simulation_injection_enabled",allow_simulation_injection},{"mode",mode},{"phase",stop_epoch!=handled_stop?"stopping":phase},{"state_version",std::to_string(state_version)},
+        position["machine_xyz_mm"]=valid?pose.at("xyz_mm"):Json();position["work_xyz_mm"]=valid?translated(pose.at("xyz_mm"),work_origin,-1):Json();position["work_origin_machine_mm"]=work_origin;position["work_revision"]=work_revision;
+        return {{"schema_version",1},{"boot_id",boot},{"simulation",backend->simulation()},{"simulation_injection_enabled",allow_simulation_injection},{"calibration_verified",calibration_verified},{"mode",mode},{"phase",stop_epoch!=handled_stop?"stopping":phase},{"state_version",std::to_string(state_version)},
             {"monotonic_us",std::to_string(now)},{"stop_epoch",std::to_string(stop_epoch)},{"handled_stop_epoch",std::to_string(handled_stop)},{"parameter_version",parameter_id},{"position",position},{"target",commanded},
             {"active_command_id",active_id.empty()?Json():Json(active_id)},{"command",last_id.empty()?Json():commands.at(last_id)},
             {"recovery",recovery},{"control_owned",!owner.empty()},{"preview_id",preview?Json(preview->id):Json()},{"backend",backend->status()},{"logs",log_stats}};
@@ -132,8 +160,29 @@ std::string Service::export_log(const std::string &id){return impl_->logs.export
 Json Service::handle(const std::string &method,const std::string &path,const std::map<std::string,std::string> &query,const Json &body,const std::string &session){auto &s=*impl_;
     if(method=="GET"&&path=="/state"){auto r=state();{std::lock_guard<std::mutex> l(s.mutex);r["you_control"]=s.owner==session;}return r;}
     if(method=="POST"&&path=="/stop")return stop(session);
+    if(method=="POST"&&path=="/calibration/verify"){
+        fields(body,{"boot_id","parameter_version","home_done_us"});std::lock_guard<std::mutex> l(s.mutex);s.control(session);s.idle();
+        require(!s.backend->simulation()&&s.production(),"CALIBRATION_REQUIRED","Versioned real calibration required");
+        auto b=s.backend->status();auto now=monotonic_us();
+        require(body.at("boot_id")==s.boot&&body.at("parameter_version")==s.parameter_id&&body.at("home_done_us")==b.at("home_done_us"),"STALE_INPUT","Verification bindings changed");
+        require(b.at("home_ready")==true&&b.at("pulse_safe")==true&&b.at("phase")=="idle"&&s.stationary_since&&now-s.stationary_since>=200000,"NOT_SETTLED","Fresh HOME and 200ms stable encoder observations required");
+        auto publication=s.backend->telemetry();auto measured=calibrated_pose(publication,s.params,monotonic_us());s.verified_home=b.at("home_done_us");s.verified_generation=measured.at("collector_generation");s.verified_revision=measured.at("revision");s.calibration_verified=true;s.set_pose(measured);s.invalidate();
+        s.logs.emit("calibration_verified","service","info",{{"parameters",s.parameter_id},{"home_done_us",s.verified_home},{"source_rows",measured.at("source_rows")}});return {{"verified",true},{"position",measured},{"executed",false}};
+    }
+    if(method=="POST"&&path=="/coordinates/zero"){
+        fields(body,{"boot_id","parameter_version","position_id"});Json saved;
+        {std::lock_guard<std::mutex> l(s.mutex);s.control(session);s.idle();
+            require(body.at("boot_id")==s.boot&&body.at("parameter_version")==s.parameter_id&&body.at("position_id")==s.position_id,"STALE_INPUT","Zero-point identity changed");
+            require(s.valid_position(),"POSITION_UNKNOWN","Reliable fresh machine position required");
+            if(!s.backend->simulation()){auto b=s.backend->status();require(b.at("phase")=="idle"&&b.at("pulse_safe")==true&&s.stationary_since&&monotonic_us()-s.stationary_since>=200000,"NOT_SETTLED","Stopped and stable feedback required");}
+            s.work_origin=s.pose.at("xyz_mm");s.work_revision=random_id();s.invalidate();saved={{"schema_version",1},{"revision",s.work_revision},{"parameter_version",s.parameter_id},{"origin_machine_mm",s.work_origin},{"position_id",s.position_id},{"boot_id",s.boot}};
+        }
+        {std::lock_guard<std::mutex> f(s.file_mutex);atomic_save(s.data/"work-origin.json",saved);}
+        s.logs.emit("work_origin_set","service","info",saved);return saved;
+    }
     if(method=="POST"&&path=="/hardware/action"){
         fields(body,{"action","boot_id","owner_id","cancel_epoch","request_id","deadline_monotonic_us"});std::lock_guard<std::mutex> l(s.mutex);s.control(session);
+        if(s.phase!="fault")s.idle();
         require(body.at("boot_id")==s.boot,"BOOT_MISMATCH","Old hardware action rejected");
         if(body.at("action")=="home"){
             s.idle();auto b=s.backend->status();auto now=monotonic_us();
@@ -144,7 +193,7 @@ Json Service::handle(const std::string &method,const std::string &path,const std
             auto request=body.at("request_id").get<std::string>();require(logical_id(request)&&s.used_home_requests.size()<1024&&!s.used_home_requests.count(request),"ID_CONFLICT","HOME request already used or ledger full");
             s.used_home_requests.insert(request);
         }
-        s.backend->action(body.at("action").get<std::string>());s.logs.emit("hardware_action_queued","hardware","info",body);if(body.at("action")=="home")s.phase="homing";s.position_valid=false;s.invalidate();return {{"status","queued"},{"simulation",false}};
+        s.backend->action(body.at("action").get<std::string>());s.logs.emit("hardware_action_queued","hardware","info",body);if(body.at("action")=="home")s.phase="homing";s.position_valid=false;s.calibration_verified=false;s.stationary_since=0;s.invalidate();return {{"status","queued"},{"simulation",false}};
     }
     if(method=="POST"&&path=="/control"){fields(body,{"action"});std::lock_guard<std::mutex> l(s.mutex);if(!s.backend->simulation()&&s.phase=="fault")require(s.stop_epoch==s.handled_stop,"BUSY","STOP still pending");else s.idle();auto a=body.value("action",std::string("acquire"));require(a=="acquire"||a=="release","FORMAT","Unknown control action");
         require(s.owner.empty()||s.owner==session,"CONTROL_BUSY","Control belongs to another session");s.owner=a=="release"?"":session;s.invalidate();s.logs.emit("control_"+a);return {{"you_control",s.owner==session}};}
@@ -157,9 +206,11 @@ Json Service::handle(const std::string &method,const std::string &path,const std
             require(body.at("parameter_version")==s.parameter_id&&body.at("start_position_id")==s.position_id,"PREVIEW_STALE","Parameter or start identity changed");
             p->id=random_id();p->parameter=s.parameter_id;p->position=s.position_id;p->owner=session;p->version=s.state_version;p->epoch=s.stop_epoch;p->expires=monotonic_us()+30000000;params=s.params;start=s.start();}
         p->task=task_checked(body.at("task"));if(p->task.contains("parameter_version"))require(p->task.at("parameter_version")==p->parameter,"PARAMETER_MISMATCH","Task binds another parameter version");p->task["parameter_version"]=p->parameter;
-        p->first=plan({{"op","plan"},{"fixture",params.at("fixture")},{"golden",params.at("golden")},{"start",start},{"points",p->task.at("points")}});
+        {std::lock_guard<std::mutex> l(s.mutex);if(s.production())require(p->task.value("work_revision",std::string())==s.work_revision,"COORDINATE_STALE","Task belongs to an old work origin; explicitly edit/reteach it");}
+        Json origin;{std::lock_guard<std::mutex> l(s.mutex);origin=s.work_origin;}
+        p->first=params.value("schema_version",1)==2?calibrated_plan(params,start,p->task.at("points"),origin):plan({{"op","plan"},{"fixture",params.at("fixture")},{"golden",params.at("golden")},{"start",start},{"points",p->task.at("points")}});
         auto rep=p->task.at("repeat");bool loop=rep.at("mode")=="until_stopped"||u64(rep.at("count"),"count")>1;
-        if(loop&&p->first.at("executable").get<bool>()){auto target=p->first.at("target");p->cycle=plan({{"op","plan"},{"fixture",params.at("fixture")},{"golden",params.at("golden")},
+        if(loop&&p->first.at("executable").get<bool>()){auto target=p->first.at("target");if(params.value("schema_version",1)==2)p->cycle=calibrated_plan(params,{{"valid",true},{"position_id","validated_cycle_start"},{"xyz_mm",target.at("machine_xyz_mm")},{"steps",target.at("steps")}},p->task.at("points"),origin);else p->cycle=plan({{"op","plan"},{"fixture",params.at("fixture")},{"golden",params.at("golden")},
             {"start",{{"valid",true},{"position_id","validated_cycle_start"},{"xyz_mm",target.at("xyz_mm")},{"steps",target.at("steps")}}},{"points",p->task.at("points")}});}
         {std::lock_guard<std::mutex> l(s.mutex);require(s.state_version==p->version&&s.position_id==p->position&&s.stop_epoch==p->epoch&&s.phase=="idle","PREVIEW_STALE","State changed during planning");s.preview=p;s.commanded=p->first.at("target");}
         auto result=p->first;result.erase("samples");result["sample_count"]=p->first.at("samples").size();result["preview_id"]=p->id;result["parameter_version"]=p->parameter;result["state_version"]=std::to_string(p->version);result["expires_monotonic_us"]=std::to_string(p->expires);
@@ -196,23 +247,27 @@ Json Service::handle(const std::string &method,const std::string &path,const std
     if(path.rfind("/parameters/",0)==0||path.rfind("/tasks/",0)==0){bool parameter=path.rfind("/parameters/",0)==0;auto id=path.substr(parameter?12:7);require(logical_id(id),"FORMAT","Only logical document IDs accepted");auto dir=s.data/(parameter?"parameters":"tasks"),file=dir/(id+".json");
         if(method=="GET"){if(parameter){{std::lock_guard<std::mutex> l(s.mutex);if(id==s.parameter_id)return s.params;}if(id=="host_demo_v1"){auto d=read_json(s.root/"scenarios/ps-host.json");return {{"schema_version",1},{"id",id},{"fixture",d.at("fixture")},{"golden",d.at("golden")}};}}std::lock_guard<std::mutex> f(s.file_mutex);return read_json(file);}
         if(method=="PUT"){Json value=body;{std::lock_guard<std::mutex> l(s.mutex);s.control(session);}require(value.at("id")==id,"FORMAT","Document identity mismatch");
-            if(parameter){fields(value,{"schema_version","id","fixture","golden"});require(value.at("schema_version")==1,"VERSION","Unsupported parameter version");
+            if(parameter){fields(value,{"schema_version","id","fixture","golden","calibration"});require(value.at("schema_version")==1||value.at("schema_version")==2,"VERSION","Unsupported parameter version");
+                if(value.at("schema_version")==2)validate_calibration(value);
+                require(s.backend->simulation()||value.at("schema_version")==2,"CALIBRATION_REQUIRED","Host fixtures cannot qualify physical motion");
                 if(id=="host_demo_v1"){auto d=read_json(s.root/"scenarios/ps-host.json");require(value.at("fixture")==d.at("fixture")&&value.at("golden")==d.at("golden"),"VERSION_CONFLICT","Built-in parameter version is immutable");}
-                (void)plan({{"op","plan"},{"fixture",value.at("fixture")},{"golden",value.at("golden")},{"start",{{"valid",false},{"position_id","unknown"},{"xyz_mm",nullptr},{"steps",nullptr}}},{"points",Json::array({{{"xyz_mm",{0,0,-140}}}})}});}
+                if(value.at("schema_version")==1)(void)plan({{"op","plan"},{"fixture",value.at("fixture")},{"golden",value.at("golden")},{"start",{{"valid",false},{"position_id","unknown"},{"xyz_mm",nullptr},{"steps",nullptr}}},{"points",Json::array({{{"xyz_mm",{0,0,-140}}}})}});}
             else{value=task_checked(value);std::lock_guard<std::mutex> l(s.mutex);if(!value.contains("parameter_version"))value["parameter_version"]=s.parameter_id;}
             {std::lock_guard<std::mutex> f(s.file_mutex);if(ps_fs::exists(file))require(read_json(file)==value,"VERSION_CONFLICT","Existing versions are immutable; choose a new ID");else atomic_save(file,value);}
-            if(parameter){std::lock_guard<std::mutex> l(s.mutex);s.params=value;s.parameter_id=id;s.invalidate();}
+            if(parameter){
+                if(value.at("schema_version")==2){std::lock_guard<std::mutex> f(s.file_mutex);atomic_save(s.data/"selected-parameters.json",{{"id",id}});}
+                std::lock_guard<std::mutex> l(s.mutex);if(!s.backend->simulation())s.idle();bool changed=s.parameter_id!=id;s.params=value;s.parameter_id=id;s.calibration_verified=false;if(!s.backend->simulation())s.position_valid=false;s.stationary_since=0;s.last_stationary_joint=nullptr;if(changed){s.work_origin=Json::array({0,0,0});s.work_revision=random_id();}s.invalidate();}
             s.logs.emit("document_saved","storage","info",{{"kind",parameter?"parameters":"task"},{"id",id}});return {{"saved",true},{"id",id},{"executed",false}};}
     }
     if(method=="GET"&&(path=="/parameters"||path=="/tasks")){bool parameter=path=="/parameters";Json ids=Json::array();std::lock_guard<std::mutex> f(s.file_mutex);auto dir=s.data/(parameter?"parameters":"tasks");if(ps_fs::exists(dir))for(auto &e:ps_fs::directory_iterator(dir))if(e.path().extension()==".json")ids.push_back(e.path().stem().string());if(parameter&&std::find(ids.begin(),ids.end(),"host_demo_v1")==ids.end())ids.push_back("host_demo_v1");return {{"ids",ids}};}
-    if(method=="POST"&&path=="/teach"){std::lock_guard<std::mutex> l(s.mutex);s.control(session);s.idle();require(s.valid_position(),"POSITION_UNKNOWN","Cannot teach unknown position");return {{"point",{{"xyz_mm",s.pose.at("xyz_mm")}}},{"source","simulation"},{"position_id",s.position_id},{"parameter_version",s.parameter_id}};}
+    if(method=="POST"&&path=="/teach"){std::lock_guard<std::mutex> l(s.mutex);s.control(session);s.idle();require(s.valid_position(),"POSITION_UNKNOWN","Cannot teach unknown position");if(!s.backend->simulation())require(s.stationary_since&&monotonic_us()-s.stationary_since>=200000&&s.backend->status().at("pulse_safe")==true,"NOT_SETTLED","Teach requires stopped and stable encoder observations");return {{"point",{{"xyz_mm",translated(s.pose.at("xyz_mm"),s.work_origin,-1)}}},{"source",s.backend->simulation()?"simulation":"encoder_0x30_calibrated_fk"},{"position_id",s.position_id},{"parameter_version",s.parameter_id},{"work_revision",s.work_revision}};}
     if(method=="POST"&&path=="/jog/start"){
         fields(body,{"boot_id","jog_id","axis","sign","speed_mm_s","refresh_seq","stop_epoch","deadline_monotonic_us"});std::lock_guard<std::mutex> l(s.mutex);s.control(session);s.idle();require(s.mode=="manual","MODE","Select manual mode");require(s.valid_position(),"POSITION_UNKNOWN","Jog requires valid simulation position");require(body.at("boot_id")==s.boot,"BOOT_MISMATCH","Old jog boot identity");
         require(u64(body.at("stop_epoch"),"stop_epoch")==s.stop_epoch,"STALE_INPUT","A newer STOP invalidated this start");auto now=monotonic_us(),deadline=u64(body.at("deadline_monotonic_us"),"deadline");require(deadline>now&&deadline<=now+2000000,"EXPIRED","Jog start expired");
         auto axis=body.at("axis").get<std::string>(),id=body.at("jog_id").get<std::string>();require(axis=="x"||axis=="y"||axis=="z","FORMAT","One axis required");require(logical_id(id),"FORMAT","Invalid jog identity");
         int sign=body.at("sign");double speed=body.at("speed_mm_s");require((sign==1||sign==-1)&&std::isfinite(speed)&&speed>0&&speed<=double(s.params.at("fixture").at("speed_mm_s")),"CONFIG_RANGE","Jog speed/sign invalid");
         require(!s.used_jogs.count(id),"STALE_INPUT","Jog IDs cannot be replayed");require(s.used_jogs.size()<1024,"RESOURCE_LIMIT","Jog identity ledger full");
-        require(u64(body.at("refresh_seq"),"refresh_seq")==0,"STALE_INPUT","Jog session starts at sequence zero");s.used_jogs.insert(id);s.jog_parameters=s.params;s.jog_id=id;s.jog_owner=session;s.jog_seq=0;s.jog_refresh=s.jog_tick=monotonic_us();s.jog_axis=axis=="x"?0:axis=="y"?1:2;s.jog_sign=sign;s.jog_speed=speed;s.jog_actual_speed=0;s.invalidate();s.phase="running";s.logs.emit("jog_started");return {{"jog_id",id},{"status","running"},{"expires_in_us","350000"}};
+        require(u64(body.at("refresh_seq"),"refresh_seq")==0,"STALE_INPUT","Jog session starts at sequence zero");s.used_jogs.insert(id);s.jog_parameters=s.params;s.jog_planned_pose=s.pose;s.jog_id=id;s.jog_owner=session;s.jog_seq=0;s.jog_refresh=s.jog_tick=monotonic_us();s.jog_axis=axis=="x"?0:axis=="y"?1:2;s.jog_sign=sign;s.jog_speed=speed;s.jog_actual_speed=0;s.invalidate();s.phase="running";s.logs.emit("jog_started");return {{"jog_id",id},{"status","running"},{"expires_in_us","350000"}};
     }
     if(method=="POST"&&(path=="/jog/refresh"||path=="/jog/end")){fields(body,{"boot_id","jog_id","refresh_seq"});{std::lock_guard<std::mutex> l(s.mutex);require(body.at("boot_id")==s.boot&&body.at("jog_id")==s.jog_id&&s.jog_owner==session&&!s.jog_id.empty(),"STALE_INPUT","Jog session is no longer active");auto seq=u64(body.at("refresh_seq"),"refresh_seq");require(seq>s.jog_seq,"STALE_INPUT","Old refresh rejected without renewing lease");s.jog_seq=seq;if(path=="/jog/refresh"){s.jog_refresh=monotonic_us();return {{"status","running"}};}}return stop(session);}
     if(method=="POST"&&path.rfind("/simulation/",0)==0)require(s.backend->simulation()&&s.allow_simulation_injection,"SIMULATION_DISABLED","Simulation injection requires explicit launch capability");
@@ -237,6 +292,7 @@ Json Service::handle(const std::string &method,const std::string &path,const std
             if(row.at("data_valid").get<bool>())entry["last_valid"]=row;entry["last_result"]=row;entry["observed_monotonic_us"]=std::to_string(monotonic_us());s.telemetry_history.push_back(row);
         }s.last_telemetry=monotonic_us();s.logs.emit("telemetry_replayed","telemetry","info",{{"frames",rows.size()},{"missing_serials",std::to_string(s.telem_dropped)}});return {{"frames",rows.size()},{"simulation",s.backend->simulation()}};
     }
+    if(method=="GET"&&path=="/telemetry/history"&&!s.backend->simulation()){auto r=s.backend->history();return r.is_null()?Json{{"source","unavailable"},{"history",Json::array()},{"history_complete",false}}:r;}
     if(method=="GET"&&path=="/telemetry"&&!s.backend->simulation()){auto r=s.backend->telemetry();if(r.is_null())return {{"simulation",false},{"source","unavailable"},{"stale",true}};r["stale"]=monotonic_us()-u64(r.at("observed_monotonic_us"),"observation")>=250000;return r;}
     if(method=="GET"&&path=="/telemetry"){std::lock_guard<std::mutex> l(s.mutex);auto latest=s.latest;bool stale=!s.last_telemetry||monotonic_us()-s.last_telemetry>500000;for(auto i=latest.begin();i!=latest.end();++i){i.value()["stale"]=stale;i.value()["source"]="frozen_fixture_replay";}
         Json active=nullptr;if(!s.telemetry_history.empty()){auto &last=s.telemetry_history.back();active={{"collector_generation",last.at("collector_generation")},{"transport_generation",last.at("transport_generation")},{"revision",last.at("revision")}};

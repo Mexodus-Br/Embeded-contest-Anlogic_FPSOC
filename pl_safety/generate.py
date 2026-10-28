@@ -2,7 +2,7 @@
 import argparse,hashlib,json,subprocess
 from pathlib import Path
 R=Path(__file__).resolve().parents[1];D=R/'pl_safety'
-def render():
+def render(config_root=None):
  s=json.loads((R/'pl_interface/schema.json').read_text(encoding='utf-8'))
  p=s['safety_profiles']['gp_safety_home_v1']
  assert p['irq_intid']==p['irq_spi']+32 and p['irq_line']==7
@@ -23,11 +23,11 @@ def render():
  v.append('`endif\n');h.append('#endif\n')
  out={'safety_defs.vh':'\n'.join(v),'safety_defs.h':'\n'.join(h)}
  params=['// Generated versioned configuration. PROFILE=0 production, 1 simulation.']
- cfgs=[json.loads((D/'config'/f'{n}.json').read_text()) for n in ['production','simulation','resource_fixture']]
+ cfgs=[json.loads(((config_root or D/'config')/f'{n}.json').read_text()) for n in ['production','simulation','resource_fixture']]
  assert type(cfgs[0]['approved']) is bool and all(c['approved'] is True for c in cfgs[1:])
  if cfgs[0]['approved']:
   c=cfgs[0]
-  assert c.get('approval_scope')=='home_calibration_only' and c.get('machine_xyz_calibrated') is False
+  assert c.get('approval_scope') in ['home_calibration_only','runtime_calibrated_motion'] and c.get('machine_xyz_calibrated') is False
   assert c.get('reference_convention')=='limit_contact_minus_150_pull_complete_zero_unmapped'
   assert c['REFERENCE_POSITION']==[-150]*3 and c['PULL_DISTANCE']==[150]*3
   assert c['HOME_DIRECTION']==0 and c['SEARCH_MAX_STEPS']==[500]*3
@@ -50,7 +50,8 @@ def render():
    values.append(f"{width}'h{x:x}")
   params.append(f'localparam [{width-1}:0] C_{k}=CONFIG_PROFILE==2 ? {values[2]} : CONFIG_PROFILE==1 ? {values[1]} : {values[0]};')
  params.append(f"localparam C_APPROVED=CONFIG_PROFILE==0 ? 1'b{int(cfgs[0]['approved'])} : (CONFIG_PROFILE==1 || CONFIG_PROFILE==2);")
- params.append("localparam C_HOME_ONLY=CONFIG_PROFILE==0; // production approval authorizes only bounded HOME calibration")
+ normal=cfgs[0].get('approval_scope')=='runtime_calibrated_motion' and cfgs[0]['approved']
+ params.append("localparam C_HOME_ONLY="+("1'b0" if normal else "CONFIG_PROFILE==0")+"; // explicit versioned production motion policy")
  for i,cfg in enumerate(cfgs):
   digest=hashlib.sha256(json.dumps(cfg,sort_keys=True,separators=(',',':')).encode()).hexdigest()
   params.append(f"localparam [255:0] CONFIG_HASH_{i}=256'h{digest};")
@@ -60,6 +61,7 @@ def render():
  policy=['/* Generated from production.json: exact HOME calibration identity, never XYZ qualification. */','#ifndef HOME_CALIBRATION_POLICY_H','#define HOME_CALIBRATION_POLICY_H',f'#define HC_APPROVED {int(cfg["approved"])}u']
  for i in range(8):policy.append(f'#define HC_CONFIG_WORD_{i} 0x{int(digest,16)>>(32*i)&0xffffffff:08x}u')
  policy.append('#define HC_CONFIG_WORDS { '+', '.join(f'HC_CONFIG_WORD_{i}' for i in range(8))+' }')
+ policy.append(f'#define HC_NORMAL_MOTION_APPROVED {int(normal)}u')
  policy.append('#define HC_REFERENCE_STEPS (-150)\n#define HC_COMPLETED_STEPS 0\n#endif\n')
  out['home_calibration_policy.h']='\n'.join(policy)
  return out

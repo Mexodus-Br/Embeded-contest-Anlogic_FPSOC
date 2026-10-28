@@ -6,6 +6,7 @@
 #include <thread>
 #include <vector>
 #include <set>
+#include <deque>
 namespace ps {
 struct BoardState {
     uint64_t owner=0,session=0,pl_time_us=0;
@@ -33,6 +34,7 @@ public:
     // Success means IOC AND packet closed, never motion completion.
     virtual void packet(const std::vector<uint8_t>&)=0;
     virtual void stop()=0; // independent of command/packet locks
+    virtual Json history()const{return nullptr;}
 };
 std::shared_ptr<BoardDevice> linux_board();
 // Web and serial adapters share this backend and the same device owner.
@@ -41,6 +43,7 @@ class HardwareBackend final:public ExecutionBackend {
     std::string boot_;
     mutable std::mutex mutex_;
     std::shared_ptr<const PlannedTask> pending_;
+    std::deque<ManualSegment> manual_;
     ExecutionBinding pending_binding_;
     std::set<std::string> used_commands_;
     std::string position_id_,command_id_,parameter_revision_;
@@ -66,6 +69,7 @@ public:
     Json status()const override;
     bool simulation()const override{return false;}
     Json telemetry()const override;
+    Json history()const override{return device_->history();}
     void action(const std::string&)override;
 };
 }

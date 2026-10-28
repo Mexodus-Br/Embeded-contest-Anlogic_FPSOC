@@ -9,7 +9,10 @@ for name in ['rs485_gp','rs485_telem']:
     obj=out/(name+'.o');compile_sources([KIT/'pl_rs485/software'/(name+'.c')],obj,compiler(),cxx=False,extra=['-c']);objects.append(obj)
 exe=out/('ps_hardware.exe' if os.name=='nt' else 'ps_hardware')
 compile_sources([ROOT/'src/ps_core.cpp',KIT/'golden_model/src/model.cpp',*objects,*[ROOT/'src'/f for f in ['ps_backend.cpp','ps_hardware_backend.cpp','ps_linux_board.cpp','ps_runtime.cpp','ps_service.cpp']],ROOT/'tests/ps_hardware.cpp'],exe,compiler(),includes=[ROOT/'src',ROOT/'third_party',KIT],libraries=['-lbcrypt'] if os.name=='nt' else ['-pthread'])
-result=subprocess.run([str(exe),str(ROOT),str(out/('data-'+str(time.time_ns())))],capture_output=True,text=True,timeout=40)
+from ps_calibration import parameters
+calibration=parameters();calibration['fixture'].update(joint_min_deg=[3]*3,joint_max_deg=[86]*3)
+fixture=out/'synthetic-calibration.json';fixture.write_text(json.dumps(calibration))
+result=subprocess.run([str(exe),str(ROOT),str(out/('data-'+str(time.time_ns()))),str(fixture)],capture_output=True,text=True,timeout=40)
 (out/'result.txt').write_text(result.stdout+result.stderr,encoding='utf-8')
 print(result.stdout+result.stderr)
 if result.returncode==0:

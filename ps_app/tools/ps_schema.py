@@ -83,6 +83,24 @@ def schema():
     d['home_calibration']=obj({'mode':const('home_counts_only'),'counts_referenced':B,'contact_reference_steps':const(['-150']*3),'pull_complete_steps':const(['0']*3),'xyz_valid':const(False),'joint_angles_calibrated':const(False),'machine_display_zero':const('formal_pull_complete_pose_pending_model_mapping')})
     d['hardware_telemetry']=obj({'simulation':const(False),'source':const('bsp_snapshot'),'observed_monotonic_us':ref('u64'),'source_time_us':ref('u64'),'transport_generation':ref('u64'),'command_position':obj({'source':const('pl_step_counter'),'position_id':S,'valid':B,'steps':array(ref('i64'),minItems=3,maxItems=3),'pulses':array(ref('u64'),minItems=3,maxItems=3)}),'xyz_estimate':{'type':'null'},'driver_feedback':nullable(ref('hardware_feedback')),'calibration':ref('home_calibration'),'raw':{},'stale':B})
     d['telemetry']={'oneOf':[d['telemetry'],d['hardware_telemetry'],obj({'simulation':const(False),'source':const('unavailable'),'stale':const(True)})]}
+    # Additive PS coordinate/calibration contract; frozen PL formats stay intact.
+    d['task']['properties']['work_revision']=ref('id')
+    d['fixture']['properties']['xy_envelope']=obj({'center_mm':array(N,minItems=2,maxItems=2),'radii_mm':array(N,minItems=2,maxItems=2),'margin_mm':N})
+    encoder=obj({'carry':ref('i64'),'value':{'type':'integer','minimum':0,'maximum':65535}})
+    calibration={k:ref('xyz') for k in ['home_joint_deg','encoder_units_per_joint_deg','pl_sign','physical_min_deg','physical_max_deg','margin_min_deg','margin_max_deg']}
+    calibration.update(reference_id=S,encoder_interpretation=const('signed_turns_plus_u16_fraction'),encoder_home=array(encoder,minItems=3,maxItems=3),tracking_tolerance_deg=N,max_age_us=ref('u64'),max_skew_us=ref('u64'))
+    d['calibration']=obj(calibration)
+    d['parameters']['properties'].update(schema_version=enum(1,2),calibration=ref('calibration'))
+    d['position']['properties'].update(source=enum('simulation','unknown','encoder_0x30_calibrated_fk'),model=enum('sample_endpoint_simulation','unknown','golden_sphere_fk'),machine_xyz_mm=nullable(ref('xyz')),work_xyz_mm=nullable(ref('xyz')),work_origin_machine_mm=ref('xyz'),work_revision=ref('id'))
+    d['state']['properties']['calibration_verified']=B
+    d['teach']['properties'].update(source=enum('simulation','encoder_0x30_calibrated_fk'),work_revision=ref('id'))
+    hardware=d['backend']['oneOf'][1]['properties']
+    hardware.update(home_ready=B,home_done_us=ref('u64'),pulse_safe=B)
+    hardware['phase']['enum'].append('jogging')
+    d['pose']['properties'].update(golden_xyz_mm=ref('xyz'),machine_xyz_mm=ref('xyz'),golden_steps=ref('steps'))
+    d['preview']['properties']['scope']=enum('host_fixture_only','calibrated_machine')
+    d['calibration_verify_request']=obj({'boot_id':ref('id'),'parameter_version':ref('id'),'home_done_us':ref('u64')})
+    d['work_zero_request']=obj({'boot_id':ref('id'),'parameter_version':ref('id'),'position_id':ref('id')})
     return {'$schema':'https://json-schema.org/draft/2020-12/schema','$id':'urn:delta:ps:api:1','title':'PS shared simulation/hardware API v1','$comment':'Select a $defs entry using the endpoint mapping in ps-api.md. Numeric/geometry cross-field constraints remain authoritative in the C++ validator.','$defs':d}
 
 if __name__=='__main__':

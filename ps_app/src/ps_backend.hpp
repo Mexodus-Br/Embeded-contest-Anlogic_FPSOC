@@ -33,6 +33,7 @@ public:
     virtual Json status()const=0;
     virtual bool simulation()const{return true;}
     virtual Json telemetry()const{return nullptr;}
+    virtual Json history()const{return nullptr;}
     virtual void action(const std::string&){throw Error("BACKEND_UNAVAILABLE","Hardware action requires hardware backend");}
 };
 class SimulationControl {

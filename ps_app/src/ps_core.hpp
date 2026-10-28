@@ -13,6 +13,7 @@ void require(bool condition, const std::string &code, const std::string &message
 uint64_t u64(const Json &value, const std::string &field);
 int64_t i64(const Json &value, const std::string &field);
 Json kinematics(const Json &request);
+Json forward_kinematics(const Json &request);
 Json plan(const Json &request);
 Json motion_encode(const Json &request);
 Json telemetry_decode(const Json &request);

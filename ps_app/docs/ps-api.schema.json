@@ -202,6 +202,9 @@
         },
         "repeat": {
           "$ref": "#/$defs/repeat"
+        },
+        "work_revision": {
+          "$ref": "#/$defs/id"
         }
       },
       "required": [
@@ -273,6 +276,36 @@
         },
         "max_duration_us": {
           "$ref": "#/$defs/u64"
+        },
+        "xy_envelope": {
+          "type": "object",
+          "properties": {
+            "center_mm": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "radii_mm": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "margin_mm": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "center_mm",
+            "radii_mm",
+            "margin_mm"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -342,7 +375,10 @@
       "type": "object",
       "properties": {
         "schema_version": {
-          "const": 1
+          "enum": [
+            1,
+            2
+          ]
         },
         "id": {
           "$ref": "#/$defs/id"
@@ -352,6 +388,9 @@
         },
         "golden": {
           "$ref": "#/$defs/golden"
+        },
+        "calibration": {
+          "$ref": "#/$defs/calibration"
         }
       },
       "required": [
@@ -390,6 +429,15 @@
             "rot",
             "M4_disabled"
           ]
+        },
+        "golden_xyz_mm": {
+          "$ref": "#/$defs/xyz"
+        },
+        "machine_xyz_mm": {
+          "$ref": "#/$defs/xyz"
+        },
+        "golden_steps": {
+          "$ref": "#/$defs/steps"
         }
       },
       "required": [
@@ -405,13 +453,15 @@
         "source": {
           "enum": [
             "simulation",
-            "unknown"
+            "unknown",
+            "encoder_0x30_calibrated_fk"
           ]
         },
         "model": {
           "enum": [
             "sample_endpoint_simulation",
-            "unknown"
+            "unknown",
+            "golden_sphere_fk"
           ]
         },
         "valid": {
@@ -458,6 +508,32 @@
         },
         "updated_monotonic_us": {
           "$ref": "#/$defs/u64"
+        },
+        "machine_xyz_mm": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/xyz"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "work_xyz_mm": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/xyz"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "work_origin_machine_mm": {
+          "$ref": "#/$defs/xyz"
+        },
+        "work_revision": {
+          "$ref": "#/$defs/id"
         }
       },
       "required": [
@@ -553,7 +629,10 @@
           "$ref": "#/$defs/id"
         },
         "scope": {
-          "const": "host_fixture_only"
+          "enum": [
+            "host_fixture_only",
+            "calibrated_machine"
+          ]
         },
         "start_position_id": {
           "$ref": "#/$defs/id"
@@ -760,7 +839,8 @@
                 "stopped",
                 "fault",
                 "rejected",
-                "homing"
+                "homing",
+                "jogging"
               ]
             },
             "error": {
@@ -805,6 +885,15 @@
               "type": "boolean"
             },
             "calibration_only": {
+              "type": "boolean"
+            },
+            "home_ready": {
+              "type": "boolean"
+            },
+            "home_done_us": {
+              "$ref": "#/$defs/u64"
+            },
+            "pulse_safe": {
               "type": "boolean"
             }
           },
@@ -1004,6 +1093,9 @@
           "$ref": "#/$defs/log_stats"
         },
         "you_control": {
+          "type": "boolean"
+        },
+        "calibration_verified": {
           "type": "boolean"
         }
       },
@@ -1218,12 +1310,18 @@
           "$ref": "#/$defs/point"
         },
         "source": {
-          "const": "simulation"
+          "enum": [
+            "simulation",
+            "encoder_0x30_calibrated_fk"
+          ]
         },
         "position_id": {
           "$ref": "#/$defs/id"
         },
         "parameter_version": {
+          "$ref": "#/$defs/id"
+        },
+        "work_revision": {
           "$ref": "#/$defs/id"
         }
       },
@@ -2382,6 +2480,126 @@
         "calibration",
         "raw",
         "stale"
+      ],
+      "additionalProperties": false
+    },
+    "calibration": {
+      "type": "object",
+      "properties": {
+        "home_joint_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "encoder_units_per_joint_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "pl_sign": {
+          "$ref": "#/$defs/xyz"
+        },
+        "physical_min_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "physical_max_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "margin_min_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "margin_max_deg": {
+          "$ref": "#/$defs/xyz"
+        },
+        "reference_id": {
+          "type": "string"
+        },
+        "encoder_interpretation": {
+          "const": "signed_turns_plus_u16_fraction"
+        },
+        "encoder_home": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "carry": {
+                "$ref": "#/$defs/i64"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 65535
+              }
+            },
+            "required": [
+              "carry",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "tracking_tolerance_deg": {
+          "type": "number"
+        },
+        "max_age_us": {
+          "$ref": "#/$defs/u64"
+        },
+        "max_skew_us": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "home_joint_deg",
+        "encoder_units_per_joint_deg",
+        "pl_sign",
+        "physical_min_deg",
+        "physical_max_deg",
+        "margin_min_deg",
+        "margin_max_deg",
+        "reference_id",
+        "encoder_interpretation",
+        "encoder_home",
+        "tracking_tolerance_deg",
+        "max_age_us",
+        "max_skew_us"
+      ],
+      "additionalProperties": false
+    },
+    "calibration_verify_request": {
+      "type": "object",
+      "properties": {
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "parameter_version": {
+          "$ref": "#/$defs/id"
+        },
+        "home_done_us": {
+          "$ref": "#/$defs/u64"
+        }
+      },
+      "required": [
+        "boot_id",
+        "parameter_version",
+        "home_done_us"
+      ],
+      "additionalProperties": false
+    },
+    "work_zero_request": {
+      "type": "object",
+      "properties": {
+        "boot_id": {
+          "$ref": "#/$defs/id"
+        },
+        "parameter_version": {
+          "$ref": "#/$defs/id"
+        },
+        "position_id": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "boot_id",
+        "parameter_version",
+        "position_id"
       ],
       "additionalProperties": false
     }

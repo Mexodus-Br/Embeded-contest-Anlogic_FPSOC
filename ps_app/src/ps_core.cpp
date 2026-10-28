@@ -1,4 +1,5 @@
 #include "ps_core.hpp"
+#include "ps_calibration.hpp"
 #include "golden_model/src/model.hpp"
 #include "pl_interface/generated/interface_defs.h"
 extern "C" {
@@ -77,6 +78,30 @@ static Json solve(const Vec &p,const golden::Config &c) {
             {"rad_to_step_factor",steps.factor},{"axis_order",{"high","low","rot","M4_disabled"}}};
 }
 Json kinematics(const Json &r){keys(r,{"op","xyz_mm","golden"});return solve(vec(r.at("xyz_mm"),"xyz_mm"),config(r.value("golden",Json::object())));}
+// Intersection of the three lower-arm spheres. Axis order and elbow geometry
+// match the frozen Golden IK, which is kept unchanged. The lower intersection
+// must round-trip through Golden's selected branch before it is published.
+Json forward_kinematics(const Json &r){
+    keys(r,{"op","joint_deg","golden"});auto c=config(r.value("golden",Json::object()));
+    auto q=vec(r.at("joint_deg"),"joint_deg");std::array<Vec,3> e{};
+    const double nx[3]={0,-std::sqrt(3.0)/2,std::sqrt(3.0)/2},ny[3]={-1,.5,.5};
+    for(int i=0;i<3;i++){require(std::abs(q[i])<=360,"FK_DOMAIN","Joint outside FK domain");double a=q[i]*golden::pi/180,d=double(c.R)-c.r+c.L*std::cos(a);e[i]={nx[i]*d,ny[i]*d,-c.L*std::sin(a)};}
+    auto sub=[](Vec a,Vec b){Vec v{};for(int i=0;i<3;i++)v[i]=a[i]-b[i];return v;};
+    auto dot=[](Vec a,Vec b){double v=0;for(int i=0;i<3;i++)v+=a[i]*b[i];return v;};
+    auto scale=[](Vec a,double s){for(auto &x:a)x*=s;return a;};
+    Vec ex=sub(e[1],e[0]);double d=std::sqrt(dot(ex,ex));require(d>1e-8,"FK_SINGULAR","Coincident sphere centres");ex=scale(ex,1/d);
+    Vec v=sub(e[2],e[0]);double i=dot(ex,v);Vec ey=sub(v,scale(ex,i));double j=std::sqrt(dot(ey,ey));require(j>1e-8,"FK_SINGULAR","Collinear sphere centres");ey=scale(ey,1/j);
+    Vec ez={ex[1]*ey[2]-ex[2]*ey[1],ex[2]*ey[0]-ex[0]*ey[2],ex[0]*ey[1]-ex[1]*ey[0]};
+    double x=d/2,y=(dot(v,v)-2*i*x)/(2*j),h2=double(c.l)*c.l-x*x-y*y;
+    require(h2>1e-8,"FK_UNREACHABLE","Sphere intersection absent or singular");
+    Vec p{},other{};double h=std::sqrt(h2);for(int a=0;a<3;a++){p[a]=e[0][a]+x*ex[a]+y*ey[a]-h*ez[a];other[a]=e[0][a]+x*ex[a]+y*ey[a]+h*ez[a];}
+    if(other[2]<p[2])p=other;
+    require(p[2]<0,"FK_BRANCH","Only the verified negative Golden Z branch is supported");
+    auto check=solve(p,c);double residual=0;
+    for(int a=0;a<3;a++)residual=std::max(residual,std::abs(double(check.at("joint_deg")[a])-q[a]));
+    require(residual<=0.002,"FK_BRANCH","FK does not round-trip through frozen Golden branch");
+    check["joint_deg"]=q;check["ik_roundtrip_max_deg"]=residual;check["source"]="joint_feedback_fk";return check;
+}
 static void box_valid(const Json &b){keys(b,{"min","max"});auto lo=vec(b.at("min"),"min"),hi=vec(b.at("max"),"max");for(int a=0;a<3;a++)require(lo[a]<hi[a],"CONFIG_RANGE","Box bounds are reversed");}
 static bool inside(const Vec &p,const Json &b){auto lo=vec(b.at("min"),"min"),hi=vec(b.at("max"),"max");for(int a=0;a<3;a++)if(p[a]<lo[a]||p[a]>hi[a])return false;return true;}
 // Slab intersection covers the entire straight segment, including narrow boxes between samples.
@@ -90,7 +115,7 @@ Json plan(const Json &r){
     keys(r,{"op","fixture","golden","start","points"});
     auto c=config(r.value("golden",Json::object()));const auto &f=r.at("fixture");
     keys(f,{"id","speed_mm_s","acceleration_mm_s2","sample_us","max_sample_distance_mm","max_samples","workspace","forbidden_boxes",
-            "joint_min_deg","joint_max_deg","max_joint_step_deg","pulse_interval_us","segment_guard_us","max_duration_us"});
+            "joint_min_deg","joint_max_deg","max_joint_step_deg","pulse_interval_us","segment_guard_us","max_duration_us","xy_envelope"});
     require(f.at("id").is_string()&&!f.at("id").get<std::string>().empty(),"CONFIG_RANGE","Explicit fixture ID required");
     double vmax=number(f.at("speed_mm_s"),"speed_mm_s"),acc=number(f.at("acceleration_mm_s2"),"acceleration_mm_s2"),spacing=number(f.at("max_sample_distance_mm"),"max_sample_distance_mm");
     require(vmax>0&&vmax<=10000&&acc>0&&acc<=1e6&&spacing>0&&spacing<=10,"CONFIG_RANGE","Invalid fixture speed/acceleration/spacing");
@@ -102,8 +127,10 @@ Json plan(const Json &r){
     double max_joint=number(f.at("max_joint_step_deg"),"max_joint_step_deg");require(max_joint>0&&max_joint<=180,"CONFIG_RANGE","Invalid joint sampling limit");
     const auto &points=r.at("points");require(points.is_array()&&!points.empty()&&points.size()<=10000,"FORMAT","Expected 1..10000 path points");
     for(auto &p:points){keys(p,{"xyz_mm","duration_us","dwell_us"});(void)vec(p.at("xyz_mm"),"xyz_mm");}
+    auto envelope=[&](const Vec &p){if(!f.contains("xy_envelope"))return true;const auto &e=f.at("xy_envelope");keys(e,{"center_mm","radii_mm","margin_mm"});require(e.at("center_mm").is_array()&&e.at("center_mm").size()==2&&e.at("radii_mm").is_array()&&e.at("radii_mm").size()==2,"CONFIG_RANGE","Explicit XY ellipse requires two centre/radius values");double sum=0,margin=number(e.at("margin_mm"),"margin_mm");require(margin>0,"CONFIG_RANGE","Positive XY boundary clearance required");for(int a=0;a<2;a++){double radius=number(e.at("radii_mm")[a],"radii_mm")-margin;require(radius>0,"CONFIG_RANGE","XY radius must exceed clearance");double v=(p[a]-number(e.at("center_mm")[a],"center_mm"))/radius;sum+=v*v;}return sum<=1;};
     Json target=solve(vec(points.back().at("xyz_mm"),"xyz_mm"),c);
     require(inside(vec(target.at("xyz_mm"),"xyz_mm"),f.at("workspace")),"WORKSPACE_RANGE","Target outside fixture workspace");
+    require(envelope(vec(target.at("xyz_mm"),"xyz_mm")),"WORKSPACE_RANGE","Target outside measured XY envelope");
     for(int a=0;a<3;a++)require(double(target.at("joint_deg")[a])>=jmin[a]&&double(target.at("joint_deg")[a])<=jmax[a],"JOINT_RANGE","Target outside fixture joint range");
     const auto &start=r.at("start");keys(start,{"valid","position_id","xyz_mm","steps"});
     require(start.at("valid").is_boolean(),"FORMAT","Start validity must be explicit");
@@ -114,6 +141,7 @@ Json plan(const Json &r){
     require(start.at("steps")==prev.at("steps"),"START_MISMATCH","Start XYZ and reference steps disagree");
     Json samples=Json::array(),legs=Json::array();uint64_t elapsed=0;
     auto check=[&](const Vec &p,const Json &pose){require(inside(p,f.at("workspace")),"WORKSPACE_RANGE","Point outside explicit fixture workspace","xyz_mm");
+        require(envelope(p),"WORKSPACE_RANGE","Point outside measured XY envelope","xyz_mm");
         for(int a=0;a<3;a++){double q=pose.at("joint_deg")[a];require(q>=jmin[a]&&q<=jmax[a],"JOINT_RANGE","Joint outside fixture range","joint_deg");}};
     check(from,prev);
     for(size_t leg=0;leg<points.size();leg++)try{
@@ -193,5 +221,10 @@ Json telemetry_decode(const Json &r){
             {"status",s.status},{"attempt",s.attempt},{"sequence",std::to_string(s.sequence)},{"request_us",std::to_string(s.request_us)},
             {"event_us",std::to_string(s.event_us)},{"payload",std::to_string(s.payload)},{"data_valid",bool(s.data_valid)},{"kind",kind},{"value",value},{"raw_hex_le",hex(b)}};
 }
-Json dispatch(const Json &r){auto op=r.at("op").get<std::string>();if(op=="ik")return kinematics(r);if(op=="plan")return plan(r);if(op=="motion_encode")return motion_encode(r);if(op=="telemetry_decode")return telemetry_decode(r);throw Error("FORMAT","Unknown operation","op");}
+Json dispatch(const Json &r){auto op=r.at("op").get<std::string>();if(op=="ik")return kinematics(r);if(op=="fk")return forward_kinematics(r);if(op=="plan")return plan(r);if(op=="motion_encode")return motion_encode(r);if(op=="telemetry_decode")return telemetry_decode(r);
+    if(op=="calibration_validate"){validate_calibration(r.at("parameters"));return {{"valid",true},{"position_valid",false},{"home_pose",calibration_home(r.at("parameters"))}};}
+    if(op=="calibration_pose")return calibrated_pose(r.at("publication"),r.at("parameters"),u64(r.at("now_us"),"now_us"));
+    if(op=="calibration_plan")return calibrated_plan(r.at("parameters"),r.at("start"),r.at("points"),r.at("work_origin_mm"));
+    if(op=="calibration_jog"){double velocity=calibrated_number(r.at("velocity_mm_s"));auto out=calibrated_jog_chunk(r.at("parameters"),r.at("start"),r.at("axis"),r.at("sign"),calibrated_number(r.at("speed_mm_s")),velocity);out["velocity_mm_s"]=velocity;return out;}
+    throw Error("FORMAT","Unknown operation","op");}
 }
