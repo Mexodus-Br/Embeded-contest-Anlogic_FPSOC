@@ -45,6 +45,28 @@ artifacts/
 /pl_safety/optimization/interlock_candidate*/*/
 /pl_safety/interlock_preflight*.json
 
+# Historical experiment trees; selected reusable inputs are preserved on
+# codex/workspace-backup-20261029. Keep local runs and raw deliveries on disk.
+/pl_safety/optimization/interlock_candidate11/
+/pl_safety/optimization/interlock_candidate13/
+/pl_safety/optimization/interlock_candidate14/
+/pl_safety/optimization/interlock_candidate15/
+/pl_safety/optimization/interlock_candidate16/
+/pl_safety/optimization/reset_path_20261020/
+/deliverables/PS_D1_移交_20261022/
+/bsp/evidence/motor3125-*.log.json
+
+# Local Wi-Fi capture metadata and process-control markers; keep on disk.
+/bsp/evidence/wifi-http-*.log.json
+/bsp/evidence/wifi-http-*.stop
+/bsp/evidence/wifi-http-sd-*-exit.txt
+
+# Historical timing diagnostics (reusable scripts and reviewed reports stay visible).
+/pl_safety/optimization/timing_20261017/async_reg_manual.json
+/pl_safety/optimization/timing_20261017/candidate1_results.json
+/pl_safety/optimization/timing_20261017/deadline_math.json
+/pl_safety/optimization/timing_20261017/*_critical.txt
+
 # Local credentials: distribute examples only, never populated credentials.
 .env
 .env.*
