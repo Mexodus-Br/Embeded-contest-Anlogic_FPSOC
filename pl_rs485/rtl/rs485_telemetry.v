@@ -59,7 +59,7 @@ module rs485_telemetry #(parameter integer DEPTH=256)(
  always @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
    state<=EMPTY;opened<=0;enabled<=0;cancel_pending<=0;exhausted<=0;old_dma_ready<=0;
-   wr<=0;rd<=0;count<=0;frame<=0;crc<=0;byte_index<=0;beat<=0;remaining<=0;
+   wr<=0;rd<=0;count<=0;byte_index<=0;beat<=0;remaining<=0;
    transport_generation<=0;packet_id<=0;packet_generation<=0;packet_count<=0;packet_bytes<=0;completion_serial<=0;
    command_error<=0;command_result<=0;completion_event<=0;in_flight<=0;last_complete_id<=0;last_complete_generation<=0;last_complete_result<=0;
    full_drop<=0;disabled_drop<=0;cancel_drop<=0;stream_records<=0;stream_packets<=0;dma_ok<=0;dma_failed<=0;
@@ -90,9 +90,9 @@ module rs485_telemetry #(parameter integer DEPTH=256)(
    if(state==READY && wait_age>wait_arm_max_us) wait_arm_max_us<=sat(0,wait_age);
    if(m_valid && !m_ready) begin blocked_cycles<=sat(blocked_cycles,1);if(blocked_cycles>=backpressure_max_cycles) backpressure_max_cycles<=sat(blocked_cycles,1);end else blocked_cycles<=0;
    case(state)
-    LOAD:begin frame<={32'd0,head[479:0]};crc<=`RT_CRC_INIT;byte_index<=0;state<=CRC;end
-    CRC:begin crc<=crc_byte(crc,frame[byte_index*8+:8]);
-     if(byte_index==`RT_CRC_BYTES-1) begin frame[511:480]<=crc_byte(crc,frame[byte_index*8+:8])^`RT_CRC_XOROUT;beat<=0;state<=SEND;end
+    LOAD:begin byte_index<=0;state<=CRC;end
+    CRC:begin
+     if(byte_index==`RT_CRC_BYTES-1) begin beat<=0;state<=SEND;end
      else byte_index<=byte_index+1'b1;
     end
     SEND:if(m_valid && m_ready) begin
@@ -154,4 +154,17 @@ module rs485_telemetry #(parameter integer DEPTH=256)(
    end
   end
  end
+
+// Packet state/credits/generation and VALID remain asynchronously invalidated.
+// LOAD replaces all frame bits and initializes CRC before any SEND ownership;
+// CRC completes before VALID. Reset/cancel never publishes retained data.
+// Invalid AXIS DATA is unspecified, as permitted by the unchanged VALID contract.
+always @(posedge clk)begin
+ if(state==LOAD)begin frame<={32'd0,head[479:0]};crc<=`RT_CRC_INIT;end
+ else if(state==CRC)begin
+  crc<=crc_byte(crc,frame[byte_index*8+:8]);
+  if(byte_index==`RT_CRC_BYTES-1)
+   frame[511:480]<=crc_byte(crc,frame[byte_index*8+:8])^`RT_CRC_XOROUT;
+ end
+end
 endmodule

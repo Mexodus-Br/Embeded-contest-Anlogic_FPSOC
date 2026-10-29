@@ -100,7 +100,7 @@ module safety_interlock_regs(
    `SI_REG_SNAP_REQ,`SI_REG_SNAP_ID:read_data=snapshot_id;
    default:begin
     if(read_offset>=`SI_SNAPSHOT_BASE && read_offset<`SI_SNAPSHOT_BASE+4*`SI_SNAPSHOT_WORDS)begin
-     index=(read_offset-`SI_SNAPSHOT_BASE)>>2;read_data=snapshot[index*32+:32];
+     index=(read_offset-`SI_SNAPSHOT_BASE)>>2;read_data=snapshot_id!=0 ? snapshot[index*32+:32]:32'd0;
     end else read_known=0;
    end
   endcase
@@ -110,7 +110,7 @@ module safety_interlock_regs(
    config_axes<=`SI_DEFAULT_AXIS_MASK;config_feedback_us<=`SI_TIMEOUT_DEFAULT_US;
    config_watchdog_us<=`SI_TIMEOUT_DEFAULT_US;config_txn<=0;accepted_txn<=0;applied_txn<=0;config_apply<=0;
    config_dirty<=0;applied_axes<=0;applied_feedback<=0;applied_watchdog<=0;
-   heartbeat_owner<=0;heartbeat_sequence<=0;heartbeat_dirty<=0;snapshot_id<=0;snapshot<=0;
+   heartbeat_owner<=0;heartbeat_sequence<=0;heartbeat_dirty<=0;snapshot_id<=0;
   end else begin
    // Capture the complete payload at acceptance, apply on the next edge.
    // This breaks idle/planner admission out of the detection/STEP cone.
@@ -132,10 +132,13 @@ module safety_interlock_regs(
      accepted_txn<=config_txn;applied_axes<=config_axes;applied_feedback<=config_feedback_us;
      applied_watchdog<=config_watchdog_us;config_dirty<=0;
     end
-    `SI_REG_SNAP_REQ:begin snapshot<=live_snapshot;snapshot_id<=write_data;end
+    `SI_REG_SNAP_REQ:snapshot_id<=write_data;
     default:begin end
    endcase
    end
   end
  end
+ // ID=0 preserves the original all-zero read before any accepted capture.
+ always @(posedge clk)if(rst_n && accepted && write_offset==`SI_REG_SNAP_REQ)
+  snapshot<=live_snapshot;
 endmodule

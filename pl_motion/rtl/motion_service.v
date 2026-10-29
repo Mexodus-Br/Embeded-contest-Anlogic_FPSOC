@@ -128,10 +128,11 @@ module motion_service #(
  reg safety_idle_q;
  always @(posedge clk or negedge rst_n)
   if(!rst_n)safety_idle_q<=0;else safety_idle_q<=full_safety_idle && safety_pulse_safe;
- wire idle_admission_fence=!session_valid && !command_busy && !ah && !wh &&
-  !packet_busy && !execute && !dispatch_pending && !req_open && !req_enable &&
-  !req_start && !req_resume && !req_disable &&
-  !(HOME_SUPPORT && home_owner);
+ // execute/dispatch/request pulses imply command_busy throughout their owned
+ // cycle. Use the owner bit instead of redistributing every command pulse.
+ wire next_session_empty,next_packet_empty;
+ reg management_clear_q;
+ wire idle_admission_fence=management_clear_q && !(HOME_SUPPORT && home_owner);
  assign safety_idle=SAFETY_IDLE_REGISTERED ? safety_idle_q && idle_admission_fence : full_safety_idle;
  // RX error already stops the normal kernel on its detecting edge. Register
  // only its notification to HOME to avoid error -> abort -> error feedback.
@@ -140,21 +141,24 @@ module motion_service #(
  assign safety_abort=stop_write || req_disable || dma_error || !reset_ok || safety_rx_error || (|fault);
  wire arm_write=good_write && offset==`PLI_MOTION_GP_MOTION_V1_REG_PACKET_ARM;
  wire external_cancel=private_stop || private_disable || (HOME_SUPPORT && home_enable) || stop_write || (|fault) || dma_error || !reset_ok || req_disable;
- wire cancel_transport=external_cancel || rx_error || cancelled || session_done;
+ // receiver.error = rst_n && !abort && candidate; abort is already in
+ // this OR. Apply the exact cofactor instead of routing stop through the
+ // receiver error gate and back into transport cancellation.
+ wire cancel_transport=external_cancel || cancelled || session_done || (rst_n && rx_error_candidate);
  // Held reset/fault sources must suppress execution without repeatedly
  // manufacturing idle STOP completions after the first safe drain.
  reg safety_stop_seen;
  always @(posedge clk or negedge rst_n)if(!rst_n)safety_stop_seen<=0;else safety_stop_seen<=private_stop;
- // Shannon expansion on DMA error removes its serial trip through the
- // receiver abort mask before the same-edge execution STOP qualification.
- // When DMA error is 1, receiver.error is necessarily 0; otherwise the
- // private raw predicate receives exactly the original non-DMA abort mask.
  wire occupied=core_busy || session_valid;
- wire non_dma_abort=private_stop || private_disable || (HOME_SUPPORT && home_enable) || stop_write || (|fault) || !reset_ok || req_disable || cancelled || session_done;
- wire rx_without_dma=rst_n && !non_dma_abort && rx_error_candidate;
- wire stop_kernel=(private_stop && !safety_stop_seen && occupied) || stop_write ||
-  ((|fault || !reset_ok || req_disable) && occupied) ||
-  (dma_error ? occupied : rx_without_dma);
+ // With any private control asserted, receiver.error is necessarily zero.
+ // Select the exact cofactor here instead of routing safety_stop through
+ // receiver abort/error and back into the executor stop controls.
+ wire private_abort=private_stop || private_disable || (HOME_SUPPORT && home_enable);
+ wire common_stop=(|fault) || !reset_ok || req_disable;
+ wire rx_without_private=rst_n && !(stop_write || common_stop || cancelled || session_done) && rx_error_candidate;
+ wire stop_private=stop_write || ((common_stop || dma_error || (private_stop && !safety_stop_seen)) && occupied);
+ wire stop_public=stop_write || (common_stop && occupied) || (dma_error ? occupied:rx_without_private);
+ wire stop_kernel=private_abort ? stop_private:stop_public;
  wire sequence_violation=rx_valid && rx_ready && session_valid && rx_session==session_id &&
   (observed_end || {1'b0,rx_sequence}!=observed_sequence);
  motion_stream_rx receiver(.clk(clk),.rst_n(rst_n),.abort(external_cancel || cancelled || session_done),.link_ready(link_ready),
@@ -162,7 +166,7 @@ module motion_service #(
   .s_data(stream_data),.s_keep(stream_keep),.s_last(stream_last),.s_valid(stream_valid),.s_ready(stream_ready),
   .point_valid(rx_valid),.point_ready(rx_ready),.point_session(rx_session),.duration_tick(rx_duration),
   .point_sequence(rx_sequence),.point_end(rx_end),.point_mask(rx_mask),.point_target(rx_target),
-  .error(rx_error),.error_candidate(rx_error_candidate),.packet_closed(packet_closed),.packet_count(packet_count));
+  .error(rx_error),.error_candidate(rx_error_candidate),.packet_closed(packet_closed),.packet_count(packet_count),.next_packet_empty(next_packet_empty));
  continuous_motion #(.FIFO_DEPTH(FIFO_DEPTH),.PLAN_DEPTH(PLAN_DEPTH),.START_MIN_POINTS(START_MIN_POINTS),
   .STEP_HIGH_CYCLES(STEP_HIGH_CYCLES),.STEP_LOW_CYCLES(STEP_LOW_CYCLES),.DIR_SETUP_CYCLES(DIR_SETUP_CYCLES),
   .DIR_HOLD_CYCLES(DIR_HOLD_CYCLES),.EN_SETUP_CYCLES(EN_SETUP_CYCLES),.EN_DISABLE_CYCLES(EN_DISABLE_CYCLES),
@@ -181,7 +185,7 @@ module motion_service #(
   .pulse_event(pulse_event),.slot_event(slot_event),.slot_id(slot_id),.home_owner(home_owner),.home_enable(home_enable),
   .home_reference(home_reference),.home_complete(home_complete),.home_run(home_run),
   .home_direction(home_direction),.home_period(home_period),.home_reference_position(home_reference_position),
-  .safety_invalidate(safety_invalidate),.safety_pulse_safe(safety_pulse_safe),.home_fault(home_fault));
+  .safety_invalidate(safety_invalidate),.safety_pulse_safe(safety_pulse_safe),.home_fault(home_fault),.next_session_empty(next_session_empty));
  wire [31:0] status=(core_busy ? `PLI_MOTION_GP_MOTION_V1_STATUS_BITS_BUSY_MASK:0) |
   (session_valid ? `PLI_MOTION_GP_MOTION_V1_STATUS_BITS_SESSION_MASK:0) |
   (running ? `PLI_MOTION_GP_MOTION_V1_STATUS_BITS_RUNNING_MASK:0) |
@@ -270,7 +274,7 @@ module motion_service #(
    `PLI_MOTION_GP_MOTION_V1_REG_END_COUNT:read_data=end_count;
    `PLI_MOTION_GP_MOTION_V1_REG_CAPS:read_data=`PLI_MOTION_GP_MOTION_V1_CAPS;
    `PLI_MOTION_GP_MOTION_V1_REG_FEATURES:read_data=`PLI_MOTION_GP_MOTION_V1_FEATURES;
-   default:if(s_araddr[11:0]>=`PLI_MOTION_GP_MOTION_V1_REG_SNAP_0 && s_araddr[11:0]<=`PLI_MOTION_GP_MOTION_V1_REG_SNAP_63)read_data=snapshot[(s_araddr[11:0]-`PLI_MOTION_GP_MOTION_V1_REG_SNAP_0)>>2];
+   default:if(s_araddr[11:0]>=`PLI_MOTION_GP_MOTION_V1_REG_SNAP_0 && s_araddr[11:0]<=`PLI_MOTION_GP_MOTION_V1_REG_SNAP_63)read_data=snap_valid ? snapshot[(s_araddr[11:0]-`PLI_MOTION_GP_MOTION_V1_REG_SNAP_0)>>2]:32'd0;
     else if(s_araddr[11:0]>=`PLI_MOTION_GP_MOTION_V1_REG_REBASE_0 && s_araddr[11:0]<=`PLI_MOTION_GP_MOTION_V1_REG_REBASE_7)read_data=rebase_shadow[((s_araddr[11:0]-`PLI_MOTION_GP_MOTION_V1_REG_REBASE_0)>>2)*32+:32];else read_known=0;
   endcase
  end
@@ -286,13 +290,12 @@ module motion_service #(
   if(!rst_n)begin
    ah<=0;wh<=0;aw_hit<=0;stop_address<=0;stop_data<=0;offset<=0;wd<=0;ws<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
    opcode<=0;arg<=0;txn<=0;maintenance<=0;recover_gen<=0;session_shadow<=0;rebase_shadow<=0;
-   ack_id<=0;ack_error<=0;last_id<=0;ack_valid<=0;ack_accepted<=0;ack_completed<=0;command_busy<=0;last_payload<=0;
-   captured_opcode<=0;captured_arg<=0;captured_id<=0;captured_generation<=0;captured_session<=0;captured_rebase<=0;captured_maintenance<=0;
+   ack_id<=0;ack_error<=0;last_id<=0;ack_valid<=0;ack_accepted<=0;ack_completed<=0;command_busy<=0;
+   // Private command payload is initialized by its owner capture, not reset.
    execute<=0;dispatch_pending<=0;req_open<=0;req_enable<=0;req_start<=0;req_pause<=0;req_resume<=0;req_disable<=0;req_rebase<=0;req_clear<=0;
-   ack_event<=0;pending<=0;mask<=0;error_code<=0;link_ready<=0;link_generation<=0;software_generation<=0;stop_complete<=1;
+   ack_event<=0;pending<=0;mask<=0;error_code<=0;stop_complete<=1;
    timestamp<=0;tick_div<=0;pulse_counter<=0;accepted_sequence<=0;ingress_sequence<=0;accepted_valid<=0;done_valid<=0;user_cancel<=0;snap_id<=0;snap_valid<=0;
    accept_count<=0;done_count<=0;stale_count<=0;reject_count<=0;cancel_count<=0;stop_count<=0;end_count<=0;observed_sequence<=0;observed_end<=0;
-   for(i=0;i<64;i=i+1)snapshot[i]<=0;
   end else begin
    execute<=0;dispatch_pending<=0;req_open<=0;req_enable<=0;req_start<=0;req_pause<=0;req_resume<=0;req_disable<=0;req_rebase<=0;req_clear<=0;
    ack_event<=0;pending<=(pending & ~w1c)|events;
@@ -314,8 +317,7 @@ module motion_service #(
    if(stop_write || req_disable)user_cancel<=1;
    if(stopped || (cancel_transport && !core_busy))stop_complete<=1;
    if(cancel_transport)begin
-    link_ready<=0;
-    if(link_ready)link_generation<=link_generation+1'b1;
+    
     if(!session_done)begin
      if(dma_error)error_code<=`PLI_ERR_DMA;
      else if(rx_error)error_code<=`PLI_ERR_BAD_RECORD;
@@ -341,14 +343,13 @@ module motion_service #(
      `PLI_MOTION_GP_MOTION_V1_REG_IRQ_MASK:mask<=wd;
      `PLI_MOTION_GP_MOTION_V1_REG_SUBMIT:if(txn!=last_id)begin
       command_busy<=1;ack_valid<=0;ack_completed<=0;ack_accepted<=0;
-      captured_opcode<=opcode;captured_arg<=arg;captured_id<=txn;captured_session<=session_shadow;
-      captured_rebase<=rebase_shadow;captured_maintenance<=maintenance[0];captured_generation<=recover_gen;
-      last_payload<=shadow_payload;last_id<=txn;execute<=1;
+      
+      last_id<=txn;execute<=1;
      end
      default:if(offset>=`PLI_MOTION_GP_MOTION_V1_REG_REBASE_0 && offset<=`PLI_MOTION_GP_MOTION_V1_REG_REBASE_7)rebase_shadow[((offset-`PLI_MOTION_GP_MOTION_V1_REG_REBASE_0)>>2)*32+:32]<=wd;
     endcase
    end
-   if(snapshot_write)begin for(i=0;i<64;i=i+1)snapshot[i]<=snap_live[i];snap_id<=wd;snap_valid<=1;end
+   if(snapshot_write)begin snap_id<=wd;snap_valid<=1;end
    if(execute)begin
     ack_id<=captured_id;ack_valid<=1;ack_accepted<=guarded_command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error);ack_completed<=1;ack_error<=guarded_command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error) ? 0:`PLI_ERR_BAD_COMMAND;
     command_busy<=0;ack_event<=1;
@@ -356,7 +357,7 @@ module motion_service #(
      req_open<=cmd_open;req_enable<=cmd_enable;req_start<=cmd_start;req_pause<=cmd_pause;
      req_resume<=cmd_resume;req_disable<=cmd_disable;req_rebase<=cmd_rebase;req_clear<=cmd_clear;
      dispatch_pending<=1;command_busy<=1;ack_valid<=0;ack_completed<=0;ack_event<=0;
-     if(cmd_recover)begin link_ready<=1;link_generation<=link_generation+1'b1;software_generation<=captured_generation;end
+     
      if(cmd_clear)error_code<=0;
      if(cmd_open)begin user_cancel<=0;accepted_valid<=0;done_valid<=0;accepted_sequence<=0;observed_sequence<=0;observed_end<=0;end
      if(cmd_pause || cmd_disable)begin command_busy<=1;ack_completed<=0;end
@@ -375,4 +376,79 @@ module motion_service #(
    end
   end
  end
+ // Full atomic replacement; snap_valid masks data from every previous epoch.
+ integer snap_lane;
+ always @(posedge clk)if(rst_n && snapshot_write)
+  for(snap_lane=0;snap_lane<64;snap_lane=snap_lane+1)snapshot[snap_lane]<=snap_live[snap_lane];
+
+// Project AH/WH/command ownership using the original assignment priorities.
+// Combining NEXT source values makes this a CURRENT qualification register,
+// rather than a delayed idle grant. All safety/contact/STOP controls stay direct.
+reg management_ah_next,management_wh_next,management_command_next;
+always @*begin
+ management_ah_next=ah;management_wh_next=wh;management_command_next=command_busy;
+ if(!rst_n)begin management_ah_next=0;management_wh_next=0;management_command_next=0;end
+ else begin
+  if(s_awvalid && s_awready)management_ah_next=1;
+  if(s_wvalid && s_wready)management_wh_next=1;
+  if(write_fire)begin
+   management_ah_next=0;management_wh_next=0;
+   if(good_write && offset==`PLI_MOTION_GP_MOTION_V1_REG_SUBMIT && txn!=last_id)management_command_next=1;
+  end
+  if(execute)begin
+   management_command_next=0;
+   if(guarded_command_ok && !(stop_write || (|fault) || dma_error || !reset_ok || rx_error))
+    management_command_next=1;
+  end else if(dispatch_pending)begin
+   management_command_next=req_pause || req_disable;
+   if(stop_write || rx_error || (|fault) || dma_error || !reset_ok)management_command_next=0;
+  end else if(command_busy)begin
+   if((captured_opcode==`PLI_CMD_PAUSE && paused) ||
+      (captured_opcode==`PLI_CMD_DISABLE && !core_busy && !(|(enabled & captured_arg[3:0]))))management_command_next=0;
+   else if(stop_write || rx_error || (|fault) || dma_error || !reset_ok ||
+           (session_done && captured_opcode==`PLI_CMD_PAUSE))management_command_next=0;
+  end
+ end
+end
+always @(posedge clk or negedge rst_n)
+ if(!rst_n)management_clear_q<=1;
+ else management_clear_q<=next_session_empty && next_packet_empty &&
+      !management_ah_next && !management_wh_next && !management_command_next;
+// synthesis translate_off
+always @(posedge clk)if(rst_n)
+ if(management_clear_q !== (!session_valid && !packet_busy && !ah && !wh && !command_busy))
+  $fatal(1,"management current-state projection mismatch");
+// synthesis translate_on
+
+// Unreset private payload. execute/dispatch/requests and command ownership
+// remain asynchronously invalidated, including reset pulses between clocks.
+// A fresh nonzero transaction captures every dependency before execute.
+always @(posedge clk)if(good_write && offset==`PLI_MOTION_GP_MOTION_V1_REG_SUBMIT && txn!=last_id)begin
+ captured_opcode<=opcode;captured_arg<=arg;captured_id<=txn;captured_session<=session_shadow;
+ captured_rebase<=rebase_shadow;captured_maintenance<=maintenance[0];captured_generation<=recover_gen;
+ last_payload<=shadow_payload;
+end
+
+// Recovery's maintenance predicate includes receiver.IDLE (partial_empty).
+// Therefore receiver.error is identically zero for this opcode. Keep the
+// original detection edge and last-assignment priority over cancellation,
+// without dragging unrelated START/executor-ready muxes into generation CE.
+wire recover_commit=cmd_recover && maintenance_ok && !link_ready && reset_ok &&
+ !(|fault) && !dma_error && captured_generation>software_generation && !stop_write;
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin link_ready<=0;link_generation<=0;software_generation<=0;end
+ else begin
+  if(cancel_transport)begin link_ready<=0;if(link_ready)link_generation<=link_generation+1'b1;end
+  if(recover_commit)begin link_ready<=1;link_generation<=link_generation+1'b1;software_generation<=captured_generation;end
+ end
+end
+// synthesis translate_off
+always @(posedge clk)if(rst_n)begin
+ if(cancel_transport !== (external_cancel || rx_error || cancelled || session_done))
+  $fatal(1,"transport cancel cofactor mismatch");
+ if(recover_commit !== (cmd_recover && guarded_command_ok &&
+   !(stop_write || (|fault) || dma_error || !reset_ok || rx_error)))
+  $fatal(1,"recovery qualification cofactor mismatch");
+end
+// synthesis translate_on
 endmodule

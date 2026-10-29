@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 `include "safety_defs.vh"
 module safety_controller #(
- parameter CONFIG_APPROVED=0,INTERLOCK_SUPPORT=0,
+ parameter CONFIG_APPROVED=0,INTERLOCK_SUPPORT=0,SPLIT_RUN_PERMIT=0,
  parameter [2:0] HOME_DIRECTION=0,
  parameter [191:0] SEARCH_PERIOD=0,PULL_PERIOD=0,PRE_PERIOD=0,
  parameter [191:0] REFERENCE_POSITION=0,PULL_DISTANCE=0,PRE_DISTANCE=0,
@@ -24,7 +24,7 @@ module safety_controller #(
  output wire [191:0] travel,
  output reg accepted,rejected,home_done,home_cancelled,
  output wire request_ok,clear_ok,
- input wire interlock_permit,interlock_detect,interlock_disable,interlock_clear_ok,
+ input wire interlock_run_permit,interlock_permit,interlock_detect,interlock_disable,interlock_clear_ok,
  input wire [31:0] interlock_causes
 );
  localparam NEED=`SAF_STATES_NEED,PRE=`SAF_STATES_PRE,SEARCH=`SAF_STATES_SEARCH,SEARCH_DRAIN=`SAF_STATES_SEARCH_DRAIN,REF=`SAF_STATES_REF,PULL=`SAF_STATES_PULL,FINISH=`SAF_STATES_FINISH,READY=`SAF_STATES_READY,DRAIN=`SAF_STATES_DRAIN,FAULT=`SAF_STATES_FAULT;
@@ -91,7 +91,7 @@ module safety_controller #(
   if(state==PULL && timeout_reached)failure=failure|PULL_FAIL;
   if(state!=DRAIN && state!=FAULT && !clear_executor && (|executor_fault))failure=failure|EXEC_FAIL;
   if(!config_ok || estop || stop_request || external_abort || (|failure) || (|causes) ||
-    (INTERLOCK_SUPPORT && (!interlock_permit || interlock_detect)))home_run=0;
+    (INTERLOCK_SUPPORT && (!(SPLIT_RUN_PERMIT ? interlock_run_permit:interlock_permit) || interlock_detect)))home_run=0;
  end
  wire [31:0] new_causes=(estop ? ESTOP:0) | (ordinary_limit ? limit_cause:0) | failure |
    (INTERLOCK_SUPPORT ? interlock_causes:32'd0);

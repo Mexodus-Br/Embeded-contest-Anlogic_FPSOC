@@ -72,20 +72,42 @@ endfunction
 integer i;
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
-  state<=IDLE;error<=0;target_saved<=0;base_saved<=0;endpoint<=0;counts<=0;
-  duration_saved<=0;sid<=0;seq<=0;moving<=0;positive<=0;mask_saved<=0;last<=0;
-  cycles_wide<=0;cycles<=0;guard_cycles<=0;master<=0;quotient<=0;remainder<=0;basic_ok<=0;
-  dividend<=0;div_quotient<=0;div_remainder<=0;div_left<=0;
-  for(i=0;i<4;i=i+1)differences[i]<=0;
-  for(i=0;i<2;i=i+1)begin max_pair[i]<=0;guard_pair[i]<=0;end
+  state<=IDLE;error<=0;basic_ok<=0;
  end else begin
   error<=0;
   if(cancel)begin state<=IDLE;basic_ok<=0;end
   else case(state)
+   IDLE:if(req_valid)state<=DIFF;
+   DIFF:state<=ABS;
+   ABS:state<=PAIR;
+   PAIR:state<=MAXIMUM;
+   MAXIMUM:state<=BUDGET;
+   BUDGET:begin
+    basic_ok<=duration_saved!=0 && cycles_wide[127:64]==0 &&
+     (mask_saved & ~config_valid)==0 && (master==0 || cycles>guard_cycles);
+    state<=INIT_DIV;
+   end
+   INIT_DIV:begin
+    if(!basic_ok)begin error<=1;state<=IDLE;end
+    else if(master==0)state<=HOLD;
+    else state<=DIVIDE;
+   end
+   DIVIDE:if(div_left==1)state<=CHECK;
+   CHECK:if(feasible)state<=HOLD;else begin error<=1;state<=IDLE;end
+   HOLD:if(plan_ready)state<=IDLE;
+  endcase
+ end
+end
+// Only state/error/validity need asynchronous initialization. Each owned
+// record writes every data dependency before use. Cancel discards the state;
+// speculative data writes on that edge are unreachable by a valid plan.
+// Keeping cancel out of these wide enables also localizes the stop network.
+always @(posedge clk)begin
+  case(state)
    IDLE:if(req_valid)begin
     target_saved<=target_position;base_saved<=base_position;endpoint<=base_position;
     duration_saved<=duration_tick;sid<=request_session;seq<=request_sequence;
-    mask_saved<=axis_mask;last<=request_end;state<=DIFF;
+    mask_saved<=axis_mask;last<=request_end;
    end
    DIFF:begin
     cycles_wide<={64'b0,duration_saved}*128'd100;
@@ -95,14 +117,12 @@ always @(posedge clk or negedge rst_n)begin
       $signed({base_saved[i*64+63],base_saved[i*64+:64]}) : 65'sd0;
      if(mask_saved[i])endpoint[i*64+:64]<=target_saved[i*64+:64];
     end
-    state<=ABS;
    end
    ABS:begin
     for(i=0;i<4;i=i+1)begin
      counts[i*64+:64]<=differences[i][64] ? -differences[i] : differences[i];
      moving[i]<=differences[i]!=0;positive[i]<=differences[i]!=0 && !differences[i][64];
     end
-    state<=PAIR;
    end
    PAIR:begin
     for(i=0;i<2;i=i+1)begin
@@ -110,27 +130,20 @@ always @(posedge clk or negedge rst_n)begin
      guard_pair[i]<=maximum(moving[i*2] ? lane_guard[i*2] : 64'd0,
                             moving[i*2+1] ? lane_guard[i*2+1] : 64'd0);
     end
-    state<=MAXIMUM;
    end
    MAXIMUM:begin master<=maximum(max_pair[0],max_pair[1]);
-    guard_cycles<=maximum(guard_pair[0],guard_pair[1]);cycles<=cycles_wide[63:0];state<=BUDGET;end
-   BUDGET:begin
-    basic_ok<=duration_saved!=0 && cycles_wide[127:64]==0 &&
-     (mask_saved & ~config_valid)==0 && (master==0 || cycles>guard_cycles);
-    state<=INIT_DIV;
-   end
+    guard_cycles<=maximum(guard_pair[0],guard_pair[1]);cycles<=cycles_wide[63:0];end
    INIT_DIV:begin
-    if(!basic_ok)begin error<=1;state<=IDLE;end
-    else if(master==0)begin quotient<=0;remainder<=0;state<=HOLD;end
-    else begin dividend<=cycles-guard_cycles;div_remainder<=0;div_quotient<=0;div_left<=64;state<=DIVIDE;end
+    if(basic_ok)begin
+     if(master==0)begin quotient<=0;remainder<=0;end
+     else begin dividend<=cycles-guard_cycles;div_remainder<=0;div_quotient<=0;div_left<=64;end
+    end
    end
    DIVIDE:begin
     dividend<={dividend[62:0],1'b0};div_remainder<=rem_next;div_quotient<=quo_next;div_left<=div_left-1'b1;
-    if(div_left==1)begin quotient<=quo_next;remainder<=rem_next[63:0];state<=CHECK;end
+    if(div_left==1)begin quotient<=quo_next;remainder<=rem_next[63:0];end
    end
-   CHECK:if(feasible)state<=HOLD;else begin error<=1;state<=IDLE;end
-   HOLD:if(plan_ready)state<=IDLE;
+   default:begin end
   endcase
- end
 end
 endmodule

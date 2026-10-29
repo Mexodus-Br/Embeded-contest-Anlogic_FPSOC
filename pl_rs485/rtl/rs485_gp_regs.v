@@ -1,5 +1,5 @@
 // Independent same-clock AXI-Lite endpoint; no PS full-AXI adaptation.
-module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SUPPORT=0)(
+module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SUPPORT=0,STATS_VALID_SUPPORT=0)(
  input wire clk,rst_n,input wire [63:0] time_us,
  input wire [32:0] s_awaddr,s_araddr,input wire [31:0] s_wdata,input wire [3:0] s_wstrb,
  input wire s_awvalid,s_wvalid,s_bready,s_arvalid,s_rready,
@@ -16,7 +16,7 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
  input wire [7999:0] observe_tasks,input wire [1279:0] observe_nodes,
  output wire [31:0] observe_generation,
  input wire interlock_idle,interlock_idle_off,
- output wire interlock_run,interlock_reset,interlock_config_pending,interlock_config_change,interlock_stop_commit,output wire [31:0] next_generation,output wire reset_commit,output wire next_reset);
+ output wire interlock_run,interlock_reset,interlock_config_pending,interlock_config_stored_pending,interlock_config_change,interlock_stop_commit,output wire [31:0] next_generation,output wire reset_commit,output wire next_reset,input wire observe_stats_ready);
  `include "gp_defs.vh"
  `include "interlock_gp_defs.vh"
  `include "rs485_defs.vh"
@@ -24,6 +24,7 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
  localparam integer PTR_BITS=(FIFO_DEPTH<=2)?1:$clog2(FIFO_DEPTH);
  reg ah,wh;reg [32:0] wa;reg [31:0] wd;reg [3:0] ws;
  reg aw_snapshot,aw_run,w_run_clear,aw_reset,w_reset;
+ reg aw_config,w_full_one;
  reg [1:0] reset_count;
  reg [31:0] generation,irq_pending,irq_mask,access_error;
  reg [159:0] shadow_period;reg [4:0] shadow_mask;reg [31:0] shadow_id;
@@ -36,17 +37,18 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
  reg [31:0] meta[0:FIFO_DEPTH-1];reg [PTR_BITS-1:0] mw,mr;
  reg [31:0] snap_req,snap_id,snap_watermark;reg snap_valid;
  reg [31:0] snapshot[0:`RG_SNAPSHOT_WORDS-1];
+ reg snapshot_stats_ready;
  reg r_record;reg [2:0] r_word;reg [31:0] r_cap_id,r_generation;
  wire write_fire=ah && wh && !s_bvalid;
  wire write_window=wa[32:12]==BASE[32:12];
  wire control_write=write_fire && write_window && wa[1:0]==0 && ws!=0;
  // Pending admissions also inhibit HOME/ENABLE on the same commit edge.
- wire config_admission=INTERLOCK_SUPPORT && control_write && ws==15 && wd==1 &&
-   wa[11:0]==`RG_REG_CFG_SUBMIT && shadow_id>last_txn && interlock_idle &&
+ wire config_admission=INTERLOCK_SUPPORT && write_fire && aw_config && w_full_one && shadow_id>last_txn && interlock_idle &&
    shadow_mask[4] && shadow_period[128+:32]!=0 && !config_pending && cfg_ready &&
    reset_count==0 && !cfg_applied && !cfg_rejected;
  assign interlock_config_change=cfg_applied;
- assign interlock_config_pending=config_pending || cfg_valid || !cfg_ready || reset_count!=0 || cfg_applied || config_admission;
+ assign interlock_config_stored_pending=config_pending || cfg_valid || !cfg_ready || reset_count!=0 || cfg_applied;
+ assign interlock_config_pending=interlock_config_stored_pending || config_admission;
  // The monitor already shares rst_n. Export the actual local-reset hold,
  // avoiding a redundant global reset path through its combinational stop cone.
  assign interlock_reset=INTERLOCK_SUPPORT ? reset_count!=0 : !collector_rst_n;
@@ -58,8 +60,24 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
  assign next_generation=!rst_n ? 32'd0:reset_commit ? generation_increment:generation;
  wire [31:0] effective_run_write=merge({31'd0,run},wd,ws);
  assign interlock_run=run;
- assign interlock_stop_commit=INTERLOCK_SUPPORT && write_fire && aw_run &&
-   w_run_clear && reset_count==0 && interlock_idle;
+ // Current mailbox predicate projected from exact next captured values.
+ // Only the local request is registered; current safety idle remains a fence.
+ // No extra OFF/expiry cycle: off_request_q equals the old predicate now.
+ reg off_request_q;
+ wire capture_aw=s_awvalid && s_awready;
+ wire capture_w=s_wvalid && s_wready;
+ wire next_ah=!write_fire && (ah || capture_aw);
+ wire next_wh=!write_fire && (wh || capture_w);
+ wire next_bvalid=write_fire || (s_bvalid && !s_bready);
+ wire next_aw_run=capture_aw ? s_awaddr==BASE+`RG_REG_RUN:aw_run;
+ wire next_w_clear=capture_w ?
+   (s_wstrb[0] && s_wdata[7:0]==0 &&
+    (!s_wstrb[1] || s_wdata[15:8]==0) && (!s_wstrb[2] || s_wdata[23:16]==0) &&
+    (!s_wstrb[3] || s_wdata[31:24]==0)):w_run_clear;
+ always @(posedge clk or negedge rst_n)
+  if(!rst_n)off_request_q<=0;
+  else off_request_q<=next_ah && next_wh && !next_bvalid && next_aw_run && next_w_clear && !next_reset;
+ assign interlock_stop_commit=INTERLOCK_SUPPORT && off_request_q && interlock_idle;
  // Address-only decode occurs at the existing AW registration edge. Payload,
  // ID, reset and write-strobe checks still use the original commit-time state.
  wire snapshot_fire=write_fire && aw_snapshot && ws==4'hf && wd==1 &&
@@ -94,13 +112,13 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
  integer i,j,index;
  always @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
-   ah<=0;wh<=0;wa<=0;wd<=0;ws<=0;aw_snapshot<=0;aw_run<=0;w_run_clear<=0;aw_reset<=0;w_reset<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
+   ah<=0;wh<=0;wa<=0;wd<=0;ws<=0;aw_config<=0;w_full_one<=0;aw_snapshot<=0;aw_run<=0;w_run_clear<=0;aw_reset<=0;w_reset<=0;s_bvalid<=0;s_bresp<=0;s_rvalid<=0;s_rresp<=0;s_rdata<=0;
    run<=0;reset_count<=0;generation<=0;irq_pending<=0;irq_mask<=0;access_error<=0;
    shadow_period<=0;shadow_mask<=0;shadow_id<=0;cfg_period_us<=0;cfg_mask<=0;cfg_valid<=0;
    result_state<=0;result_id<=0;result_error<=0;result_revision<=0;result_sequence<=0;result_time<=0;result_generation<=0;
    last_txn<=0;last_period<=0;last_mask<=0;config_pending<=0;
    cap_valid<=0;cap_data<=0;read_bitmap<=0;cap_id<=0;cap_watermark<=0;cap_generation<=0;cap_revision<=0;last_consumed<=0;mw<=0;mr<=0;
-   snap_req<=0;snap_id<=0;snap_watermark<=0;snap_valid<=0;r_record<=0;r_word<=0;r_cap_id<=0;r_generation<=0;
+   snap_req<=0;snap_id<=0;snap_watermark<=0;snap_valid<=0;snapshot_stats_ready<=0;r_record<=0;r_word<=0;r_cap_id<=0;r_generation<=0;
   end else begin
    clear_irq=0;reset_action=0;snap_action=0;
    if(reset_count!=0) reset_count<=reset_count-1'b1;
@@ -111,11 +129,12 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
       read_bitmap<=read_bitmap | (8'b1<<r_word);
    end
    if(s_awvalid && s_awready) begin ah<=1;wa<=s_awaddr;
+    aw_config<=s_awaddr==BASE+`RG_REG_CFG_SUBMIT;
     aw_run<=s_awaddr==BASE+`RG_REG_RUN;aw_reset<=s_awaddr==BASE+`RG_REG_LOCAL_RESET;
     aw_snapshot<=s_awaddr[32:12]==BASE[32:12] && s_awaddr[1:0]==0 && s_awaddr[11:0]==`RG_REG_SNAP_SUBMIT;
    end
    if(s_wvalid && s_wready) begin
-    wh<=1;wd<=s_wdata;ws<=s_wstrb;w_reset<=s_wstrb==4'hf && s_wdata==1;
+    wh<=1;wd<=s_wdata;ws<=s_wstrb;w_full_one<=s_wstrb==15 && s_wdata==1;w_reset<=s_wstrb==4'hf && s_wdata==1;
     // With RUN=1, merged RUN can be zero only when byte 0 is written zero
     // and every other strobed byte is zero. Capture that exact predicate at
     // W acceptance; the side effect still occurs only on write_fire.
@@ -226,7 +245,8 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
     if(s_araddr[32:12]!=BASE[32:12]) begin response=3;errcode=`RG_ERR_ADDRESS;end
     else if(s_araddr[1:0]!=0) begin response=2;errcode=`RG_ERR_ALIGN;end
     else if(s_araddr[11:0]>=`RG_SNAPSHOT_BASE && s_araddr[11:0]<`RG_SNAPSHOT_BASE+`RG_SNAPSHOT_WORDS*4) begin
-     if(!snap_valid) errcode=`RG_ERR_EMPTY;else value=snapshot[(s_araddr[11:0]-`RG_SNAPSHOT_BASE)>>2];
+     if(!snap_valid) errcode=`RG_ERR_EMPTY;else if(STATS_VALID_SUPPORT && !snapshot_stats_ready && s_araddr[11:0]>=`RG_TASK_BASE) value=0;
+     else value=snapshot[(s_araddr[11:0]-`RG_SNAPSHOT_BASE)>>2];
     end else case(s_araddr[11:0])
      `RG_REG_VERSION:value=INTERLOCK_SUPPORT ? `RGI_VERSION:`RG_VERSION;
      `RG_REG_PROFILE:value=INTERLOCK_SUPPORT ? `RGI_PROFILE:`RG_PROFILE;
@@ -277,6 +297,7 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
     if(errcode!=0) access_error<=errcode;
    end
    if(snapshot_fire) begin
+    snapshot_stats_ready<=observe_stats_ready;
     for(i=0;i<`RG_SNAPSHOT_WORDS;i=i+1) snapshot[i]<=0;
     snapshot[`RG_SNAP_TIME_LO]<=time_us[31:0];snapshot[`RG_SNAP_TIME_HI]<=time_us[63:32];
     snapshot[`RG_SNAP_GENERATION]<=generation;snapshot[`RG_SNAP_REVISION]<=cfg_revision;
@@ -304,4 +325,12 @@ module rs485_gp_regs #(parameter integer FIFO_DEPTH=8,SLAVE_COUNT=3,INTERLOCK_SU
    end
   end
  end
+
+// synthesis translate_off
+always @(posedge clk)if(rst_n && write_fire)begin
+ if(aw_config !== (write_window && wa[1:0]==0 && wa[11:0]==`RG_REG_CFG_SUBMIT))
+  $fatal(1,"CFG address predecode mismatch");
+ if(w_full_one !== (ws==15 && wd==1))$fatal(1,"CFG payload predecode mismatch");
+end
+// synthesis translate_on
 endmodule
