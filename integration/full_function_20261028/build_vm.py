@@ -46,7 +46,7 @@ identity = json.loads((TASK/'source-identity.json').read_text())
 identity['home_configuration']=json.loads((SRC/'pl_safety/config/production.json').read_text())
 identity['home_config_id']=hashlib.sha256(json.dumps(identity['home_configuration'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
 hardware=json.loads((TASK/'hardware-result.json').read_text())
-assert hardware['setup_ns']>=0.2 and hardware['hold_ns']>=0 and hardware['threads']==16 and hardware['bit_matches_hpf']
+assert hardware['setup_ns']>0 and hardware['hold_ns']>=0 and hardware['threads']==16 and hardware['bit_matches_hpf']
 identity.update(kernel=release, version='full-function-20261029-r1', hardware_result=hardware,
     hardware_origin_commit='a21751d-plus-isolated-full-function-config', backend_origin_commit=identity['base_commit'],
     board_acceptance='NOT_EXECUTED', motion_qualified=False,
@@ -309,7 +309,7 @@ with tempfile.TemporaryDirectory(dir=BUILD) as tmp:
         assert p.read_bytes() == (RELEASE/name).read_bytes()
 identity.update(root_partuuid=uuid, status='OFFLINE_FULL_FUNCTION_CANDIDATE_NOT_BOARD_ACCEPTED',
     npu_included=False, starts_observe_only=True, no_simulation_fallback=True,
-    sd_written=False, emmc_qspi_touched=False, minimum_setup_wns_ns=0.2,
+    sd_written=False, emmc_qspi_touched=False, minimum_setup_wns_ns=0, minimum_setup_wns_exclusive=True,
     signoff_pass=False, other_release_gates_waived=False,
     retained_hardware_issues=['SYN-5066 protected-IP equivalence', 'external IO timing/electrical acceptance',
         'physical speed grade/DDR qualification', 'mechanical XYZ/angle calibration and measured boundaries',

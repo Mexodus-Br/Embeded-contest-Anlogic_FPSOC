@@ -11,9 +11,9 @@ log=(P/'run.log').read_text(errors='replace')
 assert 'INTERLOCK_FULL_TOP_COMPLETE' in log,'Full P&R is not complete'
 t=(P/(args.candidate+'.timing')).read_text();check=(P/(args.candidate+'.check')).read_text()
 setup=float(re.search(r'SWNS:\s*([-\d.]+)ns',t)[1]);hold=float(re.search(r'HWNS:\s*([-\d.]+)ns',t)[1])
-# User override 2026-10-29: this candidate uses >=0.2ns setup, hold >=0.
+# Latest user override 2026-10-29: after this route refinement, setup >0ns, hold >=0.
 # Original nominal 100MHz constraints and all safety logic remain unchanged.
-assert setup>=0.2 and hold>=0, ('Require this-round >=0.2ns setup and nonnegative hold',setup,hold)
+assert setup>0 and hold>=0, ('Require this-round positive setup and nonnegative hold',setup,hold)
 for name in ['invalid constraint','combinational loops','no clock']:
  assert re.search(r'checking '+name+r'\(0\)',check),name
 assert log.count('INTERLOCK_TD_THREADS 16')>=5
@@ -45,7 +45,7 @@ area=(P/(args.candidate+'.area')).read_text();metrics={}
 for n in ['lut6','slice','slice reg','eram','dsp','pad']:
  m=re.search(r'#'+n+r'\s+(\d+)\s+out of\s+(\d+)\s+([\d.]+)%',area)
  if m:metrics[n]=dict(used=int(m[1]),total=int(m[2]),percent=float(m[3]))
-(H/'hardware-result.json').write_text(json.dumps(dict(hardware_directory=args.hardware_directory,selected_database=args.candidate,setup_ns=setup,hold_ns=hold,minimum_setup_ns=0.2,setup_gt_1ns=setup>1,setup_ge_0_2ns=setup>=0.2,threads=16,
+(H/'hardware-result.json').write_text(json.dumps(dict(hardware_directory=args.hardware_directory,selected_database=args.candidate,setup_ns=setup,hold_ns=hold,minimum_setup_ns=0,minimum_setup_exclusive=True,setup_positive=setup>0,setup_gt_1ns=setup>1,setup_ge_0_2ns=setup>=0.2,threads=16,
  config_profile=0,home_only=False,clock_mhz=100,metrics=metrics,matched_hpf_ps_parameters=len(actual),bit_matches_hpf=True,
  cdc_independent_gate=False,board_tested=False,signoff_pass=False,unresolved=['protected-IP SYN-5066','external IO/electrical qualification','physical speed/DDR','actual RS485 and HOME acceptance']),indent=2)+'\n')
-print('PASS full P&R >=0.2ns setup/nonnegative hold, constraints, resources, same-project bit/HPF')
+print('PASS full P&R positive setup/nonnegative hold, constraints, resources, same-project bit/HPF')
