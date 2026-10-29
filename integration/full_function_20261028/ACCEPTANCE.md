@@ -1,8 +1,8 @@
-# 除 NPU 外首版全功能候选（进行中，尚无可部署镜像）
+# 除 NPU 外首版全功能镜像：实现与验收矩阵
 
 基线/开始核对 HEAD：a21751d。2026-10-28 Asia/Taipei。
 工作树既有脏 RTL 不属于候选输入；旧 HOME r2 和 SD 不修改。
-本文件的“缺口”表示实现未完成，不能解释为仅待实板。
+最终状态：OFFLINE_FULL_FUNCTION_CANDIDATE_NOT_BOARD_ACCEPTED；所列软件与PL功能已实现并离线验证，实板未执行。机械参数未填是现场标定输入，不是镜像功能缺失。
 
 2026-10-29 用户追加：本轮只制作镜像，不写卡、不执行实机动作；制作完成即结束。
 本轮最终 nominal 100MHz setup WNS 门限放宽为 >=0.2ns，hold 仍须非负；不修改时钟、IO或安全条件。不把该放宽用于其他任务。首轮完整 P&R +0.040ns/hold +0.020ns 仍未达标，原报告保留，继续物理优化。
@@ -11,7 +11,7 @@
 
 |功能|实现状态|离线验证及证据（同目录日志）|实板|
 |---|---|---|---|
-|Wi-Fi STA、认证 HMI、统一 Web/本地终端、独立 STOP|已实现；现场填 Wi-Fi 凭据及具体 LAN 绑定地址|HTTP 14 项；`service-tests-final.log`；本地适配器 `local-tests-final-2.log`；串口行协议 `serial-tests-release.log`，未连接 UART|未执行|
+|Wi-Fi STA、认证 HMI、统一 Web/本地终端、独立 STOP|已实现；现场填 Wi-Fi 凭据及具体 LAN 绑定地址|HTTP 14 项；`service-tests-final.log`；本地适配器 `local-tests-final-2.log`；串口行协议 `serial-tests-final.log`，未连接 UART|未执行|
 |0x30→标定角度→FK→机器 XYZ|已实现；只接受新鲜且身份一致的三轴编码器|`calibration-tests-final.log`：108 个 IK/FK 点及独立球面残差；缺采/陈旧/错代际/0x33 伪装均拒绝|未执行|
 |Golden 与 PL HOME 计数映射|已实现；Golden 目标减 HOME Golden 目标，再乘逐轴符号|同上；HOME 正式退离机器显示 0；PL 0/触点 -150 不代表机械角度零|未执行|
 |双坐标、用户零点、旧预览失效|已实现；仅 PS 平移，机器安全域固定|`full-web-tests-stopped-pose.log`：非零机器位置设工作零，机器/计数不变；假板卡验证零硬件写入和旧帧拒绝|未执行|
@@ -24,8 +24,8 @@
 |日志查看/筛选/JSONL 下载|已实现且有界|HTTP 与浏览器下载解析，方向日志可按同一命令 ID 关联|未执行|
 |HOME/限位/急停/485 保护/心跳/普通运动资格|已实现；新身份 runtime_calibrated_motion，HOME、标定、边界、执行资格分开检查|安全驱动 45 检查；普通运动门禁 410 检查；安全 RTL 32 场景、HOME 54 检查；互锁 79 /解析等价 68728/owner 20480|未执行|
 |100MHz STEP/DIR/EN 时序与候选 DIR 等价|已验证|`timing-tests-executor6.log`：24 检查/3007517 周期；`executor-equivalence.log`：32 场景/15427 周期逐拍全信号相同|未执行|
-|独立 PL、threads=16、完整 P&R/bit/HPF|完整 P&R 已完成；最终选取待时序门槛达成|原版物理优化最佳 +0.157ns；新 DIR 候选首次完整布线 +0.039ns；两者 hold +0.020ns，继续物理优化，均不得交付冒充达标|未执行|
-|同批 FSBL/BOOT/匹配内核/驱动/DT/rootfs/SD 文件|构建脚本已完成；镜像尚未产生|最终软件 c8be1b5；VM 独立 r2 目录。等待达标 PL 后绑定构建；失败不能记为“仅待上板”|未执行|
+|独立 PL、threads=16、完整 P&R/bit/HPF|已完成，选择hardware6/refined6|最终原始100MHz约束 WNS +0.312ns、hold +0.020ns；bit/HPF一致，556项PS导出参数匹配。见hardware-result.json|未执行|
+|同批 FSBL/BOOT/匹配内核/驱动/DT/rootfs/SD 文件|已完成，512MiB镜像已下载且11项SHA256一致|构建提交67c276b；VM独立r3目录；新FSBL、原精确匹配wifi1内核、重编驱动/应用；212模块/3556导入CRC、DT/ABI、14安装文件及分区/FAT读回通过|未执行|
 
 ## 接口变更边界
 
@@ -38,3 +38,7 @@
 
 核对介质 → 用户断电并隔离脉冲 → 身份/输入/STOP → 用户确认近限位起点及供电/急停 → HOME → 网页输入实测标定与边界 → 小范围 XYZ/方向 → 双坐标/示教/有限重复/取消/日志。
 每阶段记录身份、原始反馈和结果；失败先 STOP，不扩大 HOME 搜索、不重试旧任务。不操作 eMMC/QSPI。
+
+## 最终交付核对
+
+构建、下载与本地校验全部通过，无本任务已知未实现的软件条目。镜像路径及哈希见DELIVERY.md、release-manifest.json。实际硬件/电气/机械/DMA写静止证据未取得，逐项见OPERATIONS.md；不以离线测试替代实板通过。最新用户限制本轮到镜像交付结束，不写卡、不操作实板。

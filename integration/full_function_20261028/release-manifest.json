@@ -1,0 +1,227 @@
+{
+  "base_commit": "67c276b9757bcbc91fdedcf948754679d4b0cf36",
+  "task": "full_function_20261028",
+  "source_override": [
+    "full-function config and generated policy replace HOME-only build inputs"
+  ],
+  "product_dirty_rtl_included": false,
+  "home_configuration": {
+    "version": 1,
+    "purpose": "full_function_runtime_calibrated_20261028",
+    "approved": true,
+    "approval_scope": "runtime_calibrated_motion",
+    "reference_convention": "limit_contact_minus_150_pull_complete_zero_unmapped",
+    "machine_xyz_calibrated": false,
+    "motion_timing": {
+      "clock_hz": 100000000,
+      "step_high_cycles": 3125,
+      "step_low_cycles": 3125,
+      "dir_setup_cycles": 500,
+      "dir_hold_cycles": 500,
+      "en_setup_cycles": 500,
+      "en_disable_cycles": 500,
+      "max_step_hz": 16000
+    },
+    "HOME_DIRECTION": 0,
+    "RELEASE_CYCLES": 2000000,
+    "SEARCH_MAX_US": 10000000,
+    "PULL_MAX_US": 3000000,
+    "PRE_MAX_US": 3000000,
+    "SEARCH_PERIOD": [
+      1000000,
+      1000000,
+      1000000
+    ],
+    "PULL_PERIOD": [
+      1000000,
+      1000000,
+      1000000
+    ],
+    "PRE_PERIOD": [
+      1000000,
+      1000000,
+      1000000
+    ],
+    "REFERENCE_POSITION": [
+      -150,
+      -150,
+      -150
+    ],
+    "PULL_DISTANCE": [
+      150,
+      150,
+      150
+    ],
+    "PRE_DISTANCE": [
+      150,
+      150,
+      150
+    ],
+    "SEARCH_MAX_STEPS": [
+      500,
+      500,
+      500
+    ],
+    "PULL_MAX_STEPS": [
+      150,
+      150,
+      150
+    ],
+    "PRE_MAX_STEPS": [
+      150,
+      150,
+      150
+    ]
+  },
+  "home_config_id": "4af692d07e401144a177ad0c3c37ac0ae3ed4fc2ca49f97ec81d5d249979a45f",
+  "kernel": "6.1.111-rt42-bsp-wifi1",
+  "version": "full-function-20261029-r1",
+  "hardware_result": {
+    "hardware_directory": "hardware6",
+    "selected_database": "refined6",
+    "setup_ns": 0.312,
+    "hold_ns": 0.02,
+    "minimum_setup_ns": 0,
+    "minimum_setup_exclusive": true,
+    "setup_positive": true,
+    "setup_gt_1ns": false,
+    "setup_ge_0_2ns": true,
+    "threads": 16,
+    "config_profile": 0,
+    "home_only": false,
+    "clock_mhz": 100,
+    "metrics": {
+      "lut6": {
+        "used": 29134,
+        "total": 52480,
+        "percent": 55.51
+      },
+      "slice": {
+        "used": 37232,
+        "total": 52480,
+        "percent": 70.95
+      },
+      "slice reg": {
+        "used": 37515,
+        "total": 104960,
+        "percent": 35.74
+      },
+      "eram": {
+        "used": 69,
+        "total": 280,
+        "percent": 24.64
+      },
+      "dsp": {
+        "used": 6,
+        "total": 240,
+        "percent": 2.5
+      },
+      "pad": {
+        "used": 17,
+        "total": 126,
+        "percent": 13.49
+      }
+    },
+    "matched_hpf_ps_parameters": 556,
+    "bit_matches_hpf": true,
+    "cdc_independent_gate": false,
+    "board_tested": false,
+    "signoff_pass": false,
+    "unresolved": [
+      "protected-IP SYN-5066",
+      "external IO/electrical qualification",
+      "physical speed/DDR",
+      "actual RS485 and HOME acceptance"
+    ]
+  },
+  "hardware_origin_commit": "a21751d-plus-isolated-full-function-config",
+  "backend_origin_commit": "67c276b9757bcbc91fdedcf948754679d4b0cf36",
+  "board_acceptance": "NOT_EXECUTED",
+  "motion_qualified": false,
+  "xyz_source": null,
+  "rs485_service_publication": true,
+  "xyz_required_source": "driver_encoder_0x30_after_calibration_and_FK",
+  "home_cartesian_direction": "+Z",
+  "pull_cartesian_direction": "-Z",
+  "hardware_home_api_enabled": true,
+  "approval_scope": "runtime_calibrated_motion",
+  "reference_convention": "contact=-150; formal-pull=0; runtime measured encoder/FK mapping",
+  "pulse_profile": "H=L=3125; DIR/EN=500; 100MHz",
+  "pl_rebuilt": true,
+  "limitations": [
+    "Board electrical/mechanical acceptance NOT_EXECUTED",
+    "PS calibration must be entered and explicitly verified after HOME",
+    "Interrupted uncertain HP1 RX remains quarantined"
+  ],
+  "root_partuuid": "3201cd3a-02",
+  "status": "OFFLINE_FULL_FUNCTION_CANDIDATE_NOT_BOARD_ACCEPTED",
+  "npu_included": false,
+  "starts_observe_only": true,
+  "no_simulation_fallback": true,
+  "sd_written": false,
+  "emmc_qspi_touched": false,
+  "minimum_setup_wns_ns": 0,
+  "minimum_setup_wns_exclusive": true,
+  "signoff_pass": false,
+  "other_release_gates_waived": false,
+  "retained_hardware_issues": [
+    "SYN-5066 protected-IP equivalence",
+    "external IO timing/electrical acceptance",
+    "physical speed grade/DDR qualification",
+    "mechanical XYZ/angle calibration and measured boundaries",
+    "actual RS485/STP feedback and low-speed HOME acceptance",
+    "HP1 interrupted-RX DDR drain"
+  ],
+  "cdc_independent_gate": false,
+  "module_crc_audit": "PASS",
+  "runtime_abi_audit": "PASS",
+  "dt_roundtrip_audit": "PASS",
+  "ext4_installed_files_readback": 14,
+  "partition_and_fat_readback": "PASS",
+  "files": {
+    "sdcard.img": {
+      "bytes": 536870912,
+      "sha256": "3340b2dd9a58d99ba2bc5004b498ca8705cabb451f69393e401ec0bee7d5edc5"
+    },
+    "BOOT.bin": {
+      "bytes": 5160512,
+      "sha256": "0d1bad692f02b826ebbd8ca54a6a200a57cd96f4df62aa2358265b024cbd7eed"
+    },
+    "system.hpf": {
+      "bytes": 1402897,
+      "sha256": "86e702ecc68a4d9da649290c627fb15fd97f050d4877ae9cc96f285590284782"
+    },
+    "system.bit": {
+      "bytes": 4052214,
+      "sha256": "024bb16179014d457a382f8350cbb2eed5df6b19f7bdb994e0b6829d567cb53b"
+    },
+    "fsbl.elf": {
+      "bytes": 1509504,
+      "sha256": "87d703075f95e5b43aa6fc6419a6eefeec3a975635bb4e79c5bb52de2be148d0"
+    },
+    "u-boot.bin": {
+      "bytes": 920348,
+      "sha256": "fcdd65e9c09d27fcbe330b44f874a17a19284bfc09f74d725d0019fd6756f540"
+    },
+    "uImage.lz4": {
+      "bytes": 8350323,
+      "sha256": "c893c43761e68150bd94cbb84f994ebe1ae268b7423a2d0aac6edc0f000e18c1"
+    },
+    "system.dtb": {
+      "bytes": 16415,
+      "sha256": "9b8d24b07268f370afc7d1a5ada57c5139e3e0c4dda65880c53f924c2cf3766d"
+    },
+    "rootfs.ext4": {
+      "bytes": 268435456,
+      "sha256": "3201cd3a0df1bf9dc1b0d515687191dd8e0de8662701c8531161fbfbed474432"
+    },
+    "boot.cmd": {
+      "bytes": 707,
+      "sha256": "c8862691a450a646bc1ce5d57eac0d6b5020f3250e23a65e92372b9264103c21"
+    },
+    "boot.scr": {
+      "bytes": 779,
+      "sha256": "064a8a6d01311257970e4eb453d7d9583b4f6b6a7b4511aa89cbdeab9de0d049"
+    }
+  }
+}
