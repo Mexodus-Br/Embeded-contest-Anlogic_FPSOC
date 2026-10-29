@@ -1,10 +1,11 @@
 """Actual isolated service gates; injected READY is a test condition, not HOME evidence."""
 from pathlib import Path
-import subprocess,sys
-H=Path(__file__).resolve().parent;R=H.parents[1];G=H/'hardware/gp'
+import argparse,subprocess,sys
+H=Path(__file__).resolve().parent;R=H.parents[1]
+parser=argparse.ArgumentParser();parser.add_argument('--hardware-directory',default='hardware');args=parser.parse_args();assert args.hardware_directory.replace('_','').isalnum();G=H/args.hardware_directory/'gp'
 sys.path.insert(0,str(R/'pl_motion'))
 from sim_tools import Simulator
-out=H/'artifacts/normal-gate';out.mkdir(exist_ok=False);sim=Simulator(out)
+out=H/'artifacts'/('normal-gate' if args.hardware_directory=='hardware' else 'normal-gate-'+args.hardware_directory);out.mkdir(exist_ok=False);sim=Simulator(out)
 base=subprocess.check_output(['git','show','05686d4:pl_safety/tests/tb_safety.v'],cwd=R).decode()
 base=base.replace('(MODE==8 || MODE==31) ? 0:1','0')
 text=base[:base.index('initial begin\n')]+'''initial begin

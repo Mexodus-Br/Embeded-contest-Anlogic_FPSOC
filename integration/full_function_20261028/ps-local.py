@@ -51,7 +51,8 @@ elif arg == 'action' and len(sys.argv) == 3:
 elif arg == 'request':
     request = json.load(sys.stdin)
     # All state-changing commands still pass the same Service admission gates.
-    call('/control', 'POST', {'action': 'acquire'}, auth['csrf'])
+    if request['method'] not in ('GET', 'HEAD'):
+        call('/control', 'POST', {'action': 'acquire'}, auth['csrf'])
     result = call(request['path'], request['method'], request.get('body'), auth['csrf'])
 else:
     raise SystemExit('Usage: ps-local state|telemetry|stop|release|action NAME|request < request.json')

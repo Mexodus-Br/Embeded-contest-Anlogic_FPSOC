@@ -11,7 +11,7 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 EXE = ROOT/'build/partner/native'/('ps_server.exe' if os.name == 'nt' else 'ps_server')
-CLIENT = ROOT.parent/'integration/full_system_20261026/ps-local.py'
+CLIENT = Path(os.environ.get('PS_LOCAL_CLIENT', str(ROOT.parent/'integration/full_function_20261028/ps-local.py')))
 with tempfile.TemporaryDirectory(dir=ROOT/'build/partner') as directory:
     d = Path(directory)
     (d/'token').write_text('b'*64)

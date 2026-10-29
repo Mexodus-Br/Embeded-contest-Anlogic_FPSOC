@@ -9,7 +9,7 @@ HardwareBackend::~HardwareBackend(){quit_=true;try{device_->stop();}catch(...){}
 void HardwareBackend::submit(std::shared_ptr<const PlannedTask> p,uint64_t now,const ExecutionBinding &binding){
     std::lock_guard<std::mutex> l(mutex_);
     require(!board_.calibration_only,"CALIBRATION_ONLY","Only bounded HOME calibration is enabled; ordinary motion remains disabled");
-    require(cancel_<UINT64_MAX/2-1&&!pending_&&phase_=="idle"&&board_.ready&&board_.qualified&&owner_&&board_.owner==owner_&&!board_.fault&&!board_.quarantine,"QUALIFICATION_MISSING","Explicit owner, recovery and complete HOME required");
+    require(cancel_<UINT64_MAX/2-1&&!pending_&&phase_=="idle"&&board_.home_capable&&board_.ready&&board_.qualified&&owner_&&board_.owner==owner_&&!board_.fault&&!board_.quarantine,"QUALIFICATION_MISSING","Exact feature identity, explicit owner, recovery and complete HOME required");
     require(p&&p->first.at("samples").size()>0&&p->first.at("samples").size()<=200000,"RESOURCE_LIMIT","Bounded plan required");
     require(binding.boot_id==boot_&&logical_id(binding.command_id)&&binding.parameter_revision==p->parameter&&binding.start_position_id==position_id_&&binding.cancel_epoch==cancel_&&binding.generation==board_.generation&&binding.start_steps==board_.position&&board_.position_valid,"STALE_INPUT","Boot/command/parameter/start position/generation/cancel binding mismatch");
     require(!publication_.is_null()&&(u64(publication_.at("observed_monotonic_us"),"observation")>=now||now-u64(publication_.at("observed_monotonic_us"),"observation")<100000),"STALE_INPUT","Start snapshot stale");
@@ -19,9 +19,10 @@ void HardwareBackend::submit(std::shared_ptr<const PlannedTask> p,uint64_t now,c
 }
 void HardwareBackend::manual_target(const ManualSegment &m){
     std::lock_guard<std::mutex> l(mutex_);
-    require(!board_.calibration_only&&board_.ready&&board_.qualified&&owner_&&board_.owner==owner_&&board_.position_valid&&!board_.fault&&!board_.quarantine,"QUALIFICATION_MISSING","Calibrated jog execution qualification missing");
+    require(!board_.calibration_only&&board_.home_capable&&board_.ready&&board_.qualified&&owner_&&board_.owner==owner_&&board_.position_valid&&!board_.fault&&!board_.quarantine,"QUALIFICATION_MISSING","Calibrated jog execution qualification missing");
     require(!pending_&&(phase_=="idle"||phase_=="jogging")&&manual_.size()<4,"BUSY","Jog pipeline full or task active");
     require(m.pose.at("samples").size()>0&&m.pose.at("samples").size()<=32&&m.duration_us<=50000,"RESOURCE_LIMIT","Jog packet exceeds 50ms/32 samples");
+    if(phase_=="idle"){command_id_.clear();parameter_revision_=m.pose.value("parameter_revision",std::string());}
     manual_.push_back(m);phase_="jogging";
 }
 void HardwareBackend::request_stop(uint64_t){
@@ -49,7 +50,7 @@ void HardwareBackend::action(const std::string &name){
     require(name!="home"||board_.home_capable,"PRODUCTION_HOME_UNAPPROVED","Exact approved HOME calibration config identity and valid snapshot required");
     require(actions_.empty()&&!pending_&&manual_.empty()&&phase_!="jogging"&&phase_!="running"&&phase_!="queued"&&phase_!="homing"&&phase_!="stopping","BUSY","Control operation pending");actions_.push_back({names.at(name),owner_,cancel_.load(),monotonic_us()+100000});
 }
-Json HardwareBackend::status()const{std::lock_guard<std::mutex> l(mutex_);return {{"kind","hardware"},{"boot_id",boot_},{"position_id",position_id_},{"command_id",command_id_},{"parameter_revision",parameter_revision_},{"generation",std::to_string(board_.generation)},{"phase",phase_},{"error",error_},{"owner_id",std::to_string(owner_)},{"cancel_epoch",std::to_string(cancel_.load())},{"observed_stop_epoch",std::to_string(observed_cancel_)},{"accepted_sequence",board_.accepted_valid?Json(std::to_string(board_.accepted)):Json()},{"completed_sequence",board_.done_valid?Json(std::to_string(board_.done)):Json()},{"quarantine",board_.quarantine},{"dma_owned",board_.dma_owned},{"home_capable",board_.home_capable},{"home_ready",board_.ready&&board_.position_valid&&!board_.fault},{"home_done_us",std::to_string(board_.home_done_us)},{"pulse_safe",board_.pulse_safe&&!board_.buffered&&!board_.dma_owned},{"calibration_only",board_.calibration_only}};}
+Json HardwareBackend::status()const{std::lock_guard<std::mutex> l(mutex_);return {{"kind","hardware"},{"boot_id",boot_},{"position_id",position_id_},{"command_id",command_id_},{"parameter_revision",parameter_revision_},{"generation",std::to_string(board_.generation)},{"phase",phase_},{"error",error_},{"owner_id",std::to_string(owner_)},{"cancel_epoch",std::to_string(cancel_.load())},{"observed_stop_epoch",std::to_string(observed_cancel_)},{"accepted_sequence",board_.accepted_valid?Json(std::to_string(board_.accepted)):Json()},{"completed_sequence",board_.done_valid?Json(std::to_string(board_.done)):Json()},{"quarantine",board_.quarantine},{"dma_owned",board_.dma_owned},{"home_capable",board_.home_capable},{"home_ready",board_.home_capable&&board_.ready&&board_.position_valid&&!board_.fault},{"home_done_us",std::to_string(board_.home_done_us)},{"pulse_safe",board_.pulse_safe&&!board_.buffered&&!board_.dma_owned},{"execution_qualified",!board_.calibration_only&&board_.home_capable&&board_.ready&&board_.position_valid&&board_.qualified&&board_.owner_active&&owner_&&board_.owner==owner_&&!board_.fault&&!board_.quarantine&&!board_.dma_owned&&phase_=="idle"},{"calibration_only",board_.calibration_only}};}
 Json HardwareBackend::telemetry()const{Json r;{std::lock_guard<std::mutex> l(mutex_);r=publication_;}return r;}
 void HardwareBackend::run(){
     ExecutionBinding binding;std::shared_ptr<const PlannedTask> active;size_t offset=0;uint64_t session=0,id=0,seq=0,last_feed=0,epoch=0,deadline=0,iteration=0,stop_deadline=0,home_before=0,home_deadline=0,jog_session=0,jog_supplied=0,last_jog=0;uint32_t generation=0,ends=0,jog_sequence=0,jog_generation=0;bool started=false,stop_pending=false,lost=false,homing=false,jog_started=false;
@@ -87,7 +88,7 @@ void HardwareBackend::run(){
         ManualSegment manual{};bool have_manual=false;
         {std::lock_guard<std::mutex> l(mutex_);if(!manual_.empty()&&b.buffered<=32&&!active&&!stop_pending){manual=std::move(manual_.front());manual_.pop_front();have_manual=true;}}
         if(have_manual&&epoch==cancel_){
-            require(b.ready&&b.qualified&&b.position_valid&&!b.calibration_only&&id&&b.owner==id&&!b.fault&&!b.quarantine,"QUALIFICATION_MISSING","Jog qualification lost");
+            require(b.home_capable&&b.ready&&b.qualified&&b.position_valid&&!b.calibration_only&&id&&b.owner==id&&!b.fault&&!b.quarantine,"QUALIFICATION_MISSING","Jog qualification lost");
             if(!jog_session){device_->motion(PLI_CMD_ENABLE);if(epoch!=cancel_)continue;jog_session=device_->motion(PLI_CMD_OPEN_SESSION);jog_generation=b.generation;jog_sequence=0;jog_supplied=0;jog_started=false;}
             std::vector<uint8_t> bytes;for(const auto &s:manual.pose.at("samples")){
                 auto hex=motion_encode({{"op","motion_encode"},{"session_id",std::to_string(jog_session)},{"sequence",jog_sequence++},{"duration_us",s.at("duration_us")},{"steps",s.at("steps")},{"end",false}}).at("hex_le").get<std::string>();
@@ -100,7 +101,7 @@ void HardwareBackend::run(){
             const auto &plan=iteration?active->cycle:active->first;const auto &samples=plan.at("samples");
             if(!session){
                 if(!iteration)require(binding.cancel_epoch==epoch&&binding.generation==b.generation&&binding.start_steps==b.position&&b.position_valid,"STALE_INPUT","Starting hardware position changed after queue admission");
-                require(b.qualified&&b.ready&&id&&b.owner==id&&!b.fault,"QUALIFICATION_MISSING","Hardware qualification lost before submission");
+                require(b.home_capable&&b.qualified&&b.ready&&id&&b.owner==id&&!b.fault,"QUALIFICATION_MISSING","Hardware qualification lost before submission");
                 device_->motion(PLI_CMD_ENABLE);if(epoch!=cancel_)continue;
                 session=device_->motion(PLI_CMD_OPEN_SESSION);generation=b.generation;ends=b.end_count;require(ends!=UINT32_MAX,"EXHAUSTED","END counter exhausted");deadline=now+u64(plan.at("duration_us"),"duration_us")+2000000;}
             // Small bounded packets fit pre-start credits and cap blocking IO to 100ms.

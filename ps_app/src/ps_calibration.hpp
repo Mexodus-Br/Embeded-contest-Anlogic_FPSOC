@@ -38,8 +38,9 @@ inline void validate_calibration(const Json &p){
     require(u64(c.at("max_age_us"),"max_age_us")>0&&u64(c.at("max_age_us"),"max_age_us")<=500000,"CONFIG_RANGE","Encoder age limit must be <=500ms");
     require(u64(c.at("max_skew_us"),"max_skew_us")>0&&u64(c.at("max_skew_us"),"max_skew_us")<=u64(c.at("max_age_us"),"max_age_us"),"CONFIG_RANGE","Invalid asynchronous encoder skew limit");
     require(calibrated_number(f.at("speed_mm_s"))>0&&calibrated_number(f.at("speed_mm_s"))<=20&&calibrated_number(f.at("acceleration_mm_s2"))>0&&calibrated_number(f.at("acceleration_mm_s2"))<=20,"CONFIG_RANGE","First-test speed and acceleration ceilings are 20");
-    require(u64(f.at("pulse_interval_us"),"pulse_interval_us")>=63&&u64(f.at("segment_guard_us"),"segment_guard_us")>=20,"CONFIG_RANGE","MOTOR3125 pulse/edge guards cannot be relaxed");
+    require(u64(f.at("pulse_interval_us"),"pulse_interval_us")>=63&&u64(f.at("segment_guard_us"),"segment_guard_us")>=32,"CONFIG_RANGE","MOTOR3125 pulse/edge guards cannot be relaxed");
     require(calibrated_number(f.at("max_sample_distance_mm"))<=0.05&&calibrated_number(f.at("max_joint_step_deg"))<=0.1,"CONFIG_RANGE","Production path sampling too coarse");
+    require(u64(f.at("max_samples"),"max_samples")<=50000,"RESOURCE_LIMIT","Production plan memory budget is at most 50000 samples");
     require(f.contains("xy_envelope"),"CONFIG_RANGE","Measured nonrectangular XY envelope and clearance required");
     auto h=calibration_home(p);auto fixture=f;auto hp=h.at("xyz_mm");
     // Workspace is stored in machine coordinates, home is the display origin.
@@ -49,8 +50,8 @@ inline void validate_calibration(const Json &p){
     for(auto &b:fixture["forbidden_boxes"]){b["min"]=translated(b.at("min"),hp,1);b["max"]=translated(b.at("max"),hp,1);}
     (void)plan({{"op","plan"},{"fixture",fixture},{"golden",p.at("golden")},{"start",{{"valid",false}}},{"points",Json::array({{{"xyz_mm",hp}}})}});
 }
-inline Json mapped_steps(const Json &golden_steps,const Json &p){
-    auto home=calibration_home(p).at("steps");auto signs=calibrated_vec(p.at("calibration").at("pl_sign"));Json out=Json::array();
+inline Json mapped_steps(const Json &golden_steps,const Json &p,const Json &home_steps=Json()){
+    auto home=home_steps.is_null()?calibration_home(p).at("steps"):home_steps;auto signs=calibrated_vec(p.at("calibration").at("pl_sign"));Json out=Json::array();
     for(int a=0;a<3;a++)out.push_back(std::to_string(int64_t(signs[a])*(i64(golden_steps[a],"steps")-i64(home[a],"home.steps"))));
     out.push_back("0");return out;
 }
@@ -86,11 +87,12 @@ inline Json calibrated_plan(const Json &p,const Json &start,const Json &points,c
     for(auto &point:converted)point["xyz_mm"]=translated(translated(point.at("xyz_mm"),work_origin,1),h.at("xyz_mm"),1);
     if(begin.at("valid")==true){for(int a=0;a<3;a++)require(i64(start.at("steps")[a],"steps")>=INT32_MIN&&i64(start.at("steps")[a],"steps")<=INT32_MAX,"POSITION_MISMATCH","Start counter outside calibrated domain");begin["xyz_mm"]=translated(begin.at("xyz_mm"),h.at("xyz_mm"),1);begin["steps"]=kinematics({{"op","ik"},{"xyz_mm",begin.at("xyz_mm")},{"golden",p.at("golden")}}).at("steps");}
     auto result=plan({{"op","plan"},{"fixture",f},{"golden",p.at("golden")},{"start",begin},{"points",converted}});
-    auto map_pose=[&](Json &v){v["golden_xyz_mm"]=v.at("xyz_mm");v["machine_xyz_mm"]=translated(v.at("xyz_mm"),h.at("xyz_mm"),-1);v["xyz_mm"]=translated(v.at("machine_xyz_mm"),work_origin,-1);v["golden_steps"]=v.at("steps");v["steps"]=mapped_steps(v.at("steps"),p);};
+    auto map_pose=[&](Json &v){v["golden_xyz_mm"]=v.at("xyz_mm");v["machine_xyz_mm"]=translated(v.at("xyz_mm"),h.at("xyz_mm"),-1);v["xyz_mm"]=translated(v.at("machine_xyz_mm"),work_origin,-1);v["golden_steps"]=v.at("steps");v["steps"]=mapped_steps(v.at("steps"),p,h.at("steps"));};
     map_pose(result["target"]);Json prev=start.at("steps");
     for(auto &s:result["samples"]){require(double(s.at("xyz_mm")[2])<0,"WORKSPACE_RANGE","Path crosses forbidden Golden Z plane");map_pose(s);
         uint64_t demand=0;for(int a=0;a<3;a++)demand=std::max(demand,uint64_t(std::abs(i64(s.at("steps")[a],"steps")-i64(prev[a],"start.steps"))));
         require(!demand||u64(s.at("duration_us"),"duration")>=u64(f.at("segment_guard_us"),"guard")+demand*u64(f.at("pulse_interval_us"),"pulse"),"PULSE_RATE","Mapped first/remaining segment exceeds pulse budget");prev=s.at("steps");}
+    if(result.contains("legs"))for(auto &leg:result["legs"])for(const char *key:{"from_mm","to_mm"})leg[key]=translated(translated(leg.at(key),h.at("xyz_mm"),-1),work_origin,-1);
     result["scope"]="calibrated_machine";return result;
 }
 // Fifty milliseconds of spatially sampled manual intent. The browser never
@@ -113,7 +115,7 @@ inline Json calibrated_jog_chunk(const Json &p,const Json &start,int axis,int si
             auto xyz=translated(point,home.at("xyz_mm"),1);require(double(xyz[2])<0,"WORKSPACE_RANGE","Jog outside negative Golden Z branch");
             auto pose=kinematics({{"op","ik"},{"xyz_mm",xyz},{"golden",p.at("golden")}});
             for(int a=0;a<3;a++){double q=pose.at("joint_deg")[a];require(q>=jl[a]&&q<=jh[a],"JOINT_RANGE","Jog outside software joint boundary");require(std::abs(q-double(previous.at("joint_deg")[a]))<=calibrated_number(f.at("max_joint_step_deg")),"PATH_DISCONTINUITY","Jog joint discontinuity");}
-            pose["xyz_mm"]=point;pose["steps"]=mapped_steps(pose.at("steps"),p);target=std::move(pose);
+            pose["xyz_mm"]=point;pose["steps"]=mapped_steps(pose.at("steps"),p,home.at("steps"));target=std::move(pose);
         }
         uint64_t demand=0;for(int a=0;a<3;a++)demand=std::max(demand,uint64_t(std::abs(i64(target.at("steps")[a],"steps")-i64(previous.at("steps")[a],"steps"))));
         require(!demand||2500>=u64(f.at("segment_guard_us"),"guard")+demand*u64(f.at("pulse_interval_us"),"pulse"),"PULSE_RATE","Jog pulse demand exceeds interval");

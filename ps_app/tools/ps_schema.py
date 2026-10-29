@@ -93,14 +93,18 @@ def schema():
     d['parameters']['properties'].update(schema_version=enum(1,2),calibration=ref('calibration'))
     d['position']['properties'].update(source=enum('simulation','unknown','encoder_0x30_calibrated_fk'),model=enum('sample_endpoint_simulation','unknown','golden_sphere_fk'),machine_xyz_mm=nullable(ref('xyz')),work_xyz_mm=nullable(ref('xyz')),work_origin_machine_mm=ref('xyz'),work_revision=ref('id'))
     d['state']['properties']['calibration_verified']=B
+    d['position']['properties']['settled']=B
+    d['position']['properties']['error']=nullable(ref('error'))
+    d['hardware_telemetry']['properties'].update(ps_position=ref('position'),ps_calibration_verified=B)
     d['teach']['properties'].update(source=enum('simulation','encoder_0x30_calibrated_fk'),work_revision=ref('id'))
     hardware=d['backend']['oneOf'][1]['properties']
-    hardware.update(home_ready=B,home_done_us=ref('u64'),pulse_safe=B)
+    hardware.update(home_ready=B,home_done_us=ref('u64'),pulse_safe=B,execution_qualified=B)
     hardware['phase']['enum'].append('jogging')
     d['pose']['properties'].update(golden_xyz_mm=ref('xyz'),machine_xyz_mm=ref('xyz'),golden_steps=ref('steps'))
     d['preview']['properties']['scope']=enum('host_fixture_only','calibrated_machine')
     d['calibration_verify_request']=obj({'boot_id':ref('id'),'parameter_version':ref('id'),'home_done_us':ref('u64')})
     d['work_zero_request']=obj({'boot_id':ref('id'),'parameter_version':ref('id'),'position_id':ref('id')})
+    d['calibration_state']=obj({'configured':B,'verified_this_boot':B,'parameter_version':ref('id'),'work_revision':ref('id'),'home_golden_xyz_mm':ref('xyz'),'golden_home_steps':ref('steps'),'pl_home_steps':const(['0']*3),'contact_reference_steps':const(['-150']*3),'pl_sign':ref('xyz'),'reference_id':S},['configured','verified_this_boot','parameter_version','work_revision'])
     return {'$schema':'https://json-schema.org/draft/2020-12/schema','$id':'urn:delta:ps:api:1','title':'PS shared simulation/hardware API v1','$comment':'Select a $defs entry using the endpoint mapping in ps-api.md. Numeric/geometry cross-field constraints remain authoritative in the C++ validator.','$defs':d}
 
 if __name__=='__main__':

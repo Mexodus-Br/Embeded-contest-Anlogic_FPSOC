@@ -7,9 +7,9 @@ from ps_core import run, batch, FIXTURE
 
 def parameters():
     f = copy.deepcopy(FIXTURE['fixture'])
-    f.update(id='synthetic_calibration', acceleration_mm_s2=20,
+    f.update(id='synthetic_calibration', acceleration_mm_s2=20,max_samples='20000',
              max_sample_distance_mm=.05, max_joint_step_deg=.1,
-             pulse_interval_us='63', segment_guard_us='20',
+             pulse_interval_us='63', segment_guard_us='32',
              xy_envelope=dict(center_mm=[0,0],radii_mm=[20,20],margin_mm=1),
              workspace={'min': [-20, -20, -20], 'max': [20, 20, 20]})
     return dict(schema_version=2, id='synthetic_calibration', golden={}, fixture=f,

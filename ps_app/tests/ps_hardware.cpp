@@ -11,7 +11,7 @@ static void check(bool v,const char *what){if(!v)throw std::runtime_error(what);
 struct FakeBoard final:BoardDevice {
     std::mutex lock;BoardState s;std::atomic<unsigned> opens{0},feeds{0},packets{0},starts{0},stops{0};uint64_t last_seq=0;
     bool reject=false,stop_fail=false,packet_fail=false,hold_packet=false,stop_stuck=false,calibrated_feedback=false;
-    FakeBoard(){s.ready=true;s.position_valid=true;s.pulse_safe=true;s.stopped=true;}
+    FakeBoard(){s.ready=true;s.position_valid=true;s.pulse_safe=true;s.stopped=true;s.home_capable=true;}
     BoardState read()override{std::lock_guard<std::mutex> l(lock);s.pl_time_us+=5000;
         if(calibrated_feedback){Json rows=Json::array();auto now=monotonic_us();for(int a=0;a<3;a++)rows.push_back({{"axis",a},{"slot",0},{"valid",true},{"stale",false},{"valid_generation","1"},{"valid_revision","1"},{"age_us","0"},{"last_valid",{{"query",0x30},{"address",0xe0+a},{"data_valid",true},{"event_us",std::to_string(s.pl_time_us)},{"sequence",std::to_string(s.pl_time_us)},{"value",{{"carry","0"},{"value",1000}}}}}});
             s.driver_feedback={{"snapshot_id",1},{"source_time_us",std::to_string(s.pl_time_us)},{"observed_monotonic_us",std::to_string(now)},{"collector_generation","1"},{"revision","1"},{"rows",rows}};}
@@ -76,7 +76,7 @@ int main(int argc,char **argv){try{unsigned cases=0;
      wait_for(b,[&](auto&){return b.status().at("phase")=="idle";});check(b.telemetry().at("xyz_estimate").is_null(),"HOME_DONE does not calibrate XYZ");cases++;}
     {auto d=std::make_shared<FakeBoard>();d->s.home_capable=true;HardwareBackend b(d,"home_fault");ready(b);b.action("home");
      wait_for(b,[&](auto&){return b.status().at("phase")=="homing";});d->mutate([](auto&f){f.s.fault=true;});wait_for(b,[](auto&r){return r.failed;});check(d->stops>0,"HOME fault stops without waiting for watchdog");cases++;}
-    {auto d=std::make_shared<FakeBoard>();HardwareBackend b(d,"home_gate");bool refused=false;
+    {auto d=std::make_shared<FakeBoard>();d->s.home_capable=false;HardwareBackend b(d,"home_gate");bool refused=false;
      try{b.action("home");}catch(const Error&e){refused=e.detail.at("code")=="PRODUCTION_HOME_UNAPPROVED";}
      check(refused&&d->opens==0&&d->starts==0,"unapproved fixture HOME refused before device action");cases++;}
     {auto d=std::make_shared<FakeBoard>();HardwareBackend b(d,"boot1");ready(b);submit(b,plan_for(),monotonic_us());wait_for(b,[](auto&r){return r.accepted;});
@@ -100,7 +100,7 @@ int main(int argc,char **argv){try{unsigned cases=0;
         b.manual_target({{{"samples",samples}},"jog_0",50000});b.manual_target({{{"samples",samples}},"jog_1",50000});
         wait_for(b,[&](auto&){return d->starts==1;});check(d->packets==2,"jog prefills 100ms with real MOT2 packets");
         b.request_stop(monotonic_us());wait_for(b,[](auto&r){return r.stopped;});auto before=d->starts.load();std::this_thread::sleep_for(std::chrono::milliseconds(50));check(d->starts==before,"jog STOP never restarts");cases++;}
-    if(argc>=3){auto d=std::make_shared<FakeBoard>();Service s(ps_fs::u8path(argv[1]),ps_fs::u8path(argv[2]),true,true,d);auto state=s.state();check(!state.at("simulation").get<bool>()&&!state.at("simulation_injection_enabled").get<bool>(),"real source labels");
+    if(argc>=3){auto d=std::make_shared<FakeBoard>();d->s.home_capable=false;Service s(ps_fs::u8path(argv[1]),ps_fs::u8path(argv[2]),true,true,d);auto state=s.state();check(!state.at("simulation").get<bool>()&&!state.at("simulation_injection_enabled").get<bool>(),"real source labels");
         s.handle("POST","/control",{},{{"action","acquire"}},"serial");bool refused=false;try{s.handle("POST","/simulation/inject",{},{{"kind","reference_position"}},"serial");}catch(const Error&){refused=true;}check(refused,"hardware no simulation injection");
         s.handle("POST","/hardware/action",{},{{"action","open"},{"boot_id",s.boot_id()}},"serial");std::this_thread::sleep_for(std::chrono::milliseconds(50));auto t=s.handle("GET","/telemetry",{},{},"serial");check(!t.at("simulation").get<bool>()&&t.at("xyz_estimate").is_null(),"readonly hardware telemetry unknown XYZ");
         auto reject_home=[&](Json body,const std::string &code){bool rejected=false;try{s.handle("POST","/hardware/action",{},body,"serial");}catch(const Error &e){rejected=e.detail.at("code")==code;}check(rejected,"HOME intent binding rejection");};
@@ -114,13 +114,17 @@ int main(int argc,char **argv){try{unsigned cases=0;
     if(argc>=4){auto d=std::make_shared<FakeBoard>();d->calibrated_feedback=true;d->s.home_capable=true;d->s.home_done_us=1000;
         auto data=ps_fs::u8path(std::string(argv[2])+"-calibration");auto p=read_json(ps_fs::u8path(argv[3]));
         {Service s(ps_fs::u8path(argv[1]),data,false,true,d);s.handle("POST","/control",{},{{"action","acquire"}},"web");s.handle("POST","/hardware/action",{},{{"action","open"},{"boot_id",s.boot_id()}},"web");std::this_thread::sleep_for(std::chrono::milliseconds(50));
-            s.handle("PUT","/parameters/synthetic_calibration",{},p,"web");check(!s.state().at("position").at("valid").get<bool>(),"saving calibration cannot establish pose");std::this_thread::sleep_for(std::chrono::milliseconds(280));
+            s.handle("PUT","/parameters/synthetic_calibration",{},p,"web");check(!s.state().at("position").at("valid").get<bool>(),"saving calibration cannot establish pose");check(ps_fs::exists(data/"work-origin.json"),"default frame revision persists independently of position validity");std::this_thread::sleep_for(std::chrono::milliseconds(280));
             s.handle("POST","/calibration/verify",{},{{"boot_id",s.boot_id()},{"parameter_version",p.at("id")},{"home_done_us","1000"}},"web");auto st=s.state();check(st.at("position").at("valid").get<bool>(),"explicit fresh real FK verification");
             auto task=Json{{"points",Json::array({{{"xyz_mm",{1,0,0}}}})},{"work_revision",st.at("position").at("work_revision")}};
             auto preview=s.handle("POST","/preview",{},{{"parameter_version",p.at("id")},{"start_position_id",st.at("position").at("position_id")},{"task",task}},"web");check(preview.at("executable").get<bool>(),"real calibrated straight preview");
             auto before=d->read().position;auto packets=d->packets.load(),starts=d->starts.load();
             s.handle("POST","/coordinates/zero",{},{{"boot_id",s.boot_id()},{"parameter_version",p.at("id")},{"position_id",st.at("position").at("position_id")}},"web");st=s.state();check(st.at("preview_id").is_null()&&before==d->read().position&&d->packets==packets&&d->starts==starts,"work zero invalidates preview without count/EN/motion writes");
             bool stale=false;try{s.handle("POST","/preview",{},{{"parameter_version",p.at("id")},{"start_position_id",st.at("position").at("position_id")},{"task",task}},"web");}catch(const Error&e){stale=e.detail.at("code")=="COORDINATE_STALE";}check(stale,"task fixed work revision rejected after zero");
+            s.handle("POST","/mode",{},{{"mode","manual"}},"web");auto stops=d->stops.load();st=s.state();
+            s.handle("POST","/jog/start",{},{{"boot_id",s.boot_id()},{"jog_id","real_timeout"},{"axis","x"},{"sign",1},{"speed_mm_s",1},{"refresh_seq","0"},{"stop_epoch",st.at("stop_epoch")},{"deadline_monotonic_us",std::to_string(monotonic_us()+1500000)}},"web");
+            std::this_thread::sleep_for(std::chrono::milliseconds(650));check(d->stops>stops&&s.state().at("phase")=="idle","real service input timeout dispatches independent STOP and confirms pulse safety");
+            auto log=s.handle("POST","/logs/snapshots",{},{{"command_id","real_timeout"}},"web");check(log.at("count").get<unsigned>()>=3,"jog start, timeout and STOP remain queryable by the same command identity");
         }
         d->mutate([](auto&f){f.s.owner_active=false;});{Service restarted(ps_fs::u8path(argv[1]),data,false,true,d);auto st=restarted.state();check(st.at("parameter_version")==p.at("id")&&!st.at("position").at("valid").get<bool>()&&!st.at("calibration_verified").get<bool>(),"restart restores documents but no position or execution qualification");}cases++;}
     std::cout<<"PASS "<<cases<<" fake-board backend scenarios (no devices)\n";return 0;

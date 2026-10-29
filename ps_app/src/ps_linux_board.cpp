@@ -78,7 +78,10 @@ public:
         b.session=pair(w+P(SNAP_WORD_SESSION_LO));b.generation=m.generation;
         b.accepted=w[P(SNAP_WORD_ACCEPT_SEQ)];b.done=w[P(SNAP_WORD_DONE_SEQ)];b.end_count=w[P(SNAP_WORD_END_COUNT)];b.buffered=w[P(SNAP_WORD_BUFFERED)];
         b.accepted_valid=w[P(SNAP_WORD_VALIDITY)]&P(SNAP_VALIDITY_ACCEPT_VALID_MASK);b.done_valid=w[P(SNAP_WORD_VALIDITY)]&P(SNAP_VALIDITY_DONE_VALID_MASK);
-        b.stopped=(w[P(SNAP_WORD_STATUS)]&P(STATUS_BITS_STOP_COMPLETE_MASK))&&(status&SI_STATUS_DRAINED);
+        // Ordinary STOP preserves EN. SAF2 DRAINED additionally requires EN off
+        // and belongs to configuration/owner-close admission, not STOP proof.
+        // Pulse safety and DMA ownership are checked independently by the owner.
+        b.stopped=w[P(SNAP_WORD_STATUS)]&P(STATUS_BITS_STOP_COMPLETE_MASK);
         b.pulse_safe=s.global[SAF_SNAPSHOT_PULSE_SAFE]!=0;b.quarantine=m.quarantined;b.dma_owned=m.dma_owned;
         b.position_valid=(s.global[SAF_SNAPSHOT_VALID]&7)==7;b.pl_time_us=pair(s.global+SAF_SNAPSHOT_TIME_LO);
         for(unsigned i=0;i<3;i++){b.position[i]=int64_t(pair(s.global+SAF_SNAPSHOT_POSITION_0+i*2));b.pulses[i]=pair(s.global+SAF_SNAPSHOT_PULSES_0+i*2);}

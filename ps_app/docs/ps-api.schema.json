@@ -534,6 +534,19 @@
         },
         "work_revision": {
           "$ref": "#/$defs/id"
+        },
+        "settled": {
+          "type": "boolean"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/error"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -894,6 +907,9 @@
               "$ref": "#/$defs/u64"
             },
             "pulse_safe": {
+              "type": "boolean"
+            },
+            "execution_qualified": {
               "type": "boolean"
             }
           },
@@ -1783,6 +1799,12 @@
             "raw": {},
             "stale": {
               "type": "boolean"
+            },
+            "ps_position": {
+              "$ref": "#/$defs/position"
+            },
+            "ps_calibration_verified": {
+              "type": "boolean"
             }
           },
           "required": [
@@ -2466,6 +2488,12 @@
         "raw": {},
         "stale": {
           "type": "boolean"
+        },
+        "ps_position": {
+          "$ref": "#/$defs/position"
+        },
+        "ps_calibration_verified": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -2600,6 +2628,56 @@
         "boot_id",
         "parameter_version",
         "position_id"
+      ],
+      "additionalProperties": false
+    },
+    "calibration_state": {
+      "type": "object",
+      "properties": {
+        "configured": {
+          "type": "boolean"
+        },
+        "verified_this_boot": {
+          "type": "boolean"
+        },
+        "parameter_version": {
+          "$ref": "#/$defs/id"
+        },
+        "work_revision": {
+          "$ref": "#/$defs/id"
+        },
+        "home_golden_xyz_mm": {
+          "$ref": "#/$defs/xyz"
+        },
+        "golden_home_steps": {
+          "$ref": "#/$defs/steps"
+        },
+        "pl_home_steps": {
+          "const": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "contact_reference_steps": {
+          "const": [
+            "-150",
+            "-150",
+            "-150"
+          ]
+        },
+        "pl_sign": {
+          "$ref": "#/$defs/xyz"
+        },
+        "reference_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "configured",
+        "verified_this_boot",
+        "parameter_version",
+        "work_revision"
       ],
       "additionalProperties": false
     }

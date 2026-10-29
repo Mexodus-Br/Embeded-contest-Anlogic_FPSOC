@@ -7,7 +7,8 @@ import sys
 H=Path(__file__).resolve().parent;R=H.parents[1];G=H/'hardware/gp'
 sys.path.insert(0,str(R/'pl_motion'))
 from sim_tools import Simulator
-p=argparse.ArgumentParser();p.add_argument('--tag',required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--tag',required=True);p.add_argument('--hardware-directory',default='hardware');a=p.parse_args()
+assert a.hardware_directory.replace('_','').isalnum();G=H/a.hardware_directory/'gp'
 out=H/'artifacts'/('rtl-'+a.tag);out.mkdir(parents=True,exist_ok=False);sim=Simulator(out)
 def run(name,sources,top,extra=(),timeout=90):
  target=out/(name+'.vvp')
